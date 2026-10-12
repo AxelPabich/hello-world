@@ -43,6 +43,7 @@ class MasterEngine(
         /** Ende der Antwortzeit (Master-Uhr) oder `null`. */
         val answerDeadline: Long?,
         val profileName: String,
+        val canShowReplay: Boolean,
     )
 
     private enum class Status { IDLE, WAITING, HOLDING, BUZZED, OUT }
@@ -711,6 +712,7 @@ class MasterEngine(
         },
         answerDeadline = answerDeadline,
         profileName = profileName,
+        canShowReplay = canShowReplay(),
     )
 
     private fun notifyChanged() {

@@ -18,20 +18,16 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
    „Hinweis: Funk-Laufzeit Peter 939 ms (sonst ~210 ms)“ – wenn sie mehr als doppelt
    so lang und mindestens 300 ms länger als üblich ist.
 
+## Erledigt im nächsten Build
+
+5. Nutzbare Bildschirmfläche (Systemleisten, Taskleiste, schwebende Knöpfe ausgespart).
+6. Oberfläche im Stil A „TV-Quizshow“ mit neuer Menüstruktur; weitere Designs vorbereitet.
+7. Synthetische Klänge, je Profil schaltbar mit Reset; Richtig/Falsch nur beim Betroffenen.
+8. Spielverlauf-Animation (max. 10 s) mit Verfolgungsjagd-Musik auf allen Geräten.
+
 ## Offen
 
-5. **Nutzbare Bildschirmfläche:** Die Oberfläche darf nicht unter Statusleiste,
-   Navigationsleiste, Taskleiste oder schwebenden System-Knöpfen liegen. Diese Bereiche
-   erkennen und die Oberfläche auf die nutzbare Fläche begrenzen.
-6. **Ansprechende Spiel-Oberfläche und Menüstruktur** – Konzept siehe unten.
-   Visueller Entwurf mit drei Stilrichtungen (A TV-Quizshow, B Partyspiel,
-   C Schlicht & modern) liegt als Canvas vor; Auswahl der Richtung offen.
-7. **Audio-Effekte im Spielablauf** – Vorschläge siehe unten. Entschieden:
-   - Sounds zunächst **synthetisch** erzeugen (keine Sounddateien).
-   - „Richtig“ und „Falsch“ nur beim **betroffenen Spieler** (lenkt sonst die
-     weiteren Antwortenden ab).
-   - Welcher Sound wo erklingt, ist **je Profil konfigurierbar**, mit
-     „Auf Standard zurücksetzen“.
+(keine)
 
 ### Konzept Oberfläche (Vorschlag)
 

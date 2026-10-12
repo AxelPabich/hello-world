@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.tappableElement
+import androidx.compose.foundation.layout.union
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
@@ -41,6 +45,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import de.pabich.buzzer.BuzzerViewModel
 import de.pabich.buzzer.core.DEFAULT_EMOJIS
+import de.pabich.buzzer.core.DEFAULT_SOUNDS
+import de.pabich.buzzer.core.SoundEvent
 import de.pabich.buzzer.core.EMOJI_COUNT
 import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.ScoringMode
@@ -48,7 +54,7 @@ import de.pabich.buzzer.core.Settings
 import de.pabich.buzzer.core.StartMode
 import java.util.Locale
 
-private val TABS = listOf("Ablauf", "Zeiten", "Wertung", "Profile")
+private val TABS = listOf("Ablauf", "Zeiten", "Wertung", "Klang", "Profile")
 
 private fun Long.secondsText() = String.format(Locale.GERMANY, "%.1f", this / 1000.0)
 private fun String.secondsToMs(): Long? = replace(',', '.').toDoubleOrNull()?.let { (it * 1000).toLong() }
@@ -64,7 +70,7 @@ fun SettingsDialog(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, onDismi
 
     Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false)) {
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            Column(Modifier.safeDrawingPadding()) {
+            Column(Modifier.windowInsetsPadding(WindowInsets.safeDrawing.union(WindowInsets.tappableElement))) {
                 Column(Modifier.padding(16.dp)) {
                     Text("Einstellungen", style = MaterialTheme.typography.titleLarge)
                     Text(
@@ -100,6 +106,7 @@ fun SettingsDialog(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, onDismi
                             0 -> FlowTab(draft, change)
                             1 -> TimesTab(draft, snapshot, change)
                             2 -> ScoringTab(draft, snapshot, change) { vm.newGame(); onDismiss() }
+                            3 -> SoundTab(draft, change)
                             else -> ProfilesTab(
                                 vm = vm,
                                 draft = draft,
@@ -223,6 +230,19 @@ private fun ScoringTab(s: Settings, snapshot: MasterEngine.Snapshot, change: (Se
     OutlinedButton(onClick = onNewGame, modifier = Modifier.padding(top = 16.dp)) {
         Text("Neues Spiel (Punkte zurücksetzen)")
     }
+}
+
+@Composable
+private fun SoundTab(s: Settings, change: (Settings) -> Unit) {
+    Section("Klänge dieses Profils")
+    Hint("„Richtig“ und „Falsch“ hört nur der betroffene Spieler. Bei der Freigabe gibt es bewusst keinen Ton.")
+    for (event in SoundEvent.entries) {
+        SwitchRow(event.label, event in s.sounds) { on -> change(s.copy(sounds = if (on) s.sounds + event else s.sounds - event)) }
+    }
+    OutlinedButton(onClick = { change(s.copy(sounds = DEFAULT_SOUNDS)) }, modifier = Modifier.padding(top = 12.dp)) {
+        Text("Auf Standard zurücksetzen")
+    }
+    Hint("Jedes Gerät kann Töne zusätzlich über 🔊 in der oberen Leiste stummschalten.")
 }
 
 @Composable

@@ -29,6 +29,9 @@ import androidx.compose.runtime.withFrameMillis
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.style.TextOverflow
@@ -114,8 +117,16 @@ fun TopBar(
     modifier: Modifier = Modifier,
     trailing: @Composable RowScope.() -> Unit = {},
 ) {
+    val theme = LocalBuzzerTheme.current
     Row(
-        modifier = modifier.fillMaxWidth().background(Color(0xFF1A1A1A)).padding(horizontal = 4.dp, vertical = 2.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .background(theme.panel)
+            .drawBehind {
+                val line = 2.dp.toPx()
+                drawRect(theme.accent, topLeft = Offset(0f, size.height - line), size = Size(size.width, line))
+            }
+            .padding(horizontal = 4.dp, vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         for (emoji in emojis) BarButton(emoji, onClick = { onEmoji(emoji) })

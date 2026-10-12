@@ -283,3 +283,35 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 - Beim regulären Verlassen/Schließen kann jeder alle Diagnosedaten löschen.
 - Alle Builds werden mit demselben Schlüssel signiert, damit Updates über die
   vorherige Version installiert werden können.
+
+---
+
+## 17. Oberfläche und Menü
+
+- Design „TV-Quizshow“ (Nachtblau, Gold, Türkis; Schriften Anton und Barlow).
+  Weitere Designs lassen sich ergänzen und in den App-Einstellungen wählen.
+- Die Oberfläche bleibt in der nutzbaren Bildschirmfläche: Status-, Navigations- und
+  Taskleiste, schwebende System-Knöpfe und Kameraaussparung werden ausgespart.
+- Startbildschirm: Name, Kacheln „Spiel leiten“ / „Mitspielen“, Menü „Profile &
+  Einstellungen“ (Töne, Emoticons, Design, Profile, Export/Import), „Hilfe &
+  Spielregeln“, „Über & Diagnose“.
+- Spieler: großer runder Buzzer in der Zustandsfarbe (pulsiert bei Gelb, wackelt bei
+  Frühstart, Konfetti bei „Richtig“), oben Emoticons/Ton/Chat, unten Zeitbalken.
+- Master: Spielerkarten mit Statusring, Platz, Zeiten und Punktebalken; unten ein
+  Hauptknopf je Phase; seltene Aktionen im Menü ⋮.
+
+## 18. Klänge
+
+- Alle Klänge werden synthetisch erzeugt.
+- Welche Klänge erklingen, ist je Profil einstellbar (Tab „Klang“, mit „Auf Standard
+  zurücksetzen“); jedes Gerät kann zusätzlich stummschalten.
+- „Richtig“ und „Falsch“ hört nur der betroffene Spieler. Bei der Freigabe gibt es
+  keinen Ton (unterschiedliche Lautsprecher-Verzögerung wäre unfair); das Summen beim
+  Scharfschalten hat eine feste Länge und endet nicht mit der Freigabe.
+
+## 19. Spielverlauf
+
+- In den Pausen kann der Master auf allen Bildschirmen eine Animation des bisherigen
+  Spielverlaufs zeigen: Punktebalken wachsen Runde für Runde, die Zeilen tauschen die
+  Plätze. Dauer höchstens 10 Sekunden, dazu Verfolgungsjagd-Musik auf allen Geräten.
+- Namen folgen der Ranglisten-Einstellung („???“ wenn ausgeblendet, eigener Eintrag „Du“).

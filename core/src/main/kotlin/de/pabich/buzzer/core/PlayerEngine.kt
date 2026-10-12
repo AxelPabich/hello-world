@@ -48,6 +48,9 @@ class PlayerEngine(
     var onProfile: ((name: String, values: Map<String, String>) -> Unit)? = null
     var onBye: (() -> Unit)? = null
     var onSound: ((SoundEvent) -> Unit)? = null
+
+    /** Ein Durchgang beginnt (Buzzer scharf); für das Summen – nie zeitgleich mit der Freigabe. */
+    var onArmed: (() -> Unit)? = null
     var onReplay: ((Message.Replay) -> Unit)? = null
 
     var view = View(Display.BLACK, 0, "0", "Warte auf den Spielleiter")
@@ -208,6 +211,7 @@ class PlayerEngine(
         active = true
         // Während des Buzzerns lenkt die Rangliste nur ab.
         view = view.copy(showBoard = false, timer = null)
+        onArmed?.invoke()
     }
 
     private fun endContest() {
