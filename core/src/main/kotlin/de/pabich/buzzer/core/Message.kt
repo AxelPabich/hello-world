@@ -41,7 +41,44 @@ sealed interface Message {
 
     /** M → S: Rangliste aus Sicht des Empfängers; [show] = zwischen den Runden anzeigen. */
     data class Scoreboard(val entries: List<ScoreEntry>, val maxScore: Long, val show: Boolean) : Message
+
+    /** M → S: Spielregeln, die Spieler vor der Freigabe sehen. Limits 0 = ohne Limit; leere Emoticons = aus. */
+    data class Config(
+        val reactionLimitMs: Long,
+        val answerLimitMs: Long,
+        val messagesEnabled: Boolean,
+        val emojis: List<String>,
+        val profileName: String,
+    ) : Message
+
+    /** M → S: Antwortzeit des grünen Spielers, Rest in ms ab Empfang (0 = keine). */
+    data class AnswerTimer(val remainingMs: Long) : Message
+
+    /** S → M: Emoticon senden ([from] leer); M → S: Emoticon von [from] anzeigen. */
+    data class Emote(val from: String, val emoji: String) : Message
+
+    /** S → M: Emoticons empfangen (und damit auch senden) ja/nein. */
+    data class Prefs(val receiveEmojis: Boolean) : Message
+
+    /** M → S: mögliche Empfänger für Kurznachrichten. */
+    data class Roster(val entries: List<Pair<PlayerId, String>>) : Message
+
+    /** S → M: Kurznachricht an [to] (Spieler-ID, [MASTER_ADDRESS] oder [ALL_ADDRESS]). */
+    data class ChatSend(val to: String, val text: String) : Message
+
+    /** M → S: Kurznachricht von [from]. */
+    data class Chat(val from: String, val text: String, val toAll: Boolean) : Message
+
+    /** M → S: das laufende Spielprofil zum Ansehen und Speichern. */
+    data class Profile(val name: String, val values: Map<String, String>) : Message
+
+    /** M → S: der Spielleiter schließt die Gruppe. */
+    data object Bye : Message
 }
+
+const val ALL_ADDRESS = "*"
+const val MASTER_ADDRESS = "@master"
+const val MAX_CHAT_LENGTH = 100
 
 /** Einfaches Textformat: `TYP|schlüssel=wert|…`, Werte URL-kodiert. */
 object MessageCodec {
@@ -64,6 +101,20 @@ object MessageCodec {
             is Message.Scoreboard -> "BOARD" to mapOf(
                 "e" to encodeEntries(message.entries), "m" to message.maxScore, "sh" to message.show,
             )
+            is Message.Config -> "CONFIG" to mapOf(
+                "rl" to message.reactionLimitMs, "al" to message.answerLimitMs, "me" to message.messagesEnabled,
+                "em" to encodeList(message.emojis), "pn" to message.profileName,
+            )
+            is Message.AnswerTimer -> "ANSWER_TIMER" to mapOf("ms" to message.remainingMs)
+            is Message.Emote -> "EMOTE" to mapOf("f" to message.from, "e" to message.emoji)
+            is Message.Prefs -> "PREFS" to mapOf("re" to message.receiveEmojis)
+            is Message.Roster -> "ROSTER" to mapOf(
+                "e" to encodeList(message.entries.map { "${enc(it.first)}:${enc(it.second)}" }),
+            )
+            is Message.ChatSend -> "CHAT_SEND" to mapOf("to" to message.to, "t" to message.text)
+            is Message.Chat -> "CHAT" to mapOf("f" to message.from, "t" to message.text, "all" to message.toAll)
+            is Message.Profile -> "PROFILE" to mapOf("n" to message.name, "v" to SettingsCodec.encodeLine(message.values))
+            Message.Bye -> "BYE" to emptyMap()
         }
         val text = buildString {
             append(type)
@@ -97,6 +148,17 @@ object MessageCodec {
             "FREEZE" -> Message.Freeze(int("r"))
             "RESET" -> Message.Reset(f.getValue("s"))
             "BOARD" -> Message.Scoreboard(decodeEntries(f.getValue("e")), long("m"), bool("sh"))
+            "CONFIG" -> Message.Config(long("rl"), long("al"), bool("me"), decodeList(f.getValue("em")), f.getValue("pn"))
+            "ANSWER_TIMER" -> Message.AnswerTimer(long("ms"))
+            "EMOTE" -> Message.Emote(f.getValue("f"), f.getValue("e"))
+            "PREFS" -> Message.Prefs(bool("re"))
+            "ROSTER" -> Message.Roster(
+                decodeList(f.getValue("e")).map { val (id, name) = it.split(':'); dec(id) to dec(name) },
+            )
+            "CHAT_SEND" -> Message.ChatSend(f.getValue("to"), f.getValue("t"))
+            "CHAT" -> Message.Chat(f.getValue("f"), f.getValue("t"), bool("all"))
+            "PROFILE" -> Message.Profile(f.getValue("n"), SettingsCodec.decodeLine(f.getValue("v")))
+            "BYE" -> Message.Bye
             else -> null
         }
     } catch (e: RuntimeException) {
@@ -105,6 +167,11 @@ object MessageCodec {
 
     private fun enc(text: String) = URLEncoder.encode(text, "UTF-8")
     private fun dec(text: String) = URLDecoder.decode(text, "UTF-8")
+
+    private fun encodeList(items: List<String>) = items.joinToString(",") { enc(it) }
+
+    private fun decodeList(text: String): List<String> =
+        if (text.isEmpty()) emptyList() else text.split(',').map { dec(it) }
 
     private fun encodeEntries(entries: List<ScoreEntry>) = entries.joinToString(",") {
         listOf(it.rank, it.score, if (it.isSelf) 1 else 0, enc(it.label), enc(it.scoreText)).joinToString(":")

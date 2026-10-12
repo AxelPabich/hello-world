@@ -10,9 +10,16 @@ class MasterEngine(
     private val clock: Clock,
     private val scheduler: Scheduler,
     private val random: Random = Random.Default,
+    private val log: (String) -> Unit = {},
     private val send: (PlayerId, Message) -> Unit,
 ) {
-    enum class Phase { READY, WAIT_HOLD, COUNTDOWN, RUNNING, SUDDEN_DEATH_PREP, ANSWERING, ROUND_OVER }
+    enum class Phase {
+        READY, WAIT_HOLD, COUNTDOWN, RUNNING, SUDDEN_DEATH_PREP, ANSWERING,
+
+        /** Antwortzeit abgelaufen, der Master tippt „Weiter“. */
+        ANSWER_TIMEOUT,
+        ROUND_OVER,
+    }
 
     data class PlayerRow(
         val id: PlayerId,
@@ -33,13 +40,17 @@ class MasterEngine(
         val scoringLocked: Boolean,
         val timeLimitLocked: Boolean,
         val players: List<PlayerRow>,
+        /** Ende der Antwortzeit (Master-Uhr) oder `null`. */
+        val answerDeadline: Long?,
+        val profileName: String,
     )
 
     private enum class Status { IDLE, WAITING, HOLDING, BUZZED, OUT }
 
-    private class Player(val id: PlayerId, val name: String) {
+    private class Player(val id: PlayerId, val name: String, val local: Boolean) {
         val sync = ClockSync()
         var connected = true
+        var receiveEmojis = true
         var score = 0L
         var status = Status.IDLE
         var roundReactionMs: Long? = null
@@ -57,6 +68,18 @@ class MasterEngine(
 
     var onChanged: ((Snapshot) -> Unit)? = null
 
+    /** Emoticon für die Anzeige auf dem Master-Gerät. */
+    var onEmote: ((from: String, emoji: String) -> Unit)? = null
+
+    /** Kurznachricht an den Master oder an alle. */
+    var onChat: ((from: String, text: String, toAll: Boolean) -> Unit)? = null
+
+    /** Name des Spielleiters für Kurznachrichten und Emoticons. */
+    var masterName = "Spielleiter"
+
+    var profileName = ""
+        private set
+
     var settings = Settings()
         private set
 
@@ -73,21 +96,29 @@ class MasterEngine(
     private var pingSeq = 0
     private var pingTick = 0
     private var pingTask: Cancellable? = null
+    private var answerTask: Cancellable? = null
+    private var answerTimerPlayer: PlayerId? = null
+    private var answerDeadline: Long? = null
 
     // ------------------------------------------------------------------ Spieler
 
     fun addPlayer(id: PlayerId, name: String, local: Boolean = false) {
-        val player = Player(id, name)
+        val player = Player(id, name, local)
         if (local) player.sync.setLocal()
         players[id] = player
+        log("Spieler beigetreten: $name ($id)")
+        send(id, configMessage())
+        broadcastRoster()
         broadcastScoreboard()
         notifyChanged()
     }
 
     fun removePlayer(id: PlayerId) {
         val player = players[id] ?: return
+        log("Spieler getrennt: ${player.name} ($id)")
         if (phase == Phase.READY || player.status == Status.IDLE) {
             players.remove(id)
+            broadcastRoster()
             broadcastScoreboard()
             notifyChanged()
             return
@@ -95,6 +126,7 @@ class MasterEngine(
         // Mitten in der Runde: bis zur nächsten Runde grau weiterführen.
         player.connected = false
         val wasAnswering = phase == Phase.ANSWERING && answeringPlayer() == id
+        if (wasAnswering) cancelAnswerTimer()
         player.status = Status.OUT
         val c = contest
         when {
@@ -105,6 +137,7 @@ class MasterEngine(
             }
             wasAnswering -> advance(answerIndex + 1)
         }
+        broadcastRoster()
         broadcastStates()
     }
 
@@ -113,14 +146,17 @@ class MasterEngine(
     // ------------------------------------------------------------------ Einstellungen
 
     /** Nur zwischen den Runden. Wertung und (bei Zeitwertung) Zeitlimit sind nach Spielbeginn gesperrt. */
-    fun updateSettings(newSettings: Settings): Boolean {
+    fun updateSettings(newSettings: Settings, profileName: String = this.profileName): Boolean {
         if (phase != Phase.READY) return false
+        this.profileName = profileName
         var s = newSettings.normalized()
         if (gameStarted) {
             s = s.copy(scoring = settings.scoring)
             if (settings.scoring == ScoringMode.REMAINING_TIME) s = s.copy(timeLimitMs = settings.timeLimitMs)
         }
         settings = s
+        log("Einstellungen geändert" + if (profileName.isNotEmpty()) " (Profil $profileName)" else "")
+        players.values.filter { it.connected }.forEach { send(it.id, configMessage()) }
         broadcastScoreboard()
         notifyChanged()
         return true
@@ -156,6 +192,7 @@ class MasterEngine(
     }
 
     fun stop() {
+        cancelAnswerTimer()
         pingTask?.cancel()
         pingTask = null
         contest?.let { cancelTasks(it) }
@@ -176,6 +213,8 @@ class MasterEngine(
             p.roundReactionMs = null
             p.contestReactionMs = null
         }
+        log("Runde $round freigegeben; Funk-Laufzeiten: " +
+            participants.joinToString { "${it.name} ${it.sync.recentMaxRttMs ?: "?"} ms" })
         startContest(participants.map { it.id }.toSet(), suddenDeath = false)
         return true
     }
@@ -183,6 +222,8 @@ class MasterEngine(
     fun markCorrect(): Boolean {
         if (phase != Phase.ANSWERING) return false
         val player = players[answeringPlayer() ?: return false] ?: return false
+        cancelAnswerTimer()
+        log("Richtig: ${player.name}")
         player.score += when (settings.scoring) {
             ScoringMode.CORRECT_ANSWERS -> 1
             ScoringMode.REMAINING_TIME -> (settings.timeLimitMs - (player.roundReactionMs ?: settings.timeLimitMs)).coerceAtLeast(0)
@@ -195,14 +236,54 @@ class MasterEngine(
     fun markWrong(): Boolean {
         if (phase != Phase.ANSWERING) return false
         val player = players[answeringPlayer() ?: return false] ?: return false
+        cancelAnswerTimer()
+        log("Falsch: ${player.name}")
         player.status = Status.OUT
         advance(answerIndex + 1)
         broadcastStates()
         return true
     }
 
+    /** „Weiter“ nach abgelaufener Antwortzeit (wenn nicht automatisch weitergeschaltet wird). */
+    fun proceed(): Boolean {
+        if (phase != Phase.ANSWER_TIMEOUT) return false
+        advance(answerIndex + 1)
+        broadcastStates()
+        return true
+    }
+
+    private fun startAnswerTimer(id: PlayerId) {
+        val limit = settings.answerLimit ?: return
+        answerTimerPlayer = id
+        answerDeadline = clock.now() + limit
+        answerTask = scheduler.schedule(limit) { onAnswerTimeout(id) }
+    }
+
+    private fun cancelAnswerTimer() {
+        answerTask?.cancel()
+        answerTask = null
+        answerTimerPlayer = null
+        answerDeadline = null
+    }
+
+    private fun onAnswerTimeout(id: PlayerId) {
+        if (phase != Phase.ANSWERING || answeringPlayer() != id) return
+        cancelAnswerTimer()
+        val player = players[id] ?: return
+        log("Antwortzeit abgelaufen: ${player.name} – zählt als falsch")
+        player.status = Status.OUT
+        if (settings.autoAdvanceOnTimeout) {
+            advance(answerIndex + 1)
+        } else {
+            phase = Phase.ANSWER_TIMEOUT
+        }
+        broadcastStates()
+    }
+
     /** „Nächste Runde“: alle Displays schwarz. Bricht eine laufende Runde ab. */
     fun nextRound() {
+        log("Nächste Runde")
+        cancelAnswerTimer()
         contest?.let { cancelTasks(it) }
         contest = null
         phase = Phase.READY
@@ -227,8 +308,76 @@ class MasterEngine(
             is Message.Pong -> player.sync.addSample(message.masterTime, message.playerTime, clock.now())
             is Message.Hold -> onHold(player, message)
             is Message.Buzz -> onBuzz(player, message)
+            is Message.Prefs -> player.receiveEmojis = message.receiveEmojis
+            is Message.Emote ->
+                if (player.receiveEmojis && message.emoji in settings.emojis) broadcastEmote(player.name, message.emoji)
+            is Message.ChatSend -> deliverChat(player.name, player.id, message.to, message.text)
             else -> Unit
         }
+    }
+
+    // ------------------------------------------------------------------ Emoticons, Nachrichten, Profil
+
+    /** Emoticon des Spielleiters. */
+    fun sendEmote(emoji: String) {
+        if (emoji in settings.emojis) broadcastEmote(masterName, emoji)
+    }
+
+    private fun broadcastEmote(from: String, emoji: String) {
+        if (!settings.emojisEnabled) return
+        for (p in players.values) {
+            if (p.connected && !p.local && p.receiveEmojis) send(p.id, Message.Emote(from, emoji))
+        }
+        onEmote?.invoke(from, emoji)
+    }
+
+    /** Kurznachrichten gehen nur in den Rundenpausen. */
+    fun canChat(): Boolean = settings.messagesEnabled && (phase == Phase.READY || phase == Phase.ROUND_OVER)
+
+    /** Kurznachricht des Spielleiters an einen Spieler oder an alle ([ALL_ADDRESS]). */
+    fun sendChat(to: String, text: String) = deliverChat(masterName, null, to, text)
+
+    private fun deliverChat(from: String, senderId: PlayerId?, to: String, text: String) {
+        val clean = text.trim().take(MAX_CHAT_LENGTH)
+        if (!canChat() || clean.isEmpty()) return
+        when (to) {
+            ALL_ADDRESS -> {
+                for (p in players.values) {
+                    if (p.connected && !p.local && p.id != senderId) send(p.id, Message.Chat(from, clean, true))
+                }
+                if (senderId != null) onChat?.invoke(from, clean, true)
+            }
+            MASTER_ADDRESS -> if (senderId != null) onChat?.invoke(from, clean, false)
+            else -> players[to]?.takeIf { it.connected && !it.local }?.let { send(it.id, Message.Chat(from, clean, false)) }
+        }
+    }
+
+    /** Schickt das laufende Profil an alle Spieler. */
+    fun shareProfile() {
+        val values = SettingsCodec.toMap(settings)
+        players.values.filter { it.connected && !it.local }
+            .forEach { send(it.id, Message.Profile(profileName.ifEmpty { "Profil von $masterName" }, values)) }
+        log("Profil an Spieler gesendet")
+    }
+
+    /** Verabschiedet sich von allen Spielern, bevor die Gruppe geschlossen wird. */
+    fun close() {
+        players.values.filter { it.connected && !it.local }.forEach { send(it.id, Message.Bye) }
+        stop()
+    }
+
+    private fun configMessage() = Message.Config(
+        reactionLimitMs = settings.reactionLimitMs ?: 0,
+        answerLimitMs = settings.answerLimit ?: 0,
+        messagesEnabled = settings.messagesEnabled,
+        emojis = if (settings.emojisEnabled) settings.emojis else emptyList(),
+        profileName = profileName,
+    )
+
+    private fun broadcastRoster() {
+        val entries = listOf(MASTER_ADDRESS to masterName) +
+            players.values.filter { it.connected && !it.local }.map { it.id to it.name }
+        for (p in players.values) if (p.connected) send(p.id, Message.Roster(entries.filter { it.first != p.id }))
     }
 
     private fun onHold(player: Player, m: Message.Hold) {
@@ -245,10 +394,12 @@ class MasterEngine(
         if (!matches(c, m.round, m.attempt) || c.finished || player.id !in c.participants) return
         if (player.status != Status.WAITING && player.status != Status.HOLDING) return
         if (m.falseStart) {
+            log("Frühstart: ${player.name}")
             player.status = Status.OUT
             send(player.id, Message.State(Display.GRAY, 0, scoreText(player)))
         } else {
-            if (m.reactionMs < 0 || m.reactionMs > settings.timeLimitMs) return
+            if (m.reactionMs < 0 || m.reactionMs > (settings.reactionLimitMs ?: Long.MAX_VALUE)) return
+            log("Buzz: ${player.name} ${m.reactionMs} ms")
             player.status = Status.BUZZED
             player.contestReactionMs = m.reactionMs
             if (!c.suddenDeath) player.roundReactionMs = m.reactionMs
@@ -298,7 +449,13 @@ class MasterEngine(
         for (id in c.participants) {
             val p = players[id] ?: continue
             if (p.status == Status.OUT) continue
-            send(id, Message.GoAt(round, c.attempt, settings.startMode, p.sync.toPlayerTime(goAt), settings.timeLimitMs, c.suddenDeath))
+            send(
+                id,
+                Message.GoAt(
+                    round, c.attempt, settings.startMode, p.sync.toPlayerTime(goAt),
+                    settings.reactionLimitMs ?: 0, c.suddenDeath,
+                ),
+            )
         }
         c.tasks += scheduler.schedule(goAt - clock.now()) {
             if (contest === c && phase == Phase.COUNTDOWN) {
@@ -306,7 +463,10 @@ class MasterEngine(
                 notifyChanged()
             }
         }
-        c.tasks += scheduler.schedule(goAt + settings.timeLimitMs + collectWindowMs(c) - clock.now()) { finishContest(c) }
+        // Ohne Reaktionszeit-Limit endet der Durchgang erst, wenn alle gedrückt haben (oder der Master abbricht).
+        settings.reactionLimitMs?.let { limit ->
+            c.tasks += scheduler.schedule(goAt + limit + collectWindowMs(c) - clock.now()) { finishContest(c) }
+        }
         notifyChanged()
     }
 
@@ -428,6 +588,20 @@ class MasterEngine(
             val (display, place) = displayOf(p)
             send(p.id, Message.State(display, place, scoreText(p)))
         }
+        if (phase == Phase.ANSWERING) {
+            val id = answeringPlayer()
+            if (id != null && id != answerTimerPlayer) {
+                cancelAnswerTimer()
+                log("Antwort von ${players[id]?.name}")
+                startAnswerTimer(id)
+            }
+        }
+        // Der Antwort-Timer wird nach jeder Anzeige erneut geschickt, weil der Spieler ihn bei State zurücksetzt.
+        val timerPlayer = answerTimerPlayer
+        val deadline = answerDeadline
+        if (timerPlayer != null && deadline != null) {
+            send(timerPlayer, Message.AnswerTimer((deadline - clock.now()).coerceAtLeast(1)))
+        }
         if (phase == Phase.ROUND_OVER) broadcastScoreboard()
         notifyChanged()
     }
@@ -452,6 +626,8 @@ class MasterEngine(
             val (display, place) = displayOf(p)
             PlayerRow(p.id, p.name, display, place, p.roundReactionMs, scoreText(p), p.score, p.sync.recentMaxRttMs, p.connected)
         },
+        answerDeadline = answerDeadline,
+        profileName = profileName,
     )
 
     private fun notifyChanged() {
