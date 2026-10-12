@@ -151,6 +151,8 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 | Gleichstands-Schwelle | zwischen Runden | 20 ms |
 | Wertung | nur vor Spielbeginn | Richtige Antworten |
 | Master spielt mit | zwischen Runden | aus |
+| Rangliste: Namen anzeigen | zwischen Runden | an |
+| Rangliste: sichtbare Plätze ab Platz 1 (0 = alle) | zwischen Runden | 0 |
 
 ---
 
@@ -184,3 +186,32 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 | M → S | `SUDDEN_DEATH` | beteiligte Spieler, neue Freigabe |
 | M → S | `FREEZE` | keine Eingaben mehr |
 | M → S | `RESET` | Runde beendet, Display schwarz |
+| M → S | `BOARD` | Rangliste aus Sicht des Empfängers, höchster Punktestand, anzeigen ja/nein |
+
+---
+
+## 11. Rangliste für alle Spieler
+
+- Zwischen den Runden (Zustand *Bereit*) und am Ende einer Runde sehen alle Spieler
+  die Mitspieler mit Punktestand als **Balkengrafik** (Balken relativ zum
+  höchsten Punktestand). Während des Buzzerns und Antwortens ist sie ausgeblendet.
+- Gleiche Punktzahl ergibt denselben Platz.
+- Der Master kann die **Namen ausblenden**; fremde Einträge erscheinen dann als „???“.
+- Der Master legt fest, **wie viele Plätze ab Platz 1** sichtbar sind (0 = alle).
+- Jeder Spieler sieht **immer sich selbst** („Du“, hervorgehoben), auch wenn sein
+  Platz außerhalb der sichtbaren Plätze liegt; die Lücke wird mit „…“ angedeutet.
+- Der Master sieht in seiner Spielerliste immer alle Namen mit Balken.
+
+---
+
+## 12. Diagnose und Build-Nummer
+
+- Jede APK trägt eine **Build-Nummer** (Lauf-Nummer der GitHub Action):
+  Version `1.0.<Nr>`, Dateiname `buzzer-build-<Nr>.apk`. Sie steht auch auf dem
+  Startbildschirm.
+- Bei einer Fehlermeldung und auf dem Startbildschirm gibt es **„Diagnose senden“**.
+  Der Bericht enthält die Fehlermeldung, die letzten Ereignisse der App und ggf.
+  einen Absturz beim letzten Start und wird über die **Teilen-Funktion** von Android
+  verschickt.
+- **Systeminformationen** (Gerät, Android-Version, Play-Dienste, Standort an/aus,
+  erteilte Berechtigungen) kommen nur hinein, wenn der Nutzer das im Dialog ankreuzt.

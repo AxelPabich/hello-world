@@ -5,6 +5,8 @@ import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +38,8 @@ private fun Display.textColor(): Color = if (this == Display.YELLOW) Color.Black
 
 /**
  * Die ganze Fläche ist der Buzzer. Gemeldet wird der Zeitstempel des Touch-Ereignisses
- * (`uptimeMillis`), nicht der Zeitpunkt der Verarbeitung.
+ * (`uptimeMillis`), nicht der Zeitpunkt der Verarbeitung. Zwischen den Runden zeigt sie
+ * zusätzlich die Rangliste (nicht im kompakten Feld des mitspielenden Masters).
  */
 @Composable
 fun BuzzerPad(
@@ -48,7 +51,9 @@ fun BuzzerPad(
 ) {
     val currentOnDown by rememberUpdatedState(onDown)
     val currentOnUp by rememberUpdatedState(onUp)
-    Box(
+    val textColor = view.display.textColor()
+    val showBoard = !compact && view.showBoard && view.board.isNotEmpty()
+    Column(
         modifier = modifier
             .background(view.display.color())
             .pointerInput(Unit) {
@@ -64,33 +69,42 @@ fun BuzzerPad(
                     currentOnUp(upTime)
                 }
             },
-        contentAlignment = Alignment.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        val textColor = view.display.textColor()
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            if (view.place > 0) {
-                Text(
-                    text = view.place.toString(),
-                    color = textColor,
-                    fontSize = if (compact) 72.sp else 180.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+        Box(Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                if (view.place > 0) {
+                    Text(
+                        text = view.place.toString(),
+                        color = textColor,
+                        fontSize = if (compact || showBoard) 96.sp else 180.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
+                if (view.hint.isNotEmpty()) {
+                    Text(
+                        text = view.hint,
+                        color = textColor,
+                        fontSize = if (compact) 18.sp else 26.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(horizontal = 24.dp),
+                    )
+                }
             }
-            if (view.hint.isNotEmpty()) {
-                Text(
-                    text = view.hint,
-                    color = textColor,
-                    fontSize = if (compact) 18.sp else 26.sp,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(horizontal = 24.dp),
-                )
-            }
+        }
+        if (showBoard) {
+            Scoreboard(
+                entries = view.board,
+                maxScore = view.boardMaxScore,
+                color = textColor,
+                modifier = Modifier.fillMaxWidth().heightIn(max = 360.dp).padding(horizontal = 20.dp),
+            )
         }
         Text(
             text = "Punkte: ${view.score}",
             color = textColor,
             fontSize = 16.sp,
-            modifier = Modifier.align(Alignment.BottomCenter).padding(16.dp),
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

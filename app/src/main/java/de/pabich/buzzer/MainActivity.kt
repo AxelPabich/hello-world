@@ -28,6 +28,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Diagnostics.install(applicationContext)
         // Während des Spiels darf das Display nicht ausgehen.
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         setContent {
@@ -45,6 +46,7 @@ private fun App(vm: BuzzerViewModel) {
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
         // Ungefährer Standort genügt; den genauen darf der Nutzer ablehnen.
         val granted = result.filterKeys { it != Manifest.permission.ACCESS_FINE_LOCATION }.values.all { it }
+        Diagnostics.log("Berechtigungen: " + result.entries.joinToString { "${it.key.substringAfterLast('.')}=${it.value}" })
         if (granted) {
             pendingAction?.invoke()
         } else {

@@ -38,6 +38,9 @@ sealed interface Message {
 
     /** M → S: Runde beendet, Display schwarz. */
     data class Reset(val score: String) : Message
+
+    /** M → S: Rangliste aus Sicht des Empfängers; [show] = zwischen den Runden anzeigen. */
+    data class Scoreboard(val entries: List<ScoreEntry>, val maxScore: Long, val show: Boolean) : Message
 }
 
 /** Einfaches Textformat: `TYP|schlüssel=wert|…`, Werte URL-kodiert. */
@@ -58,6 +61,9 @@ object MessageCodec {
             is Message.State -> "STATE" to mapOf("d" to message.display, "p" to message.place, "s" to message.score)
             is Message.Freeze -> "FREEZE" to mapOf("r" to message.round)
             is Message.Reset -> "RESET" to mapOf("s" to message.score)
+            is Message.Scoreboard -> "BOARD" to mapOf(
+                "e" to encodeEntries(message.entries), "m" to message.maxScore, "sh" to message.show,
+            )
         }
         val text = buildString {
             append(type)
@@ -90,9 +96,23 @@ object MessageCodec {
             "STATE" -> Message.State(Display.valueOf(f.getValue("d")), int("p"), f.getValue("s"))
             "FREEZE" -> Message.Freeze(int("r"))
             "RESET" -> Message.Reset(f.getValue("s"))
+            "BOARD" -> Message.Scoreboard(decodeEntries(f.getValue("e")), long("m"), bool("sh"))
             else -> null
         }
     } catch (e: RuntimeException) {
         null
     }
+
+    private fun enc(text: String) = URLEncoder.encode(text, "UTF-8")
+    private fun dec(text: String) = URLDecoder.decode(text, "UTF-8")
+
+    private fun encodeEntries(entries: List<ScoreEntry>) = entries.joinToString(",") {
+        listOf(it.rank, it.score, if (it.isSelf) 1 else 0, enc(it.label), enc(it.scoreText)).joinToString(":")
+    }
+
+    private fun decodeEntries(text: String): List<ScoreEntry> =
+        if (text.isEmpty()) emptyList() else text.split(',').map {
+            val (rank, score, self, label, scoreText) = it.split(':')
+            ScoreEntry(rank.toInt(), dec(label), score.toLong(), dec(scoreText), self == "1")
+        }
 }

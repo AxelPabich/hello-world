@@ -21,7 +21,15 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     var screen by mutableStateOf(Screen.START)
         private set
     var myName by mutableStateOf("")
-    var status by mutableStateOf<String?>(null)
+    private var statusState by mutableStateOf<String?>(null)
+
+    /** Sichtbare Fehler- oder Hinweismeldung; jede Meldung landet auch im Diagnose-Protokoll. */
+    var status: String?
+        get() = statusState
+        set(value) {
+            if (value != null) Diagnostics.log("Meldung: $value")
+            statusState = value
+        }
     var connectingTo by mutableStateOf<String?>(null)
         private set
 
@@ -41,6 +49,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var player: PlayerEngine? = null
     private var masterEndpoint: String? = null
 
+    init {
+        if (Diagnostics.previousCrash != null) {
+            status = "Die App wurde beim letzten Mal unerwartet beendet. Bitte „Diagnose senden“ antippen."
+        }
+    }
+
     // ------------------------------------------------------------------ Start
 
     fun openGroup() {
@@ -56,6 +70,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         master = engine
         masterSnapshot = engine.snapshot()
         engine.start()
+        Diagnostics.log("Gruppe eröffnet")
         link.startAdvertising(myName.trim())
         screen = Screen.MASTER
     }
@@ -63,16 +78,19 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun searchGroups() {
         groups.clear()
         connectingTo = null
+        Diagnostics.log("Suche gestartet")
         link.startDiscovery()
         screen = Screen.DISCOVER
     }
 
     fun join(group: Group) {
         connectingTo = group.endpointId
+        Diagnostics.log("Beitritt angefragt bei ${group.endpointId}")
         link.requestConnection(myName.trim(), group.endpointId)
     }
 
     fun leave() {
+        Diagnostics.log("Verlassen")
         link.stopAll()
         master?.stop()
         master = null
@@ -139,6 +157,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     // ------------------------------------------------------------------ Nearby
 
     override fun onEndpointFound(endpointId: String, name: String) {
+        Diagnostics.log("Gruppe gefunden: $endpointId")
         if (groups.none { it.endpointId == endpointId }) groups += Group(endpointId, name)
     }
 
@@ -147,6 +166,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onConnectionRequest(endpointId: String, name: String, authCode: String) {
+        Diagnostics.log("Beitrittsanfrage von $endpointId")
         if (master?.canAcceptJoin() == true) {
             joinRequests += JoinRequest(endpointId, name, authCode)
         } else {
@@ -156,6 +176,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onConnected(endpointId: String, name: String) {
+        Diagnostics.log("Verbunden mit $endpointId")
         val engine = master
         if (engine != null) {
             engine.addPlayer(endpointId, name)
@@ -171,7 +192,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         screen = Screen.PLAYER
     }
 
-    override fun onConnectionFailed(endpointId: String) {
+    override fun onConnectionFailed(endpointId: String, reason: String) {
+        Diagnostics.log("Verbindung mit $endpointId fehlgeschlagen: $reason")
         if (master == null && connectingTo == endpointId) {
             connectingTo = null
             status = "Der Beitritt wurde abgelehnt oder ist fehlgeschlagen."
@@ -179,6 +201,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onDisconnected(endpointId: String) {
+        Diagnostics.log("Getrennt von $endpointId")
         val engine = master
         if (engine != null) {
             engine.removePlayer(endpointId)

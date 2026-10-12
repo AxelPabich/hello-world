@@ -41,6 +41,10 @@ data class Settings(
     val tieThresholdMs: Long = 20,
     val scoring: ScoringMode = ScoringMode.CORRECT_ANSWERS,
     val masterPlays: Boolean = false,
+    /** Namen in der Rangliste der Spieler anzeigen. */
+    val boardShowNames: Boolean = true,
+    /** Wie viele Plätze (ab Platz 1) die Spieler sehen; 0 = alle. Den eigenen Platz sieht jeder. */
+    val boardPlaces: Int = 0,
 ) {
     fun normalized(): Settings = copy(
         timeLimitMs = timeLimitMs.coerceIn(1_000, 120_000),
@@ -49,6 +53,7 @@ data class Settings(
         suddenDeathDelayMinMs = suddenDeathDelayMinMs.coerceIn(0, 30_000),
         suddenDeathDelayMaxMs = suddenDeathDelayMaxMs.coerceIn(suddenDeathDelayMinMs.coerceIn(0, 30_000), 30_000),
         tieThresholdMs = tieThresholdMs.coerceIn(0, 1_000),
+        boardPlaces = boardPlaces.coerceIn(0, 99),
     )
 }
 

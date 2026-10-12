@@ -28,7 +28,7 @@ class NearbyLink(context: Context, private val listener: Listener) {
         /** Nur beim Master: ein Spieler möchte beitreten. */
         fun onConnectionRequest(endpointId: String, name: String, authCode: String)
         fun onConnected(endpointId: String, name: String)
-        fun onConnectionFailed(endpointId: String)
+        fun onConnectionFailed(endpointId: String, reason: String)
         fun onDisconnected(endpointId: String)
         fun onMessage(endpointId: String, message: Message)
         fun onError(text: String)
@@ -60,7 +60,12 @@ class NearbyLink(context: Context, private val listener: Listener) {
 
         override fun onConnectionResult(endpointId: String, result: ConnectionResolution) {
             val name = pendingNames.remove(endpointId) ?: endpointId
-            if (result.status.isSuccess) listener.onConnected(endpointId, name) else listener.onConnectionFailed(endpointId)
+            val status = result.status
+            if (status.isSuccess) {
+                listener.onConnected(endpointId, name)
+            } else {
+                listener.onConnectionFailed(endpointId, "${status.statusCode} ${status.statusMessage ?: ""}".trim())
+            }
         }
 
         override fun onDisconnected(endpointId: String) = listener.onDisconnected(endpointId)
@@ -93,7 +98,7 @@ class NearbyLink(context: Context, private val listener: Listener) {
         client.requestConnection(myName, endpointId, lifecycleCallback)
             .addOnFailureListener {
                 listener.onError("Verbindungsanfrage fehlgeschlagen: ${it.message}")
-                listener.onConnectionFailed(endpointId)
+                listener.onConnectionFailed(endpointId, it.message ?: it.javaClass.simpleName)
             }
     }
 

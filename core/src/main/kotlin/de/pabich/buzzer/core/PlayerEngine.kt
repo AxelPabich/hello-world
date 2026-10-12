@@ -12,7 +12,15 @@ class PlayerEngine(
     private val scheduler: Scheduler,
     private val send: (Message) -> Unit,
 ) {
-    data class View(val display: Display, val place: Int, val score: String, val hint: String)
+    data class View(
+        val display: Display,
+        val place: Int,
+        val score: String,
+        val hint: String,
+        val board: List<ScoreEntry> = emptyList(),
+        val boardMaxScore: Long = 0,
+        val showBoard: Boolean = false,
+    )
 
     var onViewChanged: ((View) -> Unit)? = null
 
@@ -49,6 +57,10 @@ class PlayerEngine(
             is Message.Reset -> {
                 endContest()
                 show(Display.BLACK, "Warte auf die nächste Frage", 0, message.score)
+            }
+            is Message.Scoreboard -> {
+                view = view.copy(board = message.entries, boardMaxScore = message.maxScore, showBoard = message.show)
+                onViewChanged?.invoke(view)
             }
             else -> Unit
         }
@@ -113,6 +125,8 @@ class PlayerEngine(
         this.suddenDeath = suddenDeath
         goAt = null
         active = true
+        // Während des Buzzerns lenkt die Rangliste nur ab.
+        view = view.copy(showBoard = false)
     }
 
     private fun endContest() {
@@ -132,7 +146,7 @@ class PlayerEngine(
     }
 
     private fun show(display: Display, hint: String, place: Int = 0, score: String = view.score) {
-        view = View(display, place, score, hint)
+        view = view.copy(display = display, place = place, score = score, hint = hint)
         onViewChanged?.invoke(view)
     }
 

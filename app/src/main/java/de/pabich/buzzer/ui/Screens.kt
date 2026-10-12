@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import de.pabich.buzzer.BuildConfig
 import de.pabich.buzzer.BuzzerViewModel
 import de.pabich.buzzer.Group
 import de.pabich.buzzer.core.Display
@@ -54,13 +55,17 @@ private fun ScreenSurface(content: @Composable () -> Unit) {
 
 @Composable
 private fun StatusText(vm: BuzzerViewModel) {
+    var showDiagnostics by remember { mutableStateOf(false) }
     vm.status?.let {
-        Text(
-            text = it,
-            color = MaterialTheme.colorScheme.error,
-            modifier = Modifier.padding(vertical = 8.dp).clickable { vm.status = null },
-        )
+        Column(Modifier.padding(vertical = 8.dp)) {
+            Text(text = it, color = MaterialTheme.colorScheme.error)
+            Row {
+                TextButton(onClick = { showDiagnostics = true }) { Text("Diagnose senden") }
+                TextButton(onClick = { vm.status = null }) { Text("Ausblenden") }
+            }
+        }
     }
+    if (showDiagnostics) DiagnosticsDialog(vm.status) { showDiagnostics = false }
 }
 
 // ---------------------------------------------------------------------- Start
@@ -68,10 +73,8 @@ private fun StatusText(vm: BuzzerViewModel) {
 @Composable
 fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Unit) {
     ScreenSurface {
-        Column(
-            modifier = Modifier.fillMaxSize().padding(24.dp),
-            verticalArrangement = Arrangement.Center,
-        ) {
+        Column(modifier = Modifier.fillMaxSize().padding(24.dp)) {
+            Spacer(Modifier.weight(1f))
             Text("Buzzer", style = MaterialTheme.typography.displayMedium, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(32.dp))
             OutlinedTextField(
@@ -91,6 +94,17 @@ fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Un
                 Text("Gruppe suchen (Spieler)")
             }
             StatusText(vm)
+            Spacer(Modifier.weight(1f))
+            var showDiagnostics by remember { mutableStateOf(false) }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    "Version ${BuildConfig.VERSION_NAME} · Build ${BuildConfig.VERSION_CODE}",
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.weight(1f),
+                )
+                TextButton(onClick = { showDiagnostics = true }) { Text("Diagnose senden") }
+            }
+            if (showDiagnostics) DiagnosticsDialog(vm.status) { showDiagnostics = false }
         }
     }
 }
@@ -189,7 +203,8 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     if (snapshot.players.isEmpty()) {
                         item { Text("Noch keine Spieler – warte auf Beitrittsanfragen …", Modifier.padding(vertical = 16.dp)) }
                     }
-                    items(snapshot.players, key = { it.id }) { PlayerRowItem(it) }
+                    val maxScore = snapshot.players.maxOfOrNull { it.scoreValue } ?: 0
+                    items(snapshot.players, key = { it.id }) { PlayerRowItem(it, maxScore) }
                 }
                 StatusText(vm)
                 MasterButtons(vm, snapshot)
@@ -266,7 +281,7 @@ private fun MasterButtons(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) 
 }
 
 @Composable
-private fun PlayerRowItem(row: MasterEngine.PlayerRow) {
+private fun PlayerRowItem(row: MasterEngine.PlayerRow, maxScore: Long) {
     Row(
         modifier = Modifier.fillMaxWidth().padding(vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -285,6 +300,12 @@ private fun PlayerRowItem(row: MasterEngine.PlayerRow) {
                 row.rttMs?.let { "Funk $it ms" },
             ).joinToString(" · ")
             if (details.isNotEmpty()) Text(details, style = MaterialTheme.typography.bodySmall)
+            ScoreBar(
+                row.scoreValue,
+                maxScore,
+                MaterialTheme.colorScheme.primary,
+                Modifier.fillMaxWidth().padding(top = 4.dp, end = 12.dp),
+            )
         }
         Text(row.score, style = MaterialTheme.typography.titleMedium)
     }

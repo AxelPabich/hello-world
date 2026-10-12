@@ -14,8 +14,10 @@ android {
         applicationId = "de.pabich.buzzer"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        // Build-Nummer kommt aus der GitHub Action (Lauf-Nummer); lokal 1.
+        val buildNumber = System.getenv("BUILD_NUMBER")?.toIntOrNull() ?: 1
+        versionCode = buildNumber
+        versionName = "1.0.$buildNumber"
     }
 
     buildTypes {
@@ -31,6 +33,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

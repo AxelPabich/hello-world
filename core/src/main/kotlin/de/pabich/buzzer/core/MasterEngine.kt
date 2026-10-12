@@ -21,6 +21,7 @@ class MasterEngine(
         val place: Int,
         val reactionMs: Long?,
         val score: String,
+        val scoreValue: Long,
         val rttMs: Long?,
         val connected: Boolean,
     )
@@ -79,6 +80,7 @@ class MasterEngine(
         val player = Player(id, name)
         if (local) player.sync.setLocal()
         players[id] = player
+        broadcastScoreboard()
         notifyChanged()
     }
 
@@ -86,6 +88,7 @@ class MasterEngine(
         val player = players[id] ?: return
         if (phase == Phase.READY || player.status == Status.IDLE) {
             players.remove(id)
+            broadcastScoreboard()
             notifyChanged()
             return
         }
@@ -118,6 +121,7 @@ class MasterEngine(
             if (settings.scoring == ScoringMode.REMAINING_TIME) s = s.copy(timeLimitMs = settings.timeLimitMs)
         }
         settings = s
+        broadcastScoreboard()
         notifyChanged()
         return true
     }
@@ -128,6 +132,7 @@ class MasterEngine(
         gameStarted = false
         players.values.forEach { it.score = 0 }
         players.values.forEach { send(it.id, Message.Reset(scoreText(it))) }
+        broadcastScoreboard()
         notifyChanged()
     }
 
@@ -210,6 +215,7 @@ class MasterEngine(
             p.contestReactionMs = null
             send(p.id, Message.Reset(scoreText(p)))
         }
+        broadcastScoreboard()
         notifyChanged()
     }
 
@@ -422,7 +428,18 @@ class MasterEngine(
             val (display, place) = displayOf(p)
             send(p.id, Message.State(display, place, scoreText(p)))
         }
+        if (phase == Phase.ROUND_OVER) broadcastScoreboard()
         notifyChanged()
+    }
+
+    /** Rangliste an alle; angezeigt wird sie nur zwischen den Runden. */
+    private fun broadcastScoreboard() {
+        val show = phase == Phase.READY || phase == Phase.ROUND_OVER
+        val inputs = players.values.filter { it.connected }.map { ScoreInput(it.id, it.name, it.score) }
+        val maxScore = inputs.maxOfOrNull { it.score } ?: 0
+        for (p in players.values) {
+            if (p.connected) send(p.id, Message.Scoreboard(buildScoreboard(inputs, p.id, settings), maxScore, show))
+        }
     }
 
     fun snapshot(): Snapshot = Snapshot(
@@ -433,7 +450,7 @@ class MasterEngine(
         timeLimitLocked = gameStarted && settings.scoring == ScoringMode.REMAINING_TIME,
         players = players.values.map { p ->
             val (display, place) = displayOf(p)
-            PlayerRow(p.id, p.name, display, place, p.roundReactionMs, scoreText(p), p.sync.recentMaxRttMs, p.connected)
+            PlayerRow(p.id, p.name, display, place, p.roundReactionMs, scoreText(p), p.score, p.sync.recentMaxRttMs, p.connected)
         },
     )
 

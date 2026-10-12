@@ -16,6 +16,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # Wird zu versionCode und versionName (1.0.<Nummer>) der App.
+      BUILD_NUMBER: ${{ github.run_number }}
     steps:
       - uses: actions/checkout@v4
 
@@ -33,11 +36,14 @@ jobs:
       - name: App bauen (Debug-APK)
         run: ./gradlew :app:assembleDebug
 
+      - name: APK mit Build-Nummer benennen
+        run: cp app/build/outputs/apk/debug/app-debug.apk "buzzer-build-${BUILD_NUMBER}.apk"
+
       - name: APK als Artefakt speichern
         uses: actions/upload-artifact@v4
         with:
-          name: buzzer-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: buzzer-build-${{ github.run_number }}
+          path: buzzer-build-${{ github.run_number }}.apk
 
       # Fester Download-Link ohne ZIP, direkt auf dem Tablet installierbar.
       - name: Vorabversion „buzzer-latest“ aktualisieren
@@ -45,10 +51,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          cp app/build/outputs/apk/debug/app-debug.apk buzzer.apk
+          # buzzer.apk bleibt der feste Link, buzzer-build-<Nr>.apk zeigt die Variante.
+          cp "buzzer-build-${BUILD_NUMBER}.apk" buzzer.apk
           gh release delete buzzer-latest --yes --cleanup-tag || true
-          gh release create buzzer-latest buzzer.apk \
+          gh release create buzzer-latest buzzer.apk "buzzer-build-${BUILD_NUMBER}.apk" \
             --prerelease \
             --target "$GITHUB_SHA" \
-            --title "Buzzer – neuester Build" \
-            --notes "Automatisch gebaut aus ${GITHUB_REF_NAME} (${GITHUB_SHA::7}). Debug-APK zum Testen."
+            --title "Buzzer – Build ${BUILD_NUMBER}" \
+            --notes "Build ${BUILD_NUMBER} (Version 1.0.${BUILD_NUMBER}), automatisch gebaut aus ${GITHUB_REF_NAME} (${GITHUB_SHA::7}). Debug-APK zum Testen."

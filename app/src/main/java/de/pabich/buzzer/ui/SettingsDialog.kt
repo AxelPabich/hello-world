@@ -53,6 +53,8 @@ fun SettingsDialog(
     var sdMin by remember { mutableStateOf(s.suddenDeathDelayMinMs.seconds()) }
     var sdMax by remember { mutableStateOf(s.suddenDeathDelayMaxMs.seconds()) }
     var tie by remember { mutableStateOf(s.tieThresholdMs.toString()) }
+    var boardShowNames by remember { mutableStateOf(s.boardShowNames) }
+    var boardPlaces by remember { mutableStateOf(s.boardPlaces.toString()) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -85,6 +87,17 @@ fun SettingsDialog(
                     scoring = ScoringMode.REMAINING_TIME
                 }
 
+                Section("Rangliste für die Spieler")
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text("Namen anzeigen", Modifier.weight(1f))
+                    Switch(checked = boardShowNames, onCheckedChange = { boardShowNames = it })
+                }
+                NumberField("Sichtbare Plätze ab Platz 1 (0 = alle)", boardPlaces) { boardPlaces = it }
+                Text(
+                    "Den eigenen Platz sieht jeder Spieler immer.",
+                    style = MaterialTheme.typography.bodySmall,
+                )
+
                 Row(Modifier.padding(top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text("Master spielt mit", Modifier.weight(1f))
                     Switch(checked = masterPlays, onCheckedChange = { masterPlays = it })
@@ -114,6 +127,8 @@ fun SettingsDialog(
                         suddenDeathDelayMinMs = sdMin.secondsToMs(s.suddenDeathDelayMinMs),
                         suddenDeathDelayMaxMs = sdMax.secondsToMs(s.suddenDeathDelayMaxMs),
                         tieThresholdMs = tie.toLongOrNull() ?: s.tieThresholdMs,
+                        boardShowNames = boardShowNames,
+                        boardPlaces = boardPlaces.toIntOrNull() ?: s.boardPlaces,
                     ),
                 )
             }) { Text("Übernehmen") }
