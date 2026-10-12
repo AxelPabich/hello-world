@@ -1,0 +1,54 @@
+name: Android-Build
+
+on:
+  push:
+    branches: [main, master, "claude/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Tests der Spiellogik
+        working-directory: core
+        run: ../gradlew test
+
+      - name: App bauen (Debug-APK)
+        run: ./gradlew :app:assembleDebug
+
+      - name: APK als Artefakt speichern
+        uses: actions/upload-artifact@v4
+        with:
+          name: buzzer-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      # Fester Download-Link ohne ZIP, direkt auf dem Tablet installierbar.
+      - name: Vorabversion „buzzer-latest“ aktualisieren
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk buzzer.apk
+          gh release delete buzzer-latest --yes --cleanup-tag || true
+          gh release create buzzer-latest buzzer.apk \
+            --prerelease \
+            --target "$GITHUB_SHA" \
+            --title "Buzzer – neuester Build" \
+            --notes "Automatisch gebaut aus ${GITHUB_REF_NAME} (${GITHUB_SHA::7}). Debug-APK zum Testen."
