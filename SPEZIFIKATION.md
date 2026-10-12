@@ -132,8 +132,8 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 - **Richtige Antworten:** +1 Punkt pro richtiger Antwort.
 - **Zeitwertung:** Bei richtiger Antwort wird dem Spielerkonto die
   **Restzeit** bis zum Zeitlimit (Zeitlimit − Reaktionszeit) gutgeschrieben.
-  Wer schnell buzzert und richtig antwortet,
-  bekommt also mehr. In diesem Modus wird das Zeitlimit beim Spielstart
+  Wer schnell buzzert und richtig antwortet, bekommt also mehr.
+  In diesem Modus wird das Zeitlimit beim Spielstart
   festgelegt und kann danach **nicht mehr verändert** werden.
 - Falsche Antworten geben 0 Punkte.
 
