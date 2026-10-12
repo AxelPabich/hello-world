@@ -20,7 +20,50 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 
 ## Offen
 
-(keine)
+5. **Nutzbare Bildschirmfläche:** Die Oberfläche darf nicht unter Statusleiste,
+   Navigationsleiste, Taskleiste oder schwebenden System-Knöpfen liegen. Diese Bereiche
+   erkennen und die Oberfläche auf die nutzbare Fläche begrenzen.
+6. **Ansprechende Spiel-Oberfläche und Menüstruktur** – Konzept siehe unten,
+   Stilrichtung noch offen.
+7. **Audio-Effekte im Spielablauf** – Vorschläge siehe unten, Auswahl noch offen.
+
+### Konzept Oberfläche (Vorschlag)
+
+- Startbildschirm: Logo, Name, zwei große Kacheln „Spiel leiten“ / „Mitspielen“,
+  darunter „Profile & Einstellungen“, „Hilfe“, „Über & Diagnose“.
+- Spieler: Zustandsfarbe bleibt als leuchtender Hintergrund; in der Mitte ein großer
+  runder Buzzer, der in der Zustandsfarbe glüht (pulsiert bei Gelb, wackelt bei
+  Frühstart, Konfetti bei „Richtig“). Oben Emoticons/Chat/Ton, unten Zeitbalken und Punkte.
+- Master: Kopfzeile (Runde, Phase, Profil), Spielerkarten mit Statusring, Platz,
+  Reaktionszeit und Punktebalken; unten **ein** großer Hauptknopf, der je nach Phase
+  wechselt (Buzzer frei → Richtig/Falsch → Nächste Runde); seltene Aktionen im Menü ⋮.
+- Eigene App-Einstellungen (Ton, Lautstärke, Vibration, Emoticon-Empfang,
+  Export/Import, Diagnose) getrennt von den Spieleinstellungen des Masters.
+- Vibration als Ergänzung zu Farbe und Ton.
+
+### Audio-Vorschläge
+
+| Moment | Effekt | Wo |
+|---|---|---|
+| Spieler tritt bei | kurzes „Ding“ | Master |
+| Buzzer scharf / Zufallsverzögerung | leises elektrisches Summen (gleichbleibend) | alle |
+| Freigabe (gelb) | **kein Ton** – siehe Hinweis | – |
+| Eigener Buzz | klassischer Buzzer-Sound | eigenes Gerät |
+| Platz 1 / grün | kurze Fanfare | grüner Spieler |
+| Rot | dumpfes „Bonk“ | rote Spieler |
+| Frühstart | Tröte / Fehlton | betroffener Spieler |
+| Gleichstand → Sudden Death | Trommelwirbel | alle |
+| Antwortzeit läuft | tickende Uhr, letzte 5 s schneller | grüner Spieler, Master |
+| Zeit abgelaufen | Gong | grüner Spieler, Master |
+| Richtig | Applaus + „Ding Ding“ | alle |
+| Falsch | „Wah-wah-wah“ (Fail) | alle |
+| Rundenende / Rangliste | Trommelwirbel + Tusch | alle |
+| Emoticon | leises „Plopp“ (Standard aus) | Empfänger |
+| Kurznachricht | sanftes „Pling“ | Empfänger |
+
+Hinweis Fairness: Die Tonausgabe hat je nach Gerät 20–200 ms Verzögerung. Ein Ton bei
+der Freigabe würde Spieler mit schnellem Lautsprecher bevorzugen – die Freigabe bleibt
+deshalb rein visuell (plus optional Vibration, ebenfalls nicht ganz gleich schnell).
 
 ## Hinweise aus dem Test
 
