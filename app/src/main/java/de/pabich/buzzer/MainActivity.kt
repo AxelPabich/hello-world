@@ -43,10 +43,12 @@ private fun App(vm: BuzzerViewModel) {
     val context = LocalContext.current
     var pendingAction by remember { mutableStateOf<(() -> Unit)?>(null) }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
-        if (result.values.all { it }) {
+        // Ungefährer Standort genügt; den genauen darf der Nutzer ablehnen.
+        val granted = result.filterKeys { it != Manifest.permission.ACCESS_FINE_LOCATION }.values.all { it }
+        if (granted) {
             pendingAction?.invoke()
         } else {
-            vm.status = "Ohne die Berechtigungen für Bluetooth und Geräte in der Nähe funktioniert das Spiel nicht."
+            vm.status = "Ohne die Berechtigungen für Bluetooth, Geräte in der Nähe und (ungefähren) Standort funktioniert das Spiel nicht."
         }
         pendingAction = null
     }
@@ -55,7 +57,7 @@ private fun App(vm: BuzzerViewModel) {
         val missing = requiredPermissions().filter {
             context.checkSelfPermission(it) != PackageManager.PERMISSION_GRANTED
         }
-        if (missing.isEmpty()) {
+        if (missing.all { it == Manifest.permission.ACCESS_FINE_LOCATION }) {
             action()
         } else {
             pendingAction = action
@@ -75,20 +77,25 @@ private fun App(vm: BuzzerViewModel) {
     }
 }
 
-/** Laufzeit-Berechtigungen für Nearby Connections je nach Android-Version. */
-private fun requiredPermissions(): List<String> = when {
-    Build.VERSION.SDK_INT >= 33 -> listOf(
-        Manifest.permission.BLUETOOTH_ADVERTISE,
-        Manifest.permission.BLUETOOTH_CONNECT,
-        Manifest.permission.BLUETOOTH_SCAN,
-        Manifest.permission.NEARBY_WIFI_DEVICES,
-    )
-    Build.VERSION.SDK_INT >= 31 -> listOf(
-        Manifest.permission.BLUETOOTH_ADVERTISE,
-        Manifest.permission.BLUETOOTH_CONNECT,
-        Manifest.permission.BLUETOOTH_SCAN,
-        Manifest.permission.ACCESS_FINE_LOCATION,
-    )
-    Build.VERSION.SDK_INT >= 29 -> listOf(Manifest.permission.ACCESS_FINE_LOCATION)
-    else -> listOf(Manifest.permission.ACCESS_COARSE_LOCATION)
+/**
+ * Laufzeit-Berechtigungen für Nearby Connections je nach Android-Version. Der Standort wird
+ * immer angefragt, weil manche Geräte ihn für die Suche auch ab Android 12 verlangen
+ * (Fehler 8034 MISSING_PERMISSION_ACCESS_COARSE_LOCATION).
+ */
+private fun requiredPermissions(): List<String> {
+    val location = listOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+    return when {
+        Build.VERSION.SDK_INT >= 33 -> location + listOf(
+            Manifest.permission.BLUETOOTH_ADVERTISE,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.NEARBY_WIFI_DEVICES,
+        )
+        Build.VERSION.SDK_INT >= 31 -> location + listOf(
+            Manifest.permission.BLUETOOTH_ADVERTISE,
+            Manifest.permission.BLUETOOTH_CONNECT,
+            Manifest.permission.BLUETOOTH_SCAN,
+        )
+        else -> location
+    }
 }
