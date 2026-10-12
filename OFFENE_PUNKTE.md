@@ -23,9 +23,15 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 5. **Nutzbare Bildschirmfläche:** Die Oberfläche darf nicht unter Statusleiste,
    Navigationsleiste, Taskleiste oder schwebenden System-Knöpfen liegen. Diese Bereiche
    erkennen und die Oberfläche auf die nutzbare Fläche begrenzen.
-6. **Ansprechende Spiel-Oberfläche und Menüstruktur** – Konzept siehe unten,
-   Stilrichtung noch offen.
-7. **Audio-Effekte im Spielablauf** – Vorschläge siehe unten, Auswahl noch offen.
+6. **Ansprechende Spiel-Oberfläche und Menüstruktur** – Konzept siehe unten.
+   Visueller Entwurf mit drei Stilrichtungen (A TV-Quizshow, B Partyspiel,
+   C Schlicht & modern) liegt als Canvas vor; Auswahl der Richtung offen.
+7. **Audio-Effekte im Spielablauf** – Vorschläge siehe unten. Entschieden:
+   - Sounds zunächst **synthetisch** erzeugen (keine Sounddateien).
+   - „Richtig“ und „Falsch“ nur beim **betroffenen Spieler** (lenkt sonst die
+     weiteren Antwortenden ab).
+   - Welcher Sound wo erklingt, ist **je Profil konfigurierbar**, mit
+     „Auf Standard zurücksetzen“.
 
 ### Konzept Oberfläche (Vorschlag)
 
@@ -55,8 +61,8 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 | Gleichstand → Sudden Death | Trommelwirbel | alle |
 | Antwortzeit läuft | tickende Uhr, letzte 5 s schneller | grüner Spieler, Master |
 | Zeit abgelaufen | Gong | grüner Spieler, Master |
-| Richtig | Applaus + „Ding Ding“ | alle |
-| Falsch | „Wah-wah-wah“ (Fail) | alle |
+| Richtig | Applaus + „Ding Ding“ | nur betroffener Spieler |
+| Falsch | „Wah-wah-wah“ (Fail) | nur betroffener Spieler |
 | Rundenende / Rangliste | Trommelwirbel + Tusch | alle |
 | Emoticon | leises „Plopp“ (Standard aus) | Empfänger |
 | Kurznachricht | sanftes „Pling“ | Empfänger |
