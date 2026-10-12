@@ -280,6 +280,9 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 - Das Diagnose-Protokoll liegt in einer Datei und übersteht Neustarts. Es enthält
   auch Spielereignisse (Freigabe, Reaktionszeiten, Ergebnis, Richtig/Falsch,
   Funk-Laufzeiten) und bei einem Abbruch die Zeit seit der letzten Nachricht.
+  Der Master protokolliert außerdem fehlende Reaktionen, Gleichstände mit Abstand,
+  Sudden-Death-Ergebnisse und auffällige Funk-Laufzeiten; wiederholte gleiche
+  Anzeigen stehen beim Spieler nur einmal im Protokoll.
 - Schließt der Master die Gruppe, verabschiedet er sich; Spieler sehen „Der
   Spielleiter hat die Gruppe geschlossen“ statt „Verbindung abgebrochen“.
 - Beim regulären Verlassen/Schließen kann jeder alle Diagnosedaten löschen.

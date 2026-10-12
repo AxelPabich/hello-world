@@ -215,6 +215,9 @@ class MasterEngine(
         }
         log("Runde $round freigegeben; Funk-Laufzeiten: " +
             participants.joinToString { "${it.name} ${it.sync.recentMaxRttMs ?: "?"} ms" })
+        for (p in participants.filter { it.sync.rttOutlier }) {
+            log("Hinweis: Funk-Laufzeit ${p.name} ${p.sync.recentMaxRttMs} ms (sonst ~${p.sync.typicalRttMs} ms)")
+        }
         startContest(participants.map { it.id }.toSet(), suddenDeath = false)
         return true
     }
@@ -490,7 +493,9 @@ class MasterEngine(
     private fun placePending(c: Contest) {
         if (c.pending.isEmpty()) return
         val entries = c.pending.map { it to (players[it]?.contestReactionMs ?: Long.MAX_VALUE) }
-        order.addAll(groupByReaction(entries, settings.tieThresholdMs).map { it.toMutableList() })
+        val groups = groupByReaction(entries, settings.tieThresholdMs)
+        groups.filter { it.size > 1 }.forEach { logTie(it) }
+        order.addAll(groups.map { it.toMutableList() })
         c.pending.clear()
     }
 
@@ -502,7 +507,10 @@ class MasterEngine(
         contest = null
         for (id in c.participants) {
             val p = players[id] ?: continue
-            if (p.status == Status.WAITING || p.status == Status.HOLDING) p.status = Status.OUT
+            if (p.status == Status.WAITING || p.status == Status.HOLDING) {
+                p.status = Status.OUT
+                if (p.connected) log("Keine Reaktion: ${p.name}" + if (c.suddenDeath) " (Sudden Death)" else "")
+            }
             if (p.connected) send(id, Message.Freeze(round))
         }
         if (!c.suddenDeath) {
@@ -513,7 +521,10 @@ class MasterEngine(
             val members = order[groupIndex]
             val buzzed = members.filter { players[it]?.status == Status.BUZZED }
                 .map { it to (players[it]?.contestReactionMs ?: Long.MAX_VALUE) }
-            val resolved = groupByReaction(buzzed, settings.tieThresholdMs).map { it.toMutableList() } +
+            val resolvedGroups = groupByReaction(buzzed, settings.tieThresholdMs)
+            resolvedGroups.filter { it.size > 1 }.forEach { logTie(it) }
+            log("Sudden Death: " + buzzed.sortedBy { it.second }.joinToString { "${players[it.first]?.name} ${it.second} ms" })
+            val resolved = resolvedGroups.map { it.toMutableList() } +
                 members.filter { players[it]?.status != Status.BUZZED }.map { mutableListOf(it) }
             order.removeAt(groupIndex)
             order.addAll(groupIndex, resolved)
@@ -536,6 +547,7 @@ class MasterEngine(
             return
         }
         // Gleichstand: kurz pink zeigen, dann Sudden Death mit größerem Zufallsbereich.
+        log("Sudden Death um Platz ${order.take(index).sumOf { it.size } + 1}: " + active.joinToString("/") { players[it]?.name ?: it })
         phase = Phase.SUDDEN_DEATH_PREP
         val r = round
         scheduler.schedule(SUDDEN_DEATH_PAUSE_MS) {
@@ -638,6 +650,11 @@ class MasterEngine(
 
     private fun answeringPlayer(): PlayerId? =
         order.getOrNull(answerIndex)?.firstOrNull { players[it]?.status != Status.OUT }
+
+    private fun logTie(group: List<PlayerId>) {
+        val times = group.mapNotNull { players[it]?.contestReactionMs }
+        log("Gleichstand ${group.joinToString("/") { players[it]?.name ?: it }} (${times.max() - times.min()} ms)")
+    }
 
     private fun matches(c: Contest, round: Int, attempt: Int) = round == this.round && attempt == c.attempt
 

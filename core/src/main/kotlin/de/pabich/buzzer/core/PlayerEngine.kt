@@ -62,6 +62,7 @@ class PlayerEngine(
     private var goAt: Long? = null
     private var fingerDown = false
     private val tasks = mutableListOf<Cancellable>()
+    private var lastLoggedDisplay: String? = null
 
     fun onMessage(message: Message) {
         lastMessageAt = clock.now()
@@ -80,7 +81,10 @@ class PlayerEngine(
             is Message.GoAt -> onGoAt(message)
             is Message.State -> {
                 endContest()
-                log("Anzeige: ${message.display}" + if (message.place > 0) " Platz ${message.place}" else "")
+                // Der Master wiederholt Anzeigen; gleiche aufeinanderfolgende nur einmal protokollieren.
+                val line = "Anzeige: ${message.display}" + if (message.place > 0) " Platz ${message.place}" else ""
+                if (line != lastLoggedDisplay) log(line)
+                lastLoggedDisplay = line
                 // Ein laufender Antwort-Timer wird vom Master direkt danach erneut geschickt.
                 update { it.copy(timer = null) }
                 show(message.display, hintFor(message.display), message.place, message.score)
@@ -189,6 +193,7 @@ class PlayerEngine(
 
     private fun startContest(round: Int, attempt: Int, mode: StartMode, suddenDeath: Boolean) {
         endContest()
+        lastLoggedDisplay = null
         this.round = round
         this.attempt = attempt
         this.mode = mode

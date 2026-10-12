@@ -18,6 +18,20 @@ class ClockSync(private val maxSamples: Int = 16) {
     /** Größte Laufzeit der letzten Messungen – Grundlage für Vorlauf und Sammelfenster. */
     val recentMaxRttMs: Long? get() = fixed?.rttMs ?: samples.maxOfOrNull { it.rttMs }
 
+    /** Übliche Laufzeit (Median der letzten Messungen). */
+    val typicalRttMs: Long? get() = fixed?.rttMs ?: samples.map { it.rttMs }.sorted().let { it.getOrNull(it.size / 2) }
+
+    /**
+     * Auffällige Laufzeit: deutlich über dem Üblichen (mehr als doppelt so lang und mindestens
+     * 300 ms länger). Erst ab einigen Messungen, sonst gibt es kein „üblich“.
+     */
+    val rttOutlier: Boolean
+        get() {
+            val max = recentMaxRttMs ?: return false
+            val typical = typicalRttMs ?: return false
+            return samples.size >= 8 && max > 2 * typical && max - typical >= 300
+        }
+
     /** Für den lokalen Spieler auf dem Master-Gerät: gleiche Uhr, keine Laufzeit. */
     fun setLocal() {
         fixed = Sample(0, 0)

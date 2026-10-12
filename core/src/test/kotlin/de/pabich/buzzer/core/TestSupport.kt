@@ -51,8 +51,10 @@ class SimGame(
     val masterClock = Clock { time.now }
     private val simPlayers = mutableMapOf<PlayerId, SimPlayer>()
     val received = mutableMapOf<PlayerId, MutableList<Message>>()
+    val masterLog = mutableListOf<String>()
+    val playerLogs = mutableMapOf<PlayerId, MutableList<String>>()
 
-    val master = MasterEngine(masterClock, time, Random(seed)) { to, msg ->
+    val master = MasterEngine(masterClock, time, Random(seed), log = { masterLog += it }) { to, msg ->
         val p = simPlayers.getValue(to)
         received.getOrPut(to) { mutableListOf() } += msg
         // Über die Funkstrecke: kodieren, verzögern, dekodieren.
@@ -67,7 +69,8 @@ class SimGame(
     fun addPlayer(id: PlayerId, clockOffsetMs: Long, latencyMs: Long): SimPlayer {
         val clock = Clock { time.now + clockOffsetMs }
         lateinit var sim: SimPlayer
-        val engine = PlayerEngine(clock, time) { msg ->
+        val logLines = playerLogs.getOrPut(id) { mutableListOf() }
+        val engine = PlayerEngine(clock, time, log = { logLines += it }) { msg ->
             val bytes = MessageCodec.encode(msg)
             time.schedule(sim.latencyMs) { master.onMessage(id, MessageCodec.decode(bytes)!!) }
         }
