@@ -1,5 +1,6 @@
 package de.pabich.buzzer.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -8,11 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.tappableElement
-import androidx.compose.foundation.layout.union
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
@@ -41,8 +37,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import de.pabich.buzzer.BuzzerViewModel
 import de.pabich.buzzer.core.DEFAULT_EMOJIS
 import de.pabich.buzzer.core.DEFAULT_SOUNDS
@@ -59,7 +53,11 @@ private val TABS = listOf("Ablauf", "Zeiten", "Wertung", "Klang", "Profile")
 private fun Long.secondsText() = String.format(Locale.GERMANY, "%.1f", this / 1000.0)
 private fun String.secondsToMs(): Long? = replace(',', '.').toDoubleOrNull()?.let { (it * 1000).toLong() }
 
-/** Einstellungen des Masters in vier Tabs; nur zwischen den Runden. */
+/**
+ * Einstellungen des Masters in Tabs; nur zwischen den Runden. Bewusst KEIN eigenes Dialogfenster:
+ * als Seite in der App gilt dieselbe Begrenzung auf die nutzbare Bildschirmfläche wie überall
+ * (ein Dialogfenster lag auf Tablets mit Taskleiste unter den System-Knöpfen).
+ */
 @Composable
 fun SettingsDialog(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, onDismiss: () -> Unit) {
     var draft by remember { mutableStateOf(snapshot.settings) }
@@ -68,9 +66,10 @@ fun SettingsDialog(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, onDismi
     var version by remember { mutableIntStateOf(0) }
     var tab by remember { mutableIntStateOf(0) }
 
-    Dialog(onDismissRequest = onDismiss, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+    BackHandler(onBack = onDismiss)
+    run {
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-            Column(Modifier.windowInsetsPadding(WindowInsets.safeDrawing.union(WindowInsets.tappableElement))) {
+            Column(Modifier.fillMaxSize()) {
                 Column(Modifier.padding(16.dp)) {
                     Text("Einstellungen", style = MaterialTheme.typography.titleLarge)
                     Text(

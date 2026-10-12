@@ -315,3 +315,17 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
   Spielverlaufs zeigen: Punktebalken wachsen Runde für Runde, die Zeilen tauschen die
   Plätze. Dauer höchstens 10 Sekunden, dazu Verfolgungsjagd-Musik auf allen Geräten.
 - Namen folgen der Ranglisten-Einstellung („???“ wenn ausgeblendet, eigener Eintrag „Du“).
+
+## 20. Korrektur der letzten Runde
+
+- In den Pausen kann der Master die letzte gewertete Runde korrigieren: einen anderen
+  Spieler zum Sieger erklären oder die Wertung stornieren.
+- Punkterunde: der Punkt wandert bzw. entfällt. Zeitrunde: dem bisherigen Sieger wird
+  seine Restzeit abgezogen, der neue bekommt seine Restzeit aus dieser Runde (ohne Buzz 0 s).
+- Ranglisten, Anzeigen und der Spielverlauf werden angepasst.
+
+## 21. Spielpause
+
+- Zwischen den Runden kann der Master das Spiel pausieren. Alle Spieler-Bildschirme
+  werden verdeckt: „Kurze Pause – Gleich geht es weiter“. Während der Pause lässt sich
+  keine Runde freigeben; wer neu beitritt, sieht die Pause ebenfalls.

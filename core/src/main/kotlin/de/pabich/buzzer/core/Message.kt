@@ -76,6 +76,9 @@ sealed interface Message {
     /** M → S: der Spielleiter schließt die Gruppe. */
     data object Bye : Message
 
+    /** M → S: Spielpause an/aus – Spieler sehen ein Pausen-Overlay. */
+    data class Pause(val on: Boolean) : Message
+
     /** M → S: diesen Klang jetzt abspielen. */
     data class Sound(val event: SoundEvent) : Message
 
@@ -124,6 +127,7 @@ object MessageCodec {
                 "so" to message.sounds.joinToString(",") { it.name },
             )
             is Message.Sound -> "SOUND" to mapOf("e" to message.event.name)
+            is Message.Pause -> "PAUSE" to mapOf("on" to message.on)
             is Message.Replay -> "REPLAY" to mapOf(
                 "l" to encodeList(message.labels), "s" to message.selfIndex,
                 "f" to message.frames.joinToString(";") { it.joinToString(",") },
@@ -177,6 +181,7 @@ object MessageCodec {
                 f["so"]?.let { v -> v.split(',').filter { it.isNotEmpty() }.mapNotNull { n -> SoundEvent.entries.firstOrNull { it.name == n } }.toSet() }
                     ?: DEFAULT_SOUNDS,
             )
+            "PAUSE" -> Message.Pause(bool("on"))
             "SOUND" -> SoundEvent.entries.firstOrNull { it.name == f.getValue("e") }?.let { Message.Sound(it) }
             "REPLAY" -> Message.Replay(
                 decodeList(f.getValue("l")), int("s"),

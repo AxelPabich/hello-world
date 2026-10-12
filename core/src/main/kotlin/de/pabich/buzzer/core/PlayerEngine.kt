@@ -40,6 +40,8 @@ class PlayerEngine(
         val timer: Timer? = null,
         val rules: Rules = Rules(),
         val roster: List<Pair<PlayerId, String>> = emptyList(),
+        /** Spielpause: Overlay „Kurze Pause“. */
+        val paused: Boolean = false,
     )
 
     var onViewChanged: ((View) -> Unit)? = null
@@ -127,6 +129,10 @@ class PlayerEngine(
             is Message.Chat -> onChat?.invoke(message.from, message.text, message.toAll)
             is Message.Profile -> onProfile?.invoke(message.name, message.values)
             is Message.Sound -> onSound?.invoke(message.event)
+            is Message.Pause -> {
+                log(if (message.on) "Pause" else "Pause beendet")
+                update { it.copy(paused = message.on) }
+            }
             is Message.Replay -> onReplay?.invoke(message)
             Message.Bye -> {
                 log("Spielleiter hat die Gruppe geschlossen")

@@ -377,6 +377,11 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     fun showReplay() = master?.showReplay()
 
+    fun setPaused(on: Boolean) = master?.setPaused(on)
+
+    /** Letzte Runde: anderer Sieger ([winner]) oder storniert (`null`). */
+    fun correctLastRound(winner: String?) = master?.correctLastRound(winner)
+
     fun changeSoundOn(on: Boolean) {
         soundOn = on
         store.setSoundOn(on)

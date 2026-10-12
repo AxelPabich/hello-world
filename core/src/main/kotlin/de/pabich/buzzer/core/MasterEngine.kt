@@ -44,6 +44,21 @@ class MasterEngine(
         val answerDeadline: Long?,
         val profileName: String,
         val canShowReplay: Boolean,
+        /** Spiel pausiert (Overlay bei den Spielern). */
+        val paused: Boolean,
+        /** Letzte gewertete Runde lässt sich korrigieren. */
+        val canCorrectLastRound: Boolean,
+        /** Runde und Sieger der letzten gewerteten Runde (`null` = kein Sieger/storniert). */
+        val lastRound: Int?,
+        val lastRoundWinner: PlayerId?,
+    )
+
+    /** Ergebnis einer beendeten Runde – Grundlage für nachträgliche Korrekturen. */
+    private data class RoundResult(
+        val round: Int,
+        val winner: PlayerId?,
+        val amount: Long,
+        val reactions: Map<PlayerId, Long?>,
     )
 
     private enum class Status { IDLE, WAITING, HOLDING, BUZZED, OUT }
@@ -110,6 +125,11 @@ class MasterEngine(
     /** Punktestände nach jeder Runde; der erste Eintrag ist der Start (alle 0). */
     private val history = mutableListOf<Map<PlayerId, Long>>()
     private var recordedRound = -1
+    private var lastResult: RoundResult? = null
+    private var pendingWinner: Pair<PlayerId, Long>? = null
+
+    var paused = false
+        private set
 
     // ------------------------------------------------------------------ Spieler
 
@@ -120,6 +140,7 @@ class MasterEngine(
         log("Spieler beigetreten: $name ($id)")
         if (!local) masterSound(SoundEvent.JOIN)
         send(id, configMessage())
+        if (paused) send(id, Message.Pause(true))
         broadcastRoster()
         broadcastScoreboard()
         notifyChanged()
@@ -180,6 +201,7 @@ class MasterEngine(
         gameStarted = false
         history.clear()
         recordedRound = -1
+        lastResult = null
         players.values.forEach { it.score = 0 }
         players.values.forEach { send(it.id, Message.Reset(scoreText(it))) }
         broadcastScoreboard()
@@ -216,7 +238,7 @@ class MasterEngine(
 
     /** „Buzzer frei“ (Modus B) bzw. „Buzzer scharf“ (Modus A). */
     fun release(): Boolean {
-        if (phase != Phase.READY) return false
+        if (phase != Phase.READY || paused) return false
         val participants = players.values.filter { it.connected }
         if (participants.isEmpty()) return false
         round++
@@ -241,10 +263,9 @@ class MasterEngine(
         val player = players[answeringPlayer() ?: return false] ?: return false
         cancelAnswerTimer()
         log("Richtig: ${player.name}")
-        player.score += when (settings.scoring) {
-            ScoringMode.CORRECT_ANSWERS -> 1
-            ScoringMode.REMAINING_TIME -> (settings.timeLimitMs - (player.roundReactionMs ?: settings.timeLimitMs)).coerceAtLeast(0)
-        }
+        val amount = award(player.roundReactionMs)
+        player.score += amount
+        pendingWinner = player.id to amount
         phase = Phase.ROUND_OVER
         sendSound(listOf(player.id), SoundEvent.RIGHT)
         broadcastStates(roundEndExcept = player.id)
@@ -411,6 +432,61 @@ class MasterEngine(
         if (history.isEmpty()) history += players.keys.associateWith { 0L }
         history += players.values.associate { it.id to it.score }
         recordedRound = round
+        lastResult = RoundResult(
+            round = round,
+            winner = pendingWinner?.first,
+            amount = pendingWinner?.second ?: 0,
+            reactions = players.values.associate { it.id to it.roundReactionMs },
+        )
+        pendingWinner = null
+    }
+
+    /** Punkte für einen richtigen Antworter: 1 Punkt bzw. Restzeit bis zum Limit. */
+    private fun award(reactionMs: Long?): Long = when (settings.scoring) {
+        ScoringMode.CORRECT_ANSWERS -> 1
+        ScoringMode.REMAINING_TIME -> (settings.timeLimitMs - (reactionMs ?: settings.timeLimitMs)).coerceAtLeast(0)
+    }
+
+    fun canCorrectLastRound(): Boolean = (phase == Phase.READY || phase == Phase.ROUND_OVER) && lastResult != null
+
+    /**
+     * Korrigiert die letzte gewertete Runde: [newWinner] wird Sieger (Punkt bzw. seine Restzeit aus
+     * dieser Runde, ohne Buzz 0), `null` storniert die Wertung. Punkte- bzw. Zeitkonten und der
+     * Spielverlauf werden angepasst.
+     */
+    fun correctLastRound(newWinner: PlayerId?): Boolean {
+        val result = lastResult ?: return false
+        if (!canCorrectLastRound()) return false
+        if (newWinner != null && players[newWinner] == null) return false
+        if (result.winner == newWinner) return true
+        result.winner?.let { players[it] }?.let { it.score = (it.score - result.amount).coerceAtLeast(0) }
+        val amount = if (newWinner != null) award(result.reactions[newWinner]) else 0
+        newWinner?.let { players[it] }?.let { it.score += amount }
+        lastResult = result.copy(winner = newWinner, amount = amount)
+        if (history.isNotEmpty()) history[history.lastIndex] = players.values.associate { it.id to it.score }
+        log(
+            "Korrektur Runde ${result.round}: " +
+                (newWinner?.let { "Sieger jetzt ${players[it]?.name} (+${formatScore(amount, settings.scoring)})" } ?: "Wertung storniert"),
+        )
+        if (phase == Phase.READY) {
+            players.values.filter { it.connected }.forEach { send(it.id, Message.Reset(scoreText(it))) }
+        } else {
+            broadcastStates()
+        }
+        broadcastScoreboard()
+        notifyChanged()
+        return true
+    }
+
+    /** Spielpause nur zwischen den Runden; die Spieler sehen dann ein Pausen-Overlay. */
+    fun setPaused(on: Boolean): Boolean {
+        if (on && phase != Phase.READY && phase != Phase.ROUND_OVER) return false
+        if (paused == on) return true
+        paused = on
+        log(if (on) "Spiel pausiert" else "Pause beendet")
+        players.values.filter { it.connected }.forEach { send(it.id, Message.Pause(on)) }
+        notifyChanged()
+        return true
     }
 
     /** Spielverlauf geht nur in den Pausen und erst nach mindestens einer Runde. */
@@ -713,6 +789,10 @@ class MasterEngine(
         answerDeadline = answerDeadline,
         profileName = profileName,
         canShowReplay = canShowReplay(),
+        paused = paused,
+        canCorrectLastRound = canCorrectLastRound(),
+        lastRound = lastResult?.round,
+        lastRoundWinner = lastResult?.winner,
     )
 
     private fun notifyChanged() {

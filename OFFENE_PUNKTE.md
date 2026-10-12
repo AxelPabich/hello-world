@@ -24,6 +24,9 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 6. Oberfläche im Stil A „TV-Quizshow“ mit neuer Menüstruktur; weitere Designs vorbereitet.
 7. Synthetische Klänge, je Profil schaltbar mit Reset; Richtig/Falsch nur beim Betroffenen.
 8. Spielverlauf-Animation (max. 10 s) mit Verfolgungsjagd-Musik auf allen Geräten.
+9. Spieleinstellungen als Seite in der App statt Dialogfenster (lagen unter der Taskleiste).
+10. Korrektur der letzten Runde (anderer Sieger oder storniert; Punkte- bzw. Zeitkonten).
+11. Spielpause mit Overlay „Kurze Pause – Gleich geht es weiter“.
 
 ## Offen
 

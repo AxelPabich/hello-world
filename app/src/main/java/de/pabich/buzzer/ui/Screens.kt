@@ -385,6 +385,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
             )
         }
         EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
+        if (view.paused) PauseOverlay()
         vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone) }
     }
 
@@ -422,6 +423,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var showSettings by remember { mutableStateOf(false) }
     var showChat by remember { mutableStateOf(false) }
     var showMenu by remember { mutableStateOf(false) }
+    var showCorrection by remember { mutableStateOf(false) }
     var confirmLeave by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val settings = snapshot.settings
@@ -463,6 +465,16 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 onClick = { showMenu = false; vm.showReplay() },
                             )
                             DropdownMenuItem(
+                                text = { Text(if (snapshot.paused) "Pause beenden" else "Spiel pausieren") },
+                                enabled = snapshot.paused || pause,
+                                onClick = { showMenu = false; vm.setPaused(!snapshot.paused) },
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Letzte Runde korrigieren") },
+                                enabled = snapshot.canCorrectLastRound,
+                                onClick = { showMenu = false; showCorrection = true },
+                            )
+                            DropdownMenuItem(
                                 text = { Text("Profil an Spieler senden") },
                                 enabled = snapshot.players.any { it.id != BuzzerViewModel.LOCAL_PLAYER_ID },
                                 onClick = { showMenu = false; vm.shareProfile() },
@@ -478,6 +490,16 @@ fun MasterScreen(vm: BuzzerViewModel) {
                             )
                         }
                     }
+                }
+                if (snapshot.paused) {
+                    Row(
+                        Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(theme.accent).padding(horizontal = 14.dp, vertical = 8.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text("PAUSE – Spieler sehen „Kurze Pause“", color = theme.ground, fontFamily = theme.display, fontSize = 18.sp, modifier = Modifier.weight(1f))
+                        TextButton(onClick = { vm.setPaused(false) }) { Text("Weiter", color = theme.ground, fontWeight = FontWeight.Bold) }
+                    }
+                    Spacer(Modifier.height(8.dp))
                 }
                 if (snapshot.phase == Phase.READY) {
                     Text(
@@ -535,6 +557,13 @@ fun MasterScreen(vm: BuzzerViewModel) {
             dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
         )
     }
+    if (showCorrection) {
+        CorrectionDialog(
+            snapshot = snapshot,
+            onCorrect = { winner -> vm.correctLastRound(winner); showCorrection = false },
+            onDismiss = { showCorrection = false },
+        )
+    }
     if (showSettings) SettingsDialog(vm, snapshot) { showSettings = false }
     if (showChat) {
         ChatDialog(
@@ -564,7 +593,7 @@ private fun MasterActions(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) 
                 if (snapshot.settings.startMode == StartMode.TAP) "Buzzer frei" else "Buzzer scharf",
                 { vm.release() },
                 Modifier.fillMaxWidth(),
-                enabled = snapshot.players.isNotEmpty(),
+                enabled = snapshot.players.isNotEmpty() && !snapshot.paused,
                 height = 64.dp,
             )
             Phase.ANSWERING -> Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -629,4 +658,70 @@ private fun phaseText(snapshot: MasterEngine.Snapshot): String = when (snapshot.
     Phase.ANSWERING -> "Antwort von ${snapshot.players.firstOrNull { it.display == Display.GREEN }?.name ?: "…"}"
     Phase.ANSWER_TIMEOUT -> "Zeit abgelaufen"
     Phase.ROUND_OVER -> "Runde beendet"
+}
+
+/** Verdeckt das Spielfeld während einer Pause des Spielleiters. */
+@Composable
+fun PauseOverlay() {
+    val theme = LocalBuzzerTheme.current
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(theme.ground.copy(alpha = 0.96f))
+            .clickable(interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }, indication = null) {},
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            Box(Modifier.size(96.dp).border(6.dp, theme.accent, CircleShape), contentAlignment = Alignment.Center) {
+                Text("II", color = theme.accent, fontFamily = theme.display, fontSize = 44.sp)
+            }
+            BigTitle("Kurze Pause", size = 52.sp)
+            Text("GLEICH GEHT ES WEITER", color = theme.accent2, fontFamily = theme.display, fontSize = 26.sp, textAlign = TextAlign.Center)
+        }
+    }
+}
+
+/** Letzte Runde korrigieren: anderen Sieger wählen oder die Wertung stornieren. */
+@Composable
+private fun CorrectionDialog(snapshot: MasterEngine.Snapshot, onCorrect: (String?) -> Unit, onDismiss: () -> Unit) {
+    val current = snapshot.lastRoundWinner
+    var choice by remember { mutableStateOf(current) }
+    val timeMode = snapshot.settings.scoring == de.pabich.buzzer.core.ScoringMode.REMAINING_TIME
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Runde ${snapshot.lastRound ?: ""} korrigieren") },
+        text = {
+            Column {
+                Text(
+                    if (timeMode) {
+                        "Der neue Sieger bekommt seine Restzeit aus dieser Runde gutgeschrieben (ohne Buzz: 0 s); dem bisherigen wird sie abgezogen."
+                    } else {
+                        "Der neue Sieger bekommt den Punkt, dem bisherigen wird er abgezogen."
+                    },
+                    fontSize = 14.sp,
+                )
+                Spacer(Modifier.height(8.dp))
+                for (p in snapshot.players.filter { it.connected }) {
+                    Row(
+                        Modifier.fillMaxWidth().heightIn(min = 44.dp).selectable(selected = choice == p.id, onClick = { choice = p.id }),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        RadioButton(selected = choice == p.id, onClick = null)
+                        Spacer(Modifier.width(8.dp))
+                        Text(p.name + if (p.id == current) " (bisher)" else "")
+                    }
+                }
+                Row(
+                    Modifier.fillMaxWidth().heightIn(min = 44.dp).selectable(selected = choice == null, onClick = { choice = null }),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    RadioButton(selected = choice == null, onClick = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text("Runde stornieren (niemand bekommt etwas)" + if (current == null) " (bisher)" else "")
+                }
+            }
+        },
+        confirmButton = { TextButton(enabled = choice != current, onClick = { onCorrect(choice) }) { Text("Korrigieren") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
+    )
 }
