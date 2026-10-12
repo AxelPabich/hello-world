@@ -1,0 +1,122 @@
+package de.pabich.buzzer
+
+import android.content.Context
+import com.google.android.gms.nearby.Nearby
+import com.google.android.gms.nearby.connection.AdvertisingOptions
+import com.google.android.gms.nearby.connection.ConnectionInfo
+import com.google.android.gms.nearby.connection.ConnectionLifecycleCallback
+import com.google.android.gms.nearby.connection.ConnectionResolution
+import com.google.android.gms.nearby.connection.DiscoveredEndpointInfo
+import com.google.android.gms.nearby.connection.DiscoveryOptions
+import com.google.android.gms.nearby.connection.EndpointDiscoveryCallback
+import com.google.android.gms.nearby.connection.Payload
+import com.google.android.gms.nearby.connection.PayloadCallback
+import com.google.android.gms.nearby.connection.PayloadTransferUpdate
+import com.google.android.gms.nearby.connection.Strategy
+import de.pabich.buzzer.core.Message
+import de.pabich.buzzer.core.MessageCodec
+
+/**
+ * Dünne Hülle um Google Nearby Connections (Strategie P2P_STAR: Master in der Mitte).
+ * Alle Callbacks kommen auf dem Main-Thread an.
+ */
+class NearbyLink(context: Context, private val listener: Listener) {
+    interface Listener {
+        fun onEndpointFound(endpointId: String, name: String)
+        fun onEndpointLost(endpointId: String)
+
+        /** Nur beim Master: ein Spieler möchte beitreten. */
+        fun onConnectionRequest(endpointId: String, name: String, authCode: String)
+        fun onConnected(endpointId: String, name: String)
+        fun onConnectionFailed(endpointId: String)
+        fun onDisconnected(endpointId: String)
+        fun onMessage(endpointId: String, message: Message)
+        fun onError(text: String)
+    }
+
+    private val client = Nearby.getConnectionsClient(context)
+    private val strategy = Strategy.P2P_STAR
+    private val pendingNames = mutableMapOf<String, String>()
+
+    private val payloadCallback = object : PayloadCallback() {
+        override fun onPayloadReceived(endpointId: String, payload: Payload) {
+            val bytes = payload.asBytes() ?: return
+            MessageCodec.decode(bytes)?.let { listener.onMessage(endpointId, it) }
+        }
+
+        override fun onPayloadTransferUpdate(endpointId: String, update: PayloadTransferUpdate) = Unit
+    }
+
+    private val lifecycleCallback = object : ConnectionLifecycleCallback() {
+        override fun onConnectionInitiated(endpointId: String, info: ConnectionInfo) {
+            pendingNames[endpointId] = info.endpointName
+            if (info.isIncomingConnection) {
+                listener.onConnectionRequest(endpointId, info.endpointName, info.authenticationDigits)
+            } else {
+                // Der Spieler hat selbst angefragt; die Entscheidung trifft der Master.
+                client.acceptConnection(endpointId, payloadCallback)
+            }
+        }
+
+        override fun onConnectionResult(endpointId: String, result: ConnectionResolution) {
+            val name = pendingNames.remove(endpointId) ?: endpointId
+            if (result.status.isSuccess) listener.onConnected(endpointId, name) else listener.onConnectionFailed(endpointId)
+        }
+
+        override fun onDisconnected(endpointId: String) = listener.onDisconnected(endpointId)
+    }
+
+    fun startAdvertising(groupName: String) {
+        client.startAdvertising(
+            groupName, SERVICE_ID, lifecycleCallback,
+            AdvertisingOptions.Builder().setStrategy(strategy).build(),
+        ).addOnFailureListener { listener.onError("Gruppe konnte nicht eröffnet werden: ${it.message}") }
+    }
+
+    fun startDiscovery() {
+        client.startDiscovery(
+            SERVICE_ID,
+            object : EndpointDiscoveryCallback() {
+                override fun onEndpointFound(endpointId: String, info: DiscoveredEndpointInfo) {
+                    listener.onEndpointFound(endpointId, info.endpointName)
+                }
+
+                override fun onEndpointLost(endpointId: String) = listener.onEndpointLost(endpointId)
+            },
+            DiscoveryOptions.Builder().setStrategy(strategy).build(),
+        ).addOnFailureListener { listener.onError("Suche konnte nicht gestartet werden: ${it.message}") }
+    }
+
+    fun stopDiscovery() = client.stopDiscovery()
+
+    fun requestConnection(myName: String, endpointId: String) {
+        client.requestConnection(myName, endpointId, lifecycleCallback)
+            .addOnFailureListener {
+                listener.onError("Verbindungsanfrage fehlgeschlagen: ${it.message}")
+                listener.onConnectionFailed(endpointId)
+            }
+    }
+
+    fun accept(endpointId: String) {
+        client.acceptConnection(endpointId, payloadCallback)
+    }
+
+    fun reject(endpointId: String) {
+        client.rejectConnection(endpointId)
+    }
+
+    fun send(endpointId: String, message: Message) {
+        client.sendPayload(endpointId, Payload.fromBytes(MessageCodec.encode(message)))
+    }
+
+    fun stopAll() {
+        client.stopAdvertising()
+        client.stopDiscovery()
+        client.stopAllEndpoints()
+        pendingNames.clear()
+    }
+
+    companion object {
+        const val SERVICE_ID = "de.pabich.buzzer"
+    }
+}

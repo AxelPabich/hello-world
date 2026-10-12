@@ -92,7 +92,7 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 - Liegen zwei oder mehr Reaktionszeiten innerhalb der **Gleichstands-Schwelle**
   (einstellbar, Vorschlag 20 ms), gelten sie als gleichzeitig.
 - **Gleichstand um Platz 1:** Die betroffenen Spieler werden **pink** und spielen
-  sofort ein **Sudden Death** nach denselben Regeln (gleicher Startmodus), aber mit
+  direkt nach dem Einfrieren der Runde ein **Sudden Death** nach denselben Regeln (gleicher Startmodus), aber mit
   einem **größeren Zufallsbereich** für die Verzögerung. Die Reihenfolge im
   Sudden Death bestimmt ihre Reihenfolge untereinander. Ein erneuter Gleichstand
   führt zu einem weiteren Sudden Death.
@@ -109,7 +109,8 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
    (z. B. alle 5 s zwischen den Runden) die Uhr jedes Spielers ab
    (Ping-Pong nach NTP-Prinzip). Verwendet wird der Messwert mit der kürzesten
    Laufzeit aus den letzten N Messungen. Grundlage ist auf allen Geräten die
-   monotone Uhr `SystemClock.elapsedRealtimeNanos()`.
+   monotone Uhr `SystemClock.uptimeMillis()` – dieselbe Uhr, aus der auch die
+   Zeitstempel der Touch-Ereignisse stammen.
 2. **Geplante Freigabe:** Der Master sendet nicht „jetzt gelb“, sondern
    „gelb um Master-Zeit T“. T liegt mindestens die größte gemessene Laufzeit plus
    Sicherheitspuffer in der Zukunft (und enthält die Zufallsverzögerung).
