@@ -1,6 +1,8 @@
 package de.pabich.buzzer.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -36,15 +38,21 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import de.pabich.buzzer.BuildConfig
 import de.pabich.buzzer.BuzzerViewModel
 import de.pabich.buzzer.Group
+import de.pabich.buzzer.core.ConfigFormat
 import de.pabich.buzzer.core.Display
 import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.MasterEngine.Phase
+import de.pabich.buzzer.core.PlayerEngine
 import de.pabich.buzzer.core.StartMode
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 private fun ScreenSurface(content: @Composable () -> Unit) {
@@ -95,6 +103,7 @@ fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Un
             }
             StatusText(vm)
             Spacer(Modifier.weight(1f))
+            ConfigButtons(vm)
             var showDiagnostics by remember { mutableStateOf(false) }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
@@ -106,6 +115,48 @@ fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Un
             }
             if (showDiagnostics) DiagnosticsDialog(vm.status) { showDiagnostics = false }
         }
+    }
+}
+
+/** Einstellungen und Profile als .buzzconf sichern oder einlesen. */
+@Composable
+private fun ConfigButtons(vm: BuzzerViewModel) {
+    var showExport by remember { mutableStateOf(false) }
+    var exportParts by remember { mutableStateOf<ConfigFormat.Parts?>(null) }
+    val exportLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.CreateDocument("application/octet-stream"),
+    ) { uri ->
+        val parts = exportParts
+        if (uri != null && parts != null) vm.exportConfig(uri, parts)
+        exportParts = null
+    }
+    val importLauncher = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) vm.readImport(uri)
+    }
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text("Einstellungen:", style = MaterialTheme.typography.bodySmall, modifier = Modifier.weight(1f))
+        TextButton(onClick = { showExport = true }) { Text("Exportieren") }
+        TextButton(onClick = { importLauncher.launch(arrayOf("*/*")) }) { Text("Importieren") }
+    }
+    if (showExport) {
+        ExportDialog(
+            profiles = vm.profiles,
+            onExport = { parts ->
+                showExport = false
+                exportParts = parts
+                val date = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(Date())
+                exportLauncher.launch("buzzer-$date.buzzconf")
+            },
+            onDismiss = { showExport = false },
+        )
+    }
+    vm.importContent?.let { content ->
+        ImportDialog(
+            content = content,
+            profileExists = vm::profileExists,
+            onImport = { name, settings, choices -> vm.applyImport(name, settings, choices) },
+            onDismiss = { vm.importContent = null },
+        )
     }
 }
 
@@ -156,20 +207,54 @@ fun DiscoverScreen(vm: BuzzerViewModel) {
 @Composable
 fun PlayerScreen(vm: BuzzerViewModel) {
     var confirmLeave by remember { mutableStateOf(false) }
+    var showChat by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val view = vm.playerView ?: return
-    BuzzerPad(
-        view = view,
-        onDown = { vm.onTouchDown(it) },
-        onUp = { vm.onTouchUp(it) },
-        modifier = Modifier.fillMaxSize(),
-    )
+
+    Box(Modifier.fillMaxSize().background(Color.Black)) {
+        Column(Modifier.fillMaxSize().safeDrawingPadding()) {
+            // Die Leiste gehört nicht zur Buzzer-Fläche: ein Emoticon ist kein Buzz.
+            TopBar(
+                emojis = if (vm.receiveEmojis) view.rules.emojis else emptyList(),
+                onEmoji = { vm.sendEmote(it) },
+            ) {
+                if (view.rules.emojis.isNotEmpty()) {
+                    BarButton(if (vm.receiveEmojis) "🔔" else "🔕") { vm.changeReceiveEmojis(!vm.receiveEmojis) }
+                }
+                if (view.rules.messagesEnabled) BarButton("✉", enabled = vm.canChat) { showChat = true }
+            }
+            BuzzerPad(
+                view = view,
+                onDown = { vm.onTouchDown(it) },
+                onUp = { vm.onTouchUp(it) },
+                modifier = Modifier.weight(1f).fillMaxWidth(),
+                chat = vm.chat,
+            )
+        }
+        EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
+    }
+
+    if (showChat) {
+        ChatDialog(
+            recipients = view.roster,
+            onSend = { to, name, text -> vm.sendChat(to, name, text) },
+            onDismiss = { showChat = false },
+        )
+    }
+    vm.receivedProfile?.let { profile ->
+        ReceivedProfileDialog(
+            profile = profile,
+            onSave = { vm.saveReceivedProfile(it) },
+            onDismiss = { vm.receivedProfile = null },
+        )
+    }
     if (confirmLeave) {
-        AlertDialog(
-            onDismissRequest = { confirmLeave = false },
-            title = { Text("Gruppe verlassen?") },
-            confirmButton = { TextButton(onClick = { confirmLeave = false; vm.leave() }) { Text("Verlassen") } },
-            dismissButton = { TextButton(onClick = { confirmLeave = false }) { Text("Weiterspielen") } },
+        LeaveDialog(
+            title = "Gruppe verlassen?",
+            text = null,
+            confirm = "Verlassen",
+            onConfirm = { delete -> confirmLeave = false; vm.leave(delete) },
+            onDismiss = { confirmLeave = false },
         )
     }
 }
@@ -180,47 +265,86 @@ fun PlayerScreen(vm: BuzzerViewModel) {
 fun MasterScreen(vm: BuzzerViewModel) {
     val snapshot = vm.masterSnapshot ?: return
     var showSettings by remember { mutableStateOf(false) }
+    var showChat by remember { mutableStateOf(false) }
     var confirmLeave by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
+    val settings = snapshot.settings
+    val pause = snapshot.phase == Phase.READY || snapshot.phase == Phase.ROUND_OVER
 
     ScreenSurface {
-        Column(Modifier.fillMaxSize()) {
-            Column(Modifier.weight(2f).padding(16.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Column(Modifier.weight(1f)) {
-                        Text(vm.myName.trim(), style = MaterialTheme.typography.titleLarge)
+        Box(Modifier.fillMaxSize()) {
+            Column(Modifier.fillMaxSize()) {
+                TopBar(
+                    emojis = if (settings.emojisEnabled && vm.receiveEmojis) settings.emojis else emptyList(),
+                    onEmoji = { vm.sendEmote(it) },
+                ) {
+                    if (settings.emojisEnabled) {
+                        BarButton(if (vm.receiveEmojis) "🔔" else "🔕") { vm.changeReceiveEmojis(!vm.receiveEmojis) }
+                    }
+                    if (settings.messagesEnabled) BarButton("✉", enabled = vm.canChat) { showChat = true }
+                }
+                Column(Modifier.weight(2f).padding(16.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Column(Modifier.weight(1f)) {
+                            Text(vm.myName.trim(), style = MaterialTheme.typography.titleLarge)
+                            Text(
+                                "Runde ${snapshot.round} · ${phaseText(snapshot)}",
+                                style = MaterialTheme.typography.bodyMedium,
+                            )
+                            if (snapshot.profileName.isNotEmpty()) {
+                                Text("Profil: ${snapshot.profileName}", style = MaterialTheme.typography.bodySmall)
+                            }
+                        }
+                        TextButton(onClick = { showSettings = true }, enabled = snapshot.phase == Phase.READY) {
+                            Text("Einstellungen")
+                        }
+                    }
+                    if (snapshot.phase == Phase.READY) {
                         Text(
-                            "Runde ${snapshot.round} · ${phaseText(snapshot)}",
-                            style = MaterialTheme.typography.bodyMedium,
+                            limitsText(
+                                PlayerEngine.Rules(
+                                    reactionLimitMs = settings.reactionLimitMs,
+                                    answerLimitMs = settings.answerLimit,
+                                ),
+                            ),
+                            style = MaterialTheme.typography.bodySmall,
                         )
                     }
-                    TextButton(onClick = { showSettings = true }, enabled = snapshot.phase == Phase.READY) {
-                        Text("Einstellungen")
+                    Spacer(Modifier.height(8.dp))
+                    LazyColumn(Modifier.weight(1f)) {
+                        if (snapshot.players.isEmpty()) {
+                            item { Text("Noch keine Spieler – warte auf Beitrittsanfragen …", Modifier.padding(vertical = 16.dp)) }
+                        }
+                        val maxScore = snapshot.players.maxOfOrNull { it.scoreValue } ?: 0
+                        items(snapshot.players, key = { it.id }) { PlayerRowItem(it, maxScore) }
+                    }
+                    if (pause) ChatPanel(vm.chat, MaterialTheme.colorScheme.onBackground, Modifier.padding(vertical = 4.dp))
+                    val deadline = snapshot.answerDeadline
+                    if (snapshot.phase == Phase.ANSWERING && deadline != null) {
+                        AnswerCountdown(
+                            deadline,
+                            settings.answerLimitMs,
+                            MaterialTheme.colorScheme.primary,
+                            Modifier.fillMaxWidth().padding(vertical = 4.dp),
+                        )
+                    }
+                    StatusText(vm)
+                    MasterButtons(vm, snapshot)
+                }
+                if (settings.masterPlays) {
+                    vm.playerView?.let { view ->
+                        // Das Spielfeld des Masters nimmt 1/3 des Bildschirms ein.
+                        BuzzerPad(
+                            view = view,
+                            onDown = { vm.onTouchDown(it) },
+                            onUp = { vm.onTouchUp(it) },
+                            modifier = Modifier.weight(1f).fillMaxWidth(),
+                            compact = true,
+                        )
                     }
                 }
-                Spacer(Modifier.height(8.dp))
-                LazyColumn(Modifier.weight(1f)) {
-                    if (snapshot.players.isEmpty()) {
-                        item { Text("Noch keine Spieler – warte auf Beitrittsanfragen …", Modifier.padding(vertical = 16.dp)) }
-                    }
-                    val maxScore = snapshot.players.maxOfOrNull { it.scoreValue } ?: 0
-                    items(snapshot.players, key = { it.id }) { PlayerRowItem(it, maxScore) }
-                }
-                StatusText(vm)
-                MasterButtons(vm, snapshot)
             }
-            if (snapshot.settings.masterPlays) {
-                vm.playerView?.let { view ->
-                    // Das Spielfeld des Masters nimmt 1/3 des Bildschirms ein.
-                    BuzzerPad(
-                        view = view,
-                        onDown = { vm.onTouchDown(it) },
-                        onUp = { vm.onTouchUp(it) },
-                        modifier = Modifier.weight(1f).fillMaxWidth(),
-                        compact = true,
-                    )
-                }
-            }
+            EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
         }
     }
 
@@ -233,21 +357,21 @@ fun MasterScreen(vm: BuzzerViewModel) {
             dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
         )
     }
-    if (showSettings) {
-        SettingsDialog(
-            snapshot = snapshot,
-            onDismiss = { showSettings = false },
-            onSave = { vm.updateSettings(it); showSettings = false },
-            onNewGame = { vm.newGame(); showSettings = false },
+    if (showSettings) SettingsDialog(vm, snapshot) { showSettings = false }
+    if (showChat) {
+        ChatDialog(
+            recipients = snapshot.players.filter { it.connected && it.id != BuzzerViewModel.LOCAL_PLAYER_ID }.map { it.id to it.name },
+            onSend = { to, name, text -> vm.sendChat(to, name, text) },
+            onDismiss = { showChat = false },
         )
     }
     if (confirmLeave) {
-        AlertDialog(
-            onDismissRequest = { confirmLeave = false },
-            title = { Text("Gruppe schließen?") },
-            text = { Text("Alle Spieler werden getrennt.") },
-            confirmButton = { TextButton(onClick = { confirmLeave = false; vm.leave() }) { Text("Schließen") } },
-            dismissButton = { TextButton(onClick = { confirmLeave = false }) { Text("Abbrechen") } },
+        LeaveDialog(
+            title = "Gruppe schließen?",
+            text = "Alle Spieler werden getrennt.",
+            confirm = "Schließen",
+            onConfirm = { delete -> confirmLeave = false; vm.leave(delete) },
+            onDismiss = { confirmLeave = false },
         )
     }
 }
@@ -266,6 +390,9 @@ private fun MasterButtons(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) 
             Phase.ANSWERING -> Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 Button(onClick = { vm.markCorrect() }, modifier = Modifier.weight(1f).height(56.dp)) { Text("Richtig") }
                 Button(onClick = { vm.markWrong() }, modifier = Modifier.weight(1f).height(56.dp)) { Text("Falsch") }
+            }
+            Phase.ANSWER_TIMEOUT -> Button(onClick = { vm.proceed() }, modifier = Modifier.fillMaxWidth().height(56.dp)) {
+                Text("Zeit abgelaufen – Weiter")
             }
             else -> Unit
         }
@@ -318,5 +445,6 @@ private fun phaseText(snapshot: MasterEngine.Snapshot): String = when (snapshot.
     Phase.RUNNING -> "Buzzer offen"
     Phase.SUDDEN_DEATH_PREP -> "Gleichstand – Sudden Death"
     Phase.ANSWERING -> "Antwort von ${snapshot.players.firstOrNull { it.display == Display.GREEN }?.name ?: "…"}"
+    Phase.ANSWER_TIMEOUT -> "Antwortzeit abgelaufen"
     Phase.ROUND_OVER -> "Runde beendet"
 }

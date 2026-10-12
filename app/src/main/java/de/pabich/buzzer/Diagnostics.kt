@@ -15,13 +15,17 @@ import java.util.Locale
 
 /**
  * Sammelt die letzten Ereignisse und Fehler und baut daraus einen Diagnosebericht zum Teilen.
- * Systeminformationen kommen nur hinein, wenn der Nutzer das ausdrücklich wählt.
+ * Das Protokoll liegt in einer Datei und übersteht Neustarts. Systeminformationen kommen nur
+ * hinein, wenn der Nutzer das ausdrücklich wählt.
  */
 object Diagnostics {
-    private const val MAX_LINES = 300
+    private const val MAX_LINES = 500
     private const val CRASH_FILE = "last_crash.txt"
+    private const val LOG_FILE = "diagnose.log"
     private val lines = ArrayDeque<String>()
-    private val time = SimpleDateFormat("HH:mm:ss.SSS", Locale.GERMANY)
+    private val time = SimpleDateFormat("dd.MM. HH:mm:ss.SSS", Locale.GERMANY)
+    private var logFile: File? = null
+    private var appendsSinceTrim = 0
 
     /** Absturz-Text vom letzten Start, falls die App unerwartet beendet wurde. */
     var previousCrash: String? = null
@@ -29,12 +33,39 @@ object Diagnostics {
 
     @Synchronized
     fun log(text: String) {
-        lines.addLast("${time.format(Date())}  $text")
+        val line = "${time.format(Date())}  $text"
+        lines.addLast(line)
         while (lines.size > MAX_LINES) lines.removeFirst()
+        val file = logFile ?: return
+        runCatching {
+            if (++appendsSinceTrim >= MAX_LINES / 2) {
+                // Datei gelegentlich auf die letzten Zeilen kürzen.
+                file.writeText(lines.joinToString("\n", postfix = "\n"))
+                appendsSinceTrim = 0
+            } else {
+                file.appendText(line + "\n")
+            }
+        }
     }
 
-    /** Schreibt Abstürze in eine Datei, damit sie beim nächsten Start geteilt werden können. */
+    /** Löscht Protokoll und Absturzbericht (beim regulären Beenden auf Wunsch). */
+    @Synchronized
+    fun clear(context: Context) {
+        lines.clear()
+        previousCrash = null
+        File(context.filesDir, LOG_FILE).delete()
+        File(context.filesDir, CRASH_FILE).delete()
+    }
+
+    /** Lädt das gespeicherte Protokoll und schreibt Abstürze in eine Datei für den nächsten Start. */
+    @Synchronized
     fun install(context: Context) {
+        if (logFile == null) {
+            val log = File(context.filesDir, LOG_FILE)
+            logFile = log
+            runCatching { if (log.exists()) log.readLines().takeLast(MAX_LINES).forEach { lines.addLast(it) } }
+            log("--- App gestartet: ${BuildConfig.VERSION_NAME} (Build ${BuildConfig.VERSION_CODE}) ---")
+        }
         val file = File(context.filesDir, CRASH_FILE)
         if (file.exists()) {
             previousCrash = file.readText()

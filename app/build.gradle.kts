@@ -20,7 +20,21 @@ android {
         versionName = "1.0.$buildNumber"
     }
 
+    // Fester Schlüssel, damit jeder Build als Update über den vorherigen installiert werden kann
+    // (sonst gingen Config und Profile verloren). Nur für Test-/Hobby-Builds gedacht.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("buzzer-debug.keystore")
+            storePassword = "buzzer"
+            keyAlias = "buzzer"
+            keyPassword = "buzzer"
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("debug")
+        }
         release {
             isMinifyEnabled = false
         }

@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import de.pabich.buzzer.ChatLine
 import de.pabich.buzzer.core.Display
 import de.pabich.buzzer.core.PlayerEngine
 
@@ -48,6 +49,7 @@ fun BuzzerPad(
     onUp: (Long) -> Unit,
     modifier: Modifier = Modifier,
     compact: Boolean = false,
+    chat: List<ChatLine> = emptyList(),
 ) {
     val currentOnDown by rememberUpdatedState(onDown)
     val currentOnUp by rememberUpdatedState(onUp)
@@ -90,7 +92,20 @@ fun BuzzerPad(
                         modifier = Modifier.padding(horizontal = 24.dp),
                     )
                 }
+                // Vor jeder Freigabe: beide Zeitlimits, damit jeder das Risiko abwägen kann.
+                if (!compact && (view.showBoard || view.display == Display.BLACK)) {
+                    Text(
+                        text = limitsText(view.rules),
+                        color = textColor.copy(alpha = 0.8f),
+                        fontSize = 16.sp,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
+                    )
+                }
             }
+        }
+        if (!compact && view.showBoard && chat.isNotEmpty()) {
+            ChatPanel(chat, textColor, Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 4.dp))
         }
         if (showBoard) {
             Scoreboard(
@@ -100,11 +115,14 @@ fun BuzzerPad(
                 modifier = Modifier.fillMaxWidth().heightIn(max = 360.dp).padding(horizontal = 20.dp),
             )
         }
+        view.timer?.let {
+            TimerBar(it, textColor, Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 8.dp))
+        }
         Text(
             text = "Punkte: ${view.score}",
             color = textColor,
             fontSize = 16.sp,
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 12.dp, top = 4.dp),
         )
     }
 }

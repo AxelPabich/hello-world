@@ -156,6 +156,11 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 | Gleichstands-Schwelle | zwischen Runden | 20 ms |
 | Wertung | nur vor Spielbeginn | Richtige Antworten |
 | Master spielt mit | zwischen Runden | aus |
+| Max. Reaktionszeit an/aus | zwischen Runden (bei Restzeit-Wertung immer an) | an |
+| Max. Antwortzeit an/aus + Sekunden | zwischen Runden | aus, 15 s |
+| Nach abgelaufener Antwortzeit | zwischen Runden | automatisch weiter |
+| Kurznachrichten / Emoticons erlaubt | zwischen Runden | an / an |
+| Emoticon-Auswahl (7) | zwischen Runden, je Profil | 👍 😂 😮 🤔 😅 😎 🙈 |
 | Rangliste: Namen anzeigen | zwischen Runden | an |
 | Rangliste: sichtbare Plätze ab Platz 1 (0 = alle) | zwischen Runden | 0 |
 
@@ -220,4 +225,64 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
   verschickt.
 - **Systeminformationen** (Gerät, Android-Version, Play-Dienste, Standort an/aus,
   erteilte Berechtigungen) kommen nur hinein, wenn der Nutzer das im Dialog ankreuzt.
+
+---
+
+## 13. Zeitlimits
+
+- **Maximale Reaktionszeit** (bisher „Zeitlimit pro Runde“) ist abschaltbar; ohne
+  Limit endet die Runde, wenn alle gedrückt haben. Bei der Restzeit-Wertung ist sie
+  Pflicht. Während der Buzzer offen ist, zeigt der untere Rand einen sich füllenden
+  Balken mit der Zeit als Zahl.
+- **Maximale Antwortzeit** (abschaltbar, nur vor der Freigabe änderbar): Sobald ein
+  Spieler grün wird, läuft ein Balken mit Restzeit rückwärts. Läuft die Zeit ab, gilt
+  die Antwort als **falsch**; danach geht es je nach Einstellung automatisch weiter oder
+  erst, wenn der Master „Weiter“ tippt.
+- Vor jeder Freigabe sehen alle Spieler beide Limits.
+
+---
+
+## 14. Konfiguration, Profile, Export
+
+- Der Spielername, der Emoticon-Empfang und die zuletzt verwendeten Einstellungen
+  liegen in einer lokalen Config-Datei. Jeder neue Build ergänzt beim Start fehlende
+  Felder mit Vorgaben. Die Datei übersteht Updates, aber kein Deinstallieren.
+- **Spielprofile** (nur Spieleinstellungen) lassen sich unter frei wählbarem Namen
+  speichern, laden, umbenennen und löschen.
+- Stammt ein Profil aus einem älteren Build, zeigt die App beim ersten Laden die
+  neuen Felder an; mit „Übernehmen“ wird das Profil ergänzt gespeichert.
+- Der Master kann das laufende Profil an die Spieler senden; sie können es ansehen und
+  unter einem wählbaren Namen (Vorgabe: Name beim Master) speichern.
+- **Export/Import:** Lokale Einstellungen und wahlweise Profile lassen sich in eine
+  frei benannte Datei `*.buzzconf` exportieren. Beim Import zeigt die App den Inhalt;
+  übernommen wird nur, was angekreuzt ist. Gleichnamige Profile werden wahlweise
+  ersetzt oder als Kopie abgelegt.
+- Die Einstellungen sind in die Tabs **Ablauf**, **Zeiten**, **Wertung** und
+  **Profile** gegliedert.
+
+---
+
+## 15. Kurznachrichten und Emoticons
+
+- **Kurznachrichten** (max. 100 Zeichen) nur in den Rundenpausen, an einzelne
+  Teilnehmer, den Spielleiter oder alle. Sie laufen über das Master-Gerät.
+- **Emoticons** jederzeit, auch während Buzzern und Antworten. Die 7 Emoticons sind je
+  Profil wählbar und stehen als Knöpfe am oberen Rand. Diese Leiste gehört nicht zur
+  Buzzer-Fläche. Ein Emoticon erscheint mit dem Namen des Absenders am rechten Rand
+  aller Spielfelder und fliegt nach oben weg.
+- Der Master kann Nachrichten und Emoticons getrennt abschalten. Jeder Teilnehmer
+  kann den Empfang von Emoticons abschalten und kann dann auch keine senden.
+
+---
+
+## 16. Diagnose (Ergänzung) und Signatur
+
+- Das Diagnose-Protokoll liegt in einer Datei und übersteht Neustarts. Es enthält
+  auch Spielereignisse (Freigabe, Reaktionszeiten, Ergebnis, Richtig/Falsch,
+  Funk-Laufzeiten) und bei einem Abbruch die Zeit seit der letzten Nachricht.
+- Schließt der Master die Gruppe, verabschiedet er sich; Spieler sehen „Der
+  Spielleiter hat die Gruppe geschlossen“ statt „Verbindung abgebrochen“.
+- Beim regulären Verlassen/Schließen kann jeder alle Diagnosedaten löschen.
+- Alle Builds werden mit demselben Schlüssel signiert, damit Updates über die
+  vorherige Version installiert werden können.
 ===== ENDE SPEZIFIKATION.md =====
