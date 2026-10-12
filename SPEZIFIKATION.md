@@ -5,9 +5,6 @@ Ein Gerät ist **Master** (Spielleiter), die anderen sind **Spieler**.
 Der Master stellt die Fragen mündlich; die App regelt nur, wer in welcher
 Reihenfolge antworten darf.
 
-Punkte, die als **Annahme** markiert sind, wurden noch nicht ausdrücklich
-bestätigt.
-
 ---
 
 ## 1. Verbindung
@@ -99,7 +96,7 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
   einem **größeren Zufallsbereich** für die Verzögerung. Die Reihenfolge im
   Sudden Death bestimmt ihre Reihenfolge untereinander. Ein erneuter Gleichstand
   führt zu einem weiteren Sudden Death.
-- **Annahme – Gleichstand auf späteren Plätzen:** Diese Spieler bekommen zunächst
+- **Gleichstand auf späteren Plätzen:** Diese Spieler bekommen zunächst
   dieselbe rote Nummer. Erst wenn der Master nach einer falschen Antwort diesen
   Platz freigibt, werden sie pink und spielen ihr Sudden Death aus.
 - Die übrigen Spieler bleiben während des Sudden Death eingefroren.
@@ -133,9 +130,9 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 ## 7. Wertung (vor Spielbeginn wählbar)
 
 - **Richtige Antworten:** +1 Punkt pro richtiger Antwort.
-- **Zeitwertung (Annahme zur Auslegung):** Bei richtiger Antwort erhält der
-  Spieler die **Restzeit** bis zum Zeitlimit gutgeschrieben
-  (Zeitlimit − Reaktionszeit). Wer schnell buzzert und richtig antwortet,
+- **Zeitwertung:** Bei richtiger Antwort wird dem Spielerkonto die
+  **Restzeit** bis zum Zeitlimit (Zeitlimit − Reaktionszeit) gutgeschrieben.
+  Wer schnell buzzert und richtig antwortet,
   bekommt also mehr. In diesem Modus wird das Zeitlimit beim Spielstart
   festgelegt und kann danach **nicht mehr verändert** werden.
 - Falsche Antworten geben 0 Punkte.
@@ -186,12 +183,3 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 | M → S | `SUDDEN_DEATH` | beteiligte Spieler, neue Freigabe |
 | M → S | `FREEZE` | keine Eingaben mehr |
 | M → S | `RESET` | Runde beendet, Display schwarz |
-
----
-
-## 11. Noch zu klären
-
-- Abschnitt 5: Wie werden Gleichstände auf späteren Plätzen behandelt?
-- Abschnitt 7: Bedeutet „Zeiten aufaddieren“ die **Restzeit** (je schneller,
-  desto mehr Punkte) oder die **Reaktionszeit** (je weniger Summe, desto besser)?
-- Farbe **Blau** für „Finger liegt auf“ in Modus A in Ordnung?
