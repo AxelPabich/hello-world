@@ -25,6 +25,7 @@ class PlayerEngine(
         val messagesEnabled: Boolean = false,
         val emojis: List<String> = emptyList(),
         val profileName: String = "",
+        val sounds: Set<SoundEvent> = DEFAULT_SOUNDS,
     )
 
     data class View(
@@ -46,6 +47,8 @@ class PlayerEngine(
     var onChat: ((from: String, text: String, toAll: Boolean) -> Unit)? = null
     var onProfile: ((name: String, values: Map<String, String>) -> Unit)? = null
     var onBye: (() -> Unit)? = null
+    var onSound: ((SoundEvent) -> Unit)? = null
+    var onReplay: ((Message.Replay) -> Unit)? = null
 
     var view = View(Display.BLACK, 0, "0", "Warte auf den Spielleiter")
         private set
@@ -109,6 +112,7 @@ class PlayerEngine(
                         messagesEnabled = message.messagesEnabled,
                         emojis = message.emojis,
                         profileName = message.profileName,
+                        sounds = message.sounds,
                     ),
                 )
             }
@@ -119,6 +123,8 @@ class PlayerEngine(
             is Message.Emote -> onEmote?.invoke(message.from, message.emoji)
             is Message.Chat -> onChat?.invoke(message.from, message.text, message.toAll)
             is Message.Profile -> onProfile?.invoke(message.name, message.values)
+            is Message.Sound -> onSound?.invoke(message.event)
+            is Message.Replay -> onReplay?.invoke(message)
             Message.Bye -> {
                 log("Spielleiter hat die Gruppe geschlossen")
                 onBye?.invoke()

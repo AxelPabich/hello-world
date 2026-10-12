@@ -74,6 +74,12 @@ class MasterEngine(
     /** Kurznachricht an den Master oder an alle. */
     var onChat: ((from: String, text: String, toAll: Boolean) -> Unit)? = null
 
+    /** Klang auf dem Master-Gerät (bereits nach den Profil-Einstellungen gefiltert). */
+    var onSound: ((SoundEvent) -> Unit)? = null
+
+    /** Spielverlauf für die Anzeige auf dem Master-Gerät. */
+    var onReplay: ((Message.Replay) -> Unit)? = null
+
     /** Name des Spielleiters für Kurznachrichten und Emoticons. */
     var masterName = "Spielleiter"
 
@@ -100,6 +106,10 @@ class MasterEngine(
     private var answerTimerPlayer: PlayerId? = null
     private var answerDeadline: Long? = null
 
+    /** Punktestände nach jeder Runde; der erste Eintrag ist der Start (alle 0). */
+    private val history = mutableListOf<Map<PlayerId, Long>>()
+    private var recordedRound = -1
+
     // ------------------------------------------------------------------ Spieler
 
     fun addPlayer(id: PlayerId, name: String, local: Boolean = false) {
@@ -107,6 +117,7 @@ class MasterEngine(
         if (local) player.sync.setLocal()
         players[id] = player
         log("Spieler beigetreten: $name ($id)")
+        if (!local) masterSound(SoundEvent.JOIN)
         send(id, configMessage())
         broadcastRoster()
         broadcastScoreboard()
@@ -166,6 +177,8 @@ class MasterEngine(
     fun newGame() {
         if (phase != Phase.READY) return
         gameStarted = false
+        history.clear()
+        recordedRound = -1
         players.values.forEach { it.score = 0 }
         players.values.forEach { send(it.id, Message.Reset(scoreText(it))) }
         broadcastScoreboard()
@@ -232,7 +245,8 @@ class MasterEngine(
             ScoringMode.REMAINING_TIME -> (settings.timeLimitMs - (player.roundReactionMs ?: settings.timeLimitMs)).coerceAtLeast(0)
         }
         phase = Phase.ROUND_OVER
-        broadcastStates()
+        sendSound(listOf(player.id), SoundEvent.RIGHT)
+        broadcastStates(roundEndExcept = player.id)
         return true
     }
 
@@ -241,6 +255,7 @@ class MasterEngine(
         val player = players[answeringPlayer() ?: return false] ?: return false
         cancelAnswerTimer()
         log("Falsch: ${player.name}")
+        sendSound(listOf(player.id), SoundEvent.WRONG)
         player.status = Status.OUT
         advance(answerIndex + 1)
         broadcastStates()
@@ -274,6 +289,8 @@ class MasterEngine(
         cancelAnswerTimer()
         val player = players[id] ?: return
         log("Antwortzeit abgelaufen: ${player.name} – zählt als falsch")
+        sendSound(listOf(player.id), SoundEvent.TIMEOUT)
+        if (!player.local) masterSound(SoundEvent.TIMEOUT)
         player.status = Status.OUT
         if (settings.autoAdvanceOnTimeout) {
             advance(answerIndex + 1)
@@ -375,7 +392,53 @@ class MasterEngine(
         messagesEnabled = settings.messagesEnabled,
         emojis = if (settings.emojisEnabled) settings.emojis else emptyList(),
         profileName = profileName,
+        sounds = settings.sounds,
     )
+
+    // ------------------------------------------------------------------ Klänge und Spielverlauf
+
+    private fun sendSound(to: Collection<PlayerId>, event: SoundEvent) {
+        if (event !in settings.sounds) return
+        for (id in to) players[id]?.takeIf { it.connected }?.let { send(it.id, Message.Sound(event)) }
+    }
+
+    private fun masterSound(event: SoundEvent) {
+        if (event in settings.sounds) onSound?.invoke(event)
+    }
+
+    private fun recordRound() {
+        if (history.isEmpty()) history += players.keys.associateWith { 0L }
+        history += players.values.associate { it.id to it.score }
+        recordedRound = round
+    }
+
+    /** Spielverlauf geht nur in den Pausen und erst nach mindestens einer Runde. */
+    fun canShowReplay(): Boolean = (phase == Phase.READY || phase == Phase.ROUND_OVER) && history.size >= 2
+
+    /** Zeigt auf allen Bildschirmen eine Animation des Spielverlaufs (höchstens 10 s). */
+    fun showReplay(): Boolean {
+        if (!canShowReplay()) return false
+        val shown = players.values.filter { it.connected }
+        val frames = history.map { frame -> shown.map { frame[it.id] ?: 0L } }
+        val duration = (3_000L + 1_000L * (frames.size - 1)).coerceAtMost(MAX_REPLAY_MS)
+        fun forViewer(viewer: PlayerId?) = Message.Replay(
+            labels = shown.map { p ->
+                when {
+                    p.id == viewer -> "Du"
+                    viewer == null || settings.boardShowNames -> p.name
+                    else -> "???"
+                }
+            },
+            selfIndex = shown.indexOfFirst { it.id == viewer },
+            frames = frames,
+            scoring = settings.scoring,
+            durationMs = duration,
+        )
+        for (p in shown) if (!p.local) send(p.id, forViewer(p.id))
+        onReplay?.invoke(forViewer(null))
+        log("Spielverlauf gezeigt (${frames.size - 1} Runden)")
+        return true
+    }
 
     private fun broadcastRoster() {
         val entries = listOf(MASTER_ADDRESS to masterName) +
@@ -548,6 +611,8 @@ class MasterEngine(
         }
         // Gleichstand: kurz pink zeigen, dann Sudden Death mit größerem Zufallsbereich.
         log("Sudden Death um Platz ${order.take(index).sumOf { it.size } + 1}: " + active.joinToString("/") { players[it]?.name ?: it })
+        sendSound(players.values.filter { !it.local }.map { it.id }, SoundEvent.SUDDEN_DEATH)
+        masterSound(SoundEvent.SUDDEN_DEATH)
         phase = Phase.SUDDEN_DEATH_PREP
         val r = round
         scheduler.schedule(SUDDEN_DEATH_PAUSE_MS) {
@@ -592,7 +657,13 @@ class MasterEngine(
     }
 
     /** Schickt allen, die gerade nicht selbst im Durchgang stehen, ihre verbindliche Anzeige. */
-    private fun broadcastStates() {
+    private fun broadcastStates(roundEndExcept: PlayerId? = null) {
+        if (phase == Phase.ROUND_OVER && recordedRound != round) {
+            recordRound()
+            // Wer gerade „Richtig“ hört, bekommt keinen zweiten Klang darüber.
+            sendSound(players.values.filter { !it.local && it.id != roundEndExcept }.map { it.id }, SoundEvent.ROUND_END)
+            if (roundEndExcept?.let { players[it] }?.local != true) masterSound(SoundEvent.ROUND_END)
+        }
         val c = contest
         for (p in players.values) {
             if (!p.connected || p.status == Status.IDLE) continue
@@ -678,6 +749,7 @@ class MasterEngine(
 
     companion object {
         const val SUDDEN_DEATH_PAUSE_MS = 1_500L
+        const val MAX_REPLAY_MS = 10_000L
         private const val UNKNOWN_RTT_MS = 300L
     }
 }
