@@ -205,13 +205,21 @@ Kategorien recherchieren.
     8034 verständlich erklären.
 19. **„Fragen aktualisieren“:** Bei HTTP 404 nicht „(Internet?)“ melden, sondern „Im
     Repository liegen keine neueren Fragen“.
-20. **Code in der Beitrittsanfrage:** Der vierstellige Code ist der Prüfcode von Nearby
-    (gleich auf beiden Geräten, schützt vor fremden Verbindungen). Der Spieler sieht ihn nicht,
-    daher bringt er dem Master nichts: aus dem Dialog nehmen und nur ins Protokoll schreiben.
-21. **Diagnose an den Master schicken (Konzept, Rückfragen offen):** Spieler senden ihren
-    Diagnosebericht über die Nearby-Verbindung an den Master; der Master legt ihn in GitHub ab
-    (z. B. `diagnose/JJJJ-MM-TT/Build-N/Name-Uhrzeit.txt`). Offen: Ablageort (das Buzzer-Repo ist
-    öffentlich), Zugang des Master-Geräts zu GitHub (Token), Systeminfos ja/nein.
+20. **Prüfcode auf beiden Geräten (Sicherheit geht vor):** Der vierstellige Nearby-Code
+    erscheint beim Master im Beitrittsdialog **und** beim Spieler („Warte auf Bestätigung –
+    Code 7179, vergleiche ihn mit dem Spielleiter“). Nur bei gleichem Code annehmen. Der Code
+    steht zusätzlich im Protokoll beider Geräte.
+21. **Diagnose an den Master schicken und in GitHub ablegen (Entscheidungen vom 13.10.2026):**
+    - Spieler: „An den Spielleiter senden“ im Diagnose-Dialog; Übertragung über Nearby.
+      Systeminfos nur, wenn der Spieler sie ankreuzt – mit kurzer Erklärung, wozu sie dienen
+      und wie die Daten geschützt sind.
+    - Master: sammelt die Berichte und lädt sie in das **private** Repository
+      `AxelPabich/buzzer-diagnose` hoch: `diagnose/JJJJ-MM-TT/Build-N/Name-HH-MM.txt`.
+    - Zugang über ein Fine-grained Token (nur dieses Repository, „Contents: Read and write“),
+      einmalig in der App eingegeben, verschlüsselt im Android-Keystore gespeichert.
+      Beim ersten Hochladen zeigt die App eine Schritt-für-Schritt-Anleitung.
+    - Keine zusätzliche Verschlüsselung mit dem Token (Begründung: sonst könnte nur das
+      Master-Gerät die Berichte lesen, auch Claude nicht; das private Repository schützt sie).
 
 ### Konzept Oberfläche (Vorschlag)
 
