@@ -85,6 +85,8 @@ private fun StatusText(vm: BuzzerViewModel) {
 @Composable
 fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Unit) {
     val theme = LocalBuzzerTheme.current
+    var showShare by remember { mutableStateOf(false) }
+    if (showShare) ShareDialog { showShare = false }
     ThemedScreen {
         Column(
             Modifier
@@ -118,6 +120,7 @@ fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Un
             StatusText(vm)
             Column {
                 MenuRow("Profile & Einstellungen", { vm.navigate(Screen.SETTINGS) })
+                MenuRow("App weitergeben", { showShare = true })
                 MenuRow("Hilfe & Spielregeln", { vm.navigate(Screen.HELP) })
                 MenuRow("Über & Diagnose", { vm.navigate(Screen.ABOUT) }, divider = false)
             }
@@ -424,6 +427,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var showChat by remember { mutableStateOf(false) }
     var showMenu by remember { mutableStateOf(false) }
     var showCorrection by remember { mutableStateOf(false) }
+    var showShare by remember { mutableStateOf(false) }
     var confirmLeave by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val settings = snapshot.settings
@@ -483,6 +487,10 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 text = { Text("Neues Spiel (Punkte auf 0)") },
                                 enabled = snapshot.phase == Phase.READY,
                                 onClick = { showMenu = false; vm.newGame() },
+                            )
+                            DropdownMenuItem(
+                                text = { Text("App weitergeben") },
+                                onClick = { showMenu = false; showShare = true },
                             )
                             DropdownMenuItem(
                                 text = { Text("Gruppe schließen") },
@@ -564,6 +572,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
             onDismiss = { showCorrection = false },
         )
     }
+    if (showShare) ShareDialog { showShare = false }
     if (showSettings) SettingsDialog(vm, snapshot) { showSettings = false }
     if (showChat) {
         ChatDialog(

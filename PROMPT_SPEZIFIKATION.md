@@ -334,4 +334,18 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 - Zwischen den Runden kann der Master das Spiel pausieren. Alle Spieler-Bildschirme
   werden verdeckt: „Kurze Pause – Gleich geht es weiter“. Während der Pause lässt sich
   keine Runde freigeben; wer neu beitritt, sieht die Pause ebenfalls.
+
+## 22. App weitergeben
+
+- Im Startmenü und im Master-Menü ⋮ gibt es „App weitergeben“. Die App kopiert ihre
+  eigene Installationsdatei (APK) und übergibt sie an Android:
+  - **Per Bluetooth senden:** öffnet direkt das Bluetooth-Senden des Systems; gibt es das
+    auf dem Gerät nicht, erscheint die normale Teilen-Auswahl.
+  - **Teilen …:** Teilen-Auswahl (Quick Share, Messenger usw.).
+  - **QR-Code** mit dem festen Download-Link der neuesten Version.
+- Der Empfänger öffnet die Datei, erlaubt einmal „Installation aus unbekannten Quellen“
+  und installiert. Weil alle Builds mit demselben Schlüssel signiert sind, lassen sich
+  weitergegebene Versionen später als Update installieren.
+- Android erlaubt keine stille Übertragung: Gerät und Übertragung bestätigt der Nutzer im
+  System. Welche Wege funktionieren, hängt vom Handy-Hersteller ab.
 ===== ENDE SPEZIFIKATION.md =====

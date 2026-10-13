@@ -16,9 +16,10 @@
         android:name="android.permission.NEARBY_WIFI_DEVICES"
         android:usesPermissionFlags="neverForLocation" />
 
-    <!-- Für die Diagnose: Version der Google Play-Dienste auslesen -->
+    <!-- Diagnose: Version der Google Play-Dienste auslesen; Weitergeben: Bluetooth-Senden von Android -->
     <queries>
         <package android:name="com.google.android.gms" />
+        <package android:name="com.android.bluetooth" />
     </queries>
 
     <application
@@ -34,5 +35,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Gibt die eigene APK zum Weitergeben (Bluetooth, Quick Share …) kurzzeitig frei. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.share"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/share_paths" />
+        </provider>
     </application>
 </manifest>

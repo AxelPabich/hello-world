@@ -68,4 +68,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     implementation("com.google.android.gms:play-services-nearby:19.3.0")
+
+    // QR-Code für den Download-Link (nur der Kern, keine Kamera)
+    implementation("com.google.zxing:core:3.5.3")
 }

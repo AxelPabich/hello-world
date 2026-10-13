@@ -30,6 +30,8 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 12. Spielfläche auf dem Tab S11 Ultra: mit Build 8 passt sie (der Eindruck „zu groß“ kam
     von einem noch installierten Build 7). Die geplante Messung der Insets entfällt.
 
+13. App weitergeben (Bluetooth, Teilen-Auswahl, QR-Code) – Start- und Master-Menü.
+
 ## Offen
 
 (keine)
