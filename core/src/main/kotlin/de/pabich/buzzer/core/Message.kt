@@ -76,6 +76,58 @@ sealed interface Message {
     /** M → S: der Spielleiter schließt die Gruppe. */
     data object Bye : Message
 
+    /** M → S: gewählte Spielart (`null` = noch nicht gewählt). */
+    data class Mode(val kind: GameKind?) : Message
+
+    /**
+     * M → S: neue Quizfrage. [answers] in der Reihenfolge dieses Spielers – welche richtig ist,
+     * erfährt das Gerät erst mit [QuizResult]. Frage ab [questionAtLocal], Antworten und Timer ab
+     * [answersAtLocal] (beides in der Uhr des Spielers).
+     */
+    data class QuizAsk(
+        val number: Int,
+        val total: Int,
+        val category: String,
+        val level: QuizLevel,
+        val text: String,
+        val answers: List<String>,
+        val questionAtLocal: Long,
+        val answersAtLocal: Long,
+        val durationMs: Long,
+    ) : Message
+
+    /** S → M: gewählte Position (0–3, eigene Reihenfolge) nach [elapsedMs] ab Einblenden der Antworten. */
+    data class QuizAnswer(val number: Int, val position: Int, val elapsedMs: Long) : Message
+
+    /** M → S: Antwortzeit verkürzt (Countdown nach der ersten richtigen Antwort), ab Einblenden gerechnet. */
+    data class QuizDeadline(val number: Int, val deadlineMs: Long) : Message
+
+    /** M → S: Auflösung aus Sicht des Empfängers; Positionen in seiner Reihenfolge, -1 = keine. */
+    data class QuizResult(
+        val number: Int,
+        val correctPosition: Int,
+        val chosenPosition: Int,
+        val outcome: QuizOutcome,
+        val gained: String,
+        val score: String,
+        val explanation: String,
+        val source: String,
+        /** Nach einer Challenge-Entscheidung neu geschickt (ohne Klang). */
+        val corrected: Boolean,
+    ) : Message
+
+    /** S → M: Frage anfechten, mit optionaler Begründung. */
+    data class QuizChallenge(val number: Int, val reason: String) : Message
+
+    /** S → M: tippt gerade eine Kurznachricht (an) bzw. fertig (aus). */
+    data class Typing(val on: Boolean) : Message
+
+    /** Beide Richtungen: bitte die eigene App (APK) schicken. */
+    data object ApkRequest : Message
+
+    /** Beide Richtungen: gleich folgt die APK als Datei [payloadId] mit [build] und [size] Bytes. */
+    data class ApkInfo(val payloadId: Long, val build: Int, val size: Long) : Message
+
     /** M → S: Spielpause an/aus – Spieler sehen ein Pausen-Overlay. */
     data class Pause(val on: Boolean) : Message
 
@@ -95,6 +147,8 @@ sealed interface Message {
         val durationMs: Long,
     ) : Message
 }
+
+enum class QuizOutcome { RIGHT, WRONG, NONE, ANNULLED }
 
 const val ALL_ADDRESS = "*"
 const val MASTER_ADDRESS = "@master"
@@ -143,6 +197,23 @@ object MessageCodec {
             is Message.Chat -> "CHAT" to mapOf("f" to message.from, "t" to message.text, "all" to message.toAll)
             is Message.Profile -> "PROFILE" to mapOf("n" to message.name, "v" to SettingsCodec.encodeLine(message.values))
             Message.Bye -> "BYE" to emptyMap()
+            is Message.Mode -> "MODE" to mapOf("k" to (message.kind?.name ?: ""))
+            is Message.QuizAsk -> "QUIZ_ASK" to mapOf(
+                "n" to message.number, "t" to message.total, "c" to message.category, "l" to message.level.name,
+                "q" to message.text, "a" to encodeList(message.answers), "qa" to message.questionAtLocal,
+                "aa" to message.answersAtLocal, "d" to message.durationMs,
+            )
+            is Message.QuizAnswer -> "QUIZ_ANSWER" to mapOf("n" to message.number, "p" to message.position, "e" to message.elapsedMs)
+            is Message.QuizDeadline -> "QUIZ_DEADLINE" to mapOf("n" to message.number, "d" to message.deadlineMs)
+            is Message.QuizResult -> "QUIZ_RESULT" to mapOf(
+                "n" to message.number, "cp" to message.correctPosition, "ch" to message.chosenPosition,
+                "o" to message.outcome.name, "g" to message.gained, "s" to message.score,
+                "x" to message.explanation, "src" to message.source, "cor" to message.corrected,
+            )
+            is Message.QuizChallenge -> "QUIZ_CHALLENGE" to mapOf("n" to message.number, "r" to message.reason)
+            is Message.Typing -> "TYPING" to mapOf("on" to message.on)
+            Message.ApkRequest -> "APK_REQUEST" to emptyMap()
+            is Message.ApkInfo -> "APK_INFO" to mapOf("id" to message.payloadId, "b" to message.build, "sz" to message.size)
         }
         val text = buildString {
             append(type)
@@ -198,6 +269,21 @@ object MessageCodec {
             "CHAT" -> Message.Chat(f.getValue("f"), f.getValue("t"), bool("all"))
             "PROFILE" -> Message.Profile(f.getValue("n"), SettingsCodec.decodeLine(f.getValue("v")))
             "BYE" -> Message.Bye
+            "MODE" -> Message.Mode(f.getValue("k").takeIf { it.isNotEmpty() }?.let { GameKind.valueOf(it) })
+            "QUIZ_ASK" -> Message.QuizAsk(
+                int("n"), int("t"), f.getValue("c"), QuizLevel.valueOf(f.getValue("l")), f.getValue("q"),
+                decodeList(f.getValue("a")), long("qa"), long("aa"), long("d"),
+            )
+            "QUIZ_ANSWER" -> Message.QuizAnswer(int("n"), int("p"), long("e"))
+            "QUIZ_DEADLINE" -> Message.QuizDeadline(int("n"), long("d"))
+            "QUIZ_RESULT" -> Message.QuizResult(
+                int("n"), int("cp"), int("ch"), QuizOutcome.valueOf(f.getValue("o")), f.getValue("g"), f.getValue("s"),
+                f.getValue("x"), f.getValue("src"), bool("cor"),
+            )
+            "QUIZ_CHALLENGE" -> Message.QuizChallenge(int("n"), f.getValue("r"))
+            "TYPING" -> Message.Typing(bool("on"))
+            "APK_REQUEST" -> Message.ApkRequest
+            "APK_INFO" -> Message.ApkInfo(long("id"), int("b"), long("sz"))
             else -> null
         }
     } catch (e: RuntimeException) {

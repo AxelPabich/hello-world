@@ -8,9 +8,14 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
+import android.content.Context
 import de.pabich.buzzer.core.ALL_ADDRESS
 import de.pabich.buzzer.core.Cancellable
+import de.pabich.buzzer.core.ChallengeDecision
 import de.pabich.buzzer.core.ConfigFormat
+import de.pabich.buzzer.core.GameKind
+import de.pabich.buzzer.core.PeerInfo
+import de.pabich.buzzer.core.QuestionPicker
 import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.Message
 import de.pabich.buzzer.core.PlayerEngine
@@ -18,13 +23,29 @@ import de.pabich.buzzer.core.Display
 import de.pabich.buzzer.core.Settings
 import de.pabich.buzzer.core.SettingsCodec
 import de.pabich.buzzer.core.SoundEvent
+import androidx.compose.runtime.mutableStateMapOf
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import kotlin.math.abs
 
-enum class Screen { START, DISCOVER, MASTER, PLAYER, SETTINGS, HELP, ABOUT }
+enum class Screen { START, DISCOVER, MASTER, PLAYER, UPDATE, SETTINGS, HELP, ABOUT }
 
-data class Group(val endpointId: String, val name: String)
+/** Gefundene Gruppe; [peer] enthält Name und Version des Spielleiters. */
+data class Group(val endpointId: String, val peer: PeerInfo) {
+    val name: String get() = peer.name
+}
 
-data class JoinRequest(val endpointId: String, val name: String, val authCode: String)
+data class JoinRequest(val endpointId: String, val peer: PeerInfo, val authCode: String) {
+    val name: String get() = peer.name
+}
+
+/** Laufende Dateiübertragung einer App-Version. */
+data class Transfer(val peerName: String, val incoming: Boolean, val build: Int, val progress: Float, val done: Boolean = false, val failed: Boolean = false)
+
+/** Empfangene oder geladene neuere Version, bereit zur Installation. */
+data class ReceivedUpdate(val file: File, val build: Int, val from: String)
 
 /** Ein auffliegendes Emoticon. */
 data class FlyingEmote(val id: Long, val from: String, val emoji: String)
@@ -39,6 +60,7 @@ data class ProfileUpgrade(val name: String, val missingLabels: List<String>)
 
 class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.Listener {
     private val store = ConfigStore(app)
+    val quizStore = QuizStore(app)
 
     var screen by mutableStateOf(Screen.START)
         private set
@@ -88,6 +110,45 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         private set
     var importContent by mutableStateOf<ConfigFormat.Content?>(null)
 
+    /** Master: Auswahl der Spielart ist offen (beim Start und über „Spielart wechseln“). */
+    var choosingKind by mutableStateOf(true)
+        private set
+
+    /** Master: Fragenpakete wurden neu geladen (für die Anzeige der Zahlen). */
+    var quizDataVersion by mutableIntStateOf(0)
+        private set
+
+    // ------------------------------------------------------------------ Versionen
+    /** Spieler: Name und Version des Spielleiters, mit dem er verbunden ist. */
+    var masterPeer by mutableStateOf<PeerInfo?>(null)
+        private set
+
+    /** Master: Build-Nummern der verbundenen Spieler (`null` = Build 11 oder älter). */
+    val peerBuilds = mutableStateMapOf<String, Int?>()
+
+    var transfer by mutableStateOf<Transfer?>(null)
+        private set
+    var receivedUpdate by mutableStateOf<ReceivedUpdate?>(null)
+
+    /** Neueste Build-Nummer auf der Release-Seite, sobald abgefragt. */
+    var repoBuild by mutableStateOf<Int?>(null)
+        private set
+    var downloadProgress by mutableStateOf<Float?>(null)
+        private set
+
+    /** Spieler: Verbindung nur zum Aktualisieren (Screen UPDATE). */
+    var updatePeerName by mutableStateOf<String?>(null)
+        private set
+    private var updatePeer: PeerInfo? = null
+
+    /** Master: Verbindungen nur zum Aktualisieren. */
+    private val updateEndpoints = mutableMapOf<String, PeerInfo>()
+
+    /** Angekündigte Dateien: Payload-ID → (Absender, Build). */
+    private val expectedApks = mutableMapOf<Long, Pair<String, Int>>()
+    private val receivedFiles = mutableMapOf<Long, Pair<Uri?, File?>>()
+    private var lastTypingSent = 0L
+
     private val link = NearbyLink(app, this)
     private val sounds = SoundPlayer(app)
     private var tickDeadline: Long? = null
@@ -113,6 +174,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun openGroup() {
         finishPendingStop()
         store.setPlayerName(myName.trim())
+        choosingKind = true
         val engine = MasterEngine(UptimeClock, scheduler, log = Diagnostics::log) { to, message ->
             if (to == LOCAL_PLAYER_ID) {
                 // Gleicher Weg wie über Funk, nur ohne Laufzeit.
@@ -132,13 +194,17 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engine.onSound = { sound(it) }
         engine.onReplay = { startReplay(it) }
+        engine.onQuizRevealed = { q, results -> quizStore.recordResult(q.id, results.map { it.copy(name = statsName(it.name)) }) }
+        engine.onQuizSkipped = { q, names -> quizStore.recordSeen(q.id, names.map { statsName(it) }) }
+        engine.onQuizChallenge = { q, from, reason -> quizStore.recordChallenge(q.id, statsName(from), reason) }
+        engine.onQuizDecision = { q, decision, newCorrect -> quizStore.recordDecision(q.id, decision, newCorrect) }
         master = engine
         engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
         syncLocalPlayer(engine)
         masterSnapshot = engine.snapshot()
         engine.start()
         Diagnostics.log("Gruppe eröffnet")
-        link.startAdvertising(myName.trim())
+        link.startAdvertising(PeerInfo.format(myName.trim(), AppUpdate.ownBuild))
         screen = Screen.MASTER
     }
 
@@ -154,8 +220,19 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     fun join(group: Group) {
         connectingTo = group.endpointId
-        Diagnostics.log("Beitritt angefragt bei ${group.endpointId}")
-        link.requestConnection(myName.trim(), group.endpointId)
+        masterPeer = group.peer
+        updatePeer = null
+        Diagnostics.log("Beitritt angefragt bei ${group.endpointId} (Build ${group.peer.build ?: "alt"})")
+        link.requestConnection(PeerInfo.format(myName.trim(), AppUpdate.ownBuild), group.endpointId)
+    }
+
+    /** Nur zum Aktualisieren verbinden: wer die ältere Version hat, bekommt die neuere. */
+    fun joinForUpdate(group: Group) {
+        connectingTo = group.endpointId
+        masterPeer = group.peer
+        updatePeer = group.peer
+        Diagnostics.log("Verbindung zum Aktualisieren bei ${group.endpointId} (Build ${group.peer.build})")
+        link.requestConnection(PeerInfo.format(myName.trim(), AppUpdate.ownBuild, updateOnly = true), group.endpointId)
     }
 
     /** Reguläres Beenden; auf Wunsch werden danach alle Diagnosedaten gelöscht. */
@@ -174,6 +251,14 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         master = null
         player = null
         masterEndpoint = null
+        masterPeer = null
+        updatePeer = null
+        updatePeerName = null
+        updateEndpoints.clear()
+        peerBuilds.clear()
+        expectedApks.clear()
+        receivedFiles.clear()
+        transfer = null
         masterSnapshot = null
         playerView = null
         connectingTo = null
@@ -202,13 +287,95 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     fun acceptJoin(request: JoinRequest) {
         joinRequests.remove(request)
-        if (master?.canAcceptJoin() == true) link.accept(request.endpointId) else link.reject(request.endpointId)
+        val peer = request.peer
+        when {
+            // Nur zum Aktualisieren: geht jederzeit, spielt aber nicht mit.
+            peer.updateOnly || (!peer.compatible && !peer.legacy) -> {
+                updateEndpoints[request.endpointId] = peer
+                link.accept(request.endpointId)
+            }
+            peer.legacy -> link.reject(request.endpointId)
+            master?.canAcceptJoin() == true -> link.accept(request.endpointId)
+            else -> link.reject(request.endpointId)
+        }
     }
 
     fun rejectJoin(request: JoinRequest) {
         joinRequests.remove(request)
         link.reject(request.endpointId)
     }
+
+    // ------------------------------------------------------------------ Spielart und Quiz
+
+    fun chooseKind(kind: GameKind) {
+        val engine = master ?: return
+        if (engine.chooseKind(kind)) {
+            choosingKind = false
+        } else {
+            status = "Die Spielart lässt sich nur zwischen den Runden wechseln."
+        }
+    }
+
+    fun openKindChoice() {
+        if (masterSnapshot?.phase == MasterEngine.Phase.READY) choosingKind = true
+    }
+
+    /** Auswahl für das nächste Quiz – auch für die Vorschau „x neue von y passenden Fragen“. */
+    fun pickQuestions(settings: Settings): QuestionPicker.Result {
+        val names = masterSnapshot?.players.orEmpty().filter { it.connected }.map { statsName(it.name) }.toSet()
+        return QuestionPicker.pick(
+            quizStore.questions,
+            quizStore.stats,
+            QuestionPicker.Request(
+                categories = settings.quizCategories,
+                levels = settings.quizLevels,
+                count = settings.quizCount,
+                players = names,
+                today = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(Date()),
+            ),
+        )
+    }
+
+    fun startQuiz() {
+        val engine = master ?: return
+        val picked = pickQuestions(engine.settings)
+        if (picked.questions.isEmpty()) {
+            status = "Keine passenden Fragen – bitte Kategorien oder Stufen erweitern."
+            return
+        }
+        if (!engine.startQuiz(picked.questions.map(quizStore::toQuiz))) {
+            status = "Das Quiz kann erst starten, wenn Spieler verbunden sind."
+            return
+        }
+        if (picked.questions.size < engine.settings.quizCount) {
+            status = "Nur ${picked.questions.size} passende Fragen vorhanden."
+        }
+    }
+
+    fun nextQuestion() = master?.nextQuestion()
+    fun revealNow() = master?.revealNow()
+    fun skipQuestion() = master?.skipQuestion()
+    fun stopQuiz() = master?.stopQuiz()
+    fun decideChallenge(decision: ChallengeDecision, newCorrect: Int? = null) = master?.decideChallenge(decision, newCorrect)
+
+    fun refreshQuestions() {
+        status = null
+        quizStore.refresh { message ->
+            quizDataVersion++
+            status = message
+        }
+    }
+
+    fun shareQuizStats(context: Context) = runCatching { quizStore.shareStats(context) }
+        .onFailure { status = "Statistik konnte nicht geteilt werden: ${it.message}" }
+
+    /** Spieler: Antwort angetippt (eigene Reihenfolge). */
+    fun tapAnswer(position: Int, eventTime: Long) = player?.tapAnswer(position, eventTime)
+
+    fun challenge(reason: String) = player?.challenge(reason)
+
+    /** Name in der Statistik: ohne den Zusatz des mitspielenden Masters. */
+    private fun statsName(name: String) = name.removeSuffix(" (Master)")
 
     fun release() = master?.release()
     fun markCorrect() = master?.markCorrect()
@@ -317,7 +484,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Klang, den der Master für dieses Gerät geschickt hat. */
     private fun playSoundEvent(event: SoundEvent) {
         sound(event)
-        if (event == SoundEvent.RIGHT) confettiSeq++
+        if (event == SoundEvent.RIGHT || event == SoundEvent.TUSCH) confettiSeq++
     }
 
     /** Eingeschaltete Klänge des laufenden Profils (Master: eigene Einstellungen). */
@@ -393,6 +560,92 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         store.setDesign(id)
     }
 
+    // ------------------------------------------------------------------ Versionen und Updates
+
+    /** Master: Spieler mit älterem Build (kompatibel) – „Alle auf Build N bringen“. */
+    val outdatedPlayers: List<String>
+        get() = masterSnapshot?.players.orEmpty().filter { it.connected && it.id != LOCAL_PLAYER_ID }
+            .filter { (peerBuilds[it.id] ?: Int.MAX_VALUE) < AppUpdate.ownBuild }.map { it.id }
+
+    /** Master: ein Spieler hat eine neuere Version (Endpunkt, Name, Build). */
+    val newerPlayer: Triple<String, String, Int>?
+        get() = masterSnapshot?.players.orEmpty().filter { it.connected }
+            .mapNotNull { p -> peerBuilds[p.id]?.takeIf { it > AppUpdate.ownBuild }?.let { Triple(p.id, p.name, it) } }
+            .maxByOrNull { it.third }
+
+    /** Master: eigene Version an alle Spieler mit älterem Build schicken. */
+    fun pushUpdateToAll() {
+        val targets = outdatedPlayers
+        if (targets.isEmpty()) return
+        Diagnostics.log("Update: Build ${AppUpdate.ownBuild} an ${targets.size} Spieler")
+        targets.forEach { sendOwnApk(it, masterSnapshot?.players?.firstOrNull { p -> p.id == it }?.name ?: it) }
+    }
+
+    /** Master: die neuere Version eines Spielers holen. */
+    fun fetchUpdateFrom(endpointId: String) {
+        Diagnostics.log("Update: neuere Version von $endpointId angefordert")
+        link.send(endpointId, Message.ApkRequest)
+    }
+
+    private fun sendOwnApk(endpointId: String, name: String) {
+        val apk = AppUpdate.ownApk(getApplication())
+        runCatching {
+            link.sendFile(endpointId, apk) { id -> link.send(endpointId, Message.ApkInfo(id, AppUpdate.ownBuild, apk.length())) }
+        }.onSuccess {
+            transfer = Transfer(name, incoming = false, build = AppUpdate.ownBuild, progress = 0f)
+        }.onFailure {
+            Diagnostics.log("Update: Senden nicht möglich: ${it.message}")
+            status = "Die App-Version konnte nicht gesendet werden."
+        }
+    }
+
+    /** Neueste Version auf der Release-Seite abfragen. */
+    fun checkRepoUpdate() {
+        AppUpdate.latestBuild { build ->
+            repoBuild = build
+            if (build == null) status = "Die Release-Seite ist nicht erreichbar (Internet?)."
+        }
+    }
+
+    fun downloadFromRepo() {
+        if (downloadProgress != null) return
+        downloadProgress = 0f
+        AppUpdate.download(getApplication(), onProgress = { downloadProgress = it }) { file ->
+            downloadProgress = null
+            if (file == null) {
+                status = "Download fehlgeschlagen (Internet?)."
+                return@download
+            }
+            offerUpdate(file, "der Release-Seite")
+        }
+    }
+
+    private fun offerUpdate(file: File, from: String) {
+        val check = AppUpdate.check(getApplication(), file)
+        Diagnostics.log("Update von $from: Build ${check.build}, ok=${check.ok} ${check.reason}")
+        if (check.ok) {
+            receivedUpdate = ReceivedUpdate(file, check.build, from)
+        } else {
+            file.delete()
+            status = check.reason
+        }
+    }
+
+    /** Installation starten; fehlt die Erlaubnis, zuerst die Einstellung öffnen. */
+    fun installUpdate(context: Context) {
+        val update = receivedUpdate ?: return
+        if (!AppUpdate.canInstall(context)) {
+            status = "Bitte „Unbekannte Apps installieren“ für Buzzer erlauben und dann erneut „Installieren“ tippen."
+            AppUpdate.openInstallPermission(context)
+            return
+        }
+        if (!AppUpdate.install(context, update.file)) status = "Auf diesem Gerät gibt es keinen Installer."
+    }
+
+    fun dismissTransfer() {
+        transfer = null
+    }
+
     fun navigate(target: Screen) {
         if (target in listOf(Screen.START, Screen.SETTINGS, Screen.HELP, Screen.ABOUT)) screen = target
     }
@@ -418,7 +671,24 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun sendChat(to: String, toName: String, text: String) {
         val clean = text.trim().ifEmpty { return }
         master?.sendChat(to, clean) ?: player?.sendChat(to, clean)
+        lastTypingSent = 0
         addChat(ChatLine(if (to == ALL_ADDRESS) "Du → alle" else "Du → $toName", clean, to == ALL_ADDRESS, outgoing = true))
+    }
+
+    /** Spieler tippt eine Nachricht: Hinweis an den Master, höchstens alle 3 Sekunden. */
+    fun chatTyping() {
+        if (master != null) return
+        val now = UptimeClock.now()
+        if (now - lastTypingSent < 3_000) return
+        lastTypingSent = now
+        player?.sendTyping(true)
+    }
+
+    /** Nachrichtenfenster geschlossen oder gesendet. */
+    fun chatTypingDone() {
+        if (master != null || lastTypingSent == 0L) return
+        lastTypingSent = 0
+        player?.sendTyping(false)
     }
 
     private fun addChat(line: ChatLine) {
@@ -467,8 +737,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     // ------------------------------------------------------------------ Nearby
 
     override fun onEndpointFound(endpointId: String, name: String) {
-        Diagnostics.log("Gruppe gefunden: $endpointId")
-        if (groups.none { it.endpointId == endpointId }) groups += Group(endpointId, name)
+        val peer = PeerInfo.parse(name)
+        Diagnostics.log("Gruppe gefunden: $endpointId (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol})")
+        if (groups.none { it.endpointId == endpointId }) groups += Group(endpointId, peer)
     }
 
     override fun onEndpointLost(endpointId: String) {
@@ -476,9 +747,11 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onConnectionRequest(endpointId: String, name: String, authCode: String) {
-        Diagnostics.log("Beitrittsanfrage von $endpointId")
-        if (master?.canAcceptJoin() == true) {
-            joinRequests += JoinRequest(endpointId, name, authCode)
+        val peer = PeerInfo.parse(name)
+        Diagnostics.log("Beitrittsanfrage von $endpointId (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
+        val forUpdate = peer.updateOnly || !peer.compatible
+        if (forUpdate || master?.canAcceptJoin() == true) {
+            joinRequests += JoinRequest(endpointId, peer, authCode)
         } else {
             // Beitritt nur zwischen zwei Runden.
             link.reject(endpointId)
@@ -489,12 +762,28 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         Diagnostics.log("Verbunden mit $endpointId")
         val engine = master
         if (engine != null) {
-            engine.addPlayer(endpointId, name)
+            val update = updateEndpoints[endpointId]
+            if (update != null) {
+                // Nur zum Aktualisieren: wer neuer ist, schickt seine Version.
+                val theirs = update.build ?: 0
+                if (theirs < AppUpdate.ownBuild) sendOwnApk(endpointId, update.name) else if (theirs > AppUpdate.ownBuild) fetchUpdateFrom(endpointId)
+                return
+            }
+            val peer = PeerInfo.parse(name)
+            peerBuilds[endpointId] = peer.build
+            engine.addPlayer(endpointId, peer.name)
             return
         }
         masterEndpoint = endpointId
         connectingTo = null
         link.stopDiscovery()
+        val forUpdate = updatePeer
+        if (forUpdate != null) {
+            updatePeerName = forUpdate.name
+            screen = Screen.UPDATE
+            // Der Spielleiter entscheidet: Er schickt seine neuere Version oder fordert unsere an.
+            return
+        }
         val engineForPlayer = PlayerEngine(UptimeClock, scheduler, log = Diagnostics::log) { link.send(endpointId, it) }
         engineForPlayer.onViewChanged = { onPlayerView(it, remote = true) }
         engineForPlayer.onSound = { playSoundEvent(it) }
@@ -523,7 +812,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     override fun onDisconnected(endpointId: String) {
         val engine = master
+        if (engine != null && updateEndpoints.remove(endpointId) != null) {
+            Diagnostics.log("Update-Verbindung beendet: $endpointId")
+            return
+        }
+        if (master == null && screen == Screen.UPDATE && endpointId == masterEndpoint) {
+            Diagnostics.log("Update-Verbindung beendet")
+            masterEndpoint = null
+            if (transfer?.done != true && receivedUpdate == null) status = "Die Verbindung wurde getrennt."
+            return
+        }
         if (engine != null) {
+            peerBuilds.remove(endpointId)
             Diagnostics.log("Getrennt von $endpointId")
             engine.removePlayer(endpointId)
         } else if (endpointId == masterEndpoint) {
@@ -535,6 +835,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onMessage(endpointId: String, message: Message) {
+        // Versionsabgleich läuft neben dem Spiel, unabhängig von Master/Spieler.
+        when (message) {
+            Message.ApkRequest -> {
+                val name = masterSnapshot?.players?.firstOrNull { it.id == endpointId }?.name ?: updateEndpoints[endpointId]?.name ?: masterPeer?.name ?: "Mitspieler"
+                Diagnostics.log("Update: $name bittet um Build ${AppUpdate.ownBuild}")
+                sendOwnApk(endpointId, name)
+                return
+            }
+            is Message.ApkInfo -> {
+                expectedApks[message.payloadId] = endpointId to message.build
+                transfer = Transfer(senderName(endpointId), incoming = true, build = message.build, progress = 0f)
+                receivedFiles.remove(message.payloadId)?.let { (uri, file) -> takeApk(message.payloadId, uri, file) }
+                return
+            }
+            else -> Unit
+        }
         val engine = master
         if (engine != null) {
             engine.onMessage(endpointId, message)
@@ -545,6 +861,45 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     override fun onError(text: String) {
         status = text
+    }
+
+    private fun senderName(endpointId: String): String =
+        masterSnapshot?.players?.firstOrNull { it.id == endpointId }?.name ?: updateEndpoints[endpointId]?.name
+            ?: masterPeer?.name ?: "Mitspieler"
+
+    override fun onTransferProgress(endpointId: String, payloadId: Long, bytes: Long, total: Long, incoming: Boolean) {
+        val t = transfer ?: return
+        if (t.incoming != incoming || total <= 0) return
+        transfer = t.copy(progress = (bytes.toFloat() / total).coerceIn(0f, 1f))
+    }
+
+    override fun onFileReceived(endpointId: String, payloadId: Long, uri: Uri?, file: File?) {
+        if (uri == null && file == null) {
+            Diagnostics.log("Update: Empfang abgebrochen")
+            transfer = transfer?.copy(failed = true)
+            expectedApks.remove(payloadId)
+            return
+        }
+        if (expectedApks.containsKey(payloadId)) takeApk(payloadId, uri, file) else receivedFiles[payloadId] = uri to file
+    }
+
+    private fun takeApk(payloadId: Long, uri: Uri?, file: File?) {
+        val (from, build) = expectedApks.remove(payloadId) ?: return
+        val apk = AppUpdate.takeReceived(getApplication(), uri, file, build)
+        transfer = transfer?.copy(progress = 1f, done = true)
+        if (apk == null) {
+            status = "Die empfangene Version konnte nicht gespeichert werden."
+            return
+        }
+        offerUpdate(apk, senderName(from))
+        // Reine Update-Verbindung danach trennen.
+        if (master != null && updateEndpoints.containsKey(from)) link.disconnect(from)
+    }
+
+    override fun onFileSent(endpointId: String, payloadId: Long, ok: Boolean) {
+        Diagnostics.log("Update: Senden an $endpointId ${if (ok) "fertig" else "abgebrochen"}")
+        transfer = transfer?.copy(progress = if (ok) 1f else transfer?.progress ?: 0f, done = ok, failed = !ok)
+        if (ok && master != null && updateEndpoints.containsKey(endpointId)) link.disconnect(endpointId)
     }
 
     override fun onCleared() {
@@ -576,5 +931,6 @@ fun describeProfile(values: Map<String, String>): List<Pair<String, String>> {
             ", " + (if (s.boardPlaces == 0) "alle Plätze" else "${s.boardPlaces} Plätze"),
         "Kurznachrichten" to if (s.messagesEnabled) "an" else "aus",
         "Emoticons" to if (s.emojisEnabled) s.emojis.joinToString(" ") else "aus",
+        "Quiz" to "${s.quizCount} Fragen, ${sec(s.quizAnswerMs)} Antwortzeit, ${s.quizScoring.label}",
     )
 }

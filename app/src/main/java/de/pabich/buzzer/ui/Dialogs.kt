@@ -69,7 +69,12 @@ fun LeaveDialog(title: String, text: String?, confirm: String, onConfirm: (delet
 
 /** Kurznachricht an einen Teilnehmer oder an alle. [recipients]: Adresse zu Name. */
 @Composable
-fun ChatDialog(recipients: List<Pair<String, String>>, onSend: (to: String, toName: String, text: String) -> Unit, onDismiss: () -> Unit) {
+fun ChatDialog(
+    recipients: List<Pair<String, String>>,
+    onSend: (to: String, toName: String, text: String) -> Unit,
+    onDismiss: () -> Unit,
+    onTyping: () -> Unit = {},
+) {
     var to by remember { mutableStateOf(ALL_ADDRESS) }
     var text by remember { mutableStateOf("") }
     val all = listOf(ALL_ADDRESS to "Alle") + recipients
@@ -92,7 +97,10 @@ fun ChatDialog(recipients: List<Pair<String, String>>, onSend: (to: String, toNa
                 }
                 OutlinedTextField(
                     value = text,
-                    onValueChange = { text = it.take(MAX_CHAT_LENGTH) },
+                    onValueChange = {
+                        text = it.take(MAX_CHAT_LENGTH)
+                        if (text.isNotEmpty()) onTyping()
+                    },
                     label = { Text("Nachricht (${text.length}/$MAX_CHAT_LENGTH)") },
                     modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
                 )
@@ -225,5 +233,24 @@ fun ImportDialog(
             }) { Text("Importieren") }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
+    )
+}
+
+/** Eine neuere Version liegt bereit: jetzt installieren oder später. */
+@Composable
+fun UpdateDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
+    val update = vm.receivedUpdate ?: return
+    val context = androidx.compose.ui.platform.LocalContext.current
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text("Neue Version: Build ${update.build}") },
+        text = {
+            Text(
+                "Erhalten von ${update.from}. Die Installation ersetzt deine App (Build ${de.pabich.buzzer.AppUpdate.ownBuild}); " +
+                    "Name, Profile und Statistik bleiben erhalten. Ein laufendes Spiel wird dabei verlassen – danach einfach neu beitreten.",
+            )
+        },
+        confirmButton = { TextButton(onClick = { vm.installUpdate(context) }) { Text("Installieren") } },
+        dismissButton = { TextButton(onClick = { vm.receivedUpdate = null }) { Text("Später") } },
     )
 }

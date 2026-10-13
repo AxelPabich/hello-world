@@ -39,6 +39,14 @@ object SoundSynth {
             listOf(392.0, 370.0, 349.0).forEachIndexed { i, f -> tone(i * 0.42, f, 0.4, Wave.TRIANGLE, 0.3) }
             tone(1.26, 330.0, 1.0, Wave.TRIANGLE, 0.3, freqEnd = 300.0)
         }
+        SoundEvent.TUSCH -> mix(1.6) {
+            // Kurzer Schlag, dann ein Akkord-Stoß „Ta-daaa“ wie die Showband.
+            noise(0.0, 0.18, 0.7, 160.0, 0.7)
+            tone(0.0, 70.0, 0.25, Wave.SINE, 0.5, freqEnd = 45.0)
+            for (f in listOf(523.0, 659.0, 784.0)) tone(0.02, f, 0.14, Wave.SAW, 0.09)
+            for (f in listOf(523.0, 659.0, 784.0, 1047.0)) tone(0.2, f, 1.3, Wave.SAW, 0.08)
+            noise(0.2, 1.2, 0.25, 6000.0, 1.2)
+        }
         SoundEvent.ROUND_END -> mix(2.9) {
             drumroll(0.0)
             fanfare(2.1)

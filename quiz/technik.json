@@ -1,0 +1,212 @@
+{
+  "paket": "technik",
+  "titel": "Technik",
+  "version": 1,
+  "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
+  "fragen": [
+    {
+      "id": "tech-0001",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „HTTP“?",
+      "antworten": [
+        "Hypertext Transfer Protocol",
+        "High Transfer Text Protocol",
+        "Hyperlink Text Transmission Process",
+        "Heimliches Tippen, total privat"
+      ],
+      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
+      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0002",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
+      "antworten": [
+        "Konrad Zuse",
+        "Alan Turing",
+        "Charles Babbage",
+        "John von Neumann"
+      ],
+      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
+      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0003",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
+      "antworten": [
+        "Volt",
+        "Ampere",
+        "Watt",
+        "Ohm"
+      ],
+      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
+      "quelle": "https://de.wikipedia.org/wiki/Volt",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0004",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
+      "antworten": [
+        "2007",
+        "2005",
+        "2009",
+        "2010"
+      ],
+      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0005",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht „WLAN“?",
+      "antworten": [
+        "Wireless Local Area Network",
+        "Wireless Long Antenna Network",
+        "Wenn Laptops Andauernd Nerven",
+        "World Link Access Node"
+      ],
+      "erklaerung": "Ein lokales Funknetz.",
+      "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0006",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wie viele Bit hat ein Byte?",
+      "antworten": [
+        "Acht",
+        "Vier",
+        "Sechzehn",
+        "Kommt auf die Größe der Brotdose an"
+      ],
+      "erklaerung": "Ein Byte besteht heute praktisch immer aus 8 Bit.",
+      "quelle": "https://de.wikipedia.org/wiki/Byte",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0007",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wofür steht die Abkürzung „LASER“?",
+      "antworten": [
+        "Light Amplification by Stimulated Emission of Radiation",
+        "Light Activated Signal Emitting Resonator",
+        "Linear Amplified Spectral Energy Radiation",
+        "Luminous Array of Stimulated Electron Rays"
+      ],
+      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
+      "quelle": "https://de.wikipedia.org/wiki/Laser",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0008",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
+      "antworten": [
+        "Auf dem Linux-Kernel",
+        "Auf dem Windows-NT-Kernel",
+        "Auf Darwin, dem Kern von macOS",
+        "Auf Symbian"
+      ],
+      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
+      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0009",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer entwickelte 1989 am CERN das World Wide Web?",
+      "antworten": [
+        "Tim Berners-Lee",
+        "Vint Cerf",
+        "Bill Gates",
+        "Linus Torvalds"
+      ],
+      "erklaerung": "Vint Cerf gilt als einer der Väter des Internets – das Web kam von Berners-Lee.",
+      "quelle": "https://de.wikipedia.org/wiki/Tim_Berners-Lee",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0010",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Was gibt die Einheit „Hertz“ an?",
+      "antworten": [
+        "Schwingungen bzw. Vorgänge pro Sekunde",
+        "Den elektrischen Widerstand",
+        "Die Lichtstärke einer Lampe",
+        "Die magnetische Flussdichte"
+      ],
+      "erklaerung": "1 Hertz = 1 Schwingung pro Sekunde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hertz+Einheit",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0011",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
+      "antworten": [
+        "1992",
+        "1985",
+        "1998",
+        "2001"
+      ],
+      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0012",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "antworten": [
+        "Vier",
+        "Einen",
+        "Zwei",
+        "Zwölf"
+      ],
+      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
+      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    }
+  ]
+}

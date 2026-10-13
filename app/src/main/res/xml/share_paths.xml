@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Ordner, aus dem die App ihre eigene Installationsdatei zum Weitergeben freigibt. -->
+<!-- Ordner, aus denen die App Dateien kurzzeitig freigibt: eigene APK zum Weitergeben,
+     empfangene/geladene Updates zum Installieren, Statistik zum Teilen. -->
 <paths>
     <cache-path name="share" path="share/" />
+    <cache-path name="updates" path="updates/" />
 </paths>

@@ -343,3 +343,112 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
   weitergegebene Versionen später als Update installieren.
 - Android erlaubt keine stille Übertragung: Gerät und Übertragung bestätigt der Nutzer im
   System. Welche Wege funktionieren, hängt vom Handy-Hersteller ab.
+
+## 23. Spielart: Buzzer oder Quiz
+
+- Nach „Spiel leiten“ wählt der Master die Spielart: **Buzzer** (Fragen mündlich, wie
+  bisher) oder **Quiz** (Fragen mit vier Antworten aus der Fragen-Datenbank, die App wertet
+  selbst aus). Über das Menü ⋮ lässt sie sich zwischen zwei Runden wechseln; ein Wechsel
+  beginnt ein neues Spiel (Punkte auf 0). Mitspieler können schon vor der Wahl beitreten.
+
+## 24. Quiz-Modus
+
+**Einrichten (Master):** Kategorien, Schwierigkeit (leicht/mittel/schwer, nach gemessener
+Stufe), Fragen pro Spiel, Antwortzeit, Wertung, bei „Countdown“ dessen Länge, „Ich spiele
+mit“. Angezeigt wird „x neue von y passenden Fragen“. Die Einstellungen gehören zum Profil.
+
+**Ablauf einer Frage**
+
+1. Die Frage erscheint auf allen Geräten gleichzeitig (Uhrenabgleich wie bei der Freigabe).
+2. 3 Sekunden später erscheinen die vier Antworten (2×2-Felder) und der Antworttimer läuft.
+   Zeitbalken, Frage und Antworten stehen in **einem** Feld – die Frage direkt über den
+   Antworten.
+3. Die Reihenfolge der Antworten ist **für jeden Teilnehmer und jede Frage** zufällig.
+4. Jeder tippt genau eine Antwort (danach gesperrt). Gemessen wird die Zeit ab dem Einblenden
+   auf dem eigenen Gerät (Touch-Zeitpunkt). Aufgelöst wird, wenn alle geantwortet haben oder
+   die Zeit abgelaufen ist; der Master kann vorziehen („Jetzt auflösen“) oder die Frage
+   überspringen (ohne Wertung).
+5. Auflösung: Das richtige Feld wird grün; wer es gewählt hat, sieht darin 👍 und hört einen
+   **Tusch**. Eine falsch gewählte Antwort wird rot, fett mit ✗ durchgestrichen, dazu
+   **„Wah-wah-waaah“**. Ohne Antwort wird nur das richtige Feld grün, dazu „Wah-wah-waaah“.
+   Klänge nur auf dem eigenen Gerät.
+6. Darunter: Erklärung, Link zur Quelle, Knopf **Challenge**. Die Auflösung ist eine Pause
+   (Kurznachrichten, Rangliste, Spielverlauf, Pause).
+
+**Wertung** (falsche Antworten kosten nie etwas; bei Gleichstand innerhalb der
+Gleichstands-Schwelle punkten beide)
+
+| Modus | Wer punktet |
+|---|---|
+| Schnellster punktet | nur die erste richtige Antwort (1 Punkt) |
+| Jeder punktet | jede richtige Antwort (1 Punkt) |
+| Countdown | nach der ersten richtigen Antwort läuft nur noch der Countdown (Vorgabe 5 s); alle Richtigen bekommen ihre Restzeit |
+| Battle | nur der Schnellste bekommt seine Restzeit |
+
+**Fairness:** Die Spielergeräte erhalten die richtige Antwort erst mit der Auflösung (auch
+nicht im Speicher). Der Master kann mitspielen; sein Antwortfeld liegt im unteren Drittel,
+die Lösung sieht er dann ebenfalls erst bei der Auflösung. Spielt er nicht mit, sieht nur er
+die Lösung schon während der Frage.
+
+**Master während der Frage:** wer hat schon geantwortet (mit Zeit, ohne Inhalt).
+**Master bei der Auflösung:** Verteilung je Antwort mit Namen, Punkte, Stufe (Autor/gemessen).
+
+**Challenge:** Jeder Teilnehmer kann eine Frage bis zur nächsten Frage einmal anfechten
+(optionale Begründung). Der Master sieht Begründung und Quelle und entscheidet: **Wertung
+bleibt**, **Frage annullieren** (Punkte zurück), **Antwort korrigieren** (Punkte neu
+berechnet, gilt auch für spätere Spiele) oder **Frage sperren** (annulliert, wird nicht mehr
+gezogen). Ohne Entscheidung bleibt die Wertung. Der Master kann die Wertung einer Frage auch
+ohne Challenge ändern.
+
+**Emoticons und Kurznachrichten:** Solange die Antwortzeit läuft, fliegen Emoticons nur in
+einer eigenen Bahn oberhalb des Fragenfelds (von rechts nach links) – nie über die Antworten.
+Danach wie gewohnt. Kurznachrichten nur in den Pausen.
+
+**Ende:** Nach der letzten Frage „Ergebnis zeigen“: Rangliste auf allen Geräten, Tusch und
+Trommelwirbel; der Master kann ein neues Quiz einrichten.
+
+## 25. Fragen-Datenbank und Statistik
+
+- **Fragenpakete** liegen im Repository (`quiz/*.json`, Format in `quiz/README.md`) und werden
+  in die App eingebaut. „Fragen aktualisieren“ lädt neuere Pakete direkt aus dem Repository
+  (`index.json` mit Versionen), ohne neuen Build. Neue Fragen recherchiert Claude auf Zuruf.
+- Je Frage: ID, Version, Kategorie, Stufe, Frage, vier Antworten (die erste ist richtig),
+  Erklärung, Quelle, Erstellt, optional „gültig bis“ (aktuelle Themen laufen ab).
+- **Statistik** (nur auf dem Master-Gerät): je Frage gespielt, zuletzt gespielt, wer sie gesehen
+  hat (Namen), richtig/falsch/keine Antwort, Antwortzeit der Richtigen, Challenges und
+  Entscheidungen, gesperrt, korrigierte Antwort. Neue Version einer Frage → Antwortzahlen
+  beginnen neu.
+- **Auswahl:** gewählte Kategorien und Stufen, nicht gesperrt, nicht abgelaufen. Vorrang hat,
+  was möglichst wenige der verbundenen Spieler schon gesehen haben; danach am längsten nicht
+  gespielt, dann Zufall. Unter gleich neuen Fragen wechseln die Kategorien ab. Reichen die
+  neuen Fragen nicht, kommen bekannte erneut (älteste zuerst) mit dem Hinweis, neue anzufordern.
+- **Schwierigkeit lernt mit:** Quote = (richtig + 2·Startwert) / (Antworten + 2) mit Startwert
+  leicht 0,8 / mittel 0,55 / schwer 0,3; ≥ 0,7 leicht, ≥ 0,4 mittel, sonst schwer. Brauchten
+  die Richtigen im Schnitt mehr als 60 % der Zeit, eine Stufe schwerer. Ab 6 Antworten gilt
+  die gemessene Stufe.
+- **Statistik teilen** (`.buzzstats`, JSON) – zur Auswertung durch Claude.
+
+## 26. App-Versionen abgleichen
+
+- Jede App hat eine **Build-Nummer** und eine **Protokoll-Version**; kompatibel ist, wer dieselbe
+  Protokoll-Version spricht. Beide stehen im Gerätenamen bei Suche und Beitritt:
+  `Name [Build/Protokoll]`, nur zum Aktualisieren `Name [Build/Protokoll/u]`. Dieses Format
+  bleibt in allen künftigen Versionen gleich. Builds bis 11 senden keine Angabe.
+- Die Gruppensuche zeigt, ob die Version passt. Bei Abweichung: „Build N vom Spielleiter holen“
+  bzw. „Meine Version an den Spielleiter geben“ – eine Verbindung nur zum Aktualisieren
+  (der Master bestätigt sie). Dabei schickt der Neuere seine APK über die Nearby-Verbindung
+  (ohne Internet), danach wird getrennt.
+- Der Master sieht abweichende Builds in der Spielerliste und im Menü ⋮: „Alle auf Build N
+  bringen“ (an ältere Spieler senden) bzw. „Build N von *Name* holen“.
+- Alternativ lädt „Über & Diagnose → Nach neuer Version suchen“ die neueste Version von der
+  Release-Seite des Repositorys.
+- Vor der Installation prüft die App die Datei: Paketname, gleiche Signatur, höhere Build-
+  Nummer. Android fragt einmal nach „Unbekannte Apps installieren“; Name, Profile und
+  Statistik bleiben erhalten. Wer noch Build 11 oder älter hat, aktualisiert einmalig über
+  „App weitergeben“ oder die Release-Seite.
+
+## 27. Tipp-Hinweis für den Master
+
+- Tippt ein Teilnehmer im Nachrichtenfenster, erscheinen beim Master neben dem Brief-Knopf
+  drei pulsierende Punkte (ohne Namen). Sie verschwinden beim Senden/Schließen bzw. nach
+  8 Sekunden ohne Tastendruck. Nur ein Hinweis – die Freigabe wird nicht blockiert.

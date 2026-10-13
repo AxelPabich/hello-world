@@ -28,6 +28,40 @@ class PlayerEngine(
         val sounds: Set<SoundEvent> = DEFAULT_SOUNDS,
     )
 
+    enum class QuizStage {
+        /** Frage unterwegs, erscheint gleich überall gleichzeitig. */
+        WAITING,
+        QUESTION,
+        ANSWERS,
+
+        /** Zeit abgelaufen, warte auf die Auflösung. */
+        CLOSED,
+        REVEALED,
+    }
+
+    /** Laufende Quizfrage aus Sicht dieses Spielers; Zeiten in der Uhr von [clock]. */
+    data class QuizView(
+        val number: Int,
+        val total: Int,
+        val category: String,
+        val level: QuizLevel,
+        val text: String,
+        val answers: List<String>,
+        val questionAt: Long,
+        val answersAt: Long,
+        val durationMs: Long,
+        /** Ende der Antwortzeit ab Einblenden (Countdown kann sie verkürzen). */
+        val deadlineMs: Long,
+        val stage: QuizStage,
+        val chosen: Int = -1,
+        val chosenElapsedMs: Long? = null,
+        val result: Message.QuizResult? = null,
+        val challenged: Boolean = false,
+    ) {
+        /** Antwortzeit läuft (Emoticons dann nur in ihrer eigenen Bahn). */
+        val timerRunning: Boolean get() = stage == QuizStage.ANSWERS || stage == QuizStage.QUESTION || stage == QuizStage.WAITING
+    }
+
     data class View(
         val display: Display,
         val place: Int,
@@ -42,6 +76,8 @@ class PlayerEngine(
         val roster: List<Pair<PlayerId, String>> = emptyList(),
         /** Spielpause: Overlay „Kurze Pause“. */
         val paused: Boolean = false,
+        val kind: GameKind? = null,
+        val quiz: QuizView? = null,
     )
 
     var onViewChanged: ((View) -> Unit)? = null
@@ -70,6 +106,7 @@ class PlayerEngine(
     private var goAt: Long? = null
     private var fingerDown = false
     private val tasks = mutableListOf<Cancellable>()
+    private val quizTasks = mutableListOf<Cancellable>()
     private var lastLoggedDisplay: String? = null
 
     fun onMessage(message: Message) {
@@ -103,8 +140,9 @@ class PlayerEngine(
             }
             is Message.Reset -> {
                 endContest()
+                cancelQuizTasks()
                 log("Runde beendet")
-                update { it.copy(timer = null) }
+                update { it.copy(timer = null, quiz = null) }
                 show(Display.BLACK, "Warte auf die nächste Frage", 0, message.score)
             }
             is Message.Scoreboard ->
@@ -134,6 +172,27 @@ class PlayerEngine(
                 update { it.copy(paused = message.on) }
             }
             is Message.Replay -> onReplay?.invoke(message)
+            is Message.Mode -> {
+                cancelQuizTasks()
+                log("Spielart: ${message.kind?.label ?: "noch offen"}")
+                update { it.copy(kind = message.kind, quiz = null) }
+                show(Display.BLACK, if (message.kind == GameKind.QUIZ) "Quiz – gleich kommt die erste Frage" else "Warte auf den Spielleiter", 0, view.score)
+            }
+            is Message.QuizAsk -> onQuizAsk(message)
+            is Message.QuizDeadline -> {
+                val q = view.quiz ?: return
+                if (q.number != message.number || q.stage == QuizStage.REVEALED) return
+                log("Countdown: noch bis ${message.deadlineMs} ms")
+                update { it.copy(quiz = q.copy(deadlineMs = message.deadlineMs)) }
+                scheduleQuizClose()
+            }
+            is Message.QuizResult -> {
+                val q = view.quiz ?: return
+                if (q.number != message.number) return
+                cancelQuizTasks()
+                log("Auflösung: ${message.outcome}" + (if (message.gained.isNotEmpty()) " ${message.gained}" else "") + if (message.corrected) " (korrigiert)" else "")
+                update { it.copy(quiz = q.copy(stage = QuizStage.REVEALED, result = message), score = message.score) }
+            }
             Message.Bye -> {
                 log("Spielleiter hat die Gruppe geschlossen")
                 onBye?.invoke()
@@ -186,6 +245,80 @@ class PlayerEngine(
     }
 
     fun sendEmote(emoji: String) = send(Message.Emote("", emoji))
+
+    /** Quiz: Antwort an [position] (eigene Reihenfolge) angetippt. */
+    fun tapAnswer(position: Int, eventTime: Long): Boolean {
+        val q = view.quiz ?: return false
+        if (q.stage != QuizStage.ANSWERS || q.chosen >= 0 || position !in q.answers.indices) return false
+        val elapsed = (eventTime - q.answersAt).coerceAtLeast(0)
+        if (elapsed > q.deadlineMs) return false
+        log("Antwort ${position + 1} nach $elapsed ms")
+        send(Message.QuizAnswer(q.number, position, elapsed))
+        update { it.copy(quiz = q.copy(chosen = position, chosenElapsedMs = elapsed)) }
+        return true
+    }
+
+    /** Quiz: aktuelle Frage anfechten (nur nach der Auflösung, einmal je Frage). */
+    fun challenge(reason: String): Boolean {
+        val q = view.quiz ?: return false
+        if (q.stage != QuizStage.REVEALED || q.challenged) return false
+        send(Message.QuizChallenge(q.number, reason.trim().take(MAX_CHAT_LENGTH)))
+        log("Challenge gesendet")
+        update { it.copy(quiz = q.copy(challenged = true)) }
+        return true
+    }
+
+    /** Tipp-Hinweis für den Master. */
+    fun sendTyping(on: Boolean) = send(Message.Typing(on))
+
+    private fun onQuizAsk(m: Message.QuizAsk) {
+        endContest()
+        cancelQuizTasks()
+        val now = clock.now()
+        val stage = when {
+            now >= m.answersAtLocal -> QuizStage.ANSWERS
+            now >= m.questionAtLocal -> QuizStage.QUESTION
+            else -> QuizStage.WAITING
+        }
+        log("Frage ${m.number}/${m.total}, erscheint in ${m.questionAtLocal - now} ms")
+        val q = QuizView(
+            number = m.number, total = m.total, category = m.category, level = m.level, text = m.text,
+            answers = m.answers, questionAt = m.questionAtLocal, answersAt = m.answersAtLocal,
+            durationMs = m.durationMs, deadlineMs = m.durationMs, stage = stage,
+        )
+        // Während der Frage lenkt die Rangliste nur ab.
+        update { it.copy(quiz = q, showBoard = false, kind = GameKind.QUIZ) }
+        fun to(stage: QuizStage, at: Long) {
+            quizTasks += scheduler.schedule((at - clock.now()).coerceAtLeast(0)) {
+                val cur = view.quiz
+                if (cur != null && cur.number == m.number && cur.stage.ordinal < stage.ordinal) update { it.copy(quiz = cur.copy(stage = stage)) }
+            }
+        }
+        to(QuizStage.QUESTION, m.questionAtLocal)
+        to(QuizStage.ANSWERS, m.answersAtLocal)
+        scheduleQuizClose()
+    }
+
+    private var closeTask: Cancellable? = null
+
+    private fun scheduleQuizClose() {
+        closeTask?.cancel()
+        val q = view.quiz ?: return
+        val number = q.number
+        closeTask = scheduler.schedule((q.answersAt + q.deadlineMs - clock.now()).coerceAtLeast(0)) {
+            val cur = view.quiz
+            if (cur != null && cur.number == number && cur.stage.ordinal < QuizStage.CLOSED.ordinal) {
+                update { it.copy(quiz = cur.copy(stage = QuizStage.CLOSED)) }
+            }
+        }
+    }
+
+    private fun cancelQuizTasks() {
+        quizTasks.forEach { it.cancel() }
+        quizTasks.clear()
+        closeTask?.cancel()
+        closeTask = null
+    }
 
     fun sendChat(to: String, text: String) = send(Message.ChatSend(to, text.take(MAX_CHAT_LENGTH)))
 

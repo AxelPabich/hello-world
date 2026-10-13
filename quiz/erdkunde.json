@@ -1,0 +1,212 @@
+{
+  "paket": "erdkunde",
+  "titel": "Erdkunde",
+  "version": 1,
+  "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
+  "fragen": [
+    {
+      "id": "erd-0001",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Welcher ist der höchste Berg Deutschlands?",
+      "antworten": [
+        "Die Zugspitze",
+        "Der Watzmann",
+        "Der Feldberg",
+        "Der Brocken"
+      ],
+      "erklaerung": "Die Zugspitze ist 2962 Meter hoch.",
+      "quelle": "https://de.wikipedia.org/wiki/Zugspitze",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0002",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Hauptstadt von Australien?",
+      "antworten": [
+        "Canberra",
+        "Sydney",
+        "Melbourne",
+        "Perth"
+      ],
+      "erklaerung": "Canberra wurde als Kompromiss zwischen Sydney und Melbourne gebaut.",
+      "quelle": "https://de.wikipedia.org/wiki/Canberra",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0003",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Welcher ist der größte Ozean der Erde?",
+      "antworten": [
+        "Der Pazifische Ozean",
+        "Der Atlantische Ozean",
+        "Der Indische Ozean",
+        "Der Arktische Ozean"
+      ],
+      "erklaerung": "Der Pazifik ist größer als alle Landflächen zusammen.",
+      "quelle": "https://de.wikipedia.org/wiki/Pazifischer_Ozean",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0004",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Welches ist das flächengrößte Bundesland?",
+      "antworten": [
+        "Bayern",
+        "Niedersachsen",
+        "Baden-Württemberg",
+        "Nordrhein-Westfalen"
+      ],
+      "erklaerung": "Bayern ist etwa 70.500 km² groß.",
+      "quelle": "https://de.wikipedia.org/wiki/Bayern",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0005",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Auf welchem Kontinent liegt der größte Teil Ägyptens?",
+      "antworten": [
+        "Afrika",
+        "Asien",
+        "Europa",
+        "Auf dem Kontinent der Pyramiden-Fans"
+      ],
+      "erklaerung": "Nur die Sinai-Halbinsel gehört zu Asien.",
+      "quelle": "https://de.wikipedia.org/wiki/Ägypten",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0006",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Hauptstadt von Kanada?",
+      "antworten": [
+        "Ottawa",
+        "Toronto",
+        "Montreal",
+        "Vancouver"
+      ],
+      "erklaerung": "Toronto ist die größte Stadt, Hauptstadt ist Ottawa.",
+      "quelle": "https://de.wikipedia.org/wiki/Ottawa",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0007",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "schwer",
+      "frage": "Welches ist der größte See, der vollständig in Deutschland liegt?",
+      "antworten": [
+        "Die Müritz",
+        "Der Chiemsee",
+        "Der Bodensee",
+        "Der Starnberger See"
+      ],
+      "erklaerung": "Der Bodensee ist größer, liegt aber nicht ganz in Deutschland.",
+      "quelle": "https://de.wikipedia.org/wiki/Müritz",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0008",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Wie viele Bundesländer hat Deutschland?",
+      "antworten": [
+        "16",
+        "12",
+        "14",
+        "18"
+      ],
+      "erklaerung": "Seit der Wiedervereinigung 1990 sind es 16.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Land+(Deutschland)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0009",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welches ist der flächenmäßig kleinste Staat der Welt?",
+      "antworten": [
+        "Die Vatikanstadt",
+        "Monaco",
+        "San Marino",
+        "Liechtenstein"
+      ],
+      "erklaerung": "Die Vatikanstadt ist weniger als einen halben Quadratkilometer groß.",
+      "quelle": "https://de.wikipedia.org/wiki/Vatikanstadt",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0010",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "schwer",
+      "frage": "Durch wie viele Länder fließt die Donau?",
+      "antworten": [
+        "Zehn",
+        "Sechs",
+        "Acht",
+        "Zwölf"
+      ],
+      "erklaerung": "Von Deutschland bis zur Ukraine – so viele wie kein anderer Fluss.",
+      "quelle": "https://de.wikipedia.org/wiki/Donau",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0011",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welches ist die längste Gebirgskette der Erde an Land?",
+      "antworten": [
+        "Die Anden",
+        "Die Rocky Mountains",
+        "Der Himalaya",
+        "Die Alpen"
+      ],
+      "erklaerung": "Die Anden ziehen sich rund 7000 km an der Westküste Südamerikas entlang.",
+      "quelle": "https://de.wikipedia.org/wiki/Anden",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0012",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welche dieser Städte liegt am weitesten im Norden?",
+      "antworten": [
+        "Hamburg",
+        "Berlin",
+        "Köln",
+        "München"
+      ],
+      "erklaerung": "Hamburg liegt auf gut 53,5° nördlicher Breite, Berlin auf 52,5°.",
+      "quelle": "https://de.wikipedia.org/wiki/Hamburg",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    }
+  ]
+}

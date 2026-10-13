@@ -16,6 +16,11 @@
         android:name="android.permission.NEARBY_WIFI_DEVICES"
         android:usesPermissionFlags="neverForLocation" />
 
+    <!-- Neueste Version und Fragenpakete aus dem Repository laden -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Empfangene oder geladene neuere Version installieren (Android fragt einmal nach) -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <!-- Diagnose: Version der Google Play-Dienste auslesen; Weitergeben: Bluetooth-Senden von Android -->
     <queries>
         <package android:name="com.google.android.gms" />
@@ -36,7 +41,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Gibt die eigene APK zum Weitergeben (Bluetooth, Quick Share …) kurzzeitig frei. -->
+        <!-- Gibt die eigene APK zum Weitergeben, Updates zum Installieren und Statistik zum Teilen frei. -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.share"

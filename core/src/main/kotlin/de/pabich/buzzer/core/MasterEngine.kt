@@ -19,6 +19,15 @@ class MasterEngine(
         /** Antwortzeit abgelaufen, der Master tippt „Weiter“. */
         ANSWER_TIMEOUT,
         ROUND_OVER,
+
+        /** Quiz: Frage sichtbar, Antworten kommen gleich. */
+        QUIZ_QUESTION,
+
+        /** Quiz: Antworten offen, Timer läuft. */
+        QUIZ_ANSWERS,
+
+        /** Quiz: Auflösung – Pause bis zur nächsten Frage. */
+        QUIZ_REVEAL,
     }
 
     data class PlayerRow(
@@ -51,6 +60,46 @@ class MasterEngine(
         /** Runde und Sieger der letzten gewerteten Runde (`null` = kein Sieger/storniert). */
         val lastRound: Int?,
         val lastRoundWinner: PlayerId?,
+        /** Gewählte Spielart, `null` = noch nicht gewählt. */
+        val kind: GameKind?,
+        /** Laufendes bzw. zuletzt gespieltes Quiz. */
+        val quiz: QuizSnapshot?,
+        /** Wertung, nach der Punkte angezeigt werden (Quiz: aus der Quiz-Wertung). */
+        val scoring: ScoringMode,
+        /** Ein Teilnehmer tippt gerade eine Kurznachricht. */
+        val someoneTyping: Boolean,
+    )
+
+    data class QuizRow(
+        val id: PlayerId,
+        val name: String,
+        val answered: Boolean,
+        val elapsedMs: Long?,
+        /** Gewählte Antwort (Paket-Reihenfolge) – erst nach der Auflösung. */
+        val chosen: Int?,
+        val outcome: QuizOutcome?,
+        val gained: Long,
+    )
+
+    data class QuizChallengeInfo(val playerId: PlayerId, val name: String, val reason: String)
+
+    data class QuizSnapshot(
+        val number: Int,
+        val total: Int,
+        val question: QuizQuestion,
+        /** Einblenden der Antworten (Master-Uhr). */
+        val answersAt: Long,
+        /** Ende der Antwortzeit (Master-Uhr), ggf. durch den Countdown verkürzt. */
+        val deadline: Long,
+        val durationMs: Long,
+        val revealed: Boolean,
+        val annulled: Boolean,
+        val rows: List<QuizRow>,
+        val challenges: List<QuizChallengeInfo>,
+        val decision: ChallengeDecision?,
+        /** Alle Fragen gespielt (oder abgebrochen). */
+        val finished: Boolean,
+        val hasNext: Boolean,
     )
 
     /** Ergebnis einer beendeten Runde – Grundlage für nachträgliche Korrekturen. */
@@ -65,12 +114,36 @@ class MasterEngine(
 
     private class Player(val id: PlayerId, val name: String, val local: Boolean) {
         val sync = ClockSync()
+        var typingUntil = 0L
         var connected = true
         var receiveEmojis = true
         var score = 0L
         var status = Status.IDLE
         var roundReactionMs: Long? = null
         var contestReactionMs: Long? = null
+    }
+
+    /** Eine Quizfrage im Spiel. */
+    private class QuizTurn(
+        val number: Int,
+        var question: QuizQuestion,
+        val durationMs: Long,
+        val participants: Set<PlayerId>,
+        val answersAt: Long,
+    ) {
+        /** Je Spieler: angezeigte Position → Index in der Paket-Reihenfolge. */
+        val perms = HashMap<PlayerId, List<Int>>()
+
+        /** Je Spieler: gewählter Index (Paket-Reihenfolge) und Zeit ab Einblenden. */
+        val answers = LinkedHashMap<PlayerId, Pair<Int, Long>>()
+        var deadlineElapsed = durationMs
+        val tasks = mutableListOf<Cancellable>()
+        var revealTask: Cancellable? = null
+        var revealed = false
+        var annulled = false
+        var awards: Map<PlayerId, Long> = emptyMap()
+        val challenges = mutableListOf<QuizChallengeInfo>()
+        var decision: ChallengeDecision? = null
     }
 
     /** Ein Durchgang mit Freigabe: die Hauptrunde oder ein Sudden Death. */
@@ -95,6 +168,14 @@ class MasterEngine(
 
     /** Spielverlauf für die Anzeige auf dem Master-Gerät. */
     var onReplay: ((Message.Replay) -> Unit)? = null
+
+    /** Quiz-Statistik: Frage aufgelöst mit den Ergebnissen aller Teilnehmer. */
+    var onQuizRevealed: ((QuizQuestion, List<ParticipantResult>) -> Unit)? = null
+
+    /** Quiz-Statistik: Frage übersprungen – gesehen, aber nicht gewertet. */
+    var onQuizSkipped: ((QuizQuestion, List<String>) -> Unit)? = null
+    var onQuizChallenge: ((QuizQuestion, from: String, reason: String) -> Unit)? = null
+    var onQuizDecision: ((QuizQuestion, ChallengeDecision, newCorrect: Int?) -> Unit)? = null
 
     /** Name des Spielleiters für Kurznachrichten und Emoticons. */
     var masterName = "Spielleiter"
@@ -131,6 +212,21 @@ class MasterEngine(
     var paused = false
         private set
 
+    var kind: GameKind? = null
+        private set
+    private var quizQuestions: List<QuizQuestion> = emptyList()
+    private var quizIndex = -1
+    private var turn: QuizTurn? = null
+    private var quizFinished = false
+
+    /** Wertung, nach der Punkte gezählt und angezeigt werden. */
+    private val scoring: ScoringMode
+        get() = if (kind == GameKind.QUIZ) {
+            if (settings.quizScoring.usesTime) ScoringMode.REMAINING_TIME else ScoringMode.CORRECT_ANSWERS
+        } else {
+            settings.scoring
+        }
+
     // ------------------------------------------------------------------ Spieler
 
     fun addPlayer(id: PlayerId, name: String, local: Boolean = false) {
@@ -140,6 +236,7 @@ class MasterEngine(
         log("Spieler beigetreten: $name ($id)")
         if (!local) masterSound(SoundEvent.JOIN)
         send(id, configMessage())
+        send(id, Message.Mode(kind))
         if (paused) send(id, Message.Pause(true))
         broadcastRoster()
         broadcastScoreboard()
@@ -153,6 +250,8 @@ class MasterEngine(
             players.remove(id)
             broadcastRoster()
             broadcastScoreboard()
+            // Im Quiz wartet niemand mehr auf seine Antwort.
+            turn?.takeIf { !it.revealed }?.let { checkAllAnswered(it) }
             notifyChanged()
             return
         }
@@ -174,7 +273,7 @@ class MasterEngine(
         broadcastStates()
     }
 
-    fun canAcceptJoin(): Boolean = phase == Phase.READY
+    fun canAcceptJoin(): Boolean = phase == Phase.READY || phase == Phase.QUIZ_REVEAL
 
     // ------------------------------------------------------------------ Einstellungen
 
@@ -183,7 +282,7 @@ class MasterEngine(
         if (phase != Phase.READY) return false
         this.profileName = profileName
         var s = newSettings.normalized()
-        if (gameStarted) {
+        if (gameStarted && kind != GameKind.QUIZ) {
             s = s.copy(scoring = settings.scoring)
             if (settings.scoring == ScoringMode.REMAINING_TIME) s = s.copy(timeLimitMs = settings.timeLimitMs)
         }
@@ -229,6 +328,7 @@ class MasterEngine(
 
     fun stop() {
         cancelAnswerTimer()
+        turn?.let { cancelQuizTasks(it) }
         pingTask?.cancel()
         pingTask = null
         contest?.let { cancelTasks(it) }
@@ -238,7 +338,7 @@ class MasterEngine(
 
     /** „Buzzer frei“ (Modus B) bzw. „Buzzer scharf“ (Modus A). */
     fun release(): Boolean {
-        if (phase != Phase.READY || paused) return false
+        if (phase != Phase.READY || paused || kind == GameKind.QUIZ) return false
         val participants = players.values.filter { it.connected }
         if (participants.isEmpty()) return false
         round++
@@ -324,6 +424,7 @@ class MasterEngine(
 
     /** „Nächste Runde“: alle Displays schwarz. Bricht eine laufende Runde ab. */
     fun nextRound() {
+        if (kind == GameKind.QUIZ) return
         log("Nächste Runde")
         cancelAnswerTimer()
         contest?.let { cancelTasks(it) }
@@ -353,7 +454,13 @@ class MasterEngine(
             is Message.Prefs -> player.receiveEmojis = message.receiveEmojis
             is Message.Emote ->
                 if (player.receiveEmojis && message.emoji in settings.emojis) broadcastEmote(player.name, message.emoji)
-            is Message.ChatSend -> deliverChat(player.name, player.id, message.to, message.text)
+            is Message.ChatSend -> {
+                setTyping(player, false)
+                deliverChat(player.name, player.id, message.to, message.text)
+            }
+            is Message.Typing -> setTyping(player, message.on)
+            is Message.QuizAnswer -> onQuizAnswer(player, message)
+            is Message.QuizChallenge -> onQuizChallenge(player, message)
             else -> Unit
         }
     }
@@ -374,7 +481,18 @@ class MasterEngine(
     }
 
     /** Kurznachrichten gehen nur in den Rundenpausen. */
-    fun canChat(): Boolean = settings.messagesEnabled && (phase == Phase.READY || phase == Phase.ROUND_OVER)
+    fun canChat(): Boolean = settings.messagesEnabled && isPause()
+
+    /** Rundenpause: zwischen Buzzer-Runden bzw. bei der Auflösung einer Quizfrage. */
+    private fun isPause() = phase == Phase.READY || phase == Phase.ROUND_OVER || phase == Phase.QUIZ_REVEAL
+
+    /** Tipp-Hinweis: verschwindet nach [TYPING_TIMEOUT_MS] ohne neue Meldung von selbst. */
+    private fun setTyping(player: Player, on: Boolean) {
+        val was = player.typingUntil > clock.now()
+        player.typingUntil = if (on) clock.now() + TYPING_TIMEOUT_MS else 0
+        if (on) scheduler.schedule(TYPING_TIMEOUT_MS + 10) { notifyChanged() }
+        if (was != on) notifyChanged()
+    }
 
     /** Kurznachricht des Spielleiters an einen Spieler oder an alle ([ALL_ADDRESS]). */
     fun sendChat(to: String, text: String) = deliverChat(masterName, null, to, text)
@@ -480,7 +598,7 @@ class MasterEngine(
 
     /** Spielpause nur zwischen den Runden; die Spieler sehen dann ein Pausen-Overlay. */
     fun setPaused(on: Boolean): Boolean {
-        if (on && phase != Phase.READY && phase != Phase.ROUND_OVER) return false
+        if (on && !isPause()) return false
         if (paused == on) return true
         paused = on
         log(if (on) "Spiel pausiert" else "Pause beendet")
@@ -490,7 +608,7 @@ class MasterEngine(
     }
 
     /** Spielverlauf geht nur in den Pausen und erst nach mindestens einer Runde. */
-    fun canShowReplay(): Boolean = (phase == Phase.READY || phase == Phase.ROUND_OVER) && history.size >= 2
+    fun canShowReplay(): Boolean = isPause() && history.size >= 2
 
     /** Zeigt auf allen Bildschirmen eine Animation des Spielverlaufs (höchstens 10 s). */
     fun showReplay(): Boolean {
@@ -508,7 +626,7 @@ class MasterEngine(
             },
             selfIndex = shown.indexOfFirst { it.id == viewer },
             frames = frames,
-            scoring = settings.scoring,
+            scoring = scoring,
             durationMs = duration,
         )
         for (p in shown) if (!p.local) send(p.id, forViewer(p.id))
@@ -705,6 +823,339 @@ class MasterEngine(
         }
     }
 
+    // ------------------------------------------------------------------ Quiz
+
+    /** Spielart wählen (nur zwischen den Runden). Ein Wechsel beginnt ein neues Spiel. */
+    fun chooseKind(newKind: GameKind): Boolean {
+        if (phase != Phase.READY) return false
+        if (kind == newKind) return true
+        newGame()
+        kind = newKind
+        quizQuestions = emptyList()
+        quizIndex = -1
+        turn = null
+        quizFinished = false
+        log("Spielart: ${newKind.label}")
+        players.values.filter { it.connected }.forEach { send(it.id, Message.Mode(newKind)) }
+        broadcastScoreboard()
+        notifyChanged()
+        return true
+    }
+
+    /** Startet ein Quiz mit den ausgewählten Fragen; die Punkte beginnen bei 0. */
+    fun startQuiz(questions: List<QuizQuestion>): Boolean {
+        if (kind != GameKind.QUIZ || phase != Phase.READY || paused || questions.isEmpty()) return false
+        if (players.values.none { it.connected }) return false
+        newGame()
+        quizQuestions = questions
+        quizIndex = -1
+        quizFinished = false
+        turn = null
+        log("Quiz gestartet: ${questions.size} Fragen, Wertung ${settings.quizScoring.label}")
+        return askNext()
+    }
+
+    /** „Nächste Frage“ nach der Auflösung; nach der letzten Frage endet das Quiz. */
+    fun nextQuestion(): Boolean {
+        if (kind != GameKind.QUIZ || phase != Phase.QUIZ_REVEAL || paused) return false
+        turn?.let { t ->
+            if (t.challenges.isNotEmpty()) log("Challenge ohne Entscheidung – Wertung bleibt")
+            t.challenges.clear()
+        }
+        if (quizIndex + 1 < quizQuestions.size) return askNext()
+        finishQuiz()
+        return true
+    }
+
+    /** Sofort auflösen, ohne auf die übrigen Antworten zu warten. */
+    fun revealNow(): Boolean {
+        val t = turn ?: return false
+        if (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS) return false
+        log("Auflösung vorgezogen")
+        reveal(t)
+        return true
+    }
+
+    /** Frage überspringen: keine Wertung, weiter zur nächsten. */
+    fun skipQuestion(): Boolean {
+        val t = turn ?: return false
+        if (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS) return false
+        cancelQuizTasks(t)
+        t.revealed = true
+        log("Frage ${t.number} übersprungen")
+        onQuizSkipped?.invoke(t.question, t.participants.mapNotNull { players[it]?.name })
+        if (quizIndex + 1 < quizQuestions.size) askNext() else finishQuiz()
+        return true
+    }
+
+    /** Quiz vorzeitig beenden. */
+    fun stopQuiz(): Boolean {
+        if (kind != GameKind.QUIZ || (turn == null && phase == Phase.READY)) return false
+        turn?.let { cancelQuizTasks(it) }
+        log("Quiz abgebrochen")
+        finishQuiz()
+        return true
+    }
+
+    /** Entscheidung über eine Challenge (oder eine eigene Korrektur) – nur bei der Auflösung. */
+    fun decideChallenge(decision: ChallengeDecision, newCorrect: Int? = null): Boolean {
+        val t = turn ?: return false
+        if (phase != Phase.QUIZ_REVEAL || !t.revealed) return false
+        val q = t.question
+        when (decision) {
+            ChallengeDecision.KEEP -> Unit
+            ChallengeDecision.ANNUL, ChallengeDecision.BLOCK -> if (!t.annulled) {
+                takeBackAwards(t)
+                t.annulled = true
+            }
+            ChallengeDecision.CORRECT -> {
+                if (newCorrect == null || newCorrect !in q.answers.indices) return false
+                takeBackAwards(t)
+                t.annulled = false
+                t.question = q.copy(correctIndex = newCorrect)
+                t.awards = computeAwards(t)
+                t.awards.forEach { (id, amount) -> players[id]?.let { it.score += amount } }
+            }
+        }
+        log("Challenge-Entscheidung Frage ${t.number}: ${decision.label}" + if (newCorrect != null) " (${q.answers[newCorrect]})" else "")
+        t.decision = decision
+        t.challenges.clear()
+        if (decision != ChallengeDecision.KEEP) {
+            if (history.isNotEmpty()) history[history.lastIndex] = players.values.associate { it.id to it.score }
+            for (id in t.participants) players[id]?.takeIf { it.connected }?.let { send(id, resultFor(t, it, corrected = true)) }
+            broadcastScoreboard()
+        }
+        onQuizDecision?.invoke(q, decision, newCorrect)
+        notifyChanged()
+        return true
+    }
+
+    private fun askNext(): Boolean {
+        val participants = players.values.filter { it.connected }
+        if (participants.isEmpty()) {
+            finishQuiz()
+            return false
+        }
+        quizIndex++
+        round++
+        gameStarted = true
+        val q = quizQuestions[quizIndex]
+        val maxRtt = participants.maxOf { it.sync.recentMaxRttMs ?: UNKNOWN_RTT_MS }
+        val questionAt = clock.now() + (maxRtt + 100).coerceIn(200, 1_000)
+        val answersAt = questionAt + QUESTION_LEAD_MS
+        val t = QuizTurn(quizIndex + 1, q, settings.quizAnswerMs, participants.map { it.id }.toSet(), answersAt)
+        turn = t
+        for (p in participants) {
+            // Jeder bekommt seine eigene Reihenfolge – Abgucken bringt nichts.
+            val perm = q.answers.indices.shuffled(random)
+            t.perms[p.id] = perm
+            send(
+                p.id,
+                Message.QuizAsk(
+                    number = t.number,
+                    total = quizQuestions.size,
+                    category = q.category,
+                    level = q.level,
+                    text = q.text,
+                    answers = perm.map { q.answers[it] },
+                    questionAtLocal = p.sync.toPlayerTime(questionAt),
+                    answersAtLocal = p.sync.toPlayerTime(answersAt),
+                    durationMs = t.durationMs,
+                ),
+            )
+        }
+        phase = Phase.QUIZ_QUESTION
+        log("Frage ${t.number}/${quizQuestions.size}: ${q.id}")
+        t.tasks += scheduler.schedule(answersAt - clock.now()) {
+            if (turn === t && phase == Phase.QUIZ_QUESTION) {
+                phase = Phase.QUIZ_ANSWERS
+                notifyChanged()
+            }
+        }
+        scheduleReveal(t)
+        broadcastScoreboard()
+        notifyChanged()
+        return true
+    }
+
+    /** Auflösung bei Zeitablauf – mit Sammelfenster für unterwegs befindliche Antworten. */
+    private fun scheduleReveal(t: QuizTurn) {
+        t.revealTask?.cancel()
+        val grace = (t.participants.mapNotNull { players[it]?.sync?.recentMaxRttMs ?: UNKNOWN_RTT_MS }.maxOrNull() ?: 0) + 150
+        val at = t.answersAt + t.deadlineElapsed + grace.coerceIn(250, 1_000)
+        t.revealTask = scheduler.schedule(at - clock.now()) { reveal(t) }
+    }
+
+    private fun onQuizAnswer(player: Player, m: Message.QuizAnswer) {
+        val t = turn ?: return
+        if (m.number != t.number || t.revealed || player.id !in t.participants || player.id in t.answers) return
+        if (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS) return
+        val perm = t.perms[player.id] ?: return
+        if (m.position !in perm.indices || m.elapsedMs < 0 || m.elapsedMs > t.durationMs + 1_000) return
+        val chosen = perm[m.position]
+        t.answers[player.id] = chosen to m.elapsedMs
+        log("Antwort: ${player.name} nach ${m.elapsedMs} ms")
+        if (settings.quizScoring == QuizScoring.COUNTDOWN && chosen == t.question.correctIndex) {
+            // Nach der ersten richtigen Antwort läuft nur noch der Countdown.
+            val cut = m.elapsedMs + settings.quizCountdownMs
+            if (cut < t.deadlineElapsed) {
+                t.deadlineElapsed = cut
+                log("Countdown: Antwortzeit endet nach $cut ms")
+                for (id in t.participants) players[id]?.takeIf { it.connected }?.let { send(id, Message.QuizDeadline(t.number, cut)) }
+                scheduleReveal(t)
+            }
+        }
+        notifyChanged()
+        checkAllAnswered(t)
+    }
+
+    private fun checkAllAnswered(t: QuizTurn) {
+        if (t.revealed || turn !== t) return
+        if (t.participants.all { it in t.answers || players[it]?.connected != true }) reveal(t)
+    }
+
+    /** Punkte je Spieler für die aktuelle richtige Antwort. */
+    private fun computeAwards(t: QuizTurn): Map<PlayerId, Long> {
+        val correct = t.answers.filter { (id, a) -> a.first == t.question.correctIndex && players[id] != null }
+            .mapValues { it.value.second }
+        if (correct.isEmpty()) return emptyMap()
+        val fastest = correct.values.min()
+        val winners = correct.filterValues { it - fastest <= settings.tieThresholdMs }
+        return when (settings.quizScoring) {
+            QuizScoring.FASTEST -> winners.mapValues { 1L }
+            QuizScoring.EVERYONE -> correct.mapValues { 1L }
+            QuizScoring.COUNTDOWN -> correct.mapValues { (t.deadlineElapsed - it.value).coerceAtLeast(0) }
+            QuizScoring.BATTLE -> winners.mapValues { (t.durationMs - it.value).coerceAtLeast(0) }
+        }.filterValues { it > 0 }
+    }
+
+    private fun takeBackAwards(t: QuizTurn) {
+        t.awards.forEach { (id, amount) -> players[id]?.let { it.score = (it.score - amount).coerceAtLeast(0) } }
+        t.awards = emptyMap()
+    }
+
+    private fun outcomeOf(t: QuizTurn, id: PlayerId): QuizOutcome {
+        if (t.annulled) return QuizOutcome.ANNULLED
+        val a = t.answers[id] ?: return QuizOutcome.NONE
+        return if (a.first == t.question.correctIndex) QuizOutcome.RIGHT else QuizOutcome.WRONG
+    }
+
+    private fun resultFor(t: QuizTurn, p: Player, corrected: Boolean): Message.QuizResult {
+        val perm = t.perms[p.id] ?: emptyList()
+        val gained = t.awards[p.id] ?: 0
+        return Message.QuizResult(
+            number = t.number,
+            correctPosition = perm.indexOf(t.question.correctIndex),
+            chosenPosition = t.answers[p.id]?.first?.let { perm.indexOf(it) } ?: -1,
+            outcome = outcomeOf(t, p.id),
+            gained = if (gained > 0) "+" + formatScore(gained, scoring) else "",
+            score = scoreText(p),
+            explanation = t.question.explanation,
+            source = t.question.source,
+            corrected = corrected,
+        )
+    }
+
+    private fun reveal(t: QuizTurn) {
+        if (t.revealed || turn !== t) return
+        t.revealed = true
+        cancelQuizTasks(t)
+        t.awards = computeAwards(t)
+        t.awards.forEach { (id, amount) -> players[id]?.let { it.score += amount } }
+        phase = Phase.QUIZ_REVEAL
+        if (history.isEmpty()) history += players.keys.associateWith { 0L }
+        history += players.values.associate { it.id to it.score }
+        recordedRound = round
+        val q = t.question
+        log(
+            "Auflösung Frage ${t.number}: " + t.participants.mapNotNull { id ->
+                val p = players[id] ?: return@mapNotNull null
+                "${p.name} ${outcomeOf(t, id).name.lowercase()}" + (t.awards[id]?.let { " +${formatScore(it, scoring)}" } ?: "")
+            }.joinToString(),
+        )
+        for (id in t.participants) {
+            val p = players[id]?.takeIf { it.connected } ?: continue
+            send(id, resultFor(t, p, corrected = false))
+            sendSound(listOf(id), if (outcomeOf(t, id) == QuizOutcome.RIGHT) SoundEvent.TUSCH else SoundEvent.WRONG)
+        }
+        onQuizRevealed?.invoke(
+            q,
+            t.participants.mapNotNull { id ->
+                val p = players[id] ?: return@mapNotNull null
+                val a = t.answers[id]
+                ParticipantResult(
+                    name = p.name,
+                    correct = a?.let { it.first == q.correctIndex },
+                    timeShare = a?.let { it.second.toDouble() / t.durationMs } ?: 1.0,
+                )
+            },
+        )
+        broadcastScoreboard()
+        notifyChanged()
+    }
+
+    private fun finishQuiz() {
+        turn?.let { cancelQuizTasks(it) }
+        quizFinished = true
+        phase = Phase.READY
+        log("Quiz beendet")
+        for (p in players.values) if (p.connected) send(p.id, Message.Reset(scoreText(p)))
+        sendSound(players.values.filter { !it.local }.map { it.id }, SoundEvent.ROUND_END)
+        masterSound(SoundEvent.ROUND_END)
+        broadcastScoreboard()
+        notifyChanged()
+    }
+
+    private fun onQuizChallenge(player: Player, m: Message.QuizChallenge) {
+        val t = turn ?: return
+        if (phase != Phase.QUIZ_REVEAL || m.number != t.number || t.challenges.any { it.playerId == player.id }) return
+        val reason = m.reason.trim().take(MAX_CHAT_LENGTH)
+        t.challenges += QuizChallengeInfo(player.id, player.name, reason)
+        log("Challenge von ${player.name}" + if (reason.isNotEmpty()) ": $reason" else "")
+        masterSound(SoundEvent.CHAT)
+        onQuizChallenge?.invoke(t.question, player.name, reason)
+        notifyChanged()
+    }
+
+    private fun cancelQuizTasks(t: QuizTurn) {
+        t.tasks.forEach { it.cancel() }
+        t.tasks.clear()
+        t.revealTask?.cancel()
+        t.revealTask = null
+    }
+
+    private fun quizSnapshot(): QuizSnapshot? {
+        if (kind != GameKind.QUIZ) return null
+        val t = turn ?: return null
+        return QuizSnapshot(
+            number = t.number,
+            total = quizQuestions.size,
+            question = t.question,
+            answersAt = t.answersAt,
+            deadline = t.answersAt + t.deadlineElapsed,
+            durationMs = t.durationMs,
+            revealed = t.revealed,
+            annulled = t.annulled,
+            rows = t.participants.mapNotNull { id ->
+                val p = players[id] ?: return@mapNotNull null
+                val a = t.answers[id]
+                QuizRow(
+                    id = id,
+                    name = p.name,
+                    answered = a != null,
+                    elapsedMs = a?.second,
+                    chosen = if (t.revealed) a?.first else null,
+                    outcome = if (t.revealed) outcomeOf(t, id) else null,
+                    gained = t.awards[id] ?: 0,
+                )
+            },
+            challenges = t.challenges.toList(),
+            decision = t.decision,
+            finished = quizFinished,
+            hasNext = quizIndex + 1 < quizQuestions.size,
+        )
+    }
+
     // ------------------------------------------------------------------ Anzeige
 
     private fun displayOf(p: Player): Pair<Display, Int> {
@@ -768,11 +1219,12 @@ class MasterEngine(
 
     /** Rangliste an alle; angezeigt wird sie nur zwischen den Runden. */
     private fun broadcastScoreboard() {
-        val show = phase == Phase.READY || phase == Phase.ROUND_OVER
+        val show = isPause()
         val inputs = players.values.filter { it.connected }.map { ScoreInput(it.id, it.name, it.score) }
         val maxScore = inputs.maxOfOrNull { it.score } ?: 0
+        val boardSettings = settings.copy(scoring = scoring)
         for (p in players.values) {
-            if (p.connected) send(p.id, Message.Scoreboard(buildScoreboard(inputs, p.id, settings), maxScore, show))
+            if (p.connected) send(p.id, Message.Scoreboard(buildScoreboard(inputs, p.id, boardSettings), maxScore, show))
         }
     }
 
@@ -793,6 +1245,10 @@ class MasterEngine(
         canCorrectLastRound = canCorrectLastRound(),
         lastRound = lastResult?.round,
         lastRoundWinner = lastResult?.winner,
+        kind = kind,
+        quiz = quizSnapshot(),
+        scoring = scoring,
+        someoneTyping = players.values.any { it.connected && it.typingUntil > clock.now() },
     )
 
     private fun notifyChanged() {
@@ -827,9 +1283,12 @@ class MasterEngine(
         c.publishTask = null
     }
 
-    private fun scoreText(p: Player) = formatScore(p.score, settings.scoring)
+    private fun scoreText(p: Player) = formatScore(p.score, scoring)
 
     companion object {
+        /** Quiz: so lange steht die Frage allein, bevor Antworten und Timer erscheinen. */
+        const val QUESTION_LEAD_MS = 3_000L
+        const val TYPING_TIMEOUT_MS = 8_000L
         const val SUDDEN_DEATH_PAUSE_MS = 1_500L
         const val MAX_REPLAY_MS = 10_000L
         private const val UNKNOWN_RTT_MS = 300L

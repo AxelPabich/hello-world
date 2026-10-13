@@ -52,7 +52,7 @@ fun limitsText(rules: PlayerEngine.Rules): String =
 
 /** Uhrzeit (uptime), die in jedem Frame neu gelesen wird – für laufende Zeitbalken. */
 @Composable
-private fun frameTime(key: Any?): Long {
+fun frameTime(key: Any?): Long {
     val now by produceState(SystemClock.uptimeMillis(), key) {
         while (true) {
             withFrameMillis { }
@@ -211,5 +211,29 @@ fun ChatPanel(lines: List<ChatLine>, color: Color, modifier: Modifier = Modifier
                 overflow = TextOverflow.Ellipsis,
             )
         }
+    }
+}
+
+/** Fortschritt einer App-Übertragung am unteren Rand (neben dem Spiel). */
+@Composable
+fun TransferBanner(vm: de.pabich.buzzer.BuzzerViewModel, modifier: Modifier = Modifier) {
+    val t = vm.transfer ?: return
+    val theme = LocalBuzzerTheme.current
+    Column(
+        modifier
+            .padding(12.dp)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(14.dp))
+            .background(theme.panel)
+            .clickable(enabled = t.done || t.failed) { vm.dismissTransfer() }
+            .padding(12.dp),
+    ) {
+        val what = if (t.incoming) "Empfange Build ${t.build} von ${t.peerName}" else "Sende Build ${t.build} an ${t.peerName}"
+        val state = when {
+            t.failed -> " – abgebrochen (tippen zum Schließen)"
+            t.done -> " – fertig (tippen zum Schließen)"
+            else -> " – ${(t.progress * 100).toInt()} %"
+        }
+        TimeBar(t.progress, what + state, theme.accent2, Modifier.fillMaxWidth())
     }
 }
