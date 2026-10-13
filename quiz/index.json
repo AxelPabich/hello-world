@@ -1,0 +1,40 @@
+{
+  "pakete": [
+    {
+      "datei": "technik.json",
+      "titel": "Technik",
+      "version": 1,
+      "fragen": 12
+    },
+    {
+      "datei": "geschichte.json",
+      "titel": "Geschichte",
+      "version": 1,
+      "fragen": 12
+    },
+    {
+      "datei": "erdkunde.json",
+      "titel": "Erdkunde",
+      "version": 1,
+      "fragen": 12
+    },
+    {
+      "datei": "film.json",
+      "titel": "Film & Fernsehen",
+      "version": 1,
+      "fragen": 12
+    },
+    {
+      "datei": "sehenswuerdigkeiten.json",
+      "titel": "Sehenswürdigkeiten",
+      "version": 1,
+      "fragen": 12
+    },
+    {
+      "datei": "kueche.json",
+      "titel": "Küche & Genuss",
+      "version": 1,
+      "fragen": 12
+    }
+  ]
+}

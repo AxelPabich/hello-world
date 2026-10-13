@@ -46,6 +46,7 @@ enum class SoundEvent(val label: String, val defaultOn: Boolean = true) {
     TIMEOUT("Zeit abgelaufen – Gong"),
     RIGHT("Richtig – Ding Ding + Applaus"),
     WRONG("Falsch – Wah-wah-wah"),
+    TUSCH("Quiz richtig – Tusch"),
     ROUND_END("Rundenende – Trommelwirbel + Tusch"),
     EMOTE("Emoticon – Plopp", defaultOn = false),
     CHAT("Kurznachricht – Pling"),
@@ -80,6 +81,16 @@ data class Settings(
     val emojis: List<String> = DEFAULT_EMOJIS,
     /** Eingeschaltete Klänge dieses Profils. */
     val sounds: Set<SoundEvent> = DEFAULT_SOUNDS,
+    /** Quiz: gewählte Kategorien, leer = alle. */
+    val quizCategories: Set<String> = emptySet(),
+    /** Quiz: gewählte Stufen (nach gemessener Schwierigkeit). */
+    val quizLevels: Set<QuizLevel> = QuizLevel.entries.toSet(),
+    val quizCount: Int = 12,
+    /** Quiz: Antwortzeit je Frage. */
+    val quizAnswerMs: Long = 20_000,
+    val quizScoring: QuizScoring = QuizScoring.FASTEST,
+    /** Quiz, Wertung „Countdown“: so lange läuft die Zeit nach der ersten richtigen Antwort noch. */
+    val quizCountdownMs: Long = 5_000,
 ) {
     /** Reaktionszeit-Limit oder `null`, wenn ausgeschaltet. */
     val reactionLimitMs: Long? get() = if (reactionLimitEnabled) timeLimitMs else null
@@ -103,6 +114,10 @@ data class Settings(
             tieThresholdMs = tieThresholdMs.coerceIn(0, 1_000),
             boardPlaces = boardPlaces.coerceIn(0, 99),
             emojis = cleanEmojis + DEFAULT_EMOJIS.drop(cleanEmojis.size),
+            quizLevels = quizLevels.ifEmpty { QuizLevel.entries.toSet() },
+            quizCount = quizCount.coerceIn(1, 50),
+            quizAnswerMs = quizAnswerMs.coerceIn(5_000, 120_000),
+            quizCountdownMs = quizCountdownMs.coerceIn(1_000, 30_000),
         )
     }
 }

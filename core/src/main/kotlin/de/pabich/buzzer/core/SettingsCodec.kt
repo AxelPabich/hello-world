@@ -27,7 +27,22 @@ object SettingsCodec {
         "emojisEnabled" to "Emoticons erlaubt",
         "emojis" to "Emoticon-Auswahl",
         "sounds" to "Klänge",
+        "quizCategories" to "Quiz: Kategorien",
+        "quizLevels" to "Quiz: Schwierigkeit",
+        "quizCount" to "Quiz: Fragen pro Spiel",
+        "quizAnswerMs" to "Quiz: Antwortzeit",
+        "quizScoring" to "Quiz: Wertung",
+        "quizCountdownMs" to "Quiz: Countdown nach erster richtiger Antwort",
     )
+
+    /** Klänge, die es vor dem Schlüssel [SOUNDS_KNOWN] gab; später hinzugekommene sind neu. */
+    private val LEGACY_SOUNDS = listOf(
+        "JOIN", "HUM", "BUZZ", "FIRST", "RED", "FALSE_START", "SUDDEN_DEATH", "TICK", "TIMEOUT",
+        "RIGHT", "WRONG", "ROUND_END", "EMOTE", "CHAT", "CHASE",
+    )
+
+    /** Technischer Schlüssel: welche Klänge der speichernde Build kannte (neue sind vorgabemäßig an). */
+    private const val SOUNDS_KNOWN = "soundsKnown"
 
     val KEYS: Set<String> get() = LABELS.keys
 
@@ -51,6 +66,13 @@ object SettingsCodec {
         "emojisEnabled" to s.emojisEnabled.toString(),
         "emojis" to s.emojis.joinToString(" "),
         "sounds" to s.sounds.sortedBy { it.ordinal }.joinToString(",") { it.name },
+        SOUNDS_KNOWN to SoundEvent.entries.joinToString(",") { it.name },
+        "quizCategories" to s.quizCategories.sorted().joinToString("|"),
+        "quizLevels" to s.quizLevels.sortedBy { it.ordinal }.joinToString(",") { it.key },
+        "quizCount" to s.quizCount.toString(),
+        "quizAnswerMs" to s.quizAnswerMs.toString(),
+        "quizScoring" to s.quizScoring.name,
+        "quizCountdownMs" to s.quizCountdownMs.toString(),
     )
 
     data class Decoded(val settings: Settings, val missingKeys: List<String>)
@@ -84,8 +106,17 @@ object SettingsCodec {
             emojisEnabled = read("emojisEnabled", d.emojisEnabled) { it.toBooleanStrict() },
             emojis = read("emojis", d.emojis) { v -> v.split(' ').filter { it.isNotEmpty() }.takeIf { it.isNotEmpty() } },
             sounds = read("sounds", d.sounds) { v ->
-                v.split(',').filter { it.isNotEmpty() }.mapNotNull { n -> SoundEvent.entries.firstOrNull { it.name == n } }.toSet()
+                val known = map[SOUNDS_KNOWN]?.split(',')?.toSet() ?: LEGACY_SOUNDS.toSet()
+                val chosen = v.split(',').filter { it.isNotEmpty() }.mapNotNull { n -> SoundEvent.entries.firstOrNull { it.name == n } }
+                // Klänge, die der speichernde Build noch nicht kannte, sind wie vorgegeben an.
+                (chosen + SoundEvent.entries.filter { it.defaultOn && it.name !in known }).toSet()
             },
+            quizCategories = read("quizCategories", d.quizCategories) { v -> v.split('|').filter { it.isNotBlank() }.toSet() },
+            quizLevels = read("quizLevels", d.quizLevels) { v -> v.split(',').mapNotNull { QuizLevel.byKey(it) }.toSet().ifEmpty { null } },
+            quizCount = read("quizCount", d.quizCount) { it.toInt() },
+            quizAnswerMs = read("quizAnswerMs", d.quizAnswerMs) { it.toLong() },
+            quizScoring = read("quizScoring", d.quizScoring) { QuizScoring.valueOf(it) },
+            quizCountdownMs = read("quizCountdownMs", d.quizCountdownMs) { it.toLong() },
         )
         return Decoded(s.normalized(), missing)
     }

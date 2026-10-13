@@ -1,0 +1,212 @@
+{
+  "paket": "geschichte",
+  "titel": "Geschichte",
+  "version": 1,
+  "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
+  "fragen": [
+    {
+      "id": "gesch-0001",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "In welchem Jahr fiel die Berliner Mauer?",
+      "antworten": [
+        "1989",
+        "1987",
+        "1990",
+        "1991"
+      ],
+      "erklaerung": "Am 9. November 1989 wurden die Grenzen geöffnet.",
+      "quelle": "https://de.wikipedia.org/wiki/Berliner_Mauer",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0002",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?",
+      "antworten": [
+        "Konrad Adenauer",
+        "Ludwig Erhard",
+        "Willy Brandt",
+        "Theodor Heuss"
+      ],
+      "erklaerung": "Theodor Heuss war der erste Bundespräsident.",
+      "quelle": "https://de.wikipedia.org/wiki/Konrad_Adenauer",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0003",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr erreichte Christoph Kolumbus erstmals Amerika?",
+      "antworten": [
+        "1492",
+        "1498",
+        "1488",
+        "1506"
+      ],
+      "erklaerung": "Er landete im Oktober 1492 auf den Bahamas.",
+      "quelle": "https://de.wikipedia.org/wiki/Christoph_Kolumbus",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0004",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer betrat 1969 als erster Mensch den Mond?",
+      "antworten": [
+        "Neil Armstrong",
+        "Buzz Aldrin",
+        "Juri Gagarin",
+        "Louis Armstrong"
+      ],
+      "erklaerung": "Buzz Aldrin folgte kurz danach; Gagarin war der erste Mensch im All.",
+      "quelle": "https://de.wikipedia.org/wiki/Neil_Armstrong",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0005",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr wurde die Bundesrepublik Deutschland gegründet?",
+      "antworten": [
+        "1949",
+        "1945",
+        "1952",
+        "1961"
+      ],
+      "erklaerung": "Das Grundgesetz trat am 23. Mai 1949 in Kraft.",
+      "quelle": "https://de.wikipedia.org/wiki/Grundgesetz_für_die_Bundesrepublik_Deutschland",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0006",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wie hieß der letzte Kaiser des Deutschen Kaiserreichs?",
+      "antworten": [
+        "Wilhelm II.",
+        "Friedrich III.",
+        "Wilhelm I.",
+        "Franz Joseph I."
+      ],
+      "erklaerung": "Er dankte 1918 ab. Franz Joseph I. war Kaiser von Österreich.",
+      "quelle": "https://de.wikipedia.org/wiki/Wilhelm_II._(Deutsches_Reich)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0007",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welches Schiff sank 1912 nach der Kollision mit einem Eisberg?",
+      "antworten": [
+        "Die Titanic",
+        "Die Bismarck",
+        "Die Queen Mary",
+        "Das Traumschiff"
+      ],
+      "erklaerung": "Die Titanic sank auf ihrer Jungfernfahrt.",
+      "quelle": "https://de.wikipedia.org/wiki/Titanic_(Schiff)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0008",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Seit wann bezahlt man in Deutschland mit Euro-Münzen und -Scheinen?",
+      "antworten": [
+        "Seit dem 1. Januar 2002",
+        "Seit dem 1. Januar 1999",
+        "Seit dem 1. Januar 2000",
+        "Seit dem 3. Oktober 1990"
+      ],
+      "erklaerung": "1999 kam der Euro als Buchgeld, 2002 als Bargeld.",
+      "quelle": "https://de.wikipedia.org/wiki/Euro",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0009",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer veröffentlichte 1517 seine 95 Thesen in Wittenberg?",
+      "antworten": [
+        "Martin Luther",
+        "Johannes Calvin",
+        "Philipp Melanchthon",
+        "Martin Luther King"
+      ],
+      "erklaerung": "Der Thesenanschlag gilt als Beginn der Reformation.",
+      "quelle": "https://de.wikipedia.org/wiki/95_Thesen",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0010",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr endete der Dreißigjährige Krieg?",
+      "antworten": [
+        "1648",
+        "1618",
+        "1715",
+        "1555"
+      ],
+      "erklaerung": "Mit dem Westfälischen Frieden. 1618 begann er.",
+      "quelle": "https://de.wikipedia.org/wiki/Dreißigjähriger_Krieg",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0011",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer war Bundeskanzler, als Deutschland 1990 wiedervereinigt wurde?",
+      "antworten": [
+        "Helmut Kohl",
+        "Helmut Schmidt",
+        "Gerhard Schröder",
+        "Willy Brandt"
+      ],
+      "erklaerung": "Helmut Kohl regierte von 1982 bis 1998.",
+      "quelle": "https://de.wikipedia.org/wiki/Helmut_Kohl",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0012",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welche antike Stadt wurde im Jahr 79 n. Chr. beim Ausbruch des Vesuvs verschüttet?",
+      "antworten": [
+        "Pompeji",
+        "Karthago",
+        "Troja",
+        "Atlantis"
+      ],
+      "erklaerung": "Die Asche konservierte die Stadt bis heute.",
+      "quelle": "https://de.wikipedia.org/wiki/Pompeji",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    }
+  ]
+}
