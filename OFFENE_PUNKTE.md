@@ -205,6 +205,13 @@ Kategorien recherchieren.
     8034 verständlich erklären.
 19. **„Fragen aktualisieren“:** Bei HTTP 404 nicht „(Internet?)“ melden, sondern „Im
     Repository liegen keine neueren Fragen“.
+20. **Code in der Beitrittsanfrage:** Der vierstellige Code ist der Prüfcode von Nearby
+    (gleich auf beiden Geräten, schützt vor fremden Verbindungen). Der Spieler sieht ihn nicht,
+    daher bringt er dem Master nichts: aus dem Dialog nehmen und nur ins Protokoll schreiben.
+21. **Diagnose an den Master schicken (Konzept, Rückfragen offen):** Spieler senden ihren
+    Diagnosebericht über die Nearby-Verbindung an den Master; der Master legt ihn in GitHub ab
+    (z. B. `diagnose/JJJJ-MM-TT/Build-N/Name-Uhrzeit.txt`). Offen: Ablageort (das Buzzer-Repo ist
+    öffentlich), Zugang des Master-Geräts zu GitHub (Token), Systeminfos ja/nein.
 
 ### Konzept Oberfläche (Vorschlag)
 
