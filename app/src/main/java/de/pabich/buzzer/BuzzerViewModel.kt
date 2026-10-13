@@ -13,6 +13,7 @@ import de.pabich.buzzer.core.ALL_ADDRESS
 import de.pabich.buzzer.core.Cancellable
 import de.pabich.buzzer.core.ChallengeDecision
 import de.pabich.buzzer.core.ConfigFormat
+import de.pabich.buzzer.core.DiagnoseTransfer
 import de.pabich.buzzer.core.GameKind
 import de.pabich.buzzer.core.PeerInfo
 import de.pabich.buzzer.core.QuestionPicker
@@ -61,6 +62,11 @@ data class ProfileUpgrade(val name: String, val missingLabels: List<String>)
 class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.Listener {
     private val store = ConfigStore(app)
     val quizStore = QuizStore(app)
+    val diagnoseUpload = DiagnoseUpload(app)
+
+    /** Token für die Diagnose-Ablage gespeichert (für die Anzeige). */
+    var tokenSaved by mutableStateOf(diagnoseUpload.hasToken)
+        private set
 
     var screen by mutableStateOf(Screen.START)
         private set
@@ -149,6 +155,23 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private val receivedFiles = mutableMapOf<Long, Pair<Uri?, File?>>()
     private var lastTypingSent = 0L
 
+    // ------------------------------------------------------------------ Sicherheit und Diagnose
+    /** Spieler: Prüfcode der Beitrittsanfrage – muss beim Spielleiter gleich sein. */
+    var joinCode by mutableStateOf<String?>(null)
+        private set
+
+    /** Die Suche braucht den eingeschalteten Standort: Hinweis anzeigen. */
+    var locationOff by mutableStateOf(false)
+
+    /** Master: empfangene (bzw. eigene) Diagnoseberichte, die noch nicht in GitHub liegen. */
+    val pendingReports = mutableStateListOf<DiagnoseTransfer.Report>()
+    var uploading by mutableStateOf(false)
+        private set
+
+    /** Anleitung zum Token beim ersten Hochladen. */
+    var showTokenGuide by mutableStateOf(false)
+    private val reportCollector = DiagnoseTransfer.Collector()
+
     private val link = NearbyLink(app, this)
     private val sounds = SoundPlayer(app)
     private var tickDeadline: Long? = null
@@ -208,7 +231,20 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         screen = Screen.MASTER
     }
 
-    fun searchGroups() {
+    /** Standort eingeschaltet? Manche Geräte verweigern die Suche sonst (Fehler 8034). */
+    fun locationEnabled(): Boolean {
+        if (android.os.Build.VERSION.SDK_INT < 28) return true
+        val lm = getApplication<Application>().getSystemService(android.location.LocationManager::class.java)
+        return lm?.isLocationEnabled ?: true
+    }
+
+    fun searchGroups(ignoreLocation: Boolean = false) {
+        if (!ignoreLocation && !locationEnabled()) {
+            Diagnostics.log("Suche: Standort ist ausgeschaltet – Hinweis angezeigt")
+            locationOff = true
+            return
+        }
+        locationOff = false
         finishPendingStop()
         store.setPlayerName(myName.trim())
         groups.clear()
@@ -219,6 +255,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     fun join(group: Group) {
+        joinCode = null
         connectingTo = group.endpointId
         masterPeer = group.peer
         updatePeer = null
@@ -228,6 +265,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /** Nur zum Aktualisieren verbinden: wer die ältere Version hat, bekommt die neuere. */
     fun joinForUpdate(group: Group) {
+        joinCode = null
         connectingTo = group.endpointId
         masterPeer = group.peer
         updatePeer = group.peer
@@ -251,6 +289,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         master = null
         player = null
         masterEndpoint = null
+        joinCode = null
         masterPeer = null
         updatePeer = null
         updatePeerName = null
@@ -746,9 +785,14 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         groups.removeAll { it.endpointId == endpointId }
     }
 
+    override fun onConnectionCode(endpointId: String, authCode: String) {
+        Diagnostics.log("Prüfcode der Beitrittsanfrage: $authCode")
+        if (connectingTo == endpointId) joinCode = authCode
+    }
+
     override fun onConnectionRequest(endpointId: String, name: String, authCode: String) {
         val peer = PeerInfo.parse(name)
-        Diagnostics.log("Beitrittsanfrage von $endpointId (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
+        Diagnostics.log("Beitrittsanfrage von $endpointId, Prüfcode $authCode (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
         val forUpdate = peer.updateOnly || !peer.compatible
         if (forUpdate || master?.canAcceptJoin() == true) {
             joinRequests += JoinRequest(endpointId, peer, authCode)
@@ -776,6 +820,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
         masterEndpoint = endpointId
         connectingTo = null
+        joinCode = null
         link.stopDiscovery()
         val forUpdate = updatePeer
         if (forUpdate != null) {
@@ -806,6 +851,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         Diagnostics.log("Verbindung mit $endpointId fehlgeschlagen: $reason")
         if (master == null && connectingTo == endpointId) {
             connectingTo = null
+            joinCode = null
             status = "Der Beitritt wurde abgelehnt oder ist fehlgeschlagen."
         }
     }
@@ -843,6 +889,21 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 sendOwnApk(endpointId, name)
                 return
             }
+            is Message.DiagnoseChunk -> {
+                if (master == null) return
+                reportCollector.add(message)?.let { report ->
+                    Diagnostics.log("Diagnosebericht von ${report.from} erhalten (Build ${report.build}, ${report.text.length} Zeichen)")
+                    link.send(endpointId, Message.DiagnoseReceived(report.id))
+                    pendingReports += report
+                    if (diagnoseUpload.hasToken) uploadReports() else status = "Diagnosebericht von ${report.from} erhalten – über ⋮ „Diagnoseberichte“ in GitHub ablegen."
+                }
+                return
+            }
+            is Message.DiagnoseReceived -> {
+                Diagnostics.log("Spielleiter hat den Diagnosebericht erhalten")
+                status = "Der Spielleiter hat deinen Diagnosebericht erhalten."
+                return
+            }
             is Message.ApkInfo -> {
                 expectedApks[message.payloadId] = endpointId to message.build
                 transfer = Transfer(senderName(endpointId), incoming = true, build = message.build, progress = 0f)
@@ -860,7 +921,81 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onError(text: String) {
-        status = text
+        status = if ("8034" in text) {
+            "Die Suche braucht den eingeschalteten Standort (Schnelleinstellungen → „Standort“). Er wird nur für die Suche genutzt, nicht ausgewertet."
+        } else {
+            text
+        }
+    }
+
+    // ------------------------------------------------------------------ Diagnoseberichte
+
+    /** Ist dieses Gerät als Spieler mit einem Spielleiter verbunden? */
+    val canSendToMaster: Boolean get() = master == null && player != null && masterEndpoint != null
+
+    /** Spieler: Bericht in Teilen an den Spielleiter schicken. */
+    fun sendDiagnoseToMaster(report: String) {
+        val endpoint = masterEndpoint ?: return
+        val id = System.currentTimeMillis().toString(36)
+        DiagnoseTransfer.split(id, myName.trim().ifEmpty { "Spieler" }, AppUpdate.ownBuild, report).forEach { link.send(endpoint, it) }
+        Diagnostics.log("Diagnosebericht an den Spielleiter gesendet")
+        status = "Diagnosebericht wird an den Spielleiter gesendet …"
+    }
+
+    /** Master: eigenen Bericht zu den hochzuladenden legen. */
+    fun addOwnReport(report: String) {
+        pendingReports += DiagnoseTransfer.Report(System.currentTimeMillis().toString(36), myName.trim().ifEmpty { "Spielleiter" }, AppUpdate.ownBuild, report)
+        uploadReports()
+    }
+
+    /** Alle offenen Berichte nacheinander in GitHub ablegen; ohne Token erst die Anleitung. */
+    fun uploadReports() {
+        if (uploading || pendingReports.isEmpty()) return
+        if (!diagnoseUpload.hasToken) {
+            showTokenGuide = true
+            return
+        }
+        uploading = true
+        val report = pendingReports.first()
+        val now = Date()
+        val path = DiagnoseTransfer.path(
+            SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(now),
+            SimpleDateFormat("HH-mm-ss", Locale.GERMANY).format(now),
+            report.build,
+            report.from,
+        )
+        diagnoseUpload.upload(path, report.text, "Diagnose von ${report.from} (Build ${report.build})") { error ->
+            uploading = false
+            if (error == null) {
+                pendingReports.remove(report)
+                status = "Diagnose von ${report.from} in GitHub abgelegt: $path"
+                if (pendingReports.isNotEmpty()) uploadReports()
+            } else {
+                status = "Hochladen fehlgeschlagen: $error"
+            }
+        }
+    }
+
+    /** Token aus der Anleitung speichern, prüfen und dann hochladen. */
+    fun saveTokenAndUpload(token: String, repo: String) {
+        diagnoseUpload.repo = repo
+        diagnoseUpload.saveToken(token)
+        tokenSaved = true
+        diagnoseUpload.check { error ->
+            if (error == null) {
+                showTokenGuide = false
+                status = "GitHub-Zugang geprüft – Berichte werden abgelegt."
+                uploadReports()
+            } else {
+                status = "GitHub-Zugang: $error"
+            }
+        }
+    }
+
+    fun deleteToken() {
+        diagnoseUpload.deleteToken()
+        tokenSaved = false
+        status = "GitHub-Token gelöscht."
     }
 
     private fun senderName(endpointId: String): String =

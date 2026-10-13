@@ -128,7 +128,11 @@ class QuizStore(private val context: Context) {
                 if (loaded == 0) "Die Fragen sind schon aktuell." else "$loaded Fragenpaket(e) aktualisiert."
             }.getOrElse {
                 Diagnostics.log("Fragen aktualisieren fehlgeschlagen: ${it.message}")
-                "Fragen konnten nicht geladen werden (Internet?)."
+                if (it.message == "HTTP 404") {
+                    "Im Repository liegen keine neueren Fragen."
+                } else {
+                    "Fragen konnten nicht geladen werden (Internet?)."
+                }
             }
             main.post {
                 reload()

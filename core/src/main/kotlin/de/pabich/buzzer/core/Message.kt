@@ -122,6 +122,12 @@ sealed interface Message {
     /** S → M: tippt gerade eine Kurznachricht (an) bzw. fertig (aus). */
     data class Typing(val on: Boolean) : Message
 
+    /** S → M: Teil [index] von [count] eines Diagnoseberichts von [from] (Build [build]). */
+    data class DiagnoseChunk(val reportId: String, val index: Int, val count: Int, val from: String, val build: Int, val text: String) : Message
+
+    /** M → S: Diagnosebericht vollständig erhalten. */
+    data class DiagnoseReceived(val reportId: String) : Message
+
     /** Beide Richtungen: bitte die eigene App (APK) schicken. */
     data object ApkRequest : Message
 
@@ -212,6 +218,11 @@ object MessageCodec {
             )
             is Message.QuizChallenge -> "QUIZ_CHALLENGE" to mapOf("n" to message.number, "r" to message.reason)
             is Message.Typing -> "TYPING" to mapOf("on" to message.on)
+            is Message.DiagnoseChunk -> "DIAG" to mapOf(
+                "id" to message.reportId, "i" to message.index, "n" to message.count,
+                "f" to message.from, "b" to message.build, "t" to message.text,
+            )
+            is Message.DiagnoseReceived -> "DIAG_OK" to mapOf("id" to message.reportId)
             Message.ApkRequest -> "APK_REQUEST" to emptyMap()
             is Message.ApkInfo -> "APK_INFO" to mapOf("id" to message.payloadId, "b" to message.build, "sz" to message.size)
         }
@@ -282,6 +293,8 @@ object MessageCodec {
             )
             "QUIZ_CHALLENGE" -> Message.QuizChallenge(int("n"), f.getValue("r"))
             "TYPING" -> Message.Typing(bool("on"))
+            "DIAG" -> Message.DiagnoseChunk(f.getValue("id"), int("i"), int("n"), f.getValue("f"), int("b"), f.getValue("t"))
+            "DIAG_OK" -> Message.DiagnoseReceived(f.getValue("id"))
             "APK_REQUEST" -> Message.ApkRequest
             "APK_INFO" -> Message.ApkInfo(long("id"), int("b"), long("sz"))
             else -> null

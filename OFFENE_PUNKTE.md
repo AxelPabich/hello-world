@@ -197,6 +197,30 @@ Kategorien recherchieren.
   Punkte nach 8 Sekunden ohne Tastendruck von selbst. Nur der Master erhält die Meldung.
 - Die Punkte sind nur ein Hinweis – die Freigabe wird dadurch nicht blockiert.
 
+## Umgesetzt im nächsten Build (Punkte 18–21, Paket „Aktuelles 2026“)
+
+18. **Standort ausgeschaltet:** Manche Geräte (z. B. Galaxy A53, Android 16) verlangen für die
+    Suche nicht nur die Berechtigung, sondern auch den eingeschalteten Standort – sonst Fehler
+    8034. Vor der Suche prüfen und mit Hinweis direkt zur Standort-Einstellung führen; Fehler
+    8034 verständlich erklären.
+19. **„Fragen aktualisieren“:** Bei HTTP 404 nicht „(Internet?)“ melden, sondern „Im
+    Repository liegen keine neueren Fragen“.
+20. **Prüfcode auf beiden Geräten (Sicherheit geht vor):** Der vierstellige Nearby-Code
+    erscheint beim Master im Beitrittsdialog **und** beim Spieler („Warte auf Bestätigung –
+    Code 7179, vergleiche ihn mit dem Spielleiter“). Nur bei gleichem Code annehmen. Der Code
+    steht zusätzlich im Protokoll beider Geräte.
+21. **Diagnose an den Master schicken und in GitHub ablegen (Entscheidungen vom 13.10.2026):**
+    - Spieler: „An den Spielleiter senden“ im Diagnose-Dialog; Übertragung über Nearby.
+      Systeminfos nur, wenn der Spieler sie ankreuzt – mit kurzer Erklärung, wozu sie dienen
+      und wie die Daten geschützt sind.
+    - Master: sammelt die Berichte und lädt sie in das **private** Repository
+      `AxelPabich/buzzer-diagnose` hoch: `diagnose/JJJJ-MM-TT/Build-N/Name-HH-MM.txt`.
+    - Zugang über ein Fine-grained Token (nur dieses Repository, „Contents: Read and write“),
+      einmalig in der App eingegeben, verschlüsselt im Android-Keystore gespeichert.
+      Beim ersten Hochladen zeigt die App eine Schritt-für-Schritt-Anleitung.
+    - Keine zusätzliche Verschlüsselung mit dem Token (Begründung: sonst könnte nur das
+      Master-Gerät die Berichte lesen, auch Claude nicht; das private Repository schützt sie).
+
 ## Offen
 
 (keine)

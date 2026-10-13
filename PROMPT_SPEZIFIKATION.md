@@ -21,7 +21,7 @@ Reihenfolge antworten darf.
   gefundenen Gruppen.
 - **Beitreten:** Der Spieler wählt eine Gruppe und schickt eine Verbindungsanfrage
   mit seinem Namen. Beim Master erscheint der Dialog „*Name* möchte beitreten“
-  mit **Annehmen / Ablehnen**.
+  mit **Annehmen / Ablehnen** und dem vierstelligen Prüfcode (siehe Abschnitt 28).
 - Nachrichten an „alle“ verschickt der Master per `sendPayload` an die Liste aller
   verbundenen Spieler.
 - Ein Beitritt ist nur zwischen zwei Runden möglich (Zustand *Bereit*).
@@ -457,4 +457,34 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - Tippt ein Teilnehmer im Nachrichtenfenster, erscheinen beim Master neben dem Brief-Knopf
   drei pulsierende Punkte (ohne Namen). Sie verschwinden beim Senden/Schließen bzw. nach
   8 Sekunden ohne Tastendruck. Nur ein Hinweis – die Freigabe wird nicht blockiert.
+
+## 28. Prüfcode beim Beitreten
+
+- Nearby erzeugt für jede Verbindung einen vierstelligen Prüfcode, der auf beiden Geräten gleich
+  ist. Der Master sieht ihn im Beitrittsdialog, der Spieler groß beim Warten auf die Bestätigung.
+  Der Master nimmt nur an, wenn beide denselben Code sehen – so verbindet sich kein fremdes Gerät
+  unbemerkt. Der Code steht außerdem im Protokoll beider Geräte.
+
+## 29. Diagnose an den Spielleiter und Ablage in GitHub
+
+- Der Diagnose-Dialog bietet zusätzlich: als Spieler **„An den Spielleiter senden“** (über die
+  Nearby-Verbindung, in Teilen übertragen), als Spielleiter **„In GitHub ablegen“** (eigener Bericht).
+- Systeminformationen kommen nur hinein, wenn der Nutzer sie ankreuzt; der Dialog erklärt kurz,
+  wozu sie dienen und wie die Daten geschützt sind (keine Standortdaten, Kontakte oder Nummern).
+- Der Spielleiter legt empfangene Berichte im **privaten** Repository `AxelPabich/buzzer-diagnose`
+  ab: `diagnose/JJJJ-MM-TT/Build-N/Name-HH-MM-SS.txt`. Mit eingerichtetem Zugang geschieht das
+  sofort, sonst über ⋮ „Diagnoseberichte in GitHub ablegen“. Der Spieler erhält eine Bestätigung.
+- Zugang: ein Fine-grained Token, das nur in dieses Repository schreiben darf (Contents: Read and
+  write). Beim ersten Hochladen zeigt die App eine Anleitung mit direkten Links zum Anlegen von
+  Repository und Token. Der Token liegt nur auf dem Gerät, verschlüsselt mit einem Schlüssel aus
+  dem Android-Keystore; „Über & Diagnose“ zeigt den Stand und kann ihn löschen. Die App prüft vor
+  dem Speichern, dass das Repository erreichbar und privat ist.
+
+## 30. Standort für die Suche
+
+- Manche Geräte verweigern die Suche, solange der Standort ausgeschaltet ist (Fehler 8034), obwohl
+  alle Berechtigungen erteilt sind. Die App prüft das vor der Suche und erklärt es mit dem Weg zur
+  Einstellung („Trotzdem suchen“ bleibt möglich). Fehler 8034 wird ebenso verständlich erklärt.
+- „Fragen aktualisieren“ meldet bei fehlenden Paketen im Repository „Im Repository liegen keine
+  neueren Fragen“ statt eines Internet-Hinweises.
 ===== ENDE SPEZIFIKATION.md =====

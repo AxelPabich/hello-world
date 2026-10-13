@@ -27,6 +27,9 @@ class NearbyLink(context: Context, private val listener: Listener) {
         fun onEndpointFound(endpointId: String, name: String)
         fun onEndpointLost(endpointId: String)
 
+        /** Nur beim Spieler: Prüfcode der eigenen Anfrage – zum Vergleich mit dem Spielleiter. */
+        fun onConnectionCode(endpointId: String, authCode: String)
+
         /** Nur beim Master: ein Spieler möchte beitreten. */
         fun onConnectionRequest(endpointId: String, name: String, authCode: String)
         fun onConnected(endpointId: String, name: String)
@@ -103,6 +106,7 @@ class NearbyLink(context: Context, private val listener: Listener) {
                 listener.onConnectionRequest(endpointId, info.endpointName, info.authenticationDigits)
             } else {
                 // Der Spieler hat selbst angefragt; die Entscheidung trifft der Master.
+                listener.onConnectionCode(endpointId, info.authenticationDigits)
                 client.acceptConnection(endpointId, payloadCallback)
             }
         }
