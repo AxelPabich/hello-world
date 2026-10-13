@@ -231,7 +231,8 @@ class ExtensionsTest {
         val config = AppConfig(
             playerName = "Axel",
             receiveEmojis = false,
-            lastSettings = Settings(timeLimitMs = 6_000),
+            soundOn = false,
+            lastSettings = Settings(timeLimitMs = 6_000, sounds = setOf(SoundEvent.CHASE)),
             lastProfileName = "Familie",
             profiles = listOf(
                 StoredProfile("Familie", SettingsCodec.toMap(Settings(tieThresholdMs = 30))),

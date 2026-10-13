@@ -13,6 +13,10 @@ data class StoredProfile(val name: String, val values: Map<String, String>) {
 data class AppConfig(
     val playerName: String = "",
     val receiveEmojis: Boolean = true,
+    /** Töne auf diesem Gerät. */
+    val soundOn: Boolean = true,
+    /** Gewähltes Design (derzeit nur „quizshow“). */
+    val design: String = "quizshow",
     val lastSettings: Settings = Settings(),
     val lastProfileName: String = "",
     val profiles: List<StoredProfile> = emptyList(),
@@ -38,6 +42,8 @@ object ConfigFormat {
         val version: Int,
         val playerName: String?,
         val receiveEmojis: Boolean?,
+        val soundOn: Boolean?,
+        val design: String?,
         val settings: Settings?,
         val lastProfileName: String?,
         val profiles: List<StoredProfile>,
@@ -49,6 +55,8 @@ object ConfigFormat {
         if (parts.name) {
             p["player.name"] = config.playerName
             p["player.receiveEmojis"] = config.receiveEmojis.toString()
+            p["player.soundOn"] = config.soundOn.toString()
+            p["app.design"] = config.design
         }
         if (parts.settings) {
             SettingsCodec.toMap(config.lastSettings).forEach { (k, v) -> p["settings.$k"] = v }
@@ -81,6 +89,8 @@ object ConfigFormat {
             version = p.getProperty("format.version")?.toIntOrNull() ?: 1,
             playerName = p.getProperty("player.name"),
             receiveEmojis = p.getProperty("player.receiveEmojis")?.toBooleanStrictOrNull(),
+            soundOn = p.getProperty("player.soundOn")?.toBooleanStrictOrNull(),
+            design = p.getProperty("app.design"),
             settings = settingsMap.takeIf { it.isNotEmpty() }?.let { SettingsCodec.fromMap(it).settings },
             lastProfileName = p.getProperty("settings.profileName"),
             profiles = profiles,
@@ -93,6 +103,8 @@ object ConfigFormat {
         return AppConfig(
             playerName = c.playerName ?: "",
             receiveEmojis = c.receiveEmojis ?: true,
+            soundOn = c.soundOn ?: true,
+            design = c.design ?: "quizshow",
             lastSettings = c.settings ?: Settings(),
             lastProfileName = c.lastProfileName ?: "",
             profiles = c.profiles,

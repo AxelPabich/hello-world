@@ -3,6 +3,7 @@ package de.pabich.buzzer
 import android.app.Application
 import android.net.Uri
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,10 +14,13 @@ import de.pabich.buzzer.core.ConfigFormat
 import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.Message
 import de.pabich.buzzer.core.PlayerEngine
+import de.pabich.buzzer.core.Display
 import de.pabich.buzzer.core.Settings
 import de.pabich.buzzer.core.SettingsCodec
+import de.pabich.buzzer.core.SoundEvent
+import kotlin.math.abs
 
-enum class Screen { START, DISCOVER, MASTER, PLAYER }
+enum class Screen { START, DISCOVER, MASTER, PLAYER, SETTINGS, HELP, ABOUT }
 
 data class Group(val endpointId: String, val name: String)
 
@@ -63,6 +67,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     var receiveEmojis by mutableStateOf(store.config.receiveEmojis)
         private set
+    var soundOn by mutableStateOf(store.config.soundOn)
+        private set
+    var designId by mutableStateOf(store.config.design)
+        private set
+
+    /** Laufender Spielverlauf (Animation), sonst `null`. */
+    var replay by mutableStateOf<Message.Replay?>(null)
+        private set
+
+    /** Zählt hoch, wenn auf diesem Gerät „Richtig“ gefeiert wird (Konfetti). */
+    var confettiSeq by mutableIntStateOf(0)
+        private set
     val emotes = mutableStateListOf<FlyingEmote>()
     val chat = mutableStateListOf<ChatLine>()
     var receivedProfile by mutableStateOf<ReceivedProfile?>(null)
@@ -73,6 +89,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     var importContent by mutableStateOf<ConfigFormat.Content?>(null)
 
     private val link = NearbyLink(app, this)
+    private val sounds = SoundPlayer(app)
+    private var tickDeadline: Long? = null
+    private var tickTask: Cancellable? = null
+    private var chaseStream = 0
     private val scheduler = MainThreadScheduler()
     private var master: MasterEngine? = null
     private var player: PlayerEngine? = null
@@ -102,9 +122,16 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             }
         }
         engine.masterName = myName.trim()
-        engine.onChanged = { masterSnapshot = it }
+        engine.onChanged = { snap ->
+            masterSnapshot = snap
+            // Tickende Uhr auf dem Master-Gerät, solange jemand antwortet.
+            val deadline = snap.answerDeadline.takeIf { snap.phase == MasterEngine.Phase.ANSWERING }
+            updateTicking(deadline.takeIf { SoundEvent.TICK in snap.settings.sounds })
+        }
         engine.onEmote = { from, emoji -> showEmote(from, emoji) }
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
+        engine.onSound = { sound(it) }
+        engine.onReplay = { startReplay(it) }
         master = engine
         engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
         syncLocalPlayer(engine)
@@ -134,6 +161,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Reguläres Beenden; auf Wunsch werden danach alle Diagnosedaten gelöscht. */
     fun leave(deleteDiagnostics: Boolean = false) {
         Diagnostics.log("Verlassen")
+        updateTicking(null)
+        replayDone()
         val engine = master
         if (engine != null) {
             // Erst verabschieden, dann trennen – sonst kommt die Nachricht nicht mehr an.
@@ -211,7 +240,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             val local = PlayerEngine(UptimeClock, scheduler) { message ->
                 scheduler.schedule(0) { master?.onMessage(LOCAL_PLAYER_ID, message) }
             }
-            local.onViewChanged = { playerView = it }
+            local.onViewChanged = { onPlayerView(it, remote = false) }
+            local.onSound = { playSoundEvent(it) }
+            local.onArmed = { if (SoundEvent.HUM in local.view.rules.sounds) sound(SoundEvent.HUM) }
             player = local
             playerView = local.view
             engine.addPlayer(LOCAL_PLAYER_ID, "${myName.trim()} (Master)", local = true)
@@ -279,6 +310,93 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         master?.sendEmote(emoji) ?: player?.sendEmote(emoji)
     }
 
+    // ------------------------------------------------------------------ Klänge, Spielverlauf, Design
+
+    private fun sound(event: SoundEvent): Int = if (soundOn) sounds.play(event) else 0
+
+    /** Klang, den der Master für dieses Gerät geschickt hat. */
+    private fun playSoundEvent(event: SoundEvent) {
+        sound(event)
+        if (event == SoundEvent.RIGHT) confettiSeq++
+    }
+
+    /** Eingeschaltete Klänge des laufenden Profils (Master: eigene Einstellungen). */
+    private val activeSounds: Set<SoundEvent>
+        get() = master?.settings?.sounds ?: playerView?.rules?.sounds ?: emptySet()
+
+    /** Neue Spieleranzeige: Klänge bei Zustandswechseln, tickende Uhr beim Antworten. */
+    private fun onPlayerView(new: PlayerEngine.View, remote: Boolean) {
+        val old = playerView
+        val enabled = new.rules.sounds
+        fun play(e: SoundEvent) { if (e in enabled) sound(e) }
+        if (old != null) {
+            if (new.display == Display.PRESSED && old.display != Display.PRESSED) play(SoundEvent.BUZZ)
+            if (new.display == Display.GREEN && old.display != Display.GREEN) play(SoundEvent.FIRST)
+            if (new.display == Display.RED && old.display != Display.RED) play(SoundEvent.RED)
+            if (new.display == Display.GRAY && old.display != Display.GRAY && new.hint == "Frühstart") play(SoundEvent.FALSE_START)
+        }
+        if (remote) {
+            val timer = new.timer
+            val answering = new.display == Display.GREEN && timer?.kind == PlayerEngine.TimerKind.ANSWER
+            updateTicking(if (answering && SoundEvent.TICK in enabled) timer!!.startAt + timer.durationMs else null)
+        }
+        playerView = new
+    }
+
+    /** Tickt jede Sekunde, in den letzten 5 Sekunden doppelt so schnell. */
+    private fun updateTicking(deadline: Long?) {
+        val current = tickDeadline
+        // Der Master schickt den Antwort-Timer wiederholt; kleine Abweichungen sind dieselbe Frist.
+        if (deadline != null && current != null && abs(deadline - current) < 300) return
+        if (deadline == null && current == null) return
+        tickTask?.cancel()
+        tickTask = null
+        tickDeadline = deadline
+        if (deadline == null) return
+        fun tick() {
+            val left = deadline - UptimeClock.now()
+            if (left <= 0 || tickDeadline != deadline) return
+            sound(SoundEvent.TICK)
+            tickTask = scheduler.schedule(if (left > 5_000) 1_000 else 500) { tick() }
+        }
+        tick()
+    }
+
+    private fun startReplay(r: Message.Replay) {
+        replayDone()
+        replay = r
+        if (SoundEvent.CHASE in activeSounds) chaseStream = sound(SoundEvent.CHASE)
+    }
+
+    /** Ende der Animation: Musik stoppen. */
+    fun replayDone() {
+        sounds.stop(chaseStream)
+        chaseStream = 0
+        replay = null
+    }
+
+    fun showReplay() = master?.showReplay()
+
+    fun setPaused(on: Boolean) = master?.setPaused(on)
+
+    /** Letzte Runde: anderer Sieger ([winner]) oder storniert (`null`). */
+    fun correctLastRound(winner: String?) = master?.correctLastRound(winner)
+
+    fun changeSoundOn(on: Boolean) {
+        soundOn = on
+        store.setSoundOn(on)
+        if (!on) replayDone()
+    }
+
+    fun changeDesign(id: String) {
+        designId = id
+        store.setDesign(id)
+    }
+
+    fun navigate(target: Screen) {
+        if (target in listOf(Screen.START, Screen.SETTINGS, Screen.HELP, Screen.ABOUT)) screen = target
+    }
+
     fun changeReceiveEmojis(receive: Boolean) {
         receiveEmojis = receive
         store.setReceiveEmojis(receive)
@@ -289,6 +407,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private fun showEmote(from: String, emoji: String) {
         if (!receiveEmojis) return
         emotes += FlyingEmote(++emoteSeq, from, emoji)
+        if (SoundEvent.EMOTE in activeSounds) sound(SoundEvent.EMOTE)
     }
 
     fun emoteDone(id: Long) {
@@ -304,6 +423,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     private fun addChat(line: ChatLine) {
         chat += line
+        if (!line.outgoing && SoundEvent.CHAT in activeSounds) sound(SoundEvent.CHAT)
         while (chat.size > 30) chat.removeAt(0)
     }
 
@@ -376,7 +496,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         connectingTo = null
         link.stopDiscovery()
         val engineForPlayer = PlayerEngine(UptimeClock, scheduler, log = Diagnostics::log) { link.send(endpointId, it) }
-        engineForPlayer.onViewChanged = { playerView = it }
+        engineForPlayer.onViewChanged = { onPlayerView(it, remote = true) }
+        engineForPlayer.onSound = { playSoundEvent(it) }
+        engineForPlayer.onReplay = { startReplay(it) }
+        engineForPlayer.onArmed = { if (SoundEvent.HUM in engineForPlayer.view.rules.sounds) sound(SoundEvent.HUM) }
         engineForPlayer.onEmote = { from, emoji -> showEmote(from, emoji) }
         engineForPlayer.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engineForPlayer.onProfile = { profileName, values -> receivedProfile = ReceivedProfile(profileName, values) }
@@ -427,6 +550,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     override fun onCleared() {
         master?.close()
         link.stopAll()
+        sounds.release()
     }
 
     companion object {

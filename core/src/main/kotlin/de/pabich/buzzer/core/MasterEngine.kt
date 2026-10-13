@@ -43,6 +43,22 @@ class MasterEngine(
         /** Ende der Antwortzeit (Master-Uhr) oder `null`. */
         val answerDeadline: Long?,
         val profileName: String,
+        val canShowReplay: Boolean,
+        /** Spiel pausiert (Overlay bei den Spielern). */
+        val paused: Boolean,
+        /** Letzte gewertete Runde lässt sich korrigieren. */
+        val canCorrectLastRound: Boolean,
+        /** Runde und Sieger der letzten gewerteten Runde (`null` = kein Sieger/storniert). */
+        val lastRound: Int?,
+        val lastRoundWinner: PlayerId?,
+    )
+
+    /** Ergebnis einer beendeten Runde – Grundlage für nachträgliche Korrekturen. */
+    private data class RoundResult(
+        val round: Int,
+        val winner: PlayerId?,
+        val amount: Long,
+        val reactions: Map<PlayerId, Long?>,
     )
 
     private enum class Status { IDLE, WAITING, HOLDING, BUZZED, OUT }
@@ -74,6 +90,12 @@ class MasterEngine(
     /** Kurznachricht an den Master oder an alle. */
     var onChat: ((from: String, text: String, toAll: Boolean) -> Unit)? = null
 
+    /** Klang auf dem Master-Gerät (bereits nach den Profil-Einstellungen gefiltert). */
+    var onSound: ((SoundEvent) -> Unit)? = null
+
+    /** Spielverlauf für die Anzeige auf dem Master-Gerät. */
+    var onReplay: ((Message.Replay) -> Unit)? = null
+
     /** Name des Spielleiters für Kurznachrichten und Emoticons. */
     var masterName = "Spielleiter"
 
@@ -100,6 +122,15 @@ class MasterEngine(
     private var answerTimerPlayer: PlayerId? = null
     private var answerDeadline: Long? = null
 
+    /** Punktestände nach jeder Runde; der erste Eintrag ist der Start (alle 0). */
+    private val history = mutableListOf<Map<PlayerId, Long>>()
+    private var recordedRound = -1
+    private var lastResult: RoundResult? = null
+    private var pendingWinner: Pair<PlayerId, Long>? = null
+
+    var paused = false
+        private set
+
     // ------------------------------------------------------------------ Spieler
 
     fun addPlayer(id: PlayerId, name: String, local: Boolean = false) {
@@ -107,7 +138,9 @@ class MasterEngine(
         if (local) player.sync.setLocal()
         players[id] = player
         log("Spieler beigetreten: $name ($id)")
+        if (!local) masterSound(SoundEvent.JOIN)
         send(id, configMessage())
+        if (paused) send(id, Message.Pause(true))
         broadcastRoster()
         broadcastScoreboard()
         notifyChanged()
@@ -166,6 +199,9 @@ class MasterEngine(
     fun newGame() {
         if (phase != Phase.READY) return
         gameStarted = false
+        history.clear()
+        recordedRound = -1
+        lastResult = null
         players.values.forEach { it.score = 0 }
         players.values.forEach { send(it.id, Message.Reset(scoreText(it))) }
         broadcastScoreboard()
@@ -202,7 +238,7 @@ class MasterEngine(
 
     /** „Buzzer frei“ (Modus B) bzw. „Buzzer scharf“ (Modus A). */
     fun release(): Boolean {
-        if (phase != Phase.READY) return false
+        if (phase != Phase.READY || paused) return false
         val participants = players.values.filter { it.connected }
         if (participants.isEmpty()) return false
         round++
@@ -215,6 +251,9 @@ class MasterEngine(
         }
         log("Runde $round freigegeben; Funk-Laufzeiten: " +
             participants.joinToString { "${it.name} ${it.sync.recentMaxRttMs ?: "?"} ms" })
+        for (p in participants.filter { it.sync.rttOutlier }) {
+            log("Hinweis: Funk-Laufzeit ${p.name} ${p.sync.recentMaxRttMs} ms (sonst ~${p.sync.typicalRttMs} ms)")
+        }
         startContest(participants.map { it.id }.toSet(), suddenDeath = false)
         return true
     }
@@ -224,12 +263,12 @@ class MasterEngine(
         val player = players[answeringPlayer() ?: return false] ?: return false
         cancelAnswerTimer()
         log("Richtig: ${player.name}")
-        player.score += when (settings.scoring) {
-            ScoringMode.CORRECT_ANSWERS -> 1
-            ScoringMode.REMAINING_TIME -> (settings.timeLimitMs - (player.roundReactionMs ?: settings.timeLimitMs)).coerceAtLeast(0)
-        }
+        val amount = award(player.roundReactionMs)
+        player.score += amount
+        pendingWinner = player.id to amount
         phase = Phase.ROUND_OVER
-        broadcastStates()
+        sendSound(listOf(player.id), SoundEvent.RIGHT)
+        broadcastStates(roundEndExcept = player.id)
         return true
     }
 
@@ -238,6 +277,7 @@ class MasterEngine(
         val player = players[answeringPlayer() ?: return false] ?: return false
         cancelAnswerTimer()
         log("Falsch: ${player.name}")
+        sendSound(listOf(player.id), SoundEvent.WRONG)
         player.status = Status.OUT
         advance(answerIndex + 1)
         broadcastStates()
@@ -271,6 +311,8 @@ class MasterEngine(
         cancelAnswerTimer()
         val player = players[id] ?: return
         log("Antwortzeit abgelaufen: ${player.name} – zählt als falsch")
+        sendSound(listOf(player.id), SoundEvent.TIMEOUT)
+        if (!player.local) masterSound(SoundEvent.TIMEOUT)
         player.status = Status.OUT
         if (settings.autoAdvanceOnTimeout) {
             advance(answerIndex + 1)
@@ -372,7 +414,108 @@ class MasterEngine(
         messagesEnabled = settings.messagesEnabled,
         emojis = if (settings.emojisEnabled) settings.emojis else emptyList(),
         profileName = profileName,
+        sounds = settings.sounds,
     )
+
+    // ------------------------------------------------------------------ Klänge und Spielverlauf
+
+    private fun sendSound(to: Collection<PlayerId>, event: SoundEvent) {
+        if (event !in settings.sounds) return
+        for (id in to) players[id]?.takeIf { it.connected }?.let { send(it.id, Message.Sound(event)) }
+    }
+
+    private fun masterSound(event: SoundEvent) {
+        if (event in settings.sounds) onSound?.invoke(event)
+    }
+
+    private fun recordRound() {
+        if (history.isEmpty()) history += players.keys.associateWith { 0L }
+        history += players.values.associate { it.id to it.score }
+        recordedRound = round
+        lastResult = RoundResult(
+            round = round,
+            winner = pendingWinner?.first,
+            amount = pendingWinner?.second ?: 0,
+            reactions = players.values.associate { it.id to it.roundReactionMs },
+        )
+        pendingWinner = null
+    }
+
+    /** Punkte für einen richtigen Antworter: 1 Punkt bzw. Restzeit bis zum Limit. */
+    private fun award(reactionMs: Long?): Long = when (settings.scoring) {
+        ScoringMode.CORRECT_ANSWERS -> 1
+        ScoringMode.REMAINING_TIME -> (settings.timeLimitMs - (reactionMs ?: settings.timeLimitMs)).coerceAtLeast(0)
+    }
+
+    fun canCorrectLastRound(): Boolean = (phase == Phase.READY || phase == Phase.ROUND_OVER) && lastResult != null
+
+    /**
+     * Korrigiert die letzte gewertete Runde: [newWinner] wird Sieger (Punkt bzw. seine Restzeit aus
+     * dieser Runde, ohne Buzz 0), `null` storniert die Wertung. Punkte- bzw. Zeitkonten und der
+     * Spielverlauf werden angepasst.
+     */
+    fun correctLastRound(newWinner: PlayerId?): Boolean {
+        val result = lastResult ?: return false
+        if (!canCorrectLastRound()) return false
+        if (newWinner != null && players[newWinner] == null) return false
+        if (result.winner == newWinner) return true
+        result.winner?.let { players[it] }?.let { it.score = (it.score - result.amount).coerceAtLeast(0) }
+        val amount = if (newWinner != null) award(result.reactions[newWinner]) else 0
+        newWinner?.let { players[it] }?.let { it.score += amount }
+        lastResult = result.copy(winner = newWinner, amount = amount)
+        if (history.isNotEmpty()) history[history.lastIndex] = players.values.associate { it.id to it.score }
+        log(
+            "Korrektur Runde ${result.round}: " +
+                (newWinner?.let { "Sieger jetzt ${players[it]?.name} (+${formatScore(amount, settings.scoring)})" } ?: "Wertung storniert"),
+        )
+        if (phase == Phase.READY) {
+            players.values.filter { it.connected }.forEach { send(it.id, Message.Reset(scoreText(it))) }
+        } else {
+            broadcastStates()
+        }
+        broadcastScoreboard()
+        notifyChanged()
+        return true
+    }
+
+    /** Spielpause nur zwischen den Runden; die Spieler sehen dann ein Pausen-Overlay. */
+    fun setPaused(on: Boolean): Boolean {
+        if (on && phase != Phase.READY && phase != Phase.ROUND_OVER) return false
+        if (paused == on) return true
+        paused = on
+        log(if (on) "Spiel pausiert" else "Pause beendet")
+        players.values.filter { it.connected }.forEach { send(it.id, Message.Pause(on)) }
+        notifyChanged()
+        return true
+    }
+
+    /** Spielverlauf geht nur in den Pausen und erst nach mindestens einer Runde. */
+    fun canShowReplay(): Boolean = (phase == Phase.READY || phase == Phase.ROUND_OVER) && history.size >= 2
+
+    /** Zeigt auf allen Bildschirmen eine Animation des Spielverlaufs (höchstens 10 s). */
+    fun showReplay(): Boolean {
+        if (!canShowReplay()) return false
+        val shown = players.values.filter { it.connected }
+        val frames = history.map { frame -> shown.map { frame[it.id] ?: 0L } }
+        val duration = (3_000L + 1_000L * (frames.size - 1)).coerceAtMost(MAX_REPLAY_MS)
+        fun forViewer(viewer: PlayerId?) = Message.Replay(
+            labels = shown.map { p ->
+                when {
+                    p.id == viewer -> "Du"
+                    viewer == null || settings.boardShowNames -> p.name
+                    else -> "???"
+                }
+            },
+            selfIndex = shown.indexOfFirst { it.id == viewer },
+            frames = frames,
+            scoring = settings.scoring,
+            durationMs = duration,
+        )
+        for (p in shown) if (!p.local) send(p.id, forViewer(p.id))
+        onReplay?.invoke(forViewer(null))
+        log("Spielverlauf gezeigt (${frames.size - 1} Runden)")
+        return true
+    }
 
     private fun broadcastRoster() {
         val entries = listOf(MASTER_ADDRESS to masterName) +
@@ -490,7 +633,9 @@ class MasterEngine(
     private fun placePending(c: Contest) {
         if (c.pending.isEmpty()) return
         val entries = c.pending.map { it to (players[it]?.contestReactionMs ?: Long.MAX_VALUE) }
-        order.addAll(groupByReaction(entries, settings.tieThresholdMs).map { it.toMutableList() })
+        val groups = groupByReaction(entries, settings.tieThresholdMs)
+        groups.filter { it.size > 1 }.forEach { logTie(it) }
+        order.addAll(groups.map { it.toMutableList() })
         c.pending.clear()
     }
 
@@ -502,7 +647,10 @@ class MasterEngine(
         contest = null
         for (id in c.participants) {
             val p = players[id] ?: continue
-            if (p.status == Status.WAITING || p.status == Status.HOLDING) p.status = Status.OUT
+            if (p.status == Status.WAITING || p.status == Status.HOLDING) {
+                p.status = Status.OUT
+                if (p.connected) log("Keine Reaktion: ${p.name}" + if (c.suddenDeath) " (Sudden Death)" else "")
+            }
             if (p.connected) send(id, Message.Freeze(round))
         }
         if (!c.suddenDeath) {
@@ -513,7 +661,10 @@ class MasterEngine(
             val members = order[groupIndex]
             val buzzed = members.filter { players[it]?.status == Status.BUZZED }
                 .map { it to (players[it]?.contestReactionMs ?: Long.MAX_VALUE) }
-            val resolved = groupByReaction(buzzed, settings.tieThresholdMs).map { it.toMutableList() } +
+            val resolvedGroups = groupByReaction(buzzed, settings.tieThresholdMs)
+            resolvedGroups.filter { it.size > 1 }.forEach { logTie(it) }
+            log("Sudden Death: " + buzzed.sortedBy { it.second }.joinToString { "${players[it.first]?.name} ${it.second} ms" })
+            val resolved = resolvedGroups.map { it.toMutableList() } +
                 members.filter { players[it]?.status != Status.BUZZED }.map { mutableListOf(it) }
             order.removeAt(groupIndex)
             order.addAll(groupIndex, resolved)
@@ -536,6 +687,9 @@ class MasterEngine(
             return
         }
         // Gleichstand: kurz pink zeigen, dann Sudden Death mit größerem Zufallsbereich.
+        log("Sudden Death um Platz ${order.take(index).sumOf { it.size } + 1}: " + active.joinToString("/") { players[it]?.name ?: it })
+        sendSound(players.values.filter { !it.local }.map { it.id }, SoundEvent.SUDDEN_DEATH)
+        masterSound(SoundEvent.SUDDEN_DEATH)
         phase = Phase.SUDDEN_DEATH_PREP
         val r = round
         scheduler.schedule(SUDDEN_DEATH_PAUSE_MS) {
@@ -580,7 +734,13 @@ class MasterEngine(
     }
 
     /** Schickt allen, die gerade nicht selbst im Durchgang stehen, ihre verbindliche Anzeige. */
-    private fun broadcastStates() {
+    private fun broadcastStates(roundEndExcept: PlayerId? = null) {
+        if (phase == Phase.ROUND_OVER && recordedRound != round) {
+            recordRound()
+            // Wer gerade „Richtig“ hört, bekommt keinen zweiten Klang darüber.
+            sendSound(players.values.filter { !it.local && it.id != roundEndExcept }.map { it.id }, SoundEvent.ROUND_END)
+            if (roundEndExcept?.let { players[it] }?.local != true) masterSound(SoundEvent.ROUND_END)
+        }
         val c = contest
         for (p in players.values) {
             if (!p.connected || p.status == Status.IDLE) continue
@@ -628,6 +788,11 @@ class MasterEngine(
         },
         answerDeadline = answerDeadline,
         profileName = profileName,
+        canShowReplay = canShowReplay(),
+        paused = paused,
+        canCorrectLastRound = canCorrectLastRound(),
+        lastRound = lastResult?.round,
+        lastRoundWinner = lastResult?.winner,
     )
 
     private fun notifyChanged() {
@@ -638,6 +803,11 @@ class MasterEngine(
 
     private fun answeringPlayer(): PlayerId? =
         order.getOrNull(answerIndex)?.firstOrNull { players[it]?.status != Status.OUT }
+
+    private fun logTie(group: List<PlayerId>) {
+        val times = group.mapNotNull { players[it]?.contestReactionMs }
+        log("Gleichstand ${group.joinToString("/") { players[it]?.name ?: it }} (${times.max() - times.min()} ms)")
+    }
 
     private fun matches(c: Contest, round: Int, attempt: Int) = round == this.round && attempt == c.attempt
 
@@ -661,6 +831,7 @@ class MasterEngine(
 
     companion object {
         const val SUDDEN_DEATH_PAUSE_MS = 1_500L
+        const val MAX_REPLAY_MS = 10_000L
         private const val UNKNOWN_RTT_MS = 300L
     }
 }

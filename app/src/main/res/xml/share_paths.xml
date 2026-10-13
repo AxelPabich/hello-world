@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Ordner, aus dem die App ihre eigene Installationsdatei zum Weitergeben freigibt. -->
+<paths>
+    <cache-path name="share" path="share/" />
+</paths>

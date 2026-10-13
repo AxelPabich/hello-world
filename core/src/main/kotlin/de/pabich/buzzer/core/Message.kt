@@ -49,6 +49,7 @@ sealed interface Message {
         val messagesEnabled: Boolean,
         val emojis: List<String>,
         val profileName: String,
+        val sounds: Set<SoundEvent> = DEFAULT_SOUNDS,
     ) : Message
 
     /** M → S: Antwortzeit des grünen Spielers, Rest in ms ab Empfang (0 = keine). */
@@ -74,6 +75,25 @@ sealed interface Message {
 
     /** M → S: der Spielleiter schließt die Gruppe. */
     data object Bye : Message
+
+    /** M → S: Spielpause an/aus – Spieler sehen ein Pausen-Overlay. */
+    data class Pause(val on: Boolean) : Message
+
+    /** M → S: diesen Klang jetzt abspielen. */
+    data class Sound(val event: SoundEvent) : Message
+
+    /**
+     * M → S: Spielverlauf als Animation. [labels] aus Sicht des Empfängers (eigener Eintrag „Du“
+     * an Position [selfIndex], sonst -1); [frames] = Punktestände je Spieler nach jeder Runde,
+     * der erste Frame ist der Start.
+     */
+    data class Replay(
+        val labels: List<String>,
+        val selfIndex: Int,
+        val frames: List<List<Long>>,
+        val scoring: ScoringMode,
+        val durationMs: Long,
+    ) : Message
 }
 
 const val ALL_ADDRESS = "*"
@@ -104,6 +124,14 @@ object MessageCodec {
             is Message.Config -> "CONFIG" to mapOf(
                 "rl" to message.reactionLimitMs, "al" to message.answerLimitMs, "me" to message.messagesEnabled,
                 "em" to encodeList(message.emojis), "pn" to message.profileName,
+                "so" to message.sounds.joinToString(",") { it.name },
+            )
+            is Message.Sound -> "SOUND" to mapOf("e" to message.event.name)
+            is Message.Pause -> "PAUSE" to mapOf("on" to message.on)
+            is Message.Replay -> "REPLAY" to mapOf(
+                "l" to encodeList(message.labels), "s" to message.selfIndex,
+                "f" to message.frames.joinToString(";") { it.joinToString(",") },
+                "sc" to message.scoring, "d" to message.durationMs,
             )
             is Message.AnswerTimer -> "ANSWER_TIMER" to mapOf("ms" to message.remainingMs)
             is Message.Emote -> "EMOTE" to mapOf("f" to message.from, "e" to message.emoji)
@@ -148,7 +176,18 @@ object MessageCodec {
             "FREEZE" -> Message.Freeze(int("r"))
             "RESET" -> Message.Reset(f.getValue("s"))
             "BOARD" -> Message.Scoreboard(decodeEntries(f.getValue("e")), long("m"), bool("sh"))
-            "CONFIG" -> Message.Config(long("rl"), long("al"), bool("me"), decodeList(f.getValue("em")), f.getValue("pn"))
+            "CONFIG" -> Message.Config(
+                long("rl"), long("al"), bool("me"), decodeList(f.getValue("em")), f.getValue("pn"),
+                f["so"]?.let { v -> v.split(',').filter { it.isNotEmpty() }.mapNotNull { n -> SoundEvent.entries.firstOrNull { it.name == n } }.toSet() }
+                    ?: DEFAULT_SOUNDS,
+            )
+            "PAUSE" -> Message.Pause(bool("on"))
+            "SOUND" -> SoundEvent.entries.firstOrNull { it.name == f.getValue("e") }?.let { Message.Sound(it) }
+            "REPLAY" -> Message.Replay(
+                decodeList(f.getValue("l")), int("s"),
+                f.getValue("f").split(';').filter { it.isNotEmpty() }.map { row -> row.split(',').map { it.toLong() } },
+                ScoringMode.valueOf(f.getValue("sc")), long("d"),
+            )
             "ANSWER_TIMER" -> Message.AnswerTimer(long("ms"))
             "EMOTE" -> Message.Emote(f.getValue("f"), f.getValue("e"))
             "PREFS" -> Message.Prefs(bool("re"))

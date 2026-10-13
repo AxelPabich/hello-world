@@ -32,6 +32,27 @@ enum class Display {
 }
 
 val DEFAULT_EMOJIS = listOf("👍", "😂", "😮", "🤔", "😅", "😎", "🙈")
+
+/** Klangereignisse im Spiel. Wo ein Ton erklingt, legt die App fest (siehe Spezifikation). */
+enum class SoundEvent(val label: String, val defaultOn: Boolean = true) {
+    JOIN("Spieler tritt bei – Ding"),
+    HUM("Buzzer scharf – elektrisches Summen"),
+    BUZZ("Eigener Buzz – Buzzer"),
+    FIRST("Du bist dran – Fanfare"),
+    RED("Nicht Erster – Bonk"),
+    FALSE_START("Frühstart – Tröte"),
+    SUDDEN_DEATH("Gleichstand – Trommelwirbel"),
+    TICK("Antwortzeit – tickende Uhr"),
+    TIMEOUT("Zeit abgelaufen – Gong"),
+    RIGHT("Richtig – Ding Ding + Applaus"),
+    WRONG("Falsch – Wah-wah-wah"),
+    ROUND_END("Rundenende – Trommelwirbel + Tusch"),
+    EMOTE("Emoticon – Plopp", defaultOn = false),
+    CHAT("Kurznachricht – Pling"),
+    CHASE("Spielverlauf – Verfolgungsjagd"),
+}
+
+val DEFAULT_SOUNDS: Set<SoundEvent> = SoundEvent.entries.filter { it.defaultOn }.toSet()
 const val EMOJI_COUNT = 7
 
 data class Settings(
@@ -57,6 +78,8 @@ data class Settings(
     val messagesEnabled: Boolean = true,
     val emojisEnabled: Boolean = true,
     val emojis: List<String> = DEFAULT_EMOJIS,
+    /** Eingeschaltete Klänge dieses Profils. */
+    val sounds: Set<SoundEvent> = DEFAULT_SOUNDS,
 ) {
     /** Reaktionszeit-Limit oder `null`, wenn ausgeschaltet. */
     val reactionLimitMs: Long? get() = if (reactionLimitEnabled) timeLimitMs else null

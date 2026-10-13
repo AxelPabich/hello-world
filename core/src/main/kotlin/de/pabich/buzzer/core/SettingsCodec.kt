@@ -26,6 +26,7 @@ object SettingsCodec {
         "messagesEnabled" to "Kurznachrichten erlaubt",
         "emojisEnabled" to "Emoticons erlaubt",
         "emojis" to "Emoticon-Auswahl",
+        "sounds" to "Klänge",
     )
 
     val KEYS: Set<String> get() = LABELS.keys
@@ -49,6 +50,7 @@ object SettingsCodec {
         "messagesEnabled" to s.messagesEnabled.toString(),
         "emojisEnabled" to s.emojisEnabled.toString(),
         "emojis" to s.emojis.joinToString(" "),
+        "sounds" to s.sounds.sortedBy { it.ordinal }.joinToString(",") { it.name },
     )
 
     data class Decoded(val settings: Settings, val missingKeys: List<String>)
@@ -81,6 +83,9 @@ object SettingsCodec {
             messagesEnabled = read("messagesEnabled", d.messagesEnabled) { it.toBooleanStrict() },
             emojisEnabled = read("emojisEnabled", d.emojisEnabled) { it.toBooleanStrict() },
             emojis = read("emojis", d.emojis) { v -> v.split(' ').filter { it.isNotEmpty() }.takeIf { it.isNotEmpty() } },
+            sounds = read("sounds", d.sounds) { v ->
+                v.split(',').filter { it.isNotEmpty() }.mapNotNull { n -> SoundEvent.entries.firstOrNull { it.name == n } }.toSet()
+            },
         )
         return Decoded(s.normalized(), missing)
     }

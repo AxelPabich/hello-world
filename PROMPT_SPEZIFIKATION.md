@@ -280,9 +280,72 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 - Das Diagnose-Protokoll liegt in einer Datei und übersteht Neustarts. Es enthält
   auch Spielereignisse (Freigabe, Reaktionszeiten, Ergebnis, Richtig/Falsch,
   Funk-Laufzeiten) und bei einem Abbruch die Zeit seit der letzten Nachricht.
+  Der Master protokolliert außerdem fehlende Reaktionen, Gleichstände mit Abstand,
+  Sudden-Death-Ergebnisse und auffällige Funk-Laufzeiten; wiederholte gleiche
+  Anzeigen stehen beim Spieler nur einmal im Protokoll.
 - Schließt der Master die Gruppe, verabschiedet er sich; Spieler sehen „Der
   Spielleiter hat die Gruppe geschlossen“ statt „Verbindung abgebrochen“.
 - Beim regulären Verlassen/Schließen kann jeder alle Diagnosedaten löschen.
 - Alle Builds werden mit demselben Schlüssel signiert, damit Updates über die
   vorherige Version installiert werden können.
+
+---
+
+## 17. Oberfläche und Menü
+
+- Design „TV-Quizshow“ (Nachtblau, Gold, Türkis; Schriften Anton und Barlow).
+  Weitere Designs lassen sich ergänzen und in den App-Einstellungen wählen.
+- Die Oberfläche bleibt in der nutzbaren Bildschirmfläche: Status-, Navigations- und
+  Taskleiste, schwebende System-Knöpfe und Kameraaussparung werden ausgespart.
+- Startbildschirm: Name, Kacheln „Spiel leiten“ / „Mitspielen“, Menü „Profile &
+  Einstellungen“ (Töne, Emoticons, Design, Profile, Export/Import), „Hilfe &
+  Spielregeln“, „Über & Diagnose“.
+- Spieler: großer runder Buzzer in der Zustandsfarbe (pulsiert bei Gelb, wackelt bei
+  Frühstart, Konfetti bei „Richtig“), oben Emoticons/Ton/Chat, unten Zeitbalken.
+- Master: Spielerkarten mit Statusring, Platz, Zeiten und Punktebalken; unten ein
+  Hauptknopf je Phase; seltene Aktionen im Menü ⋮.
+
+## 18. Klänge
+
+- Alle Klänge werden synthetisch erzeugt.
+- Welche Klänge erklingen, ist je Profil einstellbar (Tab „Klang“, mit „Auf Standard
+  zurücksetzen“); jedes Gerät kann zusätzlich stummschalten.
+- „Richtig“ und „Falsch“ hört nur der betroffene Spieler. Bei der Freigabe gibt es
+  keinen Ton (unterschiedliche Lautsprecher-Verzögerung wäre unfair); das Summen beim
+  Scharfschalten hat eine feste Länge und endet nicht mit der Freigabe.
+
+## 19. Spielverlauf
+
+- In den Pausen kann der Master auf allen Bildschirmen eine Animation des bisherigen
+  Spielverlaufs zeigen: Punktebalken wachsen Runde für Runde, die Zeilen tauschen die
+  Plätze. Dauer höchstens 10 Sekunden, dazu Verfolgungsjagd-Musik auf allen Geräten.
+- Namen folgen der Ranglisten-Einstellung („???“ wenn ausgeblendet, eigener Eintrag „Du“).
+
+## 20. Korrektur der letzten Runde
+
+- In den Pausen kann der Master die letzte gewertete Runde korrigieren: einen anderen
+  Spieler zum Sieger erklären oder die Wertung stornieren.
+- Punkterunde: der Punkt wandert bzw. entfällt. Zeitrunde: dem bisherigen Sieger wird
+  seine Restzeit abgezogen, der neue bekommt seine Restzeit aus dieser Runde (ohne Buzz 0 s).
+- Ranglisten, Anzeigen und der Spielverlauf werden angepasst.
+
+## 21. Spielpause
+
+- Zwischen den Runden kann der Master das Spiel pausieren. Alle Spieler-Bildschirme
+  werden verdeckt: „Kurze Pause – Gleich geht es weiter“. Während der Pause lässt sich
+  keine Runde freigeben; wer neu beitritt, sieht die Pause ebenfalls.
+
+## 22. App weitergeben
+
+- Im Startmenü und im Master-Menü ⋮ gibt es „App weitergeben“. Die App kopiert ihre
+  eigene Installationsdatei (APK) und übergibt sie an Android:
+  - **Per Bluetooth senden:** öffnet direkt das Bluetooth-Senden des Systems; gibt es das
+    auf dem Gerät nicht, erscheint die normale Teilen-Auswahl.
+  - **Teilen …:** Teilen-Auswahl (Quick Share, Messenger usw.).
+  - **QR-Code** mit dem festen Download-Link der neuesten Version.
+- Der Empfänger öffnet die Datei, erlaubt einmal „Installation aus unbekannten Quellen“
+  und installiert. Weil alle Builds mit demselben Schlüssel signiert sind, lassen sich
+  weitergegebene Versionen später als Update installieren.
+- Android erlaubt keine stille Übertragung: Gerät und Übertragung bestätigt der Nutzer im
+  System. Welche Wege funktionieren, hängt vom Handy-Hersteller ab.
 ===== ENDE SPEZIFIKATION.md =====

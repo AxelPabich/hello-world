@@ -25,6 +25,7 @@ class PlayerEngine(
         val messagesEnabled: Boolean = false,
         val emojis: List<String> = emptyList(),
         val profileName: String = "",
+        val sounds: Set<SoundEvent> = DEFAULT_SOUNDS,
     )
 
     data class View(
@@ -39,6 +40,8 @@ class PlayerEngine(
         val timer: Timer? = null,
         val rules: Rules = Rules(),
         val roster: List<Pair<PlayerId, String>> = emptyList(),
+        /** Spielpause: Overlay „Kurze Pause“. */
+        val paused: Boolean = false,
     )
 
     var onViewChanged: ((View) -> Unit)? = null
@@ -46,6 +49,11 @@ class PlayerEngine(
     var onChat: ((from: String, text: String, toAll: Boolean) -> Unit)? = null
     var onProfile: ((name: String, values: Map<String, String>) -> Unit)? = null
     var onBye: (() -> Unit)? = null
+    var onSound: ((SoundEvent) -> Unit)? = null
+
+    /** Ein Durchgang beginnt (Buzzer scharf); für das Summen – nie zeitgleich mit der Freigabe. */
+    var onArmed: (() -> Unit)? = null
+    var onReplay: ((Message.Replay) -> Unit)? = null
 
     var view = View(Display.BLACK, 0, "0", "Warte auf den Spielleiter")
         private set
@@ -62,6 +70,7 @@ class PlayerEngine(
     private var goAt: Long? = null
     private var fingerDown = false
     private val tasks = mutableListOf<Cancellable>()
+    private var lastLoggedDisplay: String? = null
 
     fun onMessage(message: Message) {
         lastMessageAt = clock.now()
@@ -80,7 +89,10 @@ class PlayerEngine(
             is Message.GoAt -> onGoAt(message)
             is Message.State -> {
                 endContest()
-                log("Anzeige: ${message.display}" + if (message.place > 0) " Platz ${message.place}" else "")
+                // Der Master wiederholt Anzeigen; gleiche aufeinanderfolgende nur einmal protokollieren.
+                val line = "Anzeige: ${message.display}" + if (message.place > 0) " Platz ${message.place}" else ""
+                if (line != lastLoggedDisplay) log(line)
+                lastLoggedDisplay = line
                 // Ein laufender Antwort-Timer wird vom Master direkt danach erneut geschickt.
                 update { it.copy(timer = null) }
                 show(message.display, hintFor(message.display), message.place, message.score)
@@ -105,6 +117,7 @@ class PlayerEngine(
                         messagesEnabled = message.messagesEnabled,
                         emojis = message.emojis,
                         profileName = message.profileName,
+                        sounds = message.sounds,
                     ),
                 )
             }
@@ -115,6 +128,12 @@ class PlayerEngine(
             is Message.Emote -> onEmote?.invoke(message.from, message.emoji)
             is Message.Chat -> onChat?.invoke(message.from, message.text, message.toAll)
             is Message.Profile -> onProfile?.invoke(message.name, message.values)
+            is Message.Sound -> onSound?.invoke(message.event)
+            is Message.Pause -> {
+                log(if (message.on) "Pause" else "Pause beendet")
+                update { it.copy(paused = message.on) }
+            }
+            is Message.Replay -> onReplay?.invoke(message)
             Message.Bye -> {
                 log("Spielleiter hat die Gruppe geschlossen")
                 onBye?.invoke()
@@ -189,6 +208,7 @@ class PlayerEngine(
 
     private fun startContest(round: Int, attempt: Int, mode: StartMode, suddenDeath: Boolean) {
         endContest()
+        lastLoggedDisplay = null
         this.round = round
         this.attempt = attempt
         this.mode = mode
@@ -197,6 +217,7 @@ class PlayerEngine(
         active = true
         // Während des Buzzerns lenkt die Rangliste nur ab.
         view = view.copy(showBoard = false, timer = null)
+        onArmed?.invoke()
     }
 
     private fun endContest() {

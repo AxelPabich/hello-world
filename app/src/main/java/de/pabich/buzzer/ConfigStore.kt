@@ -42,6 +42,10 @@ class ConfigStore(private val context: Context) {
 
     fun setReceiveEmojis(receive: Boolean) = update { it.copy(receiveEmojis = receive) }
 
+    fun setSoundOn(on: Boolean) = update { it.copy(soundOn = on) }
+
+    fun setDesign(id: String) = update { it.copy(design = id) }
+
     fun setLastSettings(settings: Settings, profileName: String) =
         update { it.copy(lastSettings = settings, lastProfileName = profileName) }
 
