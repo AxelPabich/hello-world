@@ -35,6 +35,12 @@
       "titel": "Küche & Genuss",
       "version": 1,
       "fragen": 12
+    },
+    {
+      "datei": "aktuell-2026.json",
+      "titel": "Aktuelles 2026",
+      "version": 1,
+      "fragen": 20
     }
   ]
 }

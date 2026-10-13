@@ -1,0 +1,348 @@
+{
+  "paket": "aktuell-2026",
+  "titel": "Aktuelles 2026",
+  "version": 1,
+  "hinweis": "Fragen zu Ereignissen des Jahres 2026 (Stand 13.10.2026), recherchiert per Websuche; laufen Ende 2027 ab.",
+  "fragen": [
+    {
+      "id": "akt26-0001",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welche Nation wurde 2026 Fußball-Weltmeister?",
+      "antworten": [
+        "Spanien",
+        "Argentinien",
+        "Frankreich",
+        "San Marino, dank eines Fehlers im Videobeweis"
+      ],
+      "erklaerung": "Spanien schlug Argentinien im Finale am 19. Juli 2026 mit 1:0 nach Verlängerung – der zweite WM-Titel nach 2010.",
+      "quelle": "https://www.npr.org/2026/07/19/nx-s1-5899071/2026-world-cup-fifa-argentina-spain-final-championship",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0002",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erzielte das einzige Tor im WM-Finale 2026?",
+      "antworten": [
+        "Ferran Torres",
+        "Lamine Yamal",
+        "Lionel Messi",
+        "Nico Williams"
+      ],
+      "erklaerung": "Nico Williams legte per Kopf auf, Ferran Torres traf und wurde Spieler des Spiels.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_final",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0003",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welcher Film gewann bei den Oscars 2026 den Preis als „Bester Film“?",
+      "antworten": [
+        "„One Battle After Another“ von Paul Thomas Anderson",
+        "„Blood & Sinners“",
+        "„Hamnet“",
+        "„KPop Demon Hunters“"
+      ],
+      "erklaerung": "Sechs Oscars, auch für die Regie. „Blood & Sinners“ ging mit 16 Nominierungen ins Rennen, „KPop Demon Hunters“ wurde bester Animationsfilm.",
+      "quelle": "https://www.aljazeera.com/news/2026/3/16/oscars-2026-full-list-of-winners",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0004",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welches Land gewann den Eurovision Song Contest 2026 in Wien?",
+      "antworten": [
+        "Bulgarien mit „Bangaranga“",
+        "Israel",
+        "Rumänien",
+        "Österreich – der Gastgeber gewinnt schließlich immer"
+      ],
+      "erklaerung": "Dara holte 516 Punkte und gewann Jury- und Publikumswertung – Bulgariens erster ESC-Sieg. 2027 ist Bulgarien Gastgeber.",
+      "quelle": "https://en.wikipedia.org/wiki/Eurovision_Song_Contest_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0005",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Gegen wen verlor Deutschland das Finale der Handball-EM 2026?",
+      "antworten": [
+        "Dänemark",
+        "Schweden",
+        "Frankreich",
+        "Island"
+      ],
+      "erklaerung": "27:34 in Herning – Silber für das Team von Alfred Gíslason.",
+      "quelle": "https://www.sportschau.de/handball/em/deutschland-unterliegt-daenemarks-handball-koenigen,bericht-ger-dae-104.html",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0006",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wo fanden die Olympischen Winterspiele 2026 statt?",
+      "antworten": [
+        "In Mailand und Cortina d’Ampezzo",
+        "In Garmisch-Partenkirchen",
+        "In Salt Lake City",
+        "Im Kühlregal eines sehr großen Supermarkts"
+      ],
+      "erklaerung": "Vom 6. bis 22. Februar 2026 in Italien.",
+      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0007",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Auf welchem Platz landete Deutschland im Medaillenspiegel der Winterspiele 2026?",
+      "antworten": [
+        "Platz 5",
+        "Platz 1",
+        "Platz 2",
+        "Platz 12"
+      ],
+      "erklaerung": "8 Gold, 10 Silber, 8 Bronze. 2022 in Peking war es noch Platz 2.",
+      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0008",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Mit welcher Mission flogen im April 2026 erstmals seit über 50 Jahren wieder Menschen zum Mond?",
+      "antworten": [
+        "Artemis II",
+        "Apollo 18",
+        "Gateway I",
+        "Chang’e 7"
+      ],
+      "erklaerung": "Vier Astronauten umrundeten den Mond in der Orion-Kapsel, ohne zu landen (1.–11. April 2026).",
+      "quelle": "https://www.nasa.gov/mission/artemis-ii/",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0009",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer flog mit Artemis II als erster Nicht-Amerikaner zum Mond?",
+      "antworten": [
+        "Jeremy Hansen aus Kanada",
+        "Alexander Gerst",
+        "Thomas Pesquet",
+        "Matthias Maurer"
+      ],
+      "erklaerung": "Mit an Bord: Reid Wiseman, Victor Glover und Christina Koch.",
+      "quelle": "https://de.wikipedia.org/wiki/Artemis_2",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0010",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wofür gab es den Physik-Nobelpreis 2026?",
+      "antworten": [
+        "Für die Entdeckung hochenergetischer Neutrinos aus dem All",
+        "Für den ersten fehlerfreien Quantencomputer",
+        "Für den Nachweis Dunkler Materie",
+        "Für den Nachweis von Gravitationswellen"
+      ],
+      "erklaerung": "Francis Halzen wurde für das IceCube-Observatorium im antarktischen Eis geehrt. Gravitationswellen waren 2017 dran.",
+      "quelle": "https://www.spektrum.de/news/physik-nobelpreis-2026-fuer-forschung-zu-hochenergetischen-neutrinos/2343916",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0011",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Die Deutschen Peter Hegemann und Georg Nagel erhielten 2026 den Medizin-Nobelpreis – wofür?",
+      "antworten": [
+        "Für die Optogenetik: Nervenzellen mit Licht steuern",
+        "Für mRNA-Impfstoffe",
+        "Für die Genschere CRISPR",
+        "Für künstliche Organe aus dem 3D-Drucker"
+      ],
+      "erklaerung": "Zusammen mit Karl Deisseroth. mRNA wurde 2023 ausgezeichnet, CRISPR 2020 (Chemie).",
+      "quelle": "https://newstime.joyn.de/themen/panorama/nobelpreistraeger2026-frieden-medizin-chemie-physik-wirtschaft-literatur-196616",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0012",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erhielt den Friedensnobelpreis 2026?",
+      "antworten": [
+        "Navi Pillay, frühere UN-Menschenrechtskommissarin",
+        "Greta Thunberg",
+        "Wolodymyr Selenskyj",
+        "Ban Ki-moon"
+      ],
+      "erklaerung": "Die südafrikanische Juristin wurde für ihren Einsatz für Frieden und Völkerrecht geehrt.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Nobel_Peace_Prize",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0013",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erhielt den Literaturnobelpreis 2026?",
+      "antworten": [
+        "Die kanadische Dichterin Anne Carson",
+        "Haruki Murakami",
+        "Margaret Atwood",
+        "Salman Rushdie"
+      ],
+      "erklaerung": "Die Schwedische Akademie würdigte ihr kühnes und erfinderisches Werk.",
+      "quelle": "https://www.nobelprize.org/prizes/literature/2026/summary/",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0014",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wer wurde Deutscher Fußballmeister 2025/26?",
+      "antworten": [
+        "FC Bayern München",
+        "Borussia Dortmund",
+        "RB Leipzig",
+        "Der Hamburger SV, nach einer kleinen Pause"
+      ],
+      "erklaerung": "Mit 89 Punkten, 16 vor Dortmund – dazu kam der DFB-Pokal.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Bundesliga+2025%2F26",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0015",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Gegen wen gewann der FC Bayern das DFB-Pokalfinale 2026 mit 3:0?",
+      "antworten": [
+        "Gegen den VfB Stuttgart",
+        "Gegen Bayer Leverkusen",
+        "Gegen Borussia Dortmund",
+        "Gegen Arminia Bielefeld"
+      ],
+      "erklaerung": "Harry Kane traf dreimal – Bayerns 21. Pokalsieg, der erste seit 2020.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_DFB-Pokal_final",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0016",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wer gewann die Champions League 2026?",
+      "antworten": [
+        "Paris Saint-Germain",
+        "Der FC Arsenal",
+        "Real Madrid",
+        "Der FC Bayern München"
+      ],
+      "erklaerung": "PSG schlug Arsenal in Budapest im Elfmeterschießen (1:1 n. V.) und verteidigte den Titel.",
+      "quelle": "https://www.sportschau.de/fussball/championsleague/jubel-nach-elfmeterschiessen-psg-verteidigt-titel-gegen-arsenal,spielbericht-finale-paris-saint-germain-arsenal-100.html",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0017",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wer gewann die Tour de France 2026?",
+      "antworten": [
+        "Tadej Pogačar",
+        "Jonas Vingegaard",
+        "Remco Evenepoel",
+        "Primož Roglič"
+      ],
+      "erklaerung": "Sein fünfter Tour-Sieg. Evenepoel wurde Zweiter, Isaac del Toro Dritter.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Tour_de_France",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0018",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wen besiegte Jannik Sinner im Wimbledon-Finale 2026?",
+      "antworten": [
+        "Alexander Zverev",
+        "Carlos Alcaraz",
+        "Novak Djokovic",
+        "Daniil Medwedew"
+      ],
+      "erklaerung": "In vier Sätzen – Sinners zweiter Wimbledon-Titel in Folge. Bei den Damen gewann Linda Nosková.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Wimbledon_Championships",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0019",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Was kostet das Deutschlandticket seit Januar 2026 im Monat?",
+      "antworten": [
+        "63 Euro",
+        "49 Euro",
+        "58 Euro",
+        "129,99 Euro"
+      ],
+      "erklaerung": "Gestartet 2023 mit 49 €, 2025 dann 58 €. Die 129,99 € stammten aus einem gefälschten TikTok-Video.",
+      "quelle": "https://correctiv.org/faktencheck/aus-der-community/2026/01/15/deutschlandticket-tiktok-video-erfindet-drastischen-preisanstieg-fuer-2026/",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0020",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welcher Begriff wurde zum „Wort des Jahres 2025“ gewählt?",
+      "antworten": [
+        "„KI-Ära“",
+        "„Deal“",
+        "„Sondervermögen“",
+        "„Ampel-Aus“"
+      ],
+      "erklaerung": "„Deal“ kam auf Platz 2, „Sondervermögen“ auf Platz 4. „Ampel-Aus“ war das Wort des Jahres 2024.",
+      "quelle": "https://www.zdfheute.de/politik/deutschland/wort-des-jahres-2025-sprache-100.html",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    }
+  ]
+}
