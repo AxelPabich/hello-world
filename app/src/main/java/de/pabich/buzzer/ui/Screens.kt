@@ -11,6 +11,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -50,8 +51,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
+import de.pabich.buzzer.AppUpdate
 import de.pabich.buzzer.BuildConfig
 import de.pabich.buzzer.BuzzerViewModel
+import de.pabich.buzzer.core.GameKind
+import de.pabich.buzzer.core.PROTOCOL_VERSION
 import de.pabich.buzzer.Group
 import de.pabich.buzzer.Screen
 import de.pabich.buzzer.core.ConfigFormat
@@ -237,6 +242,10 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "Richtig oder falsch" to "Ist die Antwort falsch, kommt der Nächste dran. Bei einer begrenzten Antwortzeit zählt Zeitablauf als falsch.",
                 "Gleichstand" to "Liegen zwei Reaktionen fast gleichauf, werden beide pink und spielen ein Sudden Death.",
                 "In den Pausen" to "Rangliste, Kurznachrichten und – wenn der Spielleiter will – eine Animation des Spielverlaufs. Emoticons gehen immer.",
+                "Quiz" to "Im Quiz kommen die Fragen aus der Fragen-Datenbank. Die Frage erscheint auf allen Geräten gleichzeitig, 3 Sekunden später die vier Antworten – bei jedem in anderer Reihenfolge. Tippe deine Antwort; aufgelöst wird, wenn alle geantwortet haben oder die Zeit um ist.",
+                "Wertung im Quiz" to "Schnellster punktet: nur die erste richtige Antwort. Jeder punktet: jede richtige Antwort. Countdown: nach der ersten richtigen Antwort läuft nur noch kurz die Zeit, alle Richtigen bekommen ihre Restzeit. Battle: nur der Schnellste bekommt seine Restzeit. Falsche Antworten kosten nie etwas.",
+                "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Der Spielleiter prüft die Quelle und entscheidet: Wertung bleibt, Frage annullieren, Antwort korrigieren oder Frage sperren.",
+                "Versionen" to "Passen die App-Versionen nicht zusammen, holt sich das ältere Gerät die neuere Version direkt vom anderen (ohne Internet) oder lädt sie von der Release-Seite.",
             )
             for ((title, text) in sections) {
                 SectionTitle(title)
@@ -256,7 +265,16 @@ fun AboutScreen(vm: BuzzerViewModel) {
         BackHeader("Über & Diagnose") { vm.navigate(Screen.START) }
         ScrollPage {
             SectionTitle("Version")
-            Text("Buzzer ${BuildConfig.VERSION_NAME} (Build ${BuildConfig.VERSION_CODE})", color = theme.text, fontSize = 16.sp)
+            Text("Buzzer ${BuildConfig.VERSION_NAME} (Build ${BuildConfig.VERSION_CODE}, Protokoll $PROTOCOL_VERSION)", color = theme.text, fontSize = 16.sp)
+            UpdateSection(vm)
+            SectionTitle("Fragen-Datenbank")
+            Text("${vm.quizStore.questions.size} Fragen in ${vm.quizStore.packs.size} Paketen" + if (vm.quizDataVersion > 0) " (aktualisiert)" else "", color = theme.text, fontSize = 15.sp)
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.padding(top = 8.dp)) {
+                GhostButton("Fragen aktualisieren", { vm.refreshQuestions() }, Modifier.weight(1f))
+                val context = LocalContext.current
+                GhostButton("Statistik teilen", { vm.shareQuizStats(context) }, Modifier.weight(1f))
+            }
+            StatusText(vm)
             SectionTitle("Diagnose")
             Text(
                 "Bei Problemen einen Bericht über „Teilen“ verschicken. Systeminformationen kommen nur hinein, wenn du sie ankreuzt.",
@@ -331,28 +349,101 @@ fun DiscoverScreen(vm: BuzzerViewModel) {
                 }
             }
             LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                items(vm.groups, key = Group::endpointId) { group ->
-                    Row(
-                        Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(theme.panel)
-                            .clickable(enabled = vm.connectingTo == null) { vm.join(group) }
-                            .padding(18.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(group.name, color = theme.text, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
-                        if (vm.connectingTo == group.endpointId) {
-                            CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp, color = theme.accent)
-                        } else {
-                            Text("BEITRETEN", color = theme.accent, fontFamily = theme.display, fontSize = 18.sp)
-                        }
-                    }
-                }
+                items(vm.groups, key = Group::endpointId) { group -> GroupCard(vm, group) }
             }
             if (vm.connectingTo != null) Text("Warte auf Bestätigung durch den Spielleiter …", color = theme.muted, fontSize = 15.sp)
             StatusText(vm)
         }
+    }
+}
+
+@Composable
+private fun GroupCard(vm: BuzzerViewModel, group: Group) {
+    val theme = LocalBuzzerTheme.current
+    val peer = group.peer
+    val own = AppUpdate.ownBuild
+    val theirs = peer.build
+    Column(
+        Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(theme.panel)
+            .clickable(enabled = vm.connectingTo == null && peer.compatible) { vm.join(group) }
+            .padding(18.dp),
+        verticalArrangement = Arrangement.spacedBy(6.dp),
+    ) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text(group.name, color = theme.text, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+            when {
+                vm.connectingTo == group.endpointId -> CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp, color = theme.accent)
+                peer.compatible -> Text("BEITRETEN", color = theme.accent, fontFamily = theme.display, fontSize = 18.sp)
+                else -> Text("ANDERE VERSION", color = Color(0xFFFF9A9A), fontFamily = theme.display, fontSize = 16.sp)
+            }
+        }
+        val info = when {
+            peer.legacy -> "Der Spielleiter hat eine alte Version (Build 11 oder älter). Er muss einmal über „App weitergeben“ oder die Release-Seite aktualisieren."
+            !peer.compatible && theirs != null && theirs > own -> "Deine Version (Build $own) passt nicht zu Build $theirs des Spielleiters."
+            !peer.compatible -> "Der Spielleiter hat eine ältere, nicht passende Version (Build $theirs)."
+            theirs != null && theirs > own -> "Der Spielleiter hat eine neuere Version (Build $theirs) – du kannst trotzdem mitspielen."
+            else -> null
+        }
+        if (info != null) Text(info, color = theme.muted, fontSize = 14.sp)
+        if (!peer.legacy && theirs != null && theirs != own && vm.connectingTo == null) {
+            val label = if (theirs > own) "Build $theirs vom Spielleiter holen" else "Meine Version (Build $own) an den Spielleiter geben"
+            TextButton(onClick = { vm.joinForUpdate(group) }) { Text(label, color = theme.accent2, fontWeight = FontWeight.Bold) }
+        }
+        if (!peer.compatible && !peer.legacy && (theirs ?: 0) > own) {
+            TextButton(onClick = { vm.navigate(Screen.ABOUT) }) { Text("Neueste Version von der Release-Seite laden", color = theme.accent2) }
+        }
+    }
+}
+
+/** Nur zum Aktualisieren verbunden: Fortschritt und Installation. */
+@Composable
+fun UpdateScreen(vm: BuzzerViewModel) {
+    val theme = LocalBuzzerTheme.current
+    BackHandler { vm.leave() }
+    ThemedScreen {
+        BackHeader("Aktualisieren") { vm.leave() }
+        ScrollPage {
+            val t = vm.transfer
+            Text("Verbunden mit ${vm.updatePeerName ?: "dem Spielleiter"} – nur zum Aktualisieren.", color = theme.text, fontSize = 16.sp)
+            Spacer(Modifier.height(16.dp))
+            when {
+                t == null -> Text("Warte auf die Übertragung …", color = theme.muted, fontSize = 15.sp)
+                t.failed -> Text("Die Übertragung ist abgebrochen.", color = Color(0xFFFF9A9A), fontSize = 15.sp)
+                else -> TimeBar(
+                    t.progress,
+                    (if (t.incoming) "Empfange Build ${t.build}" else "Sende Build ${t.build}") + " – ${(t.progress * 100).toInt()} %" + if (t.done) " · fertig" else "",
+                    theme.accent2,
+                    Modifier.fillMaxWidth(),
+                )
+            }
+            if (t?.done == true && !t.incoming) {
+                Spacer(Modifier.height(12.dp))
+                Text("Fertig – der Spielleiter installiert jetzt die neue Version. Danach kannst du wieder beitreten.", color = theme.text, fontSize = 15.sp)
+            }
+            Spacer(Modifier.height(16.dp))
+            StatusText(vm)
+            GhostButton("Zurück zum Start", { vm.leave() }, Modifier.fillMaxWidth())
+        }
+    }
+}
+
+/** Version prüfen und die neueste aus dem Repository laden (Über-Seite). */
+@Composable
+private fun UpdateSection(vm: BuzzerViewModel) {
+    val theme = LocalBuzzerTheme.current
+    val repo = vm.repoBuild
+    Spacer(Modifier.height(8.dp))
+    when {
+        vm.downloadProgress != null -> TimeBar(vm.downloadProgress ?: 0f, "Lade die neueste Version …", theme.accent2, Modifier.fillMaxWidth())
+        repo == null -> GhostButton("Nach neuer Version suchen", { vm.checkRepoUpdate() }, Modifier.fillMaxWidth())
+        repo > AppUpdate.ownBuild -> {
+            Text("Build $repo ist verfügbar.", color = theme.text, fontSize = 15.sp)
+            PrimaryButton("Herunterladen und installieren", { vm.downloadFromRepo() }, Modifier.fillMaxWidth().padding(top = 8.dp), height = 52.dp)
+        }
+        else -> Text("Du hast die neueste Version.", color = theme.muted, fontSize = 15.sp)
     }
 }
 
@@ -378,16 +469,32 @@ fun PlayerScreen(vm: BuzzerViewModel) {
                 }
                 if (view.rules.messagesEnabled) BarButton("✉", enabled = vm.canChat) { showChat = true }
             }
-            BuzzerPad(
-                view = view,
-                onDown = { vm.onTouchDown(it) },
-                onUp = { vm.onTouchUp(it) },
-                modifier = Modifier.weight(1f).fillMaxWidth(),
-                chat = vm.chat,
-                confettiSeq = vm.confettiSeq,
-            )
+            if (view.kind == GameKind.QUIZ) {
+                QuizPlayerContent(
+                    view = view,
+                    name = vm.myName.trim(),
+                    emotes = vm.emotes,
+                    onEmoteDone = vm::emoteDone,
+                    chat = vm.chat,
+                    soundOn = vm.soundOn,
+                    confettiSeq = vm.confettiSeq,
+                    onTap = { pos, time -> vm.tapAnswer(pos, time) },
+                    onChallenge = { vm.challenge(it) },
+                    modifier = Modifier.weight(1f).fillMaxWidth(),
+                )
+            } else {
+                BuzzerPad(
+                    view = view,
+                    onDown = { vm.onTouchDown(it) },
+                    onUp = { vm.onTouchUp(it) },
+                    modifier = Modifier.weight(1f).fillMaxWidth(),
+                    chat = vm.chat,
+                    confettiSeq = vm.confettiSeq,
+                )
+            }
         }
-        EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
+        // Solange die Antwortzeit läuft, fliegen Emoticons nur in ihrer Bahn über dem Fragenfeld.
+        if (view.quiz?.timerRunning != true) EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
         if (view.paused) PauseOverlay()
         vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone) }
     }
@@ -396,7 +503,8 @@ fun PlayerScreen(vm: BuzzerViewModel) {
         ChatDialog(
             recipients = view.roster,
             onSend = { to, name, text -> vm.sendChat(to, name, text) },
-            onDismiss = { showChat = false },
+            onDismiss = { showChat = false; vm.chatTypingDone() },
+            onTyping = { vm.chatTyping() },
         )
     }
     vm.receivedProfile?.let { profile ->
@@ -440,13 +548,19 @@ fun MasterScreen(vm: BuzzerViewModel) {
                 onEmoji = { vm.sendEmote(it) },
             ) {
                 BarButton(if (vm.soundOn) "🔊" else "🔇") { vm.changeSoundOn(!vm.soundOn) }
-                if (settings.messagesEnabled) BarButton("✉", enabled = vm.canChat) { showChat = true }
+                if (settings.messagesEnabled) {
+                    BarButton("✉", enabled = vm.canChat) { showChat = true }
+                    // Jemand tippt gerade: mit der nächsten Frage noch kurz warten.
+                    if (snapshot.someoneTyping) TypingDots(Modifier.padding(end = 6.dp))
+                }
             }
-            Column(Modifier.weight(2f).padding(horizontal = 16.dp)) {
+            val choosing = vm.choosingKind || snapshot.kind == null
+            Column(Modifier.padding(horizontal = 16.dp)) {
                 Row(Modifier.padding(top = 14.dp, bottom = 8.dp), verticalAlignment = Alignment.Top) {
                     Column(Modifier.weight(1f)) {
-                        Kicker("Runde ${snapshot.round}" + if (snapshot.profileName.isNotEmpty()) " · ${snapshot.profileName}" else "")
-                        BigTitle(phaseText(snapshot), color = theme.text, size = 30.sp)
+                        val kindLabel = if (choosing) "Spiel leiten" else snapshot.kind?.label ?: ""
+                        Kicker(kindLabel + (if (snapshot.kind == GameKind.BUZZER && !choosing) " · Runde ${snapshot.round}" else "") + if (snapshot.profileName.isNotEmpty()) " · ${snapshot.profileName}" else "")
+                        BigTitle(if (choosing) "Spielart wählen" else phaseText(snapshot), color = theme.text, size = 26.sp)
                     }
                     Box {
                         Box(
@@ -458,6 +572,31 @@ fun MasterScreen(vm: BuzzerViewModel) {
                             contentAlignment = Alignment.Center,
                         ) { Text("⋮", color = theme.text, fontSize = 26.sp, fontWeight = FontWeight.Bold) }
                         DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                            DropdownMenuItem(
+                                text = { Text("Spielart wechseln (Quiz/Buzzer)") },
+                                enabled = snapshot.phase == Phase.READY && !choosing,
+                                onClick = { showMenu = false; vm.openKindChoice() },
+                            )
+                            if (snapshot.kind == GameKind.QUIZ) {
+                                DropdownMenuItem(
+                                    text = { Text("Quiz abbrechen") },
+                                    enabled = snapshot.phase != Phase.READY,
+                                    onClick = { showMenu = false; vm.stopQuiz() },
+                                )
+                            }
+                            val outdated = vm.outdatedPlayers
+                            if (outdated.isNotEmpty()) {
+                                DropdownMenuItem(
+                                    text = { Text("Alle auf Build ${AppUpdate.ownBuild} bringen (${outdated.size})") },
+                                    onClick = { showMenu = false; vm.pushUpdateToAll() },
+                                )
+                            }
+                            vm.newerPlayer?.let { (id, name, build) ->
+                                DropdownMenuItem(
+                                    text = { Text("Build $build von $name holen") },
+                                    onClick = { showMenu = false; vm.fetchUpdateFrom(id) },
+                                )
+                            }
                             DropdownMenuItem(
                                 text = { Text("Spieleinstellungen") },
                                 enabled = snapshot.phase == Phase.READY,
@@ -509,61 +648,74 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     }
                     Spacer(Modifier.height(8.dp))
                 }
-                if (snapshot.phase == Phase.READY) {
-                    Text(
-                        limitsText(PlayerEngine.Rules(reactionLimitMs = settings.reactionLimitMs, answerLimitMs = settings.answerLimit)),
-                        color = theme.muted,
-                        fontSize = 14.sp,
-                    )
-                }
-                Spacer(Modifier.height(8.dp))
-                LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    if (snapshot.players.isEmpty()) {
-                        item {
-                            Text(
-                                "Noch keine Spieler – warte auf Beitrittsanfragen …",
-                                color = theme.muted,
-                                fontSize = 16.sp,
-                                modifier = Modifier.padding(vertical = 16.dp),
-                            )
-                        }
-                    }
-                    val maxScore = snapshot.players.maxOfOrNull { it.scoreValue } ?: 0
-                    items(snapshot.players, key = { it.id }) { PlayerCard(it, maxScore) }
-                }
-                if (pause) ChatPanel(vm.chat, theme.text, Modifier.padding(vertical = 4.dp))
-                val deadline = snapshot.answerDeadline
-                if (snapshot.phase == Phase.ANSWERING && deadline != null) {
-                    AnswerCountdown(deadline, settings.answerLimitMs, theme.accent, Modifier.fillMaxWidth().padding(vertical = 6.dp))
-                }
-                StatusText(vm)
-                MasterActions(vm, snapshot)
             }
-            if (settings.masterPlays) {
-                vm.playerView?.let { view ->
-                    // Das Spielfeld des Masters nimmt 1/3 des Bildschirms ein.
-                    BuzzerPad(
-                        view = view,
-                        onDown = { vm.onTouchDown(it) },
-                        onUp = { vm.onTouchUp(it) },
-                        modifier = Modifier.weight(1f).fillMaxWidth(),
-                        compact = true,
-                    )
+            when {
+                choosing -> {
+                    KindChoice(vm, Modifier.weight(1f).fillMaxWidth())
+                    Box(Modifier.padding(horizontal = 16.dp)) { StatusText(vm) }
                 }
+                snapshot.kind == GameKind.QUIZ -> {
+                    QuizMasterBody(vm, snapshot)
+                    Box(Modifier.padding(horizontal = 16.dp)) { StatusText(vm) }
+                }
+                else -> BuzzerMasterBody(vm, snapshot)
             }
         }
-        EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
+        // Spielt der Master im Quiz mit, bleiben Emoticons während der Frage über seinem Antwortfeld.
+        val ownAnswers = snapshot.kind == GameKind.QUIZ && settings.masterPlays &&
+            (snapshot.phase == Phase.QUIZ_QUESTION || snapshot.phase == Phase.QUIZ_ANSWERS)
+        EmoteOverlay(
+            vm.emotes,
+            onDone = vm::emoteDone,
+            modifier = if (ownAnswers) Modifier.fillMaxWidth().fillMaxHeight(0.5f) else Modifier.fillMaxSize(),
+        )
         vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone) }
     }
 
     vm.joinRequests.firstOrNull()?.let { request ->
-        AlertDialog(
-            onDismissRequest = {},
-            title = { Text("Beitrittsanfrage") },
-            text = { Text("${request.name} möchte beitreten.\nCode: ${request.authCode}") },
-            confirmButton = { TextButton(onClick = { vm.acceptJoin(request) }) { Text("Annehmen") } },
-            dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
-        )
+        val peer = request.peer
+        val own = AppUpdate.ownBuild
+        when {
+            peer.legacy -> AlertDialog(
+                onDismissRequest = {},
+                title = { Text("Alte App-Version") },
+                text = {
+                    Text(
+                        "${request.name} hat eine alte Version (Build 11 oder älter) und kann nicht mitspielen. " +
+                            "Bitte die App über „App weitergeben“ (QR-Code oder Bluetooth) aktualisieren – danach geht es automatisch.",
+                    )
+                },
+                confirmButton = { TextButton(onClick = { vm.rejectJoin(request); showShare = true }) { Text("App weitergeben") } },
+                dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
+            )
+            peer.updateOnly || !peer.compatible -> AlertDialog(
+                onDismissRequest = {},
+                title = { Text("App aktualisieren") },
+                text = {
+                    val theirs = peer.build ?: 0
+                    Text(
+                        if (theirs > own) {
+                            "${request.name} hat eine neuere Version (Build $theirs, du: Build $own). Verbinden, um sie zu übernehmen?\nCode: ${request.authCode}"
+                        } else {
+                            "${request.name} möchte deine Version (Build $own) übernehmen (hat Build $theirs). Nur zum Aktualisieren, nicht zum Mitspielen.\nCode: ${request.authCode}"
+                        },
+                    )
+                },
+                confirmButton = { TextButton(onClick = { vm.acceptJoin(request) }) { Text("Verbinden") } },
+                dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
+            )
+            else -> AlertDialog(
+                onDismissRequest = {},
+                title = { Text("Beitrittsanfrage") },
+                text = {
+                    val theirs = peer.build
+                    val note = if (theirs != null && theirs != own) "\nVersion: Build $theirs (du: Build $own)" else ""
+                    Text("${request.name} möchte beitreten.\nCode: ${request.authCode}$note")
+                },
+                confirmButton = { TextButton(onClick = { vm.acceptJoin(request) }) { Text("Annehmen") } },
+                dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
+            )
+        }
     }
     if (showCorrection) {
         CorrectionDialog(
@@ -589,6 +741,57 @@ fun MasterScreen(vm: BuzzerViewModel) {
             onConfirm = { delete -> confirmLeave = false; vm.leave(delete) },
             onDismiss = { confirmLeave = false },
         )
+    }
+}
+
+/** Buzzer-Modus: Spielerkarten, Hauptknopf und (wenn der Master mitspielt) sein Buzzer. */
+@Composable
+private fun ColumnScope.BuzzerMasterBody(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) {
+    val theme = LocalBuzzerTheme.current
+    val settings = snapshot.settings
+    val pause = snapshot.phase == Phase.READY || snapshot.phase == Phase.ROUND_OVER
+    Column(Modifier.weight(2f).padding(horizontal = 16.dp)) {
+        if (snapshot.phase == Phase.READY) {
+            Text(
+                limitsText(PlayerEngine.Rules(reactionLimitMs = settings.reactionLimitMs, answerLimitMs = settings.answerLimit)),
+                color = theme.muted,
+                fontSize = 14.sp,
+            )
+        }
+        Spacer(Modifier.height(8.dp))
+        LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            if (snapshot.players.isEmpty()) {
+                item {
+                    Text(
+                        "Noch keine Spieler – warte auf Beitrittsanfragen …",
+                        color = theme.muted,
+                        fontSize = 16.sp,
+                        modifier = Modifier.padding(vertical = 16.dp),
+                    )
+                }
+            }
+            val maxScore = snapshot.players.maxOfOrNull { it.scoreValue } ?: 0
+            items(snapshot.players, key = { it.id }) { PlayerCard(it, maxScore, vm.peerBuilds[it.id]) }
+        }
+        if (pause) ChatPanel(vm.chat, theme.text, Modifier.padding(vertical = 4.dp))
+        val deadline = snapshot.answerDeadline
+        if (snapshot.phase == Phase.ANSWERING && deadline != null) {
+            AnswerCountdown(deadline, settings.answerLimitMs, theme.accent, Modifier.fillMaxWidth().padding(vertical = 6.dp))
+        }
+        StatusText(vm)
+        MasterActions(vm, snapshot)
+    }
+    if (settings.masterPlays) {
+        vm.playerView?.let { view ->
+            // Das Spielfeld des Masters nimmt 1/3 des Bildschirms ein.
+            BuzzerPad(
+                view = view,
+                onDown = { vm.onTouchDown(it) },
+                onUp = { vm.onTouchUp(it) },
+                modifier = Modifier.weight(1f).fillMaxWidth(),
+                compact = true,
+            )
+        }
     }
 }
 
@@ -620,7 +823,7 @@ private fun MasterActions(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) 
 }
 
 @Composable
-private fun PlayerCard(row: MasterEngine.PlayerRow, maxScore: Long) {
+private fun PlayerCard(row: MasterEngine.PlayerRow, maxScore: Long, build: Int? = null) {
     val theme = LocalBuzzerTheme.current
     val ring = when (row.display) {
         Display.GREEN -> Color(0xFF3EDB78)
@@ -649,7 +852,9 @@ private fun PlayerCard(row: MasterEngine.PlayerRow, maxScore: Long) {
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f),
                 )
-                val detail = listOfNotNull(row.reactionMs?.let { "$it ms" }, row.rttMs?.let { "Funk $it ms" }).joinToString(" · ")
+                // Abweichende App-Version zeigen, damit der Master sie angleichen kann.
+                val version = build?.takeIf { it != AppUpdate.ownBuild }?.let { "Build $it" }
+                val detail = listOfNotNull(row.reactionMs?.let { "$it ms" }, row.rttMs?.let { "Funk $it ms" }, version).joinToString(" · ")
                 Text(detail, color = theme.muted, fontSize = 13.sp)
             }
             ScoreBar(row.scoreValue, maxScore, theme.accent, Modifier.fillMaxWidth(), highlight = true)
@@ -659,7 +864,11 @@ private fun PlayerCard(row: MasterEngine.PlayerRow, maxScore: Long) {
 }
 
 private fun phaseText(snapshot: MasterEngine.Snapshot): String = when (snapshot.phase) {
-    Phase.READY -> if (snapshot.players.isEmpty()) "Warte auf Spieler" else "Frage stellen"
+    Phase.READY -> when {
+        snapshot.kind == GameKind.QUIZ -> if (snapshot.quiz?.finished == true) "Quiz beendet" else "Quiz einrichten"
+        snapshot.players.isEmpty() -> "Warte auf Spieler"
+        else -> "Frage stellen"
+    }
     Phase.WAIT_HOLD -> "Finger auflegen …"
     Phase.COUNTDOWN -> "Gleich geht's los"
     Phase.RUNNING -> "Buzzer offen!"
@@ -667,6 +876,8 @@ private fun phaseText(snapshot: MasterEngine.Snapshot): String = when (snapshot.
     Phase.ANSWERING -> "Antwort von ${snapshot.players.firstOrNull { it.display == Display.GREEN }?.name ?: "…"}"
     Phase.ANSWER_TIMEOUT -> "Zeit abgelaufen"
     Phase.ROUND_OVER -> "Runde beendet"
+    Phase.QUIZ_QUESTION, Phase.QUIZ_ANSWERS -> "Frage läuft"
+    Phase.QUIZ_REVEAL -> "Auflösung"
 }
 
 /** Verdeckt das Spielfeld während einer Pause des Spielleiters. */

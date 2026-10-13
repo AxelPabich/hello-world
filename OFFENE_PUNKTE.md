@@ -32,7 +32,7 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 
 13. App weitergeben (Bluetooth, Teilen-Auswahl, QR-Code) – Start- und Master-Menü.
 
-## Offen
+## Umgesetzt im Quiz-Build (Punkte 14–17)
 
 ### 14. Quiz-Modus (Entscheidungen vom 13.10.2026)
 
@@ -196,6 +196,10 @@ Kategorien recherchieren.
   Senden oder Schließen; bleibt die Meldung aus (Verbindung weg), verschwinden die
   Punkte nach 8 Sekunden ohne Tastendruck von selbst. Nur der Master erhält die Meldung.
 - Die Punkte sind nur ein Hinweis – die Freigabe wird dadurch nicht blockiert.
+
+## Offen
+
+(keine)
 
 ### Konzept Oberfläche (Vorschlag)
 

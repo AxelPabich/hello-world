@@ -49,6 +49,13 @@ android {
         compose = true
         buildConfig = true
     }
+
+    // Die Fragenpakete aus dem Repository (quiz/) werden als Assets eingebaut.
+    sourceSets {
+        getByName("main") {
+            assets.srcDir(rootProject.file("quiz"))
+        }
+    }
 }
 
 kotlin {

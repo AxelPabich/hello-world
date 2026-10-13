@@ -35,6 +35,9 @@ import de.pabich.buzzer.ui.Themes
 import de.pabich.buzzer.ui.MasterScreen
 import de.pabich.buzzer.ui.PlayerScreen
 import de.pabich.buzzer.ui.StartScreen
+import de.pabich.buzzer.ui.TransferBanner
+import de.pabich.buzzer.ui.UpdateDialog
+import de.pabich.buzzer.ui.UpdateScreen
 
 class MainActivity : ComponentActivity() {
     private val viewModel: BuzzerViewModel by viewModels()
@@ -89,19 +92,26 @@ private fun App(vm: BuzzerViewModel) {
         }
     }
 
-    when (vm.screen) {
-        Screen.START -> StartScreen(
-            vm = vm,
-            onOpenGroup = { withPermissions { vm.openGroup() } },
-            onSearch = { withPermissions { vm.searchGroups() } },
-        )
-        Screen.DISCOVER -> DiscoverScreen(vm)
-        Screen.MASTER -> MasterScreen(vm)
-        Screen.PLAYER -> PlayerScreen(vm)
-        Screen.SETTINGS -> AppSettingsScreen(vm)
-        Screen.HELP -> HelpScreen(vm)
-        Screen.ABOUT -> AboutScreen(vm)
+    Box(Modifier.fillMaxSize()) {
+        when (vm.screen) {
+            Screen.START -> StartScreen(
+                vm = vm,
+                onOpenGroup = { withPermissions { vm.openGroup() } },
+                onSearch = { withPermissions { vm.searchGroups() } },
+            )
+            Screen.DISCOVER -> DiscoverScreen(vm)
+            Screen.MASTER -> MasterScreen(vm)
+            Screen.PLAYER -> PlayerScreen(vm)
+            Screen.UPDATE -> UpdateScreen(vm)
+            Screen.SETTINGS -> AppSettingsScreen(vm)
+            Screen.HELP -> HelpScreen(vm)
+            Screen.ABOUT -> AboutScreen(vm)
+        }
+        // Übertragung einer App-Version läuft neben dem Spiel – unten eingeblendet.
+        if (vm.screen != Screen.UPDATE) TransferBanner(vm, Modifier.align(androidx.compose.ui.Alignment.BottomCenter))
     }
+    // Neuere Version empfangen oder geladen: installieren?
+    UpdateDialog(vm)
 }
 
 /**

@@ -203,7 +203,7 @@ private fun BuzzerCircle(view: PlayerEngine.View, colors: StateColors, size: Dp)
 
 /** Konfetti, wenn auf diesem Gerät „Richtig“ gefeiert wird. Fängt keine Berührungen ab. */
 @Composable
-private fun Confetti(seq: Int) {
+fun Confetti(seq: Int) {
     if (seq == 0) return
     val progress = remember(seq) { Animatable(0f) }
     LaunchedEffect(seq) { progress.animateTo(1f, tween(2_600, easing = LinearEasing)) }

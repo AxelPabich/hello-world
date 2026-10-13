@@ -9,7 +9,8 @@ Router nötig). Die Spielregeln stehen in [SPEZIFIKATION.md](SPEZIFIKATION.md).
 | Ordner | Inhalt |
 |---|---|
 | `core/` | Spiellogik in reinem Kotlin, ohne Android: Protokoll, Uhrenabgleich, Rangfolge, Master- und Spieler-Ablauf. Mit Unit-Tests. |
-| `app/` | Android-App: Nearby-Verbindung, Oberfläche (Jetpack Compose), Berechtigungen. |
+| `app/` | Android-App: Nearby-Verbindung, Oberfläche (Jetpack Compose), Berechtigungen, Updates. |
+| `quiz/` | Fragenpakete für den Quiz-Modus (JSON, werden eingebaut und lassen sich nachladen). |
 
 Die wichtigsten Dateien:
 
@@ -17,7 +18,9 @@ Die wichtigsten Dateien:
 - `core/.../PlayerEngine.kt` – Freigabe zum vorgegebenen Zeitpunkt, Reaktionszeit am Touch-Ereignis, Frühstart
 - `core/.../ClockSync.kt` – Uhrenabgleich nach NTP-Prinzip
 - `app/.../NearbyLink.kt` – Gruppe eröffnen, suchen, beitreten, Nachrichten senden
+- `core/.../QuizStats.kt` – Statistik je Frage, gelernte Schwierigkeit, Fragenauswahl
 - `app/.../BuzzerViewModel.kt` – verbindet Nearby, Spiellogik und Oberfläche
+- `app/.../AppUpdate.kt` – neuere Version prüfen, empfangen, laden und installieren
 
 ## Bauen und installieren
 
@@ -54,5 +57,8 @@ Zeitlimit, Gleichstand mit Sudden Death, beide Startmodi und die Wertung.
    die Beitrittsanfrage (Annehmen / Ablehnen).
 3. Unter **Einstellungen** wählt der Spielleiter Startmodus, Zeiten, Wertung und ob er
    mitspielt.
-4. Frage stellen, **Buzzer frei** (Modus B) bzw. **Buzzer scharf** (Modus A).
-5. Nach dem Einfrieren **Richtig** oder **Falsch**, dann **Nächste Runde**.
+4. Spielart wählen: **Buzzer** oder **Quiz**.
+5. Buzzer: Frage stellen, **Buzzer frei** (Modus B) bzw. **Buzzer scharf** (Modus A); nach
+   dem Einfrieren **Richtig** oder **Falsch**, dann **Nächste Runde**.
+6. Quiz: Kategorien, Stufen, Anzahl, Antwortzeit und Wertung wählen, **Quiz starten**. Die App
+   stellt die Fragen, wertet aus und zeigt nach jeder Frage die Auflösung.
