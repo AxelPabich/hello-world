@@ -199,7 +199,12 @@ Kategorien recherchieren.
 
 ## Offen
 
-(keine)
+18. **Standort ausgeschaltet:** Manche Geräte (z. B. Galaxy A53, Android 16) verlangen für die
+    Suche nicht nur die Berechtigung, sondern auch den eingeschalteten Standort – sonst Fehler
+    8034. Vor der Suche prüfen und mit Hinweis direkt zur Standort-Einstellung führen; Fehler
+    8034 verständlich erklären.
+19. **„Fragen aktualisieren“:** Bei HTTP 404 nicht „(Internet?)“ melden, sondern „Im
+    Repository liegen keine neueren Fragen“.
 
 ### Konzept Oberfläche (Vorschlag)
 
