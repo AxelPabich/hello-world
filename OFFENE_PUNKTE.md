@@ -136,6 +136,47 @@ Richtigen, Challenges und Entscheidungen, gesperrt ja/nein.
 angefochtene Fragen prüfen, gesperrte ersetzen und gezielt Nachschub für knappe
 Kategorien recherchieren.
 
+### 16. App-Versionen abgleichen und aktualisieren
+
+**Versionen austauschen**
+
+- Jede App kennt zwei Nummern: die **Build-Nummer** (z. B. 12) und eine
+  **Protokoll-Version** (steigt nur, wenn sich die Nachrichten zwischen den Geräten
+  inkompatibel ändern). Kompatibel ist, wer dieselbe Protokoll-Version spricht –
+  unterschiedliche Builds können also zusammen spielen.
+- Beide Nummern stehen schon in der Kennung, die bei der Suche sichtbar ist. So erkennt
+  ein Spieler **vor dem Beitreten**, ob er zur Runde passt; der Master sieht in der
+  Spielerliste die Version jedes Teilnehmers.
+- Der erste Austausch nach dem Verbinden („Hallo“ mit Versionen) bleibt für alle
+  künftigen Versionen gleich. Damit können sich auch inkompatible Geräte noch
+  verbinden – dann aber nur zum Aktualisieren, nicht zum Spielen.
+
+**Bei Inkompatibilität**
+
+- Die App ermittelt die **höchste verfügbare Version** unter allen Teilnehmern
+  (auch wenn ein Spieler neuer ist als der Master).
+- Wer älter ist, bekommt den Hinweis „Deine App ist zu alt für diese Runde“ und zwei Wege:
+  1. **Vom Mitspieler holen:** Die neueste APK wird direkt über die bestehende
+     Nearby-Verbindung übertragen (ohne Internet) und danach die Installation angeboten.
+  2. **Aus dem Repository laden:** die aktuellste Version von der Release-Seite
+     (`buzzer-latest`) herunterladen und installieren.
+- Ist die eigene App neuer als die der anderen, bietet sie an, ihre Version an die
+  älteren Geräte zu verteilen (Master: „Alle auf Build 12 bringen“).
+- Auch bei kompatiblen, aber älteren Versionen gibt es einen dezenten Hinweis
+  „Neuere Version verfügbar“ – ohne Zwang.
+
+**Technik und Grenzen**
+
+- Updates funktionieren ohne Deinstallation, weil alle Builds mit demselben festen
+  Schlüssel signiert sind.
+- Android verlangt beim ersten Mal die Erlaubnis „Unbekannte Apps installieren“ für
+  die Buzzer-App; die App führt direkt zur passenden Einstellung.
+- Die übertragene Datei wird vor der Installation geprüft (Paketname, Signatur,
+  höhere Build-Nummer), damit nur echte Buzzer-Updates installiert werden.
+- Die bisherigen Builds (bis 11) kennen den Versionsabgleich noch nicht: Wer noch
+  so einen Build hat, muss einmalig über „App weitergeben“ (QR-Code/Bluetooth) oder
+  die Release-Seite aktualisieren. Ab dem Build mit diesem Punkt läuft es automatisch.
+
 ### Konzept Oberfläche (Vorschlag)
 
 - Startbildschirm: Logo, Name, zwei große Kacheln „Spiel leiten“ / „Mitspielen“,
