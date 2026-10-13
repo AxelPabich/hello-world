@@ -62,6 +62,15 @@ Die Pakete werden in die APK eingebaut; zusätzlich kann der Master unter
    - Klänge nur auf dem eigenen Gerät (wie bisher bei Richtig/Falsch).
 6. Unter der Auflösung: kurze Erklärung, Link zur Quelle, Knopf „Challenge“.
 
+**Gestaltung** (Entwurf: https://claude.ai/artifact/Ebuq6z8eMP7AfNExwinGZK)
+
+- Zeitbalken, Frage und die vier Antworten stehen **in einem gemeinsamen Feld** – die
+  Frage direkt über den Antworten, auch beim mitspielenden Master (unteres Drittel).
+- Solange der Antworttimer läuft, fliegen Emoticons nur in einer **eigenen Bahn
+  oberhalb dieses Felds** (kleiner, von rechts nach links) – nie über die Antworten.
+  Erst nach der Auflösung fliegen sie wieder wie gewohnt über die Spielfläche.
+- Kurznachrichten erscheinen nur in den Pausen (Auflösung, zwischen den Fragen).
+
 **Wertung** (je Profil wählbar; falsche Antworten kosten nie etwas)
 
 | Modus | Wer punktet |
