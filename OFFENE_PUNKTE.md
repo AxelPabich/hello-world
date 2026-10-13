@@ -186,6 +186,17 @@ Kategorien recherchieren.
   so einen Build hat, muss einmalig über „App weitergeben“ (QR-Code/Bluetooth) oder
   die Release-Seite aktualisieren. Ab dem Build mit diesem Punkt läuft es automatisch.
 
+### 17. Master sieht, wenn jemand eine Nachricht tippt
+
+- Solange ein Teilnehmer im Nachrichtenfenster tippt, erscheinen beim Master neben dem
+  Brief-Knopf in der oberen Leiste **drei pulsierende Punkte** – ohne Namen, ohne Text.
+  So kann er mit der Freigabe der nächsten Frage (bzw. Buzzer-Runde) noch warten.
+- Gilt für Quiz- und Buzzer-Modus (Nachrichten gibt es nur in den Pausen).
+- Technik: Das Spielergerät meldet „tippt“ beim ersten Zeichen und „fertig“ beim
+  Senden oder Schließen; bleibt die Meldung aus (Verbindung weg), verschwinden die
+  Punkte nach 8 Sekunden ohne Tastendruck von selbst. Nur der Master erhält die Meldung.
+- Die Punkte sind nur ein Hinweis – die Freigabe wird dadurch nicht blockiert.
+
 ### Konzept Oberfläche (Vorschlag)
 
 - Startbildschirm: Logo, Name, zwei große Kacheln „Spiel leiten“ / „Mitspielen“,
