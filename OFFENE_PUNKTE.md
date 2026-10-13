@@ -27,26 +27,12 @@ Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 9. Spieleinstellungen als Seite in der App statt Dialogfenster (lagen unter der Taskleiste).
 10. Korrektur der letzten Runde (anderer Sieger oder storniert; Punkte- bzw. Zeitkonten).
 11. Spielpause mit Overlay „Kurze Pause – Gleich geht es weiter“.
+12. Spielfläche auf dem Tab S11 Ultra: mit Build 8 passt sie (der Eindruck „zu groß“ kam
+    von einem noch installierten Build 7). Die geplante Messung der Insets entfällt.
 
 ## Offen
 
-12. **Spielfläche immer noch zu groß (Tab S11 Ultra, Samsung-Taskleiste):** Auf dem
-    Einstellungs-Bildschirm liegen „Abbrechen“ und „Übernehmen“ weiterhin unter der
-    Taskleiste mit den System-Knöpfen (Screenshot vom 13.10., 00:41). Build 8 hat die
-    Einstellungen vom Dialogfenster zur App-Seite gemacht und die Begrenzung zentral über
-    `WindowInsets.safeDrawing` + `tappableElement` gesetzt – das reicht auf diesem Gerät
-    offenbar nicht, vermutlich meldet die Taskleiste ihre Fläche nicht als Inset.
-    Vorgehen für den nächsten Build:
-    - Zuerst **messen**: Insets (Status-, Navigations-, Taskleiste, Aussparung), Fenstergröße
-      (`currentWindowMetrics`) und maximale Größe (`maximumWindowMetrics`) ins
-      Diagnose-Protokoll schreiben und in „Über & Diagnose“ anzeigen.
-    - Daraus eine **eigene Begrenzung** ableiten, falls die Insets fehlen: Differenz aus
-      Anzeigegröße und tatsächlich nutzbarer Fenstergröße bzw. sichtbarem Anzeigebereich
-      (`getWindowVisibleDisplayFrame`) als Abstand verwenden.
-    - Alle Bildschirme (Start, Suche, Spieler, Master, Einstellungen, Hilfe, Über,
-      Dialoge) prüfen; bei Bedarf Edge-to-Edge abschalten.
-    - Klären, ob der Screenshot von Build 8 stammt (Build-Nummer steht unter
-      „Über & Diagnose“); er ist bildgleich zum vorherigen.
+(keine)
 
 ### Konzept Oberfläche (Vorschlag)
 
