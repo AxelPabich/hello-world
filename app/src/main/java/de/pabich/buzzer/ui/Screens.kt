@@ -82,7 +82,7 @@ private fun StatusText(vm: BuzzerViewModel) {
             }
         }
     }
-    if (showDiagnostics) DiagnosticsDialog(vm.status) { showDiagnostics = false }
+    if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
 }
 
 // ---------------------------------------------------------------------- Start
@@ -283,12 +283,22 @@ fun AboutScreen(vm: BuzzerViewModel) {
             )
             Spacer(Modifier.height(10.dp))
             PrimaryButton("Diagnose senden", { showDiagnostics = true }, Modifier.fillMaxWidth(), height = 52.dp)
+            SectionTitle("Diagnose-Ablage (Spielleiter)")
+            Text(
+                "Repository: ${vm.diagnoseUpload.repo} · Token: " + if (vm.tokenSaved) "gespeichert (verschlüsselt)" else "nicht eingerichtet",
+                color = theme.text,
+                fontSize = 15.sp,
+            )
+            Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.padding(top = 8.dp)) {
+                GhostButton("Einrichten", { vm.showTokenGuide = true }, Modifier.weight(1f))
+                GhostButton("Token löschen", { vm.deleteToken() }, Modifier.weight(1f), enabled = vm.tokenSaved)
+            }
             SectionTitle("Lizenzen")
             Text("Schriften Anton und Barlow – SIL Open Font License 1.1.", color = theme.muted, fontSize = 14.sp)
             Spacer(Modifier.height(24.dp))
         }
     }
-    if (showDiagnostics) DiagnosticsDialog(vm.status) { showDiagnostics = false }
+    if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
 }
 
 /** Einstellungen und Profile als .buzzconf sichern oder einlesen. */
@@ -351,7 +361,16 @@ fun DiscoverScreen(vm: BuzzerViewModel) {
             LazyColumn(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 items(vm.groups, key = Group::endpointId) { group -> GroupCard(vm, group) }
             }
-            if (vm.connectingTo != null) Text("Warte auf Bestätigung durch den Spielleiter …", color = theme.muted, fontSize = 15.sp)
+            if (vm.connectingTo != null) {
+                Text("Warte auf Bestätigung durch den Spielleiter …", color = theme.muted, fontSize = 15.sp)
+                vm.joinCode?.let { code ->
+                    // Sicherheit: Nur wenn beide denselben Code sehen, ist es wirklich die Gruppe des Spielleiters.
+                    Panel(Modifier.fillMaxWidth().padding(vertical = 8.dp)) {
+                        Text("PRÜFCODE $code", color = theme.accent, fontFamily = theme.display, fontSize = 30.sp)
+                        Text("Der Spielleiter sieht denselben Code. Vergleicht ihn – nur bei gleichem Code nimmt er an.", color = theme.text, fontSize = 15.sp)
+                    }
+                }
+            }
             StatusText(vm)
         }
     }
@@ -597,6 +616,13 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                     onClick = { showMenu = false; vm.fetchUpdateFrom(id) },
                                 )
                             }
+                            if (vm.pendingReports.isNotEmpty()) {
+                                DropdownMenuItem(
+                                    text = { Text("Diagnoseberichte in GitHub ablegen (${vm.pendingReports.size})") },
+                                    enabled = !vm.uploading,
+                                    onClick = { showMenu = false; vm.uploadReports() },
+                                )
+                            }
                             DropdownMenuItem(
                                 text = { Text("Spieleinstellungen") },
                                 enabled = snapshot.phase == Phase.READY,
@@ -695,9 +721,9 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     val theirs = peer.build ?: 0
                     Text(
                         if (theirs > own) {
-                            "${request.name} hat eine neuere Version (Build $theirs, du: Build $own). Verbinden, um sie zu übernehmen?\nCode: ${request.authCode}"
+                            "${request.name} hat eine neuere Version (Build $theirs, du: Build $own). Verbinden, um sie zu übernehmen?\nPrüfcode: ${request.authCode} (muss auf beiden Geräten gleich sein)"
                         } else {
-                            "${request.name} möchte deine Version (Build $own) übernehmen (hat Build $theirs). Nur zum Aktualisieren, nicht zum Mitspielen.\nCode: ${request.authCode}"
+                            "${request.name} möchte deine Version (Build $own) übernehmen (hat Build $theirs). Nur zum Aktualisieren, nicht zum Mitspielen.\nPrüfcode: ${request.authCode} (muss auf beiden Geräten gleich sein)"
                         },
                     )
                 },
@@ -710,7 +736,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
                 text = {
                     val theirs = peer.build
                     val note = if (theirs != null && theirs != own) "\nVersion: Build $theirs (du: Build $own)" else ""
-                    Text("${request.name} möchte beitreten.\nCode: ${request.authCode}$note")
+                    Text("${request.name} möchte beitreten.$note\n\nPrüfcode: ${request.authCode}\nNimm nur an, wenn ${request.name} auf dem eigenen Gerät denselben Code sieht.")
                 },
                 confirmButton = { TextButton(onClick = { vm.acceptJoin(request) }) { Text("Annehmen") } },
                 dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },

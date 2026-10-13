@@ -31,6 +31,8 @@ import de.pabich.buzzer.ui.AppSettingsScreen
 import de.pabich.buzzer.ui.BuzzerThemeProvider
 import de.pabich.buzzer.ui.DiscoverScreen
 import de.pabich.buzzer.ui.HelpScreen
+import de.pabich.buzzer.ui.LocationDialog
+import de.pabich.buzzer.ui.TokenGuideDialog
 import de.pabich.buzzer.ui.Themes
 import de.pabich.buzzer.ui.MasterScreen
 import de.pabich.buzzer.ui.PlayerScreen
@@ -112,6 +114,8 @@ private fun App(vm: BuzzerViewModel) {
     }
     // Neuere Version empfangen oder geladen: installieren?
     UpdateDialog(vm)
+    TokenGuideDialog(vm)
+    LocationDialog(vm)
 }
 
 /**

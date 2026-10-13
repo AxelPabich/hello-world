@@ -197,7 +197,7 @@ Kategorien recherchieren.
   Punkte nach 8 Sekunden ohne Tastendruck von selbst. Nur der Master erhält die Meldung.
 - Die Punkte sind nur ein Hinweis – die Freigabe wird dadurch nicht blockiert.
 
-## Offen
+## Umgesetzt im nächsten Build (Punkte 18–21, Paket „Aktuelles 2026“)
 
 18. **Standort ausgeschaltet:** Manche Geräte (z. B. Galaxy A53, Android 16) verlangen für die
     Suche nicht nur die Berechtigung, sondern auch den eingeschalteten Standort – sonst Fehler
@@ -220,6 +220,10 @@ Kategorien recherchieren.
       Beim ersten Hochladen zeigt die App eine Schritt-für-Schritt-Anleitung.
     - Keine zusätzliche Verschlüsselung mit dem Token (Begründung: sonst könnte nur das
       Master-Gerät die Berichte lesen, auch Claude nicht; das private Repository schützt sie).
+
+## Offen
+
+(keine)
 
 ### Konzept Oberfläche (Vorschlag)
 
