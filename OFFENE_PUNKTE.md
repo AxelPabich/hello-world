@@ -340,6 +340,14 @@ Kategorien recherchieren.
       vor dem Start der Abfrage.
     - Buzzer: Dort liest der Spielleiter die Frage selbst vor – nach „Go!“ also kein
       automatisches „Buzzer frei“, nur der Knopf leuchtet auf.
+48. **Spieleinstellungen im Quiz entrümpelt** (umgesetzt, kommt mit dem nächsten Build):
+    Im Quiz zeigt ⋮ „Spieleinstellungen“ nur noch, was dort wirkt – Tabs „Teilnehmer“
+    (Master spielt mit, Kurznachrichten, Emoticons), „Wertung“ (Gleichstands-Schwelle für
+    Schnellster/Battle, Rangliste, Neues Spiel) und „Klang“ (nur Quiz-Klänge: Beitritt, Tusch,
+    Wah-wah, Go, Rundenende, Emoticon, Kurznachricht, Spielverlauf). Weg im Quiz: Startmodus,
+    Zufallsverzögerung, Sudden Death, Reaktions-/Antwortzeit-Limits, Buzzer-Wertung, Profile-Tab
+    (Vorlagen gibt es in der Quiz-Einrichtung). Eine empfangene Quiz-Vorlage beschreibt nur noch
+    Quiz-Werte. Der Buzzer-Modus bleibt unverändert.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.

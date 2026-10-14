@@ -17,6 +17,7 @@ import de.pabich.buzzer.core.DiagnoseTransfer
 import de.pabich.buzzer.core.GameKind
 import de.pabich.buzzer.core.PeerInfo
 import de.pabich.buzzer.core.QuestionPicker
+import de.pabich.buzzer.core.QuizScoring
 import de.pabich.buzzer.core.Question
 import de.pabich.buzzer.core.ParticipantResult
 import de.pabich.buzzer.core.MasterEngine
@@ -1311,6 +1312,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 fun describeProfile(values: Map<String, String>): List<Pair<String, String>> {
     val s = SettingsCodec.fromMap(values).settings
     fun sec(ms: Long) = String.format(java.util.Locale.GERMANY, "%.1f s", ms / 1000.0)
+    // Quiz-Vorlage: nur, was im Quiz wirkt.
+    if (values[ConfigStore.KIND_KEY] == ConfigStore.KIND_QUIZ) {
+        return listOfNotNull(
+            "Fragen" to "${s.quizCount}",
+            "Kategorien" to s.quizCategories.ifEmpty { setOf("alle") }.joinToString(),
+            "Stufen" to s.quizLevels.sortedBy { it.ordinal }.joinToString { it.label },
+            "Antwortzeit" to sec(s.quizAnswerMs),
+            "Wertung" to s.quizScoring.label,
+            ("Countdown" to sec(s.quizCountdownMs)).takeIf { s.quizScoring == QuizScoring.COUNTDOWN },
+            "Gleichstand" to "${s.tieThresholdMs} ms",
+            "Rangliste" to (if (s.boardShowNames) "mit Namen" else "ohne Namen") +
+                ", " + (if (s.boardPlaces == 0) "alle Plätze" else "${s.boardPlaces} Plätze"),
+            "Kurznachrichten" to if (s.messagesEnabled) "an" else "aus",
+            "Emoticons" to if (s.emojisEnabled) s.emojis.joinToString(" ") else "aus",
+        )
+    }
     return listOf(
         "Startmodus" to if (s.startMode.name == "TAP") "Tippen" else "Halten und Loslassen",
         "Max. Reaktionszeit" to (s.reactionLimitMs?.let(::sec) ?: "aus"),

@@ -42,6 +42,7 @@ import de.pabich.buzzer.core.DEFAULT_EMOJIS
 import de.pabich.buzzer.core.DEFAULT_SOUNDS
 import de.pabich.buzzer.core.SoundEvent
 import de.pabich.buzzer.core.EMOJI_COUNT
+import de.pabich.buzzer.core.GameKind
 import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.ScoringMode
 import de.pabich.buzzer.core.Settings
@@ -49,6 +50,15 @@ import de.pabich.buzzer.core.StartMode
 import java.util.Locale
 
 private val TABS = listOf("Ablauf", "Zeiten", "Wertung", "Klang", "Profile")
+
+/** Im Quiz: nur, was dort wirkt – Zeiten, Wertung und Vorlagen stehen in der Quiz-Einrichtung. */
+private val QUIZ_TABS = listOf("Teilnehmer", "Wertung", "Klang")
+
+/** Klänge, die im Quiz vorkommen (Buzzer-Klänge wie Summen, Fanfare oder Frühstart nicht). */
+private val QUIZ_SOUNDS = listOf(
+    SoundEvent.JOIN, SoundEvent.TUSCH, SoundEvent.WRONG, SoundEvent.GO, SoundEvent.ROUND_END,
+    SoundEvent.EMOTE, SoundEvent.CHAT, SoundEvent.CHASE,
+)
 
 private fun Long.secondsText() = String.format(Locale.GERMANY, "%.1f", this / 1000.0)
 private fun String.secondsToMs(): Long? = replace(',', '.').toDoubleOrNull()?.let { (it * 1000).toLong() }
@@ -65,17 +75,29 @@ fun SettingsDialog(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, onDismi
     // Nach dem Laden eines Profils werden die Eingabefelder neu aufgebaut.
     var version by remember { mutableIntStateOf(0) }
     var tab by remember { mutableIntStateOf(0) }
+    val quiz = snapshot.kind == GameKind.QUIZ
 
     BackHandler(onBack = onDismiss)
     run {
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
             Column(Modifier.fillMaxSize()) {
                 Column(Modifier.padding(16.dp)) {
-                    Text("Einstellungen", style = MaterialTheme.typography.titleLarge)
+                    Text(if (quiz) "Einstellungen – Quiz" else "Einstellungen", style = MaterialTheme.typography.titleLarge)
                     Text(
-                        if (profileName.isEmpty()) "Kein Profil" else "Profil: $profileName",
+                        when {
+                            quiz && profileName.isEmpty() -> "Keine Vorlage"
+                            quiz -> "Vorlage: $profileName"
+                            profileName.isEmpty() -> "Kein Profil"
+                            else -> "Profil: $profileName"
+                        },
                         style = MaterialTheme.typography.bodyMedium,
                     )
+                    if (quiz) {
+                        Text(
+                            "Fragen, Antwortzeit, Wertung und Vorlagen stellst du in der Quiz-Einrichtung ein.",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
+                    }
                     vm.profileUpgrade?.takeIf { it.name == profileName }?.let {
                         Text(
                             "Neu in dieser Version: ${it.missingLabels.joinToString()}. " +
@@ -89,7 +111,7 @@ fun SettingsDialog(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, onDismi
                     }
                 }
                 TabRow(selectedTabIndex = tab) {
-                    TABS.forEachIndexed { i, title ->
+                    (if (quiz) QUIZ_TABS else TABS).forEachIndexed { i, title ->
                         Tab(selected = tab == i, onClick = { tab = i }, text = { Text(title) })
                     }
                 }
@@ -101,7 +123,13 @@ fun SettingsDialog(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, onDismi
                             .padding(16.dp),
                     ) {
                         val change: (Settings) -> Unit = { draft = it }
-                        when (tab) {
+                        if (quiz) {
+                            when (tab) {
+                                0 -> ParticipantsSection(draft, change)
+                                1 -> QuizScoringTab(draft, change) { vm.newGame(); onDismiss() }
+                                else -> SoundTab(draft, change, QUIZ_SOUNDS)
+                            }
+                        } else when (tab) {
                             0 -> FlowTab(draft, change)
                             1 -> TimesTab(draft, snapshot, change)
                             2 -> ScoringTab(draft, snapshot, change) { vm.newGame(); onDismiss() }
@@ -155,6 +183,12 @@ private fun FlowTab(s: Settings, change: (Settings) -> Unit) {
     }
     IntField("Gleichstands-Schwelle (ms)", s.tieThresholdMs.toInt()) { change(s.copy(tieThresholdMs = it.toLong())) }
 
+    ParticipantsSection(s, change)
+}
+
+/** Teilnehmer, Kurznachrichten und Emoticons – für Buzzer und Quiz gleich. */
+@Composable
+private fun ParticipantsSection(s: Settings, change: (Settings) -> Unit) {
     Section("Teilnehmer")
     SwitchRow("Master spielt mit", s.masterPlays) { change(s.copy(masterPlays = it)) }
     if (s.masterPlays) Hint("Fair nur, wenn du die Antworten nicht kennst.")
@@ -232,13 +266,33 @@ private fun ScoringTab(s: Settings, snapshot: MasterEngine.Snapshot, change: (Se
 }
 
 @Composable
-private fun SoundTab(s: Settings, change: (Settings) -> Unit) {
-    Section("Klänge dieses Profils")
-    Hint("„Richtig“ und „Falsch“ hört nur der betroffene Spieler. Bei der Freigabe gibt es bewusst keinen Ton.")
-    for (event in SoundEvent.entries) {
+private fun QuizScoringTab(s: Settings, change: (Settings) -> Unit, onNewGame: () -> Unit) {
+    Section("Gleich schnelle Antworten")
+    IntField("Gleichstands-Schwelle (ms)", s.tieThresholdMs.toInt()) { change(s.copy(tieThresholdMs = it.toLong())) }
+    Hint("Bei „Schnellster punktet“ und „Battle“ punkten alle, die höchstens so viel langsamer als der Schnellste sind.")
+
+    Section("Rangliste für die Spieler")
+    SwitchRow("Namen anzeigen", s.boardShowNames) { change(s.copy(boardShowNames = it)) }
+    IntField("Sichtbare Plätze ab Platz 1 (0 = alle)", s.boardPlaces) { change(s.copy(boardPlaces = it)) }
+    Hint("Den eigenen Platz sieht jeder Spieler immer.")
+
+    OutlinedButton(onClick = onNewGame, modifier = Modifier.padding(top = 16.dp)) {
+        Text("Neues Spiel (Punkte zurücksetzen)")
+    }
+}
+
+@Composable
+private fun SoundTab(s: Settings, change: (Settings) -> Unit, events: List<SoundEvent> = SoundEvent.entries) {
+    val quiz = events.size < SoundEvent.entries.size
+    Section(if (quiz) "Klänge im Quiz" else "Klänge dieses Profils")
+    Hint(
+        if (quiz) "Tusch und Wah-wah hört nur der betroffene Spieler."
+        else "„Richtig“ und „Falsch“ hört nur der betroffene Spieler. Bei der Freigabe gibt es bewusst keinen Ton.",
+    )
+    for (event in events) {
         SwitchRow(event.label, event in s.sounds) { on -> change(s.copy(sounds = if (on) s.sounds + event else s.sounds - event)) }
     }
-    OutlinedButton(onClick = { change(s.copy(sounds = DEFAULT_SOUNDS)) }, modifier = Modifier.padding(top = 12.dp)) {
+    OutlinedButton(onClick = { change(s.copy(sounds = s.sounds - events.toSet() + DEFAULT_SOUNDS.filter { it in events })) }, modifier = Modifier.padding(top = 12.dp)) {
         Text("Auf Standard zurücksetzen")
     }
     Hint("Jedes Gerät kann Töne zusätzlich über 🔊 in der oberen Leiste stummschalten.")
