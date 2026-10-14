@@ -94,7 +94,7 @@ class QuizStore(private val context: Context) {
     }
 
     /** [results]: die Bewertung nach der Entscheidung (ersetzt die bei der Auflösung gezählte). */
-    fun recordDecision(id: String, decision: ChallengeDecision, newCorrect: Int?, before: List<ParticipantResult>, after: List<ParticipantResult>?, test: Boolean = false) {
+    fun recordDecision(id: String, decision: ChallengeDecision, newCorrect: Int?, before: List<ParticipantResult>?, after: List<ParticipantResult>?, test: Boolean = false) {
         val q = byId[id] ?: return
         // Index in der Paket-Reihenfolge – das Spiel kennt die Frage mit derselben Antwortliste.
         update(test) { it.revise(q, before, after).recordDecision(q, decision, newCorrect) }
