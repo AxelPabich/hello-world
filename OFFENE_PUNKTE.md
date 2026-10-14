@@ -249,7 +249,15 @@ Kategorien recherchieren.
 
 ## Offen
 
-(keine)
+31. **Challenge-Ablauf:** Das Laufband „Bitte warte kurz – die Antworten werden überprüft“ startet
+    automatisch, sobald ein Spieler eine Challenge sendet oder der Spielleiter „Antwort prüfen“
+    öffnet, und endet mit seiner Entscheidung. Nach einer Entscheidung startet „Antwort prüfen“
+    keine Prüfung mehr nebenbei (im Test lief das Laufband sonst bis zur nächsten Frage).
+32. **Ruhigeres Protokoll beim Beitritt:** „Runde beendet“/„Spielart: noch offen“ beim Wählen der
+    Spielart nicht mehr als eigene Ereignisse beim Spieler protokollieren.
+
+Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
+längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
 
 ### Konzept Oberfläche (Vorschlag)
 
