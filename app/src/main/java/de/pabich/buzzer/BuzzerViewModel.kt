@@ -231,6 +231,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     val isMaster: Boolean get() = master != null
 
+    /**
+     * Spielleiter zwischen den Runden (bzw. bei der Auflösung): Erst dann erscheinen Beitritts- und
+     * Update-Anfragen, damit sie das laufende Spiel nicht stören.
+     */
+    val masterIdle: Boolean
+        get() = masterSnapshot?.phase.let { it == null || it == MasterEngine.Phase.READY || it == MasterEngine.Phase.QUIZ_REVEAL }
+
     // ------------------------------------------------------------------ Start
 
     fun openGroup() {
@@ -959,13 +966,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     override fun onConnectionRequest(endpointId: String, name: String, authCode: String) {
         val peer = PeerInfo.parse(name)
         Diagnostics.log("Beitrittsanfrage von $endpointId, Prüfcode $authCode (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
-        val forUpdate = peer.updateOnly || !peer.compatible
-        if (forUpdate || master?.canAcceptJoin() == true) {
-            joinRequests += JoinRequest(endpointId, peer, authCode)
-        } else {
-            // Beitritt nur zwischen zwei Runden.
-            link.reject(endpointId)
-        }
+        // Während einer laufenden Runde wartet die Anfrage; angezeigt wird sie erst in der nächsten Pause.
+        joinRequests += JoinRequest(endpointId, peer, authCode)
+        if (!masterIdle) Diagnostics.log("Beitrittsanfrage wartet bis zur nächsten Pause")
     }
 
     override fun onConnected(endpointId: String, name: String) {
@@ -1018,6 +1021,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     override fun onConnectionFailed(endpointId: String, reason: String) {
         Diagnostics.log("Verbindung mit $endpointId fehlgeschlagen: $reason")
+        joinRequests.removeAll { it.endpointId == endpointId }
         if (master == null && connectingTo == endpointId) {
             connectingTo = null
             joinCode = null
@@ -1026,6 +1030,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onDisconnected(endpointId: String) {
+        joinRequests.removeAll { it.endpointId == endpointId }
         val engine = master
         if (engine != null && updateEndpoints.remove(endpointId) != null) {
             Diagnostics.log("Update-Verbindung beendet: $endpointId")

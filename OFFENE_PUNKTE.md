@@ -351,7 +351,12 @@ Kategorien recherchieren.
 
 ## Offen
 
-(zurzeit nichts)
+49. **Anfragen stören das Spiel nicht** (umgesetzt, kommt mit dem nächsten Build): Beitritts- und
+    Update-Anfragen sowie das Update-Angebot erscheinen beim Spielleiter erst in der nächsten Pause
+    (zwischen den Runden bzw. bei der Auflösung). Während der Runde steht in der Kopfzeile nur
+    „⏳ Name wartet – Anfrage erscheint nach der Runde“. Bisher wurden Beitritte während der Runde
+    sofort abgelehnt und Update-Anfragen sofort als Dialog angezeigt. Bricht der Spieler die
+    Anfrage ab, verschwindet sie.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.

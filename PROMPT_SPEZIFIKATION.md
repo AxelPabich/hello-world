@@ -615,4 +615,11 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   (Beitritt, Tusch, Wah-wah, Go, Rundenende, Emoticon, Kurznachricht, Spielverlauf). Fragen,
   Antwortzeit, Wertung und Vorlagen stehen in der Quiz-Einrichtung. Empfangene Quiz-Vorlagen
   zeigen nur Quiz-Werte. Der Buzzer-Modus behält alle Einstellungen.
+
+## 46. Anfragen während einer Runde
+
+- Beitritts- und Update-Anfragen sowie das Angebot einer empfangenen neueren Version erscheinen
+  beim Spielleiter erst in der Pause (zwischen den Runden bzw. bei der Auflösung). Während der Runde
+  zeigt die Kopfzeile nur „⏳ Name wartet – Anfrage erscheint nach der Runde“. Abgebrochene
+  Anfragen verschwinden aus der Warteschlange.
 ===== ENDE SPEZIFIKATION.md =====

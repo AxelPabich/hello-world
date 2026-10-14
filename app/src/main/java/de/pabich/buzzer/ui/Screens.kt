@@ -762,6 +762,14 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     }
                 }
                 snapshot.ready?.let { ReadyPanel(it, onCancel = { vm.cancelReady() }) }
+                if (vm.joinRequests.isNotEmpty() && !vm.masterIdle) {
+                    Text(
+                        "⏳ ${vm.joinRequests.joinToString { it.name }} wartet – Anfrage erscheint nach der Runde",
+                        color = theme.muted,
+                        fontSize = 13.sp,
+                        modifier = Modifier.padding(bottom = 4.dp),
+                    )
+                }
                 if (snapshot.paused) {
                     Row(
                         Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(theme.accent).padding(horizontal = 14.dp, vertical = 8.dp),
@@ -800,7 +808,8 @@ fun MasterScreen(vm: BuzzerViewModel) {
         vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone, onMusicEnd = vm::replayMusicEnd) }
     }
 
-    vm.joinRequests.firstOrNull()?.let { request ->
+    // Anfragen erst in der Pause zeigen – während der Runde nur ein Hinweis in der Kopfzeile.
+    vm.joinRequests.firstOrNull()?.takeIf { vm.masterIdle }?.let { request ->
         val peer = request.peer
         val own = AppUpdate.ownBuild
         when {
