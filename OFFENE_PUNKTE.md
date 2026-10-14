@@ -283,6 +283,12 @@ Kategorien recherchieren.
 38. **Knopf für den Spielverlauf:** Der Spielleiter bekommt in der Kopfzeile neben dem Pause-Knopf
     einen eigenen Knopf mit 🐇🐢 (Hase und Schildkröte), der den Spielverlauf für alle startet.
     Aktiv, sobald es einen Verlauf gibt (wie bisher „Spielverlauf zeigen“ im Menü ⋮, das bleibt).
+39. **Test-Statistik getrennt:** Im Testspiel werden die Ergebnisse (Antworten, übersprungene
+    Fragen, Challenges, Entscheidungen) in einer eigenen Test-Statistik (`quiz-stats-test.json`)
+    aufgezeichnet statt gar nicht. Sie beeinflusst weder Auswahl noch Schwierigkeit der Fragen.
+    „Quiz-Statistik hochladen“ legt sie – falls vorhanden – zusätzlich als eigene Datei
+    `statistik/JJJJ-MM-TT/Name-HH-MM-SS-TEST.buzzstats` ab (im JSON als Test gekennzeichnet).
+    Nach erfolgreichem Hochladen wird die Test-Statistik auf dem Gerät geleert.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
