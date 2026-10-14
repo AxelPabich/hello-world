@@ -330,7 +330,16 @@ Kategorien recherchieren.
 
 ## Offen
 
-(zurzeit nichts)
+47. **Get Ready: nicht mehrfach auslösbar, danach automatisch weiter** (Test 14.10., Build 20:
+    vor Frage 3 wurde „Get Ready“ fünfmal getippt, Wally musste dreimal bestätigen):
+    - Während die Bereit-Abfrage läuft, zeigt der Knopf „Bereit: x / y …“ und löst keine neue
+      Abfrage aus; abbrechen weiterhin über das Bereit-Feld oben.
+    - Quiz: Nach „Alle bereit – Go!“ startet die nächste Frage automatisch (kurz nach dem
+      Go-Klang, ca. 1,5 s). Kein Auto-Start, wenn der Spielleiter in der Zwischenzeit pausiert
+      oder die Abfrage abgebrochen hat; die offene-Challenge-Rückfrage (Punkt 40) kommt wie bisher
+      vor dem Start der Abfrage.
+    - Buzzer: Dort liest der Spielleiter die Frage selbst vor – nach „Go!“ also kein
+      automatisches „Buzzer frei“, nur der Knopf leuchtet auf.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
