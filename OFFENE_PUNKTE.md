@@ -277,6 +277,12 @@ Kategorien recherchieren.
 36. **Richtige Antwort beim Spielleiter hervorheben** (umgesetzt, kommt mit dem nächsten Build):
     In der Auflösung ist die richtige Antwort eine grüne Karte mit hellem Rahmen, Haken und
     größerer Schrift; falsche Antworten bleiben gedämpft.
+37. **Spielverlauf am Ende halten:** Die Animation „Spielverlauf“ bleibt nach dem Durchlauf
+    3 Sekunden auf dem Endstand stehen (Musik endet mit der Animation), erst dann schließt sie –
+    bei allen Spielern und beim Spielleiter.
+38. **Knopf für den Spielverlauf:** Der Spielleiter bekommt in der Kopfzeile neben dem Pause-Knopf
+    einen eigenen Knopf mit 🐇🐢 (Hase und Schildkröte), der den Spielverlauf für alle startet.
+    Aktiv, sobald es einen Verlauf gibt (wie bisher „Spielverlauf zeigen“ im Menü ⋮, das bleibt).
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
