@@ -259,6 +259,7 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 SectionTitle(title)
                 Text(text, color = theme.text, fontSize = 16.sp, lineHeight = 22.sp)
             }
+            Copyright()
             Spacer(Modifier.height(24.dp))
         }
     }
@@ -306,6 +307,7 @@ fun AboutScreen(vm: BuzzerViewModel) {
             }
             SectionTitle("Lizenzen")
             Text("Schriften Anton und Barlow – SIL Open Font License 1.1.", color = theme.muted, fontSize = 14.sp)
+            Copyright()
             Spacer(Modifier.height(24.dp))
         }
     }
@@ -1059,4 +1061,15 @@ private fun CorrectionDialog(snapshot: MasterEngine.Snapshot, onCorrect: (String
         confirmButton = { TextButton(enabled = choice != current, onClick = { onCorrect(choice) }) { Text("Korrigieren") } },
         dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
     )
+}
+
+/** Urheberhinweis für „Hilfe & Spielregeln“ und „Über & Diagnose“. */
+@Composable
+private fun Copyright() {
+    val theme = LocalBuzzerTheme.current
+    Column(Modifier.fillMaxWidth().padding(top = 28.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text("© 2026 Axel Pabich", color = theme.text, fontSize = 15.sp, fontWeight = FontWeight.Bold)
+        Text("Idee, Spielregeln und Tests: Axel Pabich", color = theme.muted, fontSize = 13.sp)
+        Text("Programmiert mit Claude (Anthropic)", color = theme.muted, fontSize = 13.sp)
+    }
 }

@@ -314,6 +314,9 @@ Kategorien recherchieren.
     Sockel vor Studio-Scheinwerferstrahlen im Quizshow-Blau, mit Funkeln in Gold und Cyan
     (adaptives Symbol, einfarbige Variante für Android 13+, Rundsymbol). Die Benachrichtigung
     „Buzzer-Runde läuft“ zeigt den Buzzer als kleines Symbol. Vorschau: `docs/app-symbol-vorschau.png`.
+44. **Copyright** (umgesetzt, kommt mit dem nächsten Build): Am Ende von „Hilfe & Spielregeln“
+    und „Über & Diagnose“: „© 2026 Axel Pabich · Idee, Spielregeln und Tests: Axel Pabich ·
+    Programmiert mit Claude (Anthropic)“.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
