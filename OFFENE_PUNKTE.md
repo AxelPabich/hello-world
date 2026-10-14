@@ -349,9 +349,9 @@ Kategorien recherchieren.
     (Vorlagen gibt es in der Quiz-Einrichtung). Eine empfangene Quiz-Vorlage beschreibt nur noch
     Quiz-Werte. Der Buzzer-Modus bleibt unverändert.
 
-## Offen
+## Erledigt in Build 22
 
-49. **Anfragen stören das Spiel nicht** (umgesetzt, kommt mit dem nächsten Build): Beitritts- und
+49. ✅ **Anfragen stören das Spiel nicht**: Beitritts- und
     Update-Anfragen sowie das Update-Angebot erscheinen beim Spielleiter erst in der nächsten Pause
     – also sobald die aktuelle Frage beantwortet bzw. aufgelöst ist (Quiz: Auflösung; Buzzer: „Runde
     beendet“ oder vor der Freigabe). Einsteigen mitten im Spiel ist ausdrücklich erlaubt; dem
@@ -359,10 +359,14 @@ Kategorien recherchieren.
     „⏳ Name wartet – Anfrage erscheint nach der Runde“. Bisher wurden Beitritte während der Runde
     sofort abgelehnt und Update-Anfragen sofort als Dialog angezeigt. Bricht der Spieler die
     Anfrage ab, verschwindet sie.
-50. **Prüfcode beim Spielleiter groß** (umgesetzt, kommt mit dem nächsten Build): In der
+50. ✅ **Prüfcode beim Spielleiter groß**: In der
     Beitritts- und der Update-Anfrage steht der Prüfcode wie beim Spieler groß als „PRÜFCODE 1234“
     im Quizshow-Feld, darunter „Name sieht denselben Code. Vergleicht ihn – nimm nur bei gleichem
     Code an.“
+
+## Offen
+
+(zurzeit nichts)
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
