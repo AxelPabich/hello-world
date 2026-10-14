@@ -72,7 +72,7 @@ private fun App(vm: BuzzerViewModel) {
     var pendingAction by remember { mutableStateOf<(() -> Unit)?>(null) }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
         // Ungefährer Standort genügt; den genauen darf der Nutzer ablehnen.
-        val granted = result.filterKeys { it != Manifest.permission.ACCESS_FINE_LOCATION }.values.all { it }
+        val granted = result.filterKeys { it !in OPTIONAL_PERMISSIONS }.values.all { it }
         Diagnostics.log("Berechtigungen: " + result.entries.joinToString { "${it.key.substringAfterLast('.')}=${it.value}" })
         if (granted) {
             pendingAction?.invoke()
@@ -86,7 +86,7 @@ private fun App(vm: BuzzerViewModel) {
         val missing = requiredPermissions().filter {
             context.checkSelfPermission(it) != PackageManager.PERMISSION_GRANTED
         }
-        if (missing.all { it == Manifest.permission.ACCESS_FINE_LOCATION }) {
+        if (missing.all { it in OPTIONAL_PERMISSIONS }) {
             action()
         } else {
             pendingAction = action
@@ -123,10 +123,14 @@ private fun App(vm: BuzzerViewModel) {
  * immer angefragt, weil manche Geräte ihn für die Suche auch ab Android 12 verlangen
  * (Fehler 8034 MISSING_PERMISSION_ACCESS_COARSE_LOCATION).
  */
+/** Ohne diese geht es auch: genauer Standort und die Benachrichtigung des Hintergrund-Dienstes. */
+private val OPTIONAL_PERMISSIONS = setOf(Manifest.permission.ACCESS_FINE_LOCATION, "android.permission.POST_NOTIFICATIONS")
+
 private fun requiredPermissions(): List<String> {
     val location = listOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     return when {
         Build.VERSION.SDK_INT >= 33 -> location + listOf(
+            Manifest.permission.POST_NOTIFICATIONS,
             Manifest.permission.BLUETOOTH_ADVERTISE,
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_SCAN,

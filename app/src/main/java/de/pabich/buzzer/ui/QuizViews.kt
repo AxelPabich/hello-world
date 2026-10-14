@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
@@ -569,4 +570,97 @@ fun QuizPlayerContent(
         }
         Confetti(confettiSeq)
     }
+}
+
+/** Laufband am unteren Rand, solange der Spielleiter die Auflösung prüft. */
+@Composable
+fun ReviewTicker(modifier: Modifier = Modifier) {
+    val theme = LocalBuzzerTheme.current
+    val transition = rememberInfiniteTransition(label = "laufband")
+    val p by transition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(9_000, easing = LinearEasing), RepeatMode.Restart),
+        label = "laufband-position",
+    )
+    BoxWithConstraints(
+        modifier
+            .fillMaxWidth()
+            .height(48.dp)
+            .background(theme.accent)
+            .clip(RoundedCornerShape(0.dp)),
+    ) {
+        val width = constraints.maxWidth.toFloat()
+        Text(
+            "BITTE WARTE KURZ – DIE ANTWORTEN WERDEN ÜBERPRÜFT   ✦   BITTE WARTE KURZ – DIE ANTWORTEN WERDEN ÜBERPRÜFT",
+            color = theme.ground,
+            fontFamily = theme.display,
+            fontSize = 20.sp,
+            maxLines = 1,
+            softWrap = false,
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .wrapContentWidth(unbounded = true, align = Alignment.Start)
+                .graphicsLayer { translationX = width - p * (width + size.width) },
+        )
+    }
+}
+
+/** „Bereit?“-Abfrage des Spielleiters beim Spieler. */
+@Composable
+fun ReadyDialog(onReady: () -> Unit) {
+    val theme = LocalBuzzerTheme.current
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text("BEREIT?", fontFamily = theme.display, fontSize = 32.sp) },
+        text = { Text("Der Spielleiter möchte gleich starten.", fontSize = 16.sp) },
+        confirmButton = {
+            Box(
+                Modifier
+                    .heightIn(min = 52.dp)
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(theme.accent)
+                    .pointerInput(Unit) { awaitEachGesture { awaitFirstDown(); onReady() } }
+                    .padding(horizontal = 28.dp, vertical = 12.dp),
+                contentAlignment = Alignment.Center,
+            ) { Text("BEREIT!", color = theme.ground, fontFamily = theme.display, fontSize = 22.sp) }
+        },
+    )
+}
+
+/** Stand der „Bereit?“-Abfrage beim Spielleiter; sind alle bereit: „GO!“. */
+@Composable
+fun ReadyPanel(state: de.pabich.buzzer.core.MasterEngine.ReadyState, onCancel: () -> Unit, modifier: Modifier = Modifier) {
+    val theme = LocalBuzzerTheme.current
+    Row(
+        modifier
+            .fillMaxWidth()
+            .padding(bottom = 8.dp)
+            .clip(RoundedCornerShape(14.dp))
+            .background(if (state.allReady) QuizGreen else theme.panel)
+            .padding(horizontal = 14.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (state.allReady) {
+            Text("GO!", color = Color.White, fontFamily = theme.display, fontSize = 30.sp, modifier = Modifier.weight(1f))
+            Text("Alle bereit", color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+        } else {
+            Column(Modifier.weight(1f)) {
+                Text("BEREIT: ${state.readyNames.size} / ${state.readyNames.size + state.waitingNames.size}", color = theme.accent, fontFamily = theme.display, fontSize = 18.sp)
+                Text("Warte auf: ${state.waitingNames.joinToString()}", color = theme.muted, fontSize = 13.sp, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            }
+            TextButton(onClick = onCancel) { Text("Abbrechen", color = theme.muted) }
+        }
+    }
+}
+
+/** „Get Ready“: fragt bei allen Spielern „Bereit?“ ab. Starten geht trotzdem jederzeit. */
+@Composable
+fun GetReadyButton(vm: de.pabich.buzzer.BuzzerViewModel, snapshot: de.pabich.buzzer.core.MasterEngine.Snapshot, modifier: Modifier = Modifier) {
+    GhostButton(
+        if (snapshot.ready == null) "Get Ready" else "Erneut fragen",
+        { vm.askReady() },
+        modifier,
+        enabled = !snapshot.paused && snapshot.players.any { it.connected && it.id != de.pabich.buzzer.BuzzerViewModel.LOCAL_PLAYER_ID },
+    )
 }

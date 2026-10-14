@@ -165,7 +165,7 @@ class QuizDataTest {
         val old = SettingsCodec.toMap(Settings()).filterKeys { !it.startsWith("quiz") && it != "soundsKnown" } +
             ("sounds" to "JOIN,BUZZ")
         val upgraded = SettingsCodec.fromMap(old)
-        assertEquals(setOf(SoundEvent.JOIN, SoundEvent.BUZZ, SoundEvent.TUSCH), upgraded.settings.sounds)
+        assertEquals(setOf(SoundEvent.JOIN, SoundEvent.BUZZ, SoundEvent.TUSCH, SoundEvent.GO), upgraded.settings.sounds)
         assertTrue("quizScoring" in upgraded.missingKeys)
         assertFalse("soundsKnown" in upgraded.missingKeys)
         // Wer den Tusch ausgeschaltet hat, behält das.

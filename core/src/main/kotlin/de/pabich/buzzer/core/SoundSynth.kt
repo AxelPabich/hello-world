@@ -47,6 +47,12 @@ object SoundSynth {
             for (f in listOf(523.0, 659.0, 784.0, 1047.0)) tone(0.2, f, 1.3, Wave.SAW, 0.08)
             noise(0.2, 1.2, 0.25, 6000.0, 1.2)
         }
+        SoundEvent.GO -> mix(1.2) {
+            // Zwei kurze Signale und ein hoher, langer Ton – wie ein Startsignal.
+            tone(0.0, 880.0, 0.18, Wave.SQUARE, 0.12)
+            tone(0.3, 880.0, 0.18, Wave.SQUARE, 0.12)
+            tone(0.6, 1760.0, 0.55, Wave.SQUARE, 0.14)
+        }
         SoundEvent.ROUND_END -> mix(2.9) {
             drumroll(0.0)
             fanfare(2.1)

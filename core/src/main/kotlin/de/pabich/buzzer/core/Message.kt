@@ -128,6 +128,15 @@ sealed interface Message {
     /** M → S: Diagnosebericht vollständig erhalten. */
     data class DiagnoseReceived(val reportId: String) : Message
 
+    /** M → S: „Bereit?“-Abfrage [id] anzeigen ([on]) bzw. schließen. */
+    data class ReadyCheck(val id: Int, val on: Boolean) : Message
+
+    /** S → M: bereit für Abfrage [id]. */
+    data class Ready(val id: Int) : Message
+
+    /** M → S: Der Spielleiter prüft die Auflösung (Laufband an/aus). */
+    data class Review(val on: Boolean) : Message
+
     /** Beide Richtungen: bitte die eigene App (APK) schicken. */
     data object ApkRequest : Message
 
@@ -223,6 +232,9 @@ object MessageCodec {
                 "f" to message.from, "b" to message.build, "t" to message.text,
             )
             is Message.DiagnoseReceived -> "DIAG_OK" to mapOf("id" to message.reportId)
+            is Message.ReadyCheck -> "READY_CHECK" to mapOf("id" to message.id, "on" to message.on)
+            is Message.Ready -> "READY" to mapOf("id" to message.id)
+            is Message.Review -> "REVIEW" to mapOf("on" to message.on)
             Message.ApkRequest -> "APK_REQUEST" to emptyMap()
             is Message.ApkInfo -> "APK_INFO" to mapOf("id" to message.payloadId, "b" to message.build, "sz" to message.size)
         }
@@ -295,6 +307,9 @@ object MessageCodec {
             "TYPING" -> Message.Typing(bool("on"))
             "DIAG" -> Message.DiagnoseChunk(f.getValue("id"), int("i"), int("n"), f.getValue("f"), int("b"), f.getValue("t"))
             "DIAG_OK" -> Message.DiagnoseReceived(f.getValue("id"))
+            "READY_CHECK" -> Message.ReadyCheck(int("id"), bool("on"))
+            "READY" -> Message.Ready(int("id"))
+            "REVIEW" -> Message.Review(bool("on"))
             "APK_REQUEST" -> Message.ApkRequest
             "APK_INFO" -> Message.ApkInfo(long("id"), int("b"), long("sz"))
             else -> null

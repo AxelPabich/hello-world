@@ -68,7 +68,16 @@ class MasterEngine(
         val scoring: ScoringMode,
         /** Ein Teilnehmer tippt gerade eine Kurznachricht. */
         val someoneTyping: Boolean,
+        /** Laufende „Bereit?“-Abfrage, sonst `null`. */
+        val ready: ReadyState?,
+        /** Der Spielleiter prüft gerade die Auflösung (Spieler sehen ein Laufband). */
+        val reviewing: Boolean,
     )
+
+    /** „Bereit?“-Abfrage: wer hat bestätigt, wer fehlt noch. */
+    data class ReadyState(val readyNames: List<String>, val waitingNames: List<String>) {
+        val allReady: Boolean get() = waitingNames.isEmpty()
+    }
 
     data class QuizRow(
         val id: PlayerId,
@@ -214,6 +223,11 @@ class MasterEngine(
 
     var kind: GameKind? = null
         private set
+
+    private var readyId = 0
+    private var readyOpen = false
+    private val readyPlayers = mutableSetOf<PlayerId>()
+    private var reviewing = false
     private var quizQuestions: List<QuizQuestion> = emptyList()
     private var quizIndex = -1
     private var turn: QuizTurn? = null
@@ -341,6 +355,7 @@ class MasterEngine(
         if (phase != Phase.READY || paused || kind == GameKind.QUIZ) return false
         val participants = players.values.filter { it.connected }
         if (participants.isEmpty()) return false
+        endReadyCheck()
         round++
         gameStarted = true
         order.clear()
@@ -461,6 +476,7 @@ class MasterEngine(
             is Message.Typing -> setTyping(player, message.on)
             is Message.QuizAnswer -> onQuizAnswer(player, message)
             is Message.QuizChallenge -> onQuizChallenge(player, message)
+            is Message.Ready -> onReady(player, message)
             else -> Unit
         }
     }
@@ -513,8 +529,8 @@ class MasterEngine(
     }
 
     /** Schickt das laufende Profil an alle Spieler. */
-    fun shareProfile() {
-        val values = SettingsCodec.toMap(settings)
+    fun shareProfile(extra: Map<String, String> = emptyMap()) {
+        val values = SettingsCodec.toMap(settings) + extra
         players.values.filter { it.connected && !it.local }
             .forEach { send(it.id, Message.Profile(profileName.ifEmpty { "Profil von $masterName" }, values)) }
         log("Profil an Spieler gesendet")
@@ -920,6 +936,7 @@ class MasterEngine(
         log("Challenge-Entscheidung Frage ${t.number}: ${decision.label}" + if (newCorrect != null) " (${q.answers[newCorrect]})" else "")
         t.decision = decision
         t.challenges.clear()
+        setReviewing(false)
         if (decision != ChallengeDecision.KEEP) {
             if (history.isNotEmpty()) history[history.lastIndex] = players.values.associate { it.id to it.score }
             for (id in t.participants) players[id]?.takeIf { it.connected }?.let { send(id, resultFor(t, it, corrected = true)) }
@@ -936,6 +953,8 @@ class MasterEngine(
             finishQuiz()
             return false
         }
+        endReadyCheck()
+        setReviewing(false)
         quizIndex++
         round++
         gameStarted = true
@@ -1096,6 +1115,7 @@ class MasterEngine(
 
     private fun finishQuiz() {
         turn?.let { cancelQuizTasks(it) }
+        setReviewing(false)
         quizFinished = true
         phase = Phase.READY
         log("Quiz beendet")
@@ -1154,6 +1174,83 @@ class MasterEngine(
             finished = quizFinished,
             hasNext = quizIndex + 1 < quizQuestions.size,
         )
+    }
+
+    // ------------------------------------------------------------------ Bereit? und Prüfung
+
+    /** „Get Ready“: Spieler bekommen die Abfrage „Bereit?“. Nur in den Pausen. */
+    fun askReady(): Boolean {
+        if (!isPause() || paused) return false
+        readyId++
+        readyOpen = true
+        readyPlayers.clear()
+        // Der mitspielende Spielleiter ist selbst bereit.
+        players.values.filter { it.local }.forEach { readyPlayers += it.id }
+        log("Bereit-Abfrage gestartet")
+        players.values.filter { it.connected && !it.local }.forEach { send(it.id, Message.ReadyCheck(readyId, true)) }
+        checkAllReady()
+        notifyChanged()
+        return true
+    }
+
+    fun cancelReady() {
+        if (!readyOpen) return
+        endReadyCheck()
+        notifyChanged()
+    }
+
+    private fun onReady(player: Player, m: Message.Ready) {
+        if (!readyOpen || m.id != readyId || !readyPlayers.add(player.id)) return
+        log("Bereit: ${player.name}")
+        checkAllReady()
+        notifyChanged()
+    }
+
+    private fun checkAllReady() {
+        val state = readyState() ?: return
+        if (state.allReady) {
+            log("Alle bereit – Go!")
+            masterSound(SoundEvent.GO)
+        }
+    }
+
+    private fun endReadyCheck() {
+        if (!readyOpen) return
+        readyOpen = false
+        players.values.filter { it.connected && !it.local }.forEach { send(it.id, Message.ReadyCheck(readyId, false)) }
+    }
+
+    private fun readyState(): ReadyState? {
+        if (!readyOpen) return null
+        val active = players.values.filter { it.connected }
+        return ReadyState(
+            readyNames = active.filter { it.id in readyPlayers }.map { it.name },
+            waitingNames = active.filter { it.id !in readyPlayers }.map { it.name },
+        )
+    }
+
+    /** Spielleiter prüft die Auflösung: Spieler sehen ein Laufband, bis er entschieden hat. */
+    fun startReview(): Boolean {
+        if (phase != Phase.QUIZ_REVEAL) return false
+        setReviewing(true)
+        notifyChanged()
+        return true
+    }
+
+    /** Prüfung ohne Änderung beenden (entspricht „Wertung bleibt“). */
+    fun endReview() {
+        if (!reviewing) return
+        val t = turn
+        if (t != null && phase == Phase.QUIZ_REVEAL) decideChallenge(ChallengeDecision.KEEP) else setReviewing(false)
+        notifyChanged()
+    }
+
+    private fun setReviewing(on: Boolean) {
+        if (reviewing == on) return
+        reviewing = on
+        log(if (on) "Prüfung der Auflösung gestartet" else "Prüfung beendet")
+        players.values.filter { it.connected && !it.local }.forEach { send(it.id, Message.Review(on)) }
+        players.values.filter { it.local }.forEach { send(it.id, Message.Review(on)) }
     }
 
     // ------------------------------------------------------------------ Anzeige
@@ -1249,6 +1346,8 @@ class MasterEngine(
         quiz = quizSnapshot(),
         scoring = scoring,
         someoneTyping = players.values.any { it.connected && it.typingUntil > clock.now() },
+        ready = readyState(),
+        reviewing = reviewing,
     )
 
     private fun notifyChanged() {

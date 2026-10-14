@@ -482,3 +482,54 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Einstellung („Trotzdem suchen“ bleibt möglich). Fehler 8034 wird ebenso verständlich erklärt.
 - „Fragen aktualisieren“ meldet bei fehlenden Paketen im Repository „Im Repository liegen keine
   neueren Fragen“ statt eines Internet-Hinweises.
+
+## 31. Diagnose im Spiel
+
+- Spieler haben in der oberen Leiste ein Menü ⋮ mit „Diagnose senden“ (dort „An den Spielleiter
+  senden“) und „Gruppe verlassen“; der Spielleiter findet „Diagnose senden“ in seinem Menü ⋮.
+- Der Spielleiter lädt eigene und eingesammelte Berichte hoch. Noch nicht hochgeladene Berichte
+  werden auf dem Gerät zwischengespeichert und überstehen Verlassen und Neustart.
+
+## 32. Quiz-Statistik zurück ins Repository
+
+- „Quiz-Statistik hochladen“ (Menü ⋮ im Quiz) legt die Statistik mit dem Zugang des Spielleiters
+  in `buzzer-diagnose/statistik/JJJJ-MM-TT/Name-HH-MM-SS.buzzstats` ab. Claude wertet sie auf Zuruf
+  aus und passt die Fragenpakete im Buzzer-Repository an; die App selbst schreibt dort nicht.
+
+## 33. Quiz-Vorlagen
+
+- Quiz-Vorlagen sind getrennt von den Buzzer-Profilen. Nach der Wahl „Quiz“ wählt der Spielleiter
+  zuerst eine Vorlage (oder „mit den aktuellen Einstellungen weiter“ bzw. „Neue Vorlage“).
+- Die Quiz-Einrichtung zeigt die aktive Vorlage mit „Speichern“, „Speichern unter …“, „Wechseln“
+  und „Vorlage an Spieler senden“. Empfänger speichern sie als Quiz-Vorlage. Export und Import
+  übernehmen die Kennzeichnung.
+- Änderungen in der Einrichtung werden erst nach kurzer Ruhe übernommen (nicht bei jedem Tipp).
+
+## 34. Prüfung durch den Spielleiter
+
+- Bei der Auflösung sieht der Spielleiter die Erklärung und kann selbst „Antwort prüfen
+  (Challenge)“ starten. Während er prüft, läuft bei allen Spielern unten ein Laufband „Bitte warte
+  kurz – die Antworten werden überprüft“. Mit seiner Entscheidung (oder der nächsten Frage) endet es.
+
+## 35. Obere Leiste
+
+- Ton, Brief und Menü stehen rechts immer fest; die Emoticons nutzen den restlichen Platz und
+  lassen sich auf schmalen Bildschirmen seitlich wischen.
+
+## 36. Verbindung im Hintergrund
+
+- Solange eine Gruppe offen ist (Spielleiter und Spieler), läuft ein Vordergrund-Dienst mit der
+  Benachrichtigung „Buzzer-Runde läuft“. So trennt Android die Verbindung im Hintergrund nicht.
+  Beim Verlassen endet der Dienst.
+
+## 37. Pause per Knopf
+
+- Neben dem Menü ⋮ hat der Spielleiter einen Pause-Knopf (II / ▶), aktiv in den Pausen und bei
+  der Auflösung.
+
+## 38. Get Ready
+
+- „Get Ready“ (Buzzer: neben „Buzzer frei“; Quiz: in der Einrichtung und bei der Auflösung) zeigt
+  allen Spielern „Bereit?“ mit dem Knopf „Bereit!“. Der Spielleiter sieht „Bereit: x / y“ und wer
+  fehlt; sind alle bereit, erscheint „GO!“ mit Startsignal-Klang. Er kann auch ohne „Go!“ starten;
+  die Abfrage schließt dann überall. Der mitspielende Spielleiter gilt als bereit.

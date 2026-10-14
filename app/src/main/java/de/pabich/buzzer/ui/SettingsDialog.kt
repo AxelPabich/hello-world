@@ -270,12 +270,12 @@ private fun ProfilesTab(
         enabled = saveName.isNotBlank(),
         modifier = Modifier.padding(top = 8.dp),
     ) {
-        Text(if (vm.profiles.any { it.name == saveName.trim() }) "Profil überschreiben" else "Als Profil speichern")
+        Text(if (vm.buzzerProfiles.any { it.name == saveName.trim() }) "Profil überschreiben" else "Als Profil speichern")
     }
 
     Section("Gespeicherte Profile")
-    if (vm.profiles.isEmpty()) Hint("Noch keine Profile.")
-    for (p in vm.profiles) {
+    if (vm.buzzerProfiles.isEmpty()) Hint("Noch keine Profile. Quiz-Vorlagen verwaltest du in der Quiz-Einrichtung.")
+    for (p in vm.buzzerProfiles) {
         Row(Modifier.fillMaxWidth().padding(vertical = 2.dp), verticalAlignment = Alignment.CenterVertically) {
             Text(p.name + if (p.name == profileName) "  (aktiv)" else "", Modifier.weight(1f))
             TextButton(onClick = { vm.loadProfile(p.name)?.let { onLoaded(p.name, it) } }) { Text("Laden") }

@@ -91,6 +91,9 @@ class QuizStore(private val context: Context) {
         saveStats()
     }
 
+    /** Statistik als JSON (für das Hochladen in das private Repository). */
+    fun statsJson(): String = stats.toJson(byId)
+
     /** Teilt die Statistik als `.buzzstats` (z. B. an Claude zur Auswertung). */
     fun shareStats(activity: Context) {
         val dir = File(context.cacheDir, "share").apply { mkdirs() }

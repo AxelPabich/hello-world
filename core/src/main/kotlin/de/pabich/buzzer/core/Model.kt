@@ -47,6 +47,7 @@ enum class SoundEvent(val label: String, val defaultOn: Boolean = true) {
     RIGHT("Richtig – Ding Ding + Applaus"),
     WRONG("Falsch – Wah-wah-wah"),
     TUSCH("Quiz richtig – Tusch"),
+    GO("Alle bereit – Go!"),
     ROUND_END("Rundenende – Trommelwirbel + Tusch"),
     EMOTE("Emoticon – Plopp", defaultOn = false),
     CHAT("Kurznachricht – Pling"),

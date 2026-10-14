@@ -221,7 +221,7 @@ Kategorien recherchieren.
     - Keine zusätzliche Verschlüsselung mit dem Token (Begründung: sonst könnte nur das
       Master-Gerät die Berichte lesen, auch Claude nicht; das private Repository schützt sie).
 
-## Offen (Rückmeldung vom 14.10.2026)
+## Umgesetzt im nächsten Build (Rückmeldung vom 14.10.2026, Punkte 22–30)
 
 22. **Diagnose während des Spiels erreichbar:** Bisher gibt es „Diagnose senden“ nur auf der
     Startseite – mit Verbindung kommt man nicht hin, daher fehlten „An den Spielleiter senden“
@@ -246,6 +246,10 @@ Kategorien recherchieren.
     „Go!“ mit Klang. Er kann die nächste Runde/Frage auch ohne „Go!“ starten.
 30. **Einstellungen nicht bei jedem Tipp speichern:** +/− in der Quiz-Einrichtung erst nach
     kurzer Ruhe übernehmen (heute 8 Protokollzeilen in 3 Sekunden).
+
+## Offen
+
+(keine)
 
 ### Konzept Oberfläche (Vorschlag)
 

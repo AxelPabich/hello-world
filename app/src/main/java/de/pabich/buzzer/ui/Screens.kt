@@ -188,11 +188,16 @@ fun AppSettingsScreen(vm: BuzzerViewModel) {
             }
             Text("Weitere Designs folgen.", color = theme.muted, fontSize = 13.sp)
 
-            SectionTitle("Spielprofile")
-            if (vm.profiles.isEmpty()) {
+            SectionTitle("Buzzer-Profile")
+            if (vm.buzzerProfiles.isEmpty()) {
                 Text("Noch keine Profile. Profile legt der Spielleiter in den Spieleinstellungen an.", color = theme.muted, fontSize = 14.sp)
             }
-            for (p in vm.profiles) {
+            for (p in vm.buzzerProfiles + listOf(null) + vm.quizTemplates) {
+                if (p == null) {
+                    SectionTitle("Quiz-Vorlagen")
+                    if (vm.quizTemplates.isEmpty()) Text("Noch keine Quiz-Vorlagen. Sie entstehen in der Quiz-Einrichtung.", color = theme.muted, fontSize = 14.sp)
+                    continue
+                }
                 Row(Modifier.fillMaxWidth().heightIn(min = 48.dp), verticalAlignment = Alignment.CenterVertically) {
                     Text(p.name, color = theme.text, fontSize = 16.sp, modifier = Modifier.weight(1f))
                     TextButton(onClick = { renaming = p.name }) { Text("Umbenennen", color = theme.accent2) }
@@ -245,6 +250,8 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "Quiz" to "Im Quiz kommen die Fragen aus der Fragen-Datenbank. Die Frage erscheint auf allen Geräten gleichzeitig, 3 Sekunden später die vier Antworten – bei jedem in anderer Reihenfolge. Tippe deine Antwort; aufgelöst wird, wenn alle geantwortet haben oder die Zeit um ist.",
                 "Wertung im Quiz" to "Schnellster punktet: nur die erste richtige Antwort. Jeder punktet: jede richtige Antwort. Countdown: nach der ersten richtigen Antwort läuft nur noch kurz die Zeit, alle Richtigen bekommen ihre Restzeit. Battle: nur der Schnellste bekommt seine Restzeit. Falsche Antworten kosten nie etwas.",
                 "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Der Spielleiter prüft die Quelle und entscheidet: Wertung bleibt, Frage annullieren, Antwort korrigieren oder Frage sperren.",
+                "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, bekommt er ein „Go!“.",
+                "Im Hintergrund" to "Solange eine Runde läuft, zeigt die App eine Benachrichtigung. Sie hält die Verbindung, wenn du kurz eine andere App öffnest. Bricht sie trotzdem ab: in den Android-Einstellungen bei Buzzer „Akku – nicht eingeschränkt“ wählen.",
                 "Versionen" to "Passen die App-Versionen nicht zusammen, holt sich das ältere Gerät die neuere Version direkt vom anderen (ohne Internet) oder lädt sie von der Release-Seite.",
             )
             for ((title, text) in sections) {
@@ -472,6 +479,8 @@ private fun UpdateSection(vm: BuzzerViewModel) {
 fun PlayerScreen(vm: BuzzerViewModel) {
     var confirmLeave by remember { mutableStateOf(false) }
     var showChat by remember { mutableStateOf(false) }
+    var showMenu by remember { mutableStateOf(false) }
+    var showDiagnostics by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val view = vm.playerView ?: return
 
@@ -487,6 +496,13 @@ fun PlayerScreen(vm: BuzzerViewModel) {
                     BarButton(if (vm.receiveEmojis) "🔔" else "🔕") { vm.changeReceiveEmojis(!vm.receiveEmojis) }
                 }
                 if (view.rules.messagesEnabled) BarButton("✉", enabled = vm.canChat) { showChat = true }
+                Box {
+                    BarButton("⋮") { showMenu = true }
+                    DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
+                        DropdownMenuItem(text = { Text("Diagnose senden") }, onClick = { showMenu = false; showDiagnostics = true })
+                        DropdownMenuItem(text = { Text("Gruppe verlassen") }, onClick = { showMenu = false; confirmLeave = true })
+                    }
+                }
             }
             if (view.kind == GameKind.QUIZ) {
                 QuizPlayerContent(
@@ -514,10 +530,14 @@ fun PlayerScreen(vm: BuzzerViewModel) {
         }
         // Solange die Antwortzeit läuft, fliegen Emoticons nur in ihrer Bahn über dem Fragenfeld.
         if (view.quiz?.timerRunning != true) EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
+        // Der Spielleiter prüft die Auflösung: Laufband am unteren Rand.
+        if (view.reviewing) ReviewTicker(Modifier.align(Alignment.BottomCenter))
         if (view.paused) PauseOverlay()
         vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone) }
     }
 
+    if (view.readyAsk != null && !view.readyConfirmed && !view.paused) ReadyDialog { vm.confirmReady() }
+    if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showChat) {
         ChatDialog(
             recipients = view.roster,
@@ -555,6 +575,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var showMenu by remember { mutableStateOf(false) }
     var showCorrection by remember { mutableStateOf(false) }
     var showShare by remember { mutableStateOf(false) }
+    var showDiagnostics by remember { mutableStateOf(false) }
     var confirmLeave by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val settings = snapshot.settings
@@ -580,6 +601,30 @@ fun MasterScreen(vm: BuzzerViewModel) {
                         val kindLabel = if (choosing) "Spiel leiten" else snapshot.kind?.label ?: ""
                         Kicker(kindLabel + (if (snapshot.kind == GameKind.BUZZER && !choosing) " · Runde ${snapshot.round}" else "") + if (snapshot.profileName.isNotEmpty()) " · ${snapshot.profileName}" else "")
                         BigTitle(if (choosing) "Spielart wählen" else phaseText(snapshot), color = theme.text, size = 26.sp)
+                    }
+                    if (!choosing) {
+                        // Pause direkt per Knopf (nur zwischen den Runden bzw. bei der Auflösung).
+                        val canPause = snapshot.paused || pause || snapshot.phase == Phase.QUIZ_REVEAL
+                        Box(
+                            Modifier
+                                .padding(end = 8.dp)
+                                .size(48.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(if (snapshot.paused) theme.accent else theme.panel)
+                                .clickable(enabled = canPause) { vm.setPaused(!snapshot.paused) },
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                if (snapshot.paused) "▶" else "II",
+                                color = when {
+                                    snapshot.paused -> theme.ground
+                                    canPause -> theme.text
+                                    else -> theme.line
+                                },
+                                fontFamily = theme.display,
+                                fontSize = 20.sp,
+                            )
+                        }
                     }
                     Box {
                         Box(
@@ -614,6 +659,21 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 DropdownMenuItem(
                                     text = { Text("Build $build von $name holen") },
                                     onClick = { showMenu = false; vm.fetchUpdateFrom(id) },
+                                )
+                            }
+                            DropdownMenuItem(
+                                text = { Text("Diagnose senden") },
+                                onClick = { showMenu = false; showDiagnostics = true },
+                            )
+                            if (snapshot.kind == GameKind.QUIZ) {
+                                DropdownMenuItem(
+                                    text = { Text("Quiz-Statistik hochladen") },
+                                    onClick = { showMenu = false; vm.uploadStats() },
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Quiz-Vorlage wechseln") },
+                                    enabled = snapshot.phase == Phase.READY,
+                                    onClick = { showMenu = false; vm.choosingTemplate = true },
                                 )
                             }
                             if (vm.pendingReports.isNotEmpty()) {
@@ -664,6 +724,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
                         }
                     }
                 }
+                snapshot.ready?.let { ReadyPanel(it, onCancel = { vm.cancelReady() }) }
                 if (snapshot.paused) {
                     Row(
                         Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(theme.accent).padding(horizontal = 14.dp, vertical = 8.dp),
@@ -678,6 +739,10 @@ fun MasterScreen(vm: BuzzerViewModel) {
             when {
                 choosing -> {
                     KindChoice(vm, Modifier.weight(1f).fillMaxWidth())
+                    Box(Modifier.padding(horizontal = 16.dp)) { StatusText(vm) }
+                }
+                snapshot.kind == GameKind.QUIZ && vm.choosingTemplate && snapshot.phase == Phase.READY -> {
+                    QuizTemplateChoice(vm, Modifier.weight(1f).fillMaxWidth())
                     Box(Modifier.padding(horizontal = 16.dp)) { StatusText(vm) }
                 }
                 snapshot.kind == GameKind.QUIZ -> {
@@ -751,6 +816,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
         )
     }
     if (showShare) ShareDialog { showShare = false }
+    if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showSettings) SettingsDialog(vm, snapshot) { showSettings = false }
     if (showChat) {
         ChatDialog(
@@ -827,13 +893,16 @@ private fun MasterActions(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) 
     val theme = LocalBuzzerTheme.current
     Column(Modifier.fillMaxWidth().padding(top = 8.dp, bottom = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         when (snapshot.phase) {
-            Phase.READY -> PrimaryButton(
-                if (snapshot.settings.startMode == StartMode.TAP) "Buzzer frei" else "Buzzer scharf",
-                { vm.release() },
-                Modifier.fillMaxWidth(),
-                enabled = snapshot.players.isNotEmpty() && !snapshot.paused,
-                height = 64.dp,
-            )
+            Phase.READY -> Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                GetReadyButton(vm, snapshot, Modifier.height(64.dp))
+                PrimaryButton(
+                    if (snapshot.settings.startMode == StartMode.TAP) "Buzzer frei" else "Buzzer scharf",
+                    { vm.release() },
+                    Modifier.weight(1f),
+                    enabled = snapshot.players.isNotEmpty() && !snapshot.paused,
+                    height = 64.dp,
+                )
+            }
             Phase.ANSWERING -> Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 PrimaryButton("Richtig", { vm.markCorrect() }, Modifier.weight(1f), container = theme.good, content = Color.White, height = 64.dp)
                 PrimaryButton("Falsch", { vm.markWrong() }, Modifier.weight(1f), container = theme.bad, content = Color.White, height = 64.dp)

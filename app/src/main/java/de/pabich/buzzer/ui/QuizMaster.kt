@@ -27,6 +27,7 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -52,6 +53,7 @@ import de.pabich.buzzer.core.QuizScoring
 import de.pabich.buzzer.core.Settings
 import de.pabich.buzzer.core.formatScore
 import java.util.Locale
+import kotlinx.coroutines.delay
 
 // ---------------------------------------------------------------------- Spielart wählen
 
@@ -133,8 +135,18 @@ private fun KindTile(title: String, text: String, color: Color, selected: Boolea
 fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Modifier = Modifier) {
     val theme = LocalBuzzerTheme.current
     val context = LocalContext.current
-    val settings = snapshot.settings
-    fun change(s: Settings) = vm.updateSettings(s)
+    // Änderungen erst nach kurzer Ruhe übernehmen – nicht bei jedem Tipp auf +/−.
+    var draft by remember(snapshot.settings) { mutableStateOf(snapshot.settings) }
+    LaunchedEffect(draft) {
+        if (draft != snapshot.settings) {
+            delay(700)
+            vm.updateSettings(draft)
+        }
+    }
+    val settings = draft
+    fun change(s: Settings) {
+        draft = s
+    }
     val dataVersion = vm.quizDataVersion
     val categories = remember(dataVersion) { vm.quizStore.categories }
     val players = snapshot.players.count { it.connected }
@@ -156,6 +168,7 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
             }
             Text("Neues Quiz:", color = theme.muted, fontSize = 14.sp, modifier = Modifier.padding(top = 8.dp))
         }
+        TemplateHeader(vm, snapshot)
         SetupTitle("Kategorien")
         FlowChips(
             items = categories,
@@ -403,20 +416,30 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
                     fontWeight = FontWeight.Bold,
                 )
             }
-            if (quiz.challenges.isNotEmpty() || decisionsOpen) {
+            if (q.explanation.isNotEmpty()) {
+                Text(q.explanation, color = theme.text, fontSize = 14.sp, lineHeight = 19.sp)
+            }
+            if (quiz.challenges.isNotEmpty() || decisionsOpen || snapshot.reviewing) {
+                if (!snapshot.reviewing) {
+                    TextButton(onClick = { vm.startReview() }) { Text("Spieler bitten zu warten (Laufband)", color = theme.accent2) }
+                } else {
+                    Text("Spieler sehen: „Bitte warte kurz – die Antworten werden überprüft“", color = theme.accent, fontSize = 13.sp)
+                }
                 ChallengeBox(quiz, onDecide = { decision ->
                     if (decision == ChallengeDecision.CORRECT) correcting = true else vm.decideChallenge(decision)
                     decisionsOpen = false
                 }, sourceUrl = vm.quizStore.question(q.id)?.source.orEmpty())
             } else {
                 quiz.decision?.let { Text("Entscheidung: ${it.label}", color = theme.muted, fontSize = 14.sp) }
-                TextButton(onClick = { decisionsOpen = true }) { Text("Wertung dieser Frage ändern …", color = theme.accent2) }
+                // Der Spielleiter kann selbst eine Prüfung starten; die Spieler warten so lange.
+                GhostButton("Antwort prüfen (Challenge)", { decisionsOpen = true; vm.startReview() }, Modifier.fillMaxWidth())
             }
             if (vm.chat.isNotEmpty()) ChatPanel(vm.chat, theme.text, Modifier.fillMaxWidth(), maxLines = 3)
             Spacer(Modifier.height(6.dp))
         }
         Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             GhostButton("Rangliste", { showBoard = true }, Modifier.height(60.dp))
+            if (quiz.hasNext) GetReadyButton(vm, snapshot, Modifier.height(60.dp))
             PrimaryButton(
                 if (quiz.hasNext) "Nächste Frage" else "Ergebnis zeigen",
                 { vm.nextQuestion() },
@@ -535,13 +558,110 @@ fun ColumnScope.QuizMasterBody(vm: BuzzerViewModel, snapshot: MasterEngine.Snaps
             QuizMasterRunning(vm, snapshot, quiz, Modifier.weight(1f).fillMaxWidth())
         else -> {
             QuizSetup(vm, snapshot, Modifier.weight(1f).fillMaxWidth())
-            PrimaryButton(
-                "Quiz starten",
-                { vm.startQuiz() },
-                Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
-                enabled = snapshot.players.any { it.connected } && !snapshot.paused,
-                height = 60.dp,
-            )
+            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                GetReadyButton(vm, snapshot, Modifier.height(60.dp))
+                PrimaryButton(
+                    "Quiz starten",
+                    { vm.startQuiz() },
+                    Modifier.weight(1f),
+                    enabled = snapshot.players.any { it.connected } && !snapshot.paused,
+                    height = 60.dp,
+                )
+            }
         }
     }
+}
+
+// ---------------------------------------------------------------------- Quiz-Vorlagen
+
+/** Nach „Quiz“: erst eine Quiz-Vorlage wählen (oder mit den aktuellen Einstellungen weiter). */
+@Composable
+fun QuizTemplateChoice(vm: BuzzerViewModel, modifier: Modifier = Modifier) {
+    val theme = LocalBuzzerTheme.current
+    var naming by remember { mutableStateOf(false) }
+    Column(modifier.verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        BigTitle("Quiz-Vorlage wählen", color = theme.text, size = 28.sp)
+        Text("Vorlagen enthalten Kategorien, Stufen, Anzahl, Zeiten und Wertung. Sie sind getrennt von den Buzzer-Profilen.", color = theme.muted, fontSize = 14.sp)
+        val current = vm.masterSnapshot?.profileName.orEmpty()
+        for (t in vm.quizTemplates) {
+            val s = runCatching { t.decode().settings }.getOrNull()
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(theme.panel)
+                    .border(2.dp, if (t.name == current) theme.accent2 else theme.line, RoundedCornerShape(16.dp))
+                    .clickable { vm.useQuizTemplate(t.name) }
+                    .padding(16.dp),
+            ) {
+                Text(t.name, color = theme.text, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                if (s != null) {
+                    Text(
+                        "${s.quizCount} Fragen · ${seconds(s.quizAnswerMs)} · ${s.quizScoring.label} · " +
+                            s.quizLevels.sortedBy { it.ordinal }.joinToString("/") { it.label } +
+                            if (s.quizCategories.isEmpty()) " · alle Kategorien" else " · ${s.quizCategories.size} Kategorien",
+                        color = theme.muted,
+                        fontSize = 13.sp,
+                    )
+                }
+            }
+        }
+        if (vm.quizTemplates.isEmpty()) Text("Noch keine Quiz-Vorlagen.", color = theme.muted, fontSize = 15.sp)
+        GhostButton("Mit den aktuellen Einstellungen weiter", { vm.useQuizTemplate(null) }, Modifier.fillMaxWidth())
+        GhostButton("Neue Vorlage anlegen …", { naming = true }, Modifier.fillMaxWidth())
+    }
+    if (naming) NameDialog("Neue Quiz-Vorlage", "Familienabend leicht", { naming = false }) { name ->
+        naming = false
+        vm.useQuizTemplate(null)
+        vm.saveQuizTemplate(name)
+    }
+}
+
+/** Kopf der Quiz-Einrichtung: aktive Vorlage, speichern, wechseln, senden. */
+@Composable
+private fun TemplateHeader(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) {
+    val theme = LocalBuzzerTheme.current
+    var naming by remember { mutableStateOf(false) }
+    val name = snapshot.profileName
+    val isTemplate = vm.quizTemplates.any { it.name == name }
+    Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(theme.panel).padding(horizontal = 12.dp, vertical = 8.dp)) {
+        Text(
+            if (isTemplate) "VORLAGE: ${name.uppercase()}" else "OHNE VORLAGE",
+            color = theme.accent2,
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 1.sp,
+        )
+        Row {
+            if (isTemplate) TextButton(onClick = { vm.saveQuizTemplate(name) }) { Text("Speichern", color = theme.accent) }
+            TextButton(onClick = { naming = true }) { Text("Speichern unter …", color = theme.accent) }
+            TextButton(onClick = { vm.choosingTemplate = true }) { Text("Wechseln", color = theme.accent) }
+        }
+        if (isTemplate && snapshot.players.any { it.connected && it.id != BuzzerViewModel.LOCAL_PLAYER_ID }) {
+            TextButton(onClick = { vm.shareProfile() }) { Text("Vorlage an Spieler senden", color = theme.accent2) }
+        }
+    }
+    if (naming) NameDialog("Quiz-Vorlage speichern", name.ifEmpty { "Mein Quiz" }, { naming = false }) {
+        naming = false
+        vm.saveQuizTemplate(it)
+    }
+}
+
+@Composable
+private fun NameDialog(title: String, initial: String, onDismiss: () -> Unit, onSave: (String) -> Unit) {
+    var text by remember { mutableStateOf(initial) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(title) },
+        text = {
+            androidx.compose.material3.OutlinedTextField(
+                value = text,
+                onValueChange = { text = it.take(40) },
+                label = { Text("Name") },
+                singleLine = true,
+            )
+        },
+        confirmButton = { TextButton(enabled = text.isNotBlank(), onClick = { onSave(text.trim()) }) { Text("Speichern") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
+    )
 }

@@ -78,6 +78,12 @@ class PlayerEngine(
         val paused: Boolean = false,
         val kind: GameKind? = null,
         val quiz: QuizView? = null,
+        /** Offene „Bereit?“-Abfrage des Spielleiters (ID), sonst `null`. */
+        val readyAsk: Int? = null,
+        /** Für die laufende Abfrage schon bestätigt. */
+        val readyConfirmed: Boolean = false,
+        /** Der Spielleiter prüft die Auflösung – Laufband anzeigen. */
+        val reviewing: Boolean = false,
     )
 
     var onViewChanged: ((View) -> Unit)? = null
@@ -179,6 +185,11 @@ class PlayerEngine(
                 show(Display.BLACK, if (message.kind == GameKind.QUIZ) "Quiz – gleich kommt die erste Frage" else "Warte auf den Spielleiter", 0, view.score)
             }
             is Message.QuizAsk -> onQuizAsk(message)
+            is Message.ReadyCheck -> {
+                log(if (message.on) "Bereit-Abfrage" else "Bereit-Abfrage beendet")
+                update { it.copy(readyAsk = if (message.on) message.id else null, readyConfirmed = false) }
+            }
+            is Message.Review -> update { it.copy(reviewing = message.on) }
             is Message.QuizDeadline -> {
                 val q = view.quiz ?: return
                 if (q.number != message.number || q.stage == QuizStage.REVEALED) return
@@ -265,6 +276,16 @@ class PlayerEngine(
         send(Message.QuizChallenge(q.number, reason.trim().take(MAX_CHAT_LENGTH)))
         log("Challenge gesendet")
         update { it.copy(quiz = q.copy(challenged = true)) }
+        return true
+    }
+
+    /** „Bereit!“ auf die Abfrage des Spielleiters. */
+    fun confirmReady(): Boolean {
+        val id = view.readyAsk ?: return false
+        if (view.readyConfirmed) return false
+        send(Message.Ready(id))
+        log("Bereit bestätigt")
+        update { it.copy(readyConfirmed = true) }
         return true
     }
 

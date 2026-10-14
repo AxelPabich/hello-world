@@ -168,9 +168,19 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     var uploading by mutableStateOf(false)
         private set
 
+    /** Master: nach „Quiz“ zuerst eine Quiz-Vorlage wählen. */
+    var choosingTemplate by mutableStateOf(false)
+
     /** Anleitung zum Token beim ersten Hochladen. */
     var showTokenGuide by mutableStateOf(false)
     private val reportCollector = DiagnoseTransfer.Collector()
+
+    /** Noch nicht hochgeladene Berichte überstehen das Verlassen und Neustarts. */
+    private val pendingDir = File(app.filesDir, "diagnose-pending").apply { mkdirs() }
+
+    /** Buzzer-Profile und Quiz-Vorlagen liegen in einer Liste, unterschieden per Kennzeichen. */
+    val buzzerProfiles get() = profiles.filter { it.values[ConfigStore.KIND_KEY] != ConfigStore.KIND_QUIZ }
+    val quizTemplates get() = profiles.filter { it.values[ConfigStore.KIND_KEY] == ConfigStore.KIND_QUIZ }
 
     private val link = NearbyLink(app, this)
     private val sounds = SoundPlayer(app)
@@ -185,6 +195,15 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var emoteSeq = 0L
 
     init {
+        // Zwischengespeicherte Diagnoseberichte wieder aufnehmen.
+        pendingDir.listFiles { f -> f.name.endsWith(".txt") }.orEmpty().sortedBy { it.name }.forEach { f ->
+            runCatching {
+                val text = f.readText()
+                val header = text.substringBefore('\n')
+                val (from, build) = header.split('|', limit = 2)
+                pendingReports += DiagnoseTransfer.Report(f.nameWithoutExtension, from, build.toInt(), text.substringAfter('\n'))
+            }.onFailure { f.delete() }
+        }
         if (Diagnostics.previousCrash != null) {
             status = "Die App wurde beim letzten Mal unerwartet beendet. Bitte „Diagnose senden“ antippen."
         }
@@ -228,6 +247,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engine.start()
         Diagnostics.log("Gruppe eröffnet")
         link.startAdvertising(PeerInfo.format(myName.trim(), AppUpdate.ownBuild))
+        GameService.start(getApplication(), "Du leitest eine Buzzer-Runde")
         screen = Screen.MASTER
     }
 
@@ -276,6 +296,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Reguläres Beenden; auf Wunsch werden danach alle Diagnosedaten gelöscht. */
     fun leave(deleteDiagnostics: Boolean = false) {
         Diagnostics.log("Verlassen")
+        GameService.stop(getApplication())
+        choosingTemplate = false
         updateTicking(null)
         replayDone()
         val engine = master
@@ -350,6 +372,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val engine = master ?: return
         if (engine.chooseKind(kind)) {
             choosingKind = false
+            choosingTemplate = kind == GameKind.QUIZ
         } else {
             status = "Die Spielart lässt sich nur zwischen den Runden wechseln."
         }
@@ -432,7 +455,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         store.setLastSettings(engine.settings, profileName)
         // Ein Profil aus einem älteren Build ist jetzt vollständig geprüft: ergänzt speichern.
         profileUpgrade?.takeIf { it.name == profileName }?.let {
-            store.saveProfile(it.name, engine.settings)
+            val kind = store.profile(it.name)?.values?.get(ConfigStore.KIND_KEY) ?: ConfigStore.KIND_BUZZER
+            store.saveProfile(it.name, engine.settings, kind)
             profiles = store.config.profiles
             profileUpgrade = null
         }
@@ -496,7 +520,36 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         profiles = store.config.profiles
     }
 
-    fun shareProfile() = master?.shareProfile()
+    fun shareProfile() = master?.shareProfile(
+        if (masterSnapshot?.kind == GameKind.QUIZ) mapOf(ConfigStore.KIND_KEY to ConfigStore.KIND_QUIZ) else emptyMap(),
+    )
+
+    // ------------------------------------------------------------------ Quiz-Vorlagen
+
+    /** Vorlage übernehmen; `null` = mit den aktuellen Einstellungen weiter. */
+    fun useQuizTemplate(name: String?) {
+        if (name != null) loadProfile(name)?.let { updateSettings(it, name) }
+        choosingTemplate = false
+    }
+
+    /** Aktuelle Quiz-Einstellungen als Vorlage speichern und aktiv machen. */
+    fun saveQuizTemplate(name: String) {
+        val engine = master ?: return
+        val clean = name.trim().ifEmpty { return }
+        store.saveProfile(clean, engine.settings, ConfigStore.KIND_QUIZ)
+        profiles = store.config.profiles
+        updateSettings(engine.settings, clean)
+        status = "Quiz-Vorlage „$clean“ gespeichert."
+        Diagnostics.log("Quiz-Vorlage gespeichert: $clean")
+    }
+
+    // ------------------------------------------------------------------ Bereit? und Prüfung
+
+    fun askReady() = master?.askReady()
+    fun cancelReady() = master?.cancelReady()
+    fun confirmReady() = player?.confirmReady()
+    fun startReview() = master?.startReview()
+    fun endReview() = master?.endReview()
 
     fun saveReceivedProfile(name: String) {
         val received = receivedProfile ?: return
@@ -844,6 +897,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         player = engineForPlayer
         playerView = engineForPlayer.view
         engineForPlayer.setReceiveEmojis(receiveEmojis)
+        GameService.start(getApplication(), "Du spielst bei ${masterPeer?.name ?: "einer Buzzer-Runde"} mit")
         screen = Screen.PLAYER
     }
 
@@ -894,7 +948,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 reportCollector.add(message)?.let { report ->
                     Diagnostics.log("Diagnosebericht von ${report.from} erhalten (Build ${report.build}, ${report.text.length} Zeichen)")
                     link.send(endpointId, Message.DiagnoseReceived(report.id))
-                    pendingReports += report
+                    addPending(report)
                     if (diagnoseUpload.hasToken) uploadReports() else status = "Diagnosebericht von ${report.from} erhalten – über ⋮ „Diagnoseberichte“ in GitHub ablegen."
                 }
                 return
@@ -944,8 +998,29 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /** Master: eigenen Bericht zu den hochzuladenden legen. */
     fun addOwnReport(report: String) {
-        pendingReports += DiagnoseTransfer.Report(System.currentTimeMillis().toString(36), myName.trim().ifEmpty { "Spielleiter" }, AppUpdate.ownBuild, report)
+        addPending(DiagnoseTransfer.Report(System.currentTimeMillis().toString(36), myName.trim().ifEmpty { "Spielleiter" }, AppUpdate.ownBuild, report))
         uploadReports()
+    }
+
+    private fun addPending(report: DiagnoseTransfer.Report) {
+        pendingReports += report
+        runCatching { File(pendingDir, "${report.id}.txt").writeText("${report.from}|${report.build}\n${report.text}") }
+            .onFailure { Diagnostics.log("Diagnosebericht nicht zwischengespeichert: ${it.message}") }
+    }
+
+    /** Quiz-Statistik in das private Repository hochladen (für die Pflege der Fragenpakete). */
+    fun uploadStats() {
+        if (!diagnoseUpload.hasToken) {
+            showTokenGuide = true
+            return
+        }
+        val now = Date()
+        val name = myName.trim().replace(Regex("[^\\p{L}\\p{N}_-]+"), "-").trim('-').ifEmpty { "Spielleiter" }
+        val path = "statistik/${SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(now)}/$name-${SimpleDateFormat("HH-mm-ss", Locale.GERMANY).format(now)}.buzzstats"
+        status = "Statistik wird hochgeladen …"
+        diagnoseUpload.upload(path, quizStore.statsJson(), "Quiz-Statistik von $name (Build ${AppUpdate.ownBuild})") { error ->
+            status = if (error == null) "Statistik in GitHub abgelegt: $path" else "Statistik-Upload fehlgeschlagen: $error"
+        }
     }
 
     /** Alle offenen Berichte nacheinander in GitHub ablegen; ohne Token erst die Anleitung. */
@@ -968,6 +1043,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             uploading = false
             if (error == null) {
                 pendingReports.remove(report)
+                File(pendingDir, "${report.id}.txt").delete()
                 status = "Diagnose von ${report.from} in GitHub abgelegt: $path"
                 if (pendingReports.isNotEmpty()) uploadReports()
             } else {
@@ -1038,6 +1114,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onCleared() {
+        GameService.stop(getApplication())
         master?.close()
         link.stopAll()
         sounds.release()
