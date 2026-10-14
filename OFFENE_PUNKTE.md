@@ -247,30 +247,34 @@ Kategorien recherchieren.
 30. **Einstellungen nicht bei jedem Tipp speichern:** +/− in der Quiz-Einrichtung erst nach
     kurzer Ruhe übernehmen (heute 8 Protokollzeilen in 3 Sekunden).
 
-## Offen
+## Erledigt in Build 18
 
-31. **Challenge-Ablauf:** Das Laufband „Bitte warte kurz – die Antworten werden überprüft“ startet
+31. ✅ **Challenge-Ablauf:** Das Laufband „Bitte warte kurz – die Antworten werden überprüft“ startet
     automatisch, sobald ein Spieler eine Challenge sendet oder der Spielleiter „Antwort prüfen“
     öffnet, und endet mit seiner Entscheidung. Nach einer Entscheidung startet „Antwort prüfen“
     keine Prüfung mehr nebenbei (im Test lief das Laufband sonst bis zur nächsten Frage).
-32. **Ruhigeres Protokoll beim Beitritt:** „Runde beendet“/„Spielart: noch offen“ beim Wählen der
+32. ✅ **Ruhigeres Protokoll beim Beitritt:** „Runde beendet“/„Spielart: noch offen“ beim Wählen der
     Spielart nicht mehr als eigene Ereignisse beim Spieler protokollieren.
-33. **Testspiel-Schalter:** Im Menü ⋮ des Spielleiters „Testspiel – nicht in die Statistik“.
+33. ✅ **Testspiel-Schalter:** Im Menü ⋮ des Spielleiters „Testspiel – nicht in die Statistik“.
     Solange er an ist, zählen Antworten, „gesehen“, Challenges und Entscheidungen nicht in die
     Quiz-Statistik (Fragen werden also beim nächsten echten Spiel wieder als ungespielt gewählt).
     Anzeige „Testspiel“ in der Kopfzeile beim Spielleiter; wird beim Start einer neuen Runde
     nicht automatisch zurückgesetzt, aber beim Neustart der App.
-34. **Diagnose lokal ablegen:** Jede Diagnose (im Spiel und außerhalb, z. B. vom Startbildschirm
+34. ✅ **Diagnose lokal ablegen:** Jede Diagnose (im Spiel und außerhalb, z. B. vom Startbildschirm
     oder nach einem Verbindungsfehler) kann auf dem Gerät gespeichert werden. Liste
     „Gespeicherte Diagnosen“ unter „Über & Diagnose“ mit Ansehen, Teilen, Löschen.
     Wer ein gültiges Repository-Token hat, lädt sie stattdessen direkt hoch (bei Fehler oder
     ohne Internet bleiben sie lokal liegen und werden später erneut angeboten).
-35. **Gespeicherte Diagnosen beim Beitritt einsammeln:** Hat ein Spieler gespeicherte Diagnosen
+35. ✅ **Gespeicherte Diagnosen beim Beitritt einsammeln:** Hat ein Spieler gespeicherte Diagnosen
     und der Spielleiter ein gültiges Token, fragt der Spieler beim Verbindungsaufbau „Der
     Spielleiter kann N gespeicherte Diagnose(n) in sein Diagnose-Repository übernehmen.
     Senden?“ (Ja / Nein / Später). Übertragung wie bisher in Stücken; erst nach Bestätigung
     durch den Spielleiter („im Repository abgelegt“) werden sie beim Spieler gelöscht.
     Spielleiter ohne Token fragen nicht.
+
+## Offen
+
+(zurzeit nichts)
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.

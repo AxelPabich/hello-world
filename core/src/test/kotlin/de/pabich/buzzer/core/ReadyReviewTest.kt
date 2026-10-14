@@ -77,10 +77,32 @@ class ReadyReviewTest {
         g.master.decideChallenge(ChallengeDecision.ANNUL)
         g.time.advanceBy(200)
         assertFalse(g.view("Peter").reviewing)
-        g.master.startReview()
-        g.master.endReview()
+        assertFalse(g.master.startReview(), "nach der Entscheidung keine Prüfung nebenbei")
         g.time.advanceBy(200)
         assertFalse(g.view("Clara").reviewing)
+    }
+
+    @Test
+    fun `a challenge starts the ticker and the decision ends it`() {
+        val g = game()
+        g.master.chooseKind(GameKind.QUIZ)
+        g.master.startQuiz(listOf(QuizQuestion("q", "Technik", QuizLevel.EASY, "F?", listOf("R", "A", "B", "C"), 0, "", "")))
+        g.time.advanceBy(20_000)
+        assertTrue(g.player("Peter").engine.challenge("Stimmt nicht"))
+        g.time.advanceBy(200)
+        assertTrue(g.master.snapshot().reviewing)
+        assertTrue(g.view("Clara").reviewing)
+        g.master.decideChallenge(ChallengeDecision.KEEP)
+        g.time.advanceBy(200)
+        assertFalse(g.view("Clara").reviewing)
+        assertFalse(g.master.snapshot().reviewing)
+        // Ohne Entscheidung: endReview beendet das Laufband ebenfalls.
+        g.player("Clara").engine.challenge("")
+        g.time.advanceBy(200)
+        assertTrue(g.view("Axel").reviewing)
+        g.master.endReview()
+        g.time.advanceBy(200)
+        assertFalse(g.view("Axel").reviewing)
     }
 
     @Test

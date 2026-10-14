@@ -421,7 +421,10 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
             }
             if (quiz.challenges.isNotEmpty() || decisionsOpen || snapshot.reviewing) {
                 if (!snapshot.reviewing) {
-                    TextButton(onClick = { vm.startReview() }) { Text("Spieler bitten zu warten (Laufband)", color = theme.accent2) }
+                    if (quiz.challenges.isNotEmpty() || quiz.decision == null) {
+                        TextButton(onClick = { vm.startReview() }) { Text("Spieler bitten zu warten (Laufband)", color = theme.accent2) }
+                    }
+                    TextButton(onClick = { decisionsOpen = false }) { Text("Schließen", color = theme.muted) }
                 } else {
                     Text("Spieler sehen: „Bitte warte kurz – die Antworten werden überprüft“", color = theme.accent, fontSize = 13.sp)
                 }
@@ -432,7 +435,12 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
             } else {
                 quiz.decision?.let { Text("Entscheidung: ${it.label}", color = theme.muted, fontSize = 14.sp) }
                 // Der Spielleiter kann selbst eine Prüfung starten; die Spieler warten so lange.
-                GhostButton("Antwort prüfen (Challenge)", { decisionsOpen = true; vm.startReview() }, Modifier.fillMaxWidth())
+                // Nach einer Entscheidung öffnet der Knopf nur die Auswahl – ohne Laufband bei den Spielern.
+                if (quiz.decision == null) {
+                    GhostButton("Antwort prüfen (Challenge)", { decisionsOpen = true; vm.startReview() }, Modifier.fillMaxWidth())
+                } else {
+                    GhostButton("Entscheidung ändern", { decisionsOpen = true }, Modifier.fillMaxWidth())
+                }
             }
             if (vm.chat.isNotEmpty()) ChatPanel(vm.chat, theme.text, Modifier.fillMaxWidth(), maxLines = 3)
             Spacer(Modifier.height(6.dp))

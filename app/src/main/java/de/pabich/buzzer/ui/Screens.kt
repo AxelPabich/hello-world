@@ -249,7 +249,8 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "In den Pausen" to "Rangliste, Kurznachrichten und – wenn der Spielleiter will – eine Animation des Spielverlaufs. Emoticons gehen immer.",
                 "Quiz" to "Im Quiz kommen die Fragen aus der Fragen-Datenbank. Die Frage erscheint auf allen Geräten gleichzeitig, 3 Sekunden später die vier Antworten – bei jedem in anderer Reihenfolge. Tippe deine Antwort; aufgelöst wird, wenn alle geantwortet haben oder die Zeit um ist.",
                 "Wertung im Quiz" to "Schnellster punktet: nur die erste richtige Antwort. Jeder punktet: jede richtige Antwort. Countdown: nach der ersten richtigen Antwort läuft nur noch kurz die Zeit, alle Richtigen bekommen ihre Restzeit. Battle: nur der Schnellste bekommt seine Restzeit. Falsche Antworten kosten nie etwas.",
-                "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Der Spielleiter prüft die Quelle und entscheidet: Wertung bleibt, Frage annullieren, Antwort korrigieren oder Frage sperren.",
+                "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Alle sehen dann ein Laufband, bis der Spielleiter entschieden hat: Wertung bleibt, Frage annullieren, Antwort korrigieren oder Frage sperren.",
+                "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf.",
                 "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, bekommt er ein „Go!“.",
                 "Im Hintergrund" to "Solange eine Runde läuft, zeigt die App eine Benachrichtigung. Sie hält die Verbindung, wenn du kurz eine andere App öffnest. Bricht sie trotzdem ab: in den Android-Einstellungen bei Buzzer „Akku – nicht eingeschränkt“ wählen.",
                 "Versionen" to "Passen die App-Versionen nicht zusammen, holt sich das ältere Gerät die neuere Version direkt vom anderen (ohne Internet) oder lädt sie von der Release-Seite.",
@@ -268,6 +269,7 @@ fun AboutScreen(vm: BuzzerViewModel) {
     val theme = LocalBuzzerTheme.current
     BackHandler { vm.navigate(Screen.START) }
     var showDiagnostics by remember { mutableStateOf(false) }
+    var showSaved by remember { mutableStateOf(false) }
     ThemedScreen {
         BackHeader("Über & Diagnose") { vm.navigate(Screen.START) }
         ScrollPage {
@@ -284,12 +286,14 @@ fun AboutScreen(vm: BuzzerViewModel) {
             StatusText(vm)
             SectionTitle("Diagnose")
             Text(
-                "Bei Problemen einen Bericht über „Teilen“ verschicken. Systeminformationen kommen nur hinein, wenn du sie ankreuzt.",
+                "Bei Problemen einen Bericht teilen, an den Spielleiter senden oder auf dem Gerät speichern. Systeminformationen kommen nur hinein, wenn du sie ankreuzt.",
                 color = theme.text,
                 fontSize = 15.sp,
             )
             Spacer(Modifier.height(10.dp))
             PrimaryButton("Diagnose senden", { showDiagnostics = true }, Modifier.fillMaxWidth(), height = 52.dp)
+            Spacer(Modifier.height(10.dp))
+            GhostButton("Gespeicherte Diagnosen (${vm.pendingReports.size})", { showSaved = true }, Modifier.fillMaxWidth())
             SectionTitle("Diagnose-Ablage (Spielleiter)")
             Text(
                 "Repository: ${vm.diagnoseUpload.repo} · Token: " + if (vm.tokenSaved) "gespeichert (verschlüsselt)" else "nicht eingerichtet",
@@ -306,6 +310,7 @@ fun AboutScreen(vm: BuzzerViewModel) {
         }
     }
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
+    if (showSaved) SavedReportsDialog(vm) { showSaved = false }
 }
 
 /** Einstellungen und Profile als .buzzconf sichern oder einlesen. */
@@ -481,6 +486,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
     var showChat by remember { mutableStateOf(false) }
     var showMenu by remember { mutableStateOf(false) }
     var showDiagnostics by remember { mutableStateOf(false) }
+    var showSaved by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val view = vm.playerView ?: return
 
@@ -500,6 +506,9 @@ fun PlayerScreen(vm: BuzzerViewModel) {
                     BarButton("⋮") { showMenu = true }
                     DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
                         DropdownMenuItem(text = { Text("Diagnose senden") }, onClick = { showMenu = false; showDiagnostics = true })
+                        if (vm.pendingReports.isNotEmpty()) {
+                            DropdownMenuItem(text = { Text("Gespeicherte Diagnosen (${vm.pendingReports.size})") }, onClick = { showMenu = false; showSaved = true })
+                        }
                         DropdownMenuItem(text = { Text("Gruppe verlassen") }, onClick = { showMenu = false; confirmLeave = true })
                     }
                 }
@@ -537,7 +546,9 @@ fun PlayerScreen(vm: BuzzerViewModel) {
     }
 
     if (view.readyAsk != null && !view.readyConfirmed && !view.paused) ReadyDialog { vm.confirmReady() }
+    DiagnoseOfferDialog(vm)
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
+    if (showSaved) SavedReportsDialog(vm) { showSaved = false }
     if (showChat) {
         ChatDialog(
             recipients = view.roster,
@@ -576,6 +587,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var showCorrection by remember { mutableStateOf(false) }
     var showShare by remember { mutableStateOf(false) }
     var showDiagnostics by remember { mutableStateOf(false) }
+    var showSaved by remember { mutableStateOf(false) }
     var confirmLeave by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val settings = snapshot.settings
@@ -599,7 +611,11 @@ fun MasterScreen(vm: BuzzerViewModel) {
                 Row(Modifier.padding(top = 14.dp, bottom = 8.dp), verticalAlignment = Alignment.Top) {
                     Column(Modifier.weight(1f)) {
                         val kindLabel = if (choosing) "Spiel leiten" else snapshot.kind?.label ?: ""
-                        Kicker(kindLabel + (if (snapshot.kind == GameKind.BUZZER && !choosing) " · Runde ${snapshot.round}" else "") + if (snapshot.profileName.isNotEmpty()) " · ${snapshot.profileName}" else "")
+                        Kicker(
+                            kindLabel + (if (snapshot.kind == GameKind.BUZZER && !choosing) " · Runde ${snapshot.round}" else "") +
+                                (if (snapshot.kind == GameKind.QUIZ && vm.testGame && !choosing) " · TESTSPIEL" else "") +
+                                if (snapshot.profileName.isNotEmpty()) " · ${snapshot.profileName}" else "",
+                        )
                         BigTitle(if (choosing) "Spielart wählen" else phaseText(snapshot), color = theme.text, size = 26.sp)
                     }
                     if (!choosing) {
@@ -667,6 +683,10 @@ fun MasterScreen(vm: BuzzerViewModel) {
                             )
                             if (snapshot.kind == GameKind.QUIZ) {
                                 DropdownMenuItem(
+                                    text = { Text((if (vm.testGame) "✓ " else "") + "Testspiel – nicht in die Statistik") },
+                                    onClick = { showMenu = false; vm.toggleTestGame() },
+                                )
+                                DropdownMenuItem(
                                     text = { Text("Quiz-Statistik hochladen") },
                                     onClick = { showMenu = false; vm.uploadStats() },
                                 )
@@ -678,9 +698,8 @@ fun MasterScreen(vm: BuzzerViewModel) {
                             }
                             if (vm.pendingReports.isNotEmpty()) {
                                 DropdownMenuItem(
-                                    text = { Text("Diagnoseberichte in GitHub ablegen (${vm.pendingReports.size})") },
-                                    enabled = !vm.uploading,
-                                    onClick = { showMenu = false; vm.uploadReports() },
+                                    text = { Text("Gespeicherte Diagnosen (${vm.pendingReports.size})") },
+                                    onClick = { showMenu = false; showSaved = true },
                                 )
                             }
                             DropdownMenuItem(
@@ -817,6 +836,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     }
     if (showShare) ShareDialog { showShare = false }
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
+    if (showSaved) SavedReportsDialog(vm) { showSaved = false }
     if (showSettings) SettingsDialog(vm, snapshot) { showSettings = false }
     if (showChat) {
         ChatDialog(

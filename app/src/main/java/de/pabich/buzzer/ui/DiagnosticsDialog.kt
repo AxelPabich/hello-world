@@ -37,6 +37,12 @@ import androidx.compose.ui.unit.sp
 import de.pabich.buzzer.BuzzerViewModel
 import de.pabich.buzzer.DiagnoseUpload
 import de.pabich.buzzer.Diagnostics
+import de.pabich.buzzer.core.DiagnoseTransfer
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.material3.HorizontalDivider
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 /**
  * Diagnosebericht: Systeminformationen nur auf Wunsch. Verschicken über „Teilen“, als Spieler
@@ -81,8 +87,12 @@ fun DiagnosticsDialog(vm: BuzzerViewModel, onDismiss: () -> Unit) {
                 if (vm.canSendToMaster) {
                     TextButton(onClick = { vm.sendDiagnoseToMaster(report()); onDismiss() }) { Text("An den Spielleiter senden") }
                 }
-                if (vm.isMaster) {
+                // Mit Token direkt ins Repository (bleibt bei Fehlern gespeichert), sonst auf dem Gerät.
+                if (vm.tokenSaved || vm.isMaster) {
                     TextButton(onClick = { vm.addOwnReport(report()); onDismiss() }) { Text("In GitHub ablegen") }
+                }
+                if (!vm.tokenSaved) {
+                    TextButton(onClick = { vm.saveReport(report()); onDismiss() }) { Text("Auf dem Gerät speichern") }
                 }
                 Row {
                     TextButton(onClick = onDismiss) { Text("Abbrechen") }
@@ -174,5 +184,97 @@ fun LocationDialog(vm: BuzzerViewModel) {
             }) { Text("Einstellungen öffnen") }
         },
         dismissButton = { TextButton(onClick = { vm.searchGroups(ignoreLocation = true) }) { Text("Trotzdem suchen") } },
+    )
+}
+
+/** Auf dem Gerät gespeicherte Diagnosen: ansehen, teilen, löschen, (mit Token) in GitHub ablegen. */
+@Composable
+fun SavedReportsDialog(vm: BuzzerViewModel, onDismiss: () -> Unit) {
+    val context = LocalContext.current
+    var viewing by remember { mutableStateOf<DiagnoseTransfer.Report?>(null) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Gespeicherte Diagnosen") },
+        text = {
+            Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                if (vm.pendingReports.isEmpty()) Text("Keine gespeicherten Diagnosen.")
+                for (r in vm.pendingReports.toList()) {
+                    Text(reportTitle(r), fontWeight = FontWeight.Bold, fontSize = 15.sp, modifier = Modifier.padding(top = 8.dp))
+                    Text("${r.text.length} Zeichen", style = MaterialTheme.typography.bodySmall)
+                    Row {
+                        TextButton(onClick = { viewing = r }) { Text("Ansehen") }
+                        TextButton(onClick = { vm.shareReport(context, r) }) { Text("Teilen") }
+                        TextButton(onClick = { vm.deleteReport(r) }) { Text("Löschen") }
+                    }
+                    HorizontalDivider()
+                }
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    if (vm.tokenSaved) {
+                        "Mit deinem GitHub-Zugang werden sie im Repository ${vm.diagnoseUpload.repo} abgelegt und danach hier gelöscht."
+                    } else {
+                        "Ein Spielleiter mit GitHub-Zugang kann sie beim Beitritt übernehmen (mit Rückfrage). Danach werden sie hier gelöscht."
+                    },
+                    style = MaterialTheme.typography.bodySmall,
+                )
+            }
+        },
+        confirmButton = {
+            Column(horizontalAlignment = Alignment.End) {
+                if (vm.pendingReports.isNotEmpty() && vm.tokenSaved) {
+                    TextButton(enabled = !vm.uploading, onClick = { vm.uploadReports() }) { Text("Alle in GitHub ablegen") }
+                }
+                if (vm.pendingReports.isNotEmpty() && vm.masterCollects && vm.canSendToMaster) {
+                    TextButton(onClick = { vm.sendSavedToMaster() }) { Text("An den Spielleiter senden") }
+                }
+                TextButton(onClick = onDismiss) { Text("Schließen") }
+            }
+        },
+    )
+    viewing?.let { r ->
+        AlertDialog(
+            onDismissRequest = { viewing = null },
+            title = { Text(reportTitle(r)) },
+            text = {
+                Column(Modifier.heightIn(max = 520.dp).verticalScroll(rememberScrollState())) {
+                    Text(r.text.take(MAX_VIEW_CHARS), fontFamily = FontFamily.Monospace, fontSize = 11.sp, lineHeight = 14.sp)
+                    if (r.text.length > MAX_VIEW_CHARS) Text("… (gekürzt – vollständig über „Teilen“)", style = MaterialTheme.typography.bodySmall)
+                }
+            },
+            confirmButton = { TextButton(onClick = { viewing = null }) { Text("Schließen") } },
+        )
+    }
+}
+
+private const val MAX_VIEW_CHARS = 30_000
+
+/** „Peter · Build 17 · 14.10. 21:03“ – die Berichts-ID ist der Zeitpunkt (Basis 36). */
+private fun reportTitle(r: DiagnoseTransfer.Report): String {
+    val time = r.id.toLongOrNull(36)?.takeIf { it > 1_600_000_000_000L }
+        ?.let { SimpleDateFormat("dd.MM. HH:mm", Locale.GERMANY).format(Date(it)) }
+    return listOfNotNull(r.from, "Build ${r.build}", time).joinToString(" · ")
+}
+
+/** Spieler: Der Spielleiter hat einen GitHub-Zugang – gespeicherte Diagnosen abgeben? */
+@Composable
+fun DiagnoseOfferDialog(vm: BuzzerViewModel) {
+    if (!vm.diagnoseOffer) return
+    val n = vm.pendingReports.size
+    AlertDialog(
+        onDismissRequest = { vm.dismissDiagnoseOffer(never = false) },
+        title = { Text("Gespeicherte Diagnosen") },
+        text = {
+            Text(
+                "Der Spielleiter kann $n gespeicherte Diagnose(n) in sein Diagnose-Repository übernehmen. Senden?\n\n" +
+                    "Sie werden hier erst gelöscht, wenn sie dort abgelegt sind.",
+            )
+        },
+        confirmButton = { TextButton(onClick = { vm.sendSavedToMaster() }) { Text("Ja, senden") } },
+        dismissButton = {
+            Row {
+                TextButton(onClick = { vm.dismissDiagnoseOffer(never = true) }) { Text("Nein") }
+                TextButton(onClick = { vm.dismissDiagnoseOffer(never = false) }) { Text("Später") }
+            }
+        },
     )
 }

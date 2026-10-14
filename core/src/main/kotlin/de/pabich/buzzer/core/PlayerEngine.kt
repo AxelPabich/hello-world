@@ -147,7 +147,8 @@ class PlayerEngine(
             is Message.Reset -> {
                 endContest()
                 cancelQuizTasks()
-                log("Runde beendet")
+                // Beim Beitritt oder Wechsel der Spielart kommt ein Reset ohne laufende Runde – nicht protokollieren.
+                if (view.quiz != null || view.display != Display.BLACK) log("Runde beendet")
                 update { it.copy(timer = null, quiz = null) }
                 show(Display.BLACK, "Warte auf die nächste Frage", 0, message.score)
             }
@@ -180,7 +181,7 @@ class PlayerEngine(
             is Message.Replay -> onReplay?.invoke(message)
             is Message.Mode -> {
                 cancelQuizTasks()
-                log("Spielart: ${message.kind?.label ?: "noch offen"}")
+                if (message.kind != null && message.kind != view.kind) log("Spielart: ${message.kind.label}")
                 update { it.copy(kind = message.kind, quiz = null) }
                 show(Display.BLACK, if (message.kind == GameKind.QUIZ) "Quiz – gleich kommt die erste Frage" else "Warte auf den Spielleiter", 0, view.score)
             }

@@ -1133,6 +1133,8 @@ class MasterEngine(
         t.challenges += QuizChallengeInfo(player.id, player.name, reason)
         log("Challenge von ${player.name}" + if (reason.isNotEmpty()) ": $reason" else "")
         masterSound(SoundEvent.CHAT)
+        // Eine Challenge startet die Prüfung: alle sehen das Laufband bis zur Entscheidung.
+        setReviewing(true)
         onQuizChallenge?.invoke(t.question, player.name, reason)
         notifyChanged()
     }
@@ -1231,7 +1233,10 @@ class MasterEngine(
 
     /** Spielleiter prüft die Auflösung: Spieler sehen ein Laufband, bis er entschieden hat. */
     fun startReview(): Boolean {
-        if (phase != Phase.QUIZ_REVEAL) return false
+        if (phase != Phase.QUIZ_REVEAL || reviewing) return false
+        // Nach einer Entscheidung nur noch bei einer neuen Challenge – sonst bliebe das Laufband stehen.
+        val t = turn ?: return false
+        if (t.decision != null && t.challenges.isEmpty()) return false
         setReviewing(true)
         notifyChanged()
         return true

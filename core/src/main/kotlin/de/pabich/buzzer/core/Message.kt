@@ -122,11 +122,26 @@ sealed interface Message {
     /** S → M: tippt gerade eine Kurznachricht (an) bzw. fertig (aus). */
     data class Typing(val on: Boolean) : Message
 
-    /** S → M: Teil [index] von [count] eines Diagnoseberichts von [from] (Build [build]). */
-    data class DiagnoseChunk(val reportId: String, val index: Int, val count: Int, val from: String, val build: Int, val text: String) : Message
+    /**
+     * S → M: Teil [index] von [count] eines Diagnoseberichts von [from] (Build [build]).
+     * [saved]: ein auf dem Spieler gespeicherter Bericht – er wird dort erst gelöscht, wenn der
+     * Spielleiter ihn im Repository abgelegt hat.
+     */
+    data class DiagnoseChunk(
+        val reportId: String,
+        val index: Int,
+        val count: Int,
+        val from: String,
+        val build: Int,
+        val text: String,
+        val saved: Boolean = false,
+    ) : Message
 
-    /** M → S: Diagnosebericht vollständig erhalten. */
+    /** M → S: Diagnosebericht erhalten (bzw. bei gespeicherten Berichten: im Repository abgelegt). */
     data class DiagnoseReceived(val reportId: String) : Message
+
+    /** M → S: Der Spielleiter hat einen GitHub-Zugang und übernimmt gespeicherte Diagnosen. */
+    data object DiagnoseCollect : Message
 
     /** M → S: „Bereit?“-Abfrage [id] anzeigen ([on]) bzw. schließen. */
     data class ReadyCheck(val id: Int, val on: Boolean) : Message
@@ -229,8 +244,9 @@ object MessageCodec {
             is Message.Typing -> "TYPING" to mapOf("on" to message.on)
             is Message.DiagnoseChunk -> "DIAG" to mapOf(
                 "id" to message.reportId, "i" to message.index, "n" to message.count,
-                "f" to message.from, "b" to message.build, "t" to message.text,
+                "f" to message.from, "b" to message.build, "t" to message.text, "sv" to message.saved,
             )
+            Message.DiagnoseCollect -> "DIAG_COLLECT" to emptyMap()
             is Message.DiagnoseReceived -> "DIAG_OK" to mapOf("id" to message.reportId)
             is Message.ReadyCheck -> "READY_CHECK" to mapOf("id" to message.id, "on" to message.on)
             is Message.Ready -> "READY" to mapOf("id" to message.id)
@@ -305,7 +321,10 @@ object MessageCodec {
             )
             "QUIZ_CHALLENGE" -> Message.QuizChallenge(int("n"), f.getValue("r"))
             "TYPING" -> Message.Typing(bool("on"))
-            "DIAG" -> Message.DiagnoseChunk(f.getValue("id"), int("i"), int("n"), f.getValue("f"), int("b"), f.getValue("t"))
+            "DIAG" -> Message.DiagnoseChunk(
+                f.getValue("id"), int("i"), int("n"), f.getValue("f"), int("b"), f.getValue("t"), f["sv"]?.toBooleanStrict() ?: false,
+            )
+            "DIAG_COLLECT" -> Message.DiagnoseCollect
             "DIAG_OK" -> Message.DiagnoseReceived(f.getValue("id"))
             "READY_CHECK" -> Message.ReadyCheck(int("id"), bool("on"))
             "READY" -> Message.Ready(int("id"))

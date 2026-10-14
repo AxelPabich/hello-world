@@ -510,6 +510,10 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - Bei der Auflösung sieht der Spielleiter die Erklärung und kann selbst „Antwort prüfen
   (Challenge)“ starten. Während er prüft, läuft bei allen Spielern unten ein Laufband „Bitte warte
   kurz – die Antworten werden überprüft“. Mit seiner Entscheidung (oder der nächsten Frage) endet es.
+- Sendet ein Spieler eine Challenge, startet das Laufband automatisch. Nach einer Entscheidung
+  heißt der Knopf „Entscheidung ändern“ und öffnet nur die Auswahl, ohne erneutes Laufband.
+- Beim Beitritt protokolliert der Spieler „Runde beendet“ nur nach einer laufenden Runde und die
+  Spielart nur, wenn sie feststeht und sich ändert.
 
 ## 35. Obere Leiste
 
@@ -533,3 +537,22 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   allen Spielern „Bereit?“ mit dem Knopf „Bereit!“. Der Spielleiter sieht „Bereit: x / y“ und wer
   fehlt; sind alle bereit, erscheint „GO!“ mit Startsignal-Klang. Er kann auch ohne „Go!“ starten;
   die Abfrage schließt dann überall. Der mitspielende Spielleiter gilt als bereit.
+
+## 39. Testspiel
+
+- Im Quiz hat der Spielleiter im Menü ⋮ den Schalter „Testspiel – nicht in die Statistik“. Solange
+  er an ist (Kopfzeile „TESTSPIEL“), fließen Antworten, übersprungene Fragen, Challenges und
+  Entscheidungen nicht in die Quiz-Statistik. Er gilt bis zum Neustart der App.
+
+## 40. Gespeicherte Diagnosen
+
+- Jede Diagnose (im Spiel oder außerhalb, z. B. nach einem Verbindungsfehler) lässt sich „Auf dem
+  Gerät speichern“. Mit gespeichertem GitHub-Token heißt der Knopf „In GitHub ablegen“; klappt das
+  Hochladen nicht, bleibt der Bericht gespeichert.
+- „Gespeicherte Diagnosen“ (Über & Diagnose, Menü ⋮ von Spieler und Spielleiter) zeigt die Liste mit
+  Ansehen, Teilen, Löschen und – mit Token – „Alle in GitHub ablegen“.
+- Hat der Spielleiter einen Token, meldet er das jedem beitretenden Spieler (`DIAG_COLLECT`). Hat
+  der Spieler gespeicherte Diagnosen, fragt er „Der Spielleiter kann N gespeicherte Diagnose(n) in
+  sein Diagnose-Repository übernehmen. Senden?“ (Ja / Nein / Später; „Nein“ gilt bis zum Neustart).
+  Die Berichte gehen in Teilen mit Kennzeichen „gespeichert“; der Spielleiter bestätigt erst nach
+  dem Hochladen (`DIAG_OK`), dann löscht der Spieler sie.

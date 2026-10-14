@@ -163,8 +163,25 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Die Suche braucht den eingeschalteten Standort: Hinweis anzeigen. */
     var locationOff by mutableStateOf(false)
 
-    /** Master: empfangene (bzw. eigene) Diagnoseberichte, die noch nicht in GitHub liegen. */
+    /**
+     * Auf diesem Gerät gespeicherte Diagnoseberichte, die noch nicht in GitHub liegen: eigene
+     * und (beim Spielleiter) von Spielern empfangene.
+     */
     val pendingReports = mutableStateListOf<DiagnoseTransfer.Report>()
+
+    /** Spieler: Der Spielleiter hat einen GitHub-Zugang und übernimmt gespeicherte Diagnosen. */
+    var masterCollects by mutableStateOf(false)
+        private set
+
+    /** Spieler: Rückfrage „gespeicherte Diagnosen an den Spielleiter senden?“ anzeigen. */
+    var diagnoseOffer by mutableStateOf(false)
+        private set
+
+    /** Spieler hat „Nein“ gesagt – bis zum Neustart der App nicht mehr fragen. */
+    private var offerDeclined = false
+
+    /** Spielleiter: gespeicherte Berichte von Spielern → Endpunkt, der nach dem Hochladen die Bestätigung bekommt. */
+    private val confirmAfterUpload = mutableMapOf<String, String>()
     var uploading by mutableStateOf(false)
         private set
 
@@ -236,10 +253,11 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engine.onSound = { sound(it) }
         engine.onReplay = { startReplay(it) }
-        engine.onQuizRevealed = { q, results -> quizStore.recordResult(q.id, results.map { it.copy(name = statsName(it.name)) }) }
-        engine.onQuizSkipped = { q, names -> quizStore.recordSeen(q.id, names.map { statsName(it) }) }
-        engine.onQuizChallenge = { q, from, reason -> quizStore.recordChallenge(q.id, statsName(from), reason) }
-        engine.onQuizDecision = { q, decision, newCorrect -> quizStore.recordDecision(q.id, decision, newCorrect) }
+        // Im Testspiel bleibt die Statistik unverändert (Fragen gelten danach weiter als ungespielt).
+        engine.onQuizRevealed = { q, results -> if (!testGame) quizStore.recordResult(q.id, results.map { it.copy(name = statsName(it.name)) }) }
+        engine.onQuizSkipped = { q, names -> if (!testGame) quizStore.recordSeen(q.id, names.map { statsName(it) }) }
+        engine.onQuizChallenge = { q, from, reason -> if (!testGame) quizStore.recordChallenge(q.id, statsName(from), reason) }
+        engine.onQuizDecision = { q, decision, newCorrect -> if (!testGame) quizStore.recordDecision(q.id, decision, newCorrect) }
         master = engine
         engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
         syncLocalPlayer(engine)
@@ -311,6 +329,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         master = null
         player = null
         masterEndpoint = null
+        masterCollects = false
+        diagnoseOffer = false
+        confirmAfterUpload.clear()
         joinCode = null
         masterPeer = null
         updatePeer = null
@@ -548,6 +569,16 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun askReady() = master?.askReady()
     fun cancelReady() = master?.cancelReady()
     fun confirmReady() = player?.confirmReady()
+    /** Testspiel: nichts fließt in die Quiz-Statistik; gilt bis zum Neustart der App. */
+    var testGame by mutableStateOf(false)
+        private set
+
+    fun toggleTestGame() {
+        testGame = !testGame
+        Diagnostics.log(if (testGame) "Testspiel an – keine Statistik" else "Testspiel aus")
+        status = if (testGame) "Testspiel: Antworten zählen nicht in die Statistik." else "Testspiel beendet – die Statistik zählt wieder."
+    }
+
     fun startReview() = master?.startReview()
     fun endReview() = master?.endReview()
 
@@ -869,6 +900,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             val peer = PeerInfo.parse(name)
             peerBuilds[endpointId] = peer.build
             engine.addPlayer(endpointId, peer.name)
+            // Mit GitHub-Zugang: Spieler dürfen ihre gespeicherten Diagnosen abgeben.
+            if (diagnoseUpload.hasToken) link.send(endpointId, Message.DiagnoseCollect)
             return
         }
         masterEndpoint = endpointId
@@ -947,15 +980,33 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 if (master == null) return
                 reportCollector.add(message)?.let { report ->
                     Diagnostics.log("Diagnosebericht von ${report.from} erhalten (Build ${report.build}, ${report.text.length} Zeichen)")
-                    link.send(endpointId, Message.DiagnoseReceived(report.id))
-                    addPending(report)
-                    if (diagnoseUpload.hasToken) uploadReports() else status = "Diagnosebericht von ${report.from} erhalten – über ⋮ „Diagnoseberichte“ in GitHub ablegen."
+                    // Gespeicherte Berichte erst nach dem Hochladen bestätigen – der Spieler löscht sie dann.
+                    if (report.saved && diagnoseUpload.hasToken) {
+                        confirmAfterUpload[report.id] = endpointId
+                    } else {
+                        link.send(endpointId, Message.DiagnoseReceived(report.id))
+                    }
+                    addPending(report.copy(saved = false))
+                    if (diagnoseUpload.hasToken) uploadReports() else status = "Diagnosebericht von ${report.from} erhalten – über ⋮ „Gespeicherte Diagnosen“ in GitHub ablegen."
                 }
                 return
             }
             is Message.DiagnoseReceived -> {
-                Diagnostics.log("Spielleiter hat den Diagnosebericht erhalten")
-                status = "Der Spielleiter hat deinen Diagnosebericht erhalten."
+                val saved = pendingReports.firstOrNull { it.id == message.reportId }
+                if (saved != null) {
+                    removePending(saved)
+                    Diagnostics.log("Gespeicherte Diagnose ${saved.id} liegt im Repository des Spielleiters – hier gelöscht")
+                    if (pendingReports.isEmpty()) status = "Deine gespeicherten Diagnosen liegen jetzt beim Spielleiter in GitHub."
+                } else {
+                    Diagnostics.log("Spielleiter hat den Diagnosebericht erhalten")
+                    status = "Der Spielleiter hat deinen Diagnosebericht erhalten."
+                }
+                return
+            }
+            Message.DiagnoseCollect -> {
+                if (master != null) return
+                masterCollects = true
+                if (pendingReports.isNotEmpty() && !offerDeclined) diagnoseOffer = true
                 return
             }
             is Message.ApkInfo -> {
@@ -996,16 +1047,63 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         status = "Diagnosebericht wird an den Spielleiter gesendet …"
     }
 
-    /** Master: eigenen Bericht zu den hochzuladenden legen. */
+    /** Eigenen Bericht speichern und mit Token gleich in GitHub ablegen (ohne Token: Anleitung). */
     fun addOwnReport(report: String) {
-        addPending(DiagnoseTransfer.Report(System.currentTimeMillis().toString(36), myName.trim().ifEmpty { "Spielleiter" }, AppUpdate.ownBuild, report))
+        addPending(ownReport(report))
         uploadReports()
     }
 
+    /** Eigenen Bericht nur auf dem Gerät speichern; mit Token wird er sofort hochgeladen. */
+    fun saveReport(report: String) {
+        addPending(ownReport(report))
+        if (diagnoseUpload.hasToken) {
+            uploadReports()
+        } else {
+            status = "Diagnose auf dem Gerät gespeichert. Ein Spielleiter mit GitHub-Zugang kann sie beim nächsten Beitritt übernehmen."
+        }
+    }
+
+    private fun ownReport(text: String) = DiagnoseTransfer.Report(
+        System.currentTimeMillis().toString(36),
+        myName.trim().ifEmpty { if (isMaster) "Spielleiter" else "Spieler" },
+        AppUpdate.ownBuild,
+        text,
+    )
+
+    fun deleteReport(report: DiagnoseTransfer.Report) {
+        removePending(report)
+        Diagnostics.log("Gespeicherte Diagnose ${report.id} gelöscht")
+    }
+
+    fun shareReport(context: Context, report: DiagnoseTransfer.Report) = Diagnostics.share(context, report.text)
+
+    /** Spieler: alle gespeicherten Berichte an den Spielleiter; gelöscht wird erst nach seiner Bestätigung. */
+    fun sendSavedToMaster() {
+        diagnoseOffer = false
+        val endpoint = masterEndpoint ?: return
+        for (r in pendingReports.toList()) {
+            DiagnoseTransfer.split(r.id, r.from, r.build, r.text, saved = true).forEach { link.send(endpoint, it) }
+        }
+        Diagnostics.log("${pendingReports.size} gespeicherte Diagnose(n) an den Spielleiter gesendet")
+        status = "Gespeicherte Diagnosen werden an den Spielleiter gesendet …"
+    }
+
+    /** Spieler: Rückfrage schließen; [never] = bis zum Neustart nicht mehr fragen. */
+    fun dismissDiagnoseOffer(never: Boolean) {
+        diagnoseOffer = false
+        if (never) offerDeclined = true
+    }
+
     private fun addPending(report: DiagnoseTransfer.Report) {
+        if (pendingReports.any { it.id == report.id && it.from == report.from }) return
         pendingReports += report
         runCatching { File(pendingDir, "${report.id}.txt").writeText("${report.from}|${report.build}\n${report.text}") }
             .onFailure { Diagnostics.log("Diagnosebericht nicht zwischengespeichert: ${it.message}") }
+    }
+
+    private fun removePending(report: DiagnoseTransfer.Report) {
+        pendingReports.remove(report)
+        File(pendingDir, "${report.id}.txt").delete()
     }
 
     /** Quiz-Statistik in das private Repository hochladen (für die Pflege der Fragenpakete). */
@@ -1042,8 +1140,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         diagnoseUpload.upload(path, report.text, "Diagnose von ${report.from} (Build ${report.build})") { error ->
             uploading = false
             if (error == null) {
-                pendingReports.remove(report)
-                File(pendingDir, "${report.id}.txt").delete()
+                removePending(report)
+                confirmAfterUpload.remove(report.id)?.let { link.send(it, Message.DiagnoseReceived(report.id)) }
                 status = "Diagnose von ${report.from} in GitHub abgelegt: $path"
                 if (pendingReports.isNotEmpty()) uploadReports()
             } else {
