@@ -41,6 +41,25 @@ class ReadyReviewTest {
     }
 
     @Test
+    fun `get ready while a check runs does not restart it`() {
+        val g = game()
+        val allReady = mutableListOf<Int>()
+        g.master.onAllReady = { allReady += it }
+        assertTrue(g.master.askReady())
+        g.time.advanceBy(200)
+        g.player("Axel").engine.confirmReady()
+        g.time.advanceBy(200)
+        assertFalse(g.master.askReady(), "läuft schon")
+        assertEquals(listOf("Axel"), g.master.snapshot().ready?.readyNames)
+        g.player("Peter").engine.confirmReady()
+        g.player("Clara").engine.confirmReady()
+        g.time.advanceBy(200)
+        assertEquals(listOf(g.master.readyCheckId), allReady)
+        g.master.cancelReady()
+        assertTrue(g.master.askReady(), "nach dem Abbrechen wieder möglich")
+    }
+
+    @Test
     fun `round can start without everyone ready`() {
         val g = game()
         g.master.askReady()

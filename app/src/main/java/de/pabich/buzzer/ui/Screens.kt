@@ -253,7 +253,7 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "Wertung im Quiz" to "Schnellster punktet: nur die erste richtige Antwort. Jeder punktet: jede richtige Antwort. Countdown: nach der ersten richtigen Antwort läuft nur noch kurz die Zeit, alle Richtigen bekommen ihre Restzeit. Battle: nur der Schnellste bekommt seine Restzeit. Falsche Antworten kosten nie etwas.",
                 "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Alle sehen dann ein Laufband, bis der Spielleiter entschieden hat: Wertung bleibt, Frage annullieren, Antwort korrigieren, Frage sperren oder Ersatzfrage. Punkte und Zeiten werden dabei mitkorrigiert.",
                 "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf.",
-                "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, bekommt er ein „Go!“.",
+                "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, kommt ein „Go!“ – im Quiz startet die nächste Frage dann von selbst.",
                 "Im Hintergrund" to "Solange eine Runde läuft, zeigt die App eine Benachrichtigung. Sie hält die Verbindung, wenn du kurz eine andere App öffnest. Bricht sie trotzdem ab: in den Android-Einstellungen bei Buzzer „Akku – nicht eingeschränkt“ wählen.",
                 "Versionen" to "Passen die App-Versionen nicht zusammen, holt sich das ältere Gerät die neuere Version direkt vom anderen (ohne Internet) oder lädt sie von der Release-Seite.",
             )
@@ -933,11 +933,15 @@ private fun MasterActions(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) 
         when (snapshot.phase) {
             Phase.READY -> Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 GetReadyButton(vm, snapshot, Modifier.height(64.dp))
+                // Nach „Alle bereit – Go!“ leuchtet der Knopf grün auf (freigeben bleibt Sache des Spielleiters).
+                val go = snapshot.ready?.allReady == true
                 PrimaryButton(
-                    if (snapshot.settings.startMode == StartMode.TAP) "Buzzer frei" else "Buzzer scharf",
+                    (if (go) "GO! " else "") + if (snapshot.settings.startMode == StartMode.TAP) "Buzzer frei" else "Buzzer scharf",
                     { vm.release() },
                     Modifier.weight(1f),
                     enabled = snapshot.players.isNotEmpty() && !snapshot.paused,
+                    container = if (go) theme.good else theme.accent,
+                    content = if (go) Color.White else theme.ground,
                     height = 64.dp,
                 )
             }

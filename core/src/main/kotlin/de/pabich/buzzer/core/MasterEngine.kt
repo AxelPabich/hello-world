@@ -182,6 +182,12 @@ class MasterEngine(
     var onReplay: ((Message.Replay) -> Unit)? = null
 
     /** Quiz-Statistik: Frage aufgelöst mit den Ergebnissen aller Teilnehmer. */
+    /** Alle haben „Bereit!“ bestätigt (Abfrage [readyCheckId]); die App startet im Quiz dann automatisch. */
+    var onAllReady: ((id: Int) -> Unit)? = null
+
+    /** Nummer der laufenden bzw. letzten Bereit-Abfrage. */
+    val readyCheckId: Int get() = readyId
+
     var onQuizRevealed: ((QuizQuestion, List<ParticipantResult>) -> Unit)? = null
 
     /** Quiz-Statistik: Frage übersprungen – gesehen, aber nicht gewertet. */
@@ -1224,7 +1230,8 @@ class MasterEngine(
 
     /** „Get Ready“: Spieler bekommen die Abfrage „Bereit?“. Nur in den Pausen. */
     fun askReady(): Boolean {
-        if (!isPause() || paused) return false
+        // Läuft schon eine Abfrage, startet erneutes Tippen keine neue (Spieler müssten sonst nochmal bestätigen).
+        if (!isPause() || paused || readyOpen) return false
         readyId++
         readyOpen = true
         readyPlayers.clear()
@@ -1255,6 +1262,7 @@ class MasterEngine(
         if (state.allReady) {
             log("Alle bereit – Go!")
             masterSound(SoundEvent.GO)
+            onAllReady?.invoke(readyId)
         }
     }
 

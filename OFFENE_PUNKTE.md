@@ -328,9 +328,9 @@ Kategorien recherchieren.
     werden beim Laden begrenzt, mit kurzer Meldung „Countdown auf x s begrenzt“. (Test 14.10.: mit
     „Familienabend leicht“ griff der Countdown nie, alle bekamen ihre Restzeit.)
 
-## Offen
+## Erledigt in Build 21
 
-47. **Get Ready: nicht mehrfach auslösbar, danach automatisch weiter** (Test 14.10., Build 20:
+47. ✅ **Get Ready: nicht mehrfach auslösbar, danach automatisch weiter** (Test 14.10., Build 20:
     vor Frage 3 wurde „Get Ready“ fünfmal getippt, Wally musste dreimal bestätigen):
     - Während die Bereit-Abfrage läuft, zeigt der Knopf „Bereit: x / y …“ und löst keine neue
       Abfrage aus; abbrechen weiterhin über das Bereit-Feld oben.
@@ -340,7 +340,7 @@ Kategorien recherchieren.
       vor dem Start der Abfrage.
     - Buzzer: Dort liest der Spielleiter die Frage selbst vor – nach „Go!“ also kein
       automatisches „Buzzer frei“, nur der Knopf leuchtet auf.
-48. **Spieleinstellungen im Quiz entrümpelt** (umgesetzt, kommt mit dem nächsten Build):
+48. ✅ **Spieleinstellungen im Quiz entrümpelt**:
     Im Quiz zeigt ⋮ „Spieleinstellungen“ nur noch, was dort wirkt – Tabs „Teilnehmer“
     (Master spielt mit, Kurznachrichten, Emoticons), „Wertung“ (Gleichstands-Schwelle für
     Schnellster/Battle, Rangliste, Neues Spiel) und „Klang“ (nur Quiz-Klänge: Beitritt, Tusch,
@@ -348,6 +348,10 @@ Kategorien recherchieren.
     Zufallsverzögerung, Sudden Death, Reaktions-/Antwortzeit-Limits, Buzzer-Wertung, Profile-Tab
     (Vorlagen gibt es in der Quiz-Einrichtung). Eine empfangene Quiz-Vorlage beschreibt nur noch
     Quiz-Werte. Der Buzzer-Modus bleibt unverändert.
+
+## Offen
+
+(zurzeit nichts)
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.

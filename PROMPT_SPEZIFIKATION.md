@@ -545,6 +545,10 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   allen Spielern „Bereit?“ mit dem Knopf „Bereit!“. Der Spielleiter sieht „Bereit: x / y“ und wer
   fehlt; sind alle bereit, erscheint „GO!“ mit Startsignal-Klang. Er kann auch ohne „Go!“ starten;
   die Abfrage schließt dann überall. Der mitspielende Spielleiter gilt als bereit.
+- Während die Abfrage läuft, zeigt der Knopf „Bereit: x / y …“ und startet keine neue Abfrage
+  (abbrechen über das Bereit-Feld oben). Quiz: Nach „Go!“ startet die nächste Frage (bzw. in der
+  Einrichtung das Quiz) nach 1,5 s automatisch – nicht, wenn inzwischen pausiert oder abgebrochen
+  wurde. Buzzer: Nach „Go!“ leuchtet „Buzzer frei“ grün, freigeben bleibt beim Spielleiter.
 
 ## 39. Testspiel
 
@@ -603,4 +607,12 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Quizshow-Blau (adaptiv, einfarbig ab Android 13); die Benachrichtigung zeigt den Buzzer.
 - „Hilfe & Spielregeln“ und „Über & Diagnose“ enden mit „© 2026 Axel Pabich · Idee, Spielregeln
   und Tests: Axel Pabich · Programmiert mit Claude (Anthropic)“.
+
+## 45. Spieleinstellungen im Quiz
+
+- Im Quiz zeigt ⋮ „Spieleinstellungen“ nur Quiz-relevante Werte: „Teilnehmer“ (Master spielt mit,
+  Kurznachrichten, Emoticons), „Wertung“ (Gleichstands-Schwelle, Rangliste, Neues Spiel), „Klang“
+  (Beitritt, Tusch, Wah-wah, Go, Rundenende, Emoticon, Kurznachricht, Spielverlauf). Fragen,
+  Antwortzeit, Wertung und Vorlagen stehen in der Quiz-Einrichtung. Empfangene Quiz-Vorlagen
+  zeigen nur Quiz-Werte. Der Buzzer-Modus behält alle Einstellungen.
 ===== ENDE SPEZIFIKATION.md =====

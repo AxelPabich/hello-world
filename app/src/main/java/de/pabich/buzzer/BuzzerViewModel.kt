@@ -252,6 +252,20 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             val deadline = snap.answerDeadline.takeIf { snap.phase == MasterEngine.Phase.ANSWERING }
             updateTicking(deadline.takeIf { SoundEvent.TICK in snap.settings.sounds })
         }
+        // Quiz: Nach „Alle bereit – Go!“ startet die nächste Frage kurz nach dem Go-Klang von selbst.
+        engine.onAllReady = { id ->
+            scheduler.schedule(AUTO_START_MS) {
+                val snap = engine.snapshot()
+                val stillReady = master === engine && engine.readyCheckId == id && snap.ready?.allReady == true && !snap.paused
+                if (stillReady && snap.kind == GameKind.QUIZ && !choosingKind && !choosingTemplate) {
+                    when (snap.phase) {
+                        MasterEngine.Phase.QUIZ_REVEAL -> if (snap.quiz?.hasNext == true) nextQuestion()
+                        MasterEngine.Phase.READY -> startQuiz()
+                        else -> Unit
+                    }
+                }
+            }
+        }
         engine.onEmote = { from, emoji -> showEmote(from, emoji) }
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engine.onSound = { sound(it) }
@@ -1305,6 +1319,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     companion object {
         /** Nearby-Endpunkt-IDs sind vierstellig, eine Verwechslung ist ausgeschlossen. */
         const val LOCAL_PLAYER_ID = "local-master"
+
+        /** Pause zwischen „Go!“ und dem automatischen Start der nächsten Quiz-Frage. */
+        const val AUTO_START_MS = 1_500L
     }
 }
 

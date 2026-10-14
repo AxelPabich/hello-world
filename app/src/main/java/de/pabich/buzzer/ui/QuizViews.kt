@@ -657,10 +657,16 @@ fun ReadyPanel(state: de.pabich.buzzer.core.MasterEngine.ReadyState, onCancel: (
 /** „Get Ready“: fragt bei allen Spielern „Bereit?“ ab. Starten geht trotzdem jederzeit. */
 @Composable
 fun GetReadyButton(vm: de.pabich.buzzer.BuzzerViewModel, snapshot: de.pabich.buzzer.core.MasterEngine.Snapshot, modifier: Modifier = Modifier) {
+    // Läuft die Abfrage schon, zeigt der Knopf nur den Stand – abbrechen geht über das Bereit-Feld oben.
+    val ready = snapshot.ready
     GhostButton(
-        if (snapshot.ready == null) "Get Ready" else "Erneut fragen",
+        when {
+            ready == null -> "Get Ready"
+            ready.allReady -> "GO!"
+            else -> "Bereit: ${ready.readyNames.size} / ${ready.readyNames.size + ready.waitingNames.size} …"
+        },
         { vm.askReady() },
         modifier,
-        enabled = !snapshot.paused && snapshot.players.any { it.connected && it.id != de.pabich.buzzer.BuzzerViewModel.LOCAL_PLAYER_ID },
+        enabled = ready == null && !snapshot.paused && snapshot.players.any { it.connected && it.id != de.pabich.buzzer.BuzzerViewModel.LOCAL_PLAYER_ID },
     )
 }
