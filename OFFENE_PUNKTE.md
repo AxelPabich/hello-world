@@ -317,6 +317,16 @@ Kategorien recherchieren.
 44. **Copyright** (umgesetzt, kommt mit dem nächsten Build): Am Ende von „Hilfe & Spielregeln“
     und „Über & Diagnose“: „© 2026 Axel Pabich · Idee, Spielregeln und Tests: Axel Pabich ·
     Programmiert mit Claude (Anthropic)“.
+45. **Dateiname mit Erstellungszeit:** Diagnoseberichte in GitHub heißen nach dem Zeitpunkt ihrer
+    Erstellung (aus der Berichts-ID), nicht nach dem Hochladen – gespeicherte Berichte landen so
+    chronologisch richtig (Test 14.10.: Wallys Bericht von 19:40:41 hieß `Wally-19-42-13.txt`).
+    Auch der Datumsordner richtet sich nach der Erstellung.
+46. **Countdown begrenzen und Hinweis:** In der Quiz-Einrichtung kann die Countdown-Zeit höchstens
+    halb so lang wie die Antwortzeit sein (Regler entsprechend begrenzt; wird die Antwortzeit
+    verkürzt, rückt der Countdown automatisch mit). Darunter ein Hinweis: „Nach der ersten
+    richtigen Antwort bleiben den anderen noch x s.“ Ältere Profile/Vorlagen mit zu langem Countdown
+    werden beim Laden begrenzt, mit kurzer Meldung „Countdown auf x s begrenzt“. (Test 14.10.: mit
+    „Familienabend leicht“ griff der Countdown nie, alle bekamen ihre Restzeit.)
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
