@@ -274,7 +274,9 @@ Kategorien recherchieren.
 
 ## Offen
 
-(zurzeit nichts)
+36. **Richtige Antwort beim Spielleiter hervorheben** (umgesetzt, kommt mit dem nächsten Build):
+    In der Auflösung ist die richtige Antwort eine grüne Karte mit hellem Rahmen, Haken und
+    größerer Schrift; falsche Antworten bleiben gedämpft.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.

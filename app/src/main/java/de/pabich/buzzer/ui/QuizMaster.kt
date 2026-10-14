@@ -383,20 +383,49 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
             if (quiz.annulled) {
                 Text("Frage annulliert – keine Punkte.", color = Color(0xFFFF9A9A), fontSize = 15.sp, fontWeight = FontWeight.Bold)
             }
-            // Verteilung: wer hat was gewählt
+            // Verteilung: wer hat was gewählt – die richtige Antwort als grüne Karte mit Haken.
             val total = quiz.rows.size.coerceAtLeast(1)
             for ((i, answer) in q.answers.withIndex()) {
                 val names = quiz.rows.filter { it.chosen == i }.map { it.name }
-                val correct = i == q.correctIndex && !quiz.annulled
-                Column {
-                    Row {
-                        Text(answer, color = if (correct) theme.text else theme.muted, fontSize = 14.sp, fontWeight = if (correct) FontWeight.Bold else FontWeight.SemiBold, modifier = Modifier.weight(1f))
-                        Text("${names.size}", color = theme.text, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                val isRight = i == q.correctIndex
+                val correct = isRight && !quiz.annulled
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(if (correct) QuizGreen else theme.panel)
+                        .then(
+                            when {
+                                correct -> Modifier.border(3.dp, Color(0xFF8CF5B0), RoundedCornerShape(12.dp))
+                                isRight -> Modifier.border(2.dp, theme.muted, RoundedCornerShape(12.dp))
+                                else -> Modifier
+                            },
+                        )
+                        .padding(horizontal = 12.dp, vertical = if (correct) 12.dp else 8.dp),
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            (if (isRight) "✓ " else "") + answer + if (isRight && quiz.annulled) " (galt als richtig)" else "",
+                            color = if (correct) Color.White else theme.muted,
+                            fontSize = if (correct) 19.sp else 14.sp,
+                            fontWeight = if (correct) FontWeight.ExtraBold else FontWeight.SemiBold,
+                            modifier = Modifier.weight(1f),
+                        )
+                        Text(
+                            "${names.size}",
+                            color = if (correct) Color.White else theme.text,
+                            fontSize = if (correct) 19.sp else 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
                     }
                     if (names.isNotEmpty()) {
-                        Box(Modifier.fillMaxWidth().height(22.dp).clip(RoundedCornerShape(6.dp)).background(Color(0xFF1C2350))) {
+                        Box(
+                            Modifier.padding(top = 6.dp).fillMaxWidth().height(22.dp).clip(RoundedCornerShape(6.dp))
+                                .background(if (correct) Color(0xFF0B5228) else Color(0xFF1C2350)),
+                        ) {
                             Box(
-                                Modifier.fillMaxHeight().fillMaxWidth(names.size.toFloat() / total).background(if (correct) Color(0xFF1FA34A) else QuizRed),
+                                Modifier.fillMaxHeight().fillMaxWidth(names.size.toFloat() / total)
+                                    .background(if (correct) Color(0xFF1FA34A) else QuizRed),
                             )
                             Text(names.joinToString(" · "), color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.align(Alignment.CenterStart).padding(start = 8.dp))
                         }

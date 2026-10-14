@@ -515,6 +515,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - Bei der Auflösung sieht der Spielleiter die Erklärung und kann selbst „Antwort prüfen
   (Challenge)“ starten. Während er prüft, läuft bei allen Spielern unten ein Laufband „Bitte warte
   kurz – die Antworten werden überprüft“. Mit seiner Entscheidung (oder der nächsten Frage) endet es.
+- In der Auflösung beim Spielleiter ist die richtige Antwort eine grüne Karte mit hellem Rahmen,
+  Haken und größerer Schrift; die übrigen Antworten bleiben gedämpft (bei Annullierung grau umrandet,
+  „galt als richtig“).
 - Sendet ein Spieler eine Challenge, startet das Laufband automatisch. Nach einer Entscheidung
   heißt der Knopf „Entscheidung ändern“ und öffnet nur die Auswahl, ohne erneutes Laufband.
 - Beim Beitritt protokolliert der Spieler „Runde beendet“ nur nach einer laufenden Runde und die
