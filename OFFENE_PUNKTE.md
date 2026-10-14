@@ -221,9 +221,31 @@ Kategorien recherchieren.
     - Keine zusätzliche Verschlüsselung mit dem Token (Begründung: sonst könnte nur das
       Master-Gerät die Berichte lesen, auch Claude nicht; das private Repository schützt sie).
 
-## Offen
+## Offen (Rückmeldung vom 14.10.2026)
 
-(keine)
+22. **Diagnose während des Spiels erreichbar:** Bisher gibt es „Diagnose senden“ nur auf der
+    Startseite – mit Verbindung kommt man nicht hin, daher fehlten „An den Spielleiter senden“
+    und „In GitHub ablegen“. Neu: Menü ⋮ beim Spieler (obere Leiste) und beim Spielleiter.
+    Der Spielleiter lädt eigene **und** eingesammelte Berichte hoch; nicht hochgeladene Berichte
+    werden auf dem Gerät zwischengespeichert (gehen beim Verlassen nicht verloren).
+23. **Statistik zurück ins Repository:** Der Spielleiter lädt die Quiz-Statistik (`.buzzstats`)
+    mit seinem Zugang hoch; Claude wertet sie aus und passt die Fragenpakete an (Rückfrage offen).
+24. **Quiz-Vorlagen getrennt von Buzzer-Profilen:** eigene Einrichtungs-Menüs; vor dem Quiz wird
+    eine Quiz-Vorlage gewählt (Rückfrage offen). Vorlagen separat anlegen, senden, exportieren.
+25. **Prüfung durch den Spielleiter:** Er sieht bei der Auflösung die Erklärung und kann selbst
+    eine Prüfung starten. Solange er prüft, sehen die Spieler unten ein Laufband „Bitte warte
+    kurz – die Antworten werden überprüft“.
+26. **Obere Leiste auf schmalen Handys (A53):** Ton, Brief und Menü stehen immer rechts fest;
+    die Emoticons nutzen den restlichen Platz und lassen sich seitlich wischen.
+27. **Verbindung bleibt im Hintergrund:** Während eine Gruppe offen ist, läuft ein Vordergrund-
+    Dienst mit Benachrichtigung „Buzzer-Runde läuft“, damit Android die Verbindung nicht nach
+    einigen Minuten kappt. Hinweis auf Samsung-Akkuoptimierung, falls es trotzdem passiert.
+28. **Pause per Knopf:** sichtbarer Pause-Knopf beim Spielleiter (statt nur im Menü).
+29. **„Get Ready“:** Der Spielleiter fragt „Bereit?“ ab; bei den Spielern erscheint ein Fenster
+    mit „Bereit!“. Der Spielleiter sieht, wer bestätigt hat; sind alle bereit, erscheint
+    „Go!“ mit Klang. Er kann die nächste Runde/Frage auch ohne „Go!“ starten.
+30. **Einstellungen nicht bei jedem Tipp speichern:** +/− in der Quiz-Einrichtung erst nach
+    kurzer Ruhe übernehmen (heute 8 Protokollzeilen in 3 Sekunden).
 
 ### Konzept Oberfläche (Vorschlag)
 
