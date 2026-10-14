@@ -289,6 +289,27 @@ Kategorien recherchieren.
     „Quiz-Statistik hochladen“ legt sie – falls vorhanden – zusätzlich als eigene Datei
     `statistik/JJJJ-MM-TT/Name-HH-MM-SS-TEST.buzzstats` ab (im JSON als Test gekennzeichnet).
     Nach erfolgreichem Hochladen wird die Test-Statistik auf dem Gerät geleert.
+40. **Offene Challenge bei „Get Ready“ / „Nächste Frage“:** Ist noch eine Challenge oder Prüfung
+    offen, fragt die App den Spielleiter zuerst: „Offene Challenge von Wally – Wertung bleibt?“
+    (Wertung bleibt / Zurück zur Prüfung). Erst danach startet die Bereit-Abfrage bzw. die nächste
+    Frage; das Laufband läuft nie mehr während der Bereit-Abfrage. (Test 14.10., Build 18: nach
+    einer Challenge ohne Entscheidung lief das Laufband 50 s weiter.)
+41. **Ersatzfrage:** Neue Challenge-Entscheidung „Ersatzfrage“: Die aktuelle Frage wird annulliert
+    (Punkte/Zeiten zurück) und sofort durch eine neue Frage aus demselben Filter (Kategorien,
+    Stufen, zuerst ungespielte) ersetzt. Die Nummerierung bleibt („Frage 7/20“ wird neu
+    gestellt), die Gesamtzahl ändert sich nicht. Gibt es keine passende Frage mehr, ist der Knopf
+    ausgegraut („keine Ersatzfrage verfügbar“). In der Statistik zählt die ersetzte Frage als
+    annulliert.
+42. **Wertung bei Entscheidungen sicher korrigieren** (Prüfung des Codes am 14.10.):
+    - Annullieren, Korrigieren und Sperren nehmen Punkte bzw. Zeiten der Frage schon zurück und
+      rechnen bei „Korrigieren“ neu; „Sperren“ löscht die Gewinne wie „Annullieren“ und sperrt die
+      Frage zusätzlich. Das wird für alle vier Wertungen (Schnellster, Jeder, Countdown, Battle)
+      mit Tests abgesichert, inkl. Rangliste, Spielverlauf und der Anzeige bei den Spielern.
+    - Lücke Countdown: Nach „Korrigieren“ beginnt der Countdown neu ab der ersten jetzt richtigen
+      Antwort (bisher galt die Frist der ursprünglich ersten richtigen Antwort).
+    - Lücke Statistik: Bisher bleiben die Antworten in der Fragen-Statistik mit der alten
+      Bewertung stehen. Künftig zählen sie bei Annullieren/Sperren/Ersatzfrage nicht, und bei
+      Korrigieren werden richtig/falsch neu gezählt – sonst lernt die Schwierigkeit Falsches.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
