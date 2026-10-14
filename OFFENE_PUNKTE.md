@@ -357,6 +357,10 @@ Kategorien recherchieren.
     „⏳ Name wartet – Anfrage erscheint nach der Runde“. Bisher wurden Beitritte während der Runde
     sofort abgelehnt und Update-Anfragen sofort als Dialog angezeigt. Bricht der Spieler die
     Anfrage ab, verschwindet sie.
+50. **Prüfcode beim Spielleiter groß** (umgesetzt, kommt mit dem nächsten Build): In der
+    Beitritts- und der Update-Anfrage steht der Prüfcode wie beim Spieler groß als „PRÜFCODE 1234“
+    im Quizshow-Feld, darunter „Name sieht denselben Code. Vergleicht ihn – nimm nur bei gleichem
+    Code an.“
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.

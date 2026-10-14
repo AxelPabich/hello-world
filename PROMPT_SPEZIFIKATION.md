@@ -618,6 +618,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 
 ## 46. Anfragen während einer Runde
 
+- Der Prüfcode steht in Beitritts- und Update-Anfragen beim Spielleiter genauso groß wie beim
+  Spieler („PRÜFCODE 1234“ mit Hinweis zum Vergleichen).
+
 - Beitritts- und Update-Anfragen sowie das Angebot einer empfangenen neueren Version erscheinen
   beim Spielleiter erst in der Pause (zwischen den Runden bzw. bei der Auflösung). Während der Runde
   zeigt die Kopfzeile nur „⏳ Name wartet – Anfrage erscheint nach der Runde“. Abgebrochene

@@ -830,13 +830,16 @@ fun MasterScreen(vm: BuzzerViewModel) {
                 title = { Text("App aktualisieren") },
                 text = {
                     val theirs = peer.build ?: 0
-                    Text(
-                        if (theirs > own) {
-                            "${request.name} hat eine neuere Version (Build $theirs, du: Build $own). Verbinden, um sie zu übernehmen?\nPrüfcode: ${request.authCode} (muss auf beiden Geräten gleich sein)"
-                        } else {
-                            "${request.name} möchte deine Version (Build $own) übernehmen (hat Build $theirs). Nur zum Aktualisieren, nicht zum Mitspielen.\nPrüfcode: ${request.authCode} (muss auf beiden Geräten gleich sein)"
-                        },
-                    )
+                    Column {
+                        Text(
+                            if (theirs > own) {
+                                "${request.name} hat eine neuere Version (Build $theirs, du: Build $own). Verbinden, um sie zu übernehmen?"
+                            } else {
+                                "${request.name} möchte deine Version (Build $own) übernehmen (hat Build $theirs). Nur zum Aktualisieren, nicht zum Mitspielen."
+                            },
+                        )
+                        AuthCodeBox(request.authCode, request.name)
+                    }
                 },
                 confirmButton = { TextButton(onClick = { vm.acceptJoin(request) }) { Text("Verbinden") } },
                 dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
@@ -847,7 +850,10 @@ fun MasterScreen(vm: BuzzerViewModel) {
                 text = {
                     val theirs = peer.build
                     val note = if (theirs != null && theirs != own) "\nVersion: Build $theirs (du: Build $own)" else ""
-                    Text("${request.name} möchte beitreten.$note\n\nPrüfcode: ${request.authCode}\nNimm nur an, wenn ${request.name} auf dem eigenen Gerät denselben Code sieht.")
+                    Column {
+                        Text("${request.name} möchte beitreten.$note")
+                        AuthCodeBox(request.authCode, request.name)
+                    }
                 },
                 confirmButton = { TextButton(onClick = { vm.acceptJoin(request) }) { Text("Annehmen") } },
                 dismissButton = { TextButton(onClick = { vm.rejectJoin(request) }) { Text("Ablehnen") } },
@@ -1100,5 +1106,17 @@ private fun Copyright() {
         Text("© 2026 Axel Pabich", color = theme.text, fontSize = 15.sp, fontWeight = FontWeight.Bold)
         Text("Idee, Spielregeln und Tests: Axel Pabich", color = theme.muted, fontSize = 13.sp)
         Text("Programmiert mit Claude (Anthropic)", color = theme.muted, fontSize = 13.sp)
+    }
+}
+
+/** Prüfcode beim Spielleiter – genauso groß wie beim Spieler, damit beide ihn leicht vergleichen. */
+@Composable
+private fun AuthCodeBox(code: String, name: String) {
+    val theme = LocalBuzzerTheme.current
+    Column(
+        Modifier.fillMaxWidth().padding(top = 12.dp).clip(RoundedCornerShape(16.dp)).background(theme.panel).padding(14.dp),
+    ) {
+        Text("PRÜFCODE $code", color = theme.accent, fontFamily = theme.display, fontSize = 30.sp)
+        Text("$name sieht denselben Code. Vergleicht ihn – nimm nur bei gleichem Code an.", color = theme.text, fontSize = 15.sp)
     }
 }
