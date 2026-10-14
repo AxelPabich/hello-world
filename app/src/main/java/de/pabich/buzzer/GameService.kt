@@ -60,7 +60,7 @@ class GameService : Service() {
         @Suppress("DEPRECATION")
         val builder = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(this, CHANNEL) else Notification.Builder(this)
         return builder
-            .setSmallIcon(android.R.drawable.ic_media_play)
+            .setSmallIcon(R.drawable.ic_stat_buzzer)
             .setContentTitle("Buzzer")
             .setContentText(text)
             .setContentIntent(open)
