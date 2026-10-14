@@ -153,6 +153,9 @@ class MasterEngine(
         var awards: Map<PlayerId, Long> = emptyMap()
         val challenges = mutableListOf<QuizChallengeInfo>()
         var decision: ChallengeDecision? = null
+
+        /** Die in der Statistik gezählte Bewertung (`null` = zählt nicht). */
+        var counted: List<ParticipantResult>? = null
     }
 
     /** Ein Durchgang mit Freigabe: die Hauptrunde oder ein Sudden Death. */
@@ -184,7 +187,11 @@ class MasterEngine(
     /** Quiz-Statistik: Frage übersprungen – gesehen, aber nicht gewertet. */
     var onQuizSkipped: ((QuizQuestion, List<String>) -> Unit)? = null
     var onQuizChallenge: ((QuizQuestion, from: String, reason: String) -> Unit)? = null
-    var onQuizDecision: ((QuizQuestion, ChallengeDecision, newCorrect: Int?) -> Unit)? = null
+    /**
+     * Entscheidung über eine Auflösung. [before]: die bisher gezählte Bewertung (wie bei
+     * [onQuizRevealed]), [after]: die neue – `null`, wenn die Frage nicht mehr zählt.
+     */
+    var onQuizDecision: ((QuizQuestion, ChallengeDecision, newCorrect: Int?, before: List<ParticipantResult>?, after: List<ParticipantResult>?) -> Unit)? = null
 
     /** Name des Spielleiters für Kurznachrichten und Emoticons. */
     var masterName = "Spielleiter"
@@ -918,8 +925,10 @@ class MasterEngine(
         val t = turn ?: return false
         if (phase != Phase.QUIZ_REVEAL || !t.revealed) return false
         val q = t.question
+        val before = t.counted
         when (decision) {
             ChallengeDecision.KEEP -> Unit
+            ChallengeDecision.REPLACE -> return false // über replaceQuestion()
             ChallengeDecision.ANNUL, ChallengeDecision.BLOCK -> if (!t.annulled) {
                 takeBackAwards(t)
                 t.annulled = true
@@ -929,10 +938,16 @@ class MasterEngine(
                 takeBackAwards(t)
                 t.annulled = false
                 t.question = q.copy(correctIndex = newCorrect)
+                if (settings.quizScoring == QuizScoring.COUNTDOWN) {
+                    // Der Countdown beginnt bei der ersten jetzt richtigen Antwort.
+                    val first = t.answers.values.filter { it.first == newCorrect }.minOfOrNull { it.second }
+                    t.deadlineElapsed = first?.let { (it + settings.quizCountdownMs).coerceAtMost(t.durationMs) } ?: t.durationMs
+                }
                 t.awards = computeAwards(t)
                 t.awards.forEach { (id, amount) -> players[id]?.let { it.score += amount } }
             }
         }
+        t.counted = if (t.annulled) null else participantResults(t)
         log("Challenge-Entscheidung Frage ${t.number}: ${decision.label}" + if (newCorrect != null) " (${q.answers[newCorrect]})" else "")
         t.decision = decision
         t.challenges.clear()
@@ -942,9 +957,46 @@ class MasterEngine(
             for (id in t.participants) players[id]?.takeIf { it.connected }?.let { send(id, resultFor(t, it, corrected = true)) }
             broadcastScoreboard()
         }
-        onQuizDecision?.invoke(q, decision, newCorrect)
+        onQuizDecision?.invoke(q, decision, newCorrect, before, t.counted)
         notifyChanged()
         return true
+    }
+
+    /**
+     * Ersatzfrage: Die aufgelöste Frage wird annulliert (Punkte zurück, zählt nicht in der
+     * Statistik) und unter derselben Nummer durch [replacement] ersetzt.
+     */
+    fun replaceQuestion(replacement: QuizQuestion): Boolean {
+        val t = turn ?: return false
+        if (kind != GameKind.QUIZ || phase != Phase.QUIZ_REVEAL || !t.revealed || paused) return false
+        val q = t.question
+        val before = t.counted
+        takeBackAwards(t)
+        t.annulled = true
+        t.decision = ChallengeDecision.REPLACE
+        t.counted = null
+        t.challenges.clear()
+        // Die ersetzte Frage verschwindet auch aus dem Spielverlauf.
+        if (history.size >= 2) history.removeAt(history.lastIndex)
+        log("Challenge-Entscheidung Frage ${t.number}: Ersatzfrage (${replacement.id} statt ${q.id})")
+        onQuizDecision?.invoke(q, ChallengeDecision.REPLACE, null, before, null)
+        quizQuestions = quizQuestions.toMutableList().also { it[quizIndex] = replacement }
+        quizIndex--
+        round--
+        return askNext()
+    }
+
+    /** Fragen dieses Quiz (für die Wahl einer Ersatzfrage, die noch nicht dabei ist). */
+    val quizQuestionIds: Set<String> get() = quizQuestions.map { it.id }.toSet()
+
+    private fun participantResults(t: QuizTurn): List<ParticipantResult> = t.participants.mapNotNull { id ->
+        val p = players[id] ?: return@mapNotNull null
+        val a = t.answers[id]
+        ParticipantResult(
+            name = p.name,
+            correct = a?.let { it.first == t.question.correctIndex },
+            timeShare = a?.let { it.second.toDouble() / t.durationMs } ?: 1.0,
+        )
     }
 
     private fun askNext(): Boolean {
@@ -1097,18 +1149,8 @@ class MasterEngine(
             send(id, resultFor(t, p, corrected = false))
             sendSound(listOf(id), if (outcomeOf(t, id) == QuizOutcome.RIGHT) SoundEvent.TUSCH else SoundEvent.WRONG)
         }
-        onQuizRevealed?.invoke(
-            q,
-            t.participants.mapNotNull { id ->
-                val p = players[id] ?: return@mapNotNull null
-                val a = t.answers[id]
-                ParticipantResult(
-                    name = p.name,
-                    correct = a?.let { it.first == q.correctIndex },
-                    timeShare = a?.let { it.second.toDouble() / t.durationMs } ?: 1.0,
-                )
-            },
-        )
+        t.counted = participantResults(t)
+        onQuizRevealed?.invoke(q, t.counted.orEmpty())
         broadcastScoreboard()
         notifyChanged()
     }

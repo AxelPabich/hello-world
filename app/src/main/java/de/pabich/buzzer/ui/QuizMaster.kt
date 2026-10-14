@@ -33,6 +33,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -43,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.pabich.buzzer.BuzzerViewModel
 import de.pabich.buzzer.core.ChallengeDecision
+import de.pabich.buzzer.core.maxCountdownMs
 import de.pabich.buzzer.core.Difficulty
 import de.pabich.buzzer.core.GameKind
 import de.pabich.buzzer.core.MasterEngine
@@ -194,7 +196,10 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
                 { change(settings.copy(quizCount = (settings.quizCount - 1).coerceAtLeast(1))) },
                 { change(settings.copy(quizCount = (settings.quizCount + 1).coerceAtMost(50))) })
             Stepper("Antwortzeit", seconds(settings.quizAnswerMs).replace(",0 s", " s"), Modifier.weight(1f),
-                { change(settings.copy(quizAnswerMs = (settings.quizAnswerMs - 5_000).coerceAtLeast(5_000))) },
+                {
+                    val answer = (settings.quizAnswerMs - 5_000).coerceAtLeast(5_000)
+                    change(settings.copy(quizAnswerMs = answer, quizCountdownMs = settings.quizCountdownMs.coerceAtMost(maxCountdownMs(answer))))
+                },
                 { change(settings.copy(quizAnswerMs = (settings.quizAnswerMs + 5_000).coerceAtMost(120_000))) })
         }
         SetupTitle("Wertung")
@@ -220,7 +225,13 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
         if (settings.quizScoring == QuizScoring.COUNTDOWN) {
             Stepper("Countdown nach erster richtiger Antwort", seconds(settings.quizCountdownMs).replace(",0 s", " s"), Modifier.fillMaxWidth(),
                 { change(settings.copy(quizCountdownMs = (settings.quizCountdownMs - 1_000).coerceAtLeast(1_000))) },
-                { change(settings.copy(quizCountdownMs = (settings.quizCountdownMs + 1_000).coerceAtMost(30_000))) })
+                { change(settings.copy(quizCountdownMs = (settings.quizCountdownMs + 1_000).coerceAtMost(maxCountdownMs(settings.quizAnswerMs)))) })
+            Text(
+                "Nach der ersten richtigen Antwort bleiben den anderen noch ${seconds(settings.quizCountdownMs).replace(",0 s", " s")} " +
+                    "(höchstens die halbe Antwortzeit).",
+                color = LocalBuzzerTheme.current.muted,
+                fontSize = 13.sp,
+            )
         }
         ToggleRow("Ich spiele mit", settings.masterPlays) { change(settings.copy(masterPlays = it)) }
         Row(
@@ -458,9 +469,13 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
                     Text("Spieler sehen: „Bitte warte kurz – die Antworten werden überprüft“", color = theme.accent, fontSize = 13.sp)
                 }
                 ChallengeBox(quiz, onDecide = { decision ->
-                    if (decision == ChallengeDecision.CORRECT) correcting = true else vm.decideChallenge(decision)
+                    when (decision) {
+                        ChallengeDecision.CORRECT -> correcting = true
+                        ChallengeDecision.REPLACE -> vm.replaceQuestion()
+                        else -> vm.decideChallenge(decision)
+                    }
                     decisionsOpen = false
-                }, sourceUrl = vm.quizStore.question(q.id)?.source.orEmpty())
+                }, sourceUrl = vm.quizStore.question(q.id)?.source.orEmpty(), replaceAvailable = remember(quiz.number) { vm.replacementQuestion() != null })
             } else {
                 quiz.decision?.let { Text("Entscheidung: ${it.label}", color = theme.muted, fontSize = 14.sp) }
                 // Der Spielleiter kann selbst eine Prüfung starten; die Spieler warten so lange.
@@ -484,6 +499,20 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
                 enabled = !snapshot.paused,
             )
         }
+    }
+    vm.openChallengeNames?.let { names ->
+        AlertDialog(
+            onDismissRequest = { vm.answerOpenChallenge(keep = false) },
+            title = { Text("Offene Challenge") },
+            text = {
+                Text(
+                    (if (names.isNotEmpty()) "Offene Challenge von $names" else "Die Prüfung läuft noch") +
+                        " – Wertung bleibt? Die Spieler sehen bis dahin das Laufband.",
+                )
+            },
+            confirmButton = { TextButton(onClick = { vm.answerOpenChallenge(keep = true) }) { Text("Wertung bleibt") } },
+            dismissButton = { TextButton(onClick = { vm.answerOpenChallenge(keep = false); decisionsOpen = true }) { Text("Zurück zur Prüfung") } },
+        )
     }
     if (correcting) {
         var choice by remember { mutableStateOf(q.correctIndex) }
@@ -531,7 +560,7 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
 }
 
 @Composable
-private fun ChallengeBox(quiz: MasterEngine.QuizSnapshot, onDecide: (ChallengeDecision) -> Unit, sourceUrl: String) {
+private fun ChallengeBox(quiz: MasterEngine.QuizSnapshot, onDecide: (ChallengeDecision) -> Unit, sourceUrl: String, replaceAvailable: Boolean) {
     val theme = LocalBuzzerTheme.current
     val uri = androidx.compose.ui.platform.LocalUriHandler.current
     Column(
@@ -549,11 +578,13 @@ private fun ChallengeBox(quiz: MasterEngine.QuizSnapshot, onDecide: (ChallengeDe
         }
         DecisionRow(listOf(ChallengeDecision.KEEP, ChallengeDecision.ANNUL), onDecide)
         DecisionRow(listOf(ChallengeDecision.CORRECT, ChallengeDecision.BLOCK), onDecide)
+        DecisionRow(listOf(ChallengeDecision.REPLACE), onDecide, enabled = replaceAvailable)
+        if (!replaceAvailable) Text("Keine Ersatzfrage verfügbar.", color = theme.muted, fontSize = 13.sp)
     }
 }
 
 @Composable
-private fun DecisionRow(decisions: List<ChallengeDecision>, onDecide: (ChallengeDecision) -> Unit) {
+private fun DecisionRow(decisions: List<ChallengeDecision>, onDecide: (ChallengeDecision) -> Unit, enabled: Boolean = true) {
     val theme = LocalBuzzerTheme.current
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         for (d in decisions) {
@@ -565,7 +596,8 @@ private fun DecisionRow(decisions: List<ChallengeDecision>, onDecide: (Challenge
                     .clip(RoundedCornerShape(12.dp))
                     .background(if (primary) theme.accent else Color.Transparent)
                     .border(2.dp, if (primary) theme.accent else theme.line, RoundedCornerShape(12.dp))
-                    .clickable { onDecide(d) }
+                    .alpha(if (enabled) 1f else 0.4f)
+                    .clickable(enabled = enabled) { onDecide(d) }
                     .padding(8.dp),
                 contentAlignment = Alignment.Center,
             ) {

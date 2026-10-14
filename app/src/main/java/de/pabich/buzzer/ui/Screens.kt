@@ -41,6 +41,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.alpha
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
@@ -249,7 +251,7 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "In den Pausen" to "Rangliste, Kurznachrichten und – wenn der Spielleiter will – eine Animation des Spielverlaufs. Emoticons gehen immer.",
                 "Quiz" to "Im Quiz kommen die Fragen aus der Fragen-Datenbank. Die Frage erscheint auf allen Geräten gleichzeitig, 3 Sekunden später die vier Antworten – bei jedem in anderer Reihenfolge. Tippe deine Antwort; aufgelöst wird, wenn alle geantwortet haben oder die Zeit um ist.",
                 "Wertung im Quiz" to "Schnellster punktet: nur die erste richtige Antwort. Jeder punktet: jede richtige Antwort. Countdown: nach der ersten richtigen Antwort läuft nur noch kurz die Zeit, alle Richtigen bekommen ihre Restzeit. Battle: nur der Schnellste bekommt seine Restzeit. Falsche Antworten kosten nie etwas.",
-                "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Alle sehen dann ein Laufband, bis der Spielleiter entschieden hat: Wertung bleibt, Frage annullieren, Antwort korrigieren oder Frage sperren.",
+                "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Alle sehen dann ein Laufband, bis der Spielleiter entschieden hat: Wertung bleibt, Frage annullieren, Antwort korrigieren, Frage sperren oder Ersatzfrage. Punkte und Zeiten werden dabei mitkorrigiert.",
                 "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf.",
                 "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, bekommt er ein „Go!“.",
                 "Im Hintergrund" to "Solange eine Runde läuft, zeigt die App eine Benachrichtigung. Sie hält die Verbindung, wenn du kurz eine andere App öffnest. Bricht sie trotzdem ab: in den Android-Einstellungen bei Buzzer „Akku – nicht eingeschränkt“ wählen.",
@@ -544,7 +546,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
         // Der Spielleiter prüft die Auflösung: Laufband am unteren Rand.
         if (view.reviewing) ReviewTicker(Modifier.align(Alignment.BottomCenter))
         if (view.paused) PauseOverlay()
-        vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone) }
+        vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone, onMusicEnd = vm::replayMusicEnd) }
     }
 
     if (view.readyAsk != null && !view.readyConfirmed && !view.paused) ReadyDialog { vm.confirmReady() }
@@ -621,6 +623,20 @@ fun MasterScreen(vm: BuzzerViewModel) {
                         BigTitle(if (choosing) "Spielart wählen" else phaseText(snapshot), color = theme.text, size = 26.sp)
                     }
                     if (!choosing) {
+                        // Spielverlauf für alle: Hase und Schildkröte als Wettrennen.
+                        Box(
+                            Modifier
+                                .padding(end = 8.dp)
+                                .height(48.dp)
+                                .widthIn(min = 56.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(theme.panel)
+                                .clickable(enabled = snapshot.canShowReplay) { vm.showReplay() }
+                                .padding(horizontal = 6.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text("🐇🐢", fontSize = 18.sp, modifier = Modifier.alpha(if (snapshot.canShowReplay) 1f else 0.35f))
+                        }
                         // Pause direkt per Knopf (nur zwischen den Runden bzw. bei der Auflösung).
                         val canPause = snapshot.paused || pause || snapshot.phase == Phase.QUIZ_REVEAL
                         Box(
@@ -781,7 +797,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
             onDone = vm::emoteDone,
             modifier = if (ownAnswers) Modifier.fillMaxWidth().fillMaxHeight(0.5f) else Modifier.fillMaxSize(),
         )
-        vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone) }
+        vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone, onMusicEnd = vm::replayMusicEnd) }
     }
 
     vm.joinRequests.firstOrNull()?.let { request ->

@@ -272,35 +272,35 @@ Kategorien recherchieren.
     durch den Spielleiter („im Repository abgelegt“) werden sie beim Spieler gelöscht.
     Spielleiter ohne Token fragen nicht.
 
-## Offen
+## Erledigt in Build 19
 
-36. **Richtige Antwort beim Spielleiter hervorheben** (umgesetzt, kommt mit dem nächsten Build):
+36. ✅ **Richtige Antwort beim Spielleiter hervorheben**:
     In der Auflösung ist die richtige Antwort eine grüne Karte mit hellem Rahmen, Haken und
     größerer Schrift; falsche Antworten bleiben gedämpft.
-37. **Spielverlauf am Ende halten:** Die Animation „Spielverlauf“ bleibt nach dem Durchlauf
+37. ✅ **Spielverlauf am Ende halten:** Die Animation „Spielverlauf“ bleibt nach dem Durchlauf
     3 Sekunden auf dem Endstand stehen (Musik endet mit der Animation), erst dann schließt sie –
     bei allen Spielern und beim Spielleiter.
-38. **Knopf für den Spielverlauf:** Der Spielleiter bekommt in der Kopfzeile neben dem Pause-Knopf
+38. ✅ **Knopf für den Spielverlauf:** Der Spielleiter bekommt in der Kopfzeile neben dem Pause-Knopf
     einen eigenen Knopf mit 🐇🐢 (Hase und Schildkröte), der den Spielverlauf für alle startet.
     Aktiv, sobald es einen Verlauf gibt (wie bisher „Spielverlauf zeigen“ im Menü ⋮, das bleibt).
-39. **Test-Statistik getrennt:** Im Testspiel werden die Ergebnisse (Antworten, übersprungene
+39. ✅ **Test-Statistik getrennt:** Im Testspiel werden die Ergebnisse (Antworten, übersprungene
     Fragen, Challenges, Entscheidungen) in einer eigenen Test-Statistik (`quiz-stats-test.json`)
     aufgezeichnet statt gar nicht. Sie beeinflusst weder Auswahl noch Schwierigkeit der Fragen.
     „Quiz-Statistik hochladen“ legt sie – falls vorhanden – zusätzlich als eigene Datei
     `statistik/JJJJ-MM-TT/Name-HH-MM-SS-TEST.buzzstats` ab (im JSON als Test gekennzeichnet).
     Nach erfolgreichem Hochladen wird die Test-Statistik auf dem Gerät geleert.
-40. **Offene Challenge bei „Get Ready“ / „Nächste Frage“:** Ist noch eine Challenge oder Prüfung
+40. ✅ **Offene Challenge bei „Get Ready“ / „Nächste Frage“:** Ist noch eine Challenge oder Prüfung
     offen, fragt die App den Spielleiter zuerst: „Offene Challenge von Wally – Wertung bleibt?“
     (Wertung bleibt / Zurück zur Prüfung). Erst danach startet die Bereit-Abfrage bzw. die nächste
     Frage; das Laufband läuft nie mehr während der Bereit-Abfrage. (Test 14.10., Build 18: nach
     einer Challenge ohne Entscheidung lief das Laufband 50 s weiter.)
-41. **Ersatzfrage:** Neue Challenge-Entscheidung „Ersatzfrage“: Die aktuelle Frage wird annulliert
+41. ✅ **Ersatzfrage:** Neue Challenge-Entscheidung „Ersatzfrage“: Die aktuelle Frage wird annulliert
     (Punkte/Zeiten zurück) und sofort durch eine neue Frage aus demselben Filter (Kategorien,
     Stufen, zuerst ungespielte) ersetzt. Die Nummerierung bleibt („Frage 7/20“ wird neu
     gestellt), die Gesamtzahl ändert sich nicht. Gibt es keine passende Frage mehr, ist der Knopf
     ausgegraut („keine Ersatzfrage verfügbar“). In der Statistik zählt die ersetzte Frage als
     annulliert.
-42. **Wertung bei Entscheidungen sicher korrigieren** (Prüfung des Codes am 14.10.):
+42. ✅ **Wertung bei Entscheidungen sicher korrigieren** (Prüfung des Codes am 14.10.):
     - Annullieren, Korrigieren und Sperren nehmen Punkte bzw. Zeiten der Frage schon zurück und
       rechnen bei „Korrigieren“ neu; „Sperren“ löscht die Gewinne wie „Annullieren“ und sperrt die
       Frage zusätzlich. Das wird für alle vier Wertungen (Schnellster, Jeder, Countdown, Battle)
@@ -310,23 +310,27 @@ Kategorien recherchieren.
     - Lücke Statistik: Bisher bleiben die Antworten in der Fragen-Statistik mit der alten
       Bewertung stehen. Künftig zählen sie bei Annullieren/Sperren/Ersatzfrage nicht, und bei
       Korrigieren werden richtig/falsch neu gezählt – sonst lernt die Schwierigkeit Falsches.
-43. **App-Symbol** (umgesetzt, kommt mit dem nächsten Build): Lachender roter Buzzer auf goldenem
+43. ✅ **App-Symbol**: Lachender roter Buzzer auf goldenem
     Sockel vor Studio-Scheinwerferstrahlen im Quizshow-Blau, mit Funkeln in Gold und Cyan
     (adaptives Symbol, einfarbige Variante für Android 13+, Rundsymbol). Die Benachrichtigung
     „Buzzer-Runde läuft“ zeigt den Buzzer als kleines Symbol. Vorschau: `docs/app-symbol-vorschau.png`.
-44. **Copyright** (umgesetzt, kommt mit dem nächsten Build): Am Ende von „Hilfe & Spielregeln“
+44. ✅ **Copyright**: Am Ende von „Hilfe & Spielregeln“
     und „Über & Diagnose“: „© 2026 Axel Pabich · Idee, Spielregeln und Tests: Axel Pabich ·
     Programmiert mit Claude (Anthropic)“.
-45. **Dateiname mit Erstellungszeit:** Diagnoseberichte in GitHub heißen nach dem Zeitpunkt ihrer
+45. ✅ **Dateiname mit Erstellungszeit:** Diagnoseberichte in GitHub heißen nach dem Zeitpunkt ihrer
     Erstellung (aus der Berichts-ID), nicht nach dem Hochladen – gespeicherte Berichte landen so
     chronologisch richtig (Test 14.10.: Wallys Bericht von 19:40:41 hieß `Wally-19-42-13.txt`).
     Auch der Datumsordner richtet sich nach der Erstellung.
-46. **Countdown begrenzen und Hinweis:** In der Quiz-Einrichtung kann die Countdown-Zeit höchstens
+46. ✅ **Countdown begrenzen und Hinweis:** In der Quiz-Einrichtung kann die Countdown-Zeit höchstens
     halb so lang wie die Antwortzeit sein (Regler entsprechend begrenzt; wird die Antwortzeit
     verkürzt, rückt der Countdown automatisch mit). Darunter ein Hinweis: „Nach der ersten
     richtigen Antwort bleiben den anderen noch x s.“ Ältere Profile/Vorlagen mit zu langem Countdown
     werden beim Laden begrenzt, mit kurzer Meldung „Countdown auf x s begrenzt“. (Test 14.10.: mit
     „Familienabend leicht“ griff der Countdown nie, alle bekamen ihre Restzeit.)
+
+## Offen
+
+(zurzeit nichts)
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.

@@ -115,7 +115,7 @@ class DiagnoseUpload(context: Context) {
         401 -> "Das Token ist ungültig oder abgelaufen."
         403 -> "Das Token darf nicht in $target schreiben (Contents: Read and write?)."
         404 -> "Repository $target nicht gefunden – oder das Token ist nicht dafür freigegeben."
-        422 -> "Die Datei gibt es schon."
+        422 -> ALREADY_EXISTS
         else -> "GitHub meldet Fehler $code."
     }
 
@@ -145,6 +145,8 @@ class DiagnoseUpload(context: Context) {
 
     companion object {
         const val DEFAULT_REPO = "AxelPabich/buzzer-diagnose"
+        /** Fehlertext bei HTTP 422 – derselbe Bericht liegt schon im Repository. */
+        const val ALREADY_EXISTS = "Die Datei gibt es schon."
         const val NEW_REPO_URL = "https://github.com/new"
         const val NEW_TOKEN_URL = "https://github.com/settings/personal-access-tokens/new"
         const val TOKENS_URL = "https://github.com/settings/personal-access-tokens"

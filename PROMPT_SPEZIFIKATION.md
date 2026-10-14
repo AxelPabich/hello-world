@@ -550,7 +550,11 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 
 - Im Quiz hat der Spielleiter im Menü ⋮ den Schalter „Testspiel – nicht in die Statistik“. Solange
   er an ist (Kopfzeile „TESTSPIEL“), fließen Antworten, übersprungene Fragen, Challenges und
-  Entscheidungen nicht in die Quiz-Statistik. Er gilt bis zum Neustart der App.
+  Entscheidungen nicht in die Quiz-Statistik, sondern in eine getrennte Test-Statistik
+  (`quiz-stats-test.json`), die Auswahl und Schwierigkeit nicht beeinflusst. Er gilt bis zum
+  Neustart der App.
+- „Quiz-Statistik hochladen“ legt die Test-Statistik – falls vorhanden – zusätzlich als
+  `statistik/JJJJ-MM-TT/Name-HH-MM-SS-TEST.buzzstats` ab (im JSON `"test": true`) und leert sie danach.
 
 ## 40. Gespeicherte Diagnosen
 
@@ -559,9 +563,44 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Hochladen nicht, bleibt der Bericht gespeichert.
 - „Gespeicherte Diagnosen“ (Über & Diagnose, Menü ⋮ von Spieler und Spielleiter) zeigt die Liste mit
   Ansehen, Teilen, Löschen und – mit Token – „Alle in GitHub ablegen“.
+- Der Dateiname in GitHub richtet sich nach der Erstellungszeit des Berichts (nicht nach dem
+  Hochladen). Liegt dieselbe Datei schon dort, gilt der Bericht als abgelegt.
 - Hat der Spielleiter einen Token, meldet er das jedem beitretenden Spieler (`DIAG_COLLECT`). Hat
   der Spieler gespeicherte Diagnosen, fragt er „Der Spielleiter kann N gespeicherte Diagnose(n) in
   sein Diagnose-Repository übernehmen. Senden?“ (Ja / Nein / Später; „Nein“ gilt bis zum Neustart).
   Die Berichte gehen in Teilen mit Kennzeichen „gespeichert“; der Spielleiter bestätigt erst nach
   dem Hochladen (`DIAG_OK`), dann löscht der Spieler sie.
+
+## 41. Spielverlauf
+
+- Nach der Animation bleibt der Endstand 3 Sekunden stehen (die Musik endet mit der Animation).
+- Der Spielleiter startet den Spielverlauf für alle über den Knopf 🐇🐢 in der Kopfzeile (neben der
+  Pause); er ist aktiv, sobald es einen Verlauf gibt. „Spielverlauf zeigen“ im Menü ⋮ bleibt.
+
+## 42. Entscheidungen bei der Auflösung
+
+- Tippt der Spielleiter „Get Ready“ oder „Nächste Frage“, während eine Challenge oder Prüfung offen
+  ist, fragt die App: „Offene Challenge von … – Wertung bleibt?“ (Wertung bleibt / Zurück zur
+  Prüfung). Erst nach „Wertung bleibt“ geht es weiter.
+- „Ersatzfrage“: Die aufgelöste Frage wird annulliert und unter derselben Nummer durch eine Frage
+  aus demselben Filter ersetzt, die im Quiz noch nicht vorkommt (ungespielte zuerst). Sie
+  verschwindet auch aus dem Spielverlauf. Ohne passende Frage ist der Knopf ausgegraut.
+- Annullieren, Sperren und Ersatzfrage nehmen Punkte bzw. Zeiten der Frage zurück (in allen
+  Wertungen, auch in Rangliste und Spielverlauf). „Korrigieren“ rechnet neu; im Countdown beginnt
+  der Countdown dann bei der ersten jetzt richtigen Antwort.
+- Die Fragen-Statistik folgt der Entscheidung: Bei Annullieren/Sperren/Ersatzfrage zählen die
+  Antworten nicht, bei Korrigieren werden richtig/falsch neu gezählt.
+
+## 43. Countdown-Grenze
+
+- Der Countdown ist höchstens halb so lang wie die Antwortzeit; wird die Antwortzeit verkürzt,
+  rückt er mit. Unter dem Regler steht „Nach der ersten richtigen Antwort bleiben den anderen noch
+  x s.“ Zu lange Werte aus älteren Vorlagen werden beim Laden begrenzt (Meldung).
+
+## 44. App-Symbol und Copyright
+
+- App-Symbol: lachender roter Buzzer auf goldenem Sockel vor Scheinwerferstrahlen im
+  Quizshow-Blau (adaptiv, einfarbig ab Android 13); die Benachrichtigung zeigt den Buzzer.
+- „Hilfe & Spielregeln“ und „Über & Diagnose“ enden mit „© 2026 Axel Pabich · Idee, Spielregeln
+  und Tests: Axel Pabich · Programmiert mit Claude (Anthropic)“.
 ===== ENDE SPEZIFIKATION.md =====

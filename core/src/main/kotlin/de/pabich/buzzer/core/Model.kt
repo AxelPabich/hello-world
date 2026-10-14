@@ -118,10 +118,14 @@ data class Settings(
             quizLevels = quizLevels.ifEmpty { QuizLevel.entries.toSet() },
             quizCount = quizCount.coerceIn(1, 50),
             quizAnswerMs = quizAnswerMs.coerceIn(5_000, 120_000),
-            quizCountdownMs = quizCountdownMs.coerceIn(1_000, 30_000),
+            // Höchstens die halbe Antwortzeit – sonst greift der Countdown nie.
+            quizCountdownMs = quizCountdownMs.coerceIn(1_000, maxCountdownMs(quizAnswerMs.coerceIn(5_000, 120_000))),
         )
     }
 }
+
+/** Längster sinnvoller Countdown: die halbe Antwortzeit (auf volle Sekunden). */
+fun maxCountdownMs(answerMs: Long): Long = (answerMs / 2 / 1_000 * 1_000).coerceIn(1_000, 30_000)
 
 fun formatScore(score: Long, scoring: ScoringMode): String = when (scoring) {
     ScoringMode.CORRECT_ANSWERS -> score.toString()

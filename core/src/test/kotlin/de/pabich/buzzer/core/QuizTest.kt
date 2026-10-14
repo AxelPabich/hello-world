@@ -228,12 +228,84 @@ class QuizTest {
         g.time.advanceBy(8_000)
         assertEquals(1L, g.scores().getValue("Axel"))
         var decided: ChallengeDecision? = null
-        g.master.onQuizDecision = { _, d, _ -> decided = d }
+        g.master.onQuizDecision = { _, d, _, _, _ -> decided = d }
         assertTrue(g.master.decideChallenge(ChallengeDecision.BLOCK))
         g.time.advanceBy(300)
         assertEquals(0L, g.scores().getValue("Axel"))
         assertEquals(QuizOutcome.ANNULLED, g.result("Axel")?.outcome)
         assertEquals(ChallengeDecision.BLOCK, decided)
+    }
+
+    @Test
+    fun `correcting in countdown mode restarts the countdown at the first now correct answer`() {
+        val g = game(Settings(quizAnswerMs = 20_000, quizScoring = QuizScoring.COUNTDOWN, quizCountdownMs = 5_000))
+        g.master.startQuiz(listOf(question(1)))
+        g.answer("Axel", "Falsch B1", 1_000)
+        g.answer("Peter", "Richtig 1", 2_000)
+        g.answer("Clara", "Falsch B1", 4_000)
+        g.time.advanceBy(3_500 + 5_000)
+        assertEquals(mapOf("Axel" to 0L, "Peter" to 5_000L, "Clara" to 0L), g.scores())
+        var after: List<ParticipantResult>? = null
+        g.master.onQuizDecision = { _, _, _, _, a -> after = a }
+        assertTrue(g.master.decideChallenge(ChallengeDecision.CORRECT, newCorrect = 2))
+        g.time.advanceBy(300)
+        assertEquals(mapOf("Axel" to 5_000L, "Peter" to 0L, "Clara" to 2_000L), g.scores())
+        assertEquals("+2,00 s", g.result("Clara")?.gained)
+        assertEquals(listOf(true, false, true), after!!.map { it.correct })
+    }
+
+    @Test
+    fun `annul and block take back times in every scoring mode`() {
+        for (scoring in QuizScoring.entries) for (decision in listOf(ChallengeDecision.ANNUL, ChallengeDecision.BLOCK)) {
+            val g = game(Settings(quizAnswerMs = 10_000, quizScoring = scoring, quizCountdownMs = 5_000))
+            g.master.startQuiz(listOf(question(1), question(2)))
+            g.answer("Axel", "Richtig 1", 1_000)
+            g.answer("Peter", "Richtig 1", 2_000)
+            g.answer("Clara", "Falsch A1", 500)
+            g.time.advanceBy(10_000)
+            assertTrue(g.scores().getValue("Axel") > 0, "$scoring")
+            var before: List<ParticipantResult>? = null
+            var after: List<ParticipantResult>? = listOf()
+            g.master.onQuizDecision = { _, _, _, b, a -> before = b; after = a }
+            assertTrue(g.master.decideChallenge(decision))
+            g.time.advanceBy(300)
+            assertEquals(mapOf("Axel" to 0L, "Peter" to 0L, "Clara" to 0L), g.scores(), "$scoring $decision")
+            assertEquals(3, before!!.size)
+            assertNull(after, "zählt nicht mehr")
+            assertEquals(QuizOutcome.ANNULLED, g.result("Peter")?.outcome)
+            assertEquals("", g.result("Axel")?.gained)
+            // Rangliste der Spieler ist ebenfalls zurückgesetzt.
+            val board = g.received.getValue("Axel").filterIsInstance<Message.Scoreboard>().last()
+            assertTrue(board.entries.all { it.score == 0L }, "$scoring $decision")
+        }
+    }
+
+    @Test
+    fun `replacement question takes the same number and the old one leaves no trace`() {
+        val g = game(Settings(quizAnswerMs = 10_000, quizScoring = QuizScoring.EVERYONE))
+        g.master.startQuiz(listOf(question(1), question(2)))
+        ids.forEach { g.answer(it, "Richtig 1", 1_000) }
+        g.time.advanceBy(10_000)
+        assertEquals(1L, g.scores().getValue("Axel"))
+        var decided: ChallengeDecision? = null
+        g.master.onQuizDecision = { _, d, _, _, a -> decided = d; assertNull(a) }
+        assertTrue(g.master.replaceQuestion(question(9)))
+        assertEquals(ChallengeDecision.REPLACE, decided)
+        assertFalse(g.master.decideChallenge(ChallengeDecision.REPLACE))
+        g.time.advanceBy(300)
+        val ask = g.ask("Peter")
+        assertEquals(1, ask.number)
+        assertEquals(2, ask.total)
+        assertEquals("Frage 9?", ask.text)
+        assertEquals(0L, g.scores().getValue("Axel"))
+        assertEquals(setOf("q9", "q2"), g.master.quizQuestionIds)
+        ids.forEach { g.answer(it, "Richtig 9", 1_000) }
+        g.time.advanceBy(10_000)
+        assertEquals(1L, g.scores().getValue("Axel"))
+        var replay: Message.Replay? = null
+        g.master.onReplay = { replay = it }
+        assertTrue(g.master.showReplay())
+        assertEquals(2, replay!!.frames.size, "Start + eine gewertete Frage")
     }
 
     @Test

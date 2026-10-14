@@ -17,6 +17,8 @@ import de.pabich.buzzer.core.DiagnoseTransfer
 import de.pabich.buzzer.core.GameKind
 import de.pabich.buzzer.core.PeerInfo
 import de.pabich.buzzer.core.QuestionPicker
+import de.pabich.buzzer.core.Question
+import de.pabich.buzzer.core.ParticipantResult
 import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.Message
 import de.pabich.buzzer.core.PlayerEngine
@@ -253,11 +255,14 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engine.onSound = { sound(it) }
         engine.onReplay = { startReplay(it) }
-        // Im Testspiel bleibt die Statistik unverändert (Fragen gelten danach weiter als ungespielt).
-        engine.onQuizRevealed = { q, results -> if (!testGame) quizStore.recordResult(q.id, results.map { it.copy(name = statsName(it.name)) }) }
-        engine.onQuizSkipped = { q, names -> if (!testGame) quizStore.recordSeen(q.id, names.map { statsName(it) }) }
-        engine.onQuizChallenge = { q, from, reason -> if (!testGame) quizStore.recordChallenge(q.id, statsName(from), reason) }
-        engine.onQuizDecision = { q, decision, newCorrect -> if (!testGame) quizStore.recordDecision(q.id, decision, newCorrect) }
+        // Im Testspiel landet alles in der getrennten Test-Statistik (ohne Einfluss auf die Auswahl).
+        fun List<ParticipantResult>.named() = map { it.copy(name = statsName(it.name)) }
+        engine.onQuizRevealed = { q, results -> quizStore.recordResult(q.id, results.named(), test = testGame) }
+        engine.onQuizSkipped = { q, names -> quizStore.recordSeen(q.id, names.map { statsName(it) }, test = testGame) }
+        engine.onQuizChallenge = { q, from, reason -> quizStore.recordChallenge(q.id, statsName(from), reason, test = testGame) }
+        engine.onQuizDecision = { q, decision, newCorrect, before, after ->
+            quizStore.recordDecision(q.id, decision, newCorrect, before?.named(), after?.named(), test = testGame)
+        }
         master = engine
         engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
         syncLocalPlayer(engine)
@@ -435,7 +440,55 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
     }
 
-    fun nextQuestion() = master?.nextQuestion()
+    /** Nächste Frage – bei offener Challenge erst die Rückfrage. */
+    fun nextQuestion() {
+        if (guardOpenChallenge { master?.nextQuestion() }) master?.nextQuestion()
+    }
+
+    /**
+     * Rückfrage „Offene Challenge – Wertung bleibt?“: [pendingAfterChallenge] wird nach
+     * „Wertung bleibt“ ausgeführt. Liefert `true`, wenn nichts offen ist.
+     */
+    private fun guardOpenChallenge(action: () -> Unit): Boolean {
+        val snap = master?.snapshot() ?: return true
+        val quiz = snap.quiz ?: return true
+        if (snap.phase != MasterEngine.Phase.QUIZ_REVEAL || (quiz.challenges.isEmpty() && !snap.reviewing)) return true
+        openChallengeNames = quiz.challenges.joinToString { it.name }
+        pendingAfterChallenge = action
+        return false
+    }
+
+    /** Namen der offenen Challenge(s) für die Rückfrage; `null` = keine Rückfrage. */
+    var openChallengeNames by mutableStateOf<String?>(null)
+        private set
+    private var pendingAfterChallenge: (() -> Unit)? = null
+
+    /** Rückfrage beantwortet: [keep] = „Wertung bleibt“ und weiter, sonst zurück zur Prüfung. */
+    fun answerOpenChallenge(keep: Boolean) {
+        val action = pendingAfterChallenge
+        openChallengeNames = null
+        pendingAfterChallenge = null
+        if (!keep) return
+        master?.decideChallenge(ChallengeDecision.KEEP)
+        action?.invoke()
+    }
+
+    /** Ersatzfrage aus demselben Filter, die in diesem Quiz noch nicht vorkommt (ungespielte zuerst). */
+    fun replacementQuestion(): Question? {
+        val engine = master ?: return null
+        val used = engine.quizQuestionIds
+        val all = pickQuestions(engine.settings.copy(quizCount = quizStore.questions.size)).questions
+        return all.firstOrNull { it.id !in used }
+    }
+
+    fun replaceQuestion() {
+        val engine = master ?: return
+        val q = replacementQuestion() ?: run {
+            status = "Keine Ersatzfrage verfügbar."
+            return
+        }
+        engine.replaceQuestion(quizStore.toQuiz(q))
+    }
     fun revealNow() = master?.revealNow()
     fun skipQuestion() = master?.skipQuestion()
     fun stopQuiz() = master?.stopQuiz()
@@ -526,6 +579,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val missing = decoded.missingKeys.mapNotNull { SettingsCodec.LABELS[it] }
         profileUpgrade = if (missing.isNotEmpty()) ProfileUpgrade(name, missing) else null
         Diagnostics.log("Profil geladen: $name" + if (missing.isNotEmpty()) " (neue Felder: ${missing.joinToString()})" else "")
+        // Zu langer Countdown aus älteren Vorlagen wurde beim Einlesen begrenzt.
+        val storedCountdown = profile.values["quizCountdownMs"]?.toLongOrNull()
+        if (storedCountdown != null && storedCountdown > decoded.settings.quizCountdownMs) {
+            val sec = decoded.settings.quizCountdownMs / 1000
+            Diagnostics.log("Countdown in „$name“ von ${storedCountdown / 1000} s auf $sec s begrenzt")
+            status = "Countdown auf $sec s begrenzt (höchstens die halbe Antwortzeit)."
+        }
         return decoded.settings
     }
 
@@ -566,7 +626,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     // ------------------------------------------------------------------ Bereit? und Prüfung
 
-    fun askReady() = master?.askReady()
+    fun askReady() {
+        if (guardOpenChallenge { master?.askReady() }) master?.askReady()
+    }
     fun cancelReady() = master?.cancelReady()
     fun confirmReady() = player?.confirmReady()
     /** Testspiel: nichts fließt in die Quiz-Statistik; gilt bis zum Neustart der App. */
@@ -576,7 +638,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun toggleTestGame() {
         testGame = !testGame
         Diagnostics.log(if (testGame) "Testspiel an – keine Statistik" else "Testspiel aus")
-        status = if (testGame) "Testspiel: Antworten zählen nicht in die Statistik." else "Testspiel beendet – die Statistik zählt wieder."
+        status = if (testGame) "Testspiel: Antworten zählen nur in der getrennten Test-Statistik." else "Testspiel beendet – die Statistik zählt wieder."
     }
 
     fun startReview() = master?.startReview()
@@ -658,10 +720,15 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (SoundEvent.CHASE in activeSounds) chaseStream = sound(SoundEvent.CHASE)
     }
 
-    /** Ende der Animation: Musik stoppen. */
-    fun replayDone() {
+    /** Ende der Animation: Musik stoppen (der Endstand bleibt noch kurz stehen). */
+    fun replayMusicEnd() {
         sounds.stop(chaseStream)
         chaseStream = 0
+    }
+
+    /** Spielverlauf geschlossen. */
+    fun replayDone() {
+        replayMusicEnd()
         replay = null
     }
 
@@ -1114,10 +1181,24 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
         val now = Date()
         val name = myName.trim().replace(Regex("[^\\p{L}\\p{N}_-]+"), "-").trim('-').ifEmpty { "Spielleiter" }
-        val path = "statistik/${SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(now)}/$name-${SimpleDateFormat("HH-mm-ss", Locale.GERMANY).format(now)}.buzzstats"
+        val base = "statistik/${SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(now)}/$name-${SimpleDateFormat("HH-mm-ss", Locale.GERMANY).format(now)}"
+        val path = "$base.buzzstats"
         status = "Statistik wird hochgeladen …"
         diagnoseUpload.upload(path, quizStore.statsJson(), "Quiz-Statistik von $name (Build ${AppUpdate.ownBuild})") { error ->
-            status = if (error == null) "Statistik in GitHub abgelegt: $path" else "Statistik-Upload fehlgeschlagen: $error"
+            if (error != null) {
+                status = "Statistik-Upload fehlgeschlagen: $error"
+                return@upload
+            }
+            // Test-Statistik als eigene Datei; danach auf dem Gerät leeren.
+            val test = quizStore.testStatsJson()
+            if (test == null) {
+                status = "Statistik in GitHub abgelegt: $path"
+                return@upload
+            }
+            diagnoseUpload.upload("$base-TEST.buzzstats", test, "Test-Statistik von $name (Build ${AppUpdate.ownBuild})") { testError ->
+                if (testError == null) quizStore.clearTestStats()
+                status = if (testError == null) "Statistik und Test-Statistik in GitHub abgelegt: $path" else "Test-Statistik-Upload fehlgeschlagen: $testError"
+            }
         }
     }
 
@@ -1130,7 +1211,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
         uploading = true
         val report = pendingReports.first()
-        val now = Date()
+        // Pfad nach der Erstellungszeit (Berichts-ID), damit gespeicherte Berichte richtig einsortiert werden.
+        val now = report.id.toLongOrNull(36)?.takeIf { it in 1_600_000_000_000L..System.currentTimeMillis() + 86_400_000L }?.let(::Date) ?: Date()
         val path = DiagnoseTransfer.path(
             SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(now),
             SimpleDateFormat("HH-mm-ss", Locale.GERMANY).format(now),
@@ -1139,7 +1221,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         )
         diagnoseUpload.upload(path, report.text, "Diagnose von ${report.from} (Build ${report.build})") { error ->
             uploading = false
-            if (error == null) {
+            // Gleicher Name = derselbe Bericht (Erstellungszeit) liegt schon dort, z. B. doppelt eingesammelt.
+            if (error == null || error == DiagnoseUpload.ALREADY_EXISTS) {
                 removePending(report)
                 confirmAfterUpload.remove(report.id)?.let { link.send(it, Message.DiagnoseReceived(report.id)) }
                 status = "Diagnose von ${report.from} in GitHub abgelegt: $path"
