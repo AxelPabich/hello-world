@@ -236,7 +236,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
      * Update-Anfragen, damit sie das laufende Spiel nicht stören.
      */
     val masterIdle: Boolean
-        get() = masterSnapshot?.phase.let { it == null || it == MasterEngine.Phase.READY || it == MasterEngine.Phase.QUIZ_REVEAL }
+        get() = masterSnapshot?.phase.let { it == null || it == MasterEngine.Phase.READY || it == MasterEngine.Phase.ROUND_OVER || it == MasterEngine.Phase.QUIZ_REVEAL }
 
     // ------------------------------------------------------------------ Start
 

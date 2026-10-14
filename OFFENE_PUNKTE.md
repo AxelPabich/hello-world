@@ -353,7 +353,9 @@ Kategorien recherchieren.
 
 49. **Anfragen stören das Spiel nicht** (umgesetzt, kommt mit dem nächsten Build): Beitritts- und
     Update-Anfragen sowie das Update-Angebot erscheinen beim Spielleiter erst in der nächsten Pause
-    (zwischen den Runden bzw. bei der Auflösung). Während der Runde steht in der Kopfzeile nur
+    – also sobald die aktuelle Frage beantwortet bzw. aufgelöst ist (Quiz: Auflösung; Buzzer: „Runde
+    beendet“ oder vor der Freigabe). Einsteigen mitten im Spiel ist ausdrücklich erlaubt; dem
+    Neuen fehlen nur die Punkte der Fragen davor. Während der Frage steht in der Kopfzeile nur
     „⏳ Name wartet – Anfrage erscheint nach der Runde“. Bisher wurden Beitritte während der Runde
     sofort abgelehnt und Update-Anfragen sofort als Dialog angezeigt. Bricht der Spieler die
     Anfrage ab, verschwindet sie.

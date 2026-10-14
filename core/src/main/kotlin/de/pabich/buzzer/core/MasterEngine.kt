@@ -300,7 +300,8 @@ class MasterEngine(
         broadcastStates()
     }
 
-    fun canAcceptJoin(): Boolean = phase == Phase.READY || phase == Phase.QUIZ_REVEAL
+    /** Beitritt in jeder Pause – auch mitten im Spiel (die Punkte davor fehlen dem Neuen dann). */
+    fun canAcceptJoin(): Boolean = phase == Phase.READY || phase == Phase.ROUND_OVER || phase == Phase.QUIZ_REVEAL
 
     // ------------------------------------------------------------------ Einstellungen
 

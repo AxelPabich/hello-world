@@ -309,6 +309,26 @@ class QuizTest {
     }
 
     @Test
+    fun `a late player joins after the current question and plays on from zero`() {
+        val g = game(Settings(quizAnswerMs = 10_000, quizScoring = QuizScoring.EVERYONE))
+        g.master.startQuiz(listOf(question(1), question(2)))
+        g.time.advanceBy(3_500)
+        assertFalse(g.master.canAcceptJoin(), "nicht mitten in der Frage")
+        ids.forEach { g.answer(it, "Richtig 1", 1_000) }
+        g.time.advanceBy(10_000)
+        assertTrue(g.master.canAcceptJoin(), "bei der Auflösung")
+        g.addPlayer("Dora", 0, 50)
+        g.syncClocks()
+        assertTrue(g.master.nextQuestion())
+        g.time.advanceBy(300)
+        assertEquals(2, g.ask("Dora").number)
+        (ids + "Dora").forEach { g.answer(it, "Richtig 2", 1_000) }
+        g.time.advanceBy(10_000)
+        assertEquals(2L, g.scores().getValue("Axel"))
+        assertEquals(1L, g.scores().getValue("Dora"))
+    }
+
+    @Test
     fun `skip goes straight to the next question and the quiz ends after the last`() {
         val g = game()
         var skipped: String? = null

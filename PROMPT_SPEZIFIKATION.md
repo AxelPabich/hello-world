@@ -622,7 +622,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Spieler („PRÜFCODE 1234“ mit Hinweis zum Vergleichen).
 
 - Beitritts- und Update-Anfragen sowie das Angebot einer empfangenen neueren Version erscheinen
-  beim Spielleiter erst in der Pause (zwischen den Runden bzw. bei der Auflösung). Während der Runde
+  beim Spielleiter erst, wenn die aktuelle Frage beantwortet ist (Quiz: Auflösung; Buzzer: „Runde
+  beendet“ oder vor der Freigabe). Einsteigen mitten im Spiel ist erlaubt – der Neue beginnt mit
+  0 Punkten und spielt ab der nächsten Frage mit. Während der Frage
   zeigt die Kopfzeile nur „⏳ Name wartet – Anfrage erscheint nach der Runde“. Abgebrochene
   Anfragen verschwinden aus der Warteschlange.
 ===== ENDE SPEZIFIKATION.md =====
