@@ -68,6 +68,32 @@ class ReadyReviewTest {
     }
 
     @Test
+    fun `ready check starts by itself after the reveal when enabled`() {
+        val g = game()
+        g.master.updateSettings(g.master.settings.copy(quizAutoReadyMs = 5_000))
+        g.master.chooseKind(GameKind.QUIZ)
+        val q = { n: Int -> QuizQuestion("q$n", "Technik", QuizLevel.EASY, "F$n?", listOf("R", "A", "B", "C"), 0, "", "") }
+        g.master.startQuiz(listOf(q(1), q(2)))
+        g.time.advanceBy(14_500) // Antwortzeit vorbei, Auflösung
+        assertEquals(MasterEngine.Phase.QUIZ_REVEAL, g.master.snapshot().phase)
+        assertNull(g.master.snapshot().ready)
+        // Eine offene Challenge hält die Automatik auf.
+        g.player("Peter").engine.challenge("?")
+        g.time.advanceBy(6_000)
+        assertNull(g.master.snapshot().ready)
+        g.master.decideChallenge(ChallengeDecision.KEEP)
+        g.time.advanceBy(1_200)
+        assertTrue(g.master.snapshot().ready != null)
+        assertTrue(g.view("Clara").readyAsk != null)
+        // Nach der letzten Frage nicht.
+        g.master.nextQuestion()
+        g.time.advanceBy(30_000)
+        assertNull(g.master.snapshot().ready)
+        assertEquals(5_000L, SettingsCodec.fromMap(SettingsCodec.toMap(Settings(quizAutoReadyMs = 5_000))).settings.quizAutoReadyMs)
+        assertEquals(0L, Settings(quizAutoReadyMs = -1).normalized().quizAutoReadyMs)
+    }
+
+    @Test
     fun `round can start without everyone ready`() {
         val g = game()
         g.master.askReady()

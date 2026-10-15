@@ -546,6 +546,8 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   fehlt; sind alle bereit, erscheint „GO!“ mit Startsignal-Klang. Er kann auch ohne „Go!“ starten;
   die Abfrage schließt dann überall. Auch der Spielleiter bekommt „BEREIT?“ und muss bestätigen,
   bevor „Go!“ kommt (er steht als „Name (Spielleiter)“ in der Liste).
+- Optional „Bereit-Abfrage automatisch“ (Quiz-Einrichtung, 5–120 s nach der Auflösung): startet
+  „BEREIT?“ von selbst; wartet bei offener Challenge, Prüfung oder Pause; nicht nach der letzten Frage.
 - Während die Abfrage läuft, zeigt der Knopf „Bereit: x / y …“ und startet keine neue Abfrage
   (abbrechen über das Bereit-Feld oben). Quiz: Nach „Go!“ startet die nächste Frage (bzw. in der
   Einrichtung das Quiz) nach 1,5 s automatisch – nicht, wenn inzwischen pausiert oder abgebrochen

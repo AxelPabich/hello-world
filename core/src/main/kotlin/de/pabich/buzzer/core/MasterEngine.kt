@@ -244,6 +244,7 @@ class MasterEngine(
     private var readyOpen = false
     private val readyPlayers = mutableSetOf<PlayerId>()
     private var masterReady = false
+    private var autoReadyTask: Cancellable? = null
     private var reviewing = false
     private var quizQuestions: List<QuizQuestion> = emptyList()
     private var quizIndex = -1
@@ -1010,7 +1011,30 @@ class MasterEngine(
         )
     }
 
+    /** Optional: Bereit-Abfrage automatisch nach der eingestellten Zeit (nicht nach der letzten Frage). */
+    private fun scheduleAutoReady(t: QuizTurn) {
+        autoReadyTask?.cancel()
+        autoReadyTask = null
+        val delay = settings.quizAutoReadyMs
+        if (delay <= 0 || quizIndex + 1 >= quizQuestions.size) return
+        autoReadyTask = scheduler.schedule(delay) { tryAutoReady(t) }
+    }
+
+    private fun tryAutoReady(t: QuizTurn) {
+        autoReadyTask = null
+        if (turn !== t || phase != Phase.QUIZ_REVEAL || readyOpen) return
+        // Pause oder offene Prüfung: warten, bis sie vorbei ist.
+        if (paused || reviewing || t.challenges.isNotEmpty()) {
+            autoReadyTask = scheduler.schedule(1_000) { tryAutoReady(t) }
+            return
+        }
+        log("Bereit-Abfrage automatisch")
+        askReady()
+    }
+
     private fun askNext(): Boolean {
+        autoReadyTask?.cancel()
+        autoReadyTask = null
         val participants = players.values.filter { it.connected }
         if (participants.isEmpty()) {
             finishQuiz()
@@ -1162,11 +1186,14 @@ class MasterEngine(
         }
         t.counted = participantResults(t)
         onQuizRevealed?.invoke(q, t.counted.orEmpty())
+        scheduleAutoReady(t)
         broadcastScoreboard()
         notifyChanged()
     }
 
     private fun finishQuiz() {
+        autoReadyTask?.cancel()
+        autoReadyTask = null
         turn?.let { cancelQuizTasks(it) }
         setReviewing(false)
         quizFinished = true

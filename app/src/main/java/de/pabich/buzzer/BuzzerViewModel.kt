@@ -1410,6 +1410,7 @@ fun describeProfile(values: Map<String, String>): List<Pair<String, String>> {
             "Antwortzeit" to sec(s.quizAnswerMs),
             "Wertung" to s.quizScoring.label,
             ("Countdown" to sec(s.quizCountdownMs)).takeIf { s.quizScoring == QuizScoring.COUNTDOWN },
+            "Bereit-Abfrage automatisch" to if (s.quizAutoReadyMs > 0) "nach ${sec(s.quizAutoReadyMs)}" else "aus",
             "Gleichstand" to "${s.tieThresholdMs} ms",
             "Rangliste" to (if (s.boardShowNames) "mit Namen" else "ohne Namen") +
                 ", " + (if (s.boardPlaces == 0) "alle Plätze" else "${s.boardPlaces} Plätze"),

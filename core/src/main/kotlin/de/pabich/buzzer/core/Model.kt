@@ -95,6 +95,8 @@ data class Settings(
     val quizScoring: QuizScoring = QuizScoring.FASTEST,
     /** Quiz, Wertung „Countdown“: so lange läuft die Zeit nach der ersten richtigen Antwort noch. */
     val quizCountdownMs: Long = 5_000,
+    /** Bereit-Abfrage automatisch so lange nach der Auflösung; 0 = aus. */
+    val quizAutoReadyMs: Long = 0,
 ) {
     /** Reaktionszeit-Limit oder `null`, wenn ausgeschaltet. */
     val reactionLimitMs: Long? get() = if (reactionLimitEnabled) timeLimitMs else null
@@ -123,6 +125,7 @@ data class Settings(
             quizAnswerMs = quizAnswerMs.coerceIn(5_000, 120_000),
             // Höchstens die halbe Antwortzeit – sonst greift der Countdown nie.
             quizCountdownMs = quizCountdownMs.coerceIn(1_000, maxCountdownMs(quizAnswerMs.coerceIn(5_000, 120_000))),
+            quizAutoReadyMs = if (quizAutoReadyMs <= 0) 0 else quizAutoReadyMs.coerceIn(3_000, 120_000),
         )
     }
 }

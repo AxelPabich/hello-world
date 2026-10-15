@@ -233,6 +233,20 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
                 fontSize = 13.sp,
             )
         }
+        // Optional: nach der Auflösung startet die Bereit-Abfrage von selbst.
+        ToggleRow("Bereit-Abfrage automatisch", settings.quizAutoReadyMs > 0) { on ->
+            change(settings.copy(quizAutoReadyMs = if (on) 10_000 else 0))
+        }
+        if (settings.quizAutoReadyMs > 0) {
+            Stepper("… nach der Auflösung", seconds(settings.quizAutoReadyMs).replace(",0 s", " s"), Modifier.fillMaxWidth(),
+                { change(settings.copy(quizAutoReadyMs = (settings.quizAutoReadyMs - 5_000).coerceAtLeast(5_000))) },
+                { change(settings.copy(quizAutoReadyMs = (settings.quizAutoReadyMs + 5_000).coerceAtMost(120_000))) })
+            Text(
+                "Danach kommt bei allen „BEREIT?“; sind alle bereit, startet die nächste Frage. Bei einer offenen Challenge oder Pause wartet die Automatik.",
+                color = LocalBuzzerTheme.current.muted,
+                fontSize = 13.sp,
+            )
+        }
         ToggleRow("Ich spiele mit", settings.masterPlays) { change(settings.copy(masterPlays = it)) }
         Row(
             Modifier.fillMaxWidth().border(1.dp, theme.line, RoundedCornerShape(12.dp)).padding(horizontal = 12.dp, vertical = 6.dp),
