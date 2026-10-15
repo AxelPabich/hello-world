@@ -149,6 +149,52 @@ class HandoverTest {
     }
 
     @Test
+    fun `succession carries the questions from the last asked one`() {
+        val g = quizGame()
+        val qs = (1..5).map { question(it).copy(explanation = "Weil, ä; ö|ü %", source = "https://x.org/?a=1&b=2") }
+        assertTrue(g.master.startQuiz(qs))
+        g.time.advanceBy(15_000)
+        val s = g.lastSuccession("Clara")
+        assertEquals(1, s.quizNext)
+        assertEquals(qs, s.questions, "ab der zuletzt gestellten Frage, unverändert durch die Funkstrecke")
+    }
+
+    @Test
+    fun `very many questions still fit into one message`() {
+        val long = "Sehr lange Erklärung mit Umlauten äöü ".repeat(10)
+        val qs = (1..60).map { question(it).copy(explanation = long, source = "https://de.wikipedia.org/wiki/$it") }
+        val s = Message.Succession("g", "M", "", GameKind.QUIZ, 1, "", emptyMap(), emptyList(), qs.map { it.id }, 1, false, qs)
+        val bytes = MessageCodec.encode(s)
+        assertTrue(bytes.size < 32_000, "${bytes.size} Bytes")
+        val back = MessageCodec.decode(bytes) as Message.Succession
+        assertTrue(back.questions.isNotEmpty())
+        assertEquals(qs.first().text, back.questions.first().text)
+    }
+
+    @Test
+    fun `players who reconnect between rounds keep their points`() {
+        val g = SimGame()
+        ids.forEach { g.addPlayer(it, 0, 30) }
+        g.syncClocks()
+        assertTrue(g.master.chooseKind(GameKind.BUZZER))
+        assertTrue(g.master.release())
+        g.scheduleTap("Clara", 200)
+        g.scheduleTap("Axel", 300)
+        g.scheduleTap("Peter", 400)
+        g.time.advanceBy(10_000)
+        assertTrue(g.master.markCorrect())
+        g.time.advanceBy(500)
+        g.master.nextRound()
+        g.master.removePlayer("Clara")
+        assertTrue(g.master.snapshot().players.none { it.name == "Clara" })
+        g.addPlayer("Clara-neu", 0, 30)
+        // Der Sim-Spieler heißt wie seine ID – also unter dem alten Namen neu aufnehmen.
+        g.master.removePlayer("Clara-neu")
+        g.master.addPlayer("Clara-neu", "Clara")
+        assertEquals(1L, g.master.snapshot().players.first { it.name == "Clara" }.scoreValue)
+    }
+
+    @Test
     fun `hand over names the successor and silences the old master`() {
         val g = quizGame()
         assertFalse(g.master.handOver("Niemand"))

@@ -43,6 +43,7 @@ fun TakeoverScreen(vm: BuzzerViewModel) {
             Kicker("Spielleitung")
             BigTitle(
                 when {
+                    t.taker != null && t.taker == t.succession.master -> "${t.taker} ist wieder da"
                     t.taker != null -> "${t.taker} übernimmt"
                     t.expected != null -> "Neuer Spielleiter: ${t.expected}"
                     else -> "Wer übernimmt?"

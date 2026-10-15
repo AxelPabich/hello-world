@@ -668,6 +668,12 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - Der neue Spielleiter sieht „Noch nicht zurück: …“, bis alle Mitspieler des Vorgängers wieder da
   sind (höchstens 3 Minuten). Wer während einer Frage zurückkommt, wird in der nächsten Pause
   automatisch aufgenommen.
+- Taucht der bisherige Spielleiter wieder auf, bevor jemand übernommen hat, verbinden sich die
+  Spieler wieder mit ihm. Allgemein nimmt ein Spielleiter Spieler, deren Verbindung bei ihm in den
+  letzten 3 Minuten abgebrochen ist, ohne Rückfrage wieder auf (in einer Pause), und wer mit
+  gleichem Namen zurückkommt, bekommt seine Punkte zurück (bis „Neues Spiel“).
+- Der Spielstand enthält die Fragen des laufenden Quiz ab der zuletzt gestellten (wird es zu groß,
+  zuerst ohne Quellen, dann ohne Erklärungen) – der Nachfolger braucht die Pakete nicht selbst.
 - **Was bleibt:** Punkte (beim Wiederbeitritt nach Namen zugeordnet; wer später kommt, bekommt sie
   dann), Runde, Spielart, Profil und Einstellungen, Testspiel. Der Nachfolger spielt weiter mit
   („Master spielt mit“) und behält seine Punkte. Das Quiz läuft mit derselben Fragenliste weiter

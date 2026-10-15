@@ -182,6 +182,8 @@ sealed interface Message {
         val quiz: List<String>,
         val quizNext: Int,
         val test: Boolean,
+        /** Fragen ab der zuletzt gestellten – der Nachfolger hat sie vielleicht nicht in seinen Paketen. */
+        val questions: List<QuizQuestion> = emptyList(),
     ) : Message
 
     /** M → S: Der Spielleiter geht, die Spieler dürfen übernehmen (statt [Bye]). */
@@ -289,6 +291,7 @@ object MessageCodec {
                 "r" to message.round, "pn" to message.profile, "s" to SettingsCodec.encodeLine(message.settings),
                 "sc" to encodeList(message.scores.map { "${enc(it.first)}:${it.second}" }),
                 "q" to encodeList(message.quiz), "qn" to message.quizNext, "t" to message.test,
+                "qq" to encodeQuestions(message.questions),
             )
             Message.MasterGone -> "MASTER_GONE" to emptyMap()
         }
@@ -380,6 +383,7 @@ object MessageCodec {
                     dec(it.substring(0, i)) to it.substring(i + 1).toLong()
                 },
                 quiz = decodeList(f.getValue("q")), quizNext = int("qn"), test = bool("t"),
+                questions = f["qq"]?.let { decodeQuestions(it) }.orEmpty(),
             )
             "MASTER_GONE" -> Message.MasterGone
             else -> null
@@ -395,6 +399,37 @@ object MessageCodec {
 
     private fun decodeList(text: String): List<String> =
         if (text.isEmpty()) emptyList() else text.split(',').map { dec(it) }
+
+    /** Fragen kompakt; wird es zu groß für eine Nachricht, entfallen erst Quellen, dann Erklärungen. */
+    private fun encodeQuestions(questions: List<QuizQuestion>): String {
+        fun build(source: Boolean, explanation: Boolean, count: Int = questions.size) = questions.take(count).joinToString(";") { q ->
+            encodeList(
+                listOf(q.id, q.category, q.level.name, q.text) + q.answers +
+                    listOf(q.correctIndex.toString(), if (explanation) q.explanation else "", if (source) q.source else ""),
+            )
+        }
+        return build(true, true).takeIf { it.length < MAX_QUESTIONS_CHARS }
+            ?: build(false, true).takeIf { it.length < MAX_QUESTIONS_CHARS }
+            ?: build(false, false).takeIf { it.length < MAX_QUESTIONS_CHARS }
+            // Sehr langes Quiz: nur so viele, wie hineinpassen (die übrigen holt der Nachfolger aus seinen Paketen).
+            ?: (questions.size downTo 1).map { build(false, false, it) }.firstOrNull { it.length < MAX_QUESTIONS_CHARS }
+            ?: ""
+    }
+
+    private fun decodeQuestions(text: String): List<QuizQuestion> =
+        if (text.isEmpty()) emptyList() else text.split(';').mapNotNull { item ->
+            val v = decodeList(item)
+            if (v.size < 7) return@mapNotNull null
+            val n = v.size - 7 // Anzahl Antworten
+            QuizQuestion(
+                id = v[0], category = v[1], level = QuizLevel.valueOf(v[2]), text = v[3],
+                answers = v.subList(4, 4 + n), correctIndex = v[4 + n].toInt(),
+                explanation = v[5 + n], source = v[6 + n],
+            )
+        }
+
+    /** Grenze für die Fragen im Spielstand (Nearby-Nachrichten dürfen höchstens 32 KB groß sein). */
+    private const val MAX_QUESTIONS_CHARS = 12_000
 
     private fun encodeEntries(entries: List<ScoreEntry>) = entries.joinToString(",") {
         listOf(it.rank, it.score, if (it.isSelf) 1 else 0, enc(it.label), enc(it.scoreText)).joinToString(":")

@@ -146,6 +146,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var takenOver: Message.Succession? = null
     private var takenOverUntil = 0L
 
+    /** Spielleiter: Name → Zeitpunkt des Verbindungsabbruchs; diese Spieler kommen ohne Rückfrage wieder hinein. */
+    private val lostPlayers = mutableMapOf<String, Long>()
+
     /** Spielleiter: Zeitpunkte der letzten Verbindungsabbrüche (alle auf einmal weg = eigene Funkstörung). */
     private val recentLosses = mutableListOf<Long>()
 
@@ -386,12 +389,17 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
         master = engine
         if (taken != null) {
-            // Fragen des laufenden Quiz aus den eigenen Paketen; fehlende fallen weg.
-            val byId = quizStore.questions.associateBy { it.id }
-            val found = taken.quiz.map { byId[it] }
+            // Fragen des laufenden Quiz: mitgeschickte zuerst (genau wie beim Vorgänger), sonst aus den
+            // eigenen Paketen. Schon gespielte, die hier fehlen, bleiben als Platzhalter – die Zählung stimmt.
+            val sent = taken.questions.associateBy { it.id }
+            val own = quizStore.questions.associateBy { it.id }
+            val found = taken.quiz.mapIndexed { i, id ->
+                sent[id] ?: own[id]?.let(quizStore::toQuiz) ?: if (i < taken.quizNext - 1) playedPlaceholder(id) else null
+            }
             val next = found.take(taken.quizNext.coerceAtLeast(0)).count { it != null }
-            if (found.any { it == null }) Diagnostics.log("Übernahme: ${found.count { it == null }} Fragen fehlen in den eigenen Paketen")
-            engine.takeOver(taken, found.filterNotNull().map(quizStore::toQuiz), next)
+            if (found.any { it == null }) Diagnostics.log("Übernahme: ${found.count { it == null }} Fragen fehlen")
+            Diagnostics.log("Übernahme: ${sent.size} Fragen mitgeschickt, ${found.count { it != null }} von ${taken.quiz.size} vorhanden")
+            engine.takeOver(taken, found.filterNotNull(), next)
             testGame = taken.test
             choosingTemplate = false
             takenOver = taken
@@ -479,6 +487,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         takeover = null
         succession = null
         takenOver = null
+        lostPlayers.clear()
         diagnoseRequest = false
         intro = null
         master = null
@@ -1168,7 +1177,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         Diagnostics.log("Beitrittsanfrage von $endpointId, Prüfcode $authCode (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
         // Nach einer Übernahme kommen die bisherigen Mitspieler ohne Rückfrage wieder hinein.
         if (master?.canAcceptJoin() == true && isReturning(peer)) {
-            Diagnostics.log("Übernahme: ${peer.name} kommt zurück – ohne Rückfrage aufgenommen")
+            Diagnostics.log("${peer.name} kommt zurück – ohne Rückfrage aufgenommen")
             link.accept(endpointId)
             return
         }
@@ -1267,6 +1276,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (engine != null) {
             peerBuilds.remove(endpointId)
             Diagnostics.log("Getrennt von $endpointId")
+            engine.snapshot().players.firstOrNull { it.id == endpointId }?.let { lostPlayers[it.name] = UptimeClock.now() }
             engine.removePlayer(endpointId)
             val now = UptimeClock.now()
             recentLosses.removeAll { now - it > 15_000 }
@@ -1465,8 +1475,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (t != null && master == null) {
             val s = t.succession
             val fits = if (t.expected != null) name == t.expected else name != s.master && s.scores.any { it.first == name }
-            if (!fits || connectingTo != null) return
-            Diagnostics.log("Übernahme: $name leitet jetzt – Beitritt")
+            // Der bisherige Spielleiter ist wieder da und noch niemand hat übernommen: zurück zu ihm.
+            val predecessorBack = t.expected == null && t.taker == null && name == s.master
+            if ((!fits && !predecessorBack) || connectingTo != null) return
+            Diagnostics.log(if (predecessorBack) "Übernahme: $name ist wieder da – Beitritt" else "Übernahme: $name leitet jetzt – Beitritt")
             // Wer gerade verbunden wird, bekommt noch etwas Zeit.
             val deadline = maxOf(t.deadline, UptimeClock.now() + TAKEOVER_CONNECT_MS)
             takeover = t.copy(taker = name, deadline = deadline)
@@ -1491,18 +1503,30 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         startTakeover(s, "$name hat die Spielleitung zugleich übernommen.")
     }
 
-    /** Neuer Spielleiter: Gehört [peer] zum Spiel des Vorgängers (Übernahme läuft noch)? */
+    /** Platzhalter für eine schon gespielte Frage, die der Nachfolger nicht kennt. */
+    private fun playedPlaceholder(id: String) = de.pabich.buzzer.core.QuizQuestion(
+        id, "", de.pabich.buzzer.core.QuizLevel.MEDIUM, "(bereits gespielt)", listOf("–", "–", "–", "–"), 0, "", "",
+    )
+
+    /**
+     * Gehört [peer] zu diesem Spiel und kommt zurück? Nach einer Übernahme die Mitspieler des
+     * Vorgängers; sonst Spieler, deren Verbindung hier vor Kurzem abgebrochen ist.
+     */
     private fun isReturning(peer: PeerInfo): Boolean {
-        val taken = takenOver ?: return false
-        return UptimeClock.now() < takenOverUntil && peer.compatible && !peer.updateOnly && peer.name != myName.trim() &&
+        if (!peer.compatible || peer.updateOnly || peer.name == myName.trim()) return false
+        val now = UptimeClock.now()
+        val lost = lostPlayers[peer.name]?.let { now - it < TAKEN_OVER_ACCEPT_MS } == true
+        val taken = takenOver
+        val fromPredecessor = taken != null && now < takenOverUntil &&
             (peer.name == taken.master || taken.scores.any { it.first == peer.name })
+        return lost || fromPredecessor
     }
 
     /** Wer während einer Frage zurückkam, wartet bis zur Pause – dann ohne Rückfrage aufnehmen. */
     private fun acceptReturning() {
         if (master?.canAcceptJoin() != true) return
         for (request in joinRequests.filter { isReturning(it.peer) }) {
-            Diagnostics.log("Übernahme: ${request.peer.name} kommt in der Pause zurück – ohne Rückfrage aufgenommen")
+            Diagnostics.log("${request.peer.name} kommt in der Pause zurück – ohne Rückfrage aufgenommen")
             joinRequests.remove(request)
             link.accept(request.endpointId)
         }
@@ -1805,7 +1829,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         AppUpdate.onInstallResult = null
         GameService.stop(getApplication())
         // App weggewischt: Die Spieler dürfen übernehmen (Punkt 59), sobald eine Spielart läuft.
-        master?.let { if (it.snapshot().kind != null) it.leaveOpen() else it.close() }
+        val engine = master
+        master = null // Danach eintreffende Trennungen nicht mehr als Spielleiter auswerten.
+        engine?.let { if (it.snapshot().kind != null) it.leaveOpen() else it.close() }
         link.stopAll()
         sounds.release()
     }

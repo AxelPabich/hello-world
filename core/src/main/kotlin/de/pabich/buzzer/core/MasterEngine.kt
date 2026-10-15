@@ -283,6 +283,11 @@ class MasterEngine(
     fun addPlayer(id: PlayerId, name: String, local: Boolean = false) {
         val player = Player(id, name, local)
         if (local) player.sync.setLocal()
+        // Kommt jemand zurück, der mitten in der Runde getrennt wurde: alten grauen Eintrag ersetzen.
+        players.values.firstOrNull { !it.connected && baseName(it.name) == baseName(name) }?.let { old ->
+            players.remove(old.id)
+            if (old.score != 0L) carriedScores[baseName(name)] = old.score
+        }
         carriedScores.remove(baseName(name))?.let {
             player.score = it
             startScores[id] = it
@@ -305,6 +310,8 @@ class MasterEngine(
         log("Spieler getrennt: ${player.name} ($id)")
         if (phase == Phase.READY || player.status == Status.IDLE) {
             players.remove(id)
+            // Punkte merken: Wer mit gleichem Namen wieder beitritt, bekommt sie zurück.
+            if (player.score != 0L && !player.local) carriedScores[baseName(player.name)] = player.score
             broadcastRoster()
             broadcastScoreboard()
             // Im Quiz wartet niemand mehr auf seine Antwort.
@@ -495,6 +502,7 @@ class MasterEngine(
         phase = Phase.READY
         order.clear()
         answerIndex = -1
+        players.values.filter { !it.connected && it.score != 0L }.forEach { carriedScores[baseName(it.name)] = it.score }
         players.values.removeAll { !it.connected }
         for (p in players.values) {
             p.status = Status.IDLE
@@ -1526,6 +1534,8 @@ class MasterEngine(
             quiz = if (quizNext >= 0) quizQuestions.map { it.id } else emptyList(),
             quizNext = quizNext,
             test = testGame,
+            // Die Fragen selbst (ab der zuletzt gestellten): Dem Nachfolger fehlen sonst neu geladene Pakete.
+            questions = if (quizNext >= 0) quizQuestions.drop((quizNext - 1).coerceAtLeast(0)) else emptyList(),
         )
     }
 
