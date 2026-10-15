@@ -402,15 +402,15 @@ Kategorien recherchieren.
 
 ## Offen
 
-57. **Start-Animationen laufen komplett und blenden aus** (umgesetzt, kommt mit dem nächsten Build):
+57. **Start-Animationen laufen komplett und blenden aus** (in Build 26):
     Splash-Screen und Rennszene laufen jetzt über die Bildwiederholung statt über die
     Animations-Skalierung des Systems (bei „Animationen aus“/verkürzt war sie sofort vorbei) und
     starten erst mit dem ersten angezeigten Bild. Nach 3 s bleibt das Schlussbild 0,8 s stehen und
     blendet in 0,6 s aus; erst dann erscheint der Startbildschirm bzw. die erste Quizfrage.
-58. **Neues „Wah-wah-wah-waaah“** (umgesetzt, kommt mit dem nächsten Build): gestopfte Posaune –
+58. **Neues „Wah-wah-wah-waaah“** (in Build 26): gestopfte Posaune –
     drei absteigende „Wah“ und ein langes, wackelndes „Waaah“, das am Ende abrutscht (Hörprobe
     `docs/wah-wah-neu.wav`).
-59. **Spielleitung übergeben und übernehmen** (umgesetzt, kommt mit dem nächsten Build;
+59. **Spielleitung übergeben und übernehmen** (in Build 26;
     Entscheidungen vom 15.10.2026: Punkte bleiben, das Quiz läuft weiter, freiwillige Übergabe
     über ⋮): Der Spielleiter schickt in jeder Pause den Spielstand an alle. ⋮ „Spielleitung übergeben
     an …“ macht einen Spieler zum Spielleiter, der bisherige spielt weiter mit. „Spiel verlassen“
@@ -425,11 +425,11 @@ Kategorien recherchieren.
     mehr, automatische Updates. Braucht Entwicklerkonto (einmalig 25 US-$), eigenen Signaturschlüssel
     als GitHub-Secret und ein App-Bundle (AAB) im Build. Bis dahin: Play Protect → Zahnrad →
     „Apps mit Play Protect scannen“ nur fürs Update kurz aus.
-61. **Feinschliff Übernahme** (umgesetzt, kommt mit dem nächsten Build): Der Spielverlauf beginnt
+61. **Feinschliff Übernahme** (in Build 27): Der Spielverlauf beginnt
     nach einer Übernahme mit den übernommenen Punkten statt bei 0; doppelte Protokollzeile
     „Spielleitung an … übergeben“ entfernt. Wird die App beim Spielleiter weggewischt, dürfen die
     Spieler übernehmen (vorher: Spiel für alle beendet).
-62. **Übernahme bei Funkabbruch robuster** (umgesetzt, kommt mit dem nächsten Build) – Test vom
+62. **Übernahme bei Funkabbruch robuster** (in Build 27) – Test vom
     15.10.2026, Axel schaltet Bluetooth und WLAN aus:
     - Die Spieler merkten den Abbruch erst nach ~60 s (Nearby). Jetzt pingt der Spielleiter in jeder
       Phase alle 2 s; nach 12 s Stille startet die Übernahme.
@@ -440,7 +440,7 @@ Kategorien recherchieren.
       der Spielleiter alle Spieler fast gleichzeitig, kündigt er die Gruppe neu an und zeigt einen
       Hinweis.
     - Peters Tablet lief ab 20:28 wieder mit Build 22 – bitte aktualisieren.
-63. **Diagnosen abrufen und prüfen** (umgesetzt, kommt mit dem nächsten Build): ⋮ „Diagnosen der
+63. **Diagnosen abrufen und prüfen** (in Build 27): ⋮ „Diagnosen der
     Spieler abrufen“; Spieler entscheiden mit Systemdaten-Haken, „Bericht ansehen“ und „Nicht erneut
     fragen (bis zum nächsten Build)“. „Bericht ansehen“ auch in „Diagnose senden“. Abschnitt 49.
 
