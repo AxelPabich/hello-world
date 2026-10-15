@@ -35,9 +35,10 @@ object SoundSynth {
             tone(0.18, 1760.0, 0.9, Wave.SINE, 0.3)
             applause(0.3, 2.6)
         }
-        SoundEvent.WRONG -> mix(2.4) {
-            listOf(392.0, 370.0, 349.0).forEachIndexed { i, f -> tone(i * 0.42, f, 0.4, Wave.TRIANGLE, 0.3) }
-            tone(1.26, 330.0, 1.0, Wave.TRIANGLE, 0.3, freqEnd = 300.0)
+        SoundEvent.WRONG -> mix(3.1) {
+            // Gestopfte Posaune: drei absteigende „Wah“, dann ein langes, wackelndes „Waaah“.
+            listOf(293.7, 277.2, 261.6).forEachIndexed { i, f -> trombone(i * 0.5, f, 0.44, 0.32) }
+            trombone(1.5, 246.9, 1.5, 0.34, wobble = true, glideTo = 220.0)
         }
         SoundEvent.TUSCH -> mix(1.6) {
             // Kurzer Schlag, dann ein Akkord-Stoß „Ta-daaa“ wie die Showband.
@@ -208,6 +209,49 @@ object SoundSynth {
                 val y0 = b0 * x0 + b2 * x2 - a1 * y1 - a2 * y2
                 x2 = x1; x1 = x0; y2 = y1; y1 = y0
                 buf[idx] += y0 * vol * (0.0001 / vol).pow(k.toDouble() / SAMPLE_RATE / dur)
+            }
+        }
+
+        /**
+         * Posaune mit Wah-Dämpfer: zwei leicht verstimmte Sägezähne durch einen Tiefpass, dessen
+         * Grenzfrequenz sich öffnet und wieder schließt („wa-ah“). [wobble]: langer Schlusston mit
+         * Vibrato und mehrfachem Wah, am Ende nach [glideTo] abrutschend.
+         */
+        fun trombone(t: Double, freq: Double, dur: Double, vol: Double, wobble: Boolean = false, glideTo: Double? = null) {
+            val start = (t * SAMPLE_RATE).toInt()
+            val n = (dur * SAMPLE_RATE).toInt()
+            var p1 = 0.0
+            var p2 = 0.0
+            var low = 0.0
+            var band = 0.0
+            for (k in 0 until n) {
+                val idx = start + k
+                if (idx >= buf.size) break
+                val x = k.toDouble() / SAMPLE_RATE
+                val rel = x / dur
+                var f = freq
+                if (glideTo != null && rel > 0.7) f = freq * (glideTo / freq).pow((rel - 0.7) / 0.3)
+                if (wobble && x > 0.25) f *= 1 + 0.018 * sin(2 * PI * 5.5 * x)
+                p1 += f / SAMPLE_RATE
+                p2 += f * 1.006 / SAMPLE_RATE
+                val raw = wave(Wave.SAW, p1) + 0.7 * wave(Wave.SAW, p2)
+                // Wah: Tiefpass öffnet sich schnell und schließt langsam; beim Schlusston mehrfach.
+                val wah = if (wobble) {
+                    0.45 + 0.55 * (0.5 - 0.5 * cos(2 * PI * 2.4 * x)) * (1 - rel * 0.6)
+                } else {
+                    if (x < 0.07) x / 0.07 else (1 - (x - 0.07) / (dur - 0.07)).coerceAtLeast(0.0)
+                }
+                val cutoff = 220 + 1700 * wah
+                val fc = 2 * sin(PI * cutoff / SAMPLE_RATE)
+                low += fc * band
+                val high = raw - low - 0.9 * band
+                band += fc * high
+                val env = when {
+                    x < 0.025 -> x / 0.025
+                    x > dur - 0.12 -> ((dur - x) / 0.12).coerceAtLeast(0.0)
+                    else -> 1.0
+                }
+                buf[idx] += low * vol * env * 0.6
             }
         }
 

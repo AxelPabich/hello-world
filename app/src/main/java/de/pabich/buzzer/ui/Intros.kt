@@ -22,6 +22,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.withFrameNanos
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -86,16 +89,36 @@ private fun kf(t: Float, times: FloatArray, values: FloatArray): Float {
     return values.last()
 }
 
-/** Zeit in Sekunden, läuft einmal von 0 bis 3 und meldet dann [onDone]. */
+/** Nach der Animation bleibt das letzte Bild kurz stehen und blendet dann aus. */
+const val INTRO_HOLD_MS = 800
+const val INTRO_FADE_MS = 600
+
+/** Gesamtdauer bis die Animation verschwunden ist. */
+const val INTRO_TOTAL_MS = INTRO_MS + INTRO_HOLD_MS + INTRO_FADE_MS
+
+/**
+ * Zeit in Sekunden und Deckkraft. Läuft über die Bildwiederholung (nicht über die Animations-
+ * Skalierung des Systems – sonst wäre sie bei „Animationen aus“ sofort vorbei) und beginnt erst,
+ * wenn das erste Bild wirklich angezeigt wird. Danach [INTRO_HOLD_MS] stehen, [INTRO_FADE_MS]
+ * ausblenden, dann [onDone].
+ */
 @Composable
-private fun introClock(key: Any, onDone: () -> Unit): Float {
+private fun introClock(key: Any, onDone: () -> Unit): Pair<Float, Float> {
     val done by rememberUpdatedState(onDone)
-    val clock = remember(key) { Animatable(0f) }
+    var seconds by remember(key) { mutableFloatStateOf(0f) }
+    var alpha by remember(key) { mutableFloatStateOf(1f) }
     LaunchedEffect(key) {
-        clock.animateTo(INTRO_MS / 1000f, tween(INTRO_MS, easing = LinearEasing))
+        withFrameNanos { }
+        val start = withFrameNanos { it }
+        while (true) {
+            val ms = (withFrameNanos { it } - start) / 1_000_000f
+            seconds = ms / 1000f
+            alpha = (1f - (ms - INTRO_MS - INTRO_HOLD_MS) / INTRO_FADE_MS).coerceIn(0f, 1f)
+            if (ms >= INTRO_TOTAL_MS) break
+        }
         done()
     }
-    return clock.value
+    return seconds to alpha
 }
 
 // ---------------------------------------------------------------------- Bausteine
@@ -256,11 +279,12 @@ private fun ShowText(text: String, size: Int, modifier: Modifier = Modifier, col
 /** Splash beim App-Start: Variante 0 = Hüpfer, 1 = Vorhang auf, 2 = Hau drauf. Tippen überspringt. */
 @Composable
 fun SplashScreen(variant: Int, onDone: (skipped: Boolean) -> Unit) {
-    val t = introClock(variant) { onDone(false) }
+    val (t, fade) = introClock(variant) { onDone(false) }
     val bits = remember(variant) { confettiBits(variant + 7) }
     BoxWithConstraints(
         Modifier
             .fillMaxSize()
+            .graphicsLayer { alpha = fade }
             .background(Ground)
             .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { onDone(true) },
     ) {
@@ -460,11 +484,12 @@ private fun BoxScope.SplashSlap(t: Float, w: Dp, h: Dp) {
 /** Rennszene beim Spielstart: 0 = Die Fabel, 1 = Verfolgungsjagd, 2 = Startschuss. */
 @Composable
 fun RaceIntro(variant: Int, seq: Int, onDone: () -> Unit) {
-    val t = introClock(seq, onDone)
+    val (t, fade) = introClock(seq, onDone)
     val theme = LocalBuzzerTheme.current
     BoxWithConstraints(
         Modifier
             .fillMaxSize()
+            .graphicsLayer { alpha = fade }
             .background(Ground)
             .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { },
     ) {

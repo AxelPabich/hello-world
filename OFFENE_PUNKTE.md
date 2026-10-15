@@ -402,7 +402,17 @@ Kategorien recherchieren.
 
 ## Offen
 
-(zurzeit nichts)
+57. **Start-Animationen laufen komplett und blenden aus** (umgesetzt, kommt mit dem nächsten Build):
+    Splash-Screen und Rennszene laufen jetzt über die Bildwiederholung statt über die
+    Animations-Skalierung des Systems (bei „Animationen aus“/verkürzt war sie sofort vorbei) und
+    starten erst mit dem ersten angezeigten Bild. Nach 3 s bleibt das Schlussbild 0,8 s stehen und
+    blendet in 0,6 s aus; erst dann erscheint der Startbildschirm bzw. die erste Quizfrage.
+58. **Neues „Wah-wah-wah-waaah“** (umgesetzt, kommt mit dem nächsten Build): gestopfte Posaune –
+    drei absteigende „Wah“ und ein langes, wackelndes „Waaah“, das am Ende abrutscht (Hörprobe
+    `docs/wah-wah-neu.wav`).
+59. **Spielleitung übernehmen** (Konzept, Rückfragen offen): Verlässt der Spielleiter das Spiel,
+    kann ein Spieler die Spielleitung übernehmen; meldet sich innerhalb 1 Minute niemand, endet das
+    Spiel für alle.
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.

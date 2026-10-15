@@ -494,7 +494,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             return
         }
         engine.playIntro(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.RACE_VARIANTS))
-        quizStartPending = scheduler.schedule(de.pabich.buzzer.ui.INTRO_MS + 100L) {
+        quizStartPending = scheduler.schedule(de.pabich.buzzer.ui.INTRO_TOTAL_MS + 100L) {
             quizStartPending = null
             if (master === engine) startQuizNow()
         }
