@@ -277,6 +277,17 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var emoteSeq = 0L
 
     init {
+        AppUpdate.onInstallResult = { ok, text -> if (!ok) status = text }
+        // Installationen im Protokoll: Wechsel der Build-Nummer seit dem letzten Start.
+        val appPrefs = app.getSharedPreferences("app", android.content.Context.MODE_PRIVATE)
+        val lastBuild = appPrefs.getInt("lastBuild", 0)
+        if (lastBuild != AppUpdate.ownBuild) {
+            if (lastBuild != 0) {
+                val what = if (lastBuild < AppUpdate.ownBuild) "aktualisiert" else "ZURÜCKGESETZT (ältere Version installiert)"
+                Diagnostics.log("App $what: Build $lastBuild → Build ${AppUpdate.ownBuild}")
+            }
+            appPrefs.edit().putInt("lastBuild", AppUpdate.ownBuild).apply()
+        }
         // Klang zum Splash-Screen (SoundPlayer wartet kurz, bis er geladen ist).
         splash?.let {
             Diagnostics.log("Splash: ${SPLASH_NAMES[it % SPLASH_NAMES.size]}" + if (soundOn) "" else " (ohne Ton)")
@@ -975,7 +986,20 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             AppUpdate.openInstallPermission(context)
             return
         }
-        if (!AppUpdate.install(context, update.file)) status = "Auf diesem Gerät gibt es keinen Installer."
+        // Erst das Spiel sauber verlassen: Eine laufende Verbindung samt Hintergrund-Dienst ließ die
+        // Installation auf manchen Geräten (Galaxy Tab S6) hängen.
+        if (master != null || player != null || takeover != null) {
+            Diagnostics.log("Update: Spiel wird für die Installation verlassen")
+            leave(openForTakeover = master != null)
+        }
+        receivedUpdate = null
+        status = "Build ${update.build} wird installiert …"
+        AppUpdate.install(context, update.file) { started ->
+            if (!started) {
+                receivedUpdate = update
+                status = "Auf diesem Gerät gibt es keinen Installer."
+            }
+        }
     }
 
     fun dismissTransfer() {
@@ -1696,6 +1720,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onCleared() {
+        AppUpdate.onInstallResult = null
         GameService.stop(getApplication())
         // App weggewischt: Die Spieler dürfen übernehmen (Punkt 59), sobald eine Spielart läuft.
         master?.let { if (it.snapshot().kind != null) it.leaveOpen() else it.close() }

@@ -686,4 +686,13 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Build-Nummer läuft.
 - Gesendete Berichte landen wie bisher beim Spielleiter (mit Token direkt in GitHub).
 - „Diagnose senden“ zeigt ebenfalls „Bericht ansehen“: genau der Text, der verschickt würde.
+
+## 50. Installation neuer Versionen
+
+- „Installieren“ verlässt zuerst ein laufendes Spiel (Spielleiter: die Spieler dürfen übernehmen),
+  dann übergibt die App die APK über den Paket-Installer von Android (Sitzung). Android fragt wie
+  gewohnt nach; geht der Paket-Installer nicht, öffnet sich der bisherige Installer-Dialog.
+- Protokoll: Größe der APK, Übergabe an den Installer, Warten auf Bestätigung, Ergebnis (Erfolg
+  bzw. Grund wie abgebrochen, blockiert, Konflikt, zu wenig Speicher). Beim nächsten Start steht
+  „App aktualisiert: Build A → Build B“ – oder „ZURÜCKGESETZT“, falls eine ältere Version läuft.
 ===== ENDE SPEZIFIKATION.md =====

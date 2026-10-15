@@ -1,9 +1,11 @@
 package de.pabich.buzzer
 
+import android.app.PendingIntent
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageInfo
+import android.content.pm.PackageInstaller
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -82,15 +84,62 @@ object AppUpdate {
             .onFailure { Diagnostics.log("Update: Einstellung für Installationen nicht zu öffnen: ${it.message}") }
     }
 
-    /** Startet die Installation (Android fragt den Nutzer). */
-    fun install(context: Context, apk: File): Boolean {
+    /** Ergebnis einer Installation (`ok`, Hinweis) – für die Anzeige in der App. */
+    var onInstallResult: ((Boolean, String) -> Unit)? = null
+
+    /**
+     * Startet die Installation über den Paket-Installer von Android (Sitzung): Die APK wird im
+     * Hintergrund übergeben, Android fragt den Nutzer, jedes Ergebnis landet im Protokoll
+     * ([InstallResultReceiver]). Klappt das nicht, bleibt der alte Weg über den Installer-Dialog.
+     */
+    fun install(context: Context, apk: File, onStarted: (Boolean) -> Unit = {}) {
+        val app = context.applicationContext
+        Diagnostics.log("Update: Installation von ${apk.name} (${apk.length() / 1024} KB) über den Paket-Installer")
+        thread(name = "buzzer-install", isDaemon = true) {
+            val ok = runCatching { installSession(app, apk) }
+                .onFailure { Diagnostics.log("Update: Paket-Installer nicht nutzbar (${it.javaClass.simpleName}: ${it.message}) – alter Weg") }
+                .isSuccess
+            main.post { onStarted(ok || installViaIntent(app, apk)) }
+        }
+    }
+
+    private fun installSession(context: Context, apk: File) {
+        val installer = context.packageManager.packageInstaller
+        val params = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL)
+        params.setAppPackageName(context.packageName)
+        params.setSize(apk.length())
+        if (Build.VERSION.SDK_INT >= 31) params.setRequireUserAction(PackageInstaller.SessionParams.USER_ACTION_NOT_REQUIRED)
+        val id = installer.createSession(params)
+        try {
+            installer.openSession(id).use { session ->
+                session.openWrite("buzzer.apk", 0, apk.length()).use { out ->
+                    apk.inputStream().use { it.copyTo(out, 64 * 1024) }
+                    session.fsync(out)
+                }
+                // Der Installer ergänzt Status und Bestätigungsdialog – deshalb veränderbar.
+                val mutable = if (Build.VERSION.SDK_INT >= 31) PendingIntent.FLAG_MUTABLE else 0
+                val flags = PendingIntent.FLAG_UPDATE_CURRENT or mutable
+                val pending = PendingIntent.getBroadcast(
+                    context, id, Intent(context, InstallResultReceiver::class.java).setPackage(context.packageName), flags,
+                )
+                session.commit(pending.intentSender)
+            }
+            Diagnostics.log("Update: Sitzung $id übergeben – warte auf den Installer")
+        } catch (e: Exception) {
+            runCatching { installer.abandonSession(id) }
+            throw e
+        }
+    }
+
+    /** Alter Weg: Installer-Dialog von Android mit der Datei öffnen. */
+    private fun installViaIntent(context: Context, apk: File): Boolean {
         val uri = FileProvider.getUriForFile(context, "${context.packageName}.share", apk)
         val intent = Intent(Intent.ACTION_VIEW)
             .setDataAndType(uri, APK_TYPE)
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK)
         return try {
             context.startActivity(intent)
-            Diagnostics.log("Update: Installation gestartet (${apk.name})")
+            Diagnostics.log("Update: Installer-Dialog geöffnet (${apk.name})")
             true
         } catch (e: ActivityNotFoundException) {
             Diagnostics.log("Update: kein Installer gefunden")

@@ -443,6 +443,12 @@ Kategorien recherchieren.
 63. **Diagnosen abrufen und prüfen** (in Build 27): ⋮ „Diagnosen der
     Spieler abrufen“; Spieler entscheiden mit Systemdaten-Haken, „Bericht ansehen“ und „Nicht erneut
     fragen (bis zum nächsten Build)“. „Bericht ansehen“ auch in „Diagnose senden“. Abschnitt 49.
+64. **Installation hängt auf dem Galaxy Tab S6 (aus dem Spiel heraus)** (umgesetzt, kommt mit dem
+    nächsten Build): Vor der Installation wird das Spiel verlassen (Verbindung und Hintergrund-Dienst
+    aus), die APK geht über den Paket-Installer von Android (Sitzung) statt über den Dialog; jedes
+    Ergebnis und der Build-Wechsel beim nächsten Start stehen im Protokoll. Aufgefallen: Peters
+    Tablet startete am 15.10. um 20:28 wieder mit Build 22 statt 26 – die neue Protokollzeile
+    „ZURÜCKGESETZT“ macht so etwas künftig sichtbar.
 
 Bestätigt im Test (15.10.2026, Build 26): Übergabe per ⋮ (Simone → Axel) und „Spiel verlassen –
 Spieler übernehmen“ (Axel geht, Simone übernimmt, Peter kommt automatisch zurück); Quiz lief mit
