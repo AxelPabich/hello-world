@@ -194,7 +194,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     var transfer by mutableStateOf<Transfer?>(null)
         private set
+    /** Bereitliegende neuere Version (empfangen, geladen oder vom letzten Mal) – bis sie installiert ist. */
     var receivedUpdate by mutableStateOf<ReceivedUpdate?>(null)
+        private set
+
+    /** Rückfrage „Jetzt installieren?“ anzeigen; „Später“ blendet nur sie aus, die Version bleibt bereit. */
+    var showUpdateDialog by mutableStateOf(false)
+        private set
+
+    fun postponeUpdate() {
+        showUpdateDialog = false
+        receivedUpdate?.let { Diagnostics.log("Update: Build ${it.build} liegt bereit – später installieren") }
+    }
+
+    fun openUpdateDialog() {
+        if (receivedUpdate != null) showUpdateDialog = true
+    }
 
     /** Neueste Build-Nummer auf der Release-Seite, sobald abgefragt. */
     var repoBuild by mutableStateOf<Int?>(null)
@@ -278,6 +293,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     init {
         AppUpdate.onInstallResult = { ok, text -> if (!ok) status = text }
+        findStoredUpdate()
         // Installationen im Protokoll: Wechsel der Build-Nummer seit dem letzten Start.
         val appPrefs = app.getSharedPreferences("app", android.content.Context.MODE_PRIVATE)
         val lastBuild = appPrefs.getInt("lastBuild", 0)
@@ -493,6 +509,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             Diagnostics.clear(getApplication())
             status = null
         }
+        // Eine bereitliegende Version nach dem Spiel noch einmal anbieten.
+        if (receivedUpdate != null) showUpdateDialog = true
     }
 
     private fun finishPendingStop() {
@@ -971,10 +989,40 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val check = AppUpdate.check(getApplication(), file)
         Diagnostics.log("Update von $from: Build ${check.build}, ok=${check.ok} ${check.reason}")
         if (check.ok) {
-            receivedUpdate = ReceivedUpdate(file, check.build, from)
+            // Unter fester Name ablegen und ältere Dateien wegräumen: Es liegt immer nur eine Version bereit.
+            val target = File(AppUpdate.updatesDir(getApplication()), "buzzer-build-${check.build}.apk")
+            val kept = if (file == target || file.renameTo(target)) target else file
+            AppUpdate.updatesDir(getApplication()).listFiles().orEmpty().filter { it != kept }.forEach { it.delete() }
+            receivedUpdate = ReceivedUpdate(kept, check.build, from)
+            showUpdateDialog = true
         } else {
             file.delete()
             status = check.reason
+        }
+    }
+
+    /** Beim Start: liegt noch eine neuere Version vom letzten Mal bereit? Veraltete Dateien werden gelöscht. */
+    private fun findStoredUpdate() {
+        val app = getApplication<Application>()
+        kotlin.concurrent.thread(name = "buzzer-stored-update", isDaemon = true) {
+            var best: Pair<File, Int>? = null
+            for (f in AppUpdate.updatesDir(app).listFiles().orEmpty()) {
+                val check = runCatching { AppUpdate.check(app, f) }.getOrNull()
+                if (check != null && check.ok && check.build > (best?.second ?: 0)) {
+                    best?.first?.delete()
+                    best = f to check.build
+                } else {
+                    f.delete()
+                }
+            }
+            best?.let { (file, build) ->
+                android.os.Handler(android.os.Looper.getMainLooper()).post {
+                    if (receivedUpdate == null) {
+                        Diagnostics.log("Update: Build $build liegt noch bereit")
+                        receivedUpdate = ReceivedUpdate(file, build, "dem letzten Mal")
+                    }
+                }
+            }
         }
     }
 
@@ -993,10 +1041,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             leave(openForTakeover = master != null)
         }
         receivedUpdate = null
+        showUpdateDialog = false
         status = "Build ${update.build} wird installiert …"
         AppUpdate.install(context, update.file) { started ->
             if (!started) {
                 receivedUpdate = update
+                showUpdateDialog = true
                 status = "Auf diesem Gerät gibt es keinen Installer."
             }
         }

@@ -124,6 +124,7 @@ fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Un
                 StartTile("Mitspielen", "Gruppe suchen", filled = false, enabled = nameOk, onClick = onSearch, modifier = Modifier.weight(1f))
             }
             if (!nameOk) Text("Bitte zuerst deinen Namen eingeben.", color = theme.muted, fontSize = 14.sp)
+            PendingUpdateHint(vm)
             StatusText(vm)
             Column {
                 MenuRow("Profile & Einstellungen", { vm.navigate(Screen.SETTINGS) })
@@ -472,7 +473,9 @@ private fun UpdateSection(vm: BuzzerViewModel) {
     val theme = LocalBuzzerTheme.current
     val repo = vm.repoBuild
     Spacer(Modifier.height(8.dp))
+    PendingUpdateHint(vm)
     when {
+        vm.receivedUpdate != null -> Unit
         vm.downloadProgress != null -> TimeBar(vm.downloadProgress ?: 0f, "Lade die neueste Version …", theme.accent2, Modifier.fillMaxWidth())
         repo == null -> GhostButton("Nach neuer Version suchen", { vm.checkRepoUpdate() }, Modifier.fillMaxWidth())
         repo > AppUpdate.ownBuild -> {
@@ -481,6 +484,18 @@ private fun UpdateSection(vm: BuzzerViewModel) {
         }
         else -> Text("Du hast die neueste Version.", color = theme.muted, fontSize = 15.sp)
     }
+}
+
+/** Eine neuere Version liegt bereit („Später“ gewählt): hier jederzeit installieren. */
+@Composable
+private fun PendingUpdateHint(vm: BuzzerViewModel) {
+    val update = vm.receivedUpdate ?: return
+    PrimaryButton(
+        "Build ${update.build} installieren",
+        { vm.openUpdateDialog() },
+        Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        height = 52.dp,
+    )
 }
 
 // ---------------------------------------------------------------------- Spieler
@@ -702,6 +717,12 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 text = { Text("Diagnose senden") },
                                 onClick = { showMenu = false; showDiagnostics = true },
                             )
+                            vm.receivedUpdate?.let { update ->
+                                DropdownMenuItem(
+                                    text = { Text("Build ${update.build} installieren (liegt bereit)") },
+                                    onClick = { showMenu = false; vm.openUpdateDialog() },
+                                )
+                            }
                             DropdownMenuItem(
                                 text = { Text("Diagnosen der Spieler abrufen") },
                                 enabled = vm.handOverCandidates.isNotEmpty(),

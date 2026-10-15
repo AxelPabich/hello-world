@@ -240,6 +240,7 @@ fun ImportDialog(
 @Composable
 fun UpdateDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
     val update = vm.receivedUpdate ?: return
+    if (!vm.showUpdateDialog) return
     // Beim Spielleiter erst in der Pause anbieten, nicht mitten in der Runde.
     if (vm.isMaster && !vm.masterIdle) return
     val context = androidx.compose.ui.platform.LocalContext.current
@@ -253,6 +254,6 @@ fun UpdateDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
             )
         },
         confirmButton = { TextButton(onClick = { vm.installUpdate(context) }) { Text("Installieren") } },
-        dismissButton = { TextButton(onClick = { vm.receivedUpdate = null }) { Text("Später") } },
+        dismissButton = { TextButton(onClick = { vm.postponeUpdate() }) { Text("Später (bleibt bereit)") } },
     )
 }

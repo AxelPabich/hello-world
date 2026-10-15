@@ -690,3 +690,8 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - Protokoll: Größe der APK, Übergabe an den Installer, Warten auf Bestätigung, Ergebnis (Erfolg
   bzw. Grund wie abgebrochen, blockiert, Konflikt, zu wenig Speicher). Beim nächsten Start steht
   „App aktualisiert: Build A → Build B“ – oder „ZURÜCKGESETZT“, falls eine ältere Version läuft.
+- „Später (bleibt bereit)“: Die geprüfte APK bleibt als `buzzer-build-N.apk` im App-Cache liegen
+  (immer nur eine, ältere werden gelöscht) und wird auch nach einem Neustart wieder gefunden.
+  Angeboten wird sie über „Build N installieren“ auf dem Startbildschirm, in „Über & Diagnose“,
+  beim Spielleiter im ⋮-Menü und erneut nach dem Verlassen eines Spiels. Nicht neuere oder
+  ungültige Dateien räumt die App beim Start weg.
