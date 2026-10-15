@@ -110,6 +110,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /** Zählt hoch, wenn auf diesem Gerät „Richtig“ gefeiert wird (Konfetti). */
     var confettiSeq by mutableIntStateOf(0)
+        private set
 
     /** Splash-Screen beim App-Start (zufällige Variante); `null` = vorbei. */
     var splash by mutableStateOf<Int?>(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.SPLASH_VARIANTS))
@@ -137,7 +138,6 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun introDone() {
         intro = null
     }
-        private set
     val emotes = mutableStateListOf<FlyingEmote>()
     val chat = mutableStateListOf<ChatLine>()
     var receivedProfile by mutableStateOf<ReceivedProfile?>(null)
