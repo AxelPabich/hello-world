@@ -860,6 +860,14 @@ fun MasterScreen(vm: BuzzerViewModel) {
             )
         }
     }
+    // Auch der Spielleiter bestätigt „Bereit!“ – danach kann es automatisch losgehen.
+    snapshot.ready?.takeIf { !it.masterReady && !snapshot.paused }?.let {
+        ReadyDialog(
+            text = "Die Spieler werden gefragt. Bist du auch bereit? " +
+                if (snapshot.kind == GameKind.QUIZ) "Wenn alle bereit sind, geht es automatisch los." else "Danach gibst du den Buzzer frei.",
+            onCancel = { vm.cancelReady() },
+        ) { vm.confirmMasterReady() }
+    }
     if (showCorrection) {
         CorrectionDialog(
             snapshot = snapshot,

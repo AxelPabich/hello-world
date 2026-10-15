@@ -390,6 +390,10 @@ Kategorien recherchieren.
     Ton aus ist) und „Splash übersprungen“, auf jedem Gerät außerdem „Spielstart-Animation:
     1 Die Fabel / 2 Verfolgungsjagd / 3 Startschuss“. So lässt sich nachvollziehen, welche
     Variante wann lief.
+55. **Get Ready auch für den Spielleiter** (umgesetzt, kommt mit dem nächsten Build): Bei „Get
+    Ready“ bekommt auch der Spielleiter selbst die Abfrage „BEREIT?“ (mit „Abfrage abbrechen“).
+    „Alle bereit – Go!“ und damit der automatische Start im Quiz kommen erst, wenn auch er bestätigt
+    hat – er wird nicht mehr überrascht. In der Bereit-Liste steht er als „Name (Spielleiter)“.
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.

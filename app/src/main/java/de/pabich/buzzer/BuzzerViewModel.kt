@@ -713,6 +713,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (guardOpenChallenge { master?.askReady() }) master?.askReady()
     }
     fun cancelReady() = master?.cancelReady()
+    fun confirmMasterReady() = master?.confirmMasterReady()
     fun confirmReady() = player?.confirmReady()
     /** Testspiel: nichts fließt in die Quiz-Statistik; gilt bis zum Neustart der App. */
     var testGame by mutableStateOf(false)

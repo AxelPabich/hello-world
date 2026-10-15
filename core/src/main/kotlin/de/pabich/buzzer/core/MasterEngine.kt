@@ -75,7 +75,7 @@ class MasterEngine(
     )
 
     /** „Bereit?“-Abfrage: wer hat bestätigt, wer fehlt noch. */
-    data class ReadyState(val readyNames: List<String>, val waitingNames: List<String>) {
+    data class ReadyState(val readyNames: List<String>, val waitingNames: List<String>, val masterReady: Boolean = true) {
         val allReady: Boolean get() = waitingNames.isEmpty()
     }
 
@@ -243,6 +243,7 @@ class MasterEngine(
     private var readyId = 0
     private var readyOpen = false
     private val readyPlayers = mutableSetOf<PlayerId>()
+    private var masterReady = false
     private var reviewing = false
     private var quizQuestions: List<QuizQuestion> = emptyList()
     private var quizIndex = -1
@@ -1250,8 +1251,8 @@ class MasterEngine(
         readyId++
         readyOpen = true
         readyPlayers.clear()
-        // Der mitspielende Spielleiter ist selbst bereit.
-        players.values.filter { it.local }.forEach { readyPlayers += it.id }
+        // Auch der Spielleiter bestätigt – sonst überrascht ihn der automatische Start.
+        masterReady = false
         log("Bereit-Abfrage gestartet")
         players.values.filter { it.connected && !it.local }.forEach { send(it.id, Message.ReadyCheck(readyId, true)) }
         checkAllReady()
@@ -1289,11 +1290,27 @@ class MasterEngine(
 
     private fun readyState(): ReadyState? {
         if (!readyOpen) return null
-        val active = players.values.filter { it.connected }
+        val active = players.values.filter { it.connected && !it.local }
+        val me = masterReadyLabel
         return ReadyState(
-            readyNames = active.filter { it.id in readyPlayers }.map { it.name },
-            waitingNames = active.filter { it.id !in readyPlayers }.map { it.name },
+            readyNames = (if (masterReady) listOf(me) else emptyList()) + active.filter { it.id in readyPlayers }.map { it.name },
+            waitingNames = (if (masterReady) emptyList() else listOf(me)) + active.filter { it.id !in readyPlayers }.map { it.name },
+            masterReady = masterReady,
         )
+    }
+
+    /** Name des Spielleiters in der Bereit-Liste. */
+    val masterReadyLabel: String
+        get() = if (masterName.isBlank() || masterName == "Spielleiter") "Spielleiter" else "$masterName (Spielleiter)"
+
+    /** „Bereit!“ des Spielleiters auf seinem eigenen Gerät. */
+    fun confirmMasterReady(): Boolean {
+        if (!readyOpen || masterReady) return false
+        masterReady = true
+        log("Bereit: Spielleiter")
+        checkAllReady()
+        notifyChanged()
+        return true
     }
 
     /** Spielleiter prüft die Auflösung: Spieler sehen ein Laufband, bis er entschieden hat. */

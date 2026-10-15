@@ -539,7 +539,8 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - „Get Ready“ (Buzzer: neben „Buzzer frei“; Quiz: in der Einrichtung und bei der Auflösung) zeigt
   allen Spielern „Bereit?“ mit dem Knopf „Bereit!“. Der Spielleiter sieht „Bereit: x / y“ und wer
   fehlt; sind alle bereit, erscheint „GO!“ mit Startsignal-Klang. Er kann auch ohne „Go!“ starten;
-  die Abfrage schließt dann überall. Der mitspielende Spielleiter gilt als bereit.
+  die Abfrage schließt dann überall. Auch der Spielleiter bekommt „BEREIT?“ und muss bestätigen,
+  bevor „Go!“ kommt (er steht als „Name (Spielleiter)“ in der Liste).
 - Während die Abfrage läuft, zeigt der Knopf „Bereit: x / y …“ und startet keine neue Abfrage
   (abbrechen über das Bereit-Feld oben). Quiz: Nach „Go!“ startet die nächste Frage (bzw. in der
   Einrichtung das Quiz) nach 1,5 s automatisch – nicht, wenn inzwischen pausiert oder abgebrochen

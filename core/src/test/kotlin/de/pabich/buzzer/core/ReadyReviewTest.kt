@@ -22,15 +22,21 @@ class ReadyReviewTest {
         assertTrue(g.master.askReady())
         g.time.advanceBy(200)
         assertTrue(listOf("Axel", "Peter", "Clara").all { g.view(it).readyAsk != null })
-        assertEquals(listOf("Axel", "Peter", "Clara"), g.master.snapshot().ready?.waitingNames)
+        val master = g.master.masterReadyLabel
+        assertEquals(listOf(master, "Axel", "Peter", "Clara"), g.master.snapshot().ready?.waitingNames)
         assertTrue(g.player("Axel").engine.confirmReady())
         assertFalse(g.player("Axel").engine.confirmReady(), "nur einmal")
         g.player("Peter").engine.confirmReady()
         g.time.advanceBy(200)
-        assertEquals(listOf("Clara"), g.master.snapshot().ready?.waitingNames)
+        assertEquals(listOf(master, "Clara"), g.master.snapshot().ready?.waitingNames)
         assertFalse(SoundEvent.GO in sounds)
         g.player("Clara").engine.confirmReady()
         g.time.advanceBy(200)
+        // Ohne den Spielleiter noch kein „Go!“ – er soll vom Start nicht überrascht werden.
+        assertFalse(g.master.snapshot().ready!!.allReady)
+        assertFalse(SoundEvent.GO in sounds)
+        assertTrue(g.master.confirmMasterReady())
+        assertFalse(g.master.confirmMasterReady(), "nur einmal")
         assertTrue(g.master.snapshot().ready!!.allReady)
         assertTrue(SoundEvent.GO in sounds)
         // Die Runde beginnt: Abfrage schließt überall.
@@ -54,6 +60,8 @@ class ReadyReviewTest {
         g.player("Peter").engine.confirmReady()
         g.player("Clara").engine.confirmReady()
         g.time.advanceBy(200)
+        assertTrue(allReady.isEmpty(), "Spielleiter fehlt noch")
+        g.master.confirmMasterReady()
         assertEquals(listOf(g.master.readyCheckId), allReady)
         g.master.cancelReady()
         assertTrue(g.master.askReady(), "nach dem Abbrechen wieder möglich")
@@ -79,7 +87,7 @@ class ReadyReviewTest {
         g.master.cancelReady()
         g.master.askReady()
         g.master.onMessage("Peter", Message.Ready(1))
-        assertEquals(listOf("Axel", "Peter", "Clara"), g.master.snapshot().ready?.waitingNames)
+        assertEquals(listOf(g.master.masterReadyLabel, "Axel", "Peter", "Clara"), g.master.snapshot().ready?.waitingNames)
     }
 
     @Test

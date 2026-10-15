@@ -608,12 +608,17 @@ fun ReviewTicker(modifier: Modifier = Modifier) {
 
 /** „Bereit?“-Abfrage des Spielleiters beim Spieler. */
 @Composable
-fun ReadyDialog(onReady: () -> Unit) {
+fun ReadyDialog(
+    text: String = "Der Spielleiter möchte gleich starten.",
+    onCancel: (() -> Unit)? = null,
+    onReady: () -> Unit,
+) {
     val theme = LocalBuzzerTheme.current
     AlertDialog(
         onDismissRequest = {},
         title = { Text("BEREIT?", fontFamily = theme.display, fontSize = 32.sp) },
-        text = { Text("Der Spielleiter möchte gleich starten.", fontSize = 16.sp) },
+        text = { Text(text, fontSize = 16.sp) },
+        dismissButton = onCancel?.let { cancel -> { androidx.compose.material3.TextButton(onClick = cancel) { Text("Abfrage abbrechen") } } },
         confirmButton = {
             Box(
                 Modifier
