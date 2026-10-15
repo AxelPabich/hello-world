@@ -352,7 +352,25 @@ class QuizTest {
         assertTrue(snap.quiz!!.finished)
         assertNull(g.view("Axel").quiz)
         assertTrue(g.view("Axel").showBoard)
-        assertTrue(g.received.getValue("Peter").contains(Message.Sound(SoundEvent.ROUND_END)))
+        // Am Ende läuft der Spielverlauf von selbst (höchstens 15 s) statt des Rundenend-Klangs.
+        val replay = g.received.getValue("Peter").filterIsInstance<Message.Replay>().single()
+        assertTrue(replay.durationMs <= 15_000)
+        assertFalse(g.received.getValue("Peter").contains(Message.Sound(SoundEvent.ROUND_END)))
+    }
+
+    @Test
+    fun `intro reaches every player and the master`() {
+        val g = game()
+        var masterIntro = -1
+        g.master.onIntro = { masterIntro = it }
+        val seen = mutableMapOf<String, Int>()
+        ids.forEach { id -> g.player(id).engine.onIntro = { seen[id] = it } }
+        g.master.playIntro(2)
+        g.time.advanceBy(300)
+        assertEquals(2, masterIntro)
+        assertEquals(ids.associateWith { 2 }, seen)
+        assertEquals(Message.Intro(1), MessageCodec.decode(MessageCodec.encode(Message.Intro(1))))
+        assertTrue(Jingle.entries.all { SoundSynth.render(it).any { s -> s > 1000 } })
     }
 
     @Test

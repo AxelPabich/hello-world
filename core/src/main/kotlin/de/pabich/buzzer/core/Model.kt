@@ -54,6 +54,9 @@ enum class SoundEvent(val label: String, val defaultOn: Boolean = true) {
     CHASE("Spielverlauf – Verfolgungsjagd"),
 }
 
+/** Klänge der Start-Animationen; sie folgen dem Lautsprecher-Schalter der App, nicht dem Profil. */
+enum class Jingle { SPLASH_HOP, SPLASH_CURTAIN, SPLASH_SLAP, RACE_FABLE, RACE_CHASE, RACE_START }
+
 val DEFAULT_SOUNDS: Set<SoundEvent> = SoundEvent.entries.filter { it.defaultOn }.toSet()
 const val EMOJI_COUNT = 7
 

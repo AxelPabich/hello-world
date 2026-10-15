@@ -43,7 +43,7 @@ class SoundReplayTest {
             val peak = pcm.maxOf { abs(it.toInt()) }
             assertTrue(peak in 1_000..32_767, "$event Spitze $peak")
         }
-        assertEquals(SoundSynth.SAMPLE_RATE * 10, SoundSynth.render(SoundEvent.CHASE).size)
+        assertEquals(SoundSynth.SAMPLE_RATE * 15, SoundSynth.render(SoundEvent.CHASE).size)
         assertEquals(SoundSynth.SAMPLE_RATE * 4, SoundSynth.chase(4_000).size)
     }
 
@@ -111,9 +111,9 @@ class SoundReplayTest {
     }
 
     @Test
-    fun `replay length is capped at ten seconds`() {
+    fun `replay length is capped at fifteen seconds`() {
         val (g, _, _) = game()
-        repeat(9) {
+        repeat(14) {
             g.round(first = "Clara", correct = true)
             g.master.nextRound()
         }

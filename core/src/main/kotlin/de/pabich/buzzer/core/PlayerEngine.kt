@@ -96,6 +96,8 @@ class PlayerEngine(
     /** Ein Durchgang beginnt (Buzzer scharf); für das Summen – nie zeitgleich mit der Freigabe. */
     var onArmed: (() -> Unit)? = null
     var onReplay: ((Message.Replay) -> Unit)? = null
+    /** Spielstart-Animation des Spielleiters (Rennszene [variant]). */
+    var onIntro: ((variant: Int) -> Unit)? = null
 
     var view = View(Display.BLACK, 0, "0", "Warte auf den Spielleiter")
         private set
@@ -191,6 +193,7 @@ class PlayerEngine(
                 update { it.copy(readyAsk = if (message.on) message.id else null, readyConfirmed = false) }
             }
             is Message.Review -> update { it.copy(reviewing = message.on) }
+            is Message.Intro -> onIntro?.invoke(message.variant)
             is Message.QuizDeadline -> {
                 val q = view.quiz ?: return
                 if (q.number != message.number || q.stage == QuizStage.REVEALED) return

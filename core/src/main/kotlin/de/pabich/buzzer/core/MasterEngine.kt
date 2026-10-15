@@ -182,6 +182,9 @@ class MasterEngine(
     var onReplay: ((Message.Replay) -> Unit)? = null
 
     /** Quiz-Statistik: Frage aufgelöst mit den Ergebnissen aller Teilnehmer. */
+    /** Spielstart-Animation auf dem Gerät des Spielleiters. */
+    var onIntro: ((variant: Int) -> Unit)? = null
+
     /** Alle haben „Bereit!“ bestätigt (Abfrage [readyCheckId]); die App startet im Quiz dann automatisch. */
     var onAllReady: ((id: Int) -> Unit)? = null
 
@@ -1169,10 +1172,21 @@ class MasterEngine(
         phase = Phase.READY
         log("Quiz beendet")
         for (p in players.values) if (p.connected) send(p.id, Message.Reset(scoreText(p)))
-        sendSound(players.values.filter { !it.local }.map { it.id }, SoundEvent.ROUND_END)
-        masterSound(SoundEvent.ROUND_END)
+        // Das Ergebnis läuft als Spielverlauf ab (höchstens 15 s), danach bleibt es stehen.
+        val replay = canShowReplay()
+        if (!replay) {
+            sendSound(players.values.filter { !it.local }.map { it.id }, SoundEvent.ROUND_END)
+            masterSound(SoundEvent.ROUND_END)
+        }
         broadcastScoreboard()
+        if (replay) showReplay()
         notifyChanged()
+    }
+
+    /** Spielstart-Animation [variant] auf allen Geräten (der Spielleiter würfelt sie aus). */
+    fun playIntro(variant: Int) {
+        for (p in players.values) if (p.connected && !p.local) send(p.id, Message.Intro(variant))
+        onIntro?.invoke(variant)
     }
 
     private fun onQuizChallenge(player: Player, m: Message.QuizChallenge) {
@@ -1445,7 +1459,7 @@ class MasterEngine(
         const val QUESTION_LEAD_MS = 3_000L
         const val TYPING_TIMEOUT_MS = 8_000L
         const val SUDDEN_DEATH_PAUSE_MS = 1_500L
-        const val MAX_REPLAY_MS = 10_000L
+        const val MAX_REPLAY_MS = 15_000L
         private const val UNKNOWN_RTT_MS = 300L
     }
 }

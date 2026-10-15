@@ -364,24 +364,28 @@ Kategorien recherchieren.
     im Quizshow-Feld, darunter „Name sieht denselben Code. Vergleicht ihn – nimm nur bei gleichem
     Code an.“
 
-## Offen
+## Erledigt in Build 23
 
-51. **Ergebnis am Quiz-Ende als Spielverlauf:** Nach „Quiz beendet“ läuft der Spielverlauf
+51. ✅ **Ergebnis am Quiz-Ende als Spielverlauf:** Nach „Quiz beendet“ läuft der Spielverlauf
     automatisch auf allen Geräten ab – höchstens 15 Sekunden (bei vielen Fragen entsprechend
     schneller), danach bleibt das Ergebnis wie bisher statisch stehen.
-52. **Splash-Screen beim App-Start (3 s, zufällig wechselnd)** – Entwurf: `docs/animationen-entwurf.html`
+52. ✅ **Splash-Screen beim App-Start (3 s, zufällig wechselnd)** – Entwurf: `docs/animationen-entwurf.html`
     (Vorschau https://claude.ai/artifact/4DcvoHvTA6WC6mw3tJ4Bb2). Bei jedem Start zufällig eine von:
     A „Hüpfer“ (Maskottchen fällt herein und hüpft, Buchstaben springen auf; Ton: Boing + tiefer
     Quizshow-Buzzer), B „Vorhang auf“ (Vorhang, Scheinwerfer, Glühbirnen-Schild; Ton: Ding-Ding-
     Glocke), C „Hau drauf“ (flache Hand mit Kraftlinien haut auf den Buzzer, „BZZZT!“; Ton:
     schnarrender Elektro-Buzzer). Immer dabei: jubelnde Mitspieler mit Handys, die Konfetti werfen,
     plus Jubel-Geräusch. Tippen überspringt; Ton folgt der Ton-Einstellung der App.
-53. **Spielstart-Animation (3 s, zufällig wechselnd, auf allen Geräten gleich)** – Rennszenen mit
+53. ✅ **Spielstart-Animation (3 s, zufällig wechselnd, auf allen Geräten gleich)** – Rennszenen mit
     Mitspielern, Hase und Schildkröte: 1 „Die Fabel“ (Hase schläft ein, Schildkröte zieht vorbei,
     „LOS!“, Startpfiff), 2 „Verfolgungsjagd“ (Kette unten hin, oben zurück, „QUIZ!“, Wuuusch),
     3 „Startschuss“ („Auf die Plätze … Fertig …“, Staubwolke, Schildkröte: „Ich komm ja schon!“,
     Startschuss). Der Spielleiter wählt die Variante zufällig und schickt sie mit, damit alle
     dieselbe sehen. Läuft beim Start eines Quiz und bei „Neues Spiel“, nicht vor jeder Runde.
+
+## Offen
+
+(zurzeit nichts)
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.

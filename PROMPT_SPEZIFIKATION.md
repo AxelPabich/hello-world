@@ -627,4 +627,16 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   0 Punkten und spielt ab der nächsten Frage mit. Während der Frage
   zeigt die Kopfzeile nur „⏳ Name wartet – Anfrage erscheint nach der Runde“. Abgebrochene
   Anfragen verschwinden aus der Warteschlange.
+
+## 47. Start-Animationen
+
+- Splash-Screen beim App-Start (3 s, Tippen überspringt), zufällig eine von drei Varianten:
+  „Hüpfer“, „Vorhang auf“, „Hau drauf“ – jeweils mit eigenem Buzzerton; immer mit jubelnden
+  Mitspielern, die Handys hochhalten und Konfetti werfen. Klang nur bei eingeschaltetem Ton.
+- Spielstart-Animation (3 s): Rennszene mit Mitspielern, Hase und Schildkröte („Die Fabel“,
+  „Verfolgungsjagd“, „Startschuss“). Der Spielleiter würfelt die Variante und schickt sie mit
+  (`INTRO|v=n`), alle sehen dieselbe. Quiz: Die erste Frage kommt nach der Animation. Buzzer: bei
+  „Neues Spiel“. Entwurf: `docs/animationen-entwurf.html`.
+- Am Quiz-Ende läuft der Spielverlauf automatisch (höchstens 15 s, bei vielen Fragen schneller),
+  danach bleibt das Ergebnis stehen; der Spielverlauf ist allgemein auf 15 s begrenzt.
 ===== ENDE SPEZIFIKATION.md =====

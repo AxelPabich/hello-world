@@ -15,6 +15,7 @@ import de.pabich.buzzer.core.ChallengeDecision
 import de.pabich.buzzer.core.ConfigFormat
 import de.pabich.buzzer.core.DiagnoseTransfer
 import de.pabich.buzzer.core.GameKind
+import de.pabich.buzzer.core.Jingle
 import de.pabich.buzzer.core.PeerInfo
 import de.pabich.buzzer.core.QuestionPicker
 import de.pabich.buzzer.core.QuizScoring
@@ -109,6 +110,33 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /** Zählt hoch, wenn auf diesem Gerät „Richtig“ gefeiert wird (Konfetti). */
     var confettiSeq by mutableIntStateOf(0)
+
+    /** Splash-Screen beim App-Start (zufällige Variante); `null` = vorbei. */
+    var splash by mutableStateOf<Int?>(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.SPLASH_VARIANTS))
+        private set
+
+    /** Laufende Spielstart-Animation (Rennszene); `null` = keine. */
+    var intro by mutableStateOf<Int?>(null)
+        private set
+    var introSeq by mutableIntStateOf(0)
+        private set
+
+    /** Quiz startet erst nach der Spielstart-Animation – solange keine zweite Anfrage. */
+    private var quizStartPending: Cancellable? = null
+
+    fun splashDone() {
+        splash = null
+    }
+
+    private fun showIntro(variant: Int) {
+        intro = variant
+        introSeq++
+        if (soundOn) sounds.play(Jingle.entries[Jingle.RACE_FABLE.ordinal + variant % de.pabich.buzzer.ui.RACE_VARIANTS])
+    }
+
+    fun introDone() {
+        intro = null
+    }
         private set
     val emotes = mutableStateListOf<FlyingEmote>()
     val chat = mutableStateListOf<ChatLine>()
@@ -215,6 +243,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var emoteSeq = 0L
 
     init {
+        // Klang zum Splash-Screen (SoundPlayer wartet kurz, bis er geladen ist).
+        splash?.let { if (soundOn) sounds.play(Jingle.entries[Jingle.SPLASH_HOP.ordinal + it]) }
         // Zwischengespeicherte Diagnoseberichte wieder aufnehmen.
         pendingDir.listFiles { f -> f.name.endsWith(".txt") }.orEmpty().sortedBy { it.name }.forEach { f ->
             runCatching {
@@ -277,6 +307,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engine.onSound = { sound(it) }
         engine.onReplay = { startReplay(it) }
+        engine.onIntro = { showIntro(it) }
         // Im Testspiel landet alles in der getrennten Test-Statistik (ohne Einfluss auf die Auswahl).
         fun List<ParticipantResult>.named() = map { it.copy(name = statsName(it.name)) }
         engine.onQuizRevealed = { q, results -> quizStore.recordResult(q.id, results.named(), test = testGame) }
@@ -353,6 +384,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         } else {
             link.stopAll()
         }
+        quizStartPending?.cancel()
+        quizStartPending = null
+        intro = null
         master = null
         player = null
         masterEndpoint = null
@@ -446,7 +480,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         )
     }
 
+    /** Quiz starten: erst die Rennszene auf allen Geräten, dann die erste Frage. */
     fun startQuiz() {
+        val engine = master ?: return
+        if (quizStartPending != null) return
+        if (pickQuestions(engine.settings).questions.isEmpty() || engine.snapshot().players.none { it.connected }) {
+            startQuizNow()
+            return
+        }
+        engine.playIntro(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.RACE_VARIANTS))
+        quizStartPending = scheduler.schedule(de.pabich.buzzer.ui.INTRO_MS + 100L) {
+            quizStartPending = null
+            if (master === engine) startQuizNow()
+        }
+    }
+
+    private fun startQuizNow() {
         val engine = master ?: return
         val picked = pickQuestions(engine.settings)
         if (picked.questions.isEmpty()) {
@@ -540,7 +589,14 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun markWrong() = master?.markWrong()
     fun proceed() = master?.proceed()
     fun nextRound() = master?.nextRound()
-    fun newGame() = master?.newGame()
+    /** Neues Spiel (Punkte auf 0); im Buzzer-Modus mit Rennszene auf allen Geräten. */
+    fun newGame() {
+        val engine = master ?: return
+        if (engine.snapshot().phase != MasterEngine.Phase.READY) return
+        engine.newGame()
+        val others = engine.snapshot().players.any { it.connected && it.id != LOCAL_PLAYER_ID }
+        if (engine.snapshot().kind == GameKind.BUZZER && others) engine.playIntro(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.RACE_VARIANTS))
+    }
 
     fun updateSettings(settings: Settings, profileName: String = masterSnapshot?.profileName.orEmpty()) {
         val engine = master ?: return
@@ -1004,6 +1060,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engineForPlayer.onViewChanged = { onPlayerView(it, remote = true) }
         engineForPlayer.onSound = { playSoundEvent(it) }
         engineForPlayer.onReplay = { startReplay(it) }
+        engineForPlayer.onIntro = { showIntro(it) }
         engineForPlayer.onArmed = { if (SoundEvent.HUM in engineForPlayer.view.rules.sounds) sound(SoundEvent.HUM) }
         engineForPlayer.onEmote = { from, emoji -> showEmote(from, emoji) }
         engineForPlayer.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }

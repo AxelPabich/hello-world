@@ -65,6 +65,52 @@ object SoundSynth {
         SoundEvent.CHASE -> chase(MasterEngine.MAX_REPLAY_MS)
     }
 
+    /** Klänge der Start-Animationen (Splash-Screen und Spielstart). */
+    fun render(jingle: Jingle): ShortArray = when (jingle) {
+        // Splash A: „Boing“ beim Aufprall, dann tiefer Quizshow-Buzzer und Jubel.
+        Jingle.SPLASH_HOP -> mix(3.0) {
+            tone(0.45, 240.0, 0.25, Wave.SINE, 0.35, freqEnd = 620.0)
+            tone(0.7, 620.0, 0.3, Wave.SINE, 0.3, freqEnd = 180.0)
+            tone(1.15, 110.0, 0.7, Wave.SQUARE, 0.16)
+            tone(1.15, 166.0, 0.7, Wave.SAW, 0.12)
+            applause(1.2, 1.7)
+        }
+        // Splash B: Vorhang rauscht, dann helle Ding-Ding-Glocke und Jubel.
+        Jingle.SPLASH_CURTAIN -> mix(3.0) {
+            noise(0.3, 1.0, 0.12, 600.0, 0.5)
+            tone(1.1, 1320.0, 0.6, Wave.TRIANGLE, 0.35)
+            tone(1.4, 990.0, 0.9, Wave.TRIANGLE, 0.35)
+            applause(1.3, 1.6)
+        }
+        // Splash C: Luftzug, Klatsch, schnarrender Elektro-Buzzer und Jubel.
+        Jingle.SPLASH_SLAP -> mix(3.0) {
+            noise(0.55, 0.35, 0.3, 3000.0, 0.7)
+            noise(0.9, 0.12, 0.9, 200.0, 0.8)
+            vibrato(0.92, 72.0, 0.9, 32.0, 6.0, 0.3)
+            applause(1.1, 1.8)
+        }
+        // Spielstart 1: Trillerpfeife.
+        Jingle.RACE_FABLE -> mix(2.0) {
+            for (k in 0 until 6) tone(k * 0.06, 2600.0, 0.06, Wave.SINE, 0.25)
+            tone(0.4, 2600.0, 0.25, Wave.SINE, 0.25)
+            tone(1.25, 300.0, 0.6, Wave.SINE, 0.2, freqEnd = 120.0)
+        }
+        // Spielstart 2: Cartoon-„Wuuusch“ hin und zurück, dann zwei Piepser.
+        Jingle.RACE_CHASE -> mix(3.0) {
+            tone(0.0, 200.0, 0.9, Wave.SINE, 0.3, freqEnd = 1400.0)
+            tone(1.2, 1400.0, 0.9, Wave.SINE, 0.3, freqEnd = 220.0)
+            tone(2.4, 660.0, 0.12, Wave.SQUARE, 0.12)
+            tone(2.52, 990.0, 0.2, Wave.SQUARE, 0.12)
+        }
+        // Spielstart 3: zwei Piepser, Startschuss-Knall, hoher Ton.
+        Jingle.RACE_START -> mix(2.2) {
+            tone(0.1, 660.0, 0.15, Wave.SINE, 0.3)
+            tone(0.85, 660.0, 0.15, Wave.SINE, 0.3)
+            noise(1.55, 0.35, 1.0, 900.0, 0.3)
+            tone(1.6, 1320.0, 0.35, Wave.SINE, 0.3)
+        }
+    }
+
     /** Cartoon-Verfolgungsjagd: galoppierender Bass, chromatische Läufe, Hi-Hat, steigende Tonart. */
     fun chase(durationMs: Long): ShortArray {
         val seconds = durationMs / 1000.0
