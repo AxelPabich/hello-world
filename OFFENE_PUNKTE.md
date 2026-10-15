@@ -410,9 +410,16 @@ Kategorien recherchieren.
 58. **Neues „Wah-wah-wah-waaah“** (umgesetzt, kommt mit dem nächsten Build): gestopfte Posaune –
     drei absteigende „Wah“ und ein langes, wackelndes „Waaah“, das am Ende abrutscht (Hörprobe
     `docs/wah-wah-neu.wav`).
-59. **Spielleitung übernehmen** (Konzept, Rückfragen offen): Verlässt der Spielleiter das Spiel,
-    kann ein Spieler die Spielleitung übernehmen; meldet sich innerhalb 1 Minute niemand, endet das
-    Spiel für alle.
+59. **Spielleitung übergeben und übernehmen** (umgesetzt, kommt mit dem nächsten Build;
+    Entscheidungen vom 15.10.2026: Punkte bleiben, das Quiz läuft weiter, freiwillige Übergabe
+    über ⋮): Der Spielleiter schickt in jeder Pause den Spielstand an alle. ⋮ „Spielleitung übergeben
+    an …“ macht einen Spieler zum Spielleiter, der bisherige spielt weiter mit. „Spiel verlassen“
+    fragt „Spieler übernehmen“ oder „Für alle beenden“. Geht der Spielleiter oder bricht die
+    Verbindung ab, sehen alle „Wer übernimmt?“ mit „Ich übernehme“ und 1 Minute Countdown; die
+    anderen verbinden sich automatisch mit dem Nachfolger (ohne Prüfcode-Rückfrage). Punkte, Runde,
+    Einstellungen und die Quiz-Fragen gehen mit; eine unterbrochene Frage wird wiederholt. Ohne
+    Nachfolger endet das Spiel für alle. Spezifikation Abschnitt 48. Im Test prüfen: Übergabe per ⋮,
+    Verlassen mit „Spieler übernehmen“, App des Spielleiters beenden (Verbindungsabbruch).
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.

@@ -104,6 +104,7 @@ private fun App(vm: BuzzerViewModel) {
             Screen.DISCOVER -> DiscoverScreen(vm)
             Screen.MASTER -> MasterScreen(vm)
             Screen.PLAYER -> PlayerScreen(vm)
+            Screen.TAKEOVER -> de.pabich.buzzer.ui.TakeoverScreen(vm)
             Screen.UPDATE -> UpdateScreen(vm)
             Screen.SETTINGS -> AppSettingsScreen(vm)
             Screen.HELP -> HelpScreen(vm)

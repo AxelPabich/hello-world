@@ -642,4 +642,31 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   „Neues Spiel“. Entwurf: `docs/animationen-entwurf.html`.
 - Am Quiz-Ende läuft der Spielverlauf automatisch (höchstens 15 s, bei vielen Fragen schneller),
   danach bleibt das Ergebnis stehen; der Spielverlauf ist allgemein auf 15 s begrenzt.
+
+## 48. Spielleitung übergeben und übernehmen
+
+- In jeder Pause (vor der Freigabe, nach der Runde, bei der Auflösung) schickt der Spielleiter allen
+  Spielern den Spielstand für einen Nachfolger (`SUCCESSION`): Spiel-Kennung, Spielart, Runde,
+  Profil und Einstellungen, Punkte nach Namen, Fragen-IDs des laufenden Quiz und die nächste Frage,
+  Testspiel ja/nein. Während einer Frage bzw. Runde kommt kein neuer Stand – fällt der Spielleiter
+  dann weg, wird die laufende Frage wiederholt.
+- **Übergeben:** ⋮ „Spielleitung übergeben an …“ (nur in einer Pause) – Auswahl eines verbundenen
+  Spielers. Der Stand geht mit Namen des Nachfolgers an alle; der Nachfolger eröffnet sofort die
+  Gruppe, die anderen und der bisherige Spielleiter (jetzt als Spieler) verbinden sich automatisch
+  mit ihm.
+- **Verlassen:** ⋮ „Spiel verlassen“ fragt „Spieler übernehmen“ (`MASTER_GONE`) oder „Für alle
+  beenden“ (`BYE`, wie bisher).
+- **Übernehmen:** Nach `MASTER_GONE` oder einem Verbindungsabbruch zum Spielleiter sehen die
+  Spieler „Wer übernimmt?“ mit „Ich übernehme“ und einem Countdown von 1 Minute. Wer zuerst tippt,
+  leitet; die übrigen finden ihn über die Suche (Name aus dem Spielstand) und treten ohne
+  Prüfcode-Rückfrage bei (der Nachfolger nimmt bekannte Namen 3 Minuten lang automatisch auf).
+  Übernehmen zwei gleichzeitig, gibt der später Beigetretene ab und tritt dem anderen bei.
+  Meldet sich niemand innerhalb 1 Minute, endet das Spiel für alle („Niemand hat die Spielleitung
+  übernommen“). Ohne gewählte Spielart gibt es keine Übernahme.
+- **Was bleibt:** Punkte (beim Wiederbeitritt nach Namen zugeordnet; wer später kommt, bekommt sie
+  dann), Runde, Spielart, Profil und Einstellungen, Testspiel. Der Nachfolger spielt weiter mit
+  („Master spielt mit“) und behält seine Punkte. Das Quiz läuft mit derselben Fragenliste weiter
+  (aus den eigenen Fragenpaketen; fehlende Fragen fallen weg): Der neue Spielleiter sieht die
+  zuletzt aufgelöste Frage (ohne Antworten und Entscheidungen) und macht mit „Nächste Frage“
+  bzw. Get Ready weiter.
 ===== ENDE SPEZIFIKATION.md =====

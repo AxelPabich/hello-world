@@ -109,6 +109,8 @@ class MasterEngine(
         /** Alle Fragen gespielt (oder abgebrochen). */
         val finished: Boolean,
         val hasNext: Boolean,
+        /** Nach einer Übernahme der Spielleitung: die zuletzt aufgelöste Frage, ohne Antworten und Entscheidungen. */
+        val resumed: Boolean = false,
     )
 
     /** Ergebnis einer beendeten Runde – Grundlage für nachträgliche Korrekturen. */
@@ -156,6 +158,9 @@ class MasterEngine(
 
         /** Die in der Statistik gezählte Bewertung (`null` = zählt nicht). */
         var counted: List<ParticipantResult>? = null
+
+        /** Platzhalter nach einer Übernahme der Spielleitung (die Frage lief beim Vorgänger). */
+        var resumed = false
     }
 
     /** Ein Durchgang mit Freigabe: die Hauptrunde oder ein Sudden Death. */
@@ -251,6 +256,17 @@ class MasterEngine(
     private var turn: QuizTurn? = null
     private var quizFinished = false
 
+    /** Kennung des Spiels – bleibt bei einer Übernahme der Spielleitung gleich. */
+    var gameId: String = (1..8).map { "abcdefghjkmnpqrstuvwxyz23456789"[random.nextInt(31)] }.joinToString("")
+
+    /** Testspiel (nur zur Weitergabe an einen Nachfolger). */
+    var testGame = false
+
+    /** Punkte aus einer Übernahme: kommen zurück, sobald der Spieler wieder beitritt. */
+    private val carriedScores = mutableMapOf<String, Long>()
+    private var lastSuccession: Message.Succession? = null
+    private var handedOver = false
+
     /** Wertung, nach der Punkte gezählt und angezeigt werden. */
     private val scoring: ScoringMode
         get() = if (kind == GameKind.QUIZ) {
@@ -264,12 +280,17 @@ class MasterEngine(
     fun addPlayer(id: PlayerId, name: String, local: Boolean = false) {
         val player = Player(id, name, local)
         if (local) player.sync.setLocal()
+        carriedScores.remove(baseName(name))?.let {
+            player.score = it
+            log("Punkte aus dem Spiel davor übernommen: $name $it")
+        }
         players[id] = player
         log("Spieler beigetreten: $name ($id)")
         if (!local) masterSound(SoundEvent.JOIN)
         send(id, configMessage())
         send(id, Message.Mode(kind))
         if (paused) send(id, Message.Pause(true))
+        if (!local && isPause()) send(id, succession())
         broadcastRoster()
         broadcastScoreboard()
         notifyChanged()
@@ -331,6 +352,7 @@ class MasterEngine(
     fun newGame() {
         if (phase != Phase.READY) return
         gameStarted = false
+        carriedScores.clear()
         history.clear()
         recordedRound = -1
         lastResult = null
@@ -935,7 +957,7 @@ class MasterEngine(
     /** Entscheidung über eine Challenge (oder eine eigene Korrektur) – nur bei der Auflösung. */
     fun decideChallenge(decision: ChallengeDecision, newCorrect: Int? = null): Boolean {
         val t = turn ?: return false
-        if (phase != Phase.QUIZ_REVEAL || !t.revealed) return false
+        if (phase != Phase.QUIZ_REVEAL || !t.revealed || t.resumed) return false
         val q = t.question
         val before = t.counted
         when (decision) {
@@ -980,7 +1002,7 @@ class MasterEngine(
      */
     fun replaceQuestion(replacement: QuizQuestion): Boolean {
         val t = turn ?: return false
-        if (kind != GameKind.QUIZ || phase != Phase.QUIZ_REVEAL || !t.revealed || paused) return false
+        if (kind != GameKind.QUIZ || phase != Phase.QUIZ_REVEAL || !t.revealed || paused || t.resumed) return false
         val q = t.question
         val before = t.counted
         takeBackAwards(t)
@@ -1266,6 +1288,7 @@ class MasterEngine(
             decision = t.decision,
             finished = quizFinished,
             hasNext = quizIndex + 1 < quizQuestions.size,
+            resumed = t.resumed,
         )
     }
 
@@ -1345,7 +1368,7 @@ class MasterEngine(
         if (phase != Phase.QUIZ_REVEAL || reviewing) return false
         // Nach einer Entscheidung nur noch bei einer neuen Challenge – sonst bliebe das Laufband stehen.
         val t = turn ?: return false
-        if (t.decision != null && t.challenges.isEmpty()) return false
+        if (t.resumed || (t.decision != null && t.challenges.isEmpty())) return false
         setReviewing(true)
         notifyChanged()
         return true
@@ -1465,7 +1488,96 @@ class MasterEngine(
     )
 
     private fun notifyChanged() {
+        shareSuccession()
         onChanged?.invoke(snapshot())
+    }
+
+    // ------------------------------------------------------------------ Übergabe der Spielleitung
+
+    /** Name ohne den Zusatz des mitspielenden Spielleiters. */
+    private fun baseName(name: String) = name.removeSuffix(MASTER_SUFFIX)
+
+    /** Stand für einen Nachfolger; [to] = bestimmter Nachfolger (leer = wer will). */
+    fun succession(to: String = ""): Message.Succession {
+        val t = turn
+        val quizNext = when {
+            kind != GameKind.QUIZ || quizFinished || quizQuestions.isEmpty() -> -1
+            t != null && !t.revealed -> quizIndex
+            else -> quizIndex + 1
+        }
+        val scores = players.values.map { baseName(it.name) to it.score } +
+            carriedScores.filterKeys { name -> players.values.none { baseName(it.name) == name } }.toList()
+        return Message.Succession(
+            game = gameId,
+            master = masterName,
+            to = to,
+            kind = kind,
+            round = round,
+            profile = profileName,
+            settings = SettingsCodec.toMap(settings),
+            scores = scores,
+            quiz = if (quizNext >= 0) quizQuestions.map { it.id } else emptyList(),
+            quizNext = quizNext,
+            test = testGame,
+        )
+    }
+
+    /** In jeder Pause bekommen alle Spieler den aktuellen Stand – für den Fall, dass der Spielleiter wegfällt. */
+    private fun shareSuccession() {
+        if (handedOver || !isPause()) return
+        val s = succession()
+        if (s == lastSuccession) return
+        lastSuccession = s
+        for (p in players.values) if (p.connected && !p.local) send(p.id, s)
+    }
+
+    /** Spielleitung an [toName] übergeben (nur in einer Pause); danach ist diese Engine still. */
+    fun handOver(toName: String): Boolean {
+        if (!isPause() || handedOver) return false
+        val target = players.values.firstOrNull { it.connected && !it.local && it.name == toName } ?: return false
+        val s = succession(target.name)
+        log("Spielleitung an ${target.name} übergeben")
+        for (p in players.values) if (p.connected && !p.local) send(p.id, s)
+        handedOver = true
+        stop()
+        return true
+    }
+
+    /** Der Spielleiter geht; die Spieler dürfen übernehmen (statt [close]). */
+    fun leaveOpen() {
+        handedOver = true
+        for (p in players.values) if (p.connected && !p.local) send(p.id, Message.MasterGone)
+        stop()
+    }
+
+    /**
+     * Übernimmt den Stand [s] des Vorgängers (vor dem ersten Spieler). [questions] = die Fragen des
+     * laufenden Quiz, soweit auf diesem Gerät vorhanden, [next] = Index der nächsten Frage darin.
+     */
+    fun takeOver(s: Message.Succession, questions: List<QuizQuestion>, next: Int) {
+        gameId = s.game
+        kind = s.kind
+        round = s.round
+        gameStarted = s.round > 0
+        testGame = s.test
+        profileName = s.profile
+        // Wer übernimmt, war Spieler: Er spielt weiter mit und behält seine Punkte.
+        settings = SettingsCodec.fromMap(s.settings).settings.copy(masterPlays = true).normalized()
+        carriedScores.clear()
+        carriedScores.putAll(s.scores)
+        if (kind == GameKind.QUIZ && next in 1..questions.size) {
+            quizQuestions = questions
+            quizIndex = next - 1
+            quizFinished = false
+            turn = QuizTurn(next, questions[next - 1], settings.quizAnswerMs, emptySet(), clock.now()).apply {
+                revealed = true
+                resumed = true
+            }
+            phase = Phase.QUIZ_REVEAL
+        }
+        log("Spielleitung von ${s.master} übernommen: ${kind?.label ?: "ohne Spielart"}, Runde $round" +
+            if (phase == Phase.QUIZ_REVEAL) ", weiter mit Frage ${next + 1}/${questions.size}" else "")
+        notifyChanged()
     }
 
     // ------------------------------------------------------------------ Hilfen
@@ -1504,6 +1616,9 @@ class MasterEngine(
         const val TYPING_TIMEOUT_MS = 8_000L
         const val SUDDEN_DEATH_PAUSE_MS = 1_500L
         const val MAX_REPLAY_MS = 15_000L
+
+        /** Zusatz am Namen des mitspielenden Spielleiters. */
+        const val MASTER_SUFFIX = " (Master)"
         private const val UNKNOWN_RTT_MS = 300L
     }
 }

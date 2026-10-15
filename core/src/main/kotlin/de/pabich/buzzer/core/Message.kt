@@ -161,6 +161,29 @@ sealed interface Message {
     /** Beide Richtungen: gleich folgt die APK als Datei [payloadId] mit [build] und [size] Bytes. */
     data class ApkInfo(val payloadId: Long, val build: Int, val size: Long) : Message
 
+    /**
+     * M → S: alles, was ein Nachfolger zum Weiterführen braucht (Punkt 59). Kommt in jeder Pause neu.
+     * [to] = Name des bestimmten Nachfolgers bei „Spielleitung übergeben“, sonst leer.
+     * [scores] nach Namen (ohne „ (Master)“); [quiz] = Fragen-IDs, [quizNext] = Index der nächsten
+     * zu stellenden Frage (-1 = kein laufendes Quiz).
+     */
+    data class Succession(
+        val game: String,
+        val master: String,
+        val to: String,
+        val kind: GameKind?,
+        val round: Int,
+        val profile: String,
+        val settings: Map<String, String>,
+        val scores: List<Pair<String, Long>>,
+        val quiz: List<String>,
+        val quizNext: Int,
+        val test: Boolean,
+    ) : Message
+
+    /** M → S: Der Spielleiter geht, die Spieler dürfen übernehmen (statt [Bye]). */
+    data object MasterGone : Message
+
     /** M → S: Spielpause an/aus – Spieler sehen ein Pausen-Overlay. */
     data class Pause(val on: Boolean) : Message
 
@@ -257,6 +280,13 @@ object MessageCodec {
             is Message.Review -> "REVIEW" to mapOf("on" to message.on)
             Message.ApkRequest -> "APK_REQUEST" to emptyMap()
             is Message.ApkInfo -> "APK_INFO" to mapOf("id" to message.payloadId, "b" to message.build, "sz" to message.size)
+            is Message.Succession -> "SUCCESSION" to mapOf(
+                "g" to message.game, "m" to message.master, "to" to message.to, "k" to (message.kind?.name ?: ""),
+                "r" to message.round, "pn" to message.profile, "s" to SettingsCodec.encodeLine(message.settings),
+                "sc" to encodeList(message.scores.map { "${enc(it.first)}:${it.second}" }),
+                "q" to encodeList(message.quiz), "qn" to message.quizNext, "t" to message.test,
+            )
+            Message.MasterGone -> "MASTER_GONE" to emptyMap()
         }
         val text = buildString {
             append(type)
@@ -336,6 +366,17 @@ object MessageCodec {
             "REVIEW" -> Message.Review(bool("on"))
             "APK_REQUEST" -> Message.ApkRequest
             "APK_INFO" -> Message.ApkInfo(long("id"), int("b"), long("sz"))
+            "SUCCESSION" -> Message.Succession(
+                game = f.getValue("g"), master = f.getValue("m"), to = f.getValue("to"),
+                kind = f.getValue("k").takeIf { it.isNotEmpty() }?.let { GameKind.valueOf(it) },
+                round = int("r"), profile = f.getValue("pn"), settings = SettingsCodec.decodeLine(f.getValue("s")),
+                scores = decodeList(f.getValue("sc")).map {
+                    val i = it.lastIndexOf(':')
+                    dec(it.substring(0, i)) to it.substring(i + 1).toLong()
+                },
+                quiz = decodeList(f.getValue("q")), quizNext = int("qn"), test = bool("t"),
+            )
+            "MASTER_GONE" -> Message.MasterGone
             else -> null
         }
     } catch (e: RuntimeException) {

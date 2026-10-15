@@ -460,7 +460,7 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
             val none = quiz.rows.filter { it.outcome == QuizOutcome.NONE }.map { it.name }
             if (none.isNotEmpty()) Text("Keine Antwort: ${none.joinToString()}", color = theme.muted, fontSize = 14.sp)
             val winners = quiz.rows.filter { it.gained > 0 }.sortedBy { it.elapsedMs ?: Long.MAX_VALUE }
-            Row(
+            if (!quiz.resumed) Row(
                 Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(if (winners.isEmpty()) theme.line else QuizGreen).padding(horizontal = 14.dp, vertical = 10.dp),
             ) {
                 Text(
@@ -473,7 +473,9 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
             if (q.explanation.isNotEmpty()) {
                 Text(q.explanation, color = theme.text, fontSize = 14.sp, lineHeight = 19.sp)
             }
-            if (quiz.challenges.isNotEmpty() || decisionsOpen || snapshot.reviewing) {
+            if (quiz.resumed) {
+                Text("Diese Frage lief noch beim bisherigen Spielleiter – die Punkte sind übernommen.", color = theme.muted, fontSize = 14.sp)
+            } else if (quiz.challenges.isNotEmpty() || decisionsOpen || snapshot.reviewing) {
                 if (!snapshot.reviewing) {
                     if (quiz.challenges.isNotEmpty() || quiz.decision == null) {
                         TextButton(onClick = { vm.startReview() }) { Text("Spieler bitten zu warten (Laufband)", color = theme.accent2) }

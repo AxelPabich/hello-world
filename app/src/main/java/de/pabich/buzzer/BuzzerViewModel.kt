@@ -35,7 +35,7 @@ import java.util.Date
 import java.util.Locale
 import kotlin.math.abs
 
-enum class Screen { START, DISCOVER, MASTER, PLAYER, UPDATE, SETTINGS, HELP, ABOUT }
+enum class Screen { START, DISCOVER, MASTER, PLAYER, TAKEOVER, UPDATE, SETTINGS, HELP, ABOUT }
 
 /** Gefundene Gruppe; [peer] enthält Name und Version des Spielleiters. */
 data class Group(val endpointId: String, val peer: PeerInfo) {
@@ -56,6 +56,18 @@ data class ReceivedUpdate(val file: File, val build: Int, val from: String)
 data class FlyingEmote(val id: Long, val from: String, val emoji: String)
 
 data class ChatLine(val from: String, val text: String, val toAll: Boolean, val outgoing: Boolean)
+
+/**
+ * Spieler nach dem Wegfall des Spielleiters (Punkt 59): [expected] = bestimmter Nachfolger,
+ * [taker] = wer übernommen hat und gerade verbunden wird, [deadline] = Spielende ohne Nachfolger.
+ */
+data class Takeover(
+    val succession: Message.Succession,
+    val deadline: Long,
+    val expected: String?,
+    val taker: String? = null,
+    val reason: String,
+)
 
 /** Ein empfangenes Profil, das der Spieler ansehen und speichern kann. */
 data class ReceivedProfile(val name: String, val values: Map<String, String>)
@@ -121,6 +133,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         private set
     var introSeq by mutableIntStateOf(0)
         private set
+
+    /** Spieler: letzter Stand des Spielleiters – damit kann ein Spieler das Spiel weiterführen. */
+    private var succession: Message.Succession? = null
+
+    /** Spieler: Der Spielleiter ist weg, die Übernahme läuft. */
+    var takeover by mutableStateOf<Takeover?>(null)
+        private set
+    private var takeoverTask: Cancellable? = null
+
+    /** Neuer Spielleiter: Stand des Vorgängers (für Rangfolge und automatische Aufnahme), solange die Übernahme läuft. */
+    private var takenOver: Message.Succession? = null
+    private var takenOverUntil = 0L
 
     /** Quiz startet erst nach der Spielstart-Animation – solange keine zweite Anfrage. */
     private var quizStartPending: Cancellable? = null
@@ -275,10 +299,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     // ------------------------------------------------------------------ Start
 
-    fun openGroup() {
+    fun openGroup() = openGroup(null)
+
+    /** Gruppe eröffnen; mit [taken] als Nachfolger eines Spielleiters (Punkt 59). */
+    private fun openGroup(taken: Message.Succession?) {
         finishPendingStop()
         store.setPlayerName(myName.trim())
-        choosingKind = true
+        choosingKind = taken?.kind == null
         val engine = MasterEngine(UptimeClock, scheduler, log = Diagnostics::log) { to, message ->
             if (to == LOCAL_PLAYER_ID) {
                 // Gleicher Weg wie über Funk, nur ohne Laufzeit.
@@ -322,12 +349,32 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             quizStore.recordDecision(q.id, decision, newCorrect, before?.named(), after?.named(), test = testGame)
         }
         master = engine
-        engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
+        if (taken != null) {
+            // Fragen des laufenden Quiz aus den eigenen Paketen; fehlende fallen weg.
+            val byId = quizStore.questions.associateBy { it.id }
+            val found = taken.quiz.map { byId[it] }
+            val next = found.take(taken.quizNext.coerceAtLeast(0)).count { it != null }
+            if (found.any { it == null }) Diagnostics.log("Übernahme: ${found.count { it == null }} Fragen fehlen in den eigenen Paketen")
+            engine.takeOver(taken, found.filterNotNull().map(quizStore::toQuiz), next)
+            testGame = taken.test
+            choosingTemplate = false
+            takenOver = taken
+            takenOverUntil = UptimeClock.now() + TAKEN_OVER_ACCEPT_MS
+        } else {
+            takenOver = null
+            engine.testGame = testGame
+            engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
+        }
         syncLocalPlayer(engine)
         masterSnapshot = engine.snapshot()
         engine.start()
-        Diagnostics.log("Gruppe eröffnet")
+        Diagnostics.log(if (taken == null) "Gruppe eröffnet" else "Gruppe als Nachfolger von ${taken.master} eröffnet (Spiel ${taken.game})")
         link.startAdvertising(PeerInfo.format(myName.trim(), AppUpdate.ownBuild))
+        // Nachfolger suchen kurz mit: Hat ein Vorrangiger zugleich übernommen, tritt man ihm bei.
+        if (taken != null) {
+            link.startDiscovery()
+            scheduler.schedule(TAKEOVER_MS) { if (master === engine) link.stopDiscovery() }
+        }
         GameService.start(getApplication(), "Du leitest eine Buzzer-Runde")
         screen = Screen.MASTER
     }
@@ -375,8 +422,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     /** Reguläres Beenden; auf Wunsch werden danach alle Diagnosedaten gelöscht. */
-    fun leave(deleteDiagnostics: Boolean = false) {
-        Diagnostics.log("Verlassen")
+    fun leave(deleteDiagnostics: Boolean = false, openForTakeover: Boolean = false) {
+        Diagnostics.log(if (openForTakeover) "Verlassen – Spieler dürfen übernehmen" else "Verlassen")
         GameService.stop(getApplication())
         choosingTemplate = false
         updateTicking(null)
@@ -384,13 +431,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val engine = master
         if (engine != null) {
             // Erst verabschieden, dann trennen – sonst kommt die Nachricht nicht mehr an.
-            engine.close()
+            if (openForTakeover) engine.leaveOpen() else engine.close()
             pendingStop = scheduler.schedule(500) { pendingStop = null; link.stopAll() }
         } else {
             link.stopAll()
         }
         quizStartPending?.cancel()
         quizStartPending = null
+        takeoverTask?.cancel()
+        takeoverTask = null
+        takeover = null
+        succession = null
+        takenOver = null
         intro = null
         master = null
         player = null
@@ -721,6 +773,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     fun toggleTestGame() {
         testGame = !testGame
+        master?.testGame = testGame
         Diagnostics.log(if (testGame) "Testspiel an – keine Statistik" else "Testspiel aus")
         status = if (testGame) "Testspiel: Antworten zählen nur in der getrennten Test-Statistik." else "Testspiel beendet – die Statistik zählt wieder."
     }
@@ -1014,6 +1067,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val peer = PeerInfo.parse(name)
         Diagnostics.log("Gruppe gefunden: $endpointId (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol})")
         if (groups.none { it.endpointId == endpointId }) groups += Group(endpointId, peer)
+        checkSuccessor(Group(endpointId, peer))
     }
 
     override fun onEndpointLost(endpointId: String) {
@@ -1028,6 +1082,15 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     override fun onConnectionRequest(endpointId: String, name: String, authCode: String) {
         val peer = PeerInfo.parse(name)
         Diagnostics.log("Beitrittsanfrage von $endpointId, Prüfcode $authCode (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
+        // Nach einer Übernahme kommen die bisherigen Mitspieler ohne Rückfrage wieder hinein.
+        val taken = takenOver
+        if (master?.canAcceptJoin() == true && taken != null && UptimeClock.now() < takenOverUntil && peer.compatible && !peer.updateOnly &&
+            peer.name != myName.trim() && (peer.name == taken.master || taken.scores.any { it.first == peer.name })
+        ) {
+            Diagnostics.log("Übernahme: ${peer.name} kommt zurück – ohne Rückfrage aufgenommen")
+            link.accept(endpointId)
+            return
+        }
         // Während einer laufenden Runde wartet die Anfrage; angezeigt wird sie erst in der nächsten Pause.
         joinRequests += JoinRequest(endpointId, peer, authCode)
         if (!masterIdle) Diagnostics.log("Beitrittsanfrage wartet bis zur nächsten Pause")
@@ -1062,6 +1125,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             // Der Spielleiter entscheidet: Er schickt seine neuere Version oder fordert unsere an.
             return
         }
+        takeover?.let { t ->
+            Diagnostics.log("Übernahme: verbunden mit ${t.taker ?: masterPeer?.name}")
+            status = "${t.taker ?: masterPeer?.name ?: "Ein Mitspieler"} leitet jetzt das Spiel."
+            takeoverTask?.cancel()
+            takeoverTask = null
+            takeover = null
+        }
         val engineForPlayer = PlayerEngine(UptimeClock, scheduler, log = Diagnostics::log) { link.send(endpointId, it) }
         engineForPlayer.onViewChanged = { onPlayerView(it, remote = true) }
         engineForPlayer.onSound = { playSoundEvent(it) }
@@ -1088,6 +1158,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (master == null && connectingTo == endpointId) {
             connectingTo = null
             joinCode = null
+            val t = takeover
+            if (t != null) {
+                // Nach einer Übernahme: kurz warten und erneut versuchen.
+                takeover = t.copy(taker = null)
+                scheduler.schedule(1_500) { groups.firstOrNull { it.endpointId == endpointId }?.let { checkSuccessor(it) } }
+                return
+            }
             status = "Der Beitritt wurde abgelehnt oder ist fehlgeschlagen."
         }
     }
@@ -1112,6 +1189,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         } else if (endpointId == masterEndpoint) {
             val silence = player?.lastMessageAt?.let { UptimeClock.now() - it }
             Diagnostics.log("Verbindung zum Spielleiter abgebrochen; letzte Nachricht vor ${silence ?: "?"} ms")
+            val s = succession
+            if (s != null && s.kind != null && takeover == null) {
+                startTakeover(s, if (s.to.isNotEmpty()) "${s.master} übergibt die Spielleitung an ${s.to}." else "Die Verbindung zum Spielleiter ${s.master} ist abgebrochen.")
+                return
+            }
+            if (takeover != null) return
             leave()
             status = "Die Verbindung zum Spielleiter ist abgebrochen."
         }
@@ -1153,6 +1236,28 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
                 return
             }
+            is Message.Succession -> {
+                if (master != null || endpointId != masterEndpoint) return
+                succession = message
+                if (message.to.isNotEmpty()) {
+                    Diagnostics.log("Spielleitung geht an ${message.to}")
+                    if (message.to == myName.trim()) becomeSuccessor(message)
+                }
+                return
+            }
+            Message.MasterGone -> {
+                if (master != null || endpointId != masterEndpoint) return
+                val s = succession
+                Diagnostics.log("Spielleiter geht – Übernahme möglich")
+                if (s == null || s.kind == null) {
+                    leave()
+                    status = "Der Spielleiter hat die Gruppe geschlossen."
+                } else {
+                    link.disconnect(endpointId)
+                    startTakeover(s, "${s.master} hat das Spiel verlassen.")
+                }
+                return
+            }
             Message.DiagnoseCollect -> {
                 if (master != null) return
                 masterCollects = true
@@ -1182,6 +1287,130 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             text
         }
     }
+
+    // ------------------------------------------------------------------ Übernahme der Spielleitung
+
+    /** Spielleiter weg: Spieler suchen den Nachfolger bzw. können selbst übernehmen; nach 1 Minute ist Schluss. */
+    private fun startTakeover(s: Message.Succession, reason: String) {
+        Diagnostics.log("Übernahme: $reason")
+        player = null
+        playerView = null
+        masterEndpoint = null
+        masterPeer = null
+        connectingTo = null
+        joinCode = null
+        updateTicking(null)
+        replayDone()
+        intro = null
+        groups.clear()
+        joinRequests.clear()
+        val deadline = UptimeClock.now() + TAKEOVER_MS
+        takeover = Takeover(s, deadline, s.to.ifEmpty { null }, reason = reason)
+        screen = Screen.TAKEOVER
+        sound(SoundEvent.CHAT)
+        link.stopDiscovery()
+        link.startDiscovery()
+        armTakeoverTimeout(deadline)
+    }
+
+    private fun armTakeoverTimeout(deadline: Long) {
+        takeoverTask?.cancel()
+        takeoverTask = scheduler.schedule(deadline - UptimeClock.now()) {
+            takeoverTask = null
+            if (takeover == null) return@schedule
+            Diagnostics.log("Übernahme: niemand hat übernommen – Spiel beendet")
+            leave()
+            status = "Niemand hat die Spielleitung übernommen – das Spiel ist beendet."
+        }
+    }
+
+    /** Rang in der Reihenfolge des Vorgängers (wer früher dabei war, hat Vorrang). */
+    private fun rankIn(s: Message.Succession, name: String): Int =
+        s.scores.indexOfFirst { it.first == name }.let { if (it < 0) Int.MAX_VALUE else it }
+
+    /** Gefundene Gruppe: Ist das der Nachfolger, dem wir beitreten? */
+    private fun checkSuccessor(group: Group) {
+        val name = group.peer.name
+        if (!group.peer.compatible || name == myName.trim()) return
+        val t = takeover
+        if (t != null && master == null) {
+            val s = t.succession
+            val fits = if (t.expected != null) name == t.expected else name != s.master && s.scores.any { it.first == name }
+            if (!fits || connectingTo != null) return
+            Diagnostics.log("Übernahme: $name leitet jetzt – Beitritt")
+            // Wer gerade verbunden wird, bekommt noch etwas Zeit.
+            val deadline = maxOf(t.deadline, UptimeClock.now() + TAKEOVER_CONNECT_MS)
+            takeover = t.copy(taker = name, deadline = deadline)
+            armTakeoverTimeout(deadline)
+            join(group)
+            return
+        }
+        // Zwei haben gleichzeitig übernommen: Der später Beigetretene gibt ab und tritt bei.
+        val taken = takenOver ?: return
+        val engine = master ?: return
+        if (UptimeClock.now() > takenOverUntil || rankIn(taken, name) >= rankIn(taken, myName.trim())) return
+        Diagnostics.log("Übernahme: $name hat ebenfalls übernommen und hat Vorrang – gebe ab")
+        val s = engine.succession(name)
+        engine.leaveOpen()
+        link.stopAll()
+        master = null
+        masterSnapshot = null
+        player = null
+        playerView = null
+        takenOver = null
+        startTakeover(s, "$name hat die Spielleitung zugleich übernommen.")
+    }
+
+    /** „Ich übernehme die Spielleitung.“ */
+    fun takeOver() {
+        val t = takeover ?: return
+        if (t.expected != null || t.taker != null) return
+        becomeSuccessor(t.succession)
+    }
+
+    private fun becomeSuccessor(s: Message.Succession) {
+        Diagnostics.log("Übernahme: ich leite jetzt das Spiel")
+        takeoverTask?.cancel()
+        takeoverTask = null
+        takeover = null
+        succession = null
+        masterEndpoint = null
+        masterPeer = null
+        player = null
+        playerView = null
+        groups.clear()
+        link.stopAll()
+        openGroup(s)
+        status = "Du leitest jetzt das Spiel – die anderen verbinden sich gleich wieder."
+    }
+
+    /** Spielleiter: Leitung an [name] übergeben und selbst als Spieler weitermachen. */
+    fun handOver(name: String) {
+        val engine = master ?: return
+        if (!engine.handOver(name)) {
+            status = "Übergeben geht nur zwischen den Runden bzw. bei der Auflösung."
+            return
+        }
+        val s = engine.succession(name)
+        Diagnostics.log("Spielleitung an $name übergeben")
+        updateTicking(null)
+        scheduler.schedule(500) {
+            if (master !== engine) return@schedule
+            link.stopAll()
+            master = null
+            masterSnapshot = null
+            player = null
+            playerView = null
+            joinRequests.clear()
+            peerBuilds.clear()
+            takenOver = null
+            startTakeover(s, "Du hast die Spielleitung an $name übergeben.")
+        }
+    }
+
+    /** Spieler, an die der Spielleiter übergeben kann. */
+    val handOverCandidates: List<String>
+        get() = masterSnapshot?.players.orEmpty().filter { it.connected && it.id != LOCAL_PLAYER_ID && it.id in peerBuilds }.map { it.name }
 
     // ------------------------------------------------------------------ Diagnoseberichte
 
@@ -1387,6 +1616,15 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     companion object {
         /** Nearby-Endpunkt-IDs sind vierstellig, eine Verwechslung ist ausgeschlossen. */
         const val LOCAL_PLAYER_ID = "local-master"
+
+        /** Ohne Nachfolger endet das Spiel nach dieser Zeit (Punkt 59). */
+        const val TAKEOVER_MS = 60_000L
+
+        /** Beitritt beim Nachfolger: so lange mindestens noch. */
+        const val TAKEOVER_CONNECT_MS = 30_000L
+
+        /** Der Nachfolger nimmt die bisherigen Mitspieler so lange ohne Rückfrage auf. */
+        const val TAKEN_OVER_ACCEPT_MS = 180_000L
 
         /** Pause zwischen „Go!“ und dem automatischen Start der nächsten Quiz-Frage. */
         const val AUTO_START_MS = 1_500L

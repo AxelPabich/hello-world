@@ -72,7 +72,7 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-private fun StatusText(vm: BuzzerViewModel) {
+internal fun StatusText(vm: BuzzerViewModel) {
     val theme = LocalBuzzerTheme.current
     var showDiagnostics by remember { mutableStateOf(false) }
     vm.status?.let {
@@ -254,6 +254,7 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Alle sehen dann ein Laufband, bis der Spielleiter entschieden hat: Wertung bleibt, Frage annullieren, Antwort korrigieren, Frage sperren oder Ersatzfrage. Punkte und Zeiten werden dabei mitkorrigiert.",
                 "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf.",
                 "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, kommt ein „Go!“ – im Quiz startet die nächste Frage dann von selbst.",
+                "Spielleiter weg?" to "Der Spielleiter kann die Leitung über ⋮ „Spielleitung übergeben an …“ einem Spieler geben. Geht er oder bricht seine Verbindung ab, kann jeder Spieler mit „Ich übernehme“ weitermachen – Punkte und Quiz laufen weiter, die anderen verbinden sich von selbst. Übernimmt niemand innerhalb 1 Minute, endet das Spiel.",
                 "Im Hintergrund" to "Solange eine Runde läuft, zeigt die App eine Benachrichtigung. Sie hält die Verbindung, wenn du kurz eine andere App öffnest. Bricht sie trotzdem ab: in den Android-Einstellungen bei Buzzer „Akku – nicht eingeschränkt“ wählen.",
                 "Versionen" to "Passen die App-Versionen nicht zusammen, holt sich das ältere Gerät die neuere Version direkt vom anderen (ohne Internet) oder lädt sie von der Release-Seite.",
             )
@@ -593,6 +594,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var showDiagnostics by remember { mutableStateOf(false) }
     var showSaved by remember { mutableStateOf(false) }
     var confirmLeave by remember { mutableStateOf(false) }
+    var showHandOver by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val settings = snapshot.settings
     val pause = snapshot.phase == Phase.READY || snapshot.phase == Phase.ROUND_OVER
@@ -755,7 +757,12 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 onClick = { showMenu = false; showShare = true },
                             )
                             DropdownMenuItem(
-                                text = { Text("Gruppe schließen") },
+                                text = { Text("Spielleitung übergeben an …") },
+                                enabled = (pause || snapshot.phase == Phase.QUIZ_REVEAL) && vm.handOverCandidates.isNotEmpty(),
+                                onClick = { showMenu = false; showHandOver = true },
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Spiel verlassen") },
                                 onClick = { showMenu = false; confirmLeave = true },
                             )
                         }
@@ -887,12 +894,18 @@ fun MasterScreen(vm: BuzzerViewModel) {
         )
     }
     if (confirmLeave) {
-        LeaveDialog(
-            title = "Gruppe schließen?",
-            text = "Alle Spieler werden getrennt.",
-            confirm = "Schließen",
-            onConfirm = { delete -> confirmLeave = false; vm.leave(delete) },
+        MasterLeaveDialog(
+            canOpen = vm.handOverCandidates.isNotEmpty() && snapshot.kind != null,
+            onEnd = { delete -> confirmLeave = false; vm.leave(delete) },
+            onOpen = { delete -> confirmLeave = false; vm.leave(delete, openForTakeover = true) },
             onDismiss = { confirmLeave = false },
+        )
+    }
+    if (showHandOver) {
+        HandOverDialog(
+            candidates = vm.handOverCandidates,
+            onHandOver = { name -> showHandOver = false; vm.handOver(name) },
+            onDismiss = { showHandOver = false },
         )
     }
 }
