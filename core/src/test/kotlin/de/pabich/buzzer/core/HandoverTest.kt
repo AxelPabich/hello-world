@@ -95,6 +95,13 @@ class HandoverTest {
         val ask = g.received.getValue("Clara").filterIsInstance<Message.QuizAsk>().last()
         assertEquals(2, ask.number)
         assertEquals("Frage 2?", ask.text)
+        // Der Spielverlauf beginnt mit den übernommenen Punkten, nicht bei 0.
+        g.time.advanceBy(20_000)
+        assertTrue(g.master.showReplay())
+        g.time.advanceBy(200)
+        val replay = g.received.getValue("Clara").filterIsInstance<Message.Replay>().last()
+        assertEquals(s.scores.sumOf { it.second }, replay.frames.first().sum())
+        assertTrue(replay.frames.first().sum() > 0)
     }
 
     @Test

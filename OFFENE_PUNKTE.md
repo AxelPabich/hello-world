@@ -425,6 +425,15 @@ Kategorien recherchieren.
     mehr, automatische Updates. Braucht Entwicklerkonto (einmalig 25 US-$), eigenen Signaturschlüssel
     als GitHub-Secret und ein App-Bundle (AAB) im Build. Bis dahin: Play Protect → Zahnrad →
     „Apps mit Play Protect scannen“ nur fürs Update kurz aus.
+61. **Feinschliff Übernahme** (umgesetzt, kommt mit dem nächsten Build): Der Spielverlauf beginnt
+    nach einer Übernahme mit den übernommenen Punkten statt bei 0; doppelte Protokollzeile
+    „Spielleitung an … übergeben“ entfernt. Wird die App beim Spielleiter weggewischt, dürfen die
+    Spieler übernehmen (vorher: Spiel für alle beendet).
+
+Bestätigt im Test (15.10.2026, Build 26): Übergabe per ⋮ (Simone → Axel) und „Spiel verlassen –
+Spieler übernehmen“ (Axel geht, Simone übernimmt, Peter kommt automatisch zurück); Quiz lief mit
+Frage 3/12 und den richtigen Punkten weiter. Noch zu testen: Verbindungsabbruch (Bluetooth aus bzw.
+App beim Spielleiter beenden).
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.

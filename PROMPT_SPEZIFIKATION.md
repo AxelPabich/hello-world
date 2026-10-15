@@ -656,6 +656,7 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   mit ihm.
 - **Verlassen:** ⋮ „Spiel verlassen“ fragt „Spieler übernehmen“ (`MASTER_GONE`) oder „Für alle
   beenden“ (`BYE`, wie bisher).
+  Wird die App beim Spielleiter weggewischt, gilt „Spieler übernehmen“ (sobald eine Spielart läuft).
 - **Übernehmen:** Nach `MASTER_GONE` oder einem Verbindungsabbruch zum Spielleiter sehen die
   Spieler „Wer übernimmt?“ mit „Ich übernehme“ und einem Countdown von 1 Minute. Wer zuerst tippt,
   leitet; die übrigen finden ihn über die Suche (Name aus dem Spielstand) und treten ohne
@@ -668,5 +669,5 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   („Master spielt mit“) und behält seine Punkte. Das Quiz läuft mit derselben Fragenliste weiter
   (aus den eigenen Fragenpaketen; fehlende Fragen fallen weg): Der neue Spielleiter sieht die
   zuletzt aufgelöste Frage (ohne Antworten und Entscheidungen) und macht mit „Nächste Frage“
-  bzw. Get Ready weiter.
+  bzw. Get Ready weiter. Der Spielverlauf beginnt mit den übernommenen Punkten.
 ===== ENDE SPEZIFIKATION.md =====

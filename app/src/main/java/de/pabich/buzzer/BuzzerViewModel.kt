@@ -1392,7 +1392,6 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             return
         }
         val s = engine.succession(name)
-        Diagnostics.log("Spielleitung an $name übergeben")
         updateTicking(null)
         scheduler.schedule(500) {
             if (master !== engine) return@schedule
@@ -1608,7 +1607,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     override fun onCleared() {
         GameService.stop(getApplication())
-        master?.close()
+        // App weggewischt: Die Spieler dürfen übernehmen (Punkt 59), sobald eine Spielart läuft.
+        master?.let { if (it.snapshot().kind != null) it.leaveOpen() else it.close() }
         link.stopAll()
         sounds.release()
     }
