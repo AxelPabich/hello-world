@@ -369,15 +369,17 @@ class MasterEngine(
 
     // ------------------------------------------------------------------ Uhrenabgleich
 
-    /** Startet den regelmäßigen Uhrenabgleich: beim Beitritt schnell, danach etwa alle 2 s zwischen den Runden. */
+    /**
+     * Startet den regelmäßigen Uhrenabgleich: beim Beitritt schnell, danach etwa alle 2 s – in jeder
+     * Phase, damit die Spieler einen stillen Spielleiter rasch bemerken (Herzschlag, Punkt 62).
+     */
     fun start() {
         if (pingTask != null) return
         fun tick() {
             pingTick++
-            val idle = phase == Phase.READY || phase == Phase.ROUND_OVER
             for (p in players.values) {
                 if (!p.connected) continue
-                if (p.sync.sampleCount < 8 || (idle && pingTick % 8 == 0)) {
+                if (p.sync.sampleCount < 8 || pingTick % 8 == 0) {
                     send(p.id, Message.Ping(++pingSeq, clock.now()))
                 }
             }

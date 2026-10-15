@@ -659,9 +659,25 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Übernehmen zwei gleichzeitig, gibt der später Beigetretene ab und tritt dem anderen bei.
   Meldet sich niemand innerhalb 1 Minute, endet das Spiel für alle („Niemand hat die Spielleitung
   übernommen“). Ohne gewählte Spielart gibt es keine Übernahme.
+- **Herzschlag:** Der Spielleiter pingt in jeder Phase etwa alle 2 s. Hört ein Spieler 12 s nichts
+  (Spielleiter ab Build 27), gilt die Verbindung als abgebrochen – sonst merkt Nearby das erst nach
+  rund 1 Minute. Taucht der bisherige Spielleiter wieder auf, tritt ihm niemand bei und kein
+  Nachfolger gibt an ihn ab: Das Spiel liegt beim Nachfolger. Verliert der Spielleiter alle Spieler
+  fast gleichzeitig, kündigt er seine Gruppe nach 3 s neu an und weist darauf hin, dass vielleicht
+  schon jemand übernommen hat.
 - **Was bleibt:** Punkte (beim Wiederbeitritt nach Namen zugeordnet; wer später kommt, bekommt sie
   dann), Runde, Spielart, Profil und Einstellungen, Testspiel. Der Nachfolger spielt weiter mit
   („Master spielt mit“) und behält seine Punkte. Das Quiz läuft mit derselben Fragenliste weiter
   (aus den eigenen Fragenpaketen; fehlende Fragen fallen weg): Der neue Spielleiter sieht die
   zuletzt aufgelöste Frage (ohne Antworten und Entscheidungen) und macht mit „Nächste Frage“
   bzw. Get Ready weiter. Der Spielverlauf beginnt mit den übernommenen Punkten.
+
+## 49. Diagnosen abrufen und prüfen
+
+- Spielleiter: ⋮ „Diagnosen der Spieler abrufen“ schickt allen Spielern `DIAG_REQUEST`.
+- Spieler: Rückfrage „Diagnose an den Spielleiter?“ mit „Systeminformationen mitsenden“ (Vorgabe aus),
+  „Bericht ansehen“ und „Nicht erneut fragen (bis zum nächsten Build)“. Mit dem Haken wird die
+  Antwort (senden mit/ohne Systemdaten bzw. nicht senden) gespeichert und gilt, bis eine andere
+  Build-Nummer läuft.
+- Gesendete Berichte landen wie bisher beim Spielleiter (mit Token direkt in GitHub).
+- „Diagnose senden“ zeigt ebenfalls „Bericht ansehen“: genau der Text, der verschickt würde.

@@ -252,7 +252,7 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "Quiz" to "Im Quiz kommen die Fragen aus der Fragen-Datenbank. Die Frage erscheint auf allen Geräten gleichzeitig, 3 Sekunden später die vier Antworten – bei jedem in anderer Reihenfolge. Tippe deine Antwort; aufgelöst wird, wenn alle geantwortet haben oder die Zeit um ist.",
                 "Wertung im Quiz" to "Schnellster punktet: nur die erste richtige Antwort. Jeder punktet: jede richtige Antwort. Countdown: nach der ersten richtigen Antwort läuft nur noch kurz die Zeit, alle Richtigen bekommen ihre Restzeit. Battle: nur der Schnellste bekommt seine Restzeit. Falsche Antworten kosten nie etwas.",
                 "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Alle sehen dann ein Laufband, bis der Spielleiter entschieden hat: Wertung bleibt, Frage annullieren, Antwort korrigieren, Frage sperren oder Ersatzfrage. Punkte und Zeiten werden dabei mitkorrigiert.",
-                "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf.",
+                "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf. Bittet der Spielleiter um deine Diagnose, entscheidest du selbst – mit „Bericht ansehen“ siehst du vorher genau, was gesendet wird.",
                 "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, kommt ein „Go!“ – im Quiz startet die nächste Frage dann von selbst.",
                 "Spielleiter weg?" to "Der Spielleiter kann die Leitung über ⋮ „Spielleitung übergeben an …“ einem Spieler geben. Geht er oder bricht seine Verbindung ab, kann jeder Spieler mit „Ich übernehme“ weitermachen – Punkte und Quiz laufen weiter, die anderen verbinden sich von selbst. Übernimmt niemand innerhalb 1 Minute, endet das Spiel.",
                 "Im Hintergrund" to "Solange eine Runde läuft, zeigt die App eine Benachrichtigung. Sie hält die Verbindung, wenn du kurz eine andere App öffnest. Bricht sie trotzdem ab: in den Android-Einstellungen bei Buzzer „Akku – nicht eingeschränkt“ wählen.",
@@ -552,6 +552,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
 
     if (view.readyAsk != null && !view.readyConfirmed && !view.paused) ReadyDialog { vm.confirmReady() }
     DiagnoseOfferDialog(vm)
+    DiagnoseRequestDialog(vm)
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showSaved) SavedReportsDialog(vm) { showSaved = false }
     if (showChat) {
@@ -700,6 +701,11 @@ fun MasterScreen(vm: BuzzerViewModel) {
                             DropdownMenuItem(
                                 text = { Text("Diagnose senden") },
                                 onClick = { showMenu = false; showDiagnostics = true },
+                            )
+                            DropdownMenuItem(
+                                text = { Text("Diagnosen der Spieler abrufen") },
+                                enabled = vm.handOverCandidates.isNotEmpty(),
+                                onClick = { showMenu = false; vm.requestDiagnoses() },
                             )
                             if (snapshot.kind == GameKind.QUIZ) {
                                 DropdownMenuItem(

@@ -43,6 +43,7 @@ class HandoverTest {
         )
         assertEquals(s, MessageCodec.decode(MessageCodec.encode(s)))
         assertEquals(Message.MasterGone, MessageCodec.decode(MessageCodec.encode(Message.MasterGone)))
+        assertEquals(Message.DiagnoseRequest, MessageCodec.decode(MessageCodec.encode(Message.DiagnoseRequest)))
     }
 
     @Test
@@ -134,6 +135,17 @@ class HandoverTest {
         assertEquals(1L, n.row("Clara").scoreValue)
         // Peter kommt erst später zurück – seine Punkte warten und stehen weiter im Stand für Nachfolger.
         assertTrue(n.master.succession().scores.any { it.first == "Peter" })
+    }
+
+    @Test
+    fun `heartbeat reaches players during a quiz question`() {
+        val g = quizGame()
+        assertTrue(g.master.startQuiz(listOf(question(1))))
+        g.time.advanceBy(1_000)
+        val before = g.received.getValue("Clara").count { it is Message.Ping }
+        g.time.advanceBy(6_000)
+        assertEquals(MasterEngine.Phase.QUIZ_ANSWERS, g.master.snapshot().phase)
+        assertTrue(g.received.getValue("Clara").count { it is Message.Ping } - before >= 2, "etwa alle 2 s ein Ping")
     }
 
     @Test

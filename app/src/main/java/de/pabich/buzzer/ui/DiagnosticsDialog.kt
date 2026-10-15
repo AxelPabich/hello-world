@@ -52,6 +52,7 @@ import java.util.Locale
 fun DiagnosticsDialog(vm: BuzzerViewModel, onDismiss: () -> Unit) {
     val context = LocalContext.current
     var includeSystem by remember { mutableStateOf(false) }
+    var preview by remember { mutableStateOf(false) }
     fun report() = Diagnostics.buildReport(context, vm.status, includeSystem)
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -80,6 +81,7 @@ fun DiagnosticsDialog(vm: BuzzerViewModel, onDismiss: () -> Unit) {
                         "wohin du ihn selbst teilst.",
                     style = MaterialTheme.typography.bodySmall,
                 )
+                ReportPreview(preview, { preview = it }) { report() }
             }
         },
         confirmButton = {
@@ -275,6 +277,72 @@ fun DiagnoseOfferDialog(vm: BuzzerViewModel) {
                 TextButton(onClick = { vm.dismissDiagnoseOffer(never = true) }) { Text("Nein") }
                 TextButton(onClick = { vm.dismissDiagnoseOffer(never = false) }) { Text("Später") }
             }
+        },
+    )
+}
+
+/** „Bericht ansehen“: genau der Text, der verschickt würde – vor dem Senden prüfen. */
+@Composable
+fun ReportPreview(open: Boolean, onToggle: (Boolean) -> Unit, report: () -> String) {
+    TextButton(onClick = { onToggle(!open) }) { Text(if (open) "Bericht ausblenden" else "Bericht ansehen") }
+    if (open) {
+        Text(
+            report(),
+            fontFamily = FontFamily.Monospace,
+            fontSize = 11.sp,
+            lineHeight = 14.sp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(max = 280.dp)
+                .verticalScroll(rememberScrollState()),
+        )
+        HorizontalDivider()
+    }
+}
+
+/** Spieler: Der Spielleiter bittet um einen Diagnosebericht. */
+@Composable
+fun DiagnoseRequestDialog(vm: BuzzerViewModel) {
+    if (!vm.diagnoseRequest) return
+    val context = LocalContext.current
+    var includeSystem by remember { mutableStateOf(false) }
+    var keep by remember { mutableStateOf(false) }
+    var preview by remember { mutableStateOf(false) }
+    AlertDialog(
+        onDismissRequest = { vm.answerDiagnoseRequest(send = false, includeSystem = false, remember = false) },
+        title = { Text("Diagnose an den Spielleiter?") },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                Text("${vm.masterPeer?.name ?: "Der Spielleiter"} bittet um deinen Diagnosebericht (Fehlermeldung und letzte Ereignisse der App). Er hilft, Probleme zu finden.")
+                Spacer(Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth().toggleable(value = includeSystem, onValueChange = { includeSystem = it }),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Checkbox(checked = includeSystem, onCheckedChange = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text("Systeminformationen mitsenden")
+                }
+                Text(
+                    "Gerätemodell, Android-Version, Play-Dienste, Standort an/aus und Berechtigungen – keine Standortdaten, Kontakte oder Telefonnummer.",
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                ReportPreview(preview, { preview = it }) { Diagnostics.buildReport(context, vm.status, includeSystem) }
+                Row(
+                    modifier = Modifier.fillMaxWidth().toggleable(value = keep, onValueChange = { keep = it }),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Checkbox(checked = keep, onCheckedChange = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text("Nicht erneut fragen (bis zum nächsten Build)")
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { vm.answerDiagnoseRequest(send = true, includeSystem = includeSystem, remember = keep) }) { Text("Senden") }
+        },
+        dismissButton = {
+            TextButton(onClick = { vm.answerDiagnoseRequest(send = false, includeSystem = includeSystem, remember = keep) }) { Text("Nicht senden") }
         },
     )
 }

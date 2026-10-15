@@ -146,6 +146,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var takenOver: Message.Succession? = null
     private var takenOverUntil = 0L
 
+    /** Spielleiter: Zeitpunkte der letzten Verbindungsabbrüche (alle auf einmal weg = eigene Funkstörung). */
+    private val recentLosses = mutableListOf<Long>()
+
     /** Quiz startet erst nach der Spielstart-Animation – solange keine zweite Anfrage. */
     private var quizStartPending: Cancellable? = null
 
@@ -233,6 +236,11 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Spieler: Rückfrage „gespeicherte Diagnosen an den Spielleiter senden?“ anzeigen. */
     var diagnoseOffer by mutableStateOf(false)
         private set
+
+    /** Spieler: Der Spielleiter bittet um einen Diagnosebericht – Rückfrage anzeigen. */
+    var diagnoseRequest by mutableStateOf(false)
+        private set
+    private val diagPrefs = app.getSharedPreferences("diagnose-request", android.content.Context.MODE_PRIVATE)
 
     /** Spieler hat „Nein“ gesagt – bis zum Neustart der App nicht mehr fragen. */
     private var offerDeclined = false
@@ -443,6 +451,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         takeover = null
         succession = null
         takenOver = null
+        diagnoseRequest = false
         intro = null
         master = null
         player = null
@@ -1147,6 +1156,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
         player = engineForPlayer
         playerView = engineForPlayer.view
+        startWatchdog(engineForPlayer, endpointId)
         engineForPlayer.setReceiveEmojis(receiveEmojis)
         GameService.start(getApplication(), "Du spielst bei ${masterPeer?.name ?: "einer Buzzer-Runde"} mit")
         screen = Screen.PLAYER
@@ -1186,6 +1196,16 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             peerBuilds.remove(endpointId)
             Diagnostics.log("Getrennt von $endpointId")
             engine.removePlayer(endpointId)
+            val now = UptimeClock.now()
+            recentLosses.removeAll { now - it > 15_000 }
+            recentLosses += now
+            // Mehrere fast gleichzeitig weg, keiner mehr da – nicht, wenn nur der Letzte regulär gegangen ist.
+            if (peerBuilds.isEmpty() && recentLosses.size >= 2 && engine.snapshot().kind != null) {
+                // Alle weg – oft war die eigene Funkverbindung kurz aus. Neu ankündigen, damit Beitritte wieder klappen.
+                Diagnostics.log("Alle Spieler getrennt – Gruppe wird neu angekündigt")
+                status = "Alle Spieler sind getrennt. War deine Verbindung weg, hat vielleicht schon jemand übernommen – dann „Spiel verlassen“ und über „Gruppe suchen“ beitreten."
+                scheduler.schedule(3_000) { if (master === engine) link.restartAdvertising(PeerInfo.format(myName.trim(), AppUpdate.ownBuild)) }
+            }
         } else if (endpointId == masterEndpoint) {
             val silence = player?.lastMessageAt?.let { UptimeClock.now() - it }
             Diagnostics.log("Verbindung zum Spielleiter abgebrochen; letzte Nachricht vor ${silence ?: "?"} ms")
@@ -1258,6 +1278,20 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
                 return
             }
+            Message.DiagnoseRequest -> {
+                if (master != null || endpointId != masterEndpoint) return
+                Diagnostics.log("Spielleiter bittet um Diagnose")
+                val choice = savedDiagnoseChoice()
+                when (choice) {
+                    null -> diagnoseRequest = true
+                    false -> Diagnostics.log("Diagnose nicht gesendet (so eingestellt bis zum nächsten Build)")
+                    true -> {
+                        sendDiagnoseToMaster(Diagnostics.buildReport(getApplication(), status, diagPrefs.getBoolean(KEY_SYSTEM, false)))
+                        Diagnostics.log("Diagnose automatisch gesendet (so eingestellt bis zum nächsten Build)")
+                    }
+                }
+                return
+            }
             Message.DiagnoseCollect -> {
                 if (master != null) return
                 masterCollects = true
@@ -1286,6 +1320,29 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         } else {
             text
         }
+    }
+
+    // ------------------------------------------------------------------ Herzschlag
+
+    /**
+     * Spieler: Ab Build [HEARTBEAT_BUILD] pingt der Spielleiter in jeder Phase etwa alle 2 s. Bleibt er
+     * [MASTER_SILENCE_MS] still, gilt die Verbindung als abgebrochen – Nearby merkt das sonst erst nach ~1 Minute.
+     */
+    private fun startWatchdog(engine: PlayerEngine, endpointId: String) {
+        val since = UptimeClock.now()
+        fun check() {
+            if (player !== engine || masterEndpoint != endpointId) return
+            val build = masterPeer?.build ?: 0
+            val silence = UptimeClock.now() - (engine.lastMessageAt ?: since)
+            if (build >= HEARTBEAT_BUILD && silence > MASTER_SILENCE_MS) {
+                Diagnostics.log("Spielleiter seit $silence ms still – Verbindung gilt als abgebrochen")
+                link.disconnect(endpointId)
+                onDisconnected(endpointId)
+                return
+            }
+            scheduler.schedule(2_000) { check() }
+        }
+        scheduler.schedule(2_000) { check() }
     }
 
     // ------------------------------------------------------------------ Übernahme der Spielleitung
@@ -1348,7 +1405,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         // Zwei haben gleichzeitig übernommen: Der später Beigetretene gibt ab und tritt bei.
         val taken = takenOver ?: return
         val engine = master ?: return
-        if (UptimeClock.now() > takenOverUntil || rankIn(taken, name) >= rankIn(taken, myName.trim())) return
+        // Der Vorgänger selbst zählt nicht: Er ist wieder da, aber das Spiel liegt jetzt bei uns.
+        if (name == taken.master || UptimeClock.now() > takenOverUntil || rankIn(taken, name) >= rankIn(taken, myName.trim())) return
         Diagnostics.log("Übernahme: $name hat ebenfalls übernommen und hat Vorrang – gebe ab")
         val s = engine.succession(name)
         engine.leaveOpen()
@@ -1412,6 +1470,38 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         get() = masterSnapshot?.players.orEmpty().filter { it.connected && it.id != LOCAL_PLAYER_ID && it.id in peerBuilds }.map { it.name }
 
     // ------------------------------------------------------------------ Diagnoseberichte
+
+    /** Spielleiter: alle Spieler um ihren Diagnosebericht bitten (jeder entscheidet selbst). */
+    fun requestDiagnoses() {
+        val ids = peerBuilds.keys.toList()
+        if (ids.isEmpty()) return
+        ids.forEach { link.send(it, Message.DiagnoseRequest) }
+        Diagnostics.log("Diagnosen bei ${ids.size} Spielern angefragt")
+        status = "Diagnosen bei ${ids.size} Spielern angefragt – sie kommen, sobald sie zustimmen."
+    }
+
+    /** Gespeicherte Antwort auf „Diagnose an den Spielleiter?“: `true` senden, `false` nicht, `null` fragen. Gilt bis zum nächsten Build. */
+    private fun savedDiagnoseChoice(): Boolean? =
+        if (diagPrefs.getInt(KEY_BUILD, 0) == AppUpdate.ownBuild) diagPrefs.getBoolean(KEY_SEND, false) else null
+
+    /** Antwort auf die Anfrage des Spielleiters; [remember] = bis zum nächsten Build nicht erneut fragen. */
+    fun answerDiagnoseRequest(send: Boolean, includeSystem: Boolean, remember: Boolean) {
+        diagnoseRequest = false
+        if (remember) {
+            diagPrefs.edit().putInt(KEY_BUILD, AppUpdate.ownBuild).putBoolean(KEY_SEND, send).putBoolean(KEY_SYSTEM, includeSystem).apply()
+            val what = when {
+                !send -> "nie senden"
+                includeSystem -> "immer senden (mit Systemdaten)"
+                else -> "immer senden"
+            }
+            Diagnostics.log("Diagnose-Anfragen: bis zum nächsten Build $what")
+        }
+        if (send && canSendToMaster) {
+            sendDiagnoseToMaster(Diagnostics.buildReport(getApplication(), status, includeSystem))
+        } else if (!send) {
+            Diagnostics.log("Diagnose-Anfrage abgelehnt")
+        }
+    }
 
     /** Ist dieses Gerät als Spieler mit einem Spielleiter verbunden? */
     val canSendToMaster: Boolean get() = master == null && player != null && masterEndpoint != null
@@ -1616,6 +1706,16 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     companion object {
         /** Nearby-Endpunkt-IDs sind vierstellig, eine Verwechslung ist ausgeschlossen. */
         const val LOCAL_PLAYER_ID = "local-master"
+
+        /** Ab diesem Build pingt der Spielleiter in jeder Phase (Herzschlag). */
+        const val HEARTBEAT_BUILD = 27
+
+        /** So lange darf der Spielleiter still sein, bevor die Verbindung als abgebrochen gilt. */
+        const val MASTER_SILENCE_MS = 12_000L
+
+        private const val KEY_BUILD = "build"
+        private const val KEY_SEND = "send"
+        private const val KEY_SYSTEM = "system"
 
         /** Ohne Nachfolger endet das Spiel nach dieser Zeit (Punkt 59). */
         const val TAKEOVER_MS = 60_000L

@@ -429,6 +429,20 @@ Kategorien recherchieren.
     nach einer Übernahme mit den übernommenen Punkten statt bei 0; doppelte Protokollzeile
     „Spielleitung an … übergeben“ entfernt. Wird die App beim Spielleiter weggewischt, dürfen die
     Spieler übernehmen (vorher: Spiel für alle beendet).
+62. **Übernahme bei Funkabbruch robuster** (umgesetzt, kommt mit dem nächsten Build) – Test vom
+    15.10.2026, Axel schaltet Bluetooth und WLAN aus:
+    - Die Spieler merkten den Abbruch erst nach ~60 s (Nearby). Jetzt pingt der Spielleiter in jeder
+      Phase alle 2 s; nach 12 s Stille startet die Übernahme.
+    - Simone hatte übernommen, sah dann aber Axels alte Gruppe und gab an ihn ab (Fehler: der
+      Vorgänger zählte beim Vorrang mit). Peter hing in der Verbindung zu Simone, beide endeten
+      nach 1 Minute mit „Niemand hat übernommen“. Jetzt zählt der Vorgänger nicht mehr.
+    - Axels Gruppe war nach dem Funkabbruch nicht mehr erreichbar (STATUS_RADIO_ERROR). Verliert
+      der Spielleiter alle Spieler fast gleichzeitig, kündigt er die Gruppe neu an und zeigt einen
+      Hinweis.
+    - Peters Tablet lief ab 20:28 wieder mit Build 22 – bitte aktualisieren.
+63. **Diagnosen abrufen und prüfen** (umgesetzt, kommt mit dem nächsten Build): ⋮ „Diagnosen der
+    Spieler abrufen“; Spieler entscheiden mit Systemdaten-Haken, „Bericht ansehen“ und „Nicht erneut
+    fragen (bis zum nächsten Build)“. „Bericht ansehen“ auch in „Diagnose senden“. Abschnitt 49.
 
 Bestätigt im Test (15.10.2026, Build 26): Übergabe per ⋮ (Simone → Axel) und „Spiel verlassen –
 Spieler übernehmen“ (Axel geht, Simone übernimmt, Peter kommt automatisch zurück); Quiz lief mit
