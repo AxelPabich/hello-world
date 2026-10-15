@@ -455,6 +455,9 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+68. **Neue Fragenpakete** (15.10.2026): „Einzelhandel“, „Büroalltag“ und „Besserwisser“ mit je
+    20 Fragen (Version 1). Über „Fragen aktualisieren“ erst nach dem Merge in `master`, sonst mit dem
+    nächsten Build.
 66. **Vorschläge aus dem Test vom 15.10.2026, 22:04–22:18 (Build 27)** (in Build 29 umgesetzt, bis auf
     das Tablet):
     - Wer nach einer Übernahme mitten in einer Frage zurückkommt, wartet bis zur Pause und wird
