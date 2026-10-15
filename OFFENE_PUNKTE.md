@@ -420,6 +420,11 @@ Kategorien recherchieren.
     Einstellungen und die Quiz-Fragen gehen mit; eine unterbrochene Frage wird wiederholt. Ohne
     Nachfolger endet das Spiel für alle. Spezifikation Abschnitt 48. Im Test prüfen: Übergabe per ⋮,
     Verlassen mit „Spieler übernehmen“, App des Spielleiters beenden (Verbindungsabbruch).
+60. **Verteilung über Google Play** (zurückgestellt, 15.10.2026): Play Console „Interne Tests“
+    (bis 100 Tester, nicht öffentlich) statt APK von der Release-Seite – keine Play-Protect-Scans
+    mehr, automatische Updates. Braucht Entwicklerkonto (einmalig 25 US-$), eigenen Signaturschlüssel
+    als GitHub-Secret und ein App-Bundle (AAB) im Build. Bis dahin: Play Protect → Zahnrad →
+    „Apps mit Play Protect scannen“ nur fürs Update kurz aus.
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.
