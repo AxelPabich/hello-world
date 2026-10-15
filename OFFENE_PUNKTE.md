@@ -385,7 +385,11 @@ Kategorien recherchieren.
 
 ## Offen
 
-(zurzeit nichts)
+54. **Start-Animationen im Diagnose-Protokoll** (umgesetzt, kommt mit dem nächsten Build): Das
+    Protokoll vermerkt „Splash: A Hüpfer / B Vorhang auf / C Hau drauf“ (mit „ohne Ton“, falls der
+    Ton aus ist) und „Splash übersprungen“, auf jedem Gerät außerdem „Spielstart-Animation:
+    1 Die Fabel / 2 Verfolgungsjagd / 3 Startschuss“. So lässt sich nachvollziehen, welche
+    Variante wann lief.
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.

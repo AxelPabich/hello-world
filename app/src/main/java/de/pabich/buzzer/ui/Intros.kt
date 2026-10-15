@@ -255,14 +255,14 @@ private fun ShowText(text: String, size: Int, modifier: Modifier = Modifier, col
 
 /** Splash beim App-Start: Variante 0 = Hüpfer, 1 = Vorhang auf, 2 = Hau drauf. Tippen überspringt. */
 @Composable
-fun SplashScreen(variant: Int, onDone: () -> Unit) {
-    val t = introClock(variant, onDone)
+fun SplashScreen(variant: Int, onDone: (skipped: Boolean) -> Unit) {
+    val t = introClock(variant) { onDone(false) }
     val bits = remember(variant) { confettiBits(variant + 7) }
     BoxWithConstraints(
         Modifier
             .fillMaxSize()
             .background(Ground)
-            .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { onDone() },
+            .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { onDone(true) },
     ) {
         val w = maxWidth
         val h = maxHeight

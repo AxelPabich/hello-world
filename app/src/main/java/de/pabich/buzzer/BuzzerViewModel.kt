@@ -125,11 +125,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Quiz startet erst nach der Spielstart-Animation – solange keine zweite Anfrage. */
     private var quizStartPending: Cancellable? = null
 
-    fun splashDone() {
+    fun splashDone(skipped: Boolean = false) {
+        if (splash != null && skipped) Diagnostics.log("Splash übersprungen")
         splash = null
     }
 
     private fun showIntro(variant: Int) {
+        Diagnostics.log("Spielstart-Animation: ${RACE_NAMES[variant % RACE_NAMES.size]}")
         intro = variant
         introSeq++
         if (soundOn) sounds.play(Jingle.entries[Jingle.RACE_FABLE.ordinal + variant % de.pabich.buzzer.ui.RACE_VARIANTS])
@@ -244,7 +246,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     init {
         // Klang zum Splash-Screen (SoundPlayer wartet kurz, bis er geladen ist).
-        splash?.let { if (soundOn) sounds.play(Jingle.entries[Jingle.SPLASH_HOP.ordinal + it]) }
+        splash?.let {
+            Diagnostics.log("Splash: ${SPLASH_NAMES[it % SPLASH_NAMES.size]}" + if (soundOn) "" else " (ohne Ton)")
+            if (soundOn) sounds.play(Jingle.entries[Jingle.SPLASH_HOP.ordinal + it])
+        }
         // Zwischengespeicherte Diagnoseberichte wieder aufnehmen.
         pendingDir.listFiles { f -> f.name.endsWith(".txt") }.orEmpty().sortedBy { it.name }.forEach { f ->
             runCatching {
@@ -1384,6 +1389,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
         /** Pause zwischen „Go!“ und dem automatischen Start der nächsten Quiz-Frage. */
         const val AUTO_START_MS = 1_500L
+
+        /** Namen der Start-Animationen fürs Diagnose-Protokoll. */
+        val SPLASH_NAMES = listOf("A Hüpfer", "B Vorhang auf", "C Hau drauf")
+        val RACE_NAMES = listOf("1 Die Fabel", "2 Verfolgungsjagd", "3 Startschuss")
     }
 }
 

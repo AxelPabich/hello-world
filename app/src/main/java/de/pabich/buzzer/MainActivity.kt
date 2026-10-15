@@ -113,7 +113,7 @@ private fun App(vm: BuzzerViewModel) {
         if (vm.screen != Screen.UPDATE) TransferBanner(vm, Modifier.align(androidx.compose.ui.Alignment.BottomCenter))
         // Spielstart-Animation (Rennszene) auf allen Geräten, Splash-Screen beim App-Start.
         vm.intro?.let { de.pabich.buzzer.ui.RaceIntro(it, vm.introSeq, onDone = vm::introDone) }
-        vm.splash?.let { de.pabich.buzzer.ui.SplashScreen(it, onDone = vm::splashDone) }
+        vm.splash?.let { de.pabich.buzzer.ui.SplashScreen(it, onDone = { skipped -> vm.splashDone(skipped) }) }
     }
     // Neuere Version empfangen oder geladen: installieren?
     UpdateDialog(vm)
