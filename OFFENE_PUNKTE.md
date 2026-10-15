@@ -452,17 +452,18 @@ Kategorien recherchieren.
     wird über „Build N installieren“ auf dem Startbildschirm, in „Über & Diagnose“, im ⋮-Menü des
     Spielleiters und nach dem Verlassen eines Spiels wieder angeboten. Vorher bedeutete „Später“
     praktisch „nie“ – die Datei lag unerreichbar im Cache.
-67. **Direkter Download-Link** (umgesetzt, kommt mit dem nächsten Build): In „Über & Diagnose“ beim
+67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
-66. **Vorschläge aus dem Test vom 15.10.2026, 22:04–22:18 (Build 27)** (offen):
-    - Wer nach einer Übernahme mitten in einer Frage zurückkommt, wartet bis zur Pause und muss
-      dann von Hand angenommen werden – besser automatisch in der nächsten Pause aufnehmen.
-    - Neuer Spielleiter startet die nächste Frage oft, bevor alle zurück sind (Peter und Axel
-      verpassten Fragen): Hinweis „Noch nicht zurück: …“ beim Spielleiter, solange die Übernahme läuft.
-    - „Diagnosen abrufen“: Spieler mit Build < 27 können nicht antworten – das beim Spielleiter
-      anzeigen.
-    - Peters Galaxy Tab S6 (Android 12) installiert Build 27 nicht, auch außerhalb des Spiels
+66. **Vorschläge aus dem Test vom 15.10.2026, 22:04–22:18 (Build 27)** (in Build 29 umgesetzt, bis auf
+    das Tablet):
+    - Wer nach einer Übernahme mitten in einer Frage zurückkommt, wartet bis zur Pause und wird
+      dann automatisch aufgenommen (vorher: von Hand).
+    - Neuer Spielleiter startete die nächste Frage, bevor alle zurück waren (Peter und Axel
+      verpassten Fragen): jetzt Hinweis „Noch nicht zurück: …“, solange die Übernahme läuft.
+    - „Diagnosen abrufen“: Spieler mit Build < 27 können nicht antworten – wird jetzt mit Namen
+      angezeigt.
+    - Offen: Peters Galaxy Tab S6 (Android 12) installiert Build 27 nicht, auch außerhalb des Spiels
       (21:53 Release-Seite, 21:55 und 21:58 von Simone; danach startet weiter Build 26).
 
 

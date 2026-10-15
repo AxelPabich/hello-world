@@ -352,6 +352,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engine.masterName = myName.trim()
         engine.onChanged = { snap ->
             masterSnapshot = snap
+            acceptReturning()
             // Tickende Uhr auf dem Master-Gerät, solange jemand antwortet.
             val deadline = snap.answerDeadline.takeIf { snap.phase == MasterEngine.Phase.ANSWERING }
             updateTicking(deadline.takeIf { SoundEvent.TICK in snap.settings.sounds })
@@ -1166,10 +1167,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val peer = PeerInfo.parse(name)
         Diagnostics.log("Beitrittsanfrage von $endpointId, Prüfcode $authCode (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
         // Nach einer Übernahme kommen die bisherigen Mitspieler ohne Rückfrage wieder hinein.
-        val taken = takenOver
-        if (master?.canAcceptJoin() == true && taken != null && UptimeClock.now() < takenOverUntil && peer.compatible && !peer.updateOnly &&
-            peer.name != myName.trim() && (peer.name == taken.master || taken.scores.any { it.first == peer.name })
-        ) {
+        if (master?.canAcceptJoin() == true && isReturning(peer)) {
             Diagnostics.log("Übernahme: ${peer.name} kommt zurück – ohne Rückfrage aufgenommen")
             link.accept(endpointId)
             return
@@ -1493,6 +1491,36 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         startTakeover(s, "$name hat die Spielleitung zugleich übernommen.")
     }
 
+    /** Neuer Spielleiter: Gehört [peer] zum Spiel des Vorgängers (Übernahme läuft noch)? */
+    private fun isReturning(peer: PeerInfo): Boolean {
+        val taken = takenOver ?: return false
+        return UptimeClock.now() < takenOverUntil && peer.compatible && !peer.updateOnly && peer.name != myName.trim() &&
+            (peer.name == taken.master || taken.scores.any { it.first == peer.name })
+    }
+
+    /** Wer während einer Frage zurückkam, wartet bis zur Pause – dann ohne Rückfrage aufnehmen. */
+    private fun acceptReturning() {
+        if (master?.canAcceptJoin() != true) return
+        for (request in joinRequests.filter { isReturning(it.peer) }) {
+            Diagnostics.log("Übernahme: ${request.peer.name} kommt in der Pause zurück – ohne Rückfrage aufgenommen")
+            joinRequests.remove(request)
+            link.accept(request.endpointId)
+        }
+    }
+
+    /**
+     * Neuer Spielleiter: Mitspieler aus dem Spiel des Vorgängers, die noch nicht wieder verbunden
+     * sind (solange die Übernahme läuft). Der Vorgänger zählt nur bei einer freiwilligen Übergabe.
+     */
+    val takeoverMissing: List<String>
+        get() {
+            val taken = takenOver ?: return emptyList()
+            if (UptimeClock.now() > takenOverUntil) return emptyList()
+            val back = masterSnapshot?.players.orEmpty().filter { it.connected }.map { statsName(it.name) }.toSet()
+            val expected = taken.scores.map { it.first } + listOfNotNull(taken.master.takeIf { taken.to.isNotEmpty() })
+            return expected.distinct().filter { it != myName.trim() && it !in back }
+        }
+
     /** „Ich übernehme die Spielleitung.“ */
     fun takeOver() {
         val t = takeover ?: return
@@ -1550,8 +1578,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val ids = peerBuilds.keys.toList()
         if (ids.isEmpty()) return
         ids.forEach { link.send(it, Message.DiagnoseRequest) }
-        Diagnostics.log("Diagnosen bei ${ids.size} Spielern angefragt")
-        status = "Diagnosen bei ${ids.size} Spielern angefragt – sie kommen, sobald sie zustimmen."
+        // Ältere Builds kennen die Anfrage nicht und antworten nie.
+        val old = ids.filter { (peerBuilds[it] ?: 0) < DIAG_REQUEST_BUILD }
+            .mapNotNull { id -> masterSnapshot?.players?.firstOrNull { it.id == id }?.name?.let { "$it (Build ${peerBuilds[id] ?: "alt"})" } }
+        Diagnostics.log("Diagnosen bei ${ids.size} Spielern angefragt" + if (old.isNotEmpty()) "; zu alt: ${old.joinToString()}" else "")
+        status = "Diagnosen bei ${ids.size} Spielern angefragt – sie kommen, sobald sie zustimmen." +
+            if (old.isNotEmpty()) " ${old.joinToString()} kann erst ab Build $DIAG_REQUEST_BUILD antworten – bitte dort „Diagnose senden“ tippen." else ""
     }
 
     /** Gespeicherte Antwort auf „Diagnose an den Spielleiter?“: `true` senden, `false` nicht, `null` fragen. Gilt bis zum nächsten Build. */
@@ -1784,6 +1816,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
         /** Ab diesem Build pingt der Spielleiter in jeder Phase (Herzschlag). */
         const val HEARTBEAT_BUILD = 27
+
+        /** Ab diesem Build beantworten Spieler „Diagnosen abrufen“. */
+        const val DIAG_REQUEST_BUILD = 27
 
         /** So lange darf der Spielleiter still sein, bevor die Verbindung als abgebrochen gilt. */
         const val MASTER_SILENCE_MS = 12_000L

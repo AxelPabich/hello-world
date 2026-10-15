@@ -670,6 +670,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Nachfolger gibt an ihn ab: Das Spiel liegt beim Nachfolger. Verliert der Spielleiter alle Spieler
   fast gleichzeitig, kündigt er seine Gruppe nach 3 s neu an und weist darauf hin, dass vielleicht
   schon jemand übernommen hat.
+- Der neue Spielleiter sieht „Noch nicht zurück: …“, bis alle Mitspieler des Vorgängers wieder da
+  sind (höchstens 3 Minuten). Wer während einer Frage zurückkommt, wird in der nächsten Pause
+  automatisch aufgenommen.
 - **Was bleibt:** Punkte (beim Wiederbeitritt nach Namen zugeordnet; wer später kommt, bekommt sie
   dann), Runde, Spielart, Profil und Einstellungen, Testspiel. Der Nachfolger spielt weiter mit
   („Master spielt mit“) und behält seine Punkte. Das Quiz läuft mit derselben Fragenliste weiter
@@ -685,6 +688,7 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Antwort (senden mit/ohne Systemdaten bzw. nicht senden) gespeichert und gilt, bis eine andere
   Build-Nummer läuft.
 - Gesendete Berichte landen wie bisher beim Spielleiter (mit Token direkt in GitHub).
+- Spieler mit Build < 27 kennen die Anfrage nicht; der Spielleiter sieht ihre Namen im Hinweis.
 - „Diagnose senden“ zeigt ebenfalls „Bericht ansehen“: genau der Text, der verschickt würde.
 
 ## 50. Installation neuer Versionen

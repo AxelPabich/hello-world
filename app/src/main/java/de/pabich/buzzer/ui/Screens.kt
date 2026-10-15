@@ -810,6 +810,16 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     }
                 }
                 snapshot.ready?.let { ReadyPanel(it, onCancel = { vm.cancelReady() }) }
+                vm.takeoverMissing.takeIf { it.isNotEmpty() }?.let { missing ->
+                    // Nach einer Übernahme: erst weitermachen, wenn alle zurück sind.
+                    Text(
+                        "⏳ Noch nicht zurück: ${missing.joinToString()} – am besten kurz warten",
+                        color = theme.accent,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 4.dp),
+                    )
+                }
                 if (vm.joinRequests.isNotEmpty() && !vm.masterIdle) {
                     Text(
                         "⏳ ${vm.joinRequests.joinToString { it.name }} wartet – Anfrage erscheint nach der Runde",
