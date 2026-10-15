@@ -452,6 +452,21 @@ Kategorien recherchieren.
     wird über „Build N installieren“ auf dem Startbildschirm, in „Über & Diagnose“, im ⋮-Menü des
     Spielleiters und nach dem Verlassen eines Spiels wieder angeboten. Vorher bedeutete „Später“
     praktisch „nie“ – die Datei lag unerreichbar im Cache.
+66. **Vorschläge aus dem Test vom 15.10.2026, 22:04–22:18 (Build 27)** (offen):
+    - Wer nach einer Übernahme mitten in einer Frage zurückkommt, wartet bis zur Pause und muss
+      dann von Hand angenommen werden – besser automatisch in der nächsten Pause aufnehmen.
+    - Neuer Spielleiter startet die nächste Frage oft, bevor alle zurück sind (Peter und Axel
+      verpassten Fragen): Hinweis „Noch nicht zurück: …“ beim Spielleiter, solange die Übernahme läuft.
+    - „Diagnosen abrufen“: Spieler mit Build < 27 können nicht antworten – das beim Spielleiter
+      anzeigen.
+    - Peters Galaxy Tab S6 (Android 12) installiert Build 27 nicht, auch außerhalb des Spiels
+      (21:53 Release-Seite, 21:55 und 21:58 von Simone; danach startet weiter Build 26).
+
+
+Bestätigt im Test (15.10.2026, Build 27): Herzschlag – Spieler mit Build 27 erkennen den
+Funkabbruch nach 12–13 s; Übernahme nach Funkabbruch (Axel übernimmt von Simone, später Simone
+von Axel), Vorgänger tritt dem Nachfolger bei, Punkte richtig übernommen; Übergabe per ⋮
+(Simone → Axel); „Alle Spieler getrennt“-Hinweis; Diagnosen abrufen (Simone).
 
 Bestätigt im Test (15.10.2026, Build 26): Übergabe per ⋮ (Simone → Axel) und „Spiel verlassen –
 Spieler übernehmen“ (Axel geht, Simone übernimmt, Peter kommt automatisch zurück); Quiz lief mit
