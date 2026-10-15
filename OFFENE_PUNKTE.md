@@ -383,22 +383,26 @@ Kategorien recherchieren.
     Startschuss). Der Spielleiter wählt die Variante zufällig und schickt sie mit, damit alle
     dieselbe sehen. Läuft beim Start eines Quiz und bei „Neues Spiel“, nicht vor jeder Runde.
 
-## Offen
+## Erledigt in Build 25
 
-54. **Start-Animationen im Diagnose-Protokoll** (umgesetzt, kommt mit dem nächsten Build): Das
+54. ✅ **Start-Animationen im Diagnose-Protokoll**: Das
     Protokoll vermerkt „Splash: A Hüpfer / B Vorhang auf / C Hau drauf“ (mit „ohne Ton“, falls der
     Ton aus ist) und „Splash übersprungen“, auf jedem Gerät außerdem „Spielstart-Animation:
     1 Die Fabel / 2 Verfolgungsjagd / 3 Startschuss“. So lässt sich nachvollziehen, welche
     Variante wann lief.
-55. **Get Ready auch für den Spielleiter** (umgesetzt, kommt mit dem nächsten Build): Bei „Get
+55. ✅ **Get Ready auch für den Spielleiter**: Bei „Get
     Ready“ bekommt auch der Spielleiter selbst die Abfrage „BEREIT?“ (mit „Abfrage abbrechen“).
     „Alle bereit – Go!“ und damit der automatische Start im Quiz kommen erst, wenn auch er bestätigt
     hat – er wird nicht mehr überrascht. In der Bereit-Liste steht er als „Name (Spielleiter)“.
-56. **Bereit-Abfrage automatisch** (umgesetzt, kommt mit dem nächsten Build): In der Quiz-Einrichtung
+56. ✅ **Bereit-Abfrage automatisch**: In der Quiz-Einrichtung
     der Schalter „Bereit-Abfrage automatisch“ mit wählbarer Zeit (5–120 s, Standard 10 s) „… nach der
     Auflösung“. Dann startet „BEREIT?“ von selbst; sind alle (auch der Spielleiter) bereit, kommt die
     nächste Frage. Bei offener Challenge, Prüfung oder Pause wartet die Automatik; nach der letzten
     Frage gibt es keine. Gehört zur Quiz-Vorlage.
+
+## Offen
+
+(zurzeit nichts)
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.
