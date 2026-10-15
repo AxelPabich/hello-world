@@ -131,6 +131,12 @@ class NearbyLink(context: Context, private val listener: Listener) {
         ).addOnFailureListener { listener.onError("Gruppe konnte nicht eröffnet werden: ${it.message}") }
     }
 
+    /** Gruppe neu ankündigen – z. B. nachdem Bluetooth/WLAN kurz weg waren. */
+    fun restartAdvertising(groupName: String) {
+        client.stopAdvertising()
+        startAdvertising(groupName)
+    }
+
     fun startDiscovery() {
         client.startDiscovery(
             SERVICE_ID,

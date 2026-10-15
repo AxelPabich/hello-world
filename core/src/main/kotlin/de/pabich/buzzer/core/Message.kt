@@ -143,6 +143,9 @@ sealed interface Message {
     /** M → S: Der Spielleiter hat einen GitHub-Zugang und übernimmt gespeicherte Diagnosen. */
     data object DiagnoseCollect : Message
 
+    /** M → S: Der Spielleiter bittet um einen Diagnosebericht (der Spieler entscheidet). */
+    data object DiagnoseRequest : Message
+
     /** M → S: Spielstart-Animation [variant] zeigen (Rennszene, auf allen Geräten dieselbe). */
     data class Intro(val variant: Int) : Message
 
@@ -273,6 +276,7 @@ object MessageCodec {
                 "f" to message.from, "b" to message.build, "t" to message.text, "sv" to message.saved,
             )
             Message.DiagnoseCollect -> "DIAG_COLLECT" to emptyMap()
+            Message.DiagnoseRequest -> "DIAG_REQUEST" to emptyMap()
             is Message.Intro -> "INTRO" to mapOf("v" to message.variant)
             is Message.DiagnoseReceived -> "DIAG_OK" to mapOf("id" to message.reportId)
             is Message.ReadyCheck -> "READY_CHECK" to mapOf("id" to message.id, "on" to message.on)
@@ -359,6 +363,7 @@ object MessageCodec {
                 f.getValue("id"), int("i"), int("n"), f.getValue("f"), int("b"), f.getValue("t"), f["sv"]?.toBooleanStrict() ?: false,
             )
             "DIAG_COLLECT" -> Message.DiagnoseCollect
+            "DIAG_REQUEST" -> Message.DiagnoseRequest
             "INTRO" -> Message.Intro(int("v"))
             "DIAG_OK" -> Message.DiagnoseReceived(f.getValue("id"))
             "READY_CHECK" -> Message.ReadyCheck(int("id"), bool("on"))

@@ -402,15 +402,15 @@ Kategorien recherchieren.
 
 ## Offen
 
-57. **Start-Animationen laufen komplett und blenden aus** (umgesetzt, kommt mit dem nächsten Build):
+57. **Start-Animationen laufen komplett und blenden aus** (in Build 26):
     Splash-Screen und Rennszene laufen jetzt über die Bildwiederholung statt über die
     Animations-Skalierung des Systems (bei „Animationen aus“/verkürzt war sie sofort vorbei) und
     starten erst mit dem ersten angezeigten Bild. Nach 3 s bleibt das Schlussbild 0,8 s stehen und
     blendet in 0,6 s aus; erst dann erscheint der Startbildschirm bzw. die erste Quizfrage.
-58. **Neues „Wah-wah-wah-waaah“** (umgesetzt, kommt mit dem nächsten Build): gestopfte Posaune –
+58. **Neues „Wah-wah-wah-waaah“** (in Build 26): gestopfte Posaune –
     drei absteigende „Wah“ und ein langes, wackelndes „Waaah“, das am Ende abrutscht (Hörprobe
     `docs/wah-wah-neu.wav`).
-59. **Spielleitung übergeben und übernehmen** (umgesetzt, kommt mit dem nächsten Build;
+59. **Spielleitung übergeben und übernehmen** (in Build 26;
     Entscheidungen vom 15.10.2026: Punkte bleiben, das Quiz läuft weiter, freiwillige Übergabe
     über ⋮): Der Spielleiter schickt in jeder Pause den Spielstand an alle. ⋮ „Spielleitung übergeben
     an …“ macht einen Spieler zum Spielleiter, der bisherige spielt weiter mit. „Spiel verlassen“
@@ -420,6 +420,65 @@ Kategorien recherchieren.
     Einstellungen und die Quiz-Fragen gehen mit; eine unterbrochene Frage wird wiederholt. Ohne
     Nachfolger endet das Spiel für alle. Spezifikation Abschnitt 48. Im Test prüfen: Übergabe per ⋮,
     Verlassen mit „Spieler übernehmen“, App des Spielleiters beenden (Verbindungsabbruch).
+60. **Verteilung über Google Play** (zurückgestellt, 15.10.2026): Play Console „Interne Tests“
+    (bis 100 Tester, nicht öffentlich) statt APK von der Release-Seite – keine Play-Protect-Scans
+    mehr, automatische Updates. Braucht Entwicklerkonto (einmalig 25 US-$), eigenen Signaturschlüssel
+    als GitHub-Secret und ein App-Bundle (AAB) im Build. Bis dahin: Play Protect → Zahnrad →
+    „Apps mit Play Protect scannen“ nur fürs Update kurz aus.
+61. **Feinschliff Übernahme** (in Build 27): Der Spielverlauf beginnt
+    nach einer Übernahme mit den übernommenen Punkten statt bei 0; doppelte Protokollzeile
+    „Spielleitung an … übergeben“ entfernt. Wird die App beim Spielleiter weggewischt, dürfen die
+    Spieler übernehmen (vorher: Spiel für alle beendet).
+62. **Übernahme bei Funkabbruch robuster** (in Build 27) – Test vom
+    15.10.2026, Axel schaltet Bluetooth und WLAN aus:
+    - Die Spieler merkten den Abbruch erst nach ~60 s (Nearby). Jetzt pingt der Spielleiter in jeder
+      Phase alle 2 s; nach 12 s Stille startet die Übernahme.
+    - Simone hatte übernommen, sah dann aber Axels alte Gruppe und gab an ihn ab (Fehler: der
+      Vorgänger zählte beim Vorrang mit). Peter hing in der Verbindung zu Simone, beide endeten
+      nach 1 Minute mit „Niemand hat übernommen“. Jetzt zählt der Vorgänger nicht mehr.
+    - Axels Gruppe war nach dem Funkabbruch nicht mehr erreichbar (STATUS_RADIO_ERROR). Verliert
+      der Spielleiter alle Spieler fast gleichzeitig, kündigt er die Gruppe neu an und zeigt einen
+      Hinweis.
+    - Peters Tablet lief ab 20:28 wieder mit Build 22 – bitte aktualisieren.
+63. **Diagnosen abrufen und prüfen** (in Build 27): ⋮ „Diagnosen der
+    Spieler abrufen“; Spieler entscheiden mit Systemdaten-Haken, „Bericht ansehen“ und „Nicht erneut
+    fragen (bis zum nächsten Build)“. „Bericht ansehen“ auch in „Diagnose senden“. Abschnitt 49.
+64. **Installation hängt auf dem Galaxy Tab S6 (aus dem Spiel heraus)** (in Build 28): Vor der Installation wird das Spiel verlassen (Verbindung und Hintergrund-Dienst
+    aus), die APK geht über den Paket-Installer von Android (Sitzung) statt über den Dialog; jedes
+    Ergebnis und der Build-Wechsel beim nächsten Start stehen im Protokoll. Aufgefallen: Peters
+    Tablet startete am 15.10. um 20:28 wieder mit Build 22 statt 26 – die neue Protokollzeile
+    „ZURÜCKGESETZT“ macht so etwas künftig sichtbar.
+65. **„Später“ installieren** (in Build 28): Die Version bleibt bereit (auch nach Neustart) und
+    wird über „Build N installieren“ auf dem Startbildschirm, in „Über & Diagnose“, im ⋮-Menü des
+    Spielleiters und nach dem Verlassen eines Spiels wieder angeboten. Vorher bedeutete „Später“
+    praktisch „nie“ – die Datei lag unerreichbar im Cache.
+67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
+    Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
+    die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+68. **Neue Fragenpakete** (15.10.2026): „Einzelhandel“, „Büroalltag“ und „Besserwisser“ mit je
+    20 Fragen (Version 1). Über „Fragen aktualisieren“ erst nach dem Merge in `master`, sonst mit dem
+    nächsten Build.
+66. **Vorschläge aus dem Test vom 15.10.2026, 22:04–22:18 (Build 27)** (in Build 29 umgesetzt, bis auf
+    das Tablet):
+    - Wer nach einer Übernahme mitten in einer Frage zurückkommt, wartet bis zur Pause und wird
+      dann automatisch aufgenommen (vorher: von Hand).
+    - Neuer Spielleiter startete die nächste Frage, bevor alle zurück waren (Peter und Axel
+      verpassten Fragen): jetzt Hinweis „Noch nicht zurück: …“, solange die Übernahme läuft.
+    - „Diagnosen abrufen“: Spieler mit Build < 27 können nicht antworten – wird jetzt mit Namen
+      angezeigt.
+    - Offen: Peters Galaxy Tab S6 (Android 12) installiert Build 27 nicht, auch außerhalb des Spiels
+      (21:53 Release-Seite, 21:55 und 21:58 von Simone; danach startet weiter Build 26).
+
+
+Bestätigt im Test (15.10.2026, Build 27): Herzschlag – Spieler mit Build 27 erkennen den
+Funkabbruch nach 12–13 s; Übernahme nach Funkabbruch (Axel übernimmt von Simone, später Simone
+von Axel), Vorgänger tritt dem Nachfolger bei, Punkte richtig übernommen; Übergabe per ⋮
+(Simone → Axel); „Alle Spieler getrennt“-Hinweis; Diagnosen abrufen (Simone).
+
+Bestätigt im Test (15.10.2026, Build 26): Übergabe per ⋮ (Simone → Axel) und „Spiel verlassen –
+Spieler übernehmen“ (Axel geht, Simone übernimmt, Peter kommt automatisch zurück); Quiz lief mit
+Frage 3/12 und den richtigen Punkten weiter. Noch zu testen: Verbindungsabbruch (Bluetooth aus bzw.
+App beim Spielleiter beenden).
 
 Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
 wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.

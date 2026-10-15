@@ -124,6 +124,7 @@ fun StartScreen(vm: BuzzerViewModel, onOpenGroup: () -> Unit, onSearch: () -> Un
                 StartTile("Mitspielen", "Gruppe suchen", filled = false, enabled = nameOk, onClick = onSearch, modifier = Modifier.weight(1f))
             }
             if (!nameOk) Text("Bitte zuerst deinen Namen eingeben.", color = theme.muted, fontSize = 14.sp)
+            PendingUpdateHint(vm)
             StatusText(vm)
             Column {
                 MenuRow("Profile & Einstellungen", { vm.navigate(Screen.SETTINGS) })
@@ -252,7 +253,7 @@ fun HelpScreen(vm: BuzzerViewModel) {
                 "Quiz" to "Im Quiz kommen die Fragen aus der Fragen-Datenbank. Die Frage erscheint auf allen Geräten gleichzeitig, 3 Sekunden später die vier Antworten – bei jedem in anderer Reihenfolge. Tippe deine Antwort; aufgelöst wird, wenn alle geantwortet haben oder die Zeit um ist.",
                 "Wertung im Quiz" to "Schnellster punktet: nur die erste richtige Antwort. Jeder punktet: jede richtige Antwort. Countdown: nach der ersten richtigen Antwort läuft nur noch kurz die Zeit, alle Richtigen bekommen ihre Restzeit. Battle: nur der Schnellste bekommt seine Restzeit. Falsche Antworten kosten nie etwas.",
                 "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“. Alle sehen dann ein Laufband, bis der Spielleiter entschieden hat: Wertung bleibt, Frage annullieren, Antwort korrigieren, Frage sperren oder Ersatzfrage. Punkte und Zeiten werden dabei mitkorrigiert.",
-                "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf.",
+                "Diagnosen" to "Über ⋮ „Diagnose senden“ kannst du einen Bericht an den Spielleiter schicken, teilen oder auf dem Gerät speichern. Hat ein Spielleiter einen GitHub-Zugang, fragt die App beim Beitritt, ob er deine gespeicherten Diagnosen übernehmen darf. Bittet der Spielleiter um deine Diagnose, entscheidest du selbst – mit „Bericht ansehen“ siehst du vorher genau, was gesendet wird.",
                 "Bereit?" to "Fragt der Spielleiter „Bereit?“, tippe „Bereit!“. Sind alle bereit, kommt ein „Go!“ – im Quiz startet die nächste Frage dann von selbst.",
                 "Spielleiter weg?" to "Der Spielleiter kann die Leitung über ⋮ „Spielleitung übergeben an …“ einem Spieler geben. Geht er oder bricht seine Verbindung ab, kann jeder Spieler mit „Ich übernehme“ weitermachen – Punkte und Quiz laufen weiter, die anderen verbinden sich von selbst. Übernimmt niemand innerhalb 1 Minute, endet das Spiel.",
                 "Im Hintergrund" to "Solange eine Runde läuft, zeigt die App eine Benachrichtigung. Sie hält die Verbindung, wenn du kurz eine andere App öffnest. Bricht sie trotzdem ab: in den Android-Einstellungen bei Buzzer „Akku – nicht eingeschränkt“ wählen.",
@@ -472,7 +473,9 @@ private fun UpdateSection(vm: BuzzerViewModel) {
     val theme = LocalBuzzerTheme.current
     val repo = vm.repoBuild
     Spacer(Modifier.height(8.dp))
+    PendingUpdateHint(vm)
     when {
+        vm.receivedUpdate != null -> Unit
         vm.downloadProgress != null -> TimeBar(vm.downloadProgress ?: 0f, "Lade die neueste Version …", theme.accent2, Modifier.fillMaxWidth())
         repo == null -> GhostButton("Nach neuer Version suchen", { vm.checkRepoUpdate() }, Modifier.fillMaxWidth())
         repo > AppUpdate.ownBuild -> {
@@ -481,6 +484,32 @@ private fun UpdateSection(vm: BuzzerViewModel) {
         }
         else -> Text("Du hast die neueste Version.", color = theme.muted, fontSize = 15.sp)
     }
+    // Ausweg, wenn die Installation aus der App hängt: im Browser laden und über „Eigene Dateien“ öffnen.
+    val uri = androidx.compose.ui.platform.LocalUriHandler.current
+    TextButton(onClick = {
+        de.pabich.buzzer.Diagnostics.log("Update: direkter Download-Link im Browser geöffnet")
+        runCatching { uri.openUri(de.pabich.buzzer.ShareApp.DOWNLOAD_URL) }
+    }) { Text("Direkter Download im Browser (buzzer.apk)", color = theme.accent2) }
+    Text(
+        "Klappt die Installation aus der App nicht: Link öffnen, die Datei herunterladen und über „Eigene Dateien“ → Downloads antippen.",
+        color = theme.muted,
+        fontSize = 13.sp,
+    )
+    androidx.compose.foundation.text.selection.SelectionContainer {
+        Text(de.pabich.buzzer.ShareApp.DOWNLOAD_URL, color = theme.muted, fontSize = 12.sp)
+    }
+}
+
+/** Eine neuere Version liegt bereit („Später“ gewählt): hier jederzeit installieren. */
+@Composable
+private fun PendingUpdateHint(vm: BuzzerViewModel) {
+    val update = vm.receivedUpdate ?: return
+    PrimaryButton(
+        "Build ${update.build} installieren",
+        { vm.openUpdateDialog() },
+        Modifier.fillMaxWidth().padding(vertical = 6.dp),
+        height = 52.dp,
+    )
 }
 
 // ---------------------------------------------------------------------- Spieler
@@ -552,6 +581,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
 
     if (view.readyAsk != null && !view.readyConfirmed && !view.paused) ReadyDialog { vm.confirmReady() }
     DiagnoseOfferDialog(vm)
+    DiagnoseRequestDialog(vm)
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showSaved) SavedReportsDialog(vm) { showSaved = false }
     if (showChat) {
@@ -701,6 +731,17 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 text = { Text("Diagnose senden") },
                                 onClick = { showMenu = false; showDiagnostics = true },
                             )
+                            vm.receivedUpdate?.let { update ->
+                                DropdownMenuItem(
+                                    text = { Text("Build ${update.build} installieren (liegt bereit)") },
+                                    onClick = { showMenu = false; vm.openUpdateDialog() },
+                                )
+                            }
+                            DropdownMenuItem(
+                                text = { Text("Diagnosen der Spieler abrufen") },
+                                enabled = vm.handOverCandidates.isNotEmpty(),
+                                onClick = { showMenu = false; vm.requestDiagnoses() },
+                            )
                             if (snapshot.kind == GameKind.QUIZ) {
                                 DropdownMenuItem(
                                     text = { Text((if (vm.testGame) "✓ " else "") + "Testspiel – nicht in die Statistik") },
@@ -769,6 +810,16 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     }
                 }
                 snapshot.ready?.let { ReadyPanel(it, onCancel = { vm.cancelReady() }) }
+                vm.takeoverMissing.takeIf { it.isNotEmpty() }?.let { missing ->
+                    // Nach einer Übernahme: erst weitermachen, wenn alle zurück sind.
+                    Text(
+                        "⏳ Noch nicht zurück: ${missing.joinToString()} – am besten kurz warten",
+                        color = theme.accent,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 4.dp),
+                    )
+                }
                 if (vm.joinRequests.isNotEmpty() && !vm.masterIdle) {
                     Text(
                         "⏳ ${vm.joinRequests.joinToString { it.name }} wartet – Anfrage erscheint nach der Runde",

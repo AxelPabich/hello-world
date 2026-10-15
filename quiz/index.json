@@ -41,6 +41,24 @@
       "titel": "Aktuelles 2026",
       "version": 2,
       "fragen": 20
+    },
+    {
+      "datei": "einzelhandel.json",
+      "titel": "Einzelhandel",
+      "version": 1,
+      "fragen": 20
+    },
+    {
+      "datei": "bueroalltag.json",
+      "titel": "Büroalltag",
+      "version": 1,
+      "fragen": 20
+    },
+    {
+      "datei": "besserwisser.json",
+      "titel": "Besserwisser",
+      "version": 1,
+      "fragen": 20
     }
   ]
 }

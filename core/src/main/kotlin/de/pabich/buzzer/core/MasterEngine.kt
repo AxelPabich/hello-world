@@ -264,6 +264,9 @@ class MasterEngine(
 
     /** Punkte aus einer Übernahme: kommen zurück, sobald der Spieler wieder beitritt. */
     private val carriedScores = mutableMapOf<String, Long>()
+
+    /** Übernommene Punkte je Spieler – Startbild des Spielverlaufs nach einer Übernahme. */
+    private val startScores = mutableMapOf<PlayerId, Long>()
     private var lastSuccession: Message.Succession? = null
     private var handedOver = false
 
@@ -282,6 +285,7 @@ class MasterEngine(
         if (local) player.sync.setLocal()
         carriedScores.remove(baseName(name))?.let {
             player.score = it
+            startScores[id] = it
             log("Punkte aus dem Spiel davor übernommen: $name $it")
         }
         players[id] = player
@@ -353,6 +357,7 @@ class MasterEngine(
         if (phase != Phase.READY) return
         gameStarted = false
         carriedScores.clear()
+        startScores.clear()
         history.clear()
         recordedRound = -1
         lastResult = null
@@ -364,15 +369,17 @@ class MasterEngine(
 
     // ------------------------------------------------------------------ Uhrenabgleich
 
-    /** Startet den regelmäßigen Uhrenabgleich: beim Beitritt schnell, danach etwa alle 2 s zwischen den Runden. */
+    /**
+     * Startet den regelmäßigen Uhrenabgleich: beim Beitritt schnell, danach etwa alle 2 s – in jeder
+     * Phase, damit die Spieler einen stillen Spielleiter rasch bemerken (Herzschlag, Punkt 62).
+     */
     fun start() {
         if (pingTask != null) return
         fun tick() {
             pingTick++
-            val idle = phase == Phase.READY || phase == Phase.ROUND_OVER
             for (p in players.values) {
                 if (!p.connected) continue
-                if (p.sync.sampleCount < 8 || (idle && pingTick % 8 == 0)) {
+                if (p.sync.sampleCount < 8 || pingTick % 8 == 0) {
                     send(p.id, Message.Ping(++pingSeq, clock.now()))
                 }
             }
@@ -604,7 +611,7 @@ class MasterEngine(
     }
 
     private fun recordRound() {
-        if (history.isEmpty()) history += players.keys.associateWith { 0L }
+        if (history.isEmpty()) history += players.keys.associateWith { startScores[it] ?: 0L }
         history += players.values.associate { it.id to it.score }
         recordedRound = round
         lastResult = RoundResult(
@@ -1191,7 +1198,7 @@ class MasterEngine(
         t.awards = computeAwards(t)
         t.awards.forEach { (id, amount) -> players[id]?.let { it.score += amount } }
         phase = Phase.QUIZ_REVEAL
-        if (history.isEmpty()) history += players.keys.associateWith { 0L }
+        if (history.isEmpty()) history += players.keys.associateWith { startScores[it] ?: 0L }
         history += players.values.associate { it.id to it.score }
         recordedRound = round
         val q = t.question
