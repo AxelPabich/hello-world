@@ -2,6 +2,7 @@ package de.pabich.buzzer.core
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -46,5 +47,19 @@ class DiagnoseTransferTest {
     fun `diagnose messages survive the codec`() {
         val m = Message.DiagnoseReceived("abc-1")
         assertEquals(m, MessageCodec.decode(MessageCodec.encode(m)))
+        assertEquals(Message.DiagnoseCollect, MessageCodec.decode(MessageCodec.encode(Message.DiagnoseCollect)))
+    }
+
+    @Test
+    fun `saved reports keep their flag and older chunks count as not saved`() {
+        val chunks = DiagnoseTransfer.split("r1", "Peter", 17, "x".repeat(4_000), saved = true)
+        val collector = DiagnoseTransfer.Collector()
+        val report = chunks.map { MessageCodec.decode(MessageCodec.encode(it)) as Message.DiagnoseChunk }.firstNotNullOf { collector.add(it) }
+        assertTrue(report.saved)
+        // Build 17 kennt das Feld noch nicht.
+        val old = MessageCodec.encode(Message.DiagnoseChunk("r2", 0, 1, "Clara", 17, "t")).toString(Charsets.UTF_8)
+            .replace("|sv=false", "")
+        assertFalse("sv=" in old)
+        assertEquals(false, (MessageCodec.decode(old.toByteArray(Charsets.UTF_8)) as Message.DiagnoseChunk).saved)
     }
 }

@@ -16,6 +16,11 @@
         android:name="android.permission.NEARBY_WIFI_DEVICES"
         android:usesPermissionFlags="neverForLocation" />
 
+    <!-- Verbindung im Hintergrund halten: Vordergrund-Dienst mit Benachrichtigung -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <!-- Neueste Version und Fragenpakete aus dem Repository laden -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Empfangene oder geladene neuere Version installieren (Android fragt einmal nach) -->
@@ -29,6 +34,8 @@
 
     <application
         android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="Buzzer"
         android:theme="@android:style/Theme.Material.NoActionBar">
         <activity
@@ -40,6 +47,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".GameService"
+            android:exported="false"
+            android:foregroundServiceType="connectedDevice" />
 
         <!-- Gibt die eigene APK zum Weitergeben, Updates zum Installieren und Statistik zum Teilen frei. -->
         <provider

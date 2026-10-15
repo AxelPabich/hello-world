@@ -22,11 +22,15 @@ import kotlin.concurrent.thread
 class QuizStore(private val context: Context) {
     private val downloadDir = File(context.filesDir, "quiz").apply { mkdirs() }
     private val statsFile = File(context.filesDir, "quiz-stats.json")
+    /** Statistik aus Testspielen: beeinflusst weder Auswahl noch Schwierigkeit. */
+    private val testStatsFile = File(context.filesDir, "quiz-stats-test.json")
     private val main = Handler(Looper.getMainLooper())
 
     var packs: List<QuestionPack> = emptyList()
         private set
     var stats: StatsBook = StatsBook()
+        private set
+    var testStats: StatsBook = StatsBook()
         private set
 
     val questions: List<Question> get() = packs.flatMap { it.questions }
@@ -38,6 +42,7 @@ class QuizStore(private val context: Context) {
         stats = runCatching { StatsBook.fromJson(statsFile.readText()) }
             .onFailure { if (statsFile.exists()) Diagnostics.log("Quiz-Statistik nicht lesbar: ${it.message}") }
             .getOrDefault(StatsBook())
+        testStats = runCatching { StatsBook.fromJson(testStatsFile.readText()) }.getOrDefault(StatsBook())
     }
 
     /** Eingebaute Pakete plus geladene; bei gleichem Namen gewinnt die höhere Version. */
@@ -61,34 +66,49 @@ class QuizStore(private val context: Context) {
 
     // ------------------------------------------------------------------ Statistik
 
-    private fun saveStats() {
-        runCatching { statsFile.writeText(stats.toJson(byId)) }
-            .onFailure { Diagnostics.log("Quiz-Statistik nicht speicherbar: ${it.message}") }
+    private fun saveStats(test: Boolean) {
+        runCatching {
+            if (test) testStatsFile.writeText(testStats.toJson(byId, test = true)) else statsFile.writeText(stats.toJson(byId))
+        }.onFailure { Diagnostics.log("Quiz-Statistik nicht speicherbar: ${it.message}") }
     }
 
-    fun recordResult(id: String, results: List<ParticipantResult>) {
+    /** Änderung an der echten bzw. (im Testspiel) an der Test-Statistik. */
+    private fun update(test: Boolean, change: (StatsBook) -> StatsBook) {
+        if (test) testStats = change(testStats) else stats = change(stats)
+        saveStats(test)
+    }
+
+    fun recordResult(id: String, results: List<ParticipantResult>, test: Boolean = false) {
         val q = byId[id] ?: return
-        stats = stats.recordResult(q, results, System.currentTimeMillis())
-        saveStats()
+        update(test) { it.recordResult(q, results, System.currentTimeMillis()) }
     }
 
-    fun recordSeen(id: String, names: List<String>) {
+    fun recordSeen(id: String, names: List<String>, test: Boolean = false) {
         val q = byId[id] ?: return
-        stats = stats.recordSeen(q, names, System.currentTimeMillis())
-        saveStats()
+        update(test) { it.recordSeen(q, names, System.currentTimeMillis()) }
     }
 
-    fun recordChallenge(id: String, from: String, reason: String) {
+    fun recordChallenge(id: String, from: String, reason: String, test: Boolean = false) {
         val q = byId[id] ?: return
-        stats = stats.recordChallenge(q, from, reason)
-        saveStats()
+        update(test) { it.recordChallenge(q, from, reason) }
     }
 
-    fun recordDecision(id: String, decision: ChallengeDecision, newCorrect: Int?) {
+    /** [results]: die Bewertung nach der Entscheidung (ersetzt die bei der Auflösung gezählte). */
+    fun recordDecision(id: String, decision: ChallengeDecision, newCorrect: Int?, before: List<ParticipantResult>?, after: List<ParticipantResult>?, test: Boolean = false) {
         val q = byId[id] ?: return
         // Index in der Paket-Reihenfolge – das Spiel kennt die Frage mit derselben Antwortliste.
-        stats = stats.recordDecision(q, decision, newCorrect)
-        saveStats()
+        update(test) { it.revise(q, before, after).recordDecision(q, decision, newCorrect) }
+    }
+
+    /** Statistik als JSON (für das Hochladen in das private Repository). */
+    fun statsJson(): String = stats.toJson(byId)
+
+    /** Test-Statistik als JSON oder `null`, wenn es keine gibt. */
+    fun testStatsJson(): String? = testStats.takeIf { it.entries.isNotEmpty() }?.toJson(byId, test = true)
+
+    fun clearTestStats() {
+        testStats = StatsBook()
+        testStatsFile.delete()
     }
 
     /** Teilt die Statistik als `.buzzstats` (z. B. an Claude zur Auswertung). */

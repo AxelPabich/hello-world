@@ -122,17 +122,67 @@ sealed interface Message {
     /** S → M: tippt gerade eine Kurznachricht (an) bzw. fertig (aus). */
     data class Typing(val on: Boolean) : Message
 
-    /** S → M: Teil [index] von [count] eines Diagnoseberichts von [from] (Build [build]). */
-    data class DiagnoseChunk(val reportId: String, val index: Int, val count: Int, val from: String, val build: Int, val text: String) : Message
+    /**
+     * S → M: Teil [index] von [count] eines Diagnoseberichts von [from] (Build [build]).
+     * [saved]: ein auf dem Spieler gespeicherter Bericht – er wird dort erst gelöscht, wenn der
+     * Spielleiter ihn im Repository abgelegt hat.
+     */
+    data class DiagnoseChunk(
+        val reportId: String,
+        val index: Int,
+        val count: Int,
+        val from: String,
+        val build: Int,
+        val text: String,
+        val saved: Boolean = false,
+    ) : Message
 
-    /** M → S: Diagnosebericht vollständig erhalten. */
+    /** M → S: Diagnosebericht erhalten (bzw. bei gespeicherten Berichten: im Repository abgelegt). */
     data class DiagnoseReceived(val reportId: String) : Message
+
+    /** M → S: Der Spielleiter hat einen GitHub-Zugang und übernimmt gespeicherte Diagnosen. */
+    data object DiagnoseCollect : Message
+
+    /** M → S: Spielstart-Animation [variant] zeigen (Rennszene, auf allen Geräten dieselbe). */
+    data class Intro(val variant: Int) : Message
+
+    /** M → S: „Bereit?“-Abfrage [id] anzeigen ([on]) bzw. schließen. */
+    data class ReadyCheck(val id: Int, val on: Boolean) : Message
+
+    /** S → M: bereit für Abfrage [id]. */
+    data class Ready(val id: Int) : Message
+
+    /** M → S: Der Spielleiter prüft die Auflösung (Laufband an/aus). */
+    data class Review(val on: Boolean) : Message
 
     /** Beide Richtungen: bitte die eigene App (APK) schicken. */
     data object ApkRequest : Message
 
     /** Beide Richtungen: gleich folgt die APK als Datei [payloadId] mit [build] und [size] Bytes. */
     data class ApkInfo(val payloadId: Long, val build: Int, val size: Long) : Message
+
+    /**
+     * M → S: alles, was ein Nachfolger zum Weiterführen braucht (Punkt 59). Kommt in jeder Pause neu.
+     * [to] = Name des bestimmten Nachfolgers bei „Spielleitung übergeben“, sonst leer.
+     * [scores] nach Namen (ohne „ (Master)“); [quiz] = Fragen-IDs, [quizNext] = Index der nächsten
+     * zu stellenden Frage (-1 = kein laufendes Quiz).
+     */
+    data class Succession(
+        val game: String,
+        val master: String,
+        val to: String,
+        val kind: GameKind?,
+        val round: Int,
+        val profile: String,
+        val settings: Map<String, String>,
+        val scores: List<Pair<String, Long>>,
+        val quiz: List<String>,
+        val quizNext: Int,
+        val test: Boolean,
+    ) : Message
+
+    /** M → S: Der Spielleiter geht, die Spieler dürfen übernehmen (statt [Bye]). */
+    data object MasterGone : Message
 
     /** M → S: Spielpause an/aus – Spieler sehen ein Pausen-Overlay. */
     data class Pause(val on: Boolean) : Message
@@ -220,11 +270,23 @@ object MessageCodec {
             is Message.Typing -> "TYPING" to mapOf("on" to message.on)
             is Message.DiagnoseChunk -> "DIAG" to mapOf(
                 "id" to message.reportId, "i" to message.index, "n" to message.count,
-                "f" to message.from, "b" to message.build, "t" to message.text,
+                "f" to message.from, "b" to message.build, "t" to message.text, "sv" to message.saved,
             )
+            Message.DiagnoseCollect -> "DIAG_COLLECT" to emptyMap()
+            is Message.Intro -> "INTRO" to mapOf("v" to message.variant)
             is Message.DiagnoseReceived -> "DIAG_OK" to mapOf("id" to message.reportId)
+            is Message.ReadyCheck -> "READY_CHECK" to mapOf("id" to message.id, "on" to message.on)
+            is Message.Ready -> "READY" to mapOf("id" to message.id)
+            is Message.Review -> "REVIEW" to mapOf("on" to message.on)
             Message.ApkRequest -> "APK_REQUEST" to emptyMap()
             is Message.ApkInfo -> "APK_INFO" to mapOf("id" to message.payloadId, "b" to message.build, "sz" to message.size)
+            is Message.Succession -> "SUCCESSION" to mapOf(
+                "g" to message.game, "m" to message.master, "to" to message.to, "k" to (message.kind?.name ?: ""),
+                "r" to message.round, "pn" to message.profile, "s" to SettingsCodec.encodeLine(message.settings),
+                "sc" to encodeList(message.scores.map { "${enc(it.first)}:${it.second}" }),
+                "q" to encodeList(message.quiz), "qn" to message.quizNext, "t" to message.test,
+            )
+            Message.MasterGone -> "MASTER_GONE" to emptyMap()
         }
         val text = buildString {
             append(type)
@@ -293,10 +355,28 @@ object MessageCodec {
             )
             "QUIZ_CHALLENGE" -> Message.QuizChallenge(int("n"), f.getValue("r"))
             "TYPING" -> Message.Typing(bool("on"))
-            "DIAG" -> Message.DiagnoseChunk(f.getValue("id"), int("i"), int("n"), f.getValue("f"), int("b"), f.getValue("t"))
+            "DIAG" -> Message.DiagnoseChunk(
+                f.getValue("id"), int("i"), int("n"), f.getValue("f"), int("b"), f.getValue("t"), f["sv"]?.toBooleanStrict() ?: false,
+            )
+            "DIAG_COLLECT" -> Message.DiagnoseCollect
+            "INTRO" -> Message.Intro(int("v"))
             "DIAG_OK" -> Message.DiagnoseReceived(f.getValue("id"))
+            "READY_CHECK" -> Message.ReadyCheck(int("id"), bool("on"))
+            "READY" -> Message.Ready(int("id"))
+            "REVIEW" -> Message.Review(bool("on"))
             "APK_REQUEST" -> Message.ApkRequest
             "APK_INFO" -> Message.ApkInfo(long("id"), int("b"), long("sz"))
+            "SUCCESSION" -> Message.Succession(
+                game = f.getValue("g"), master = f.getValue("m"), to = f.getValue("to"),
+                kind = f.getValue("k").takeIf { it.isNotEmpty() }?.let { GameKind.valueOf(it) },
+                round = int("r"), profile = f.getValue("pn"), settings = SettingsCodec.decodeLine(f.getValue("s")),
+                scores = decodeList(f.getValue("sc")).map {
+                    val i = it.lastIndexOf(':')
+                    dec(it.substring(0, i)) to it.substring(i + 1).toLong()
+                },
+                quiz = decodeList(f.getValue("q")), quizNext = int("qn"), test = bool("t"),
+            )
+            "MASTER_GONE" -> Message.MasterGone
             else -> null
         }
     } catch (e: RuntimeException) {

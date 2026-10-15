@@ -72,7 +72,7 @@ private fun App(vm: BuzzerViewModel) {
     var pendingAction by remember { mutableStateOf<(() -> Unit)?>(null) }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
         // Ungefährer Standort genügt; den genauen darf der Nutzer ablehnen.
-        val granted = result.filterKeys { it != Manifest.permission.ACCESS_FINE_LOCATION }.values.all { it }
+        val granted = result.filterKeys { it !in OPTIONAL_PERMISSIONS }.values.all { it }
         Diagnostics.log("Berechtigungen: " + result.entries.joinToString { "${it.key.substringAfterLast('.')}=${it.value}" })
         if (granted) {
             pendingAction?.invoke()
@@ -86,7 +86,7 @@ private fun App(vm: BuzzerViewModel) {
         val missing = requiredPermissions().filter {
             context.checkSelfPermission(it) != PackageManager.PERMISSION_GRANTED
         }
-        if (missing.all { it == Manifest.permission.ACCESS_FINE_LOCATION }) {
+        if (missing.all { it in OPTIONAL_PERMISSIONS }) {
             action()
         } else {
             pendingAction = action
@@ -104,6 +104,7 @@ private fun App(vm: BuzzerViewModel) {
             Screen.DISCOVER -> DiscoverScreen(vm)
             Screen.MASTER -> MasterScreen(vm)
             Screen.PLAYER -> PlayerScreen(vm)
+            Screen.TAKEOVER -> de.pabich.buzzer.ui.TakeoverScreen(vm)
             Screen.UPDATE -> UpdateScreen(vm)
             Screen.SETTINGS -> AppSettingsScreen(vm)
             Screen.HELP -> HelpScreen(vm)
@@ -111,6 +112,9 @@ private fun App(vm: BuzzerViewModel) {
         }
         // Übertragung einer App-Version läuft neben dem Spiel – unten eingeblendet.
         if (vm.screen != Screen.UPDATE) TransferBanner(vm, Modifier.align(androidx.compose.ui.Alignment.BottomCenter))
+        // Spielstart-Animation (Rennszene) auf allen Geräten, Splash-Screen beim App-Start.
+        vm.intro?.let { de.pabich.buzzer.ui.RaceIntro(it, vm.introSeq, onDone = vm::introDone) }
+        vm.splash?.let { de.pabich.buzzer.ui.SplashScreen(it, onDone = { skipped -> vm.splashDone(skipped) }) }
     }
     // Neuere Version empfangen oder geladen: installieren?
     UpdateDialog(vm)
@@ -123,10 +127,14 @@ private fun App(vm: BuzzerViewModel) {
  * immer angefragt, weil manche Geräte ihn für die Suche auch ab Android 12 verlangen
  * (Fehler 8034 MISSING_PERMISSION_ACCESS_COARSE_LOCATION).
  */
+/** Ohne diese geht es auch: genauer Standort und die Benachrichtigung des Hintergrund-Dienstes. */
+private val OPTIONAL_PERMISSIONS = setOf(Manifest.permission.ACCESS_FINE_LOCATION, "android.permission.POST_NOTIFICATIONS")
+
 private fun requiredPermissions(): List<String> {
     val location = listOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     return when {
         Build.VERSION.SDK_INT >= 33 -> location + listOf(
+            Manifest.permission.POST_NOTIFICATIONS,
             Manifest.permission.BLUETOOTH_ADVERTISE,
             Manifest.permission.BLUETOOTH_CONNECT,
             Manifest.permission.BLUETOOTH_SCAN,

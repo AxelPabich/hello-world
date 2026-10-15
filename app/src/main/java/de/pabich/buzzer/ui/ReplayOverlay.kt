@@ -40,20 +40,28 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.pabich.buzzer.core.Message
 import de.pabich.buzzer.core.formatScore
+import kotlinx.coroutines.delay
 import kotlin.math.floor
+
+private const val HOLD_MS = 3_000L
 
 /**
  * Spielverlauf als Wettrennen: Runde für Runde wachsen die Balken, die Zeilen tauschen die
- * Plätze. Kurze Pause am Anfang und am Ende; insgesamt [Message.Replay.durationMs].
+ * Plätze. Kurze Pause am Anfang und am Ende; insgesamt [Message.Replay.durationMs], danach bleibt
+ * der Endstand [HOLD_MS] stehen.
  * Tippen schließt die Animation vorzeitig (nur auf diesem Gerät).
  */
 @Composable
-fun ReplayOverlay(replay: Message.Replay, onDone: () -> Unit, modifier: Modifier = Modifier) {
+fun ReplayOverlay(replay: Message.Replay, onDone: () -> Unit, onMusicEnd: () -> Unit = {}, modifier: Modifier = Modifier) {
     val theme = LocalBuzzerTheme.current
     val done by rememberUpdatedState(onDone)
+    val stopMusic by rememberUpdatedState(onMusicEnd)
     val progress = remember(replay) { Animatable(0f) }
     LaunchedEffect(replay) {
         progress.animateTo(1f, tween(replay.durationMs.toInt(), easing = LinearEasing))
+        // Endstand noch 3 Sekunden stehen lassen; die Musik endet mit der Animation.
+        stopMusic()
+        delay(HOLD_MS)
         done()
     }
     val frames = replay.frames

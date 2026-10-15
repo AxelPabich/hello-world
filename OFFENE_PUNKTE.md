@@ -221,9 +221,211 @@ Kategorien recherchieren.
     - Keine zusätzliche Verschlüsselung mit dem Token (Begründung: sonst könnte nur das
       Master-Gerät die Berichte lesen, auch Claude nicht; das private Repository schützt sie).
 
+## Umgesetzt im nächsten Build (Rückmeldung vom 14.10.2026, Punkte 22–30)
+
+22. **Diagnose während des Spiels erreichbar:** Bisher gibt es „Diagnose senden“ nur auf der
+    Startseite – mit Verbindung kommt man nicht hin, daher fehlten „An den Spielleiter senden“
+    und „In GitHub ablegen“. Neu: Menü ⋮ beim Spieler (obere Leiste) und beim Spielleiter.
+    Der Spielleiter lädt eigene **und** eingesammelte Berichte hoch; nicht hochgeladene Berichte
+    werden auf dem Gerät zwischengespeichert (gehen beim Verlassen nicht verloren).
+23. **Statistik zurück ins Repository:** Der Spielleiter lädt die Quiz-Statistik (`.buzzstats`)
+    mit seinem Zugang hoch; Claude wertet sie aus und passt die Fragenpakete an (Rückfrage offen).
+24. **Quiz-Vorlagen getrennt von Buzzer-Profilen:** eigene Einrichtungs-Menüs; vor dem Quiz wird
+    eine Quiz-Vorlage gewählt (Rückfrage offen). Vorlagen separat anlegen, senden, exportieren.
+25. **Prüfung durch den Spielleiter:** Er sieht bei der Auflösung die Erklärung und kann selbst
+    eine Prüfung starten. Solange er prüft, sehen die Spieler unten ein Laufband „Bitte warte
+    kurz – die Antworten werden überprüft“.
+26. **Obere Leiste auf schmalen Handys (A53):** Ton, Brief und Menü stehen immer rechts fest;
+    die Emoticons nutzen den restlichen Platz und lassen sich seitlich wischen.
+27. **Verbindung bleibt im Hintergrund:** Während eine Gruppe offen ist, läuft ein Vordergrund-
+    Dienst mit Benachrichtigung „Buzzer-Runde läuft“, damit Android die Verbindung nicht nach
+    einigen Minuten kappt. Hinweis auf Samsung-Akkuoptimierung, falls es trotzdem passiert.
+28. **Pause per Knopf:** sichtbarer Pause-Knopf beim Spielleiter (statt nur im Menü).
+29. **„Get Ready“:** Der Spielleiter fragt „Bereit?“ ab; bei den Spielern erscheint ein Fenster
+    mit „Bereit!“. Der Spielleiter sieht, wer bestätigt hat; sind alle bereit, erscheint
+    „Go!“ mit Klang. Er kann die nächste Runde/Frage auch ohne „Go!“ starten.
+30. **Einstellungen nicht bei jedem Tipp speichern:** +/− in der Quiz-Einrichtung erst nach
+    kurzer Ruhe übernehmen (heute 8 Protokollzeilen in 3 Sekunden).
+
+## Erledigt in Build 18
+
+31. ✅ **Challenge-Ablauf:** Das Laufband „Bitte warte kurz – die Antworten werden überprüft“ startet
+    automatisch, sobald ein Spieler eine Challenge sendet oder der Spielleiter „Antwort prüfen“
+    öffnet, und endet mit seiner Entscheidung. Nach einer Entscheidung startet „Antwort prüfen“
+    keine Prüfung mehr nebenbei (im Test lief das Laufband sonst bis zur nächsten Frage).
+32. ✅ **Ruhigeres Protokoll beim Beitritt:** „Runde beendet“/„Spielart: noch offen“ beim Wählen der
+    Spielart nicht mehr als eigene Ereignisse beim Spieler protokollieren.
+33. ✅ **Testspiel-Schalter:** Im Menü ⋮ des Spielleiters „Testspiel – nicht in die Statistik“.
+    Solange er an ist, zählen Antworten, „gesehen“, Challenges und Entscheidungen nicht in die
+    Quiz-Statistik (Fragen werden also beim nächsten echten Spiel wieder als ungespielt gewählt).
+    Anzeige „Testspiel“ in der Kopfzeile beim Spielleiter; wird beim Start einer neuen Runde
+    nicht automatisch zurückgesetzt, aber beim Neustart der App.
+34. ✅ **Diagnose lokal ablegen:** Jede Diagnose (im Spiel und außerhalb, z. B. vom Startbildschirm
+    oder nach einem Verbindungsfehler) kann auf dem Gerät gespeichert werden. Liste
+    „Gespeicherte Diagnosen“ unter „Über & Diagnose“ mit Ansehen, Teilen, Löschen.
+    Wer ein gültiges Repository-Token hat, lädt sie stattdessen direkt hoch (bei Fehler oder
+    ohne Internet bleiben sie lokal liegen und werden später erneut angeboten).
+35. ✅ **Gespeicherte Diagnosen beim Beitritt einsammeln:** Hat ein Spieler gespeicherte Diagnosen
+    und der Spielleiter ein gültiges Token, fragt der Spieler beim Verbindungsaufbau „Der
+    Spielleiter kann N gespeicherte Diagnose(n) in sein Diagnose-Repository übernehmen.
+    Senden?“ (Ja / Nein / Später). Übertragung wie bisher in Stücken; erst nach Bestätigung
+    durch den Spielleiter („im Repository abgelegt“) werden sie beim Spieler gelöscht.
+    Spielleiter ohne Token fragen nicht.
+
+## Erledigt in Build 19
+
+36. ✅ **Richtige Antwort beim Spielleiter hervorheben**:
+    In der Auflösung ist die richtige Antwort eine grüne Karte mit hellem Rahmen, Haken und
+    größerer Schrift; falsche Antworten bleiben gedämpft.
+37. ✅ **Spielverlauf am Ende halten:** Die Animation „Spielverlauf“ bleibt nach dem Durchlauf
+    3 Sekunden auf dem Endstand stehen (Musik endet mit der Animation), erst dann schließt sie –
+    bei allen Spielern und beim Spielleiter.
+38. ✅ **Knopf für den Spielverlauf:** Der Spielleiter bekommt in der Kopfzeile neben dem Pause-Knopf
+    einen eigenen Knopf mit 🐇🐢 (Hase und Schildkröte), der den Spielverlauf für alle startet.
+    Aktiv, sobald es einen Verlauf gibt (wie bisher „Spielverlauf zeigen“ im Menü ⋮, das bleibt).
+39. ✅ **Test-Statistik getrennt:** Im Testspiel werden die Ergebnisse (Antworten, übersprungene
+    Fragen, Challenges, Entscheidungen) in einer eigenen Test-Statistik (`quiz-stats-test.json`)
+    aufgezeichnet statt gar nicht. Sie beeinflusst weder Auswahl noch Schwierigkeit der Fragen.
+    „Quiz-Statistik hochladen“ legt sie – falls vorhanden – zusätzlich als eigene Datei
+    `statistik/JJJJ-MM-TT/Name-HH-MM-SS-TEST.buzzstats` ab (im JSON als Test gekennzeichnet).
+    Nach erfolgreichem Hochladen wird die Test-Statistik auf dem Gerät geleert.
+40. ✅ **Offene Challenge bei „Get Ready“ / „Nächste Frage“:** Ist noch eine Challenge oder Prüfung
+    offen, fragt die App den Spielleiter zuerst: „Offene Challenge von Wally – Wertung bleibt?“
+    (Wertung bleibt / Zurück zur Prüfung). Erst danach startet die Bereit-Abfrage bzw. die nächste
+    Frage; das Laufband läuft nie mehr während der Bereit-Abfrage. (Test 14.10., Build 18: nach
+    einer Challenge ohne Entscheidung lief das Laufband 50 s weiter.)
+41. ✅ **Ersatzfrage:** Neue Challenge-Entscheidung „Ersatzfrage“: Die aktuelle Frage wird annulliert
+    (Punkte/Zeiten zurück) und sofort durch eine neue Frage aus demselben Filter (Kategorien,
+    Stufen, zuerst ungespielte) ersetzt. Die Nummerierung bleibt („Frage 7/20“ wird neu
+    gestellt), die Gesamtzahl ändert sich nicht. Gibt es keine passende Frage mehr, ist der Knopf
+    ausgegraut („keine Ersatzfrage verfügbar“). In der Statistik zählt die ersetzte Frage als
+    annulliert.
+42. ✅ **Wertung bei Entscheidungen sicher korrigieren** (Prüfung des Codes am 14.10.):
+    - Annullieren, Korrigieren und Sperren nehmen Punkte bzw. Zeiten der Frage schon zurück und
+      rechnen bei „Korrigieren“ neu; „Sperren“ löscht die Gewinne wie „Annullieren“ und sperrt die
+      Frage zusätzlich. Das wird für alle vier Wertungen (Schnellster, Jeder, Countdown, Battle)
+      mit Tests abgesichert, inkl. Rangliste, Spielverlauf und der Anzeige bei den Spielern.
+    - Lücke Countdown: Nach „Korrigieren“ beginnt der Countdown neu ab der ersten jetzt richtigen
+      Antwort (bisher galt die Frist der ursprünglich ersten richtigen Antwort).
+    - Lücke Statistik: Bisher bleiben die Antworten in der Fragen-Statistik mit der alten
+      Bewertung stehen. Künftig zählen sie bei Annullieren/Sperren/Ersatzfrage nicht, und bei
+      Korrigieren werden richtig/falsch neu gezählt – sonst lernt die Schwierigkeit Falsches.
+43. ✅ **App-Symbol**: Lachender roter Buzzer auf goldenem
+    Sockel vor Studio-Scheinwerferstrahlen im Quizshow-Blau, mit Funkeln in Gold und Cyan
+    (adaptives Symbol, einfarbige Variante für Android 13+, Rundsymbol). Die Benachrichtigung
+    „Buzzer-Runde läuft“ zeigt den Buzzer als kleines Symbol. Vorschau: `docs/app-symbol-vorschau.png`.
+44. ✅ **Copyright**: Am Ende von „Hilfe & Spielregeln“
+    und „Über & Diagnose“: „© 2026 Axel Pabich · Idee, Spielregeln und Tests: Axel Pabich ·
+    Programmiert mit Claude (Anthropic)“.
+45. ✅ **Dateiname mit Erstellungszeit:** Diagnoseberichte in GitHub heißen nach dem Zeitpunkt ihrer
+    Erstellung (aus der Berichts-ID), nicht nach dem Hochladen – gespeicherte Berichte landen so
+    chronologisch richtig (Test 14.10.: Wallys Bericht von 19:40:41 hieß `Wally-19-42-13.txt`).
+    Auch der Datumsordner richtet sich nach der Erstellung.
+46. ✅ **Countdown begrenzen und Hinweis:** In der Quiz-Einrichtung kann die Countdown-Zeit höchstens
+    halb so lang wie die Antwortzeit sein (Regler entsprechend begrenzt; wird die Antwortzeit
+    verkürzt, rückt der Countdown automatisch mit). Darunter ein Hinweis: „Nach der ersten
+    richtigen Antwort bleiben den anderen noch x s.“ Ältere Profile/Vorlagen mit zu langem Countdown
+    werden beim Laden begrenzt, mit kurzer Meldung „Countdown auf x s begrenzt“. (Test 14.10.: mit
+    „Familienabend leicht“ griff der Countdown nie, alle bekamen ihre Restzeit.)
+
+## Erledigt in Build 21
+
+47. ✅ **Get Ready: nicht mehrfach auslösbar, danach automatisch weiter** (Test 14.10., Build 20:
+    vor Frage 3 wurde „Get Ready“ fünfmal getippt, Wally musste dreimal bestätigen):
+    - Während die Bereit-Abfrage läuft, zeigt der Knopf „Bereit: x / y …“ und löst keine neue
+      Abfrage aus; abbrechen weiterhin über das Bereit-Feld oben.
+    - Quiz: Nach „Alle bereit – Go!“ startet die nächste Frage automatisch (kurz nach dem
+      Go-Klang, ca. 1,5 s). Kein Auto-Start, wenn der Spielleiter in der Zwischenzeit pausiert
+      oder die Abfrage abgebrochen hat; die offene-Challenge-Rückfrage (Punkt 40) kommt wie bisher
+      vor dem Start der Abfrage.
+    - Buzzer: Dort liest der Spielleiter die Frage selbst vor – nach „Go!“ also kein
+      automatisches „Buzzer frei“, nur der Knopf leuchtet auf.
+48. ✅ **Spieleinstellungen im Quiz entrümpelt**:
+    Im Quiz zeigt ⋮ „Spieleinstellungen“ nur noch, was dort wirkt – Tabs „Teilnehmer“
+    (Master spielt mit, Kurznachrichten, Emoticons), „Wertung“ (Gleichstands-Schwelle für
+    Schnellster/Battle, Rangliste, Neues Spiel) und „Klang“ (nur Quiz-Klänge: Beitritt, Tusch,
+    Wah-wah, Go, Rundenende, Emoticon, Kurznachricht, Spielverlauf). Weg im Quiz: Startmodus,
+    Zufallsverzögerung, Sudden Death, Reaktions-/Antwortzeit-Limits, Buzzer-Wertung, Profile-Tab
+    (Vorlagen gibt es in der Quiz-Einrichtung). Eine empfangene Quiz-Vorlage beschreibt nur noch
+    Quiz-Werte. Der Buzzer-Modus bleibt unverändert.
+
+## Erledigt in Build 22
+
+49. ✅ **Anfragen stören das Spiel nicht**: Beitritts- und
+    Update-Anfragen sowie das Update-Angebot erscheinen beim Spielleiter erst in der nächsten Pause
+    – also sobald die aktuelle Frage beantwortet bzw. aufgelöst ist (Quiz: Auflösung; Buzzer: „Runde
+    beendet“ oder vor der Freigabe). Einsteigen mitten im Spiel ist ausdrücklich erlaubt; dem
+    Neuen fehlen nur die Punkte der Fragen davor. Während der Frage steht in der Kopfzeile nur
+    „⏳ Name wartet – Anfrage erscheint nach der Runde“. Bisher wurden Beitritte während der Runde
+    sofort abgelehnt und Update-Anfragen sofort als Dialog angezeigt. Bricht der Spieler die
+    Anfrage ab, verschwindet sie.
+50. ✅ **Prüfcode beim Spielleiter groß**: In der
+    Beitritts- und der Update-Anfrage steht der Prüfcode wie beim Spieler groß als „PRÜFCODE 1234“
+    im Quizshow-Feld, darunter „Name sieht denselben Code. Vergleicht ihn – nimm nur bei gleichem
+    Code an.“
+
+## Erledigt in Build 23
+
+51. ✅ **Ergebnis am Quiz-Ende als Spielverlauf:** Nach „Quiz beendet“ läuft der Spielverlauf
+    automatisch auf allen Geräten ab – höchstens 15 Sekunden (bei vielen Fragen entsprechend
+    schneller), danach bleibt das Ergebnis wie bisher statisch stehen.
+52. ✅ **Splash-Screen beim App-Start (3 s, zufällig wechselnd)** – Entwurf: `docs/animationen-entwurf.html`
+    (Vorschau https://claude.ai/artifact/4DcvoHvTA6WC6mw3tJ4Bb2). Bei jedem Start zufällig eine von:
+    A „Hüpfer“ (Maskottchen fällt herein und hüpft, Buchstaben springen auf; Ton: Boing + tiefer
+    Quizshow-Buzzer), B „Vorhang auf“ (Vorhang, Scheinwerfer, Glühbirnen-Schild; Ton: Ding-Ding-
+    Glocke), C „Hau drauf“ (flache Hand mit Kraftlinien haut auf den Buzzer, „BZZZT!“; Ton:
+    schnarrender Elektro-Buzzer). Immer dabei: jubelnde Mitspieler mit Handys, die Konfetti werfen,
+    plus Jubel-Geräusch. Tippen überspringt; Ton folgt der Ton-Einstellung der App.
+53. ✅ **Spielstart-Animation (3 s, zufällig wechselnd, auf allen Geräten gleich)** – Rennszenen mit
+    Mitspielern, Hase und Schildkröte: 1 „Die Fabel“ (Hase schläft ein, Schildkröte zieht vorbei,
+    „LOS!“, Startpfiff), 2 „Verfolgungsjagd“ (Kette unten hin, oben zurück, „QUIZ!“, Wuuusch),
+    3 „Startschuss“ („Auf die Plätze … Fertig …“, Staubwolke, Schildkröte: „Ich komm ja schon!“,
+    Startschuss). Der Spielleiter wählt die Variante zufällig und schickt sie mit, damit alle
+    dieselbe sehen. Läuft beim Start eines Quiz und bei „Neues Spiel“, nicht vor jeder Runde.
+
+## Erledigt in Build 25
+
+54. ✅ **Start-Animationen im Diagnose-Protokoll**: Das
+    Protokoll vermerkt „Splash: A Hüpfer / B Vorhang auf / C Hau drauf“ (mit „ohne Ton“, falls der
+    Ton aus ist) und „Splash übersprungen“, auf jedem Gerät außerdem „Spielstart-Animation:
+    1 Die Fabel / 2 Verfolgungsjagd / 3 Startschuss“. So lässt sich nachvollziehen, welche
+    Variante wann lief.
+55. ✅ **Get Ready auch für den Spielleiter**: Bei „Get
+    Ready“ bekommt auch der Spielleiter selbst die Abfrage „BEREIT?“ (mit „Abfrage abbrechen“).
+    „Alle bereit – Go!“ und damit der automatische Start im Quiz kommen erst, wenn auch er bestätigt
+    hat – er wird nicht mehr überrascht. In der Bereit-Liste steht er als „Name (Spielleiter)“.
+56. ✅ **Bereit-Abfrage automatisch**: In der Quiz-Einrichtung
+    der Schalter „Bereit-Abfrage automatisch“ mit wählbarer Zeit (5–120 s, Standard 10 s) „… nach der
+    Auflösung“. Dann startet „BEREIT?“ von selbst; sind alle (auch der Spielleiter) bereit, kommt die
+    nächste Frage. Bei offener Challenge, Prüfung oder Pause wartet die Automatik; nach der letzten
+    Frage gibt es keine. Gehört zur Quiz-Vorlage.
+
 ## Offen
 
-(keine)
+57. **Start-Animationen laufen komplett und blenden aus** (umgesetzt, kommt mit dem nächsten Build):
+    Splash-Screen und Rennszene laufen jetzt über die Bildwiederholung statt über die
+    Animations-Skalierung des Systems (bei „Animationen aus“/verkürzt war sie sofort vorbei) und
+    starten erst mit dem ersten angezeigten Bild. Nach 3 s bleibt das Schlussbild 0,8 s stehen und
+    blendet in 0,6 s aus; erst dann erscheint der Startbildschirm bzw. die erste Quizfrage.
+58. **Neues „Wah-wah-wah-waaah“** (umgesetzt, kommt mit dem nächsten Build): gestopfte Posaune –
+    drei absteigende „Wah“ und ein langes, wackelndes „Waaah“, das am Ende abrutscht (Hörprobe
+    `docs/wah-wah-neu.wav`).
+59. **Spielleitung übergeben und übernehmen** (umgesetzt, kommt mit dem nächsten Build;
+    Entscheidungen vom 15.10.2026: Punkte bleiben, das Quiz läuft weiter, freiwillige Übergabe
+    über ⋮): Der Spielleiter schickt in jeder Pause den Spielstand an alle. ⋮ „Spielleitung übergeben
+    an …“ macht einen Spieler zum Spielleiter, der bisherige spielt weiter mit. „Spiel verlassen“
+    fragt „Spieler übernehmen“ oder „Für alle beenden“. Geht der Spielleiter oder bricht die
+    Verbindung ab, sehen alle „Wer übernimmt?“ mit „Ich übernehme“ und 1 Minute Countdown; die
+    anderen verbinden sich automatisch mit dem Nachfolger (ohne Prüfcode-Rückfrage). Punkte, Runde,
+    Einstellungen und die Quiz-Fragen gehen mit; eine unterbrochene Frage wird wiederholt. Ohne
+    Nachfolger endet das Spiel für alle. Spezifikation Abschnitt 48. Im Test prüfen: Übergabe per ⋮,
+    Verlassen mit „Spieler übernehmen“, App des Spielleiters beenden (Verbindungsabbruch).
+
+Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
+wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.
+
+Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
+längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
 
 ### Konzept Oberfläche (Vorschlag)
 

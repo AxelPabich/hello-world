@@ -3,6 +3,7 @@ package de.pabich.buzzer
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.SoundPool
+import de.pabich.buzzer.core.Jingle
 import de.pabich.buzzer.core.SoundEvent
 import de.pabich.buzzer.core.SoundSynth
 import java.io.File
@@ -27,12 +28,21 @@ class SoundPlayer(context: Context) {
         )
         .build()
     private val ids = ConcurrentHashMap<SoundEvent, Int>()
+    private val jingles = ConcurrentHashMap<Jingle, Int>()
     private val loaded = ConcurrentHashMap.newKeySet<Int>()
 
     init {
         pool.setOnLoadCompleteListener { _, sampleId, status -> if (status == 0) loaded += sampleId }
         val dir = context.cacheDir
         thread(name = "buzzer-sounds", isDaemon = true) {
+            // Zuerst die Start-Klänge – der Splash-Screen braucht sie sofort.
+            for (jingle in Jingle.entries) {
+                runCatching {
+                    val file = File(dir, "jingle_${BuildConfig.VERSION_CODE}_${jingle.name}.wav")
+                    if (!file.exists()) writeWav(file, SoundSynth.render(jingle))
+                    jingles[jingle] = pool.load(file.path, 1)
+                }.onFailure { Diagnostics.log("Klang ${jingle.name} nicht geladen: ${it.message}") }
+            }
             for (event in SoundEvent.entries) {
                 runCatching {
                     val file = File(dir, "sound_${BuildConfig.VERSION_CODE}_${event.name}.wav")
@@ -48,6 +58,20 @@ class SoundPlayer(context: Context) {
         val id = ids[event] ?: return 0
         if (id !in loaded) return 0
         return pool.play(id, volume, volume, 1, 0, 1f)
+    }
+
+    /** Klang einer Start-Animation; wartet kurz, falls er gerade erst geladen wird. */
+    fun play(jingle: Jingle) {
+        thread(name = "buzzer-jingle", isDaemon = true) {
+            repeat(15) {
+                val id = jingles[jingle]
+                if (id != null && id in loaded) {
+                    pool.play(id, 1f, 1f, 1, 0, 1f)
+                    return@thread
+                }
+                Thread.sleep(100)
+            }
+        }
     }
 
     fun stop(streamId: Int) {

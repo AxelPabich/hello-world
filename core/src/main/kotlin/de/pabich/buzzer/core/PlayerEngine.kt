@@ -78,6 +78,12 @@ class PlayerEngine(
         val paused: Boolean = false,
         val kind: GameKind? = null,
         val quiz: QuizView? = null,
+        /** Offene „Bereit?“-Abfrage des Spielleiters (ID), sonst `null`. */
+        val readyAsk: Int? = null,
+        /** Für die laufende Abfrage schon bestätigt. */
+        val readyConfirmed: Boolean = false,
+        /** Der Spielleiter prüft die Auflösung – Laufband anzeigen. */
+        val reviewing: Boolean = false,
     )
 
     var onViewChanged: ((View) -> Unit)? = null
@@ -90,6 +96,8 @@ class PlayerEngine(
     /** Ein Durchgang beginnt (Buzzer scharf); für das Summen – nie zeitgleich mit der Freigabe. */
     var onArmed: (() -> Unit)? = null
     var onReplay: ((Message.Replay) -> Unit)? = null
+    /** Spielstart-Animation des Spielleiters (Rennszene [variant]). */
+    var onIntro: ((variant: Int) -> Unit)? = null
 
     var view = View(Display.BLACK, 0, "0", "Warte auf den Spielleiter")
         private set
@@ -141,7 +149,8 @@ class PlayerEngine(
             is Message.Reset -> {
                 endContest()
                 cancelQuizTasks()
-                log("Runde beendet")
+                // Beim Beitritt oder Wechsel der Spielart kommt ein Reset ohne laufende Runde – nicht protokollieren.
+                if (view.quiz != null || view.display != Display.BLACK) log("Runde beendet")
                 update { it.copy(timer = null, quiz = null) }
                 show(Display.BLACK, "Warte auf die nächste Frage", 0, message.score)
             }
@@ -174,11 +183,17 @@ class PlayerEngine(
             is Message.Replay -> onReplay?.invoke(message)
             is Message.Mode -> {
                 cancelQuizTasks()
-                log("Spielart: ${message.kind?.label ?: "noch offen"}")
+                if (message.kind != null && message.kind != view.kind) log("Spielart: ${message.kind.label}")
                 update { it.copy(kind = message.kind, quiz = null) }
                 show(Display.BLACK, if (message.kind == GameKind.QUIZ) "Quiz – gleich kommt die erste Frage" else "Warte auf den Spielleiter", 0, view.score)
             }
             is Message.QuizAsk -> onQuizAsk(message)
+            is Message.ReadyCheck -> {
+                log(if (message.on) "Bereit-Abfrage" else "Bereit-Abfrage beendet")
+                update { it.copy(readyAsk = if (message.on) message.id else null, readyConfirmed = false) }
+            }
+            is Message.Review -> update { it.copy(reviewing = message.on) }
+            is Message.Intro -> onIntro?.invoke(message.variant)
             is Message.QuizDeadline -> {
                 val q = view.quiz ?: return
                 if (q.number != message.number || q.stage == QuizStage.REVEALED) return
@@ -265,6 +280,16 @@ class PlayerEngine(
         send(Message.QuizChallenge(q.number, reason.trim().take(MAX_CHAT_LENGTH)))
         log("Challenge gesendet")
         update { it.copy(quiz = q.copy(challenged = true)) }
+        return true
+    }
+
+    /** „Bereit!“ auf die Abfrage des Spielleiters. */
+    fun confirmReady(): Boolean {
+        val id = view.readyAsk ?: return false
+        if (view.readyConfirmed) return false
+        send(Message.Ready(id))
+        log("Bereit bestätigt")
+        update { it.copy(readyConfirmed = true) }
         return true
     }
 

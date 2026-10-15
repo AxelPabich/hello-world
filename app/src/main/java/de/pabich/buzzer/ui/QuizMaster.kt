@@ -27,11 +27,13 @@ import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -42,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.pabich.buzzer.BuzzerViewModel
 import de.pabich.buzzer.core.ChallengeDecision
+import de.pabich.buzzer.core.maxCountdownMs
 import de.pabich.buzzer.core.Difficulty
 import de.pabich.buzzer.core.GameKind
 import de.pabich.buzzer.core.MasterEngine
@@ -52,6 +55,7 @@ import de.pabich.buzzer.core.QuizScoring
 import de.pabich.buzzer.core.Settings
 import de.pabich.buzzer.core.formatScore
 import java.util.Locale
+import kotlinx.coroutines.delay
 
 // ---------------------------------------------------------------------- Spielart wählen
 
@@ -133,8 +137,18 @@ private fun KindTile(title: String, text: String, color: Color, selected: Boolea
 fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Modifier = Modifier) {
     val theme = LocalBuzzerTheme.current
     val context = LocalContext.current
-    val settings = snapshot.settings
-    fun change(s: Settings) = vm.updateSettings(s)
+    // Änderungen erst nach kurzer Ruhe übernehmen – nicht bei jedem Tipp auf +/−.
+    var draft by remember(snapshot.settings) { mutableStateOf(snapshot.settings) }
+    LaunchedEffect(draft) {
+        if (draft != snapshot.settings) {
+            delay(700)
+            vm.updateSettings(draft)
+        }
+    }
+    val settings = draft
+    fun change(s: Settings) {
+        draft = s
+    }
     val dataVersion = vm.quizDataVersion
     val categories = remember(dataVersion) { vm.quizStore.categories }
     val players = snapshot.players.count { it.connected }
@@ -156,6 +170,7 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
             }
             Text("Neues Quiz:", color = theme.muted, fontSize = 14.sp, modifier = Modifier.padding(top = 8.dp))
         }
+        TemplateHeader(vm, snapshot)
         SetupTitle("Kategorien")
         FlowChips(
             items = categories,
@@ -181,7 +196,10 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
                 { change(settings.copy(quizCount = (settings.quizCount - 1).coerceAtLeast(1))) },
                 { change(settings.copy(quizCount = (settings.quizCount + 1).coerceAtMost(50))) })
             Stepper("Antwortzeit", seconds(settings.quizAnswerMs).replace(",0 s", " s"), Modifier.weight(1f),
-                { change(settings.copy(quizAnswerMs = (settings.quizAnswerMs - 5_000).coerceAtLeast(5_000))) },
+                {
+                    val answer = (settings.quizAnswerMs - 5_000).coerceAtLeast(5_000)
+                    change(settings.copy(quizAnswerMs = answer, quizCountdownMs = settings.quizCountdownMs.coerceAtMost(maxCountdownMs(answer))))
+                },
                 { change(settings.copy(quizAnswerMs = (settings.quizAnswerMs + 5_000).coerceAtMost(120_000))) })
         }
         SetupTitle("Wertung")
@@ -207,7 +225,27 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
         if (settings.quizScoring == QuizScoring.COUNTDOWN) {
             Stepper("Countdown nach erster richtiger Antwort", seconds(settings.quizCountdownMs).replace(",0 s", " s"), Modifier.fillMaxWidth(),
                 { change(settings.copy(quizCountdownMs = (settings.quizCountdownMs - 1_000).coerceAtLeast(1_000))) },
-                { change(settings.copy(quizCountdownMs = (settings.quizCountdownMs + 1_000).coerceAtMost(30_000))) })
+                { change(settings.copy(quizCountdownMs = (settings.quizCountdownMs + 1_000).coerceAtMost(maxCountdownMs(settings.quizAnswerMs)))) })
+            Text(
+                "Nach der ersten richtigen Antwort bleiben den anderen noch ${seconds(settings.quizCountdownMs).replace(",0 s", " s")} " +
+                    "(höchstens die halbe Antwortzeit).",
+                color = LocalBuzzerTheme.current.muted,
+                fontSize = 13.sp,
+            )
+        }
+        // Optional: nach der Auflösung startet die Bereit-Abfrage von selbst.
+        ToggleRow("Bereit-Abfrage automatisch", settings.quizAutoReadyMs > 0) { on ->
+            change(settings.copy(quizAutoReadyMs = if (on) 10_000 else 0))
+        }
+        if (settings.quizAutoReadyMs > 0) {
+            Stepper("… nach der Auflösung", seconds(settings.quizAutoReadyMs).replace(",0 s", " s"), Modifier.fillMaxWidth(),
+                { change(settings.copy(quizAutoReadyMs = (settings.quizAutoReadyMs - 5_000).coerceAtLeast(5_000))) },
+                { change(settings.copy(quizAutoReadyMs = (settings.quizAutoReadyMs + 5_000).coerceAtMost(120_000))) })
+            Text(
+                "Danach kommt bei allen „BEREIT?“; sind alle bereit, startet die nächste Frage. Bei einer offenen Challenge oder Pause wartet die Automatik.",
+                color = LocalBuzzerTheme.current.muted,
+                fontSize = 13.sp,
+            )
         }
         ToggleRow("Ich spiele mit", settings.masterPlays) { change(settings.copy(masterPlays = it)) }
         Row(
@@ -370,20 +408,49 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
             if (quiz.annulled) {
                 Text("Frage annulliert – keine Punkte.", color = Color(0xFFFF9A9A), fontSize = 15.sp, fontWeight = FontWeight.Bold)
             }
-            // Verteilung: wer hat was gewählt
+            // Verteilung: wer hat was gewählt – die richtige Antwort als grüne Karte mit Haken.
             val total = quiz.rows.size.coerceAtLeast(1)
             for ((i, answer) in q.answers.withIndex()) {
                 val names = quiz.rows.filter { it.chosen == i }.map { it.name }
-                val correct = i == q.correctIndex && !quiz.annulled
-                Column {
-                    Row {
-                        Text(answer, color = if (correct) theme.text else theme.muted, fontSize = 14.sp, fontWeight = if (correct) FontWeight.Bold else FontWeight.SemiBold, modifier = Modifier.weight(1f))
-                        Text("${names.size}", color = theme.text, fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                val isRight = i == q.correctIndex
+                val correct = isRight && !quiz.annulled
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(if (correct) QuizGreen else theme.panel)
+                        .then(
+                            when {
+                                correct -> Modifier.border(3.dp, Color(0xFF8CF5B0), RoundedCornerShape(12.dp))
+                                isRight -> Modifier.border(2.dp, theme.muted, RoundedCornerShape(12.dp))
+                                else -> Modifier
+                            },
+                        )
+                        .padding(horizontal = 12.dp, vertical = if (correct) 12.dp else 8.dp),
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            (if (isRight) "✓ " else "") + answer + if (isRight && quiz.annulled) " (galt als richtig)" else "",
+                            color = if (correct) Color.White else theme.muted,
+                            fontSize = if (correct) 19.sp else 14.sp,
+                            fontWeight = if (correct) FontWeight.ExtraBold else FontWeight.SemiBold,
+                            modifier = Modifier.weight(1f),
+                        )
+                        Text(
+                            "${names.size}",
+                            color = if (correct) Color.White else theme.text,
+                            fontSize = if (correct) 19.sp else 14.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
                     }
                     if (names.isNotEmpty()) {
-                        Box(Modifier.fillMaxWidth().height(22.dp).clip(RoundedCornerShape(6.dp)).background(Color(0xFF1C2350))) {
+                        Box(
+                            Modifier.padding(top = 6.dp).fillMaxWidth().height(22.dp).clip(RoundedCornerShape(6.dp))
+                                .background(if (correct) Color(0xFF0B5228) else Color(0xFF1C2350)),
+                        ) {
                             Box(
-                                Modifier.fillMaxHeight().fillMaxWidth(names.size.toFloat() / total).background(if (correct) Color(0xFF1FA34A) else QuizRed),
+                                Modifier.fillMaxHeight().fillMaxWidth(names.size.toFloat() / total)
+                                    .background(if (correct) Color(0xFF1FA34A) else QuizRed),
                             )
                             Text(names.joinToString(" · "), color = Color.White, fontSize = 12.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis, modifier = Modifier.align(Alignment.CenterStart).padding(start = 8.dp))
                         }
@@ -393,7 +460,7 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
             val none = quiz.rows.filter { it.outcome == QuizOutcome.NONE }.map { it.name }
             if (none.isNotEmpty()) Text("Keine Antwort: ${none.joinToString()}", color = theme.muted, fontSize = 14.sp)
             val winners = quiz.rows.filter { it.gained > 0 }.sortedBy { it.elapsedMs ?: Long.MAX_VALUE }
-            Row(
+            if (!quiz.resumed) Row(
                 Modifier.fillMaxWidth().clip(RoundedCornerShape(12.dp)).background(if (winners.isEmpty()) theme.line else QuizGreen).padding(horizontal = 14.dp, vertical = 10.dp),
             ) {
                 Text(
@@ -403,20 +470,44 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
                     fontWeight = FontWeight.Bold,
                 )
             }
-            if (quiz.challenges.isNotEmpty() || decisionsOpen) {
+            if (q.explanation.isNotEmpty()) {
+                Text(q.explanation, color = theme.text, fontSize = 14.sp, lineHeight = 19.sp)
+            }
+            if (quiz.resumed) {
+                Text("Diese Frage lief noch beim bisherigen Spielleiter – die Punkte sind übernommen.", color = theme.muted, fontSize = 14.sp)
+            } else if (quiz.challenges.isNotEmpty() || decisionsOpen || snapshot.reviewing) {
+                if (!snapshot.reviewing) {
+                    if (quiz.challenges.isNotEmpty() || quiz.decision == null) {
+                        TextButton(onClick = { vm.startReview() }) { Text("Spieler bitten zu warten (Laufband)", color = theme.accent2) }
+                    }
+                    TextButton(onClick = { decisionsOpen = false }) { Text("Schließen", color = theme.muted) }
+                } else {
+                    Text("Spieler sehen: „Bitte warte kurz – die Antworten werden überprüft“", color = theme.accent, fontSize = 13.sp)
+                }
                 ChallengeBox(quiz, onDecide = { decision ->
-                    if (decision == ChallengeDecision.CORRECT) correcting = true else vm.decideChallenge(decision)
+                    when (decision) {
+                        ChallengeDecision.CORRECT -> correcting = true
+                        ChallengeDecision.REPLACE -> vm.replaceQuestion()
+                        else -> vm.decideChallenge(decision)
+                    }
                     decisionsOpen = false
-                }, sourceUrl = vm.quizStore.question(q.id)?.source.orEmpty())
+                }, sourceUrl = vm.quizStore.question(q.id)?.source.orEmpty(), replaceAvailable = remember(quiz.number) { vm.replacementQuestion() != null })
             } else {
                 quiz.decision?.let { Text("Entscheidung: ${it.label}", color = theme.muted, fontSize = 14.sp) }
-                TextButton(onClick = { decisionsOpen = true }) { Text("Wertung dieser Frage ändern …", color = theme.accent2) }
+                // Der Spielleiter kann selbst eine Prüfung starten; die Spieler warten so lange.
+                // Nach einer Entscheidung öffnet der Knopf nur die Auswahl – ohne Laufband bei den Spielern.
+                if (quiz.decision == null) {
+                    GhostButton("Antwort prüfen (Challenge)", { decisionsOpen = true; vm.startReview() }, Modifier.fillMaxWidth())
+                } else {
+                    GhostButton("Entscheidung ändern", { decisionsOpen = true }, Modifier.fillMaxWidth())
+                }
             }
             if (vm.chat.isNotEmpty()) ChatPanel(vm.chat, theme.text, Modifier.fillMaxWidth(), maxLines = 3)
             Spacer(Modifier.height(6.dp))
         }
         Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             GhostButton("Rangliste", { showBoard = true }, Modifier.height(60.dp))
+            if (quiz.hasNext) GetReadyButton(vm, snapshot, Modifier.height(60.dp))
             PrimaryButton(
                 if (quiz.hasNext) "Nächste Frage" else "Ergebnis zeigen",
                 { vm.nextQuestion() },
@@ -424,6 +515,20 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
                 enabled = !snapshot.paused,
             )
         }
+    }
+    vm.openChallengeNames?.let { names ->
+        AlertDialog(
+            onDismissRequest = { vm.answerOpenChallenge(keep = false) },
+            title = { Text("Offene Challenge") },
+            text = {
+                Text(
+                    (if (names.isNotEmpty()) "Offene Challenge von $names" else "Die Prüfung läuft noch") +
+                        " – Wertung bleibt? Die Spieler sehen bis dahin das Laufband.",
+                )
+            },
+            confirmButton = { TextButton(onClick = { vm.answerOpenChallenge(keep = true) }) { Text("Wertung bleibt") } },
+            dismissButton = { TextButton(onClick = { vm.answerOpenChallenge(keep = false); decisionsOpen = true }) { Text("Zurück zur Prüfung") } },
+        )
     }
     if (correcting) {
         var choice by remember { mutableStateOf(q.correctIndex) }
@@ -471,7 +576,7 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
 }
 
 @Composable
-private fun ChallengeBox(quiz: MasterEngine.QuizSnapshot, onDecide: (ChallengeDecision) -> Unit, sourceUrl: String) {
+private fun ChallengeBox(quiz: MasterEngine.QuizSnapshot, onDecide: (ChallengeDecision) -> Unit, sourceUrl: String, replaceAvailable: Boolean) {
     val theme = LocalBuzzerTheme.current
     val uri = androidx.compose.ui.platform.LocalUriHandler.current
     Column(
@@ -489,11 +594,13 @@ private fun ChallengeBox(quiz: MasterEngine.QuizSnapshot, onDecide: (ChallengeDe
         }
         DecisionRow(listOf(ChallengeDecision.KEEP, ChallengeDecision.ANNUL), onDecide)
         DecisionRow(listOf(ChallengeDecision.CORRECT, ChallengeDecision.BLOCK), onDecide)
+        DecisionRow(listOf(ChallengeDecision.REPLACE), onDecide, enabled = replaceAvailable)
+        if (!replaceAvailable) Text("Keine Ersatzfrage verfügbar.", color = theme.muted, fontSize = 13.sp)
     }
 }
 
 @Composable
-private fun DecisionRow(decisions: List<ChallengeDecision>, onDecide: (ChallengeDecision) -> Unit) {
+private fun DecisionRow(decisions: List<ChallengeDecision>, onDecide: (ChallengeDecision) -> Unit, enabled: Boolean = true) {
     val theme = LocalBuzzerTheme.current
     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         for (d in decisions) {
@@ -505,7 +612,8 @@ private fun DecisionRow(decisions: List<ChallengeDecision>, onDecide: (Challenge
                     .clip(RoundedCornerShape(12.dp))
                     .background(if (primary) theme.accent else Color.Transparent)
                     .border(2.dp, if (primary) theme.accent else theme.line, RoundedCornerShape(12.dp))
-                    .clickable { onDecide(d) }
+                    .alpha(if (enabled) 1f else 0.4f)
+                    .clickable(enabled = enabled) { onDecide(d) }
                     .padding(8.dp),
                 contentAlignment = Alignment.Center,
             ) {
@@ -535,13 +643,110 @@ fun ColumnScope.QuizMasterBody(vm: BuzzerViewModel, snapshot: MasterEngine.Snaps
             QuizMasterRunning(vm, snapshot, quiz, Modifier.weight(1f).fillMaxWidth())
         else -> {
             QuizSetup(vm, snapshot, Modifier.weight(1f).fillMaxWidth())
-            PrimaryButton(
-                "Quiz starten",
-                { vm.startQuiz() },
-                Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp),
-                enabled = snapshot.players.any { it.connected } && !snapshot.paused,
-                height = 60.dp,
-            )
+            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                GetReadyButton(vm, snapshot, Modifier.height(60.dp))
+                PrimaryButton(
+                    "Quiz starten",
+                    { vm.startQuiz() },
+                    Modifier.weight(1f),
+                    enabled = snapshot.players.any { it.connected } && !snapshot.paused,
+                    height = 60.dp,
+                )
+            }
         }
     }
+}
+
+// ---------------------------------------------------------------------- Quiz-Vorlagen
+
+/** Nach „Quiz“: erst eine Quiz-Vorlage wählen (oder mit den aktuellen Einstellungen weiter). */
+@Composable
+fun QuizTemplateChoice(vm: BuzzerViewModel, modifier: Modifier = Modifier) {
+    val theme = LocalBuzzerTheme.current
+    var naming by remember { mutableStateOf(false) }
+    Column(modifier.verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        BigTitle("Quiz-Vorlage wählen", color = theme.text, size = 28.sp)
+        Text("Vorlagen enthalten Kategorien, Stufen, Anzahl, Zeiten und Wertung. Sie sind getrennt von den Buzzer-Profilen.", color = theme.muted, fontSize = 14.sp)
+        val current = vm.masterSnapshot?.profileName.orEmpty()
+        for (t in vm.quizTemplates) {
+            val s = runCatching { t.decode().settings }.getOrNull()
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(16.dp))
+                    .background(theme.panel)
+                    .border(2.dp, if (t.name == current) theme.accent2 else theme.line, RoundedCornerShape(16.dp))
+                    .clickable { vm.useQuizTemplate(t.name) }
+                    .padding(16.dp),
+            ) {
+                Text(t.name, color = theme.text, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                if (s != null) {
+                    Text(
+                        "${s.quizCount} Fragen · ${seconds(s.quizAnswerMs)} · ${s.quizScoring.label} · " +
+                            s.quizLevels.sortedBy { it.ordinal }.joinToString("/") { it.label } +
+                            if (s.quizCategories.isEmpty()) " · alle Kategorien" else " · ${s.quizCategories.size} Kategorien",
+                        color = theme.muted,
+                        fontSize = 13.sp,
+                    )
+                }
+            }
+        }
+        if (vm.quizTemplates.isEmpty()) Text("Noch keine Quiz-Vorlagen.", color = theme.muted, fontSize = 15.sp)
+        GhostButton("Mit den aktuellen Einstellungen weiter", { vm.useQuizTemplate(null) }, Modifier.fillMaxWidth())
+        GhostButton("Neue Vorlage anlegen …", { naming = true }, Modifier.fillMaxWidth())
+    }
+    if (naming) NameDialog("Neue Quiz-Vorlage", "Familienabend leicht", { naming = false }) { name ->
+        naming = false
+        vm.useQuizTemplate(null)
+        vm.saveQuizTemplate(name)
+    }
+}
+
+/** Kopf der Quiz-Einrichtung: aktive Vorlage, speichern, wechseln, senden. */
+@Composable
+private fun TemplateHeader(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) {
+    val theme = LocalBuzzerTheme.current
+    var naming by remember { mutableStateOf(false) }
+    val name = snapshot.profileName
+    val isTemplate = vm.quizTemplates.any { it.name == name }
+    Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(theme.panel).padding(horizontal = 12.dp, vertical = 8.dp)) {
+        Text(
+            if (isTemplate) "VORLAGE: ${name.uppercase()}" else "OHNE VORLAGE",
+            color = theme.accent2,
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 1.sp,
+        )
+        Row {
+            if (isTemplate) TextButton(onClick = { vm.saveQuizTemplate(name) }) { Text("Speichern", color = theme.accent) }
+            TextButton(onClick = { naming = true }) { Text("Speichern unter …", color = theme.accent) }
+            TextButton(onClick = { vm.choosingTemplate = true }) { Text("Wechseln", color = theme.accent) }
+        }
+        if (isTemplate && snapshot.players.any { it.connected && it.id != BuzzerViewModel.LOCAL_PLAYER_ID }) {
+            TextButton(onClick = { vm.shareProfile() }) { Text("Vorlage an Spieler senden", color = theme.accent2) }
+        }
+    }
+    if (naming) NameDialog("Quiz-Vorlage speichern", name.ifEmpty { "Mein Quiz" }, { naming = false }) {
+        naming = false
+        vm.saveQuizTemplate(it)
+    }
+}
+
+@Composable
+private fun NameDialog(title: String, initial: String, onDismiss: () -> Unit, onSave: (String) -> Unit) {
+    var text by remember { mutableStateOf(initial) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(title) },
+        text = {
+            androidx.compose.material3.OutlinedTextField(
+                value = text,
+                onValueChange = { text = it.take(40) },
+                label = { Text("Name") },
+                singleLine = true,
+            )
+        },
+        confirmButton = { TextButton(enabled = text.isNotBlank(), onClick = { onSave(text.trim()) }) { Text("Speichern") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
+    )
 }

@@ -10,13 +10,13 @@ object DiagnoseTransfer {
     /** Zeichen je Teil – auch mit Umlauten und URL-Kodierung sicher unter der Nearby-Grenze. */
     const val CHUNK_CHARS = 3_000
 
-    fun split(reportId: String, from: String, build: Int, text: String): List<Message.DiagnoseChunk> {
+    fun split(reportId: String, from: String, build: Int, text: String, saved: Boolean = false): List<Message.DiagnoseChunk> {
         val parts = text.chunked(CHUNK_CHARS).ifEmpty { listOf("") }
-        return parts.mapIndexed { i, part -> Message.DiagnoseChunk(reportId, i, parts.size, from, build, part) }
+        return parts.mapIndexed { i, part -> Message.DiagnoseChunk(reportId, i, parts.size, from, build, part, saved) }
     }
 
-    /** Ein vollständig empfangener Bericht. */
-    data class Report(val id: String, val from: String, val build: Int, val text: String)
+    /** Ein vollständig empfangener Bericht; [saved] = auf dem Absender gespeichert (siehe [Message.DiagnoseChunk]). */
+    data class Report(val id: String, val from: String, val build: Int, val text: String, val saved: Boolean = false)
 
     /** Sammelt Teile je Bericht; liefert den Bericht, sobald alle Teile da sind. */
     class Collector {
@@ -30,7 +30,7 @@ object DiagnoseTransfer {
             parts[chunk.index] = chunk.text
             if (parts.any { it == null }) return null
             pending.remove(key)
-            return Report(chunk.reportId, chunk.from, chunk.build, parts.joinToString("") { it.orEmpty() })
+            return Report(chunk.reportId, chunk.from, chunk.build, parts.joinToString("") { it.orEmpty() }, chunk.saved)
         }
     }
 

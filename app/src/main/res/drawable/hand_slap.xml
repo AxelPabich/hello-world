@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Flache Hand von der Seite (Handfläche nach unten) für den Splash „Hau drauf“. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="150dp" android:height="70dp"
+    android:viewportWidth="150" android:viewportHeight="70">
+    <path android:fillColor="#3BE3F5" android:pathData="M104,22h44a8,8 0 0,1 8,8v14a8,8 0 0,1 -8,8h-44a8,8 0 0,1 -8,-8v-14a8,8 0 0,1 8,-8z" />
+    <path android:fillColor="#2BA8B8" android:pathData="M96,18h2a4,4 0 0,1 4,4v30a4,4 0 0,1 -4,4h-2a4,4 0 0,1 -4,-4v-30a4,4 0 0,1 4,-4z" />
+    <path android:fillColor="#F2C7A5" android:pathData="M20,36 Q18,26 30,24 L90,20 Q100,22 100,34 L100,48 Q98,58 86,58 L30,56 Q18,54 20,46 Z" />
+    <path android:fillColor="#F2C7A5" android:pathData="M8,30 Q2,30 3,35 Q4,39 10,39 L40,38 L40,30 Z" />
+    <path android:fillColor="#EAB991" android:pathData="M6,40 Q1,41 3,45 Q5,49 11,48 L40,46 L40,39 Z" />
+    <path android:fillColor="#EAB991" android:pathData="M60,22 Q66,10 76,12 Q84,14 80,22 Z" />
+    <path android:strokeColor="#D49A70" android:strokeWidth="2" android:strokeLineCap="round" android:pathData="M24,46 L84,48" />
+</vector>

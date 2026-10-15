@@ -136,6 +136,30 @@ class QuizDataTest {
     }
 
     @Test
+    fun `decisions revise the counted answers`() {
+        val question = q("x")
+        val before = listOf(ParticipantResult("Axel", false, 0.5), ParticipantResult("Peter", true, 0.2), ParticipantResult("Clara", null, 1.0))
+        val book = StatsBook().recordResult(question, before, 1)
+        // Korrigiert: Axel jetzt richtig, Peter falsch.
+        val after = listOf(ParticipantResult("Axel", true, 0.5), ParticipantResult("Peter", false, 0.2), ParticipantResult("Clara", null, 1.0))
+        val corrected = book.revise(question, before, after).of(question)
+        assertEquals(3, corrected.answers)
+        assertEquals(1, corrected.correct)
+        assertEquals(1, corrected.wrong)
+        assertEquals(0.5, corrected.correctTimeShare, 1e-9)
+        // Annulliert: nichts zählt mehr, gespielt/gesehen bleibt.
+        val annulled = book.revise(question, before, null).recordDecision(question, ChallengeDecision.ANNUL, null).of(question)
+        assertEquals(0, annulled.answers)
+        assertEquals(0, annulled.correct)
+        assertEquals(1, annulled.played)
+        assertEquals(1, annulled.annulled)
+        assertEquals(setOf("Axel", "Peter", "Clara"), annulled.seenBy)
+        val replaced = book.revise(question, before, null).recordDecision(question, ChallengeDecision.REPLACE, null).of(question)
+        assertEquals(1, replaced.annulled)
+        assertTrue("\"test\": true" in StatsBook().toJson(test = true))
+    }
+
+    @Test
     fun `stats file round trip`() {
         val question = q("x")
         val book = StatsBook()
@@ -165,12 +189,21 @@ class QuizDataTest {
         val old = SettingsCodec.toMap(Settings()).filterKeys { !it.startsWith("quiz") && it != "soundsKnown" } +
             ("sounds" to "JOIN,BUZZ")
         val upgraded = SettingsCodec.fromMap(old)
-        assertEquals(setOf(SoundEvent.JOIN, SoundEvent.BUZZ, SoundEvent.TUSCH), upgraded.settings.sounds)
+        assertEquals(setOf(SoundEvent.JOIN, SoundEvent.BUZZ, SoundEvent.TUSCH, SoundEvent.GO), upgraded.settings.sounds)
         assertTrue("quizScoring" in upgraded.missingKeys)
         assertFalse("soundsKnown" in upgraded.missingKeys)
         // Wer den Tusch ausgeschaltet hat, behält das.
         val off = SettingsCodec.fromMap(SettingsCodec.toMap(Settings(sounds = setOf(SoundEvent.JOIN))))
         assertEquals(setOf(SoundEvent.JOIN), off.settings.sounds)
+    }
+
+    @Test
+    fun `countdown is limited to half the answer time`() {
+        assertEquals(10_000L, Settings(quizAnswerMs = 20_000, quizCountdownMs = 20_000).normalized().quizCountdownMs)
+        assertEquals(2_000L, Settings(quizAnswerMs = 5_000, quizCountdownMs = 9_000).normalized().quizCountdownMs)
+        assertEquals(5_000L, Settings(quizAnswerMs = 20_000, quizCountdownMs = 5_000).normalized().quizCountdownMs)
+        val old = SettingsCodec.toMap(Settings()) + ("quizAnswerMs" to "10000") + ("quizCountdownMs" to "15000")
+        assertEquals(5_000L, SettingsCodec.fromMap(old).settings.quizCountdownMs)
     }
 
     @Test

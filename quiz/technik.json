@@ -1,74 +1,23 @@
 {
   "paket": "technik",
   "titel": "Technik",
-  "version": 1,
+  "version": 2,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "tech-0001",
+      "id": "tech-0006",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „HTTP“?",
+      "frage": "Wie viele Bit hat ein Byte?",
       "antworten": [
-        "Hypertext Transfer Protocol",
-        "High Transfer Text Protocol",
-        "Hyperlink Text Transmission Process",
-        "Heimliches Tippen, total privat"
+        "Acht",
+        "Vier",
+        "Sechzehn",
+        "Kommt auf die Größe der Brotdose an"
       ],
-      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
-      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0002",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
-      "antworten": [
-        "Konrad Zuse",
-        "Alan Turing",
-        "Charles Babbage",
-        "John von Neumann"
-      ],
-      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
-      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0003",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
-      "antworten": [
-        "Volt",
-        "Ampere",
-        "Watt",
-        "Ohm"
-      ],
-      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
-      "quelle": "https://de.wikipedia.org/wiki/Volt",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0004",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
-      "antworten": [
-        "2007",
-        "2005",
-        "2009",
-        "2010"
-      ],
-      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
+      "erklaerung": "Ein Byte besteht heute praktisch immer aus 8 Bit.",
+      "quelle": "https://de.wikipedia.org/wiki/Byte",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -90,37 +39,54 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0006",
+      "id": "tech-0003",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Wie viele Bit hat ein Byte?",
+      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
       "antworten": [
-        "Acht",
-        "Vier",
-        "Sechzehn",
-        "Kommt auf die Größe der Brotdose an"
+        "Volt",
+        "Ampere",
+        "Watt",
+        "Ohm"
       ],
-      "erklaerung": "Ein Byte besteht heute praktisch immer aus 8 Bit.",
-      "quelle": "https://de.wikipedia.org/wiki/Byte",
+      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
+      "quelle": "https://de.wikipedia.org/wiki/Volt",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0007",
+      "id": "tech-0017",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Was misst ein Barometer?",
+      "antworten": [
+        "Den Luftdruck",
+        "Die Luftfeuchtigkeit",
+        "Die Windgeschwindigkeit",
+        "Wie gut die Stimmung an der Bar ist"
+      ],
+      "erklaerung": "Die Luftfeuchtigkeit misst ein Hygrometer, den Wind ein Anemometer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Barometer",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0019",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "Wofür steht die Abkürzung „LASER“?",
+      "frage": "Wofür steht „QR“ im Begriff QR-Code?",
       "antworten": [
-        "Light Amplification by Stimulated Emission of Radiation",
-        "Light Activated Signal Emitting Resonator",
-        "Linear Amplified Spectral Energy Radiation",
-        "Luminous Array of Stimulated Electron Rays"
+        "Quick Response",
+        "Quality Reference",
+        "Query Record",
+        "Quadrat-Raster"
       ],
-      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
-      "quelle": "https://de.wikipedia.org/wiki/Laser",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Der QR-Code wurde 1994 von der japanischen Firma Denso Wave entwickelt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=QR-Code",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -141,6 +107,108 @@
       "gueltigBis": null
     },
     {
+      "id": "tech-0013",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „USB“?",
+      "antworten": [
+        "Universal Serial Bus",
+        "Ultraschneller Speicher-Baustein",
+        "Unterbrechungsfreie Strom-Batterie",
+        "Und schon bootet's"
+      ],
+      "erklaerung": "USB ist seit 1996 der Standard-Anschluss für Geräte am Computer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Universal%20Serial%20Bus",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0014",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Welches Tier ist das Maskottchen von Linux?",
+      "antworten": [
+        "Ein Pinguin",
+        "Ein Fuchs",
+        "Eine Schildkröte mit Laptop",
+        "Ein Elefant"
+      ],
+      "erklaerung": "Der Pinguin heißt Tux.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0011",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
+      "antworten": [
+        "1992",
+        "1985",
+        "1998",
+        "2001"
+      ],
+      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0020",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
+      "antworten": [
+        "Die letzte Aktion wird rückgängig gemacht",
+        "Das Dokument wird ausgedruckt",
+        "Der Computer schläft ein",
+        "Alles wird fett geschrieben"
+      ],
+      "erklaerung": "Strg+Y stellt sie meist wieder her.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0012",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "antworten": [
+        "Vier",
+        "Einen",
+        "Zwei",
+        "Zwölf"
+      ],
+      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
+      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0021",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Aus welchem chemischen Element bestehen heutige Computerchips hauptsächlich?",
+      "antworten": [
+        "Silizium",
+        "Kupfer",
+        "Aluminium",
+        "Titan"
+      ],
+      "erklaerung": "Daher auch der Name „Silicon Valley“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Silicium",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "tech-0009",
       "version": 1,
       "kategorie": "Technik",
@@ -154,6 +222,23 @@
       ],
       "erklaerung": "Vint Cerf gilt als einer der Väter des Internets – das Web kam von Berners-Lee.",
       "quelle": "https://de.wikipedia.org/wiki/Tim_Berners-Lee",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0004",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
+      "antworten": [
+        "2007",
+        "2005",
+        "2009",
+        "2010"
+      ],
+      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -175,36 +260,121 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0011",
+      "id": "tech-0018",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
+      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
       "antworten": [
         "1992",
         "1985",
-        "1998",
+        "1997",
         "2001"
       ],
-      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
+      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0002",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
+      "antworten": [
+        "Konrad Zuse",
+        "Alan Turing",
+        "Charles Babbage",
+        "John von Neumann"
+      ],
+      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
+      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0012",
+      "id": "tech-0001",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „HTTP“?",
+      "antworten": [
+        "Hypertext Transfer Protocol",
+        "High Transfer Text Protocol",
+        "Hyperlink Text Transmission Process",
+        "Heimliches Tippen, total privat"
+      ],
+      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
+      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0016",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "antworten": [
+        "Global Positioning System",
+        "General Packet Service",
+        "Geo Point Scanner",
+        "Ganz präzise Schätzung"
+      ],
+      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0015",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
+      "antworten": [
+        "Bill Gates",
+        "Steve Jobs",
+        "Steve Wozniak",
+        "Larry Page"
+      ],
+      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0022",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "frage": "Wer gilt als erste Programmiererin der Geschichte?",
       "antworten": [
-        "Vier",
-        "Einen",
-        "Zwei",
-        "Zwölf"
+        "Ada Lovelace",
+        "Grace Hopper",
+        "Marie Curie",
+        "Hedy Lamarr"
       ],
-      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
-      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erklaerung": "Sie schrieb um 1843 ein Programm für Charles Babbages Analytical Engine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ada%20Lovelace",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0007",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wofür steht die Abkürzung „LASER“?",
+      "antworten": [
+        "Light Amplification by Stimulated Emission of Radiation",
+        "Light Activated Signal Emitting Resonator",
+        "Linear Amplified Spectral Energy Radiation",
+        "Luminous Array of Stimulated Electron Rays"
+      ],
+      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
+      "quelle": "https://de.wikipedia.org/wiki/Laser",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     }

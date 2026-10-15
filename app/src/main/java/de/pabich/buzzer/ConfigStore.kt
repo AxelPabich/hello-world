@@ -54,14 +54,14 @@ class ConfigStore(private val context: Context) {
     fun profile(name: String): StoredProfile? = config.profiles.firstOrNull { it.name == name }
 
     /** Speichert (oder ersetzt) ein Profil mit allen aktuellen Feldern. */
-    fun saveProfile(name: String, settings: Settings) = update { c ->
-        val stored = StoredProfile(name, SettingsCodec.toMap(settings))
+    fun saveProfile(name: String, settings: Settings, kind: String = KIND_BUZZER) = update { c ->
+        val stored = StoredProfile(name, SettingsCodec.toMap(settings) + (KIND_KEY to kind))
         val existing = c.profiles.indexOfFirst { it.name == name }
         c.copy(profiles = if (existing >= 0) c.profiles.toMutableList().also { it[existing] = stored } else c.profiles + stored)
     }
 
     fun saveProfileValues(name: String, values: Map<String, String>) =
-        saveProfile(name, SettingsCodec.fromMap(values).settings)
+        saveProfile(name, SettingsCodec.fromMap(values).settings, values[KIND_KEY] ?: KIND_BUZZER)
 
     fun deleteProfile(name: String) = update { c -> c.copy(profiles = c.profiles.filter { it.name != name }) }
 
@@ -77,6 +77,13 @@ class ConfigStore(private val context: Context) {
         val names = config.profiles.map { it.name }.toSet()
         if (base !in names) return base
         return generateSequence(2) { it + 1 }.map { "$base ($it)" }.first { it !in names }
+    }
+
+    companion object {
+        /** Kennzeichnet Quiz-Vorlagen in der gemeinsamen Profilliste (fehlt = Buzzer-Profil). */
+        const val KIND_KEY = "profileKind"
+        const val KIND_BUZZER = "buzzer"
+        const val KIND_QUIZ = "quiz"
     }
 
     // ------------------------------------------------------------------ Export / Import (.buzzconf)

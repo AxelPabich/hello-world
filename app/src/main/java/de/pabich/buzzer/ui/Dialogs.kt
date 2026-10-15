@@ -240,6 +240,8 @@ fun ImportDialog(
 @Composable
 fun UpdateDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
     val update = vm.receivedUpdate ?: return
+    // Beim Spielleiter erst in der Pause anbieten, nicht mitten in der Runde.
+    if (vm.isMaster && !vm.masterIdle) return
     val context = androidx.compose.ui.platform.LocalContext.current
     AlertDialog(
         onDismissRequest = {},

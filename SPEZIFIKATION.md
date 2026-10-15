@@ -482,3 +482,185 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Einstellung („Trotzdem suchen“ bleibt möglich). Fehler 8034 wird ebenso verständlich erklärt.
 - „Fragen aktualisieren“ meldet bei fehlenden Paketen im Repository „Im Repository liegen keine
   neueren Fragen“ statt eines Internet-Hinweises.
+
+## 31. Diagnose im Spiel
+
+- Spieler haben in der oberen Leiste ein Menü ⋮ mit „Diagnose senden“ (dort „An den Spielleiter
+  senden“) und „Gruppe verlassen“; der Spielleiter findet „Diagnose senden“ in seinem Menü ⋮.
+- Der Spielleiter lädt eigene und eingesammelte Berichte hoch. Noch nicht hochgeladene Berichte
+  werden auf dem Gerät zwischengespeichert und überstehen Verlassen und Neustart.
+
+## 32. Quiz-Statistik zurück ins Repository
+
+- „Quiz-Statistik hochladen“ (Menü ⋮ im Quiz) legt die Statistik mit dem Zugang des Spielleiters
+  in `buzzer-diagnose/statistik/JJJJ-MM-TT/Name-HH-MM-SS.buzzstats` ab. Claude wertet sie auf Zuruf
+  aus und passt die Fragenpakete im Buzzer-Repository an; die App selbst schreibt dort nicht.
+
+## 33. Quiz-Vorlagen
+
+- Quiz-Vorlagen sind getrennt von den Buzzer-Profilen. Nach der Wahl „Quiz“ wählt der Spielleiter
+  zuerst eine Vorlage (oder „mit den aktuellen Einstellungen weiter“ bzw. „Neue Vorlage“).
+- Die Quiz-Einrichtung zeigt die aktive Vorlage mit „Speichern“, „Speichern unter …“, „Wechseln“
+  und „Vorlage an Spieler senden“. Empfänger speichern sie als Quiz-Vorlage. Export und Import
+  übernehmen die Kennzeichnung.
+- Änderungen in der Einrichtung werden erst nach kurzer Ruhe übernommen (nicht bei jedem Tipp).
+
+## 34. Prüfung durch den Spielleiter
+
+- Bei der Auflösung sieht der Spielleiter die Erklärung und kann selbst „Antwort prüfen
+  (Challenge)“ starten. Während er prüft, läuft bei allen Spielern unten ein Laufband „Bitte warte
+  kurz – die Antworten werden überprüft“. Mit seiner Entscheidung (oder der nächsten Frage) endet es.
+- In der Auflösung beim Spielleiter ist die richtige Antwort eine grüne Karte mit hellem Rahmen,
+  Haken und größerer Schrift; die übrigen Antworten bleiben gedämpft (bei Annullierung grau umrandet,
+  „galt als richtig“).
+- Sendet ein Spieler eine Challenge, startet das Laufband automatisch. Nach einer Entscheidung
+  heißt der Knopf „Entscheidung ändern“ und öffnet nur die Auswahl, ohne erneutes Laufband.
+- Beim Beitritt protokolliert der Spieler „Runde beendet“ nur nach einer laufenden Runde und die
+  Spielart nur, wenn sie feststeht und sich ändert.
+
+## 35. Obere Leiste
+
+- Ton, Brief und Menü stehen rechts immer fest; die Emoticons nutzen den restlichen Platz und
+  lassen sich auf schmalen Bildschirmen seitlich wischen.
+
+## 36. Verbindung im Hintergrund
+
+- Solange eine Gruppe offen ist (Spielleiter und Spieler), läuft ein Vordergrund-Dienst mit der
+  Benachrichtigung „Buzzer-Runde läuft“. So trennt Android die Verbindung im Hintergrund nicht.
+  Beim Verlassen endet der Dienst.
+
+## 37. Pause per Knopf
+
+- Neben dem Menü ⋮ hat der Spielleiter einen Pause-Knopf (II / ▶), aktiv in den Pausen und bei
+  der Auflösung.
+
+## 38. Get Ready
+
+- „Get Ready“ (Buzzer: neben „Buzzer frei“; Quiz: in der Einrichtung und bei der Auflösung) zeigt
+  allen Spielern „Bereit?“ mit dem Knopf „Bereit!“. Der Spielleiter sieht „Bereit: x / y“ und wer
+  fehlt; sind alle bereit, erscheint „GO!“ mit Startsignal-Klang. Er kann auch ohne „Go!“ starten;
+  die Abfrage schließt dann überall. Auch der Spielleiter bekommt „BEREIT?“ und muss bestätigen,
+  bevor „Go!“ kommt (er steht als „Name (Spielleiter)“ in der Liste).
+- Optional „Bereit-Abfrage automatisch“ (Quiz-Einrichtung, 5–120 s nach der Auflösung): startet
+  „BEREIT?“ von selbst; wartet bei offener Challenge, Prüfung oder Pause; nicht nach der letzten Frage.
+- Während die Abfrage läuft, zeigt der Knopf „Bereit: x / y …“ und startet keine neue Abfrage
+  (abbrechen über das Bereit-Feld oben). Quiz: Nach „Go!“ startet die nächste Frage (bzw. in der
+  Einrichtung das Quiz) nach 1,5 s automatisch – nicht, wenn inzwischen pausiert oder abgebrochen
+  wurde. Buzzer: Nach „Go!“ leuchtet „Buzzer frei“ grün, freigeben bleibt beim Spielleiter.
+
+## 39. Testspiel
+
+- Im Quiz hat der Spielleiter im Menü ⋮ den Schalter „Testspiel – nicht in die Statistik“. Solange
+  er an ist (Kopfzeile „TESTSPIEL“), fließen Antworten, übersprungene Fragen, Challenges und
+  Entscheidungen nicht in die Quiz-Statistik, sondern in eine getrennte Test-Statistik
+  (`quiz-stats-test.json`), die Auswahl und Schwierigkeit nicht beeinflusst. Er gilt bis zum
+  Neustart der App.
+- „Quiz-Statistik hochladen“ legt die Test-Statistik – falls vorhanden – zusätzlich als
+  `statistik/JJJJ-MM-TT/Name-HH-MM-SS-TEST.buzzstats` ab (im JSON `"test": true`) und leert sie danach.
+
+## 40. Gespeicherte Diagnosen
+
+- Jede Diagnose (im Spiel oder außerhalb, z. B. nach einem Verbindungsfehler) lässt sich „Auf dem
+  Gerät speichern“. Mit gespeichertem GitHub-Token heißt der Knopf „In GitHub ablegen“; klappt das
+  Hochladen nicht, bleibt der Bericht gespeichert.
+- „Gespeicherte Diagnosen“ (Über & Diagnose, Menü ⋮ von Spieler und Spielleiter) zeigt die Liste mit
+  Ansehen, Teilen, Löschen und – mit Token – „Alle in GitHub ablegen“.
+- Der Dateiname in GitHub richtet sich nach der Erstellungszeit des Berichts (nicht nach dem
+  Hochladen). Liegt dieselbe Datei schon dort, gilt der Bericht als abgelegt.
+- Hat der Spielleiter einen Token, meldet er das jedem beitretenden Spieler (`DIAG_COLLECT`). Hat
+  der Spieler gespeicherte Diagnosen, fragt er „Der Spielleiter kann N gespeicherte Diagnose(n) in
+  sein Diagnose-Repository übernehmen. Senden?“ (Ja / Nein / Später; „Nein“ gilt bis zum Neustart).
+  Die Berichte gehen in Teilen mit Kennzeichen „gespeichert“; der Spielleiter bestätigt erst nach
+  dem Hochladen (`DIAG_OK`), dann löscht der Spieler sie.
+
+## 41. Spielverlauf
+
+- Nach der Animation bleibt der Endstand 3 Sekunden stehen (die Musik endet mit der Animation).
+- Der Spielleiter startet den Spielverlauf für alle über den Knopf 🐇🐢 in der Kopfzeile (neben der
+  Pause); er ist aktiv, sobald es einen Verlauf gibt. „Spielverlauf zeigen“ im Menü ⋮ bleibt.
+
+## 42. Entscheidungen bei der Auflösung
+
+- Tippt der Spielleiter „Get Ready“ oder „Nächste Frage“, während eine Challenge oder Prüfung offen
+  ist, fragt die App: „Offene Challenge von … – Wertung bleibt?“ (Wertung bleibt / Zurück zur
+  Prüfung). Erst nach „Wertung bleibt“ geht es weiter.
+- „Ersatzfrage“: Die aufgelöste Frage wird annulliert und unter derselben Nummer durch eine Frage
+  aus demselben Filter ersetzt, die im Quiz noch nicht vorkommt (ungespielte zuerst). Sie
+  verschwindet auch aus dem Spielverlauf. Ohne passende Frage ist der Knopf ausgegraut.
+- Annullieren, Sperren und Ersatzfrage nehmen Punkte bzw. Zeiten der Frage zurück (in allen
+  Wertungen, auch in Rangliste und Spielverlauf). „Korrigieren“ rechnet neu; im Countdown beginnt
+  der Countdown dann bei der ersten jetzt richtigen Antwort.
+- Die Fragen-Statistik folgt der Entscheidung: Bei Annullieren/Sperren/Ersatzfrage zählen die
+  Antworten nicht, bei Korrigieren werden richtig/falsch neu gezählt.
+
+## 43. Countdown-Grenze
+
+- Der Countdown ist höchstens halb so lang wie die Antwortzeit; wird die Antwortzeit verkürzt,
+  rückt er mit. Unter dem Regler steht „Nach der ersten richtigen Antwort bleiben den anderen noch
+  x s.“ Zu lange Werte aus älteren Vorlagen werden beim Laden begrenzt (Meldung).
+
+## 44. App-Symbol und Copyright
+
+- App-Symbol: lachender roter Buzzer auf goldenem Sockel vor Scheinwerferstrahlen im
+  Quizshow-Blau (adaptiv, einfarbig ab Android 13); die Benachrichtigung zeigt den Buzzer.
+- „Hilfe & Spielregeln“ und „Über & Diagnose“ enden mit „© 2026 Axel Pabich · Idee, Spielregeln
+  und Tests: Axel Pabich · Programmiert mit Claude (Anthropic)“.
+
+## 45. Spieleinstellungen im Quiz
+
+- Im Quiz zeigt ⋮ „Spieleinstellungen“ nur Quiz-relevante Werte: „Teilnehmer“ (Master spielt mit,
+  Kurznachrichten, Emoticons), „Wertung“ (Gleichstands-Schwelle, Rangliste, Neues Spiel), „Klang“
+  (Beitritt, Tusch, Wah-wah, Go, Rundenende, Emoticon, Kurznachricht, Spielverlauf). Fragen,
+  Antwortzeit, Wertung und Vorlagen stehen in der Quiz-Einrichtung. Empfangene Quiz-Vorlagen
+  zeigen nur Quiz-Werte. Der Buzzer-Modus behält alle Einstellungen.
+
+## 46. Anfragen während einer Runde
+
+- Der Prüfcode steht in Beitritts- und Update-Anfragen beim Spielleiter genauso groß wie beim
+  Spieler („PRÜFCODE 1234“ mit Hinweis zum Vergleichen).
+
+- Beitritts- und Update-Anfragen sowie das Angebot einer empfangenen neueren Version erscheinen
+  beim Spielleiter erst, wenn die aktuelle Frage beantwortet ist (Quiz: Auflösung; Buzzer: „Runde
+  beendet“ oder vor der Freigabe). Einsteigen mitten im Spiel ist erlaubt – der Neue beginnt mit
+  0 Punkten und spielt ab der nächsten Frage mit. Während der Frage
+  zeigt die Kopfzeile nur „⏳ Name wartet – Anfrage erscheint nach der Runde“. Abgebrochene
+  Anfragen verschwinden aus der Warteschlange.
+
+## 47. Start-Animationen
+
+- Splash-Screen beim App-Start (3 s, Tippen überspringt), zufällig eine von drei Varianten:
+  „Hüpfer“, „Vorhang auf“, „Hau drauf“ – jeweils mit eigenem Buzzerton; immer mit jubelnden
+  Mitspielern, die Handys hochhalten und Konfetti werfen. Klang nur bei eingeschaltetem Ton.
+- Spielstart-Animation (3 s): Rennszene mit Mitspielern, Hase und Schildkröte („Die Fabel“,
+  „Verfolgungsjagd“, „Startschuss“). Der Spielleiter würfelt die Variante und schickt sie mit
+  (`INTRO|v=n`), alle sehen dieselbe. Quiz: Die erste Frage kommt nach der Animation. Buzzer: bei
+  „Neues Spiel“. Entwurf: `docs/animationen-entwurf.html`.
+- Am Quiz-Ende läuft der Spielverlauf automatisch (höchstens 15 s, bei vielen Fragen schneller),
+  danach bleibt das Ergebnis stehen; der Spielverlauf ist allgemein auf 15 s begrenzt.
+
+## 48. Spielleitung übergeben und übernehmen
+
+- In jeder Pause (vor der Freigabe, nach der Runde, bei der Auflösung) schickt der Spielleiter allen
+  Spielern den Spielstand für einen Nachfolger (`SUCCESSION`): Spiel-Kennung, Spielart, Runde,
+  Profil und Einstellungen, Punkte nach Namen, Fragen-IDs des laufenden Quiz und die nächste Frage,
+  Testspiel ja/nein. Während einer Frage bzw. Runde kommt kein neuer Stand – fällt der Spielleiter
+  dann weg, wird die laufende Frage wiederholt.
+- **Übergeben:** ⋮ „Spielleitung übergeben an …“ (nur in einer Pause) – Auswahl eines verbundenen
+  Spielers. Der Stand geht mit Namen des Nachfolgers an alle; der Nachfolger eröffnet sofort die
+  Gruppe, die anderen und der bisherige Spielleiter (jetzt als Spieler) verbinden sich automatisch
+  mit ihm.
+- **Verlassen:** ⋮ „Spiel verlassen“ fragt „Spieler übernehmen“ (`MASTER_GONE`) oder „Für alle
+  beenden“ (`BYE`, wie bisher).
+- **Übernehmen:** Nach `MASTER_GONE` oder einem Verbindungsabbruch zum Spielleiter sehen die
+  Spieler „Wer übernimmt?“ mit „Ich übernehme“ und einem Countdown von 1 Minute. Wer zuerst tippt,
+  leitet; die übrigen finden ihn über die Suche (Name aus dem Spielstand) und treten ohne
+  Prüfcode-Rückfrage bei (der Nachfolger nimmt bekannte Namen 3 Minuten lang automatisch auf).
+  Übernehmen zwei gleichzeitig, gibt der später Beigetretene ab und tritt dem anderen bei.
+  Meldet sich niemand innerhalb 1 Minute, endet das Spiel für alle („Niemand hat die Spielleitung
+  übernommen“). Ohne gewählte Spielart gibt es keine Übernahme.
+- **Was bleibt:** Punkte (beim Wiederbeitritt nach Namen zugeordnet; wer später kommt, bekommt sie
+  dann), Runde, Spielart, Profil und Einstellungen, Testspiel. Der Nachfolger spielt weiter mit
+  („Master spielt mit“) und behält seine Punkte. Das Quiz läuft mit derselben Fragenliste weiter
+  (aus den eigenen Fragenpaketen; fehlende Fragen fallen weg): Der neue Spielleiter sieht die
+  zuletzt aufgelöste Frage (ohne Antworten und Entscheidungen) und macht mit „Nächste Frage“
+  bzw. Get Ready weiter.

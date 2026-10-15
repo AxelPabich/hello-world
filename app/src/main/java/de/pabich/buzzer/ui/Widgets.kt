@@ -6,6 +6,7 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -129,8 +130,13 @@ fun TopBar(
             .padding(horizontal = 4.dp, vertical = 2.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        for (emoji in emojis) BarButton(emoji, onClick = { onEmoji(emoji) })
-        Spacer(Modifier.weight(1f))
+        // Emoticons nutzen den freien Platz und lassen sich wischen; die Knöpfe rechts bleiben immer sichtbar.
+        Row(
+            Modifier.weight(1f).horizontalScroll(androidx.compose.foundation.rememberScrollState()),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            for (emoji in emojis) BarButton(emoji, onClick = { onEmoji(emoji) })
+        }
         trailing()
     }
 }
@@ -139,7 +145,7 @@ fun TopBar(
 fun BarButton(label: String, enabled: Boolean = true, onClick: () -> Unit) {
     Box(
         Modifier
-            .size(42.dp)
+            .size(40.dp)
             .clip(RoundedCornerShape(8.dp))
             .clickable(enabled = enabled, onClick = onClick),
         contentAlignment = Alignment.Center,

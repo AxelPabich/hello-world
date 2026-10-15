@@ -15,8 +15,12 @@ import de.pabich.buzzer.core.ChallengeDecision
 import de.pabich.buzzer.core.ConfigFormat
 import de.pabich.buzzer.core.DiagnoseTransfer
 import de.pabich.buzzer.core.GameKind
+import de.pabich.buzzer.core.Jingle
 import de.pabich.buzzer.core.PeerInfo
 import de.pabich.buzzer.core.QuestionPicker
+import de.pabich.buzzer.core.QuizScoring
+import de.pabich.buzzer.core.Question
+import de.pabich.buzzer.core.ParticipantResult
 import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.Message
 import de.pabich.buzzer.core.PlayerEngine
@@ -31,7 +35,7 @@ import java.util.Date
 import java.util.Locale
 import kotlin.math.abs
 
-enum class Screen { START, DISCOVER, MASTER, PLAYER, UPDATE, SETTINGS, HELP, ABOUT }
+enum class Screen { START, DISCOVER, MASTER, PLAYER, TAKEOVER, UPDATE, SETTINGS, HELP, ABOUT }
 
 /** Gefundene Gruppe; [peer] enthält Name und Version des Spielleiters. */
 data class Group(val endpointId: String, val peer: PeerInfo) {
@@ -52,6 +56,18 @@ data class ReceivedUpdate(val file: File, val build: Int, val from: String)
 data class FlyingEmote(val id: Long, val from: String, val emoji: String)
 
 data class ChatLine(val from: String, val text: String, val toAll: Boolean, val outgoing: Boolean)
+
+/**
+ * Spieler nach dem Wegfall des Spielleiters (Punkt 59): [expected] = bestimmter Nachfolger,
+ * [taker] = wer übernommen hat und gerade verbunden wird, [deadline] = Spielende ohne Nachfolger.
+ */
+data class Takeover(
+    val succession: Message.Succession,
+    val deadline: Long,
+    val expected: String?,
+    val taker: String? = null,
+    val reason: String,
+)
 
 /** Ein empfangenes Profil, das der Spieler ansehen und speichern kann. */
 data class ReceivedProfile(val name: String, val values: Map<String, String>)
@@ -107,6 +123,47 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Zählt hoch, wenn auf diesem Gerät „Richtig“ gefeiert wird (Konfetti). */
     var confettiSeq by mutableIntStateOf(0)
         private set
+
+    /** Splash-Screen beim App-Start (zufällige Variante); `null` = vorbei. */
+    var splash by mutableStateOf<Int?>(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.SPLASH_VARIANTS))
+        private set
+
+    /** Laufende Spielstart-Animation (Rennszene); `null` = keine. */
+    var intro by mutableStateOf<Int?>(null)
+        private set
+    var introSeq by mutableIntStateOf(0)
+        private set
+
+    /** Spieler: letzter Stand des Spielleiters – damit kann ein Spieler das Spiel weiterführen. */
+    private var succession: Message.Succession? = null
+
+    /** Spieler: Der Spielleiter ist weg, die Übernahme läuft. */
+    var takeover by mutableStateOf<Takeover?>(null)
+        private set
+    private var takeoverTask: Cancellable? = null
+
+    /** Neuer Spielleiter: Stand des Vorgängers (für Rangfolge und automatische Aufnahme), solange die Übernahme läuft. */
+    private var takenOver: Message.Succession? = null
+    private var takenOverUntil = 0L
+
+    /** Quiz startet erst nach der Spielstart-Animation – solange keine zweite Anfrage. */
+    private var quizStartPending: Cancellable? = null
+
+    fun splashDone(skipped: Boolean = false) {
+        if (splash != null && skipped) Diagnostics.log("Splash übersprungen")
+        splash = null
+    }
+
+    private fun showIntro(variant: Int) {
+        Diagnostics.log("Spielstart-Animation: ${RACE_NAMES[variant % RACE_NAMES.size]}")
+        intro = variant
+        introSeq++
+        if (soundOn) sounds.play(Jingle.entries[Jingle.RACE_FABLE.ordinal + variant % de.pabich.buzzer.ui.RACE_VARIANTS])
+    }
+
+    fun introDone() {
+        intro = null
+    }
     val emotes = mutableStateListOf<FlyingEmote>()
     val chat = mutableStateListOf<ChatLine>()
     var receivedProfile by mutableStateOf<ReceivedProfile?>(null)
@@ -163,14 +220,41 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Die Suche braucht den eingeschalteten Standort: Hinweis anzeigen. */
     var locationOff by mutableStateOf(false)
 
-    /** Master: empfangene (bzw. eigene) Diagnoseberichte, die noch nicht in GitHub liegen. */
+    /**
+     * Auf diesem Gerät gespeicherte Diagnoseberichte, die noch nicht in GitHub liegen: eigene
+     * und (beim Spielleiter) von Spielern empfangene.
+     */
     val pendingReports = mutableStateListOf<DiagnoseTransfer.Report>()
+
+    /** Spieler: Der Spielleiter hat einen GitHub-Zugang und übernimmt gespeicherte Diagnosen. */
+    var masterCollects by mutableStateOf(false)
+        private set
+
+    /** Spieler: Rückfrage „gespeicherte Diagnosen an den Spielleiter senden?“ anzeigen. */
+    var diagnoseOffer by mutableStateOf(false)
+        private set
+
+    /** Spieler hat „Nein“ gesagt – bis zum Neustart der App nicht mehr fragen. */
+    private var offerDeclined = false
+
+    /** Spielleiter: gespeicherte Berichte von Spielern → Endpunkt, der nach dem Hochladen die Bestätigung bekommt. */
+    private val confirmAfterUpload = mutableMapOf<String, String>()
     var uploading by mutableStateOf(false)
         private set
+
+    /** Master: nach „Quiz“ zuerst eine Quiz-Vorlage wählen. */
+    var choosingTemplate by mutableStateOf(false)
 
     /** Anleitung zum Token beim ersten Hochladen. */
     var showTokenGuide by mutableStateOf(false)
     private val reportCollector = DiagnoseTransfer.Collector()
+
+    /** Noch nicht hochgeladene Berichte überstehen das Verlassen und Neustarts. */
+    private val pendingDir = File(app.filesDir, "diagnose-pending").apply { mkdirs() }
+
+    /** Buzzer-Profile und Quiz-Vorlagen liegen in einer Liste, unterschieden per Kennzeichen. */
+    val buzzerProfiles get() = profiles.filter { it.values[ConfigStore.KIND_KEY] != ConfigStore.KIND_QUIZ }
+    val quizTemplates get() = profiles.filter { it.values[ConfigStore.KIND_KEY] == ConfigStore.KIND_QUIZ }
 
     private val link = NearbyLink(app, this)
     private val sounds = SoundPlayer(app)
@@ -185,6 +269,20 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var emoteSeq = 0L
 
     init {
+        // Klang zum Splash-Screen (SoundPlayer wartet kurz, bis er geladen ist).
+        splash?.let {
+            Diagnostics.log("Splash: ${SPLASH_NAMES[it % SPLASH_NAMES.size]}" + if (soundOn) "" else " (ohne Ton)")
+            if (soundOn) sounds.play(Jingle.entries[Jingle.SPLASH_HOP.ordinal + it])
+        }
+        // Zwischengespeicherte Diagnoseberichte wieder aufnehmen.
+        pendingDir.listFiles { f -> f.name.endsWith(".txt") }.orEmpty().sortedBy { it.name }.forEach { f ->
+            runCatching {
+                val text = f.readText()
+                val header = text.substringBefore('\n')
+                val (from, build) = header.split('|', limit = 2)
+                pendingReports += DiagnoseTransfer.Report(f.nameWithoutExtension, from, build.toInt(), text.substringAfter('\n'))
+            }.onFailure { f.delete() }
+        }
         if (Diagnostics.previousCrash != null) {
             status = "Die App wurde beim letzten Mal unerwartet beendet. Bitte „Diagnose senden“ antippen."
         }
@@ -192,12 +290,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     val isMaster: Boolean get() = master != null
 
+    /**
+     * Spielleiter zwischen den Runden (bzw. bei der Auflösung): Erst dann erscheinen Beitritts- und
+     * Update-Anfragen, damit sie das laufende Spiel nicht stören.
+     */
+    val masterIdle: Boolean
+        get() = masterSnapshot?.phase.let { it == null || it == MasterEngine.Phase.READY || it == MasterEngine.Phase.ROUND_OVER || it == MasterEngine.Phase.QUIZ_REVEAL }
+
     // ------------------------------------------------------------------ Start
 
-    fun openGroup() {
+    fun openGroup() = openGroup(null)
+
+    /** Gruppe eröffnen; mit [taken] als Nachfolger eines Spielleiters (Punkt 59). */
+    private fun openGroup(taken: Message.Succession?) {
         finishPendingStop()
         store.setPlayerName(myName.trim())
-        choosingKind = true
+        choosingKind = taken?.kind == null
         val engine = MasterEngine(UptimeClock, scheduler, log = Diagnostics::log) { to, message ->
             if (to == LOCAL_PLAYER_ID) {
                 // Gleicher Weg wie über Funk, nur ohne Laufzeit.
@@ -213,21 +321,61 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             val deadline = snap.answerDeadline.takeIf { snap.phase == MasterEngine.Phase.ANSWERING }
             updateTicking(deadline.takeIf { SoundEvent.TICK in snap.settings.sounds })
         }
+        // Quiz: Nach „Alle bereit – Go!“ startet die nächste Frage kurz nach dem Go-Klang von selbst.
+        engine.onAllReady = { id ->
+            scheduler.schedule(AUTO_START_MS) {
+                val snap = engine.snapshot()
+                val stillReady = master === engine && engine.readyCheckId == id && snap.ready?.allReady == true && !snap.paused
+                if (stillReady && snap.kind == GameKind.QUIZ && !choosingKind && !choosingTemplate) {
+                    when (snap.phase) {
+                        MasterEngine.Phase.QUIZ_REVEAL -> if (snap.quiz?.hasNext == true) nextQuestion()
+                        MasterEngine.Phase.READY -> startQuiz()
+                        else -> Unit
+                    }
+                }
+            }
+        }
         engine.onEmote = { from, emoji -> showEmote(from, emoji) }
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engine.onSound = { sound(it) }
         engine.onReplay = { startReplay(it) }
-        engine.onQuizRevealed = { q, results -> quizStore.recordResult(q.id, results.map { it.copy(name = statsName(it.name)) }) }
-        engine.onQuizSkipped = { q, names -> quizStore.recordSeen(q.id, names.map { statsName(it) }) }
-        engine.onQuizChallenge = { q, from, reason -> quizStore.recordChallenge(q.id, statsName(from), reason) }
-        engine.onQuizDecision = { q, decision, newCorrect -> quizStore.recordDecision(q.id, decision, newCorrect) }
+        engine.onIntro = { showIntro(it) }
+        // Im Testspiel landet alles in der getrennten Test-Statistik (ohne Einfluss auf die Auswahl).
+        fun List<ParticipantResult>.named() = map { it.copy(name = statsName(it.name)) }
+        engine.onQuizRevealed = { q, results -> quizStore.recordResult(q.id, results.named(), test = testGame) }
+        engine.onQuizSkipped = { q, names -> quizStore.recordSeen(q.id, names.map { statsName(it) }, test = testGame) }
+        engine.onQuizChallenge = { q, from, reason -> quizStore.recordChallenge(q.id, statsName(from), reason, test = testGame) }
+        engine.onQuizDecision = { q, decision, newCorrect, before, after ->
+            quizStore.recordDecision(q.id, decision, newCorrect, before?.named(), after?.named(), test = testGame)
+        }
         master = engine
-        engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
+        if (taken != null) {
+            // Fragen des laufenden Quiz aus den eigenen Paketen; fehlende fallen weg.
+            val byId = quizStore.questions.associateBy { it.id }
+            val found = taken.quiz.map { byId[it] }
+            val next = found.take(taken.quizNext.coerceAtLeast(0)).count { it != null }
+            if (found.any { it == null }) Diagnostics.log("Übernahme: ${found.count { it == null }} Fragen fehlen in den eigenen Paketen")
+            engine.takeOver(taken, found.filterNotNull().map(quizStore::toQuiz), next)
+            testGame = taken.test
+            choosingTemplate = false
+            takenOver = taken
+            takenOverUntil = UptimeClock.now() + TAKEN_OVER_ACCEPT_MS
+        } else {
+            takenOver = null
+            engine.testGame = testGame
+            engine.updateSettings(store.config.lastSettings, store.config.lastProfileName)
+        }
         syncLocalPlayer(engine)
         masterSnapshot = engine.snapshot()
         engine.start()
-        Diagnostics.log("Gruppe eröffnet")
+        Diagnostics.log(if (taken == null) "Gruppe eröffnet" else "Gruppe als Nachfolger von ${taken.master} eröffnet (Spiel ${taken.game})")
         link.startAdvertising(PeerInfo.format(myName.trim(), AppUpdate.ownBuild))
+        // Nachfolger suchen kurz mit: Hat ein Vorrangiger zugleich übernommen, tritt man ihm bei.
+        if (taken != null) {
+            link.startDiscovery()
+            scheduler.schedule(TAKEOVER_MS) { if (master === engine) link.stopDiscovery() }
+        }
+        GameService.start(getApplication(), "Du leitest eine Buzzer-Runde")
         screen = Screen.MASTER
     }
 
@@ -274,21 +422,34 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     /** Reguläres Beenden; auf Wunsch werden danach alle Diagnosedaten gelöscht. */
-    fun leave(deleteDiagnostics: Boolean = false) {
-        Diagnostics.log("Verlassen")
+    fun leave(deleteDiagnostics: Boolean = false, openForTakeover: Boolean = false) {
+        Diagnostics.log(if (openForTakeover) "Verlassen – Spieler dürfen übernehmen" else "Verlassen")
+        GameService.stop(getApplication())
+        choosingTemplate = false
         updateTicking(null)
         replayDone()
         val engine = master
         if (engine != null) {
             // Erst verabschieden, dann trennen – sonst kommt die Nachricht nicht mehr an.
-            engine.close()
+            if (openForTakeover) engine.leaveOpen() else engine.close()
             pendingStop = scheduler.schedule(500) { pendingStop = null; link.stopAll() }
         } else {
             link.stopAll()
         }
+        quizStartPending?.cancel()
+        quizStartPending = null
+        takeoverTask?.cancel()
+        takeoverTask = null
+        takeover = null
+        succession = null
+        takenOver = null
+        intro = null
         master = null
         player = null
         masterEndpoint = null
+        masterCollects = false
+        diagnoseOffer = false
+        confirmAfterUpload.clear()
         joinCode = null
         masterPeer = null
         updatePeer = null
@@ -350,6 +511,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val engine = master ?: return
         if (engine.chooseKind(kind)) {
             choosingKind = false
+            choosingTemplate = kind == GameKind.QUIZ
         } else {
             status = "Die Spielart lässt sich nur zwischen den Runden wechseln."
         }
@@ -375,7 +537,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         )
     }
 
+    /** Quiz starten: erst die Rennszene auf allen Geräten, dann die erste Frage. */
     fun startQuiz() {
+        val engine = master ?: return
+        if (quizStartPending != null) return
+        if (pickQuestions(engine.settings).questions.isEmpty() || engine.snapshot().players.none { it.connected }) {
+            startQuizNow()
+            return
+        }
+        engine.playIntro(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.RACE_VARIANTS))
+        quizStartPending = scheduler.schedule(de.pabich.buzzer.ui.INTRO_TOTAL_MS + 100L) {
+            quizStartPending = null
+            if (master === engine) startQuizNow()
+        }
+    }
+
+    private fun startQuizNow() {
         val engine = master ?: return
         val picked = pickQuestions(engine.settings)
         if (picked.questions.isEmpty()) {
@@ -391,7 +568,55 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
     }
 
-    fun nextQuestion() = master?.nextQuestion()
+    /** Nächste Frage – bei offener Challenge erst die Rückfrage. */
+    fun nextQuestion() {
+        if (guardOpenChallenge { master?.nextQuestion() }) master?.nextQuestion()
+    }
+
+    /**
+     * Rückfrage „Offene Challenge – Wertung bleibt?“: [pendingAfterChallenge] wird nach
+     * „Wertung bleibt“ ausgeführt. Liefert `true`, wenn nichts offen ist.
+     */
+    private fun guardOpenChallenge(action: () -> Unit): Boolean {
+        val snap = master?.snapshot() ?: return true
+        val quiz = snap.quiz ?: return true
+        if (snap.phase != MasterEngine.Phase.QUIZ_REVEAL || (quiz.challenges.isEmpty() && !snap.reviewing)) return true
+        openChallengeNames = quiz.challenges.joinToString { it.name }
+        pendingAfterChallenge = action
+        return false
+    }
+
+    /** Namen der offenen Challenge(s) für die Rückfrage; `null` = keine Rückfrage. */
+    var openChallengeNames by mutableStateOf<String?>(null)
+        private set
+    private var pendingAfterChallenge: (() -> Unit)? = null
+
+    /** Rückfrage beantwortet: [keep] = „Wertung bleibt“ und weiter, sonst zurück zur Prüfung. */
+    fun answerOpenChallenge(keep: Boolean) {
+        val action = pendingAfterChallenge
+        openChallengeNames = null
+        pendingAfterChallenge = null
+        if (!keep) return
+        master?.decideChallenge(ChallengeDecision.KEEP)
+        action?.invoke()
+    }
+
+    /** Ersatzfrage aus demselben Filter, die in diesem Quiz noch nicht vorkommt (ungespielte zuerst). */
+    fun replacementQuestion(): Question? {
+        val engine = master ?: return null
+        val used = engine.quizQuestionIds
+        val all = pickQuestions(engine.settings.copy(quizCount = quizStore.questions.size)).questions
+        return all.firstOrNull { it.id !in used }
+    }
+
+    fun replaceQuestion() {
+        val engine = master ?: return
+        val q = replacementQuestion() ?: run {
+            status = "Keine Ersatzfrage verfügbar."
+            return
+        }
+        engine.replaceQuestion(quizStore.toQuiz(q))
+    }
     fun revealNow() = master?.revealNow()
     fun skipQuestion() = master?.skipQuestion()
     fun stopQuiz() = master?.stopQuiz()
@@ -421,7 +646,14 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun markWrong() = master?.markWrong()
     fun proceed() = master?.proceed()
     fun nextRound() = master?.nextRound()
-    fun newGame() = master?.newGame()
+    /** Neues Spiel (Punkte auf 0); im Buzzer-Modus mit Rennszene auf allen Geräten. */
+    fun newGame() {
+        val engine = master ?: return
+        if (engine.snapshot().phase != MasterEngine.Phase.READY) return
+        engine.newGame()
+        val others = engine.snapshot().players.any { it.connected && it.id != LOCAL_PLAYER_ID }
+        if (engine.snapshot().kind == GameKind.BUZZER && others) engine.playIntro(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.RACE_VARIANTS))
+    }
 
     fun updateSettings(settings: Settings, profileName: String = masterSnapshot?.profileName.orEmpty()) {
         val engine = master ?: return
@@ -432,7 +664,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         store.setLastSettings(engine.settings, profileName)
         // Ein Profil aus einem älteren Build ist jetzt vollständig geprüft: ergänzt speichern.
         profileUpgrade?.takeIf { it.name == profileName }?.let {
-            store.saveProfile(it.name, engine.settings)
+            val kind = store.profile(it.name)?.values?.get(ConfigStore.KIND_KEY) ?: ConfigStore.KIND_BUZZER
+            store.saveProfile(it.name, engine.settings, kind)
             profiles = store.config.profiles
             profileUpgrade = null
         }
@@ -481,6 +714,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val missing = decoded.missingKeys.mapNotNull { SettingsCodec.LABELS[it] }
         profileUpgrade = if (missing.isNotEmpty()) ProfileUpgrade(name, missing) else null
         Diagnostics.log("Profil geladen: $name" + if (missing.isNotEmpty()) " (neue Felder: ${missing.joinToString()})" else "")
+        // Zu langer Countdown aus älteren Vorlagen wurde beim Einlesen begrenzt.
+        val storedCountdown = profile.values["quizCountdownMs"]?.toLongOrNull()
+        if (storedCountdown != null && storedCountdown > decoded.settings.quizCountdownMs) {
+            val sec = decoded.settings.quizCountdownMs / 1000
+            Diagnostics.log("Countdown in „$name“ von ${storedCountdown / 1000} s auf $sec s begrenzt")
+            status = "Countdown auf $sec s begrenzt (höchstens die halbe Antwortzeit)."
+        }
         return decoded.settings
     }
 
@@ -496,7 +736,50 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         profiles = store.config.profiles
     }
 
-    fun shareProfile() = master?.shareProfile()
+    fun shareProfile() = master?.shareProfile(
+        if (masterSnapshot?.kind == GameKind.QUIZ) mapOf(ConfigStore.KIND_KEY to ConfigStore.KIND_QUIZ) else emptyMap(),
+    )
+
+    // ------------------------------------------------------------------ Quiz-Vorlagen
+
+    /** Vorlage übernehmen; `null` = mit den aktuellen Einstellungen weiter. */
+    fun useQuizTemplate(name: String?) {
+        if (name != null) loadProfile(name)?.let { updateSettings(it, name) }
+        choosingTemplate = false
+    }
+
+    /** Aktuelle Quiz-Einstellungen als Vorlage speichern und aktiv machen. */
+    fun saveQuizTemplate(name: String) {
+        val engine = master ?: return
+        val clean = name.trim().ifEmpty { return }
+        store.saveProfile(clean, engine.settings, ConfigStore.KIND_QUIZ)
+        profiles = store.config.profiles
+        updateSettings(engine.settings, clean)
+        status = "Quiz-Vorlage „$clean“ gespeichert."
+        Diagnostics.log("Quiz-Vorlage gespeichert: $clean")
+    }
+
+    // ------------------------------------------------------------------ Bereit? und Prüfung
+
+    fun askReady() {
+        if (guardOpenChallenge { master?.askReady() }) master?.askReady()
+    }
+    fun cancelReady() = master?.cancelReady()
+    fun confirmMasterReady() = master?.confirmMasterReady()
+    fun confirmReady() = player?.confirmReady()
+    /** Testspiel: nichts fließt in die Quiz-Statistik; gilt bis zum Neustart der App. */
+    var testGame by mutableStateOf(false)
+        private set
+
+    fun toggleTestGame() {
+        testGame = !testGame
+        master?.testGame = testGame
+        Diagnostics.log(if (testGame) "Testspiel an – keine Statistik" else "Testspiel aus")
+        status = if (testGame) "Testspiel: Antworten zählen nur in der getrennten Test-Statistik." else "Testspiel beendet – die Statistik zählt wieder."
+    }
+
+    fun startReview() = master?.startReview()
+    fun endReview() = master?.endReview()
 
     fun saveReceivedProfile(name: String) {
         val received = receivedProfile ?: return
@@ -574,10 +857,15 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (SoundEvent.CHASE in activeSounds) chaseStream = sound(SoundEvent.CHASE)
     }
 
-    /** Ende der Animation: Musik stoppen. */
-    fun replayDone() {
+    /** Ende der Animation: Musik stoppen (der Endstand bleibt noch kurz stehen). */
+    fun replayMusicEnd() {
         sounds.stop(chaseStream)
         chaseStream = 0
+    }
+
+    /** Spielverlauf geschlossen. */
+    fun replayDone() {
+        replayMusicEnd()
         replay = null
     }
 
@@ -779,6 +1067,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val peer = PeerInfo.parse(name)
         Diagnostics.log("Gruppe gefunden: $endpointId (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol})")
         if (groups.none { it.endpointId == endpointId }) groups += Group(endpointId, peer)
+        checkSuccessor(Group(endpointId, peer))
     }
 
     override fun onEndpointLost(endpointId: String) {
@@ -793,13 +1082,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     override fun onConnectionRequest(endpointId: String, name: String, authCode: String) {
         val peer = PeerInfo.parse(name)
         Diagnostics.log("Beitrittsanfrage von $endpointId, Prüfcode $authCode (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
-        val forUpdate = peer.updateOnly || !peer.compatible
-        if (forUpdate || master?.canAcceptJoin() == true) {
-            joinRequests += JoinRequest(endpointId, peer, authCode)
-        } else {
-            // Beitritt nur zwischen zwei Runden.
-            link.reject(endpointId)
+        // Nach einer Übernahme kommen die bisherigen Mitspieler ohne Rückfrage wieder hinein.
+        val taken = takenOver
+        if (master?.canAcceptJoin() == true && taken != null && UptimeClock.now() < takenOverUntil && peer.compatible && !peer.updateOnly &&
+            peer.name != myName.trim() && (peer.name == taken.master || taken.scores.any { it.first == peer.name })
+        ) {
+            Diagnostics.log("Übernahme: ${peer.name} kommt zurück – ohne Rückfrage aufgenommen")
+            link.accept(endpointId)
+            return
         }
+        // Während einer laufenden Runde wartet die Anfrage; angezeigt wird sie erst in der nächsten Pause.
+        joinRequests += JoinRequest(endpointId, peer, authCode)
+        if (!masterIdle) Diagnostics.log("Beitrittsanfrage wartet bis zur nächsten Pause")
     }
 
     override fun onConnected(endpointId: String, name: String) {
@@ -816,6 +1110,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             val peer = PeerInfo.parse(name)
             peerBuilds[endpointId] = peer.build
             engine.addPlayer(endpointId, peer.name)
+            // Mit GitHub-Zugang: Spieler dürfen ihre gespeicherten Diagnosen abgeben.
+            if (diagnoseUpload.hasToken) link.send(endpointId, Message.DiagnoseCollect)
             return
         }
         masterEndpoint = endpointId
@@ -829,10 +1125,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             // Der Spielleiter entscheidet: Er schickt seine neuere Version oder fordert unsere an.
             return
         }
+        takeover?.let { t ->
+            Diagnostics.log("Übernahme: verbunden mit ${t.taker ?: masterPeer?.name}")
+            status = "${t.taker ?: masterPeer?.name ?: "Ein Mitspieler"} leitet jetzt das Spiel."
+            takeoverTask?.cancel()
+            takeoverTask = null
+            takeover = null
+        }
         val engineForPlayer = PlayerEngine(UptimeClock, scheduler, log = Diagnostics::log) { link.send(endpointId, it) }
         engineForPlayer.onViewChanged = { onPlayerView(it, remote = true) }
         engineForPlayer.onSound = { playSoundEvent(it) }
         engineForPlayer.onReplay = { startReplay(it) }
+        engineForPlayer.onIntro = { showIntro(it) }
         engineForPlayer.onArmed = { if (SoundEvent.HUM in engineForPlayer.view.rules.sounds) sound(SoundEvent.HUM) }
         engineForPlayer.onEmote = { from, emoji -> showEmote(from, emoji) }
         engineForPlayer.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
@@ -844,19 +1148,29 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         player = engineForPlayer
         playerView = engineForPlayer.view
         engineForPlayer.setReceiveEmojis(receiveEmojis)
+        GameService.start(getApplication(), "Du spielst bei ${masterPeer?.name ?: "einer Buzzer-Runde"} mit")
         screen = Screen.PLAYER
     }
 
     override fun onConnectionFailed(endpointId: String, reason: String) {
         Diagnostics.log("Verbindung mit $endpointId fehlgeschlagen: $reason")
+        joinRequests.removeAll { it.endpointId == endpointId }
         if (master == null && connectingTo == endpointId) {
             connectingTo = null
             joinCode = null
+            val t = takeover
+            if (t != null) {
+                // Nach einer Übernahme: kurz warten und erneut versuchen.
+                takeover = t.copy(taker = null)
+                scheduler.schedule(1_500) { groups.firstOrNull { it.endpointId == endpointId }?.let { checkSuccessor(it) } }
+                return
+            }
             status = "Der Beitritt wurde abgelehnt oder ist fehlgeschlagen."
         }
     }
 
     override fun onDisconnected(endpointId: String) {
+        joinRequests.removeAll { it.endpointId == endpointId }
         val engine = master
         if (engine != null && updateEndpoints.remove(endpointId) != null) {
             Diagnostics.log("Update-Verbindung beendet: $endpointId")
@@ -875,6 +1189,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         } else if (endpointId == masterEndpoint) {
             val silence = player?.lastMessageAt?.let { UptimeClock.now() - it }
             Diagnostics.log("Verbindung zum Spielleiter abgebrochen; letzte Nachricht vor ${silence ?: "?"} ms")
+            val s = succession
+            if (s != null && s.kind != null && takeover == null) {
+                startTakeover(s, if (s.to.isNotEmpty()) "${s.master} übergibt die Spielleitung an ${s.to}." else "Die Verbindung zum Spielleiter ${s.master} ist abgebrochen.")
+                return
+            }
+            if (takeover != null) return
             leave()
             status = "Die Verbindung zum Spielleiter ist abgebrochen."
         }
@@ -893,15 +1213,55 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 if (master == null) return
                 reportCollector.add(message)?.let { report ->
                     Diagnostics.log("Diagnosebericht von ${report.from} erhalten (Build ${report.build}, ${report.text.length} Zeichen)")
-                    link.send(endpointId, Message.DiagnoseReceived(report.id))
-                    pendingReports += report
-                    if (diagnoseUpload.hasToken) uploadReports() else status = "Diagnosebericht von ${report.from} erhalten – über ⋮ „Diagnoseberichte“ in GitHub ablegen."
+                    // Gespeicherte Berichte erst nach dem Hochladen bestätigen – der Spieler löscht sie dann.
+                    if (report.saved && diagnoseUpload.hasToken) {
+                        confirmAfterUpload[report.id] = endpointId
+                    } else {
+                        link.send(endpointId, Message.DiagnoseReceived(report.id))
+                    }
+                    addPending(report.copy(saved = false))
+                    if (diagnoseUpload.hasToken) uploadReports() else status = "Diagnosebericht von ${report.from} erhalten – über ⋮ „Gespeicherte Diagnosen“ in GitHub ablegen."
                 }
                 return
             }
             is Message.DiagnoseReceived -> {
-                Diagnostics.log("Spielleiter hat den Diagnosebericht erhalten")
-                status = "Der Spielleiter hat deinen Diagnosebericht erhalten."
+                val saved = pendingReports.firstOrNull { it.id == message.reportId }
+                if (saved != null) {
+                    removePending(saved)
+                    Diagnostics.log("Gespeicherte Diagnose ${saved.id} liegt im Repository des Spielleiters – hier gelöscht")
+                    if (pendingReports.isEmpty()) status = "Deine gespeicherten Diagnosen liegen jetzt beim Spielleiter in GitHub."
+                } else {
+                    Diagnostics.log("Spielleiter hat den Diagnosebericht erhalten")
+                    status = "Der Spielleiter hat deinen Diagnosebericht erhalten."
+                }
+                return
+            }
+            is Message.Succession -> {
+                if (master != null || endpointId != masterEndpoint) return
+                succession = message
+                if (message.to.isNotEmpty()) {
+                    Diagnostics.log("Spielleitung geht an ${message.to}")
+                    if (message.to == myName.trim()) becomeSuccessor(message)
+                }
+                return
+            }
+            Message.MasterGone -> {
+                if (master != null || endpointId != masterEndpoint) return
+                val s = succession
+                Diagnostics.log("Spielleiter geht – Übernahme möglich")
+                if (s == null || s.kind == null) {
+                    leave()
+                    status = "Der Spielleiter hat die Gruppe geschlossen."
+                } else {
+                    link.disconnect(endpointId)
+                    startTakeover(s, "${s.master} hat das Spiel verlassen.")
+                }
+                return
+            }
+            Message.DiagnoseCollect -> {
+                if (master != null) return
+                masterCollects = true
+                if (pendingReports.isNotEmpty() && !offerDeclined) diagnoseOffer = true
                 return
             }
             is Message.ApkInfo -> {
@@ -928,6 +1288,130 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
     }
 
+    // ------------------------------------------------------------------ Übernahme der Spielleitung
+
+    /** Spielleiter weg: Spieler suchen den Nachfolger bzw. können selbst übernehmen; nach 1 Minute ist Schluss. */
+    private fun startTakeover(s: Message.Succession, reason: String) {
+        Diagnostics.log("Übernahme: $reason")
+        player = null
+        playerView = null
+        masterEndpoint = null
+        masterPeer = null
+        connectingTo = null
+        joinCode = null
+        updateTicking(null)
+        replayDone()
+        intro = null
+        groups.clear()
+        joinRequests.clear()
+        val deadline = UptimeClock.now() + TAKEOVER_MS
+        takeover = Takeover(s, deadline, s.to.ifEmpty { null }, reason = reason)
+        screen = Screen.TAKEOVER
+        sound(SoundEvent.CHAT)
+        link.stopDiscovery()
+        link.startDiscovery()
+        armTakeoverTimeout(deadline)
+    }
+
+    private fun armTakeoverTimeout(deadline: Long) {
+        takeoverTask?.cancel()
+        takeoverTask = scheduler.schedule(deadline - UptimeClock.now()) {
+            takeoverTask = null
+            if (takeover == null) return@schedule
+            Diagnostics.log("Übernahme: niemand hat übernommen – Spiel beendet")
+            leave()
+            status = "Niemand hat die Spielleitung übernommen – das Spiel ist beendet."
+        }
+    }
+
+    /** Rang in der Reihenfolge des Vorgängers (wer früher dabei war, hat Vorrang). */
+    private fun rankIn(s: Message.Succession, name: String): Int =
+        s.scores.indexOfFirst { it.first == name }.let { if (it < 0) Int.MAX_VALUE else it }
+
+    /** Gefundene Gruppe: Ist das der Nachfolger, dem wir beitreten? */
+    private fun checkSuccessor(group: Group) {
+        val name = group.peer.name
+        if (!group.peer.compatible || name == myName.trim()) return
+        val t = takeover
+        if (t != null && master == null) {
+            val s = t.succession
+            val fits = if (t.expected != null) name == t.expected else name != s.master && s.scores.any { it.first == name }
+            if (!fits || connectingTo != null) return
+            Diagnostics.log("Übernahme: $name leitet jetzt – Beitritt")
+            // Wer gerade verbunden wird, bekommt noch etwas Zeit.
+            val deadline = maxOf(t.deadline, UptimeClock.now() + TAKEOVER_CONNECT_MS)
+            takeover = t.copy(taker = name, deadline = deadline)
+            armTakeoverTimeout(deadline)
+            join(group)
+            return
+        }
+        // Zwei haben gleichzeitig übernommen: Der später Beigetretene gibt ab und tritt bei.
+        val taken = takenOver ?: return
+        val engine = master ?: return
+        if (UptimeClock.now() > takenOverUntil || rankIn(taken, name) >= rankIn(taken, myName.trim())) return
+        Diagnostics.log("Übernahme: $name hat ebenfalls übernommen und hat Vorrang – gebe ab")
+        val s = engine.succession(name)
+        engine.leaveOpen()
+        link.stopAll()
+        master = null
+        masterSnapshot = null
+        player = null
+        playerView = null
+        takenOver = null
+        startTakeover(s, "$name hat die Spielleitung zugleich übernommen.")
+    }
+
+    /** „Ich übernehme die Spielleitung.“ */
+    fun takeOver() {
+        val t = takeover ?: return
+        if (t.expected != null || t.taker != null) return
+        becomeSuccessor(t.succession)
+    }
+
+    private fun becomeSuccessor(s: Message.Succession) {
+        Diagnostics.log("Übernahme: ich leite jetzt das Spiel")
+        takeoverTask?.cancel()
+        takeoverTask = null
+        takeover = null
+        succession = null
+        masterEndpoint = null
+        masterPeer = null
+        player = null
+        playerView = null
+        groups.clear()
+        link.stopAll()
+        openGroup(s)
+        status = "Du leitest jetzt das Spiel – die anderen verbinden sich gleich wieder."
+    }
+
+    /** Spielleiter: Leitung an [name] übergeben und selbst als Spieler weitermachen. */
+    fun handOver(name: String) {
+        val engine = master ?: return
+        if (!engine.handOver(name)) {
+            status = "Übergeben geht nur zwischen den Runden bzw. bei der Auflösung."
+            return
+        }
+        val s = engine.succession(name)
+        Diagnostics.log("Spielleitung an $name übergeben")
+        updateTicking(null)
+        scheduler.schedule(500) {
+            if (master !== engine) return@schedule
+            link.stopAll()
+            master = null
+            masterSnapshot = null
+            player = null
+            playerView = null
+            joinRequests.clear()
+            peerBuilds.clear()
+            takenOver = null
+            startTakeover(s, "Du hast die Spielleitung an $name übergeben.")
+        }
+    }
+
+    /** Spieler, an die der Spielleiter übergeben kann. */
+    val handOverCandidates: List<String>
+        get() = masterSnapshot?.players.orEmpty().filter { it.connected && it.id != LOCAL_PLAYER_ID && it.id in peerBuilds }.map { it.name }
+
     // ------------------------------------------------------------------ Diagnoseberichte
 
     /** Ist dieses Gerät als Spieler mit einem Spielleiter verbunden? */
@@ -942,10 +1426,92 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         status = "Diagnosebericht wird an den Spielleiter gesendet …"
     }
 
-    /** Master: eigenen Bericht zu den hochzuladenden legen. */
+    /** Eigenen Bericht speichern und mit Token gleich in GitHub ablegen (ohne Token: Anleitung). */
     fun addOwnReport(report: String) {
-        pendingReports += DiagnoseTransfer.Report(System.currentTimeMillis().toString(36), myName.trim().ifEmpty { "Spielleiter" }, AppUpdate.ownBuild, report)
+        addPending(ownReport(report))
         uploadReports()
+    }
+
+    /** Eigenen Bericht nur auf dem Gerät speichern; mit Token wird er sofort hochgeladen. */
+    fun saveReport(report: String) {
+        addPending(ownReport(report))
+        if (diagnoseUpload.hasToken) {
+            uploadReports()
+        } else {
+            status = "Diagnose auf dem Gerät gespeichert. Ein Spielleiter mit GitHub-Zugang kann sie beim nächsten Beitritt übernehmen."
+        }
+    }
+
+    private fun ownReport(text: String) = DiagnoseTransfer.Report(
+        System.currentTimeMillis().toString(36),
+        myName.trim().ifEmpty { if (isMaster) "Spielleiter" else "Spieler" },
+        AppUpdate.ownBuild,
+        text,
+    )
+
+    fun deleteReport(report: DiagnoseTransfer.Report) {
+        removePending(report)
+        Diagnostics.log("Gespeicherte Diagnose ${report.id} gelöscht")
+    }
+
+    fun shareReport(context: Context, report: DiagnoseTransfer.Report) = Diagnostics.share(context, report.text)
+
+    /** Spieler: alle gespeicherten Berichte an den Spielleiter; gelöscht wird erst nach seiner Bestätigung. */
+    fun sendSavedToMaster() {
+        diagnoseOffer = false
+        val endpoint = masterEndpoint ?: return
+        for (r in pendingReports.toList()) {
+            DiagnoseTransfer.split(r.id, r.from, r.build, r.text, saved = true).forEach { link.send(endpoint, it) }
+        }
+        Diagnostics.log("${pendingReports.size} gespeicherte Diagnose(n) an den Spielleiter gesendet")
+        status = "Gespeicherte Diagnosen werden an den Spielleiter gesendet …"
+    }
+
+    /** Spieler: Rückfrage schließen; [never] = bis zum Neustart nicht mehr fragen. */
+    fun dismissDiagnoseOffer(never: Boolean) {
+        diagnoseOffer = false
+        if (never) offerDeclined = true
+    }
+
+    private fun addPending(report: DiagnoseTransfer.Report) {
+        if (pendingReports.any { it.id == report.id && it.from == report.from }) return
+        pendingReports += report
+        runCatching { File(pendingDir, "${report.id}.txt").writeText("${report.from}|${report.build}\n${report.text}") }
+            .onFailure { Diagnostics.log("Diagnosebericht nicht zwischengespeichert: ${it.message}") }
+    }
+
+    private fun removePending(report: DiagnoseTransfer.Report) {
+        pendingReports.remove(report)
+        File(pendingDir, "${report.id}.txt").delete()
+    }
+
+    /** Quiz-Statistik in das private Repository hochladen (für die Pflege der Fragenpakete). */
+    fun uploadStats() {
+        if (!diagnoseUpload.hasToken) {
+            showTokenGuide = true
+            return
+        }
+        val now = Date()
+        val name = myName.trim().replace(Regex("[^\\p{L}\\p{N}_-]+"), "-").trim('-').ifEmpty { "Spielleiter" }
+        val base = "statistik/${SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(now)}/$name-${SimpleDateFormat("HH-mm-ss", Locale.GERMANY).format(now)}"
+        val path = "$base.buzzstats"
+        status = "Statistik wird hochgeladen …"
+        diagnoseUpload.upload(path, quizStore.statsJson(), "Quiz-Statistik von $name (Build ${AppUpdate.ownBuild})") { error ->
+            if (error != null) {
+                status = "Statistik-Upload fehlgeschlagen: $error"
+                return@upload
+            }
+            // Test-Statistik als eigene Datei; danach auf dem Gerät leeren.
+            val test = quizStore.testStatsJson()
+            if (test == null) {
+                status = "Statistik in GitHub abgelegt: $path"
+                return@upload
+            }
+            diagnoseUpload.upload("$base-TEST.buzzstats", test, "Test-Statistik von $name (Build ${AppUpdate.ownBuild})") { testError ->
+                if (testError == null) quizStore.clearTestStats()
+                status = if (testError == null) "Statistik und Test-Statistik in GitHub abgelegt: $path" else "Test-Statistik-Upload fehlgeschlagen: $testError"
+            }
+        }
     }
 
     /** Alle offenen Berichte nacheinander in GitHub ablegen; ohne Token erst die Anleitung. */
@@ -957,7 +1523,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
         uploading = true
         val report = pendingReports.first()
-        val now = Date()
+        // Pfad nach der Erstellungszeit (Berichts-ID), damit gespeicherte Berichte richtig einsortiert werden.
+        val now = report.id.toLongOrNull(36)?.takeIf { it in 1_600_000_000_000L..System.currentTimeMillis() + 86_400_000L }?.let(::Date) ?: Date()
         val path = DiagnoseTransfer.path(
             SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY).format(now),
             SimpleDateFormat("HH-mm-ss", Locale.GERMANY).format(now),
@@ -966,8 +1533,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         )
         diagnoseUpload.upload(path, report.text, "Diagnose von ${report.from} (Build ${report.build})") { error ->
             uploading = false
-            if (error == null) {
-                pendingReports.remove(report)
+            // Gleicher Name = derselbe Bericht (Erstellungszeit) liegt schon dort, z. B. doppelt eingesammelt.
+            if (error == null || error == DiagnoseUpload.ALREADY_EXISTS) {
+                removePending(report)
+                confirmAfterUpload.remove(report.id)?.let { link.send(it, Message.DiagnoseReceived(report.id)) }
                 status = "Diagnose von ${report.from} in GitHub abgelegt: $path"
                 if (pendingReports.isNotEmpty()) uploadReports()
             } else {
@@ -1038,6 +1607,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onCleared() {
+        GameService.stop(getApplication())
         master?.close()
         link.stopAll()
         sounds.release()
@@ -1046,6 +1616,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     companion object {
         /** Nearby-Endpunkt-IDs sind vierstellig, eine Verwechslung ist ausgeschlossen. */
         const val LOCAL_PLAYER_ID = "local-master"
+
+        /** Ohne Nachfolger endet das Spiel nach dieser Zeit (Punkt 59). */
+        const val TAKEOVER_MS = 60_000L
+
+        /** Beitritt beim Nachfolger: so lange mindestens noch. */
+        const val TAKEOVER_CONNECT_MS = 30_000L
+
+        /** Der Nachfolger nimmt die bisherigen Mitspieler so lange ohne Rückfrage auf. */
+        const val TAKEN_OVER_ACCEPT_MS = 180_000L
+
+        /** Pause zwischen „Go!“ und dem automatischen Start der nächsten Quiz-Frage. */
+        const val AUTO_START_MS = 1_500L
+
+        /** Namen der Start-Animationen fürs Diagnose-Protokoll. */
+        val SPLASH_NAMES = listOf("A Hüpfer", "B Vorhang auf", "C Hau drauf")
+        val RACE_NAMES = listOf("1 Die Fabel", "2 Verfolgungsjagd", "3 Startschuss")
     }
 }
 
@@ -1053,6 +1639,23 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 fun describeProfile(values: Map<String, String>): List<Pair<String, String>> {
     val s = SettingsCodec.fromMap(values).settings
     fun sec(ms: Long) = String.format(java.util.Locale.GERMANY, "%.1f s", ms / 1000.0)
+    // Quiz-Vorlage: nur, was im Quiz wirkt.
+    if (values[ConfigStore.KIND_KEY] == ConfigStore.KIND_QUIZ) {
+        return listOfNotNull(
+            "Fragen" to "${s.quizCount}",
+            "Kategorien" to s.quizCategories.ifEmpty { setOf("alle") }.joinToString(),
+            "Stufen" to s.quizLevels.sortedBy { it.ordinal }.joinToString { it.label },
+            "Antwortzeit" to sec(s.quizAnswerMs),
+            "Wertung" to s.quizScoring.label,
+            ("Countdown" to sec(s.quizCountdownMs)).takeIf { s.quizScoring == QuizScoring.COUNTDOWN },
+            "Bereit-Abfrage automatisch" to if (s.quizAutoReadyMs > 0) "nach ${sec(s.quizAutoReadyMs)}" else "aus",
+            "Gleichstand" to "${s.tieThresholdMs} ms",
+            "Rangliste" to (if (s.boardShowNames) "mit Namen" else "ohne Namen") +
+                ", " + (if (s.boardPlaces == 0) "alle Plätze" else "${s.boardPlaces} Plätze"),
+            "Kurznachrichten" to if (s.messagesEnabled) "an" else "aus",
+            "Emoticons" to if (s.emojisEnabled) s.emojis.joinToString(" ") else "aus",
+        )
+    }
     return listOf(
         "Startmodus" to if (s.startMode.name == "TAP") "Tippen" else "Halten und Loslassen",
         "Max. Reaktionszeit" to (s.reactionLimitMs?.let(::sec) ?: "aus"),

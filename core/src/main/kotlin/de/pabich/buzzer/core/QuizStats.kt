@@ -35,6 +35,8 @@ enum class ChallengeDecision(val label: String) {
     ANNUL("Frage annullieren"),
     CORRECT("Antwort korrigieren"),
     BLOCK("Frage sperren"),
+    /** Frage annullieren und sofort durch eine andere ersetzen. */
+    REPLACE("Ersatzfrage"),
 }
 
 object Difficulty {
@@ -97,6 +99,23 @@ data class StatsBook(val entries: Map<String, QuestionStats> = emptyMap()) {
         )
     }
 
+    /**
+     * Nach einer Challenge-Entscheidung: die bei der Auflösung gezählte Bewertung [before] wieder
+     * herausnehmen und – falls die Frage noch zählt – die neue [after] eintragen. Annulliert,
+     * gesperrt oder ersetzt: [after] = `null`, die Antworten zählen dann nicht.
+     */
+    fun revise(q: Question, before: List<ParticipantResult>?, after: List<ParticipantResult>?) = with(q) { s ->
+        fun List<ParticipantResult>?.n(p: (ParticipantResult) -> Boolean): Int = this?.count(p) ?: 0
+        fun List<ParticipantResult>?.share(): Double = this?.filter { it.correct == true }?.sumOf { it.timeShare.coerceIn(0.0, 1.0) } ?: 0.0
+        s.copy(
+            answers = (s.answers - (before?.size ?: 0) + (after?.size ?: 0)).coerceAtLeast(0),
+            correct = (s.correct - before.n { it.correct == true } + after.n { it.correct == true }).coerceAtLeast(0),
+            wrong = (s.wrong - before.n { it.correct == false } + after.n { it.correct == false }).coerceAtLeast(0),
+            none = (s.none - before.n { it.correct == null } + after.n { it.correct == null }).coerceAtLeast(0),
+            correctTimeShare = (s.correctTimeShare - before.share() + after.share()).coerceAtLeast(0.0),
+        )
+    }
+
     /** Übersprungen: gesehen, aber nicht gewertet. */
     fun recordSeen(q: Question, names: Collection<String>, now: Long) = with(q) { s ->
         s.copy(lastPlayed = now, seenBy = s.seenBy + names)
@@ -110,7 +129,7 @@ data class StatsBook(val entries: Map<String, QuestionStats> = emptyMap()) {
         val note = "Entscheidung: ${decision.label}" + if (newCorrect != null) " → „${q.answers.getOrNull(newCorrect)}“" else ""
         when (decision) {
             ChallengeDecision.KEEP -> s.copy(notes = (s.notes + note).takeLast(MAX_NOTES))
-            ChallengeDecision.ANNUL -> s.copy(annulled = s.annulled + 1, notes = (s.notes + note).takeLast(MAX_NOTES))
+            ChallengeDecision.ANNUL, ChallengeDecision.REPLACE -> s.copy(annulled = s.annulled + 1, notes = (s.notes + note).takeLast(MAX_NOTES))
             ChallengeDecision.BLOCK -> s.copy(annulled = s.annulled + 1, blocked = true, notes = (s.notes + note).takeLast(MAX_NOTES))
             ChallengeDecision.CORRECT -> s.copy(correctOverride = newCorrect, notes = (s.notes + note).takeLast(MAX_NOTES))
         }
@@ -118,10 +137,12 @@ data class StatsBook(val entries: Map<String, QuestionStats> = emptyMap()) {
 
     // ------------------------------------------------------------------ Datei (.buzzstats)
 
-    fun toJson(questions: Map<String, Question> = emptyMap()): String = MiniJson.write(
+    /** [test]: Statistik aus Testspielen – wird beim Auswerten getrennt gehalten. */
+    fun toJson(questions: Map<String, Question> = emptyMap(), test: Boolean = false): String = MiniJson.write(
         linkedMapOf(
             "format" to "buzzstats",
             "version" to 1L,
+            "test" to test,
             "fragen" to entries.toSortedMap().map { (id, s) ->
                 val q = questions[id]
                 linkedMapOf<String, Any?>(

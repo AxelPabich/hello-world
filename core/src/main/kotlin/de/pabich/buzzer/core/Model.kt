@@ -47,11 +47,15 @@ enum class SoundEvent(val label: String, val defaultOn: Boolean = true) {
     RIGHT("Richtig – Ding Ding + Applaus"),
     WRONG("Falsch – Wah-wah-wah"),
     TUSCH("Quiz richtig – Tusch"),
+    GO("Alle bereit – Go!"),
     ROUND_END("Rundenende – Trommelwirbel + Tusch"),
     EMOTE("Emoticon – Plopp", defaultOn = false),
     CHAT("Kurznachricht – Pling"),
     CHASE("Spielverlauf – Verfolgungsjagd"),
 }
+
+/** Klänge der Start-Animationen; sie folgen dem Lautsprecher-Schalter der App, nicht dem Profil. */
+enum class Jingle { SPLASH_HOP, SPLASH_CURTAIN, SPLASH_SLAP, RACE_FABLE, RACE_CHASE, RACE_START }
 
 val DEFAULT_SOUNDS: Set<SoundEvent> = SoundEvent.entries.filter { it.defaultOn }.toSet()
 const val EMOJI_COUNT = 7
@@ -91,6 +95,8 @@ data class Settings(
     val quizScoring: QuizScoring = QuizScoring.FASTEST,
     /** Quiz, Wertung „Countdown“: so lange läuft die Zeit nach der ersten richtigen Antwort noch. */
     val quizCountdownMs: Long = 5_000,
+    /** Bereit-Abfrage automatisch so lange nach der Auflösung; 0 = aus. */
+    val quizAutoReadyMs: Long = 0,
 ) {
     /** Reaktionszeit-Limit oder `null`, wenn ausgeschaltet. */
     val reactionLimitMs: Long? get() = if (reactionLimitEnabled) timeLimitMs else null
@@ -117,10 +123,15 @@ data class Settings(
             quizLevels = quizLevels.ifEmpty { QuizLevel.entries.toSet() },
             quizCount = quizCount.coerceIn(1, 50),
             quizAnswerMs = quizAnswerMs.coerceIn(5_000, 120_000),
-            quizCountdownMs = quizCountdownMs.coerceIn(1_000, 30_000),
+            // Höchstens die halbe Antwortzeit – sonst greift der Countdown nie.
+            quizCountdownMs = quizCountdownMs.coerceIn(1_000, maxCountdownMs(quizAnswerMs.coerceIn(5_000, 120_000))),
+            quizAutoReadyMs = if (quizAutoReadyMs <= 0) 0 else quizAutoReadyMs.coerceIn(3_000, 120_000),
         )
     }
 }
+
+/** Längster sinnvoller Countdown: die halbe Antwortzeit (auf volle Sekunden). */
+fun maxCountdownMs(answerMs: Long): Long = (answerMs / 2 / 1_000 * 1_000).coerceIn(1_000, 30_000)
 
 fun formatScore(score: Long, scoring: ScoringMode): String = when (scoring) {
     ScoringMode.CORRECT_ANSWERS -> score.toString()

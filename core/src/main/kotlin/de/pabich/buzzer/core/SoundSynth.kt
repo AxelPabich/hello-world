@@ -35,9 +35,10 @@ object SoundSynth {
             tone(0.18, 1760.0, 0.9, Wave.SINE, 0.3)
             applause(0.3, 2.6)
         }
-        SoundEvent.WRONG -> mix(2.4) {
-            listOf(392.0, 370.0, 349.0).forEachIndexed { i, f -> tone(i * 0.42, f, 0.4, Wave.TRIANGLE, 0.3) }
-            tone(1.26, 330.0, 1.0, Wave.TRIANGLE, 0.3, freqEnd = 300.0)
+        SoundEvent.WRONG -> mix(3.1) {
+            // Gestopfte Posaune: drei absteigende „Wah“, dann ein langes, wackelndes „Waaah“.
+            listOf(293.7, 277.2, 261.6).forEachIndexed { i, f -> trombone(i * 0.5, f, 0.44, 0.32) }
+            trombone(1.5, 246.9, 1.5, 0.34, wobble = true, glideTo = 220.0)
         }
         SoundEvent.TUSCH -> mix(1.6) {
             // Kurzer Schlag, dann ein Akkord-Stoß „Ta-daaa“ wie die Showband.
@@ -46,6 +47,12 @@ object SoundSynth {
             for (f in listOf(523.0, 659.0, 784.0)) tone(0.02, f, 0.14, Wave.SAW, 0.09)
             for (f in listOf(523.0, 659.0, 784.0, 1047.0)) tone(0.2, f, 1.3, Wave.SAW, 0.08)
             noise(0.2, 1.2, 0.25, 6000.0, 1.2)
+        }
+        SoundEvent.GO -> mix(1.2) {
+            // Zwei kurze Signale und ein hoher, langer Ton – wie ein Startsignal.
+            tone(0.0, 880.0, 0.18, Wave.SQUARE, 0.12)
+            tone(0.3, 880.0, 0.18, Wave.SQUARE, 0.12)
+            tone(0.6, 1760.0, 0.55, Wave.SQUARE, 0.14)
         }
         SoundEvent.ROUND_END -> mix(2.9) {
             drumroll(0.0)
@@ -57,6 +64,52 @@ object SoundSynth {
             tone(0.0, 3136.0, 0.3, Wave.SINE, 0.06)
         }
         SoundEvent.CHASE -> chase(MasterEngine.MAX_REPLAY_MS)
+    }
+
+    /** Klänge der Start-Animationen (Splash-Screen und Spielstart). */
+    fun render(jingle: Jingle): ShortArray = when (jingle) {
+        // Splash A: „Boing“ beim Aufprall, dann tiefer Quizshow-Buzzer und Jubel.
+        Jingle.SPLASH_HOP -> mix(3.0) {
+            tone(0.45, 240.0, 0.25, Wave.SINE, 0.35, freqEnd = 620.0)
+            tone(0.7, 620.0, 0.3, Wave.SINE, 0.3, freqEnd = 180.0)
+            tone(1.15, 110.0, 0.7, Wave.SQUARE, 0.16)
+            tone(1.15, 166.0, 0.7, Wave.SAW, 0.12)
+            applause(1.2, 1.7)
+        }
+        // Splash B: Vorhang rauscht, dann helle Ding-Ding-Glocke und Jubel.
+        Jingle.SPLASH_CURTAIN -> mix(3.0) {
+            noise(0.3, 1.0, 0.12, 600.0, 0.5)
+            tone(1.1, 1320.0, 0.6, Wave.TRIANGLE, 0.35)
+            tone(1.4, 990.0, 0.9, Wave.TRIANGLE, 0.35)
+            applause(1.3, 1.6)
+        }
+        // Splash C: Luftzug, Klatsch, schnarrender Elektro-Buzzer und Jubel.
+        Jingle.SPLASH_SLAP -> mix(3.0) {
+            noise(0.55, 0.35, 0.3, 3000.0, 0.7)
+            noise(0.9, 0.12, 0.9, 200.0, 0.8)
+            vibrato(0.92, 72.0, 0.9, 32.0, 6.0, 0.3)
+            applause(1.1, 1.8)
+        }
+        // Spielstart 1: Trillerpfeife.
+        Jingle.RACE_FABLE -> mix(2.0) {
+            for (k in 0 until 6) tone(k * 0.06, 2600.0, 0.06, Wave.SINE, 0.25)
+            tone(0.4, 2600.0, 0.25, Wave.SINE, 0.25)
+            tone(1.25, 300.0, 0.6, Wave.SINE, 0.2, freqEnd = 120.0)
+        }
+        // Spielstart 2: Cartoon-„Wuuusch“ hin und zurück, dann zwei Piepser.
+        Jingle.RACE_CHASE -> mix(3.0) {
+            tone(0.0, 200.0, 0.9, Wave.SINE, 0.3, freqEnd = 1400.0)
+            tone(1.2, 1400.0, 0.9, Wave.SINE, 0.3, freqEnd = 220.0)
+            tone(2.4, 660.0, 0.12, Wave.SQUARE, 0.12)
+            tone(2.52, 990.0, 0.2, Wave.SQUARE, 0.12)
+        }
+        // Spielstart 3: zwei Piepser, Startschuss-Knall, hoher Ton.
+        Jingle.RACE_START -> mix(2.2) {
+            tone(0.1, 660.0, 0.15, Wave.SINE, 0.3)
+            tone(0.85, 660.0, 0.15, Wave.SINE, 0.3)
+            noise(1.55, 0.35, 1.0, 900.0, 0.3)
+            tone(1.6, 1320.0, 0.35, Wave.SINE, 0.3)
+        }
     }
 
     /** Cartoon-Verfolgungsjagd: galoppierender Bass, chromatische Läufe, Hi-Hat, steigende Tonart. */
@@ -156,6 +209,49 @@ object SoundSynth {
                 val y0 = b0 * x0 + b2 * x2 - a1 * y1 - a2 * y2
                 x2 = x1; x1 = x0; y2 = y1; y1 = y0
                 buf[idx] += y0 * vol * (0.0001 / vol).pow(k.toDouble() / SAMPLE_RATE / dur)
+            }
+        }
+
+        /**
+         * Posaune mit Wah-Dämpfer: zwei leicht verstimmte Sägezähne durch einen Tiefpass, dessen
+         * Grenzfrequenz sich öffnet und wieder schließt („wa-ah“). [wobble]: langer Schlusston mit
+         * Vibrato und mehrfachem Wah, am Ende nach [glideTo] abrutschend.
+         */
+        fun trombone(t: Double, freq: Double, dur: Double, vol: Double, wobble: Boolean = false, glideTo: Double? = null) {
+            val start = (t * SAMPLE_RATE).toInt()
+            val n = (dur * SAMPLE_RATE).toInt()
+            var p1 = 0.0
+            var p2 = 0.0
+            var low = 0.0
+            var band = 0.0
+            for (k in 0 until n) {
+                val idx = start + k
+                if (idx >= buf.size) break
+                val x = k.toDouble() / SAMPLE_RATE
+                val rel = x / dur
+                var f = freq
+                if (glideTo != null && rel > 0.7) f = freq * (glideTo / freq).pow((rel - 0.7) / 0.3)
+                if (wobble && x > 0.25) f *= 1 + 0.018 * sin(2 * PI * 5.5 * x)
+                p1 += f / SAMPLE_RATE
+                p2 += f * 1.006 / SAMPLE_RATE
+                val raw = wave(Wave.SAW, p1) + 0.7 * wave(Wave.SAW, p2)
+                // Wah: Tiefpass öffnet sich schnell und schließt langsam; beim Schlusston mehrfach.
+                val wah = if (wobble) {
+                    0.45 + 0.55 * (0.5 - 0.5 * cos(2 * PI * 2.4 * x)) * (1 - rel * 0.6)
+                } else {
+                    if (x < 0.07) x / 0.07 else (1 - (x - 0.07) / (dur - 0.07)).coerceAtLeast(0.0)
+                }
+                val cutoff = 220 + 1700 * wah
+                val fc = 2 * sin(PI * cutoff / SAMPLE_RATE)
+                low += fc * band
+                val high = raw - low - 0.9 * band
+                band += fc * high
+                val env = when {
+                    x < 0.025 -> x / 0.025
+                    x > dur - 0.12 -> ((dur - x) / 0.12).coerceAtLeast(0.0)
+                    else -> 1.0
+                }
+                buf[idx] += low * vol * env * 0.6
             }
         }
 

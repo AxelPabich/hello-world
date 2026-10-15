@@ -33,6 +33,7 @@ object SettingsCodec {
         "quizAnswerMs" to "Quiz: Antwortzeit",
         "quizScoring" to "Quiz: Wertung",
         "quizCountdownMs" to "Quiz: Countdown nach erster richtiger Antwort",
+        "quizAutoReadyMs" to "Quiz: Bereit-Abfrage automatisch",
     )
 
     /** Klänge, die es vor dem Schlüssel [SOUNDS_KNOWN] gab; später hinzugekommene sind neu. */
@@ -73,6 +74,7 @@ object SettingsCodec {
         "quizAnswerMs" to s.quizAnswerMs.toString(),
         "quizScoring" to s.quizScoring.name,
         "quizCountdownMs" to s.quizCountdownMs.toString(),
+        "quizAutoReadyMs" to s.quizAutoReadyMs.toString(),
     )
 
     data class Decoded(val settings: Settings, val missingKeys: List<String>)
@@ -117,6 +119,7 @@ object SettingsCodec {
             quizAnswerMs = read("quizAnswerMs", d.quizAnswerMs) { it.toLong() },
             quizScoring = read("quizScoring", d.quizScoring) { QuizScoring.valueOf(it) },
             quizCountdownMs = read("quizCountdownMs", d.quizCountdownMs) { it.toLong() },
+            quizAutoReadyMs = read("quizAutoReadyMs", d.quizAutoReadyMs) { it.toLong() },
         )
         return Decoded(s.normalized(), missing)
     }
