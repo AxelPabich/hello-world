@@ -452,6 +452,9 @@ Kategorien recherchieren.
     wird über „Build N installieren“ auf dem Startbildschirm, in „Über & Diagnose“, im ⋮-Menü des
     Spielleiters und nach dem Verlassen eines Spiels wieder angeboten. Vorher bedeutete „Später“
     praktisch „nie“ – die Datei lag unerreichbar im Cache.
+67. **Direkter Download-Link** (umgesetzt, kommt mit dem nächsten Build): In „Über & Diagnose“ beim
+    Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
+    die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
 66. **Vorschläge aus dem Test vom 15.10.2026, 22:04–22:18 (Build 27)** (offen):
     - Wer nach einer Übernahme mitten in einer Frage zurückkommt, wartet bis zur Pause und muss
       dann von Hand angenommen werden – besser automatisch in der nächsten Pause aufnehmen.

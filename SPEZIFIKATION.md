@@ -695,3 +695,5 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Angeboten wird sie über „Build N installieren“ auf dem Startbildschirm, in „Über & Diagnose“,
   beim Spielleiter im ⋮-Menü und erneut nach dem Verlassen eines Spiels. Nicht neuere oder
   ungültige Dateien räumt die App beim Start weg.
+- „Über & Diagnose“ zeigt zusätzlich „Direkter Download im Browser (buzzer.apk)“ und den Link zum
+  Kopieren – Installation dann ohne die App über „Eigene Dateien“.

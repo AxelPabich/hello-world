@@ -484,6 +484,20 @@ private fun UpdateSection(vm: BuzzerViewModel) {
         }
         else -> Text("Du hast die neueste Version.", color = theme.muted, fontSize = 15.sp)
     }
+    // Ausweg, wenn die Installation aus der App hängt: im Browser laden und über „Eigene Dateien“ öffnen.
+    val uri = androidx.compose.ui.platform.LocalUriHandler.current
+    TextButton(onClick = {
+        de.pabich.buzzer.Diagnostics.log("Update: direkter Download-Link im Browser geöffnet")
+        runCatching { uri.openUri(de.pabich.buzzer.ShareApp.DOWNLOAD_URL) }
+    }) { Text("Direkter Download im Browser (buzzer.apk)", color = theme.accent2) }
+    Text(
+        "Klappt die Installation aus der App nicht: Link öffnen, die Datei herunterladen und über „Eigene Dateien“ → Downloads antippen.",
+        color = theme.muted,
+        fontSize = 13.sp,
+    )
+    androidx.compose.foundation.text.selection.SelectionContainer {
+        Text(de.pabich.buzzer.ShareApp.DOWNLOAD_URL, color = theme.muted, fontSize = 12.sp)
+    }
 }
 
 /** Eine neuere Version liegt bereit („Später“ gewählt): hier jederzeit installieren. */
