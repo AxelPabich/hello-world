@@ -366,7 +366,12 @@ Kategorien recherchieren.
 
 ## Offen
 
-(zurzeit nichts)
+51. **Ergebnis am Quiz-Ende als Spielverlauf:** Nach „Quiz beendet“ läuft der Spielverlauf
+    automatisch auf allen Geräten ab – höchstens 15 Sekunden (bei vielen Fragen entsprechend
+    schneller), danach bleibt das Ergebnis wie bisher statisch stehen.
+
+Bestätigt im Test (15.10.2026, Build 22): Prüfcode beim Spielleiter groß (Punkt 50); Beitritt
+wartet bis zur Auflösung (Punkt 49, Peter und Wally). Verworfen: ewige Bestenliste mit Spieler-ID.
 
 Bestätigt im Test (14.10.2026, Build 17): Hintergrund-Dienst hält die Verbindung auch bei
 längerer Zeit im Hintergrund; Diagnose- und Statistik-Ablage, Get Ready, Pause, Vorlagen laufen.
