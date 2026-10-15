@@ -455,6 +455,21 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+69. **Aus dem Test vom 15./16.10.2026 (Build 28, alle drei Geräte)** (offen):
+    - Fehler: Nach „Fragen aktualisieren“ beim Spielleiter fehlten der Nachfolgerin 12 von 20
+      Fragen (neue Pakete noch nicht geladen) – das Quiz schrumpfte auf 8 Fragen. Vorschlag: die
+      Fragen selbst im Spielstand mitschicken.
+    - 00:14: Spielleiter Axel kurz weg, niemand tippte „Ich übernehme“ – Spielende nach 1 Minute,
+      obwohl Axels Gruppe nach 30 s wieder auftauchte. Vorschlag: Taucht der bisherige Spielleiter
+      wieder auf und hat noch niemand übernommen, verbinden sich die Spieler wieder mit ihm (er nimmt
+      sie ohne Rückfrage und mit ihren Punkten auf).
+    - Wer zwischen den Runden die Verbindung verliert und neu beitritt, verliert seine Punkte –
+      sie sollten beim Wiederbeitritt (gleicher Name) zurückkommen.
+    - Kosmetik: Beim Wegwischen der App erschien „Alle Spieler getrennt“ dreimal im Protokoll.
+    Bestätigt: Peters Tablet läuft mit Build 28; Wegwischen beim Spielleiter → Übernahme (Simone
+    nach 4 s); Ketten-Übergaben Simone → Axel → Peter → Axel mit richtigen Punkten; automatischer
+    Wiederbeitritt in der Pause; Diagnosen abrufen inkl. „Nicht erneut fragen“; neue Fragenpakete
+    über „Fragen aktualisieren“ (3 Pakete geladen); Spieler-Erkennung nach 13–14 s.
 68. **Neue Fragenpakete** (15.10.2026): „Einzelhandel“, „Büroalltag“ und „Besserwisser“ mit je
     20 Fragen (Version 1). Über „Fragen aktualisieren“ erst nach dem Merge in `master`, sonst mit dem
     nächsten Build.
