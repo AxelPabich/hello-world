@@ -455,6 +455,8 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+71. **Fragendatenbank wächst mit jedem Build** (Daueraufgabe ab Build 33): je Kategorie eine neue
+    Frage pro Schwierigkeitsstufe (10 Pakete × 3 = 30 Fragen je Build). Festgehalten in `CLAUDE.md`.
 70. **Wünsche vom 16.10.2026** (in Build 32): Spielregeln und gespielte
     Kategorien beim Beitritt und zu Spielbeginn; Avatar-Emoticon in den Einstellungen; Siegerfanfare
     als Abschluss des Spielverlaufs; Start-Animationen nie zweimal hintereinander gleich (Rennszene
