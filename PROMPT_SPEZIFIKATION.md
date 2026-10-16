@@ -736,4 +736,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - **Spielregeln** bekommen nur Neue – wer nach Übernahme oder Funkabbruch zurückkommt, nicht erneut.
 - **Installation:** ohne Bitte um Update ohne Rückfrage; lehnt der Paket-Installer ab (Prüfung
   fehlgeschlagen, „Self update is blocked“), öffnet sich einmal der klassische Installer-Dialog.
+- **Spielverlauf tippen:** Erstes Tippen springt zum Endstand („ENDSTAND“, Siegerfanfare), zweites
+  Tippen schließt. Ohne Tippen bleibt der Endstand stehen, bis der Spielleiter weitermacht (nächste
+  Frage, Freigabe oder „Bereit?“) – dann schließt er auf allen Geräten.
+- **Splash „Hau drauf“:** Die Hand landet berechnet auf der Kuppel des Maskottchens (Hand und
+  Maskottchen teilen dieselbe Geometrie, unabhängig vom Seitenverhältnis).
 ===== ENDE SPEZIFIKATION.md =====

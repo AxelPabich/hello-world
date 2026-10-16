@@ -410,46 +410,58 @@ private fun BoxScope.CurtainFront(t: Float, h: Dp, bits: Pair<List<Bit>, List<Bi
 
 @Composable
 private fun BoxScope.SplashSlap(t: Float, w: Dp, h: Dp) {
+    // Geometrie: Die Hand trifft genau die rote Kuppel des Maskottchens – auf jedem Seitenverhältnis.
+    val mascotW = w * 0.55f
+    val mascotH = mascotW * 62f / 64f
+    val mascotTop = h * 0.35f
+    val sTimes = floatArrayOf(0f, .88f, .96f, 1.18f, 1.38f, 3f)
+    val squash = kf(t, sTimes, floatArrayOf(1f, 1f, .55f, 1.1f, 1f, 1f))
+    // Kuppel-Oberkante: im Bild bei 21/62 der Höhe; beim Stauchen (Ursprung unten) wandert sie mit.
+    val domeTop = mascotTop + mascotH - mascotH * (41f / 62f) * squash
+    val handW = w * .56f
+    val handH = w * .26f
+    val palm = handH * (56f / 70f) // Unterkante der Handfläche im Bild
+    val contactX = handW * (60f / 150f) // Mitte der Handfläche
+    val hTimes = floatArrayOf(0f, .64f, .9f, 1.02f, 1.28f, 1.6f)
+    val lift = kf(t, hTimes, floatArrayOf(-2.6f, -1.9f, 0f, 0f, 0f, -3.0f))
+    val side = kf(t, hTimes, floatArrayOf(.28f, .22f, 0f, 0f, 0f, .35f))
+    val tilt = kf(t, hTimes, floatArrayOf(-28f, -34f, 0f, 0f, 0f, -30f))
+    val handTop = domeTop - palm + handH * lift
+    val handLeft = w / 2 - contactX + handW * side
     Canvas(Modifier.fillMaxSize()) {
         rays(t, Offset(size.width / 2, size.height * .45f))
+        val k = size.width / 270f
         // Kraftlinien über der herabsausenden Hand
         val sp = seg(t, .5f, 1.0f)
         if (sp in 0.01f..0.99f) {
             val a = if (sp < .4f) sp / .4f else 1 - (sp - .4f) / .6f
-            val dy = -40f + 110f * sp
+            val top = handTop.toPx() - 70f * k
+            val left = handLeft.toPx() + contactX.toPx() - 50f * k
             listOf(10f to 40f, 32f to 70f, 54f to 55f, 76f to 80f, 98f to 45f).forEach { (x, len) ->
-                val k = size.width / 270f
-                drawRoundRect(Color(0xFFF4F1E8).copy(alpha = a), Offset(size.width / 2 - 50f * k + x * k, size.height * .06f + (10f + (80f - len) / 2 + dy) * k), Size(3f * k, len * k), CornerRadius(2f))
+                drawRoundRect(Color(0xFFF4F1E8).copy(alpha = a), Offset(left + x * k, top + (80f - len) / 2 * k), Size(3f * k, len * k), CornerRadius(2f))
             }
         }
-        // Aufprall-Striche
+        // Aufprall-Striche rund um die Kuppel
         val im = seg(t, .9f, 1.35f)
         if (im in 0.01f..0.99f) {
-            val k = size.width / 270f
-            val c = Offset(size.width / 2, size.height * .52f)
+            val c = Offset(size.width / 2, domeTop.toPx() + 6f * k)
             for (r in listOf(-170f, -140f, -110f, -70f, -40f, -10f)) {
                 rotate(r, c) { drawRoundRect(Gold.copy(alpha = 1 - im), Offset(c.x + (50f + 60f * im) * k, c.y - 2f * k), Size(26f * k * (.3f + .7f * im), 4f * k), CornerRadius(2f)) }
             }
         }
     }
-    val mascotW = w * 0.55f
-    val sTimes = floatArrayOf(0f, .88f, .96f, 1.18f, 1.38f, 3f)
-    Box(Modifier.align(Alignment.TopCenter).padding(top = h * 0.35f).graphicsLayer {
+    Box(Modifier.align(Alignment.TopCenter).padding(top = mascotTop).graphicsLayer {
         scaleX = kf(t, sTimes, floatArrayOf(1f, 1f, 1.3f, .92f, 1f, 1f))
-        scaleY = kf(t, sTimes, floatArrayOf(1f, 1f, .55f, 1.1f, 1f, 1f))
+        scaleY = squash
         transformOrigin = TransformOrigin(.5f, 1f)
     }) { Mascot(mascotW) }
-    // Flache Hand mit Kraftlinien
-    val hTimes = floatArrayOf(0f, .64f, .9f, 1.02f, 1.28f, 1.6f)
-    val unit = w.value / 270f
+    // Flache Hand: Handfläche landet auf der Kuppel, dreht sich um den Berührungspunkt.
     Image(
         painterResource(R.drawable.hand_slap),
         contentDescription = null,
-        modifier = Modifier.align(Alignment.TopCenter).padding(top = h * 0.04f).size(w * .56f, w * .26f).graphicsLayer {
-            translationX = kf(t, hTimes, floatArrayOf(40f, 30f, 0f, 0f, 0f, 60f)) * unit * density + w.toPx() * .06f
-            translationY = kf(t, hTimes, floatArrayOf(-150f, -110f, 112f, 120f, 108f, -170f)) * unit * density
-            rotationZ = kf(t, hTimes, floatArrayOf(-28f, -34f, 0f, 0f, 0f, -30f))
-            transformOrigin = TransformOrigin(.8f, .5f)
+        modifier = Modifier.align(Alignment.TopStart).offset(x = handLeft, y = handTop).size(handW, handH).graphicsLayer {
+            rotationZ = tilt
+            transformOrigin = TransformOrigin(60f / 150f, 56f / 70f)
         },
     )
     // Comic-Blase

@@ -387,6 +387,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         engine.onChanged = { snap ->
             masterSnapshot = snap
             acceptReturning()
+            // Macht der Spielleiter weiter (Frage, Freigabe, Bereit-Abfrage), schließt der Spielverlauf.
+            val playing = snap.phase != MasterEngine.Phase.READY && snap.phase != MasterEngine.Phase.ROUND_OVER &&
+                snap.phase != MasterEngine.Phase.QUIZ_REVEAL
+            if (replay != null && (playing || snap.ready != null)) replayDone()
             // Tickende Uhr auf dem Master-Gerät, solange jemand antwortet.
             val deadline = snap.answerDeadline.takeIf { snap.phase == MasterEngine.Phase.ANSWERING }
             updateTicking(deadline.takeIf { SoundEvent.TICK in snap.settings.sounds })
@@ -1449,8 +1453,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (engine != null) {
             engine.onMessage(endpointId, message)
         } else if (endpointId == masterEndpoint) {
-            // Sobald gespielt wird, verschwinden die Spielregeln – sie blockieren sonst den Buzzer.
-            if (message is Message.QuizAsk || message is Message.Arm || message is Message.GoAt) rules = null
+            // Sobald gespielt wird, verschwinden Spielregeln und Spielverlauf – sie blockieren sonst den Buzzer.
+            if (message is Message.QuizAsk || message is Message.Arm || message is Message.GoAt ||
+                (message is Message.ReadyCheck && message.on)
+            ) {
+                rules = null
+                if (replay != null) replayDone()
+            }
             player?.onMessage(message)
         }
     }

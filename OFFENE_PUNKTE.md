@@ -455,6 +455,11 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+73. **Spielverlauf und „Hau drauf“** (umgesetzt, kommt mit dem nächsten Build): Erstes Tippen →
+    Endstand, zweites Tippen oder Weitermachen des Spielleiters schließt; Hand trifft im Splash
+    „Hau drauf“ die Kuppel (vorher Höhe aus Bildschirmhöhe, Hand aus Breite – auf Tablets verfehlt).
+    Siegerfanfare: „gut“ (Axel).
+
 Bestätigt im Test (16.10.2026, Build 33): Challenge aus der „Bereit?“-Abfrage (Peter, Frage 7 →
 Ersatzfrage); Diagnose-Einstellung „immer senden“ überlebt den Build-Wechsel (Peter, Simone);
 Spielregeln zum Quiz-Start; keine Fehler. Installation von Build 33 lief noch über den alten Code

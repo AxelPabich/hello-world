@@ -32,6 +32,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,16 +44,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.pabich.buzzer.core.Message
 import de.pabich.buzzer.core.formatScore
-import kotlinx.coroutines.delay
 import kotlin.math.floor
-
-private const val HOLD_MS = 3_000L
 
 /**
  * Spielverlauf als Wettrennen: Runde für Runde wachsen die Balken, die Zeilen tauschen die
- * Plätze. Kurze Pause am Anfang und am Ende; insgesamt [Message.Replay.durationMs], danach bleibt
- * der Endstand [HOLD_MS] stehen.
- * Tippen schließt die Animation vorzeitig (nur auf diesem Gerät).
+ * Plätze; insgesamt [Message.Replay.durationMs]. Danach bleibt der Endstand stehen.
+ * Erstes Tippen springt zum Endstand (mit Siegerfanfare), zweites Tippen schließt – oder der
+ * Spielleiter macht weiter (nur auf diesem Gerät).
  */
 @Composable
 fun ReplayOverlay(replay: Message.Replay, onDone: () -> Unit, onMusicEnd: () -> Unit = {}, modifier: Modifier = Modifier) {
@@ -57,12 +58,13 @@ fun ReplayOverlay(replay: Message.Replay, onDone: () -> Unit, onMusicEnd: () -> 
     val done by rememberUpdatedState(onDone)
     val stopMusic by rememberUpdatedState(onMusicEnd)
     val progress = remember(replay) { Animatable(0f) }
+    var atEnd by remember(replay) { mutableStateOf(false) }
+    val scope = rememberCoroutineScope()
     LaunchedEffect(replay) {
         progress.animateTo(1f, tween(replay.durationMs.toInt(), easing = LinearEasing))
-        // Endstand noch 3 Sekunden stehen lassen; die Musik endet mit der Animation.
+        // Endstand bleibt stehen; die Jagdmusik endet, die Siegerfanfare kommt.
+        atEnd = true
         stopMusic()
-        delay(HOLD_MS)
-        done()
     }
     val frames = replay.frames
     val rounds = (frames.size - 1).coerceAtLeast(1)
@@ -84,12 +86,24 @@ fun ReplayOverlay(replay: Message.Replay, onDone: () -> Unit, onMusicEnd: () -> 
         modifier = modifier
             .fillMaxSize()
             .background(theme.ground.copy(alpha = 0.97f))
-            .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) { done() },
+            .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null) {
+                if (atEnd) {
+                    done()
+                } else {
+                    atEnd = true
+                    stopMusic()
+                    scope.launch { progress.snapTo(1f) }
+                }
+            },
     ) {
         Column(Modifier.fillMaxSize().padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-            Text("SPIELVERLAUF", color = theme.accent, fontFamily = theme.display, fontSize = 40.sp)
+            Text(if (atEnd) "ENDSTAND" else "SPIELVERLAUF", color = theme.accent, fontFamily = theme.display, fontSize = 40.sp)
             Text(
-                if (shownRound == 0) "Start" else "Nach Runde $shownRound von $rounds",
+                when {
+                    atEnd -> "Nach $rounds ${if (rounds == 1) "Runde" else "Runden"} · Tippen schließt"
+                    shownRound == 0 -> "Start · Tippen springt zum Endstand"
+                    else -> "Nach Runde $shownRound von $rounds · Tippen springt zum Endstand"
+                },
                 color = theme.accent2,
                 fontSize = 18.sp,
             )
