@@ -455,7 +455,7 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
-75. **Selbsttest** (umgesetzt, kommt mit dem nächsten Build): ⋮ „Selbsttest“ für den Spielleiter
+75. **Selbsttest** (in Build 35): ⋮ „Selbsttest“ für den Spielleiter
     mit Token – 11 Prüfungen der Spiellogik auf dem Gerät, Fragenpakete, Release-Seite, optional
     Live-Test mit den Spielern im Testmodus (Buzzer, Bereit, Quiz, Diagnosen); Bericht ins
     Repository. Spezifikation Abschnitt 52.
@@ -501,6 +501,8 @@ die Korrektur greift ab dem Update auf Build 34.
     per Websuche geprüft: Özdemir Ministerpräsident BW, Super Bowl LX Seahawks, Australian Open Alcaraz.
     Build 34: +30 Fragen (28/28/28/28/28/28/26/26/26/26); „Aktuelles 2026“ per Websuche: Audi in
     der Formel 1, Chemie-Nobelpreis (Kagan, Soai), Wirtschaftsnobelpreis (Hall, Woodford).
+    Build 35: +30 Fragen (31/31/31/31/31/31/29/29/29/29); „Aktuelles 2026“ per Websuche: French
+    Open (Zverev, Andreeva), Darts-WM (Littler).
 70. **Wünsche vom 16.10.2026** (in Build 32): Spielregeln und gespielte
     Kategorien beim Beitritt und zu Spielbeginn; Avatar-Emoticon in den Einstellungen; Siegerfanfare
     als Abschluss des Spielverlaufs; Start-Animationen nie zweimal hintereinander gleich (Rennszene

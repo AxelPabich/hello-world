@@ -1,7 +1,7 @@
 {
   "paket": "film",
   "titel": "Film & Fernsehen",
-  "version": 4,
+  "version": 5,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -22,36 +22,36 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0001",
+      "id": "film-0015",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "mittel",
-      "frage": "Wie bestellt James Bond seinen Martini?",
+      "frage": "In welcher Stadt wohnen die Simpsons?",
       "antworten": [
-        "Geschüttelt, nicht gerührt",
-        "Als warme Milch mit Honig, die Mission war anstrengend",
-        "Halb Apfelschorle, halb Kamillentee",
-        "Gerührt, nicht geschüttelt"
+        "Springfield",
+        "Shelbyville",
+        "Quahog",
+        "South Park"
       ],
-      "erklaerung": "Klassiker seit den Romanen von Ian Fleming.",
-      "quelle": "https://de.wikipedia.org/wiki/James_Bond",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Quahog ist die Stadt der „Family Guy“-Familie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Simpsons",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "film-0004",
+      "id": "film-0005",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "schwer",
-      "frage": "Wer führte Regie beim Stummfilm-Klassiker „Metropolis“ von 1927?",
+      "stufe": "leicht",
+      "frage": "Wie heißt der Butler in „Dinner for One“?",
       "antworten": [
-        "Fritz Lang",
-        "Friedrich Wilhelm Murnau",
-        "Billy Wilder",
-        "Steven Spielberg, damals noch als Praktikant"
+        "James",
+        "Alfred",
+        "Jeeves",
+        "Herr Kaiser von der Versicherung"
       ],
-      "erklaerung": "Murnau drehte „Nosferatu“ und war ein Zeitgenosse von Lang.",
-      "quelle": "https://de.wikipedia.org/wiki/Metropolis_(Film)",
+      "erklaerung": "Same procedure as every year, James!",
+      "quelle": "https://de.wikipedia.org/wiki/Dinner_for_One",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -73,37 +73,20 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0018",
+      "id": "film-0004",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Wer führte Regie bei „Der weiße Hai“ (1975)?",
+      "stufe": "schwer",
+      "frage": "Wer führte Regie beim Stummfilm-Klassiker „Metropolis“ von 1927?",
       "antworten": [
-        "Steven Spielberg",
-        "George Lucas",
-        "Francis Ford Coppola",
-        "Ridley Scott"
+        "Fritz Lang",
+        "Friedrich Wilhelm Murnau",
+        "Billy Wilder",
+        "Steven Spielberg, damals noch als Praktikant"
       ],
-      "erklaerung": "Der Film gilt als erster Sommer-Blockbuster.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20wei%C3%9Fe%20Hai",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0023",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Welcher Film beginnt mit „Es war einmal vor langer Zeit in einer weit, weit entfernten Galaxis …“?",
-      "antworten": [
-        "Star Wars",
-        "Star Trek",
-        "Herr der Ringe",
-        "Avatar"
-      ],
-      "erklaerung": "Der erste Teil kam 1977 in die Kinos.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Krieg%20der%20Sterne",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Murnau drehte „Nosferatu“ und war ein Zeitgenosse von Lang.",
+      "quelle": "https://de.wikipedia.org/wiki/Metropolis_(Film)",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -124,74 +107,6 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0012",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der größte Gegenspieler von Harry Potter?",
-      "antworten": [
-        "Lord Voldemort",
-        "Darth Vader",
-        "Sauron",
-        "Onkel Vernon, wegen des Schranks unter der Treppe"
-      ],
-      "erklaerung": "„Der, dessen Name nicht genannt werden darf“.",
-      "quelle": "https://de.wikipedia.org/wiki/Lord_Voldemort",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0019",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "schwer",
-      "frage": "In welchem Ort spielt die Fernsehserie „Die Schwarzwaldklinik“?",
-      "antworten": [
-        "Im Glottertal",
-        "In Titisee-Neustadt",
-        "In Baden-Baden",
-        "In Triberg"
-      ],
-      "erklaerung": "Die Klinik-Außenaufnahmen entstanden in Glottertal bei Freiburg.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Schwarzwaldklinik",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0008",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wer spielte den Jack in „Titanic“ (1997)?",
-      "antworten": [
-        "Leonardo DiCaprio",
-        "Brad Pitt",
-        "Matt Damon",
-        "Johnny Depp"
-      ],
-      "erklaerung": "An seiner Seite: Kate Winslet als Rose.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanic+1997+Film",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0015",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt wohnen die Simpsons?",
-      "antworten": [
-        "Springfield",
-        "Shelbyville",
-        "Quahog",
-        "South Park"
-      ],
-      "erklaerung": "Quahog ist die Stadt der „Family Guy“-Familie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Simpsons",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
       "id": "film-0027",
       "version": 1,
       "kategorie": "Film & Fernsehen",
@@ -205,23 +120,6 @@
       ],
       "erklaerung": "Er stellt sich auf der Brücke von Khazad-dûm dem Balrog entgegen.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Gandalf",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0028",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "schwer",
-      "frage": "Wer spielte im Film „Das Boot“ (1981) den Kapitän?",
-      "antworten": [
-        "Jürgen Prochnow",
-        "Herbert Grönemeyer",
-        "Klaus Wennemann",
-        "Götz George"
-      ],
-      "erklaerung": "Grönemeyer spielte den Kriegsberichterstatter Leutnant Werner.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Das%20Boot%20%28Film%29",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
@@ -243,70 +141,36 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0024",
+      "id": "film-0026",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Wer spielte 1990 in „Pretty Woman“ an der Seite von Richard Gere?",
+      "stufe": "leicht",
+      "frage": "Wie heißt der kleine Clownfisch, den sein Vater in einem Pixar-Film sucht?",
       "antworten": [
-        "Julia Roberts",
-        "Meg Ryan",
-        "Sandra Bullock",
-        "Michelle Pfeiffer"
+        "Nemo",
+        "Dorie",
+        "Marlin",
+        "Gill"
       ],
-      "erklaerung": "Die Rolle machte Julia Roberts weltberühmt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pretty%20Woman",
+      "erklaerung": "„Findet Nemo“ kam 2003 in die Kinos; Marlin ist der Vater, Dorie die vergessliche Begleiterin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Findet%20Nemo",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "film-0006",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Welche Hautfarbe haben die Schlümpfe?",
-      "antworten": [
-        "Blau",
-        "Grün",
-        "Lila",
-        "Schlumpfgelb mit Punkten"
-      ],
-      "erklaerung": "Die Schlümpfe erfand der belgische Zeichner Peyo.",
-      "quelle": "https://de.wikipedia.org/wiki/Die_Schlümpfe",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0021",
+      "id": "film-0011",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "schwer",
-      "frage": "Welcher war 1937 der erste abendfüllende Zeichentrickfilm von Walt Disney?",
+      "frage": "Welcher Film gewann 1998 insgesamt elf Oscars, darunter „Bester Film“?",
       "antworten": [
-        "Schneewittchen und die sieben Zwerge",
-        "Pinocchio",
-        "Bambi",
-        "Dumbo"
+        "„Titanic“",
+        "„Der Pate“",
+        "„Forrest Gump“",
+        "„Der Herr der Ringe: Die Rückkehr des Königs“"
       ],
-      "erklaerung": "Pinocchio folgte 1940, Dumbo 1941, Bambi 1942.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schneewittchen%20und%20die%20sieben%20Zwerge%20%281937%29",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0002",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Welche Figur spielt Axel Prahl im Münsteraner „Tatort“?",
-      "antworten": [
-        "Hauptkommissar Frank Thiel",
-        "Rechtsmediziner Prof. Karl-Friedrich Boerne",
-        "Kommissar Horst Schimanski",
-        "Den Hausmeister, der ständig die Leichen findet"
-      ],
-      "erklaerung": "Boerne wird von Jan Josef Liefers gespielt, Schimanski ermittelte in Duisburg.",
-      "quelle": "https://de.wikipedia.org/wiki/Axel_Prahl",
+      "erklaerung": "„Die Rückkehr des Königs“ schaffte ebenfalls elf – aber erst 2004.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Oscarverleihung+1998",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -328,70 +192,36 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0011",
+      "id": "film-0018",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "schwer",
-      "frage": "Welcher Film gewann 1998 insgesamt elf Oscars, darunter „Bester Film“?",
+      "stufe": "mittel",
+      "frage": "Wer führte Regie bei „Der weiße Hai“ (1975)?",
       "antworten": [
-        "„Titanic“",
-        "„Der Pate“",
-        "„Forrest Gump“",
-        "„Der Herr der Ringe: Die Rückkehr des Königs“"
+        "Steven Spielberg",
+        "George Lucas",
+        "Francis Ford Coppola",
+        "Ridley Scott"
       ],
-      "erklaerung": "„Die Rückkehr des Königs“ schaffte ebenfalls elf – aber erst 2004.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Oscarverleihung+1998",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0016",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wer spielte Indiana Jones?",
-      "antworten": [
-        "Harrison Ford",
-        "Kevin Costner",
-        "Tom Selleck",
-        "Mel Gibson"
-      ],
-      "erklaerung": "Tom Selleck war ursprünglich vorgesehen, musste aber wegen „Magnum“ absagen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Indiana%20Jones",
+      "erklaerung": "Der Film gilt als erster Sommer-Blockbuster.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20wei%C3%9Fe%20Hai",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "film-0026",
+      "id": "film-0012",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "leicht",
-      "frage": "Wie heißt der kleine Clownfisch, den sein Vater in einem Pixar-Film sucht?",
+      "frage": "Wie heißt der größte Gegenspieler von Harry Potter?",
       "antworten": [
-        "Nemo",
-        "Dorie",
-        "Marlin",
-        "Gill"
+        "Lord Voldemort",
+        "Darth Vader",
+        "Sauron",
+        "Onkel Vernon, wegen des Schranks unter der Treppe"
       ],
-      "erklaerung": "„Findet Nemo“ kam 2003 in die Kinos; Marlin ist der Vater, Dorie die vergessliche Begleiterin.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Findet%20Nemo",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0005",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der Butler in „Dinner for One“?",
-      "antworten": [
-        "James",
-        "Alfred",
-        "Jeeves",
-        "Herr Kaiser von der Versicherung"
-      ],
-      "erklaerung": "Same procedure as every year, James!",
-      "quelle": "https://de.wikipedia.org/wiki/Dinner_for_One",
+      "erklaerung": "„Der, dessen Name nicht genannt werden darf“.",
+      "quelle": "https://de.wikipedia.org/wiki/Lord_Voldemort",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -413,20 +243,139 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0014",
+      "id": "film-0006",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "leicht",
-      "frage": "Welche Farbe hat die Maus aus der „Sendung mit der Maus“?",
+      "frage": "Welche Hautfarbe haben die Schlümpfe?",
       "antworten": [
-        "Orange",
-        "Grau",
         "Blau",
-        "Grün"
+        "Grün",
+        "Lila",
+        "Schlumpfgelb mit Punkten"
       ],
-      "erklaerung": "Blau ist ihr Freund, der kleine Elefant.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Sendung%20mit%20der%20Maus",
+      "erklaerung": "Die Schlümpfe erfand der belgische Zeichner Peyo.",
+      "quelle": "https://de.wikipedia.org/wiki/Die_Schlümpfe",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0007",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt spielt die Serie „Friends“?",
+      "antworten": [
+        "New York",
+        "Los Angeles",
+        "Chicago",
+        "Boston"
+      ],
+      "erklaerung": "Treffpunkt ist das Café „Central Perk“ in Manhattan.",
+      "quelle": "https://de.wikipedia.org/wiki/Friends",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0019",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "In welchem Ort spielt die Fernsehserie „Die Schwarzwaldklinik“?",
+      "antworten": [
+        "Im Glottertal",
+        "In Titisee-Neustadt",
+        "In Baden-Baden",
+        "In Triberg"
+      ],
+      "erklaerung": "Die Klinik-Außenaufnahmen entstanden in Glottertal bei Freiburg.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Schwarzwaldklinik",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0031",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer führte Regie bei „Lola rennt“ (1998)?",
+      "antworten": [
+        "Tom Tykwer",
+        "Wolfgang Petersen",
+        "Fatih Akin",
+        "Til Schweiger"
+      ],
+      "erklaerung": "In der Hauptrolle rannte Franka Potente durch Berlin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lola%20rennt",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0016",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wer spielte Indiana Jones?",
+      "antworten": [
+        "Harrison Ford",
+        "Kevin Costner",
+        "Tom Selleck",
+        "Mel Gibson"
+      ],
+      "erklaerung": "Tom Selleck war ursprünglich vorgesehen, musste aber wegen „Magnum“ absagen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Indiana%20Jones",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0001",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wie bestellt James Bond seinen Martini?",
+      "antworten": [
+        "Geschüttelt, nicht gerührt",
+        "Als warme Milch mit Honig, die Mission war anstrengend",
+        "Halb Apfelschorle, halb Kamillentee",
+        "Gerührt, nicht geschüttelt"
+      ],
+      "erklaerung": "Klassiker seit den Romanen von Ian Fleming.",
+      "quelle": "https://de.wikipedia.org/wiki/James_Bond",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0028",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer spielte im Film „Das Boot“ (1981) den Kapitän?",
+      "antworten": [
+        "Jürgen Prochnow",
+        "Herbert Grönemeyer",
+        "Klaus Wennemann",
+        "Götz George"
+      ],
+      "erklaerung": "Grönemeyer spielte den Kriegsberichterstatter Leutnant Werner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Das%20Boot%20%28Film%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0024",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer spielte 1990 in „Pretty Woman“ an der Seite von Richard Gere?",
+      "antworten": [
+        "Julia Roberts",
+        "Meg Ryan",
+        "Sandra Bullock",
+        "Michelle Pfeiffer"
+      ],
+      "erklaerung": "Die Rolle machte Julia Roberts weltberühmt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pretty%20Woman",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -447,6 +396,108 @@
       "gueltigBis": null
     },
     {
+      "id": "film-0008",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wer spielte den Jack in „Titanic“ (1997)?",
+      "antworten": [
+        "Leonardo DiCaprio",
+        "Brad Pitt",
+        "Matt Damon",
+        "Johnny Depp"
+      ],
+      "erklaerung": "An seiner Seite: Kate Winslet als Rose.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanic+1997+Film",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0002",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Welche Figur spielt Axel Prahl im Münsteraner „Tatort“?",
+      "antworten": [
+        "Hauptkommissar Frank Thiel",
+        "Rechtsmediziner Prof. Karl-Friedrich Boerne",
+        "Kommissar Horst Schimanski",
+        "Den Hausmeister, der ständig die Leichen findet"
+      ],
+      "erklaerung": "Boerne wird von Jan Josef Liefers gespielt, Schimanski ermittelte in Duisburg.",
+      "quelle": "https://de.wikipedia.org/wiki/Axel_Prahl",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0029",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der kleine Elefant mit den riesigen Ohren aus dem Disney-Film von 1941?",
+      "antworten": [
+        "Dumbo",
+        "Benjamin Blümchen",
+        "Babar",
+        "Jumbo"
+      ],
+      "erklaerung": "Mit seinen Ohren lernt Dumbo fliegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dumbo%20%281941%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0030",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer sang den Titelsong des James-Bond-Films „Skyfall“?",
+      "antworten": [
+        "Adele",
+        "Sam Smith",
+        "Billie Eilish",
+        "Tina Turner"
+      ],
+      "erklaerung": "Der Song gewann 2013 den Oscar.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Skyfall%20%28Lied%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0023",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Welcher Film beginnt mit „Es war einmal vor langer Zeit in einer weit, weit entfernten Galaxis …“?",
+      "antworten": [
+        "Star Wars",
+        "Star Trek",
+        "Herr der Ringe",
+        "Avatar"
+      ],
+      "erklaerung": "Der erste Teil kam 1977 in die Kinos.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Krieg%20der%20Sterne",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0014",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Welche Farbe hat die Maus aus der „Sendung mit der Maus“?",
+      "antworten": [
+        "Orange",
+        "Grau",
+        "Blau",
+        "Grün"
+      ],
+      "erklaerung": "Blau ist ihr Freund, der kleine Elefant.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Sendung%20mit%20der%20Maus",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "film-0017",
       "version": 1,
       "kategorie": "Film & Fernsehen",
@@ -464,20 +515,20 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0007",
+      "id": "film-0021",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt spielt die Serie „Friends“?",
+      "stufe": "schwer",
+      "frage": "Welcher war 1937 der erste abendfüllende Zeichentrickfilm von Walt Disney?",
       "antworten": [
-        "New York",
-        "Los Angeles",
-        "Chicago",
-        "Boston"
+        "Schneewittchen und die sieben Zwerge",
+        "Pinocchio",
+        "Bambi",
+        "Dumbo"
       ],
-      "erklaerung": "Treffpunkt ist das Café „Central Perk“ in Manhattan.",
-      "quelle": "https://de.wikipedia.org/wiki/Friends",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Pinocchio folgte 1940, Dumbo 1941, Bambi 1942.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schneewittchen%20und%20die%20sieben%20Zwerge%20%281937%29",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     }
   ]

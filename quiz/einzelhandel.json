@@ -1,43 +1,9 @@
 {
   "paket": "einzelhandel",
   "titel": "Einzelhandel",
-  "version": 3,
+  "version": 4,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
-    {
-      "id": "handel-0025",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was bedeutet „Click & Collect“?",
-      "antworten": [
-        "Online bestellen und im Laden abholen",
-        "Im Laden bezahlen, nach Hause liefern lassen",
-        "Mit dem Handy an der Kasse bezahlen",
-        "Rabattmarken sammeln"
-      ],
-      "erklaerung": "Viele Händler bieten es seit der Corona-Zeit an.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Click%20%26%20Collect",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0023",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wie heißt die Kennzahl „Umsatz pro Quadratmeter Verkaufsfläche“?",
-      "antworten": [
-        "Flächenproduktivität",
-        "Lagerumschlag",
-        "Rohertrag",
-        "Kundenfrequenz"
-      ],
-      "erklaerung": "Mit ihr vergleichen Händler, wie gut ihre Filialen den Platz nutzen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fl%C3%A4chenproduktivit%C3%A4t",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
     {
       "id": "handel-0014",
       "version": 1,
@@ -52,6 +18,57 @@
       ],
       "erklaerung": "Seitdem gelten je nach Land unterschiedliche Regeln – der Sonntag bleibt weitgehend geschützt.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Ladenschlussgesetz",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0005",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man im Handelsjargon die Süßigkeiten direkt an der Kasse?",
+      "antworten": [
+        "Quengelware",
+        "Kassenfutter",
+        "Wartezonen-Snack",
+        "Impulsgebäck"
+      ],
+      "erklaerung": "Sie hängt bewusst auf Augenhöhe von Kindern, die in der Schlange quengeln.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Quengelware",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0019",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wer erfand 1937 in den USA den Einkaufswagen?",
+      "antworten": [
+        "Sylvan Goldman",
+        "Henry Ford",
+        "Clarence Saunders",
+        "Sam Walton"
+      ],
+      "erklaerung": "Der Supermarktbesitzer aus Oklahoma City setzte zwei Körbe auf ein Klappgestell mit Rädern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Einkaufswagen",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0017",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wofür steht im Lager die Regel „FIFO“?",
+      "antworten": [
+        "First In, First Out – was zuerst kam, geht zuerst raus",
+        "Fast In, Fast Out",
+        "Fehlt Irgendwo Fast Overall",
+        "Fixed Inventory, Floating Order"
+      ],
+      "erklaerung": "So bleibt keine alte Ware im Regal liegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=First%20In%20%E2%80%93%20First%20Out",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -73,6 +90,125 @@
       "gueltigBis": null
     },
     {
+      "id": "handel-0027",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Was kündigt das Wort „Sale“ im Schaufenster an?",
+      "antworten": [
+        "Reduzierte Preise",
+        "Neue Ware",
+        "Geschlossener Laden",
+        "Nur für Stammkunden"
+      ],
+      "erklaerung": "Das englische Wort heißt eigentlich einfach „Verkauf“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlussverkauf",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0020",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was ist ein „Lockvogelangebot“?",
+      "antworten": [
+        "Ein auffällig günstiges Angebot, das Kunden in den Laden locken soll",
+        "Ein Rabatt nur für Stammkunden",
+        "Ein Gutschein im Briefkasten",
+        "Ein Sonderangebot für Vogelfutter"
+      ],
+      "erklaerung": "Ist die Ware gar nicht ausreichend vorrätig, ist das unlautere Werbung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lockvogelangebot",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0025",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „Click & Collect“?",
+      "antworten": [
+        "Online bestellen und im Laden abholen",
+        "Im Laden bezahlen, nach Hause liefern lassen",
+        "Mit dem Handy an der Kasse bezahlen",
+        "Rabattmarken sammeln"
+      ],
+      "erklaerung": "Viele Händler bieten es seit der Corona-Zeit an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Click%20%26%20Collect",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0018",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wofür steht im Handel die Abkürzung „POS“?",
+      "antworten": [
+        "Point of Sale – der Ort des Verkaufs",
+        "Price of Stock",
+        "Position ohne Sortiment",
+        "Personal ohne Schicht"
+      ],
+      "erklaerung": "Gemeint ist meist die Kasse und alles, was dort für den Kauf wirbt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Point%20of%20Sale",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0021",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man die Regel, nach der Geschäfte in Deutschland seit 2020 bei jedem Kauf einen Beleg ausgeben müssen?",
+      "antworten": [
+        "Bonpflicht",
+        "Kassenzwang",
+        "Quittungsgebot",
+        "Belegfreiheit"
+      ],
+      "erklaerung": "Sie soll Steuerbetrug an elektronischen Kassen erschweren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Belegausgabepflicht",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0029",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wie nennt man im Handel den durchschnittlichen Einkaufsbetrag pro Kunde?",
+      "antworten": [
+        "Durchschnittsbon",
+        "Rohertrag",
+        "Marge",
+        "Frequenz"
+      ],
+      "erklaerung": "Er ergibt sich aus Umsatz geteilt durch die Zahl der Einkäufe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Durchschnittsbon",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0002",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wofür steht der Name „Aldi“?",
+      "antworten": [
+        "Albrecht Diskont",
+        "Alles Lebensmittel, Discount",
+        "Allgemeine Lebensmittel-Distribution",
+        "Albrechts Liefer-Dienst"
+      ],
+      "erklaerung": "Aus Albrecht-Diskont wurde 1962 die Kurzform Aldi.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "handel-0008",
       "version": 1,
       "kategorie": "Einzelhandel",
@@ -86,6 +222,57 @@
       ],
       "erklaerung": "EAN hieß ursprünglich European Article Number, heute GTIN. Die ersten Ziffern stehen für die Organisation, die die Nummer vergeben hat.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=European%20Article%20Number",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0003",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Welche beiden Handelsketten gehören zur Schwarz-Gruppe?",
+      "antworten": [
+        "Lidl und Kaufland",
+        "Aldi und Hofer",
+        "Rewe und Penny",
+        "Edeka und Netto"
+      ],
+      "erklaerung": "Die Schwarz-Gruppe aus Neckarsulm ist einer der größten Lebensmittelhändler der Welt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schwarz-Gruppe",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0001",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Welcher Discounter wurde von den Brüdern Karl und Theo Albrecht gegründet?",
+      "antworten": [
+        "Aldi",
+        "Lidl",
+        "Penny",
+        "Netto"
+      ],
+      "erklaerung": "Die Brüder übernahmen 1946 den Laden ihrer Mutter in Essen; 1961 teilten sie das Unternehmen in Aldi Nord und Aldi Süd.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0007",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie nennt man einen Preis wie 9,99 Euro, der knapp unter einer runden Zahl liegt?",
+      "antworten": [
+        "Schwellenpreis",
+        "Mondpreis",
+        "Listenpreis",
+        "Festpreis"
+      ],
+      "erklaerung": "Er soll deutlich günstiger wirken als 10 Euro. Ein Mondpreis ist dagegen ein absichtlich überhöhter Ausgangspreis.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Preisschwelle",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -104,6 +291,74 @@
       "erklaerung": "Gewährleistung ist gesetzlich vorgeschrieben – eine Garantie gibt der Hersteller freiwillig.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Gew%C3%A4hrleistung",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0015",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie heißt das Berliner Kaufhaus, das 1907 eröffnet wurde und als größtes Warenhaus Kontinentaleuropas gilt?",
+      "antworten": [
+        "KaDeWe",
+        "Galeries Lafayette",
+        "Wertheim",
+        "Harrods"
+      ],
+      "erklaerung": "KaDeWe steht für Kaufhaus des Westens.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaufhaus%20des%20Westens",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0023",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wie heißt die Kennzahl „Umsatz pro Quadratmeter Verkaufsfläche“?",
+      "antworten": [
+        "Flächenproduktivität",
+        "Lagerumschlag",
+        "Rohertrag",
+        "Kundenfrequenz"
+      ],
+      "erklaerung": "Mit ihr vergleichen Händler, wie gut ihre Filialen den Platz nutzen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fl%C3%A4chenproduktivit%C3%A4t",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0026",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr erschien der erste Katalog des Versandhändlers Otto?",
+      "antworten": [
+        "1950",
+        "1925",
+        "1965",
+        "1980"
+      ],
+      "erklaerung": "Er hatte 14 Seiten und bot vor allem Schuhe an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Otto%20Group",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0028",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt wurde die Drogeriekette dm 1973 gegründet?",
+      "antworten": [
+        "Karlsruhe",
+        "München",
+        "Hamburg",
+        "Köln"
+      ],
+      "erklaerung": "Gründer war Götz Werner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=dm-drogerie%20markt",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -158,70 +413,19 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0020",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was ist ein „Lockvogelangebot“?",
-      "antworten": [
-        "Ein auffällig günstiges Angebot, das Kunden in den Laden locken soll",
-        "Ein Rabatt nur für Stammkunden",
-        "Ein Gutschein im Briefkasten",
-        "Ein Sonderangebot für Vogelfutter"
-      ],
-      "erklaerung": "Ist die Ware gar nicht ausreichend vorrätig, ist das unlautere Werbung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lockvogelangebot",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0005",
+      "id": "handel-0011",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "leicht",
-      "frage": "Wie nennt man im Handelsjargon die Süßigkeiten direkt an der Kasse?",
+      "frage": "Wie lange haben Verbraucher bei online gekauften Waren grundsätzlich ein Widerrufsrecht?",
       "antworten": [
-        "Quengelware",
-        "Kassenfutter",
-        "Wartezonen-Snack",
-        "Impulsgebäck"
+        "14 Tage",
+        "7 Tage",
+        "30 Tage",
+        "Gar keins"
       ],
-      "erklaerung": "Sie hängt bewusst auf Augenhöhe von Kindern, die in der Schlange quengeln.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Quengelware",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0016",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man die regelmäßige Zählung aller Waren im Lager und im Laden?",
-      "antworten": [
-        "Inventur",
-        "Revision",
-        "Kommissionierung",
-        "Disposition"
-      ],
-      "erklaerung": "Kaufleute müssen ihren Bestand mindestens einmal im Jahr erfassen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Inventur",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0017",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wofür steht im Lager die Regel „FIFO“?",
-      "antworten": [
-        "First In, First Out – was zuerst kam, geht zuerst raus",
-        "Fast In, Fast Out",
-        "Fehlt Irgendwo Fast Overall",
-        "Fixed Inventory, Floating Order"
-      ],
-      "erklaerung": "So bleibt keine alte Ware im Regal liegen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=First%20In%20%E2%80%93%20First%20Out",
+      "erklaerung": "Die Frist beginnt meist mit dem Erhalt der Ware.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -243,159 +447,6 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0018",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wofür steht im Handel die Abkürzung „POS“?",
-      "antworten": [
-        "Point of Sale – der Ort des Verkaufs",
-        "Price of Stock",
-        "Position ohne Sortiment",
-        "Personal ohne Schicht"
-      ],
-      "erklaerung": "Gemeint ist meist die Kasse und alles, was dort für den Kauf wirbt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Point%20of%20Sale",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0002",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wofür steht der Name „Aldi“?",
-      "antworten": [
-        "Albrecht Diskont",
-        "Alles Lebensmittel, Discount",
-        "Allgemeine Lebensmittel-Distribution",
-        "Albrechts Liefer-Dienst"
-      ],
-      "erklaerung": "Aus Albrecht-Diskont wurde 1962 die Kurzform Aldi.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0003",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Welche beiden Handelsketten gehören zur Schwarz-Gruppe?",
-      "antworten": [
-        "Lidl und Kaufland",
-        "Aldi und Hofer",
-        "Rewe und Penny",
-        "Edeka und Netto"
-      ],
-      "erklaerung": "Die Schwarz-Gruppe aus Neckarsulm ist einer der größten Lebensmittelhändler der Welt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schwarz-Gruppe",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0015",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie heißt das Berliner Kaufhaus, das 1907 eröffnet wurde und als größtes Warenhaus Kontinentaleuropas gilt?",
-      "antworten": [
-        "KaDeWe",
-        "Galeries Lafayette",
-        "Wertheim",
-        "Harrods"
-      ],
-      "erklaerung": "KaDeWe steht für Kaufhaus des Westens.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaufhaus%20des%20Westens",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0011",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie lange haben Verbraucher bei online gekauften Waren grundsätzlich ein Widerrufsrecht?",
-      "antworten": [
-        "14 Tage",
-        "7 Tage",
-        "30 Tage",
-        "Gar keins"
-      ],
-      "erklaerung": "Die Frist beginnt meist mit dem Erhalt der Ware.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0013",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie hoch ist der ermäßigte Umsatzsteuersatz, der in Deutschland für die meisten Lebensmittel gilt?",
-      "antworten": [
-        "7 Prozent",
-        "5 Prozent",
-        "10 Prozent",
-        "19 Prozent"
-      ],
-      "erklaerung": "Der reguläre Satz beträgt 19 Prozent.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Umsatzsteuer%20%28Deutschland%29",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0026",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr erschien der erste Katalog des Versandhändlers Otto?",
-      "antworten": [
-        "1950",
-        "1925",
-        "1965",
-        "1980"
-      ],
-      "erklaerung": "Er hatte 14 Seiten und bot vor allem Schuhe an.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Otto%20Group",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0021",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man die Regel, nach der Geschäfte in Deutschland seit 2020 bei jedem Kauf einen Beleg ausgeben müssen?",
-      "antworten": [
-        "Bonpflicht",
-        "Kassenzwang",
-        "Quittungsgebot",
-        "Belegfreiheit"
-      ],
-      "erklaerung": "Sie soll Steuerbetrug an elektronischen Kassen erschweren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Belegausgabepflicht",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0001",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Welcher Discounter wurde von den Brüdern Karl und Theo Albrecht gegründet?",
-      "antworten": [
-        "Aldi",
-        "Lidl",
-        "Penny",
-        "Netto"
-      ],
-      "erklaerung": "Die Brüder übernahmen 1946 den Laden ihrer Mutter in Essen; 1961 teilten sie das Unternehmen in Aldi Nord und Aldi Süd.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
       "id": "handel-0009",
       "version": 1,
       "kategorie": "Einzelhandel",
@@ -413,36 +464,36 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0007",
+      "id": "handel-0016",
       "version": 1,
       "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie nennt man einen Preis wie 9,99 Euro, der knapp unter einer runden Zahl liegt?",
+      "stufe": "leicht",
+      "frage": "Wie nennt man die regelmäßige Zählung aller Waren im Lager und im Laden?",
       "antworten": [
-        "Schwellenpreis",
-        "Mondpreis",
-        "Listenpreis",
-        "Festpreis"
+        "Inventur",
+        "Revision",
+        "Kommissionierung",
+        "Disposition"
       ],
-      "erklaerung": "Er soll deutlich günstiger wirken als 10 Euro. Ein Mondpreis ist dagegen ein absichtlich überhöhter Ausgangspreis.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Preisschwelle",
+      "erklaerung": "Kaufleute müssen ihren Bestand mindestens einmal im Jahr erfassen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Inventur",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "handel-0019",
+      "id": "handel-0013",
       "version": 1,
       "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wer erfand 1937 in den USA den Einkaufswagen?",
+      "stufe": "mittel",
+      "frage": "Wie hoch ist der ermäßigte Umsatzsteuersatz, der in Deutschland für die meisten Lebensmittel gilt?",
       "antworten": [
-        "Sylvan Goldman",
-        "Henry Ford",
-        "Clarence Saunders",
-        "Sam Walton"
+        "7 Prozent",
+        "5 Prozent",
+        "10 Prozent",
+        "19 Prozent"
       ],
-      "erklaerung": "Der Supermarktbesitzer aus Oklahoma City setzte zwei Körbe auf ein Klappgestell mit Rädern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Einkaufswagen",
+      "erklaerung": "Der reguläre Satz beträgt 19 Prozent.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Umsatzsteuer%20%28Deutschland%29",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     }

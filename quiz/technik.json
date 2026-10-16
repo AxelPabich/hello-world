@@ -1,109 +1,24 @@
 {
   "paket": "technik",
   "titel": "Technik",
-  "version": 4,
+  "version": 5,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "tech-0012",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
-      "antworten": [
-        "Vier",
-        "Einen",
-        "Zwei",
-        "Zwölf"
-      ],
-      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
-      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0008",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
-      "antworten": [
-        "Auf dem Linux-Kernel",
-        "Auf dem Windows-NT-Kernel",
-        "Auf Darwin, dem Kern von macOS",
-        "Auf Symbian"
-      ],
-      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
-      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0011",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
-      "antworten": [
-        "1992",
-        "1985",
-        "1998",
-        "2001"
-      ],
-      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0015",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
-      "antworten": [
-        "Bill Gates",
-        "Steve Jobs",
-        "Steve Wozniak",
-        "Larry Page"
-      ],
-      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0026",
+      "id": "tech-0001",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Wofür steht das „E“ in „E-Mail“?",
+      "frage": "Wofür steht die Abkürzung „HTTP“?",
       "antworten": [
-        "Electronic",
-        "Express",
-        "Extern",
-        "Easy"
+        "Hypertext Transfer Protocol",
+        "High Transfer Text Protocol",
+        "Hyperlink Text Transmission Process",
+        "Heimliches Tippen, total privat"
       ],
-      "erklaerung": "Electronic Mail – elektronische Post.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=E-Mail",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0028",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr ging die erste Website der Welt online?",
-      "antworten": [
-        "1991",
-        "1985",
-        "1995",
-        "1999"
-      ],
-      "erklaerung": "Tim Berners-Lee stellte sie im August 1991 am CERN ins Netz: info.cern.ch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=info.cern.ch",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
+      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -124,138 +39,36 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0014",
+      "id": "tech-0029",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Welches Tier ist das Maskottchen von Linux?",
+      "frage": "Wofür steht die Abkürzung „KI“?",
       "antworten": [
-        "Ein Pinguin",
-        "Ein Fuchs",
-        "Eine Schildkröte mit Laptop",
-        "Ein Elefant"
+        "Künstliche Intelligenz",
+        "Kabellose Internetverbindung",
+        "Kontrollierte Informatik",
+        "Kompakter Index"
       ],
-      "erklaerung": "Der Pinguin heißt Tux.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
-      "erstellt": "2026-10-15",
+      "erklaerung": "KI-Programme lernen aus großen Datenmengen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCnstliche%20Intelligenz",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "tech-0022",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wer gilt als erste Programmiererin der Geschichte?",
-      "antworten": [
-        "Ada Lovelace",
-        "Grace Hopper",
-        "Marie Curie",
-        "Hedy Lamarr"
-      ],
-      "erklaerung": "Sie schrieb um 1843 ein Programm für Charles Babbages Analytical Engine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ada%20Lovelace",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0004",
+      "id": "tech-0009",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
+      "frage": "Wer entwickelte 1989 am CERN das World Wide Web?",
       "antworten": [
-        "2007",
-        "2005",
-        "2009",
-        "2010"
+        "Tim Berners-Lee",
+        "Vint Cerf",
+        "Bill Gates",
+        "Linus Torvalds"
       ],
-      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0017",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was misst ein Barometer?",
-      "antworten": [
-        "Den Luftdruck",
-        "Die Luftfeuchtigkeit",
-        "Die Windgeschwindigkeit",
-        "Wie gut die Stimmung an der Bar ist"
-      ],
-      "erklaerung": "Die Luftfeuchtigkeit misst ein Hygrometer, den Wind ein Anemometer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Barometer",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0020",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
-      "antworten": [
-        "Die letzte Aktion wird rückgängig gemacht",
-        "Das Dokument wird ausgedruckt",
-        "Der Computer schläft ein",
-        "Alles wird fett geschrieben"
-      ],
-      "erklaerung": "Strg+Y stellt sie meist wieder her.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0018",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
-      "antworten": [
-        "1992",
-        "1985",
-        "1997",
-        "2001"
-      ],
-      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0010",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Was gibt die Einheit „Hertz“ an?",
-      "antworten": [
-        "Schwingungen bzw. Vorgänge pro Sekunde",
-        "Den elektrischen Widerstand",
-        "Die Lichtstärke einer Lampe",
-        "Die magnetische Flussdichte"
-      ],
-      "erklaerung": "1 Hertz = 1 Schwingung pro Sekunde.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hertz+Einheit",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0002",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
-      "antworten": [
-        "Konrad Zuse",
-        "Alan Turing",
-        "Charles Babbage",
-        "John von Neumann"
-      ],
-      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
-      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
+      "erklaerung": "Vint Cerf gilt als einer der Väter des Internets – das Web kam von Berners-Lee.",
+      "quelle": "https://de.wikipedia.org/wiki/Tim_Berners-Lee",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -277,6 +90,227 @@
       "gueltigBis": null
     },
     {
+      "id": "tech-0018",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
+      "antworten": [
+        "1992",
+        "1985",
+        "1997",
+        "2001"
+      ],
+      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0011",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
+      "antworten": [
+        "1992",
+        "1985",
+        "1998",
+        "2001"
+      ],
+      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0027",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "In welcher Einheit wird die elektrische Leistung angegeben?",
+      "antworten": [
+        "Watt",
+        "Volt",
+        "Ampere",
+        "Joule"
+      ],
+      "erklaerung": "Watt = Volt mal Ampere; Joule ist die Einheit der Energie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Watt%20%28Einheit%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0002",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
+      "antworten": [
+        "Konrad Zuse",
+        "Alan Turing",
+        "Charles Babbage",
+        "John von Neumann"
+      ],
+      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
+      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0014",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Welches Tier ist das Maskottchen von Linux?",
+      "antworten": [
+        "Ein Pinguin",
+        "Ein Fuchs",
+        "Eine Schildkröte mit Laptop",
+        "Ein Elefant"
+      ],
+      "erklaerung": "Der Pinguin heißt Tux.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0021",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Aus welchem chemischen Element bestehen heutige Computerchips hauptsächlich?",
+      "antworten": [
+        "Silizium",
+        "Kupfer",
+        "Aluminium",
+        "Titan"
+      ],
+      "erklaerung": "Daher auch der Name „Silicon Valley“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Silicium",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0016",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "antworten": [
+        "Global Positioning System",
+        "General Packet Service",
+        "Geo Point Scanner",
+        "Ganz präzise Schätzung"
+      ],
+      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0031",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Bit hat eine IPv4-Adresse?",
+      "antworten": [
+        "32",
+        "16",
+        "64",
+        "128"
+      ],
+      "erklaerung": "Daher gibt es nur rund 4,3 Milliarden IPv4-Adressen; IPv6 hat 128 Bit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IPv4",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0012",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "antworten": [
+        "Vier",
+        "Einen",
+        "Zwei",
+        "Zwölf"
+      ],
+      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
+      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0028",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr ging die erste Website der Welt online?",
+      "antworten": [
+        "1991",
+        "1985",
+        "1995",
+        "1999"
+      ],
+      "erklaerung": "Tim Berners-Lee stellte sie im August 1991 am CERN ins Netz: info.cern.ch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=info.cern.ch",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0015",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
+      "antworten": [
+        "Bill Gates",
+        "Steve Jobs",
+        "Steve Wozniak",
+        "Larry Page"
+      ],
+      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0020",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
+      "antworten": [
+        "Die letzte Aktion wird rückgängig gemacht",
+        "Das Dokument wird ausgedruckt",
+        "Der Computer schläft ein",
+        "Alles wird fett geschrieben"
+      ],
+      "erklaerung": "Strg+Y stellt sie meist wieder her.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0007",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wofür steht die Abkürzung „LASER“?",
+      "antworten": [
+        "Light Amplification by Stimulated Emission of Radiation",
+        "Light Activated Signal Emitting Resonator",
+        "Linear Amplified Spectral Energy Radiation",
+        "Luminous Array of Stimulated Electron Rays"
+      ],
+      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
+      "quelle": "https://de.wikipedia.org/wiki/Laser",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
       "id": "tech-0019",
       "version": 1,
       "kategorie": "Technik",
@@ -294,19 +328,19 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0005",
+      "id": "tech-0008",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht „WLAN“?",
+      "stufe": "mittel",
+      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
       "antworten": [
-        "Wireless Local Area Network",
-        "Wireless Long Antenna Network",
-        "Wenn Laptops Andauernd Nerven",
-        "World Link Access Node"
+        "Auf dem Linux-Kernel",
+        "Auf dem Windows-NT-Kernel",
+        "Auf Darwin, dem Kern von macOS",
+        "Auf Symbian"
       ],
-      "erklaerung": "Ein lokales Funknetz.",
-      "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
+      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
+      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -328,71 +362,88 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0021",
+      "id": "tech-0022",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Aus welchem chemischen Element bestehen heutige Computerchips hauptsächlich?",
+      "stufe": "schwer",
+      "frage": "Wer gilt als erste Programmiererin der Geschichte?",
       "antworten": [
-        "Silizium",
-        "Kupfer",
-        "Aluminium",
-        "Titan"
+        "Ada Lovelace",
+        "Grace Hopper",
+        "Marie Curie",
+        "Hedy Lamarr"
       ],
-      "erklaerung": "Daher auch der Name „Silicon Valley“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Silicium",
+      "erklaerung": "Sie schrieb um 1843 ein Programm für Charles Babbages Analytical Engine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ada%20Lovelace",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "tech-0027",
+      "id": "tech-0010",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "In welcher Einheit wird die elektrische Leistung angegeben?",
+      "frage": "Was gibt die Einheit „Hertz“ an?",
       "antworten": [
-        "Watt",
-        "Volt",
-        "Ampere",
-        "Joule"
+        "Schwingungen bzw. Vorgänge pro Sekunde",
+        "Den elektrischen Widerstand",
+        "Die Lichtstärke einer Lampe",
+        "Die magnetische Flussdichte"
       ],
-      "erklaerung": "Watt = Volt mal Ampere; Joule ist die Einheit der Energie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Watt%20%28Einheit%29",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0007",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wofür steht die Abkürzung „LASER“?",
-      "antworten": [
-        "Light Amplification by Stimulated Emission of Radiation",
-        "Light Activated Signal Emitting Resonator",
-        "Linear Amplified Spectral Energy Radiation",
-        "Luminous Array of Stimulated Electron Rays"
-      ],
-      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
-      "quelle": "https://de.wikipedia.org/wiki/Laser",
+      "erklaerung": "1 Hertz = 1 Schwingung pro Sekunde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hertz+Einheit",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0016",
+      "id": "tech-0004",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
       "antworten": [
-        "Global Positioning System",
-        "General Packet Service",
-        "Geo Point Scanner",
-        "Ganz präzise Schätzung"
+        "2007",
+        "2005",
+        "2009",
+        "2010"
       ],
-      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0024",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer erhielt 1876 in den USA das Patent auf das Telefon?",
+      "antworten": [
+        "Alexander Graham Bell",
+        "Thomas Edison",
+        "Philipp Reis",
+        "Nikola Tesla"
+      ],
+      "erklaerung": "Der Deutsche Philipp Reis hatte schon 1861 ein Telefon vorgeführt – das Patent aber bekam Bell.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alexander%20Graham%20Bell",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0030",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer ließ 1880 in den USA eine langlebige Glühlampe patentieren?",
+      "antworten": [
+        "Thomas Edison",
+        "Nikola Tesla",
+        "Werner von Siemens",
+        "Alexander Graham Bell"
+      ],
+      "erklaerung": "Glühlampen gab es schon vorher – Edisons Kohlefaden hielt aber deutlich länger.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Thomas%20Alva%20Edison",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -413,6 +464,23 @@
       "gueltigBis": null
     },
     {
+      "id": "tech-0026",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht das „E“ in „E-Mail“?",
+      "antworten": [
+        "Electronic",
+        "Express",
+        "Extern",
+        "Easy"
+      ],
+      "erklaerung": "Electronic Mail – elektronische Post.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=E-Mail",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
       "id": "tech-0025",
       "version": 1,
       "kategorie": "Technik",
@@ -430,54 +498,37 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0001",
+      "id": "tech-0017",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „HTTP“?",
+      "frage": "Was misst ein Barometer?",
       "antworten": [
-        "Hypertext Transfer Protocol",
-        "High Transfer Text Protocol",
-        "Hyperlink Text Transmission Process",
-        "Heimliches Tippen, total privat"
+        "Den Luftdruck",
+        "Die Luftfeuchtigkeit",
+        "Die Windgeschwindigkeit",
+        "Wie gut die Stimmung an der Bar ist"
       ],
-      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
-      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Die Luftfeuchtigkeit misst ein Hygrometer, den Wind ein Anemometer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Barometer",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "tech-0009",
+      "id": "tech-0005",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer entwickelte 1989 am CERN das World Wide Web?",
+      "stufe": "leicht",
+      "frage": "Wofür steht „WLAN“?",
       "antworten": [
-        "Tim Berners-Lee",
-        "Vint Cerf",
-        "Bill Gates",
-        "Linus Torvalds"
+        "Wireless Local Area Network",
+        "Wireless Long Antenna Network",
+        "Wenn Laptops Andauernd Nerven",
+        "World Link Access Node"
       ],
-      "erklaerung": "Vint Cerf gilt als einer der Väter des Internets – das Web kam von Berners-Lee.",
-      "quelle": "https://de.wikipedia.org/wiki/Tim_Berners-Lee",
+      "erklaerung": "Ein lokales Funknetz.",
+      "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
       "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0024",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer erhielt 1876 in den USA das Patent auf das Telefon?",
-      "antworten": [
-        "Alexander Graham Bell",
-        "Thomas Edison",
-        "Philipp Reis",
-        "Nikola Tesla"
-      ],
-      "erklaerung": "Der Deutsche Philipp Reis hatte schon 1861 ein Telefon vorgeführt – das Patent aber bekam Bell.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Alexander%20Graham%20Bell",
-      "erstellt": "2026-10-16",
       "gueltigBis": null
     }
   ]
