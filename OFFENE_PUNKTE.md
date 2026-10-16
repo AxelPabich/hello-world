@@ -455,6 +455,12 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+Bestätigt im Test (16.10.2026, Build 33): Challenge aus der „Bereit?“-Abfrage (Peter, Frage 7 →
+Ersatzfrage); Diagnose-Einstellung „immer senden“ überlebt den Build-Wechsel (Peter, Simone);
+Spielregeln zum Quiz-Start; keine Fehler. Installation von Build 33 lief noch über den alten Code
+von Build 32: Axel und Peter je erster Versuch abgelehnt, zweiter mit Bestätigung erfolgreich –
+die Korrektur greift ab dem Update auf Build 34.
+
 72. **Wünsche und Test vom 16.10.2026, Build 32** (in Build 33):
     - „Bereit?“ bietet „Letzte Frage anfechten“.
     - Diagnose-Einstellung „Nicht erneut fragen“ gilt über Builds hinweg; „Wieder fragen“ in den
