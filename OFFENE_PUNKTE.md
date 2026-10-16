@@ -464,6 +464,8 @@ Kategorien recherchieren.
       wechselte. Jetzt gibt ein Nachfolger ohne Spieler an den zurückgekehrten Vorgänger ab.
     - Simone kam neu, während ihre alte Verbindung noch hing – kurz zwei Einträge „Simone“. Jetzt
       wird die alte Verbindung ersetzt.
+    Hinweis Axel: Auf seinem Tablet muss „Installation aus fremden Quellen“ regelmäßig neu freigegeben
+    werden – gewollt, so bleibt es (erklärt die Ablehnungen „Self update is blocked“).
     Bestätigt: Herzschlag 12–13 s, „Axel ist wieder da“, Punkte beim Wiederbeitritt,
     Diagnosen automatisch (Einstellung über Builds hinweg), Spielregeln, Spielverlauf.
 
