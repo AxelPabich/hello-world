@@ -1,9 +1,60 @@
 {
   "paket": "technik",
   "titel": "Technik",
-  "version": 2,
+  "version": 3,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
+    {
+      "id": "tech-0025",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Welche Programmiersprache entwickelte James Gosling Mitte der 1990er-Jahre bei Sun Microsystems?",
+      "antworten": [
+        "Java",
+        "Python",
+        "C++",
+        "JavaScript"
+      ],
+      "erklaerung": "Trotz des ähnlichen Namens hat JavaScript mit Java wenig zu tun.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Java%20%28Programmiersprache%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0020",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
+      "antworten": [
+        "Die letzte Aktion wird rückgängig gemacht",
+        "Das Dokument wird ausgedruckt",
+        "Der Computer schläft ein",
+        "Alles wird fett geschrieben"
+      ],
+      "erklaerung": "Strg+Y stellt sie meist wieder her.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0021",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Aus welchem chemischen Element bestehen heutige Computerchips hauptsächlich?",
+      "antworten": [
+        "Silizium",
+        "Kupfer",
+        "Aluminium",
+        "Titan"
+      ],
+      "erklaerung": "Daher auch der Name „Silicon Valley“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Silicium",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
     {
       "id": "tech-0006",
       "version": 1,
@@ -18,40 +69,6 @@
       ],
       "erklaerung": "Ein Byte besteht heute praktisch immer aus 8 Bit.",
       "quelle": "https://de.wikipedia.org/wiki/Byte",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0005",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht „WLAN“?",
-      "antworten": [
-        "Wireless Local Area Network",
-        "Wireless Long Antenna Network",
-        "Wenn Laptops Andauernd Nerven",
-        "World Link Access Node"
-      ],
-      "erklaerung": "Ein lokales Funknetz.",
-      "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0003",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
-      "antworten": [
-        "Volt",
-        "Ampere",
-        "Watt",
-        "Ohm"
-      ],
-      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
-      "quelle": "https://de.wikipedia.org/wiki/Volt",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -73,36 +90,36 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0019",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wofür steht „QR“ im Begriff QR-Code?",
-      "antworten": [
-        "Quick Response",
-        "Quality Reference",
-        "Query Record",
-        "Quadrat-Raster"
-      ],
-      "erklaerung": "Der QR-Code wurde 1994 von der japanischen Firma Denso Wave entwickelt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=QR-Code",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0008",
+      "id": "tech-0004",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
+      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
       "antworten": [
-        "Auf dem Linux-Kernel",
-        "Auf dem Windows-NT-Kernel",
-        "Auf Darwin, dem Kern von macOS",
-        "Auf Symbian"
+        "2007",
+        "2005",
+        "2009",
+        "2010"
       ],
-      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
-      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
+      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0003",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
+      "antworten": [
+        "Volt",
+        "Ampere",
+        "Watt",
+        "Ohm"
+      ],
+      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
+      "quelle": "https://de.wikipedia.org/wiki/Volt",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -124,87 +141,53 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0014",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Welches Tier ist das Maskottchen von Linux?",
-      "antworten": [
-        "Ein Pinguin",
-        "Ein Fuchs",
-        "Eine Schildkröte mit Laptop",
-        "Ein Elefant"
-      ],
-      "erklaerung": "Der Pinguin heißt Tux.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0011",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
-      "antworten": [
-        "1992",
-        "1985",
-        "1998",
-        "2001"
-      ],
-      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0020",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
-      "antworten": [
-        "Die letzte Aktion wird rückgängig gemacht",
-        "Das Dokument wird ausgedruckt",
-        "Der Computer schläft ein",
-        "Alles wird fett geschrieben"
-      ],
-      "erklaerung": "Strg+Y stellt sie meist wieder her.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0012",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
-      "antworten": [
-        "Vier",
-        "Einen",
-        "Zwei",
-        "Zwölf"
-      ],
-      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
-      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0021",
+      "id": "tech-0010",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "Aus welchem chemischen Element bestehen heutige Computerchips hauptsächlich?",
+      "frage": "Was gibt die Einheit „Hertz“ an?",
       "antworten": [
-        "Silizium",
-        "Kupfer",
-        "Aluminium",
-        "Titan"
+        "Schwingungen bzw. Vorgänge pro Sekunde",
+        "Den elektrischen Widerstand",
+        "Die Lichtstärke einer Lampe",
+        "Die magnetische Flussdichte"
       ],
-      "erklaerung": "Daher auch der Name „Silicon Valley“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Silicium",
+      "erklaerung": "1 Hertz = 1 Schwingung pro Sekunde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hertz+Einheit",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0005",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht „WLAN“?",
+      "antworten": [
+        "Wireless Local Area Network",
+        "Wireless Long Antenna Network",
+        "Wenn Laptops Andauernd Nerven",
+        "World Link Access Node"
+      ],
+      "erklaerung": "Ein lokales Funknetz.",
+      "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0019",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wofür steht „QR“ im Begriff QR-Code?",
+      "antworten": [
+        "Quick Response",
+        "Quality Reference",
+        "Query Record",
+        "Quadrat-Raster"
+      ],
+      "erklaerung": "Der QR-Code wurde 1994 von der japanischen Firma Denso Wave entwickelt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=QR-Code",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -226,54 +209,88 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0004",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
-      "antworten": [
-        "2007",
-        "2005",
-        "2009",
-        "2010"
-      ],
-      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0010",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Was gibt die Einheit „Hertz“ an?",
-      "antworten": [
-        "Schwingungen bzw. Vorgänge pro Sekunde",
-        "Den elektrischen Widerstand",
-        "Die Lichtstärke einer Lampe",
-        "Die magnetische Flussdichte"
-      ],
-      "erklaerung": "1 Hertz = 1 Schwingung pro Sekunde.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hertz+Einheit",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0018",
+      "id": "tech-0007",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
+      "frage": "Wofür steht die Abkürzung „LASER“?",
       "antworten": [
-        "1992",
-        "1985",
-        "1997",
-        "2001"
+        "Light Amplification by Stimulated Emission of Radiation",
+        "Light Activated Signal Emitting Resonator",
+        "Linear Amplified Spectral Energy Radiation",
+        "Luminous Array of Stimulated Electron Rays"
       ],
-      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
+      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
+      "quelle": "https://de.wikipedia.org/wiki/Laser",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0023",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „PIN“ bei der Bankkarte?",
+      "antworten": [
+        "Persönliche Identifikationsnummer",
+        "Private Internet-Nummer",
+        "Prüf- und Identitätsnachweis",
+        "Plastikkarten-Index-Nummer"
+      ],
+      "erklaerung": "Die vier- bis sechsstellige Geheimzahl bestätigt, dass die Karte dem Besitzer gehört.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pers%C3%B6nliche%20Identifikationsnummer",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0015",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
+      "antworten": [
+        "Bill Gates",
+        "Steve Jobs",
+        "Steve Wozniak",
+        "Larry Page"
+      ],
+      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0012",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "antworten": [
+        "Vier",
+        "Einen",
+        "Zwei",
+        "Zwölf"
+      ],
+      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
+      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0024",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer erhielt 1876 in den USA das Patent auf das Telefon?",
+      "antworten": [
+        "Alexander Graham Bell",
+        "Thomas Edison",
+        "Philipp Reis",
+        "Nikola Tesla"
+      ],
+      "erklaerung": "Der Deutsche Philipp Reis hatte schon 1861 ein Telefon vorgeführt – das Patent aber bekam Bell.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alexander%20Graham%20Bell",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -311,36 +328,53 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0016",
+      "id": "tech-0018",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
       "antworten": [
-        "Global Positioning System",
-        "General Packet Service",
-        "Geo Point Scanner",
-        "Ganz präzise Schätzung"
+        "1992",
+        "1985",
+        "1997",
+        "2001"
       ],
-      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
+      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "tech-0015",
+      "id": "tech-0011",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
       "antworten": [
-        "Bill Gates",
-        "Steve Jobs",
-        "Steve Wozniak",
-        "Larry Page"
+        "1992",
+        "1985",
+        "1998",
+        "2001"
       ],
-      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
+      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0014",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Welches Tier ist das Maskottchen von Linux?",
+      "antworten": [
+        "Ein Pinguin",
+        "Ein Fuchs",
+        "Eine Schildkröte mit Laptop",
+        "Ein Elefant"
+      ],
+      "erklaerung": "Der Pinguin heißt Tux.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -362,20 +396,37 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0007",
+      "id": "tech-0008",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wofür steht die Abkürzung „LASER“?",
+      "stufe": "mittel",
+      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
       "antworten": [
-        "Light Amplification by Stimulated Emission of Radiation",
-        "Light Activated Signal Emitting Resonator",
-        "Linear Amplified Spectral Energy Radiation",
-        "Luminous Array of Stimulated Electron Rays"
+        "Auf dem Linux-Kernel",
+        "Auf dem Windows-NT-Kernel",
+        "Auf Darwin, dem Kern von macOS",
+        "Auf Symbian"
       ],
-      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
-      "quelle": "https://de.wikipedia.org/wiki/Laser",
+      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
+      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0016",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "antworten": [
+        "Global Positioning System",
+        "General Packet Service",
+        "Geo Point Scanner",
+        "Ganz präzise Schätzung"
+      ],
+      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     }
   ]

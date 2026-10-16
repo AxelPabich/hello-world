@@ -1,58 +1,41 @@
 {
   "paket": "sehenswuerdigkeiten",
   "titel": "Sehenswürdigkeiten",
-  "version": 2,
+  "version": 3,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "sehen-0010",
+      "id": "sehen-0002",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "Wie hoch ist der Eiffelturm heute einschließlich Antennen?",
+      "stufe": "mittel",
+      "frage": "Welcher König ließ Schloss Neuschwanstein bauen?",
       "antworten": [
-        "Rund 330 Meter",
-        "Rund 200 Meter",
-        "Rund 450 Meter",
-        "Rund 828 Meter"
+        "König Ludwig II. von Bayern",
+        "Friedrich der Große von Preußen",
+        "Kaiser Karl der Große",
+        "König Maximilian II. von Bayern"
       ],
-      "erklaerung": "828 Meter misst der Burj Khalifa in Dubai.",
-      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
+      "erklaerung": "Maximilian II., Ludwigs Vater, ließ das benachbarte Schloss Hohenschwangau umbauen.",
+      "quelle": "https://de.wikipedia.org/wiki/Schloss_Neuschwanstein",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "sehen-0018",
+      "id": "sehen-0019",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "leicht",
-      "frage": "In welcher Stadt steht das Hofbräuhaus?",
+      "frage": "Wie heißt die rote Hängebrücke in San Francisco?",
       "antworten": [
-        "München",
-        "Bamberg",
-        "Wien",
-        "Bremen"
+        "Golden Gate Bridge",
+        "Brooklyn Bridge",
+        "Tower Bridge",
+        "Öresundbrücke"
       ],
-      "erklaerung": "Die Hofbräu-Brauerei gründete Herzog Wilhelm V. im Jahr 1589.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hofbr%C3%A4uhaus%20am%20Platzl",
+      "erklaerung": "Die Farbe heißt offiziell „International Orange“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Golden%20Gate%20Bridge",
       "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0011",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "Welcher Architekt entwarf die Sagrada Família in Barcelona?",
-      "antworten": [
-        "Antoni Gaudí",
-        "Le Corbusier",
-        "Oscar Niemeyer",
-        "Friedensreich Hundertwasser"
-      ],
-      "erklaerung": "Gaudí arbeitete über 40 Jahre an der Kirche, die bis heute nicht fertig ist.",
-      "quelle": "https://de.wikipedia.org/wiki/Sagrada_Família",
-      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -69,142 +52,6 @@
       ],
       "erklaerung": "Es wurde 1791 am Pariser Platz fertiggestellt.",
       "quelle": "https://de.wikipedia.org/wiki/Brandenburger_Tor",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0022",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt steht das Atomium?",
-      "antworten": [
-        "In Brüssel",
-        "In Antwerpen",
-        "In Paris",
-        "In Luxemburg"
-      ],
-      "erklaerung": "Es wurde für die Weltausstellung 1958 gebaut.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Atomium",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0003",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "Woraus besteht die Außenhaut der Freiheitsstatue in New York?",
-      "antworten": [
-        "Aus dünnen Kupferplatten, die durch Patina grün geworden sind",
-        "Aus grün lackiertem Gusseisen",
-        "Aus massivem grünem Marmor",
-        "Aus Pappmaché mit einem sehr guten Anstrich"
-      ],
-      "erklaerung": "Das innere Eisengerüst entwarf übrigens Gustave Eiffel.",
-      "quelle": "https://de.wikipedia.org/wiki/Freiheitsstatue",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0015",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welchem Land steht die Tempelanlage Angkor Wat?",
-      "antworten": [
-        "Kambodscha",
-        "Thailand",
-        "Vietnam",
-        "Myanmar"
-      ],
-      "erklaerung": "Sie ist sogar auf der Flagge Kambodschas abgebildet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Angkor%20Wat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0021",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "Welche Kirche in Dresden wurde 2005 nach dem Wiederaufbau neu geweiht?",
-      "antworten": [
-        "Die Frauenkirche",
-        "Die Kreuzkirche",
-        "Die Hofkirche",
-        "Der Zwinger"
-      ],
-      "erklaerung": "Sie war 1945 zerstört worden; die Ruine blieb jahrzehntelang als Mahnmal stehen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenkirche%20%28Dresden%29",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0007",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welchem Land liegt die Inka-Stadt Machu Picchu?",
-      "antworten": [
-        "Peru",
-        "Mexiko",
-        "Bolivien",
-        "Chile"
-      ],
-      "erklaerung": "Sie liegt hoch in den Anden über dem Urubamba-Tal.",
-      "quelle": "https://de.wikipedia.org/wiki/Machu_Picchu",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0012",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "Wo steht der berühmte Schiefe Turm?",
-      "antworten": [
-        "In Pisa, auf der Piazza dei Miracoli",
-        "In Venedig, er neigt sich wegen der Gondel-Wellen",
-        "Auf Sylt, vom Wind schiefgeweht",
-        "In Rom, neben dem Kolosseum"
-      ],
-      "erklaerung": "Er ist der Glockenturm des Doms von Pisa.",
-      "quelle": "https://de.wikipedia.org/wiki/Schiefer_Turm_von_Pisa",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0017",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "Wie hoch ist der Burj Khalifa in Dubai?",
-      "antworten": [
-        "Rund 828 m",
-        "Rund 632 m",
-        "Rund 541 m",
-        "Rund 1.000 m"
-      ],
-      "erklaerung": "632 m misst der Shanghai Tower, 541 m das One World Trade Center.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Burj%20Khalifa",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0002",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "Welcher König ließ Schloss Neuschwanstein bauen?",
-      "antworten": [
-        "König Ludwig II. von Bayern",
-        "Friedrich der Große von Preußen",
-        "Kaiser Karl der Große",
-        "König Maximilian II. von Bayern"
-      ],
-      "erklaerung": "Maximilian II., Ludwigs Vater, ließ das benachbarte Schloss Hohenschwangau umbauen.",
-      "quelle": "https://de.wikipedia.org/wiki/Schloss_Neuschwanstein",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -226,36 +73,121 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0008",
+      "id": "sehen-0025",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die Elbphilharmonie in Hamburg eröffnet?",
+      "antworten": [
+        "2017",
+        "2010",
+        "2013",
+        "2020"
+      ],
+      "erklaerung": "Geplant war die Eröffnung ursprünglich für 2010 – die Kosten stiegen auf rund 866 Millionen Euro.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Elbphilharmonie",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0024",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "mittel",
-      "frage": "Welchen Spitznamen trägt die große Glocke im Uhrturm des Londoner Parlaments?",
+      "frage": "In welchem Land liegt die Felsenstadt Petra?",
       "antworten": [
-        "Big Ben",
-        "Little John",
-        "Tower Bell",
-        "Big Bertha"
+        "Jordanien",
+        "Ägypten",
+        "Israel",
+        "Marokko"
       ],
-      "erklaerung": "Der Turm selbst heißt seit 2012 offiziell Elizabeth Tower.",
-      "quelle": "https://de.wikipedia.org/wiki/Big_Ben",
+      "erklaerung": "Die Nabatäer meißelten die Fassaden vor rund 2000 Jahren direkt in den Sandstein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Petra%20%28Jordanien%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0001",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Wofür wurde der Eiffelturm ursprünglich gebaut?",
+      "antworten": [
+        "Als Eingangsportal der Weltausstellung 1889 in Paris",
+        "Als Grillspieß für Napoleons Geburtstags-Barbecue",
+        "Als Leuchtturm für die Schifffahrt auf der Seine",
+        "Als Kletterturm für französische Bergsteiger im Wintertraining"
+      ],
+      "erklaerung": "Er sollte eigentlich nach 20 Jahren wieder abgebaut werden.",
+      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "sehen-0016",
+      "id": "sehen-0003",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "mittel",
-      "frage": "Auf welchem Felsen in Athen steht der Parthenon?",
+      "frage": "Woraus besteht die Außenhaut der Freiheitsstatue in New York?",
       "antworten": [
-        "Auf der Akropolis",
-        "Auf dem Olymp",
-        "Auf dem Lykabettus",
-        "Auf dem Areopag"
+        "Aus dünnen Kupferplatten, die durch Patina grün geworden sind",
+        "Aus grün lackiertem Gusseisen",
+        "Aus massivem grünem Marmor",
+        "Aus Pappmaché mit einem sehr guten Anstrich"
       ],
-      "erklaerung": "Der Olymp liegt weit im Norden Griechenlands.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Akropolis",
+      "erklaerung": "Das innere Eisengerüst entwarf übrigens Gustave Eiffel.",
+      "quelle": "https://de.wikipedia.org/wiki/Freiheitsstatue",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0017",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie hoch ist der Burj Khalifa in Dubai?",
+      "antworten": [
+        "Rund 828 m",
+        "Rund 632 m",
+        "Rund 541 m",
+        "Rund 1.000 m"
+      ],
+      "erklaerung": "632 m misst der Shanghai Tower, 541 m das One World Trade Center.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Burj%20Khalifa",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0010",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie hoch ist der Eiffelturm heute einschließlich Antennen?",
+      "antworten": [
+        "Rund 330 Meter",
+        "Rund 200 Meter",
+        "Rund 450 Meter",
+        "Rund 828 Meter"
+      ],
+      "erklaerung": "828 Meter misst der Burj Khalifa in Dubai.",
+      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0015",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welchem Land steht die Tempelanlage Angkor Wat?",
+      "antworten": [
+        "Kambodscha",
+        "Thailand",
+        "Vietnam",
+        "Myanmar"
+      ],
+      "erklaerung": "Sie ist sogar auf der Flagge Kambodschas abgebildet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Angkor%20Wat",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -277,20 +209,54 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0004",
+      "id": "sehen-0006",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welchem Land steht die Chinesische Mauer?",
+      "antworten": [
+        "In China",
+        "In Japan",
+        "In der Mongolei",
+        "Im Chinarestaurant um die Ecke"
+      ],
+      "erklaerung": "Sie ist mehrere Tausend Kilometer lang.",
+      "quelle": "https://de.wikipedia.org/wiki/Chinesische_Mauer",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0021",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "schwer",
-      "frage": "Wie lange dauerte der Bau des Kölner Doms von der Grundsteinlegung bis zur Vollendung?",
+      "frage": "Welche Kirche in Dresden wurde 2005 nach dem Wiederaufbau neu geweiht?",
       "antworten": [
-        "Rund 630 Jahre, von 1248 bis 1880",
-        "Rund 80 Jahre, von 1820 bis 1900",
-        "Rund 300 Jahre, im Mittelalter abgeschlossen",
-        "Er ist noch nicht fertig, die Kölner warten auf eine Baugenehmigung"
+        "Die Frauenkirche",
+        "Die Kreuzkirche",
+        "Die Hofkirche",
+        "Der Zwinger"
       ],
-      "erklaerung": "Der Bau ruhte etwa 300 Jahre; der Kran auf dem Südturm wurde ein Wahrzeichen.",
-      "quelle": "https://de.wikipedia.org/wiki/Kölner_Dom",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Sie war 1945 zerstört worden; die Ruine blieb jahrzehntelang als Mahnmal stehen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenkirche%20%28Dresden%29",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0022",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt steht das Atomium?",
+      "antworten": [
+        "In Brüssel",
+        "In Antwerpen",
+        "In Paris",
+        "In Luxemburg"
+      ],
+      "erklaerung": "Es wurde für die Weltausstellung 1958 gebaut.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Atomium",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -311,19 +277,87 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0001",
+      "id": "sehen-0004",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie lange dauerte der Bau des Kölner Doms von der Grundsteinlegung bis zur Vollendung?",
+      "antworten": [
+        "Rund 630 Jahre, von 1248 bis 1880",
+        "Rund 80 Jahre, von 1820 bis 1900",
+        "Rund 300 Jahre, im Mittelalter abgeschlossen",
+        "Er ist noch nicht fertig, die Kölner warten auf eine Baugenehmigung"
+      ],
+      "erklaerung": "Der Bau ruhte etwa 300 Jahre; der Kran auf dem Südturm wurde ein Wahrzeichen.",
+      "quelle": "https://de.wikipedia.org/wiki/Kölner_Dom",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0008",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "Welchen Spitznamen trägt die große Glocke im Uhrturm des Londoner Parlaments?",
+      "antworten": [
+        "Big Ben",
+        "Little John",
+        "Tower Bell",
+        "Big Bertha"
+      ],
+      "erklaerung": "Der Turm selbst heißt seit 2012 offiziell Elizabeth Tower.",
+      "quelle": "https://de.wikipedia.org/wiki/Big_Ben",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0007",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welchem Land liegt die Inka-Stadt Machu Picchu?",
+      "antworten": [
+        "Peru",
+        "Mexiko",
+        "Bolivien",
+        "Chile"
+      ],
+      "erklaerung": "Sie liegt hoch in den Anden über dem Urubamba-Tal.",
+      "quelle": "https://de.wikipedia.org/wiki/Machu_Picchu",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0016",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "Auf welchem Felsen in Athen steht der Parthenon?",
+      "antworten": [
+        "Auf der Akropolis",
+        "Auf dem Olymp",
+        "Auf dem Lykabettus",
+        "Auf dem Areopag"
+      ],
+      "erklaerung": "Der Olymp liegt weit im Norden Griechenlands.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Akropolis",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0012",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "leicht",
-      "frage": "Wofür wurde der Eiffelturm ursprünglich gebaut?",
+      "frage": "Wo steht der berühmte Schiefe Turm?",
       "antworten": [
-        "Als Eingangsportal der Weltausstellung 1889 in Paris",
-        "Als Grillspieß für Napoleons Geburtstags-Barbecue",
-        "Als Leuchtturm für die Schifffahrt auf der Seine",
-        "Als Kletterturm für französische Bergsteiger im Wintertraining"
+        "In Pisa, auf der Piazza dei Miracoli",
+        "In Venedig, er neigt sich wegen der Gondel-Wellen",
+        "Auf Sylt, vom Wind schiefgeweht",
+        "In Rom, neben dem Kolosseum"
       ],
-      "erklaerung": "Er sollte eigentlich nach 20 Jahren wieder abgebaut werden.",
-      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
+      "erklaerung": "Er ist der Glockenturm des Doms von Pisa.",
+      "quelle": "https://de.wikipedia.org/wiki/Schiefer_Turm_von_Pisa",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -345,36 +379,53 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0006",
+      "id": "sehen-0011",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "In welchem Land steht die Chinesische Mauer?",
+      "stufe": "schwer",
+      "frage": "Welcher Architekt entwarf die Sagrada Família in Barcelona?",
       "antworten": [
-        "In China",
-        "In Japan",
-        "In der Mongolei",
-        "Im Chinarestaurant um die Ecke"
+        "Antoni Gaudí",
+        "Le Corbusier",
+        "Oscar Niemeyer",
+        "Friedensreich Hundertwasser"
       ],
-      "erklaerung": "Sie ist mehrere Tausend Kilometer lang.",
-      "quelle": "https://de.wikipedia.org/wiki/Chinesische_Mauer",
+      "erklaerung": "Gaudí arbeitete über 40 Jahre an der Kirche, die bis heute nicht fertig ist.",
+      "quelle": "https://de.wikipedia.org/wiki/Sagrada_Família",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "sehen-0019",
+      "id": "sehen-0023",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "leicht",
-      "frage": "Wie heißt die rote Hängebrücke in San Francisco?",
+      "frage": "In welcher Stadt steht der Kreml mit dem Roten Platz?",
       "antworten": [
-        "Golden Gate Bridge",
-        "Brooklyn Bridge",
-        "Tower Bridge",
-        "Öresundbrücke"
+        "Moskau",
+        "Sankt Petersburg",
+        "Kiew",
+        "Warschau"
       ],
-      "erklaerung": "Die Farbe heißt offiziell „International Orange“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Golden%20Gate%20Bridge",
+      "erklaerung": "„Kreml“ bedeutet Burg – auch andere russische Städte haben einen, der bekannteste steht in Moskau.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Moskauer%20Kreml",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0018",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht das Hofbräuhaus?",
+      "antworten": [
+        "München",
+        "Bamberg",
+        "Wien",
+        "Bremen"
+      ],
+      "erklaerung": "Die Hofbräu-Brauerei gründete Herzog Wilhelm V. im Jahr 1589.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hofbr%C3%A4uhaus%20am%20Platzl",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     }

@@ -1,7 +1,7 @@
 {
   "paket": "besserwisser",
   "titel": "Besserwisser",
-  "version": 1,
+  "version": 2,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -18,108 +18,6 @@
       ],
       "erklaerung": "Die Signalfarbe macht sie nach einem Unglück leichter auffindbar.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Flugschreiber",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0007",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Wie viele Knochen hat ein erwachsener Mensch ungefähr?",
-      "antworten": [
-        "Etwa 206",
-        "Etwa 150",
-        "Etwa 300",
-        "Etwa 412"
-      ],
-      "erklaerung": "Babys haben mehr – viele wachsen später zusammen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Skelett%20des%20Menschen",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0002",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Welche Farbe haben die Haare eines Eisbären eigentlich?",
-      "antworten": [
-        "Sie sind farblos und durchsichtig",
-        "Reinweiß",
-        "Hellgelb",
-        "Hellgrau"
-      ],
-      "erklaerung": "Sie streuen das Licht und wirken dadurch weiß. Die Haut darunter ist schwarz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eisb%C3%A4r",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0009",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Was ist die größte Wüste der Erde?",
-      "antworten": [
-        "Die Antarktis",
-        "Die Sahara",
-        "Die Gobi",
-        "Die Arabische Wüste"
-      ],
-      "erklaerung": "Wüste heißt: kaum Niederschlag – nicht unbedingt Sand und Hitze. Die Sahara ist die größte heiße Wüste.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=W%C3%BCste",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0015",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Welches Tier ist im Sturzflug das schnellste der Welt?",
-      "antworten": [
-        "Der Wanderfalke",
-        "Der Gepard",
-        "Der Steinadler",
-        "Der Mauersegler"
-      ],
-      "erklaerung": "Im Sturzflug erreicht er über 300 km/h. Der Gepard ist das schnellste Landtier.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wanderfalke",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0004",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Was ist eine Tomate botanisch gesehen?",
-      "antworten": [
-        "Eine Beere",
-        "Ein Gemüse",
-        "Eine Nuss",
-        "Eine Steinfrucht"
-      ],
-      "erklaerung": "Auch Gurken, Kürbisse und Bananen zählen botanisch zu den Beeren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tomate",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0014",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Hat ein Tausendfüßer wirklich tausend Beine?",
-      "antworten": [
-        "Meist deutlich weniger – erst 2021 fand man eine Art mit über 1000",
-        "Ja, immer genau tausend",
-        "Ja, aber nur die Weibchen",
-        "Nein, genau hundert"
-      ],
-      "erklaerung": "Die australische Art Eumillipes persephone hat bis zu 1306 Beine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Doppelf%C3%BC%C3%9Fer",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -141,23 +39,6 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0001",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Kann man die Chinesische Mauer mit bloßem Auge vom Mond aus sehen?",
-      "antworten": [
-        "Nein, dafür ist sie viel zu schmal",
-        "Ja, als einziges Bauwerk",
-        "Ja, aber nur nachts",
-        "Nur bei Vollmond"
-      ],
-      "erklaerung": "Selbst aus der niedrigen Erdumlaufbahn ist sie kaum zu erkennen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Chinesische%20Mauer",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
       "id": "besser-0005",
       "version": 1,
       "kategorie": "Besserwisser",
@@ -175,19 +56,53 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0016",
+      "id": "besser-0004",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wie viele Monate im Jahr haben 28 Tage?",
+      "stufe": "mittel",
+      "frage": "Was ist eine Tomate botanisch gesehen?",
       "antworten": [
-        "Alle zwölf",
-        "Nur einer",
-        "Zwei",
-        "Keiner – der Februar hat 28,25"
+        "Eine Beere",
+        "Ein Gemüse",
+        "Eine Nuss",
+        "Eine Steinfrucht"
       ],
-      "erklaerung": "Achtundzwanzig Tage hat jeder Monat – manche eben noch ein paar mehr.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Monat",
+      "erklaerung": "Auch Gurken, Kürbisse und Bananen zählen botanisch zu den Beeren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tomate",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0023",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Wie lange braucht das Licht von der Sonne bis zur Erde?",
+      "antworten": [
+        "Gut 8 Minuten",
+        "Etwa 1 Sekunde",
+        "Etwa eine Stunde",
+        "Fast einen Tag"
+      ],
+      "erklaerung": "Wir sehen die Sonne also immer so, wie sie vor gut acht Minuten war.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Astronomische%20Einheit%20Lichtlaufzeit",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0009",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Was ist die größte Wüste der Erde?",
+      "antworten": [
+        "Die Antarktis",
+        "Die Sahara",
+        "Die Gobi",
+        "Die Arabische Wüste"
+      ],
+      "erklaerung": "Wüste heißt: kaum Niederschlag – nicht unbedingt Sand und Hitze. Die Sahara ist die größte heiße Wüste.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=W%C3%BCste",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -209,19 +124,121 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0011",
+      "id": "besser-0016",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Aus welchem Land stammen die sogenannten Panamahüte ursprünglich?",
+      "stufe": "leicht",
+      "frage": "Wie viele Monate im Jahr haben 28 Tage?",
       "antworten": [
-        "Aus Ecuador",
-        "Aus Panama",
-        "Aus Kolumbien",
-        "Aus Kuba"
+        "Alle zwölf",
+        "Nur einer",
+        "Zwei",
+        "Keiner – der Februar hat 28,25"
       ],
-      "erklaerung": "Sie wurden über Panama verschifft und von den Arbeitern am Panamakanal getragen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Panamahut",
+      "erklaerung": "Achtundzwanzig Tage hat jeder Monat – manche eben noch ein paar mehr.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Monat",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0003",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Wie viele Herzen hat ein Oktopus?",
+      "antworten": [
+        "Drei",
+        "Eins",
+        "Zwei",
+        "Acht – eins pro Arm"
+      ],
+      "erklaerung": "Zwei pumpen Blut durch die Kiemen, eins durch den Körper.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kraken",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0022",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welche Farbe hat das Blut in unseren Venen?",
+      "antworten": [
+        "Dunkelrot",
+        "Blau",
+        "Violett",
+        "Grünlich"
+      ],
+      "erklaerung": "Venen wirken nur durch die Haut bläulich – sauerstoffarmes Blut ist dunkelrot.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blut",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0021",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Ist eine Fledermaus ein Vogel?",
+      "antworten": [
+        "Nein, ein Säugetier",
+        "Ja, ein Nachtvogel",
+        "Ja, eine Unterart der Eule",
+        "Nein, ein Insekt"
+      ],
+      "erklaerung": "Fledermäuse säugen ihre Jungen – und sind die einzigen Säugetiere, die richtig fliegen können.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fledertiere",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0007",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Wie viele Knochen hat ein erwachsener Mensch ungefähr?",
+      "antworten": [
+        "Etwa 206",
+        "Etwa 150",
+        "Etwa 300",
+        "Etwa 412"
+      ],
+      "erklaerung": "Babys haben mehr – viele wachsen später zusammen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Skelett%20des%20Menschen",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0015",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welches Tier ist im Sturzflug das schnellste der Welt?",
+      "antworten": [
+        "Der Wanderfalke",
+        "Der Gepard",
+        "Der Steinadler",
+        "Der Mauersegler"
+      ],
+      "erklaerung": "Im Sturzflug erreicht er über 300 km/h. Der Gepard ist das schnellste Landtier.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wanderfalke",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0019",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Wie viel Prozent seines Gehirns nutzt der Mensch?",
+      "antworten": [
+        "Praktisch alles – nur nicht alles gleichzeitig",
+        "Nur etwa 10 Prozent",
+        "Etwa die Hälfte",
+        "Genau 33 Prozent"
+      ],
+      "erklaerung": "Der 10-Prozent-Mythos hält sich hartnäckig, ist aber widerlegt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehn-Prozent-Mythos",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -239,6 +256,91 @@
       ],
       "erklaerung": "Die Form des Beckens und kleine Strömungen entscheiden die Richtung.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Corioliskraft",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0018",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Trugen die Wikinger Helme mit Hörnern?",
+      "antworten": [
+        "Nein, dafür gibt es keinen Beleg",
+        "Ja, im Kampf immer",
+        "Ja, aber nur die Anführer",
+        "Ja, aus Elchgeweih"
+      ],
+      "erklaerung": "Die Hörner kamen im 19. Jahrhundert auf, etwa durch Kostüme zu Wagners Opern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikinger",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0010",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Wie lange dauerte der Hundertjährige Krieg zwischen England und Frankreich?",
+      "antworten": [
+        "116 Jahre",
+        "100 Jahre",
+        "99 Jahre",
+        "30 Jahre"
+      ],
+      "erklaerung": "Er dauerte von 1337 bis 1453, mit längeren Pausen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hundertj%C3%A4hriger%20Krieg",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0002",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welche Farbe haben die Haare eines Eisbären eigentlich?",
+      "antworten": [
+        "Sie sind farblos und durchsichtig",
+        "Reinweiß",
+        "Hellgelb",
+        "Hellgrau"
+      ],
+      "erklaerung": "Sie streuen das Licht und wirken dadurch weiß. Die Haut darunter ist schwarz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eisb%C3%A4r",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0014",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Hat ein Tausendfüßer wirklich tausend Beine?",
+      "antworten": [
+        "Meist deutlich weniger – erst 2021 fand man eine Art mit über 1000",
+        "Ja, immer genau tausend",
+        "Ja, aber nur die Weibchen",
+        "Nein, genau hundert"
+      ],
+      "erklaerung": "Die australische Art Eumillipes persephone hat bis zu 1306 Beine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Doppelf%C3%BC%C3%9Fer",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0001",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Kann man die Chinesische Mauer mit bloßem Auge vom Mond aus sehen?",
+      "antworten": [
+        "Nein, dafür ist sie viel zu schmal",
+        "Ja, als einziges Bauwerk",
+        "Ja, aber nur nachts",
+        "Nur bei Vollmond"
+      ],
+      "erklaerung": "Selbst aus der niedrigen Erdumlaufbahn ist sie kaum zu erkennen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Chinesische%20Mauer",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -277,70 +379,19 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0010",
+      "id": "besser-0011",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "schwer",
-      "frage": "Wie lange dauerte der Hundertjährige Krieg zwischen England und Frankreich?",
+      "frage": "Aus welchem Land stammen die sogenannten Panamahüte ursprünglich?",
       "antworten": [
-        "116 Jahre",
-        "100 Jahre",
-        "99 Jahre",
-        "30 Jahre"
+        "Aus Ecuador",
+        "Aus Panama",
+        "Aus Kolumbien",
+        "Aus Kuba"
       ],
-      "erklaerung": "Er dauerte von 1337 bis 1453, mit längeren Pausen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hundertj%C3%A4hriger%20Krieg",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0019",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wie viel Prozent seines Gehirns nutzt der Mensch?",
-      "antworten": [
-        "Praktisch alles – nur nicht alles gleichzeitig",
-        "Nur etwa 10 Prozent",
-        "Etwa die Hälfte",
-        "Genau 33 Prozent"
-      ],
-      "erklaerung": "Der 10-Prozent-Mythos hält sich hartnäckig, ist aber widerlegt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehn-Prozent-Mythos",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0018",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Trugen die Wikinger Helme mit Hörnern?",
-      "antworten": [
-        "Nein, dafür gibt es keinen Beleg",
-        "Ja, im Kampf immer",
-        "Ja, aber nur die Anführer",
-        "Ja, aus Elchgeweih"
-      ],
-      "erklaerung": "Die Hörner kamen im 19. Jahrhundert auf, etwa durch Kostüme zu Wagners Opern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikinger",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0003",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Wie viele Herzen hat ein Oktopus?",
-      "antworten": [
-        "Drei",
-        "Eins",
-        "Zwei",
-        "Acht – eins pro Arm"
-      ],
-      "erklaerung": "Zwei pumpen Blut durch die Kiemen, eins durch den Körper.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kraken",
+      "erklaerung": "Sie wurden über Panama verschifft und von den Arbeitern am Panamakanal getragen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Panamahut",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     }

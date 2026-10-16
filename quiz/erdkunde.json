@@ -1,143 +1,24 @@
 {
   "paket": "erdkunde",
   "titel": "Erdkunde",
-  "version": 2,
+  "version": 3,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "erd-0011",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Welches ist die längste Gebirgskette der Erde an Land?",
-      "antworten": [
-        "Die Anden",
-        "Die Rocky Mountains",
-        "Der Himalaya",
-        "Die Alpen"
-      ],
-      "erklaerung": "Die Anden ziehen sich rund 7000 km an der Westküste Südamerikas entlang.",
-      "quelle": "https://de.wikipedia.org/wiki/Anden",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0016",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Welches Land hat die meisten Einwohner?",
-      "antworten": [
-        "Indien",
-        "China",
-        "USA",
-        "Indonesien"
-      ],
-      "erklaerung": "Indien hat China laut UN im Jahr 2023 überholt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Liste%20der%20Staaten%20nach%20Bev%C3%B6lkerung",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0012",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Welche dieser Städte liegt am weitesten im Norden?",
-      "antworten": [
-        "Hamburg",
-        "Berlin",
-        "Köln",
-        "München"
-      ],
-      "erklaerung": "Hamburg liegt auf gut 53,5° nördlicher Breite, Berlin auf 52,5°.",
-      "quelle": "https://de.wikipedia.org/wiki/Hamburg",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0014",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "leicht",
-      "frage": "Welcher ist der größte Kontinent?",
-      "antworten": [
-        "Asien",
-        "Afrika",
-        "Nordamerika",
-        "Antarktika"
-      ],
-      "erklaerung": "Asien umfasst rund ein Drittel der Landfläche der Erde.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Asien",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0006",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Wie heißt die Hauptstadt von Kanada?",
-      "antworten": [
-        "Ottawa",
-        "Toronto",
-        "Montreal",
-        "Vancouver"
-      ],
-      "erklaerung": "Toronto ist die größte Stadt, Hauptstadt ist Ottawa.",
-      "quelle": "https://de.wikipedia.org/wiki/Ottawa",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0019",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Durch welche Hauptstadt fließt die Moldau?",
-      "antworten": [
-        "Prag",
-        "Wien",
-        "Budapest",
-        "Bratislava"
-      ],
-      "erklaerung": "Wien und Budapest liegen an der Donau, Bratislava auch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Moldau",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0013",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Welcher Fluss hat die längste Strecke innerhalb Deutschlands?",
-      "antworten": [
-        "Der Rhein",
-        "Die Elbe",
-        "Die Donau",
-        "Die Weser"
-      ],
-      "erklaerung": "Rund 865 km des Rheins liegen in Deutschland – die Donau ist insgesamt länger, aber größtenteils im Ausland.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rhein",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0022",
+      "id": "erd-0010",
       "version": 1,
       "kategorie": "Erdkunde",
       "stufe": "schwer",
-      "frage": "Welcher Fluss mündet bei Cuxhaven in die Nordsee?",
+      "frage": "Durch wie viele Länder fließt die Donau?",
       "antworten": [
-        "Die Elbe",
-        "Die Weser",
-        "Die Ems",
-        "Die Eider"
+        "Zehn",
+        "Sechs",
+        "Acht",
+        "Zwölf"
       ],
-      "erklaerung": "Die Weser mündet bei Bremerhaven.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Elbe",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Von Deutschland bis zur Ukraine – so viele wie kein anderer Fluss.",
+      "quelle": "https://de.wikipedia.org/wiki/Donau",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -158,156 +39,20 @@
       "gueltigBis": null
     },
     {
-      "id": "erd-0010",
+      "id": "erd-0022",
       "version": 1,
       "kategorie": "Erdkunde",
       "stufe": "schwer",
-      "frage": "Durch wie viele Länder fließt die Donau?",
+      "frage": "Welcher Fluss mündet bei Cuxhaven in die Nordsee?",
       "antworten": [
-        "Zehn",
-        "Sechs",
-        "Acht",
-        "Zwölf"
+        "Die Elbe",
+        "Die Weser",
+        "Die Ems",
+        "Die Eider"
       ],
-      "erklaerung": "Von Deutschland bis zur Ukraine – so viele wie kein anderer Fluss.",
-      "quelle": "https://de.wikipedia.org/wiki/Donau",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0021",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "In welchem Land liegt die Atacama-Wüste, eine der trockensten Gegenden der Erde?",
-      "antworten": [
-        "Chile",
-        "Mexiko",
-        "Australien",
-        "Namibia"
-      ],
-      "erklaerung": "In Namibia liegt die Namib-Wüste.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Atacama-W%C3%BCste",
+      "erklaerung": "Die Weser mündet bei Bremerhaven.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Elbe",
       "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0009",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Welches ist der flächenmäßig kleinste Staat der Welt?",
-      "antworten": [
-        "Die Vatikanstadt",
-        "Monaco",
-        "San Marino",
-        "Liechtenstein"
-      ],
-      "erklaerung": "Die Vatikanstadt ist weniger als einen halben Quadratkilometer groß.",
-      "quelle": "https://de.wikipedia.org/wiki/Vatikanstadt",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0017",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "leicht",
-      "frage": "Welches Meer grenzt im Nordwesten an Deutschland?",
-      "antworten": [
-        "Die Nordsee",
-        "Das Tote Meer",
-        "Das Mittelmeer",
-        "Die Karibik"
-      ],
-      "erklaerung": "Im Nordosten liegt die Ostsee.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nordsee",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0001",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "leicht",
-      "frage": "Welcher ist der höchste Berg Deutschlands?",
-      "antworten": [
-        "Die Zugspitze",
-        "Der Watzmann",
-        "Der Feldberg",
-        "Der Brocken"
-      ],
-      "erklaerung": "Die Zugspitze ist 2962 Meter hoch.",
-      "quelle": "https://de.wikipedia.org/wiki/Zugspitze",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0008",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "leicht",
-      "frage": "Wie viele Bundesländer hat Deutschland?",
-      "antworten": [
-        "16",
-        "12",
-        "14",
-        "18"
-      ],
-      "erklaerung": "Seit der Wiedervereinigung 1990 sind es 16.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Land+(Deutschland)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0020",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "schwer",
-      "frage": "Wie viele Zeitzonen hat Russland?",
-      "antworten": [
-        "11",
-        "7",
-        "9",
-        "13"
-      ],
-      "erklaerung": "Von Kaliningrad bis Kamtschatka.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zeitzonen%20in%20Russland",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0015",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Wie heißt die Bundesstadt (Hauptstadt) der Schweiz?",
-      "antworten": [
-        "Bern",
-        "Zürich",
-        "Genf",
-        "Basel"
-      ],
-      "erklaerung": "Zürich ist die größte Stadt der Schweiz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bern",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "erd-0002",
-      "version": 1,
-      "kategorie": "Erdkunde",
-      "stufe": "mittel",
-      "frage": "Wie heißt die Hauptstadt von Australien?",
-      "antworten": [
-        "Canberra",
-        "Sydney",
-        "Melbourne",
-        "Perth"
-      ],
-      "erklaerung": "Canberra wurde als Kompromiss zwischen Sydney und Melbourne gebaut.",
-      "quelle": "https://de.wikipedia.org/wiki/Canberra",
-      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -345,6 +90,159 @@
       "gueltigBis": null
     },
     {
+      "id": "erd-0001",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Welcher ist der höchste Berg Deutschlands?",
+      "antworten": [
+        "Die Zugspitze",
+        "Der Watzmann",
+        "Der Feldberg",
+        "Der Brocken"
+      ],
+      "erklaerung": "Die Zugspitze ist 2962 Meter hoch.",
+      "quelle": "https://de.wikipedia.org/wiki/Zugspitze",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0015",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Bundesstadt (Hauptstadt) der Schweiz?",
+      "antworten": [
+        "Bern",
+        "Zürich",
+        "Genf",
+        "Basel"
+      ],
+      "erklaerung": "Zürich ist die größte Stadt der Schweiz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bern",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0020",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "schwer",
+      "frage": "Wie viele Zeitzonen hat Russland?",
+      "antworten": [
+        "11",
+        "7",
+        "9",
+        "13"
+      ],
+      "erklaerung": "Von Kaliningrad bis Kamtschatka.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zeitzonen%20in%20Russland",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0013",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welcher Fluss hat die längste Strecke innerhalb Deutschlands?",
+      "antworten": [
+        "Der Rhein",
+        "Die Elbe",
+        "Die Donau",
+        "Die Weser"
+      ],
+      "erklaerung": "Rund 865 km des Rheins liegen in Deutschland – die Donau ist insgesamt länger, aber größtenteils im Ausland.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rhein",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0021",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "In welchem Land liegt die Atacama-Wüste, eine der trockensten Gegenden der Erde?",
+      "antworten": [
+        "Chile",
+        "Mexiko",
+        "Australien",
+        "Namibia"
+      ],
+      "erklaerung": "In Namibia liegt die Namib-Wüste.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Atacama-W%C3%BCste",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0011",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welches ist die längste Gebirgskette der Erde an Land?",
+      "antworten": [
+        "Die Anden",
+        "Die Rocky Mountains",
+        "Der Himalaya",
+        "Die Alpen"
+      ],
+      "erklaerung": "Die Anden ziehen sich rund 7000 km an der Westküste Südamerikas entlang.",
+      "quelle": "https://de.wikipedia.org/wiki/Anden",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0024",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welcher ist der längste Fluss Europas?",
+      "antworten": [
+        "Die Wolga",
+        "Die Donau",
+        "Der Rhein",
+        "Der Dnepr"
+      ],
+      "erklaerung": "Die Wolga ist rund 3500 km lang und mündet ins Kaspische Meer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wolga",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0025",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "schwer",
+      "frage": "Wie heißt die tiefste bekannte Stelle der Weltmeere?",
+      "antworten": [
+        "Das Challengertief im Marianengraben",
+        "Der Puerto-Rico-Graben",
+        "Das Tongatief",
+        "Der Japangraben"
+      ],
+      "erklaerung": "Mit rund 11 000 m wäre dort selbst der Mount Everest noch tief unter Wasser.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Witjastief%201%20Challengertief",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0008",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Wie viele Bundesländer hat Deutschland?",
+      "antworten": [
+        "16",
+        "12",
+        "14",
+        "18"
+      ],
+      "erklaerung": "Seit der Wiedervereinigung 1990 sind es 16.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Land+(Deutschland)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
       "id": "erd-0003",
       "version": 1,
       "kategorie": "Erdkunde",
@@ -362,6 +260,125 @@
       "gueltigBis": null
     },
     {
+      "id": "erd-0006",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Hauptstadt von Kanada?",
+      "antworten": [
+        "Ottawa",
+        "Toronto",
+        "Montreal",
+        "Vancouver"
+      ],
+      "erklaerung": "Toronto ist die größte Stadt, Hauptstadt ist Ottawa.",
+      "quelle": "https://de.wikipedia.org/wiki/Ottawa",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0012",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welche dieser Städte liegt am weitesten im Norden?",
+      "antworten": [
+        "Hamburg",
+        "Berlin",
+        "Köln",
+        "München"
+      ],
+      "erklaerung": "Hamburg liegt auf gut 53,5° nördlicher Breite, Berlin auf 52,5°.",
+      "quelle": "https://de.wikipedia.org/wiki/Hamburg",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0023",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Wie heißt die Hauptstadt von Spanien?",
+      "antworten": [
+        "Madrid",
+        "Barcelona",
+        "Sevilla",
+        "Valencia"
+      ],
+      "erklaerung": "Madrid liegt fast genau in der Mitte des Landes.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Madrid",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0002",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Hauptstadt von Australien?",
+      "antworten": [
+        "Canberra",
+        "Sydney",
+        "Melbourne",
+        "Perth"
+      ],
+      "erklaerung": "Canberra wurde als Kompromiss zwischen Sydney und Melbourne gebaut.",
+      "quelle": "https://de.wikipedia.org/wiki/Canberra",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0009",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welches ist der flächenmäßig kleinste Staat der Welt?",
+      "antworten": [
+        "Die Vatikanstadt",
+        "Monaco",
+        "San Marino",
+        "Liechtenstein"
+      ],
+      "erklaerung": "Die Vatikanstadt ist weniger als einen halben Quadratkilometer groß.",
+      "quelle": "https://de.wikipedia.org/wiki/Vatikanstadt",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0016",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Welches Land hat die meisten Einwohner?",
+      "antworten": [
+        "Indien",
+        "China",
+        "USA",
+        "Indonesien"
+      ],
+      "erklaerung": "Indien hat China laut UN im Jahr 2023 überholt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Liste%20der%20Staaten%20nach%20Bev%C3%B6lkerung",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0014",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Welcher ist der größte Kontinent?",
+      "antworten": [
+        "Asien",
+        "Afrika",
+        "Nordamerika",
+        "Antarktika"
+      ],
+      "erklaerung": "Asien umfasst rund ein Drittel der Landfläche der Erde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Asien",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "erd-0004",
       "version": 1,
       "kategorie": "Erdkunde",
@@ -376,6 +393,40 @@
       "erklaerung": "Bayern ist etwa 70.500 km² groß.",
       "quelle": "https://de.wikipedia.org/wiki/Bayern",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0019",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "mittel",
+      "frage": "Durch welche Hauptstadt fließt die Moldau?",
+      "antworten": [
+        "Prag",
+        "Wien",
+        "Budapest",
+        "Bratislava"
+      ],
+      "erklaerung": "Wien und Budapest liegen an der Donau, Bratislava auch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Moldau",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0017",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Welches Meer grenzt im Nordwesten an Deutschland?",
+      "antworten": [
+        "Die Nordsee",
+        "Das Tote Meer",
+        "Das Mittelmeer",
+        "Die Karibik"
+      ],
+      "erklaerung": "Im Nordosten liegt die Ostsee.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nordsee",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     }
   ]

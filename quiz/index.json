@@ -3,62 +3,62 @@
     {
       "datei": "technik.json",
       "titel": "Technik",
-      "version": 2,
-      "fragen": 22
+      "version": 3,
+      "fragen": 25
     },
     {
       "datei": "geschichte.json",
       "titel": "Geschichte",
-      "version": 2,
-      "fragen": 22
+      "version": 3,
+      "fragen": 25
     },
     {
       "datei": "erdkunde.json",
       "titel": "Erdkunde",
-      "version": 2,
-      "fragen": 22
+      "version": 3,
+      "fragen": 25
     },
     {
       "datei": "film.json",
       "titel": "Film & Fernsehen",
-      "version": 2,
-      "fragen": 22
+      "version": 3,
+      "fragen": 25
     },
     {
       "datei": "sehenswuerdigkeiten.json",
       "titel": "Sehenswürdigkeiten",
-      "version": 2,
-      "fragen": 22
+      "version": 3,
+      "fragen": 25
     },
     {
       "datei": "kueche.json",
       "titel": "Küche & Genuss",
-      "version": 2,
-      "fragen": 22
+      "version": 3,
+      "fragen": 25
     },
     {
       "datei": "aktuell-2026.json",
       "titel": "Aktuelles 2026",
-      "version": 2,
-      "fragen": 20
+      "version": 3,
+      "fragen": 23
     },
     {
       "datei": "einzelhandel.json",
       "titel": "Einzelhandel",
-      "version": 1,
-      "fragen": 20
+      "version": 2,
+      "fragen": 23
     },
     {
       "datei": "bueroalltag.json",
       "titel": "Büroalltag",
-      "version": 1,
-      "fragen": 20
+      "version": 2,
+      "fragen": 23
     },
     {
       "datei": "besserwisser.json",
       "titel": "Besserwisser",
-      "version": 1,
-      "fragen": 20
+      "version": 2,
+      "fragen": 23
     }
   ]
 }

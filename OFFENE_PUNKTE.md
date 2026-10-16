@@ -455,7 +455,7 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
-72. **Wünsche und Test vom 16.10.2026, Build 32** (umgesetzt, kommt mit dem nächsten Build):
+72. **Wünsche und Test vom 16.10.2026, Build 32** (in Build 33):
     - „Bereit?“ bietet „Letzte Frage anfechten“.
     - Diagnose-Einstellung „Nicht erneut fragen“ gilt über Builds hinweg; „Wieder fragen“ in den
       Einstellungen.
@@ -468,6 +468,8 @@ Kategorien recherchieren.
     Build-Wechsel im Protokoll, Start-Animationen wechseln.
 71. **Fragendatenbank wächst mit jedem Build** (Daueraufgabe ab Build 33): je Kategorie eine neue
     Frage pro Schwierigkeitsstufe (10 Pakete × 3 = 30 Fragen je Build). Festgehalten in `CLAUDE.md`.
+    Build 33: +30 Fragen (Pakete jetzt 25/25/25/25/25/25/23/23/23/23 Fragen); „Aktuelles 2026“
+    per Websuche geprüft: Özdemir Ministerpräsident BW, Super Bowl LX Seahawks, Australian Open Alcaraz.
 70. **Wünsche vom 16.10.2026** (in Build 32): Spielregeln und gespielte
     Kategorien beim Beitritt und zu Spielbeginn; Avatar-Emoticon in den Einstellungen; Siegerfanfare
     als Abschluss des Spielverlaufs; Start-Animationen nie zweimal hintereinander gleich (Rennszene
