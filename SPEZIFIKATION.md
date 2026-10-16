@@ -729,8 +729,13 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - **„Bereit?“ mit Challenge:** Im Quiz zeigt die „Bereit?“-Abfrage beim Spieler zusätzlich „Letzte
   Frage anfechten“, solange die zuletzt aufgelöste Frage noch nicht angefochten ist.
 - **Spielregeln** bekommen nur Neue – wer nach Übernahme oder Funkabbruch zurückkommt, nicht erneut.
-- **Installation:** ohne Bitte um Update ohne Rückfrage; lehnt der Paket-Installer ab (Prüfung
-  fehlgeschlagen, „Self update is blocked“), öffnet sich einmal der klassische Installer-Dialog.
+- **Installation:** zuerst der klassische Installer-Dialog (nach dem Verlassen des Spiels); der
+  Paket-Installer (Sitzung) nur, wenn es keinen Dialog gibt – er wurde auf Axels Gerät (Android 16)
+  und Peters Tablet wiederholt abgelehnt.
+- **Übernahme und Rückkehr:** Hat jemand übernommen, aber noch niemand ist bei ihm, und der
+  bisherige Spielleiter taucht wieder auf, gibt der Nachfolger ab und tritt ihm bei – sonst
+  zerfällt das Spiel in zwei Gruppen. Kommt ein Spieler mit gleichem Namen neu, während seine alte
+  Verbindung noch hängt, wird die alte ersetzt (keine doppelten Einträge, Punkte bleiben).
 - **Spielverlauf tippen:** Erstes Tippen springt zum Endstand („ENDSTAND“, Siegerfanfare), zweites
   Tippen schließt. Ohne Tippen bleibt der Endstand stehen, bis der Spielleiter weitermacht (nächste
   Frage, Freigabe oder „Bereit?“) – dann schließt er auf allen Geräten.

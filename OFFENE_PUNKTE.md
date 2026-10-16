@@ -455,6 +455,18 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+74. **Aus dem Test mit Build 34 (16.10.2026, 13:45–14:08)** (umgesetzt, kommt mit dem nächsten Build):
+    - Paket-Installer erneut abgelehnt (Axel: „Self update is blocked“ trotz Rückfrage, dann
+      „Install not allowed“; Peter: „Package Verification Result“); der Ausweg über den Dialog
+      griff. Jetzt kommt der klassische Installer-Dialog zuerst.
+    - Gespaltenes Spiel: Axel war 13:58 kurz weg, Peter übernahm nach 7 s, Axel tauchte 20 s später
+      wieder auf, Simone ging zu Axel, Peter blieb allein Spielleiter, bis er um 14:03 von Hand
+      wechselte. Jetzt gibt ein Nachfolger ohne Spieler an den zurückgekehrten Vorgänger ab.
+    - Simone kam neu, während ihre alte Verbindung noch hing – kurz zwei Einträge „Simone“. Jetzt
+      wird die alte Verbindung ersetzt.
+    Bestätigt: Herzschlag 12–13 s, „Axel ist wieder da“, Punkte beim Wiederbeitritt,
+    Diagnosen automatisch (Einstellung über Builds hinweg), Spielregeln, Spielverlauf.
+
 73. **Spielverlauf und „Hau drauf“** (in Build 34): Erstes Tippen →
     Endstand, zweites Tippen oder Weitermachen des Spielleiters schließt; Hand trifft im Splash
     „Hau drauf“ die Kuppel (vorher Höhe aus Bildschirmhöhe, Hand aus Breite – auf Tablets verfehlt).

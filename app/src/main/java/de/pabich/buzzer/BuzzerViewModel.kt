@@ -1249,6 +1249,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             }
             val peer = PeerInfo.parse(name)
             peerBuilds[endpointId] = peer.build
+            // Hängt noch eine alte Verbindung desselben Spielers, wird sie ersetzt (Punkte bleiben).
+            engine.snapshot().players.firstOrNull { it.connected && it.id != endpointId && it.id != LOCAL_PLAYER_ID && it.name == peer.name }?.let { old ->
+                Diagnostics.log("${peer.name} war noch über ${old.id} verbunden – alte Verbindung ersetzt")
+                peerBuilds.remove(old.id)
+                engine.removePlayer(old.id)
+                link.disconnect(old.id)
+            }
             // Wer nur zurückkommt (Übernahme, Funkabbruch), kennt die Regeln schon.
             val returning = isReturning(peer)
             engine.addPlayer(endpointId, peer.name)
@@ -1603,9 +1610,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         // Zwei haben gleichzeitig übernommen: Der später Beigetretene gibt ab und tritt bei.
         val taken = takenOver ?: return
         val engine = master ?: return
-        // Der Vorgänger selbst zählt nicht: Er ist wieder da, aber das Spiel liegt jetzt bei uns.
-        if (name == taken.master || UptimeClock.now() > takenOverUntil || rankIn(taken, name) >= rankIn(taken, myName.trim())) return
-        Diagnostics.log("Übernahme: $name hat ebenfalls übernommen und hat Vorrang – gebe ab")
+        // Der Vorgänger ist wieder da: Ist noch niemand bei uns, geben wir ab und alle landen bei ihm.
+        // Haben sich schon Spieler bei uns verbunden, bleibt das Spiel bei uns.
+        val predecessorBack = name == taken.master && peerBuilds.isEmpty() && UptimeClock.now() < takenOverUntil
+        if (!predecessorBack && (name == taken.master || UptimeClock.now() > takenOverUntil || rankIn(taken, name) >= rankIn(taken, myName.trim()))) return
+        Diagnostics.log(
+            if (predecessorBack) "Übernahme: $name ist wieder da und noch niemand ist bei mir – gebe ab" else "Übernahme: $name hat ebenfalls übernommen und hat Vorrang – gebe ab",
+        )
         val s = engine.succession(name)
         engine.leaveOpen()
         link.stopAll()
@@ -1614,7 +1625,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         player = null
         playerView = null
         takenOver = null
-        startTakeover(s, "$name hat die Spielleitung zugleich übernommen.")
+        startTakeover(s, if (predecessorBack) "$name ist wieder da – es geht bei ihm weiter." else "$name hat die Spielleitung zugleich übernommen.")
     }
 
     /** Platzhalter für eine schon gespielte Frage, die der Nachfolger nicht kennt. */

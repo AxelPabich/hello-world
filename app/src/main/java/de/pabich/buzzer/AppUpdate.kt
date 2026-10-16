@@ -110,13 +110,21 @@ object AppUpdate {
      */
     fun install(context: Context, apk: File, onStarted: (Boolean) -> Unit = {}) {
         val app = context.applicationContext
-        Diagnostics.log("Update: Installation von ${apk.name} (${apk.length() / 1024} KB) über den Paket-Installer")
+        // Erst der klassische Installer-Dialog: Der Paket-Installer (Sitzung) wurde auf mehreren Geräten
+        // abgelehnt („Self update is blocked“, „Package Verification Result“), der Dialog klappte immer.
+        Diagnostics.log("Update: Installation von ${apk.name} (${apk.length() / 1024} KB) über den Installer-Dialog")
+        if (installViaIntent(app, apk)) {
+            onStarted(true)
+            return
+        }
+        Diagnostics.log("Update: Installer-Dialog nicht verfügbar – Paket-Installer")
         thread(name = "buzzer-install", isDaemon = true) {
             pendingApk = apk
             val ok = runCatching { installSession(app, apk) }
-                .onFailure { Diagnostics.log("Update: Paket-Installer nicht nutzbar (${it.javaClass.simpleName}: ${it.message}) – alter Weg") }
+                .onFailure { Diagnostics.log("Update: Paket-Installer nicht nutzbar (${it.javaClass.simpleName}: ${it.message})") }
                 .isSuccess
-            main.post { onStarted(ok || installViaIntent(app, apk)) }
+            pendingApk = null // Der Dialog hat schon nicht geklappt – kein zweiter Versuch damit.
+            main.post { onStarted(ok) }
         }
     }
 
