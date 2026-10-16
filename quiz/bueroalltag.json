@@ -1,9 +1,162 @@
 {
   "paket": "bueroalltag",
   "titel": "Büroalltag",
-  "version": 2,
+  "version": 3,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
+    {
+      "id": "buero-0008",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wofür steht „ASAP“?",
+      "antworten": [
+        "As soon as possible – so bald wie möglich",
+        "Always send a PDF",
+        "Alle sofort an den Platz",
+        "Abteilung Service und Planung"
+      ],
+      "erklaerung": "Gern benutzt, selten so gemeint.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ASAP",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0018",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Was zeigt Excel an, wenn eine Spalte zu schmal für eine Zahl ist?",
+      "antworten": [
+        "Lauter Rauten: #####",
+        "#NV",
+        "#WERT!",
+        "Die Zahl in winziger Schrift"
+      ],
+      "erklaerung": "Spalte breiter ziehen – schon ist die Zahl wieder da.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0004",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wie weit liegen die beiden Löcher eines normalen Bürolochers auseinander?",
+      "antworten": [
+        "80 mm",
+        "60 mm",
+        "70 mm",
+        "100 mm"
+      ],
+      "erklaerung": "Der Abstand ist genormt – deshalb passen alle Ordner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Locher",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0005",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wofür steht „Cc“ bei einer E-Mail?",
+      "antworten": [
+        "Carbon Copy – eine Kopie an weitere Empfänger",
+        "Computer Center",
+        "Copy Confirmed",
+        "Chef checkt's"
+      ],
+      "erklaerung": "Der Name stammt vom Durchschlagpapier der Schreibmaschine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Carbon%20Copy",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0013",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie viele Stunden darf man in Deutschland höchstens am Tag arbeiten, wenn es später ausgeglichen wird?",
+      "antworten": [
+        "Zehn",
+        "Acht",
+        "Zwölf",
+        "Vierzehn"
+      ],
+      "erklaerung": "Regulär sind es acht Stunden; zehn sind erlaubt, wenn der Schnitt über sechs Monate bei acht bleibt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0025",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie heißt die in Deutschland übliche Tastaturbelegung nach den ersten Buchstaben oben links?",
+      "antworten": [
+        "QWERTZ",
+        "QWERTY",
+        "AZERTY",
+        "ABCDEF"
+      ],
+      "erklaerung": "Z und Y sind vertauscht, weil das Z im Deutschen viel häufiger ist; AZERTY gilt in Frankreich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=QWERTZ",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0007",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welche Tastenkombination kopiert unter Windows einen markierten Text?",
+      "antworten": [
+        "Strg + C",
+        "Strg + V",
+        "Strg + X",
+        "Strg + K"
+      ],
+      "erklaerung": "Strg + V fügt ein, Strg + X schneidet aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kopieren%20und%20Einf%C3%BCgen",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0024",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Mit welchem Programm öffnet man typischerweise eine Datei mit der Endung „.docx“?",
+      "antworten": [
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Adobe Photoshop",
+        "Windows Media Player"
+      ],
+      "erklaerung": "Excel-Tabellen enden auf „.xlsx“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Word",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0017",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wie heißt das Tabellenkalkulationsprogramm von Microsoft?",
+      "antworten": [
+        "Excel",
+        "Word",
+        "Outlook",
+        "PowerPoint"
+      ],
+      "erklaerung": "Die erste Version erschien 1985 – für den Macintosh.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
     {
       "id": "buero-0021",
       "version": 1,
@@ -22,87 +175,36 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0015",
+      "id": "buero-0026",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Mit welchem Wochentag beginnt nach der Norm ISO 8601 die Kalenderwoche?",
+      "stufe": "schwer",
+      "frage": "Wer gilt als Erfinder der QWERTY-Tastaturanordnung für Schreibmaschinen?",
       "antworten": [
-        "Montag",
-        "Sonntag",
-        "Samstag",
-        "Mit dem ersten Arbeitstag des Monats"
+        "Christopher Latham Sholes",
+        "Thomas Edison",
+        "Remington",
+        "Peter Mitterhofer"
       ],
-      "erklaerung": "In den USA beginnt die Woche im Kalender oft am Sonntag.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ISO%208601",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Er entwickelte sie in den 1870er-Jahren; die Firma Remington baute die Maschine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Christopher%20Latham%20Sholes",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "buero-0011",
+      "id": "buero-0019",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Wie viele Urlaubstage stehen Vollzeitbeschäftigten mit Fünf-Tage-Woche gesetzlich mindestens zu?",
+      "frage": "Wofür steht die Abkürzung „PDF“?",
       "antworten": [
-        "20",
-        "24",
-        "25",
-        "30"
+        "Portable Document Format",
+        "Printed Document File",
+        "Public Data Folder",
+        "Perfekt druckfertig"
       ],
-      "erklaerung": "Das Gesetz nennt 24 Werktage – gerechnet mit Samstag. Bei fünf Arbeitstagen sind das 20.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bundesurlaubsgesetz",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0003",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie viele DIN-A4-Blätter ergeben zusammen ein DIN-A0-Blatt?",
-      "antworten": [
-        "16",
-        "4",
-        "8",
-        "32"
-      ],
-      "erklaerung": "Jede Stufe halbiert das Blatt: A0 hat genau einen Quadratmeter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0002",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie groß ist ein DIN-A4-Blatt?",
-      "antworten": [
-        "210 × 297 mm",
-        "200 × 300 mm",
-        "216 × 279 mm",
-        "148 × 210 mm"
-      ],
-      "erklaerung": "148 × 210 mm ist DIN A5, 216 × 279 mm das US-Format Letter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0007",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welche Tastenkombination kopiert unter Windows einen markierten Text?",
-      "antworten": [
-        "Strg + C",
-        "Strg + V",
-        "Strg + X",
-        "Strg + K"
-      ],
-      "erklaerung": "Strg + V fügt ein, Strg + X schneidet aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kopieren%20und%20Einf%C3%BCgen",
+      "erklaerung": "Das Format soll auf jedem Gerät gleich aussehen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -124,35 +226,86 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0009",
+      "id": "buero-0011",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Was bedeutet „i. A.“ vor einer Unterschrift?",
+      "stufe": "mittel",
+      "frage": "Wie viele Urlaubstage stehen Vollzeitbeschäftigten mit Fünf-Tage-Woche gesetzlich mindestens zu?",
       "antworten": [
-        "Im Auftrag",
-        "In Vertretung",
-        "Im Anhang",
-        "In Abwesenheit"
+        "20",
+        "24",
+        "25",
+        "30"
       ],
-      "erklaerung": "„i. V.“ steht für in Vertretung und bedeutet mehr Vollmacht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Im%20Auftrag",
+      "erklaerung": "Das Gesetz nennt 24 Werktage – gerechnet mit Samstag. Bei fünf Arbeitstagen sind das 20.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bundesurlaubsgesetz",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "buero-0019",
+      "id": "buero-0002",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „PDF“?",
+      "frage": "Wie groß ist ein DIN-A4-Blatt?",
       "antworten": [
-        "Portable Document Format",
-        "Printed Document File",
-        "Public Data Folder",
-        "Perfekt druckfertig"
+        "210 × 297 mm",
+        "200 × 300 mm",
+        "216 × 279 mm",
+        "148 × 210 mm"
       ],
-      "erklaerung": "Das Format soll auf jedem Gerät gleich aussehen.",
+      "erklaerung": "148 × 210 mm ist DIN A5, 216 × 279 mm das US-Format Letter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0006",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Was passiert mit Empfängern im „Bcc“-Feld einer E-Mail?",
+      "antworten": [
+        "Die anderen Empfänger sehen sie nicht",
+        "Sie bekommen die Mail erst am nächsten Tag",
+        "Sie dürfen nicht antworten",
+        "Sie bekommen nur den Betreff"
+      ],
+      "erklaerung": "Bcc steht für Blind Carbon Copy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blind%20Carbon%20Copy",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0015",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Mit welchem Wochentag beginnt nach der Norm ISO 8601 die Kalenderwoche?",
+      "antworten": [
+        "Montag",
+        "Sonntag",
+        "Samstag",
+        "Mit dem ersten Arbeitstag des Monats"
+      ],
+      "erklaerung": "In den USA beginnt die Woche im Kalender oft am Sonntag.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ISO%208601",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0020",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Welche Firma entwickelte das PDF-Format?",
+      "antworten": [
+        "Adobe",
+        "Microsoft",
+        "Apple",
+        "IBM"
+      ],
+      "erklaerung": "Adobe stellte es 1993 vor; seit 2008 ist es eine ISO-Norm.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
       "erstellt": "2026-10-15",
       "gueltigBis": null
@@ -175,6 +328,23 @@
       "gueltigBis": null
     },
     {
+      "id": "buero-0016",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Welche Woche ist nach ISO 8601 die erste Kalenderwoche des Jahres?",
+      "antworten": [
+        "Die Woche mit dem ersten Donnerstag des Jahres",
+        "Die Woche mit dem 1. Januar",
+        "Die erste vollständige Woche",
+        "Die Woche mit dem ersten Montag"
+      ],
+      "erklaerung": "Deshalb kann der 1. Januar noch in KW 52 oder 53 des Vorjahres liegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Woche%20ISO%208601",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "buero-0010",
       "version": 1,
       "kategorie": "Büroalltag",
@@ -192,6 +362,23 @@
       "gueltigBis": null
     },
     {
+      "id": "buero-0003",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie viele DIN-A4-Blätter ergeben zusammen ein DIN-A0-Blatt?",
+      "antworten": [
+        "16",
+        "4",
+        "8",
+        "32"
+      ],
+      "erklaerung": "Jede Stufe halbiert das Blatt: A0 hat genau einen Quadratmeter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "buero-0014",
       "version": 1,
       "kategorie": "Büroalltag",
@@ -205,74 +392,6 @@
       ],
       "erklaerung": "Der Klebstoff war eigentlich ein Fehlschlag: Er hielt zu schwach.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Post-it",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0004",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie weit liegen die beiden Löcher eines normalen Bürolochers auseinander?",
-      "antworten": [
-        "80 mm",
-        "60 mm",
-        "70 mm",
-        "100 mm"
-      ],
-      "erklaerung": "Der Abstand ist genormt – deshalb passen alle Ordner.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Locher",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0008",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wofür steht „ASAP“?",
-      "antworten": [
-        "As soon as possible – so bald wie möglich",
-        "Always send a PDF",
-        "Alle sofort an den Platz",
-        "Abteilung Service und Planung"
-      ],
-      "erklaerung": "Gern benutzt, selten so gemeint.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ASAP",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0013",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie viele Stunden darf man in Deutschland höchstens am Tag arbeiten, wenn es später ausgeglichen wird?",
-      "antworten": [
-        "Zehn",
-        "Acht",
-        "Zwölf",
-        "Vierzehn"
-      ],
-      "erklaerung": "Regulär sind es acht Stunden; zehn sind erlaubt, wenn der Schnitt über sechs Monate bei acht bleibt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0018",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Was zeigt Excel an, wenn eine Spalte zu schmal für eine Zahl ist?",
-      "antworten": [
-        "Lauter Rauten: #####",
-        "#NV",
-        "#WERT!",
-        "Die Zahl in winziger Schrift"
-      ],
-      "erklaerung": "Spalte breiter ziehen – schon ist die Zahl wieder da.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -311,87 +430,19 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0017",
+      "id": "buero-0009",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "leicht",
-      "frage": "Wie heißt das Tabellenkalkulationsprogramm von Microsoft?",
+      "frage": "Was bedeutet „i. A.“ vor einer Unterschrift?",
       "antworten": [
-        "Excel",
-        "Word",
-        "Outlook",
-        "PowerPoint"
+        "Im Auftrag",
+        "In Vertretung",
+        "Im Anhang",
+        "In Abwesenheit"
       ],
-      "erklaerung": "Die erste Version erschien 1985 – für den Macintosh.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0006",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Was passiert mit Empfängern im „Bcc“-Feld einer E-Mail?",
-      "antworten": [
-        "Die anderen Empfänger sehen sie nicht",
-        "Sie bekommen die Mail erst am nächsten Tag",
-        "Sie dürfen nicht antworten",
-        "Sie bekommen nur den Betreff"
-      ],
-      "erklaerung": "Bcc steht für Blind Carbon Copy.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blind%20Carbon%20Copy",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0016",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Welche Woche ist nach ISO 8601 die erste Kalenderwoche des Jahres?",
-      "antworten": [
-        "Die Woche mit dem ersten Donnerstag des Jahres",
-        "Die Woche mit dem 1. Januar",
-        "Die erste vollständige Woche",
-        "Die Woche mit dem ersten Montag"
-      ],
-      "erklaerung": "Deshalb kann der 1. Januar noch in KW 52 oder 53 des Vorjahres liegen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Woche%20ISO%208601",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0005",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wofür steht „Cc“ bei einer E-Mail?",
-      "antworten": [
-        "Carbon Copy – eine Kopie an weitere Empfänger",
-        "Computer Center",
-        "Copy Confirmed",
-        "Chef checkt's"
-      ],
-      "erklaerung": "Der Name stammt vom Durchschlagpapier der Schreibmaschine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Carbon%20Copy",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0020",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Welche Firma entwickelte das PDF-Format?",
-      "antworten": [
-        "Adobe",
-        "Microsoft",
-        "Apple",
-        "IBM"
-      ],
-      "erklaerung": "Adobe stellte es 1993 vor; seit 2008 ist es eine ISO-Norm.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
+      "erklaerung": "„i. V.“ steht für in Vertretung und bedeutet mehr Vollmacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Im%20Auftrag",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     }

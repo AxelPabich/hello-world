@@ -455,7 +455,7 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
-73. **Spielverlauf und „Hau drauf“** (umgesetzt, kommt mit dem nächsten Build): Erstes Tippen →
+73. **Spielverlauf und „Hau drauf“** (in Build 34): Erstes Tippen →
     Endstand, zweites Tippen oder Weitermachen des Spielleiters schließt; Hand trifft im Splash
     „Hau drauf“ die Kuppel (vorher Höhe aus Bildschirmhöhe, Hand aus Breite – auf Tablets verfehlt).
     Siegerfanfare: „gut“ (Axel).
@@ -481,6 +481,8 @@ die Korrektur greift ab dem Update auf Build 34.
     Frage pro Schwierigkeitsstufe (10 Pakete × 3 = 30 Fragen je Build). Festgehalten in `CLAUDE.md`.
     Build 33: +30 Fragen (Pakete jetzt 25/25/25/25/25/25/23/23/23/23 Fragen); „Aktuelles 2026“
     per Websuche geprüft: Özdemir Ministerpräsident BW, Super Bowl LX Seahawks, Australian Open Alcaraz.
+    Build 34: +30 Fragen (28/28/28/28/28/28/26/26/26/26); „Aktuelles 2026“ per Websuche: Audi in
+    der Formel 1, Chemie-Nobelpreis (Kagan, Soai), Wirtschaftsnobelpreis (Hall, Woodford).
 70. **Wünsche vom 16.10.2026** (in Build 32): Spielregeln und gespielte
     Kategorien beim Beitritt und zu Spielbeginn; Avatar-Emoticon in den Einstellungen; Siegerfanfare
     als Abschluss des Spielverlaufs; Start-Animationen nie zweimal hintereinander gleich (Rennszene

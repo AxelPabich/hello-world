@@ -1,24 +1,24 @@
 {
   "paket": "kueche",
   "titel": "Küche & Genuss",
-  "version": 3,
+  "version": 4,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "kueche-0013",
+      "id": "kueche-0027",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist die Hauptzutat von Hummus?",
+      "stufe": "mittel",
+      "frage": "Was sind Gnocchi?",
       "antworten": [
-        "Kichererbsen",
-        "Linsen",
-        "Erbsen",
-        "Pürierte Gummibärchen"
+        "Kleine Klößchen, meist aus Kartoffeln",
+        "Gefüllte Teigtaschen",
+        "Dünne Bandnudeln",
+        "Frittierte Reisbällchen"
       ],
-      "erklaerung": "Dazu kommen Sesampaste (Tahini), Zitrone und Knoblauch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hummus",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Gefüllte Teigtaschen wären Ravioli, frittierte Reisbällchen Arancini.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gnocchi",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -39,155 +39,19 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0001",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was macht Guacamole grün?",
-      "antworten": [
-        "Zerdrückte Avocado",
-        "Grüne Lebensmittelfarbe vom letzten Kindergeburtstag",
-        "Pürierte Gummibärchen, nur die grünen",
-        "Eine Handvoll Spinat und viel Optimismus"
-      ],
-      "erklaerung": "Dazu kommen Limette, Zwiebel, Salz und oft Chili.",
-      "quelle": "https://de.wikipedia.org/wiki/Guacamole",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0014",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Aus welchem Land stammt Sushi in seiner heutigen Form?",
-      "antworten": [
-        "Japan",
-        "China",
-        "Korea",
-        "Thailand"
-      ],
-      "erklaerung": "Die Ursprünge als Konservierungsmethode liegen in Südostasien, das heutige Sushi ist japanisch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sushi",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0004",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Welches Gewürz ist, gemessen am Gewicht, das teuerste der Welt?",
-      "antworten": [
-        "Safran, die getrockneten Blütennarben eines Krokus",
-        "Vanille, die fermentierten Schoten einer Orchidee",
-        "Kardamom, die Samenkapseln einer Ingwerpflanze",
-        "Muskatblüte, die Samenhülle der Muskatnuss"
-      ],
-      "erklaerung": "Für 1 kg Safran braucht man über 100.000 handgepflückte Blüten.",
-      "quelle": "https://de.wikipedia.org/wiki/Safran",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0008",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist Sauerkraut?",
-      "antworten": [
-        "Fein geschnittener, milchsauer vergorener Weißkohl",
-        "In Essig eingelegter Rotkohl",
-        "Gekochter Spitzkohl mit Zitronensaft",
-        "Ein Kraut, das schlechte Laune hat"
-      ],
-      "erklaerung": "Die Milchsäurebakterien machen es sauer und haltbar.",
-      "quelle": "https://de.wikipedia.org/wiki/Sauerkraut",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0015",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist „Ratatouille“?",
-      "antworten": [
-        "Ein französisches Schmorgericht aus Gemüse",
-        "Ein Käse aus der Provence",
-        "Ein Nachtisch im Rattankorb",
-        "Ein Fischeintopf aus Marseille"
-      ],
-      "erklaerung": "Der Fischeintopf aus Marseille heißt Bouillabaisse.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ratatouille",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0012",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was bedeutet der Name des Gerichts „Saltimbocca“ wörtlich?",
-      "antworten": [
-        "„Spring in den Mund“",
-        "„Salz in die Backe“",
-        "„Kleiner Sprung“",
-        "„Fleisch im Mantel“"
-      ],
-      "erklaerung": "Kalbsschnitzel mit Salbei und Schinken – so gut, dass es in den Mund springt.",
-      "quelle": "https://de.wikipedia.org/wiki/Saltimbocca",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0020",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist ein „Berliner“ beim Bäcker?",
-      "antworten": [
-        "Ein mit Marmelade gefülltes Hefegebäck",
-        "Eine Currywurst im Brötchen",
-        "Ein Weißbier mit Schuss",
-        "Ein Doppelkorn"
-      ],
-      "erklaerung": "In Berlin selbst sagt man „Pfannkuchen“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Berliner%20%28Geb%C3%A4ck%29",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0007",
+      "id": "kueche-0021",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "mittel",
-      "frage": "Woraus wird echter „Mozzarella di Bufala“ hergestellt?",
+      "frage": "Aus welchem Getreide wird schottischer Single Malt Whisky hergestellt?",
       "antworten": [
-        "Aus Büffelmilch",
-        "Aus Kuhmilch mit Büffelgras-Aroma",
-        "Aus Schafsmilch aus Sardinien",
-        "Aus Sojamilch aus Kampanien"
+        "Aus gemälzter Gerste",
+        "Aus Mais",
+        "Aus Roggen",
+        "Aus Reis"
       ],
-      "erklaerung": "Er stammt traditionell aus Kampanien.",
-      "quelle": "https://de.wikipedia.org/wiki/Mozzarella",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0022",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was bedeutet in der Küche „Mise en place“?",
-      "antworten": [
-        "Alle Zutaten vor dem Kochen vorbereiten und bereitstellen",
-        "Das Anrichten auf dem Teller",
-        "Den Tisch eindecken",
-        "Die Rechnung bringen"
-      ],
-      "erklaerung": "Wörtlich: „an den Platz stellen“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mise%20en%20place",
+      "erklaerung": "Bourbon aus den USA besteht dagegen überwiegend aus Mais.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Single%20Malt%20Whisky",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -209,71 +73,37 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0021",
+      "id": "kueche-0008",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Aus welchem Getreide wird schottischer Single Malt Whisky hergestellt?",
+      "stufe": "leicht",
+      "frage": "Was ist Sauerkraut?",
       "antworten": [
-        "Aus gemälzter Gerste",
-        "Aus Mais",
-        "Aus Roggen",
-        "Aus Reis"
+        "Fein geschnittener, milchsauer vergorener Weißkohl",
+        "In Essig eingelegter Rotkohl",
+        "Gekochter Spitzkohl mit Zitronensaft",
+        "Ein Kraut, das schlechte Laune hat"
       ],
-      "erklaerung": "Bourbon aus den USA besteht dagegen überwiegend aus Mais.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Single%20Malt%20Whisky",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0010",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Wie nennt man in Italien Nudeln, die bissfest gekocht sind?",
-      "antworten": [
-        "Al dente",
-        "Al forno",
-        "Al fresco",
-        "Al Pacino"
-      ],
-      "erklaerung": "Wörtlich „für den Zahn“. Al forno heißt „aus dem Ofen“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=al+dente",
+      "erklaerung": "Die Milchsäurebakterien machen es sauer und haltbar.",
+      "quelle": "https://de.wikipedia.org/wiki/Sauerkraut",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0017",
+      "id": "kueche-0014",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "In welcher Stadt wurde der Aperitif „Aperol“ 1919 erfunden?",
+      "stufe": "leicht",
+      "frage": "Aus welchem Land stammt Sushi in seiner heutigen Form?",
       "antworten": [
-        "Padua",
-        "Venedig",
-        "Mailand",
-        "Turin"
+        "Japan",
+        "China",
+        "Korea",
+        "Thailand"
       ],
-      "erklaerung": "Die Brüder Barbieri stellten ihn auf einer Messe in Padua vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aperol",
+      "erklaerung": "Die Ursprünge als Konservierungsmethode liegen in Südostasien, das heutige Sushi ist japanisch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sushi",
       "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0009",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welches Land produziert den meisten Kaffee der Welt?",
-      "antworten": [
-        "Brasilien",
-        "Kolumbien",
-        "Äthiopien",
-        "Vietnam"
-      ],
-      "erklaerung": "Vietnam folgt auf Platz zwei.",
-      "quelle": "https://de.wikipedia.org/wiki/Kaffee",
-      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -294,20 +124,207 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0011",
+      "id": "kueche-0028",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "schwer",
-      "frage": "Aus welcher Pflanze wird Tequila hergestellt?",
+      "frage": "Welche ist die meistangebaute Weißweinrebsorte in Deutschland?",
       "antworten": [
-        "Aus der Blauen Agave",
-        "Aus Kaktusfeigen",
-        "Aus Zuckerrohr",
-        "Aus Mais"
+        "Riesling",
+        "Müller-Thurgau",
+        "Silvaner",
+        "Grauburgunder"
       ],
-      "erklaerung": "Die Agave ist kein Kaktus – ein häufiger Irrtum.",
-      "quelle": "https://de.wikipedia.org/wiki/Tequila",
+      "erklaerung": "Deutschland hat die größte Riesling-Anbaufläche der Welt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Riesling",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0001",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was macht Guacamole grün?",
+      "antworten": [
+        "Zerdrückte Avocado",
+        "Grüne Lebensmittelfarbe vom letzten Kindergeburtstag",
+        "Pürierte Gummibärchen, nur die grünen",
+        "Eine Handvoll Spinat und viel Optimismus"
+      ],
+      "erklaerung": "Dazu kommen Limette, Zwiebel, Salz und oft Chili.",
+      "quelle": "https://de.wikipedia.org/wiki/Guacamole",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0015",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was ist „Ratatouille“?",
+      "antworten": [
+        "Ein französisches Schmorgericht aus Gemüse",
+        "Ein Käse aus der Provence",
+        "Ein Nachtisch im Rattankorb",
+        "Ein Fischeintopf aus Marseille"
+      ],
+      "erklaerung": "Der Fischeintopf aus Marseille heißt Bouillabaisse.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ratatouille",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0022",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was bedeutet in der Küche „Mise en place“?",
+      "antworten": [
+        "Alle Zutaten vor dem Kochen vorbereiten und bereitstellen",
+        "Das Anrichten auf dem Teller",
+        "Den Tisch eindecken",
+        "Die Rechnung bringen"
+      ],
+      "erklaerung": "Wörtlich: „an den Platz stellen“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mise%20en%20place",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0003",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist echtes Wasabi?",
+      "antworten": [
+        "Die geriebene Wurzel einer japanischen Pflanze aus der Familie der Kreuzblütler",
+        "Grüner Senf aus gemahlenen Senfkörnern",
+        "Eine Paste aus fermentierten Algen",
+        "Grün gefärbter Meerrettich – und zwar immer"
+      ],
+      "erklaerung": "Beim Sushi außerhalb Japans bekommt man meist tatsächlich gefärbten Meerrettich.",
+      "quelle": "https://de.wikipedia.org/wiki/Wasabi",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0007",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Woraus wird echter „Mozzarella di Bufala“ hergestellt?",
+      "antworten": [
+        "Aus Büffelmilch",
+        "Aus Kuhmilch mit Büffelgras-Aroma",
+        "Aus Schafsmilch aus Sardinien",
+        "Aus Sojamilch aus Kampanien"
+      ],
+      "erklaerung": "Er stammt traditionell aus Kampanien.",
+      "quelle": "https://de.wikipedia.org/wiki/Mozzarella",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0012",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was bedeutet der Name des Gerichts „Saltimbocca“ wörtlich?",
+      "antworten": [
+        "„Spring in den Mund“",
+        "„Salz in die Backe“",
+        "„Kleiner Sprung“",
+        "„Fleisch im Mantel“"
+      ],
+      "erklaerung": "Kalbsschnitzel mit Salbei und Schinken – so gut, dass es in den Mund springt.",
+      "quelle": "https://de.wikipedia.org/wiki/Saltimbocca",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0009",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welches Land produziert den meisten Kaffee der Welt?",
+      "antworten": [
+        "Brasilien",
+        "Kolumbien",
+        "Äthiopien",
+        "Vietnam"
+      ],
+      "erklaerung": "Vietnam folgt auf Platz zwei.",
+      "quelle": "https://de.wikipedia.org/wiki/Kaffee",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0010",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Wie nennt man in Italien Nudeln, die bissfest gekocht sind?",
+      "antworten": [
+        "Al dente",
+        "Al forno",
+        "Al fresco",
+        "Al Pacino"
+      ],
+      "erklaerung": "Wörtlich „für den Zahn“. Al forno heißt „aus dem Ofen“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=al+dente",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0013",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was ist die Hauptzutat von Hummus?",
+      "antworten": [
+        "Kichererbsen",
+        "Linsen",
+        "Erbsen",
+        "Pürierte Gummibärchen"
+      ],
+      "erklaerung": "Dazu kommen Sesampaste (Tahini), Zitrone und Knoblauch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hummus",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0019",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist „Umami“?",
+      "antworten": [
+        "Eine der fünf Grundgeschmacksrichtungen",
+        "Ein japanisches Küchenmesser",
+        "Ein Reiswein",
+        "Eine essbare Algenart"
+      ],
+      "erklaerung": "Umami steht für herzhaft-würzig, etwa bei Parmesan oder Sojasoße.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Umami",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0016",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welche Nuss ist die Grundlage von Marzipan?",
+      "antworten": [
+        "Mandeln",
+        "Haselnüsse",
+        "Walnüsse",
+        "Erdnüsse"
+      ],
+      "erklaerung": "Mit Aprikosenkernen statt Mandeln heißt es Persipan.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Marzipan",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -345,37 +362,20 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0003",
+      "id": "kueche-0011",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist echtes Wasabi?",
+      "stufe": "schwer",
+      "frage": "Aus welcher Pflanze wird Tequila hergestellt?",
       "antworten": [
-        "Die geriebene Wurzel einer japanischen Pflanze aus der Familie der Kreuzblütler",
-        "Grüner Senf aus gemahlenen Senfkörnern",
-        "Eine Paste aus fermentierten Algen",
-        "Grün gefärbter Meerrettich – und zwar immer"
+        "Aus der Blauen Agave",
+        "Aus Kaktusfeigen",
+        "Aus Zuckerrohr",
+        "Aus Mais"
       ],
-      "erklaerung": "Beim Sushi außerhalb Japans bekommt man meist tatsächlich gefärbten Meerrettich.",
-      "quelle": "https://de.wikipedia.org/wiki/Wasabi",
+      "erklaerung": "Die Agave ist kein Kaktus – ein häufiger Irrtum.",
+      "quelle": "https://de.wikipedia.org/wiki/Tequila",
       "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0016",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welche Nuss ist die Grundlage von Marzipan?",
-      "antworten": [
-        "Mandeln",
-        "Haselnüsse",
-        "Walnüsse",
-        "Erdnüsse"
-      ],
-      "erklaerung": "Mit Aprikosenkernen statt Mandeln heißt es Persipan.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Marzipan",
-      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -396,6 +396,23 @@
       "gueltigBis": null
     },
     {
+      "id": "kueche-0017",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "In welcher Stadt wurde der Aperitif „Aperol“ 1919 erfunden?",
+      "antworten": [
+        "Padua",
+        "Venedig",
+        "Mailand",
+        "Turin"
+      ],
+      "erklaerung": "Die Brüder Barbieri stellten ihn auf einer Messe in Padua vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aperol",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "kueche-0005",
       "version": 1,
       "kategorie": "Küche & Genuss",
@@ -413,20 +430,54 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0019",
+      "id": "kueche-0020",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist „Umami“?",
+      "stufe": "leicht",
+      "frage": "Was ist ein „Berliner“ beim Bäcker?",
       "antworten": [
-        "Eine der fünf Grundgeschmacksrichtungen",
-        "Ein japanisches Küchenmesser",
-        "Ein Reiswein",
-        "Eine essbare Algenart"
+        "Ein mit Marmelade gefülltes Hefegebäck",
+        "Eine Currywurst im Brötchen",
+        "Ein Weißbier mit Schuss",
+        "Ein Doppelkorn"
       ],
-      "erklaerung": "Umami steht für herzhaft-würzig, etwa bei Parmesan oder Sojasoße.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Umami",
+      "erklaerung": "In Berlin selbst sagt man „Pfannkuchen“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Berliner%20%28Geb%C3%A4ck%29",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0004",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Welches Gewürz ist, gemessen am Gewicht, das teuerste der Welt?",
+      "antworten": [
+        "Safran, die getrockneten Blütennarben eines Krokus",
+        "Vanille, die fermentierten Schoten einer Orchidee",
+        "Kardamom, die Samenkapseln einer Ingwerpflanze",
+        "Muskatblüte, die Samenhülle der Muskatnuss"
+      ],
+      "erklaerung": "Für 1 kg Safran braucht man über 100.000 handgepflückte Blüten.",
+      "quelle": "https://de.wikipedia.org/wiki/Safran",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0026",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Aus welchem Land stammt die Paella?",
+      "antworten": [
+        "Spanien",
+        "Italien",
+        "Portugal",
+        "Mexiko"
+      ],
+      "erklaerung": "Ihre Heimat ist die Gegend um Valencia.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Paella",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     }
   ]

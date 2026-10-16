@@ -1,40 +1,23 @@
 {
   "paket": "besserwisser",
   "titel": "Besserwisser",
-  "version": 2,
+  "version": 3,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "besser-0013",
+      "id": "besser-0018",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
-      "frage": "Welche Farbe hat die „Black Box“ im Flugzeug?",
+      "frage": "Trugen die Wikinger Helme mit Hörnern?",
       "antworten": [
-        "Orange",
-        "Schwarz",
-        "Silber",
-        "Rot-weiß gestreift"
+        "Nein, dafür gibt es keinen Beleg",
+        "Ja, im Kampf immer",
+        "Ja, aber nur die Anführer",
+        "Ja, aus Elchgeweih"
       ],
-      "erklaerung": "Die Signalfarbe macht sie nach einem Unglück leichter auffindbar.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Flugschreiber",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0006",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Welches ist das größte Organ des Menschen?",
-      "antworten": [
-        "Die Haut",
-        "Die Leber",
-        "Die Lunge",
-        "Das Gehirn"
-      ],
-      "erklaerung": "Sie bringt es bei Erwachsenen auf rund zwei Quadratmeter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Haut",
+      "erklaerung": "Die Hörner kamen im 19. Jahrhundert auf, etwa durch Kostüme zu Wagners Opern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikinger",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -56,19 +39,19 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0004",
+      "id": "besser-0016",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Was ist eine Tomate botanisch gesehen?",
+      "stufe": "leicht",
+      "frage": "Wie viele Monate im Jahr haben 28 Tage?",
       "antworten": [
-        "Eine Beere",
-        "Ein Gemüse",
-        "Eine Nuss",
-        "Eine Steinfrucht"
+        "Alle zwölf",
+        "Nur einer",
+        "Zwei",
+        "Keiner – der Februar hat 28,25"
       ],
-      "erklaerung": "Auch Gurken, Kürbisse und Bananen zählen botanisch zu den Beeren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tomate",
+      "erklaerung": "Achtundzwanzig Tage hat jeder Monat – manche eben noch ein paar mehr.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Monat",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -90,206 +73,53 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0009",
+      "id": "besser-0026",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Was ist die größte Wüste der Erde?",
+      "stufe": "schwer",
+      "frage": "Auf welchem Kontinent liegen die meisten Staaten?",
       "antworten": [
-        "Die Antarktis",
-        "Die Sahara",
-        "Die Gobi",
-        "Die Arabische Wüste"
+        "Afrika",
+        "Asien",
+        "Europa",
+        "Südamerika"
       ],
-      "erklaerung": "Wüste heißt: kaum Niederschlag – nicht unbedingt Sand und Hitze. Die Sahara ist die größte heiße Wüste.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=W%C3%BCste",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0012",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Woraus besteht die Mine eines Bleistifts?",
-      "antworten": [
-        "Aus Graphit und Ton",
-        "Aus Blei",
-        "Aus Kohle und Wachs",
-        "Aus Bleiglanz"
-      ],
-      "erklaerung": "Blei war nie drin – Graphit wurde früher für ein Bleierz gehalten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bleistift",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0016",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wie viele Monate im Jahr haben 28 Tage?",
-      "antworten": [
-        "Alle zwölf",
-        "Nur einer",
-        "Zwei",
-        "Keiner – der Februar hat 28,25"
-      ],
-      "erklaerung": "Achtundzwanzig Tage hat jeder Monat – manche eben noch ein paar mehr.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Monat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0003",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Wie viele Herzen hat ein Oktopus?",
-      "antworten": [
-        "Drei",
-        "Eins",
-        "Zwei",
-        "Acht – eins pro Arm"
-      ],
-      "erklaerung": "Zwei pumpen Blut durch die Kiemen, eins durch den Körper.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kraken",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0022",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Welche Farbe hat das Blut in unseren Venen?",
-      "antworten": [
-        "Dunkelrot",
-        "Blau",
-        "Violett",
-        "Grünlich"
-      ],
-      "erklaerung": "Venen wirken nur durch die Haut bläulich – sauerstoffarmes Blut ist dunkelrot.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blut",
+      "erklaerung": "Afrika zählt 54 von den Vereinten Nationen anerkannte Staaten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Afrika",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "besser-0021",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Ist eine Fledermaus ein Vogel?",
-      "antworten": [
-        "Nein, ein Säugetier",
-        "Ja, ein Nachtvogel",
-        "Ja, eine Unterart der Eule",
-        "Nein, ein Insekt"
-      ],
-      "erklaerung": "Fledermäuse säugen ihre Jungen – und sind die einzigen Säugetiere, die richtig fliegen können.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fledertiere",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0007",
+      "id": "besser-0013",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
-      "frage": "Wie viele Knochen hat ein erwachsener Mensch ungefähr?",
+      "frage": "Welche Farbe hat die „Black Box“ im Flugzeug?",
       "antworten": [
-        "Etwa 206",
-        "Etwa 150",
-        "Etwa 300",
-        "Etwa 412"
+        "Orange",
+        "Schwarz",
+        "Silber",
+        "Rot-weiß gestreift"
       ],
-      "erklaerung": "Babys haben mehr – viele wachsen später zusammen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Skelett%20des%20Menschen",
+      "erklaerung": "Die Signalfarbe macht sie nach einem Unglück leichter auffindbar.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Flugschreiber",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "besser-0015",
+      "id": "besser-0008",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
-      "frage": "Welches Tier ist im Sturzflug das schnellste der Welt?",
+      "frage": "Welcher Planet ist der heißeste im Sonnensystem?",
       "antworten": [
-        "Der Wanderfalke",
-        "Der Gepard",
-        "Der Steinadler",
-        "Der Mauersegler"
+        "Die Venus",
+        "Der Merkur",
+        "Der Mars",
+        "Der Jupiter"
       ],
-      "erklaerung": "Im Sturzflug erreicht er über 300 km/h. Der Gepard ist das schnellste Landtier.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wanderfalke",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0019",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wie viel Prozent seines Gehirns nutzt der Mensch?",
-      "antworten": [
-        "Praktisch alles – nur nicht alles gleichzeitig",
-        "Nur etwa 10 Prozent",
-        "Etwa die Hälfte",
-        "Genau 33 Prozent"
-      ],
-      "erklaerung": "Der 10-Prozent-Mythos hält sich hartnäckig, ist aber widerlegt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehn-Prozent-Mythos",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0020",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Dreht sich das Wasser im Abfluss auf der Südhalbkugel immer andersherum?",
-      "antworten": [
-        "Nein, die Corioliskraft ist dafür viel zu schwach",
-        "Ja, immer im Uhrzeigersinn",
-        "Ja, immer gegen den Uhrzeigersinn",
-        "Nur am Äquator nicht"
-      ],
-      "erklaerung": "Die Form des Beckens und kleine Strömungen entscheiden die Richtung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Corioliskraft",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0018",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Trugen die Wikinger Helme mit Hörnern?",
-      "antworten": [
-        "Nein, dafür gibt es keinen Beleg",
-        "Ja, im Kampf immer",
-        "Ja, aber nur die Anführer",
-        "Ja, aus Elchgeweih"
-      ],
-      "erklaerung": "Die Hörner kamen im 19. Jahrhundert auf, etwa durch Kostüme zu Wagners Opern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikinger",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0010",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Wie lange dauerte der Hundertjährige Krieg zwischen England und Frankreich?",
-      "antworten": [
-        "116 Jahre",
-        "100 Jahre",
-        "99 Jahre",
-        "30 Jahre"
-      ],
-      "erklaerung": "Er dauerte von 1337 bis 1453, mit längeren Pausen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hundertj%C3%A4hriger%20Krieg",
+      "erklaerung": "Merkur ist näher an der Sonne, doch die dichte Atmosphäre der Venus hält die Hitze: über 450 °C.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Venus%20%28Planet%29",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -328,37 +158,156 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0001",
+      "id": "besser-0010",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Kann man die Chinesische Mauer mit bloßem Auge vom Mond aus sehen?",
+      "stufe": "schwer",
+      "frage": "Wie lange dauerte der Hundertjährige Krieg zwischen England und Frankreich?",
       "antworten": [
-        "Nein, dafür ist sie viel zu schmal",
-        "Ja, als einziges Bauwerk",
-        "Ja, aber nur nachts",
-        "Nur bei Vollmond"
+        "116 Jahre",
+        "100 Jahre",
+        "99 Jahre",
+        "30 Jahre"
       ],
-      "erklaerung": "Selbst aus der niedrigen Erdumlaufbahn ist sie kaum zu erkennen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Chinesische%20Mauer",
+      "erklaerung": "Er dauerte von 1337 bis 1453, mit längeren Pausen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hundertj%C3%A4hriger%20Krieg",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "besser-0008",
+      "id": "besser-0012",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Woraus besteht die Mine eines Bleistifts?",
+      "antworten": [
+        "Aus Graphit und Ton",
+        "Aus Blei",
+        "Aus Kohle und Wachs",
+        "Aus Bleiglanz"
+      ],
+      "erklaerung": "Blei war nie drin – Graphit wurde früher für ein Bleierz gehalten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bleistift",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0007",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
-      "frage": "Welcher Planet ist der heißeste im Sonnensystem?",
+      "frage": "Wie viele Knochen hat ein erwachsener Mensch ungefähr?",
       "antworten": [
-        "Die Venus",
-        "Der Merkur",
-        "Der Mars",
-        "Der Jupiter"
+        "Etwa 206",
+        "Etwa 150",
+        "Etwa 300",
+        "Etwa 412"
       ],
-      "erklaerung": "Merkur ist näher an der Sonne, doch die dichte Atmosphäre der Venus hält die Hitze: über 450 °C.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Venus%20%28Planet%29",
+      "erklaerung": "Babys haben mehr – viele wachsen später zusammen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Skelett%20des%20Menschen",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0021",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Ist eine Fledermaus ein Vogel?",
+      "antworten": [
+        "Nein, ein Säugetier",
+        "Ja, ein Nachtvogel",
+        "Ja, eine Unterart der Eule",
+        "Nein, ein Insekt"
+      ],
+      "erklaerung": "Fledermäuse säugen ihre Jungen – und sind die einzigen Säugetiere, die richtig fliegen können.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fledertiere",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0003",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Wie viele Herzen hat ein Oktopus?",
+      "antworten": [
+        "Drei",
+        "Eins",
+        "Zwei",
+        "Acht – eins pro Arm"
+      ],
+      "erklaerung": "Zwei pumpen Blut durch die Kiemen, eins durch den Körper.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kraken",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0025",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Haben Goldfische wirklich nur ein Drei-Sekunden-Gedächtnis?",
+      "antworten": [
+        "Nein, sie können sich monatelang erinnern",
+        "Ja, genau drei Sekunden",
+        "Ja, aber nur im Aquarium",
+        "Nein, gar keins"
+      ],
+      "erklaerung": "In Versuchen lernten Goldfische Signale und behielten sie über Monate.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Goldfisch",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0024",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Wie viele Beine hat eine Spinne?",
+      "antworten": [
+        "Acht",
+        "Sechs",
+        "Zehn",
+        "Zwölf"
+      ],
+      "erklaerung": "Spinnen sind keine Insekten – die haben sechs Beine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Webspinnen",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0011",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Aus welchem Land stammen die sogenannten Panamahüte ursprünglich?",
+      "antworten": [
+        "Aus Ecuador",
+        "Aus Panama",
+        "Aus Kolumbien",
+        "Aus Kuba"
+      ],
+      "erklaerung": "Sie wurden über Panama verschifft und von den Arbeitern am Panamakanal getragen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Panamahut",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0022",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welche Farbe hat das Blut in unseren Venen?",
+      "antworten": [
+        "Dunkelrot",
+        "Blau",
+        "Violett",
+        "Grünlich"
+      ],
+      "erklaerung": "Venen wirken nur durch die Haut bläulich – sauerstoffarmes Blut ist dunkelrot.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blut",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -379,19 +328,121 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0011",
+      "id": "besser-0004",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Was ist eine Tomate botanisch gesehen?",
+      "antworten": [
+        "Eine Beere",
+        "Ein Gemüse",
+        "Eine Nuss",
+        "Eine Steinfrucht"
+      ],
+      "erklaerung": "Auch Gurken, Kürbisse und Bananen zählen botanisch zu den Beeren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tomate",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0015",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welches Tier ist im Sturzflug das schnellste der Welt?",
+      "antworten": [
+        "Der Wanderfalke",
+        "Der Gepard",
+        "Der Steinadler",
+        "Der Mauersegler"
+      ],
+      "erklaerung": "Im Sturzflug erreicht er über 300 km/h. Der Gepard ist das schnellste Landtier.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wanderfalke",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0020",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "schwer",
-      "frage": "Aus welchem Land stammen die sogenannten Panamahüte ursprünglich?",
+      "frage": "Dreht sich das Wasser im Abfluss auf der Südhalbkugel immer andersherum?",
       "antworten": [
-        "Aus Ecuador",
-        "Aus Panama",
-        "Aus Kolumbien",
-        "Aus Kuba"
+        "Nein, die Corioliskraft ist dafür viel zu schwach",
+        "Ja, immer im Uhrzeigersinn",
+        "Ja, immer gegen den Uhrzeigersinn",
+        "Nur am Äquator nicht"
       ],
-      "erklaerung": "Sie wurden über Panama verschifft und von den Arbeitern am Panamakanal getragen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Panamahut",
+      "erklaerung": "Die Form des Beckens und kleine Strömungen entscheiden die Richtung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Corioliskraft",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0009",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Was ist die größte Wüste der Erde?",
+      "antworten": [
+        "Die Antarktis",
+        "Die Sahara",
+        "Die Gobi",
+        "Die Arabische Wüste"
+      ],
+      "erklaerung": "Wüste heißt: kaum Niederschlag – nicht unbedingt Sand und Hitze. Die Sahara ist die größte heiße Wüste.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=W%C3%BCste",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0006",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Welches ist das größte Organ des Menschen?",
+      "antworten": [
+        "Die Haut",
+        "Die Leber",
+        "Die Lunge",
+        "Das Gehirn"
+      ],
+      "erklaerung": "Sie bringt es bei Erwachsenen auf rund zwei Quadratmeter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Haut",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0001",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Kann man die Chinesische Mauer mit bloßem Auge vom Mond aus sehen?",
+      "antworten": [
+        "Nein, dafür ist sie viel zu schmal",
+        "Ja, als einziges Bauwerk",
+        "Ja, aber nur nachts",
+        "Nur bei Vollmond"
+      ],
+      "erklaerung": "Selbst aus der niedrigen Erdumlaufbahn ist sie kaum zu erkennen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Chinesische%20Mauer",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0019",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Wie viel Prozent seines Gehirns nutzt der Mensch?",
+      "antworten": [
+        "Praktisch alles – nur nicht alles gleichzeitig",
+        "Nur etwa 10 Prozent",
+        "Etwa die Hälfte",
+        "Genau 33 Prozent"
+      ],
+      "erklaerung": "Der 10-Prozent-Mythos hält sich hartnäckig, ist aber widerlegt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehn-Prozent-Mythos",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     }
