@@ -195,6 +195,24 @@ class HandoverTest {
     }
 
     @Test
+    fun `avatars and rules travel and show up in board, roster and replay`() {
+        val r = Message.Rules("Spielregeln", listOf("Kategorien" to "Technik, Küche & Genuss", "Wertung" to "Jeder: 1 Punkt"))
+        assertEquals(r, MessageCodec.decode(MessageCodec.encode(r)))
+        assertEquals(Message.Avatar("🦊"), MessageCodec.decode(MessageCodec.encode(Message.Avatar("🦊"))))
+        val g = quizGame()
+        g.master.onMessage("Clara", Message.Avatar("🦊"))
+        g.time.advanceBy(200)
+        assertEquals("🦊", g.row("Clara").avatar)
+        val board = g.received.getValue("Clara").filterIsInstance<Message.Scoreboard>().last()
+        assertTrue(board.entries.any { it.label == "🦊 Du" })
+        val roster = g.received.getValue("Axel").filterIsInstance<Message.Roster>().last()
+        assertTrue(roster.entries.any { it.second == "🦊 Clara" })
+        g.master.sendRules("Spielregeln", r.lines)
+        g.time.advanceBy(200)
+        assertEquals(r, g.received.getValue("Peter").filterIsInstance<Message.Rules>().last())
+    }
+
+    @Test
     fun `hand over names the successor and silences the old master`() {
         val g = quizGame()
         assertFalse(g.master.handOver("Niemand"))

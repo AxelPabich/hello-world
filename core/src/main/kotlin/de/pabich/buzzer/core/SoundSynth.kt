@@ -66,49 +66,83 @@ object SoundSynth {
         SoundEvent.CHASE -> chase(MasterEngine.MAX_REPLAY_MS)
     }
 
-    /** Klänge der Start-Animationen (Splash-Screen und Spielstart). */
+    /** Klänge der Start-Animationen (Splash-Screen und Spielstart) und der Schluss des Spielverlaufs. */
     fun render(jingle: Jingle): ShortArray = when (jingle) {
-        // Splash A: „Boing“ beim Aufprall, dann tiefer Quizshow-Buzzer und Jubel.
-        Jingle.SPLASH_HOP -> mix(3.0) {
-            tone(0.45, 240.0, 0.25, Wave.SINE, 0.35, freqEnd = 620.0)
-            tone(0.7, 620.0, 0.3, Wave.SINE, 0.3, freqEnd = 180.0)
-            tone(1.15, 110.0, 0.7, Wave.SQUARE, 0.16)
-            tone(1.15, 166.0, 0.7, Wave.SAW, 0.12)
-            applause(1.2, 1.7)
+        // Splash A „Hüpfer“: Maskottchen landet (0,48 s) und federt nach (0,87 / 1,15 s), dann Fanfare und Jubel.
+        Jingle.SPLASH_HOP -> mix(4.2) {
+            boing(0.46, 0.5, 0.5)
+            boing(0.85, 0.32, 0.3)
+            boing(1.13, 0.22, 0.2)
+            kick(0.46, 0.6)
+            showFanfare(1.4)
+            cheer(1.5, 2.5)
+            reverb()
         }
-        // Splash B: Vorhang rauscht, dann helle Ding-Ding-Glocke und Jubel.
-        Jingle.SPLASH_CURTAIN -> mix(3.0) {
-            noise(0.3, 1.0, 0.12, 600.0, 0.5)
-            tone(1.1, 1320.0, 0.6, Wave.TRIANGLE, 0.35)
-            tone(1.4, 990.0, 0.9, Wave.TRIANGLE, 0.35)
-            applause(1.3, 1.6)
+        // Splash B „Vorhang auf“: Trommelwirbel, Vorhang rauscht, Beckenschlag mit Glocken und Bläserakkord.
+        Jingle.SPLASH_CURTAIN -> mix(4.2) {
+            snareRoll(0.0, 1.05, 0.05, 0.5)
+            swoosh(0.35, 0.9, 0.35, 500.0, 3500.0)
+            cymbal(1.1, 2.4, 0.5)
+            timpani(1.1, 0.7)
+            for ((i, f) in listOf(784.0, 1047.0, 1319.0).withIndex()) bell(1.15 + i * 0.13, f, 1.8, 0.2)
+            brassChord(1.15, listOf(60, 64, 67, 72), 1.6, 0.16)
+            cheer(1.3, 2.7)
+            reverb()
         }
-        // Splash C: Luftzug, Klatsch, schnarrender Elektro-Buzzer und Jubel.
-        Jingle.SPLASH_SLAP -> mix(3.0) {
-            noise(0.55, 0.35, 0.3, 3000.0, 0.7)
-            noise(0.9, 0.12, 0.9, 200.0, 0.8)
-            vibrato(0.92, 72.0, 0.9, 32.0, 6.0, 0.3)
-            applause(1.1, 1.8)
+        // Splash C „Hau drauf“: Luftzug, Klatsch der Hand, satter Quizshow-Buzzer, Beckenschlag und Jubel.
+        Jingle.SPLASH_SLAP -> mix(4.2) {
+            swoosh(0.5, 0.42, 0.4, 900.0, 5000.0)
+            noise(0.9, 0.09, 1.0, 1800.0, 0.6)
+            kick(0.9, 0.8)
+            showBuzzer(0.92, 0.75, 0.32)
+            cymbal(0.95, 1.8, 0.35)
+            showFanfare(1.75)
+            cheer(1.2, 2.8)
+            reverb()
         }
-        // Spielstart 1: Trillerpfeife.
-        Jingle.RACE_FABLE -> mix(2.0) {
-            for (k in 0 until 6) tone(k * 0.06, 2600.0, 0.06, Wave.SINE, 0.25)
-            tone(0.4, 2600.0, 0.25, Wave.SINE, 0.25)
-            tone(1.25, 300.0, 0.6, Wave.SINE, 0.2, freqEnd = 120.0)
+        // Spielstart 1 „Die Fabel“: Pfiff, Hase hoppelt, schläft ein (Schnarchen), Fanfare zum „LOS!“ (2,2 s).
+        Jingle.RACE_FABLE -> mix(4.2) {
+            whistle(0.0, 0.5, 0.22)
+            for (k in 0 until 6) pluck(0.15 + k * 0.17, midi(72 + listOf(0, 4, 7, 12, 7, 4)[k]), 0.18, 0.22)
+            snore(1.3, 0.8)
+            showFanfare(2.15)
+            cymbal(2.6, 1.5, 0.3)
+            reverb()
         }
-        // Spielstart 2: Cartoon-„Wuuusch“ hin und zurück, dann zwei Piepser.
-        Jingle.RACE_CHASE -> mix(3.0) {
-            tone(0.0, 200.0, 0.9, Wave.SINE, 0.3, freqEnd = 1400.0)
-            tone(1.2, 1400.0, 0.9, Wave.SINE, 0.3, freqEnd = 220.0)
-            tone(2.4, 660.0, 0.12, Wave.SQUARE, 0.12)
-            tone(2.52, 990.0, 0.2, Wave.SQUARE, 0.12)
+        // Spielstart 2 „Verfolgungsjagd“: rasante Jagdmusik mit zwei Wuuusch, Bläserstoß zum „QUIZ!“ (2,4 s).
+        Jingle.RACE_CHASE -> mix(4.2) {
+            chaseRun(0.0, 2.35)
+            swoosh(0.2, 0.9, 0.3, 400.0, 4000.0)
+            swoosh(1.35, 0.9, 0.3, 4000.0, 400.0)
+            brassChord(2.4, listOf(60, 64, 67, 72), 0.25, 0.18)
+            brassChord(2.7, listOf(62, 65, 69, 74), 1.2, 0.18)
+            cymbal(2.4, 1.6, 0.35)
+            timpani(2.4, 0.6)
+            reverb()
         }
-        // Spielstart 3: zwei Piepser, Startschuss-Knall, hoher Ton.
-        Jingle.RACE_START -> mix(2.2) {
-            tone(0.1, 660.0, 0.15, Wave.SINE, 0.3)
-            tone(0.85, 660.0, 0.15, Wave.SINE, 0.3)
-            noise(1.55, 0.35, 1.0, 900.0, 0.3)
-            tone(1.6, 1320.0, 0.35, Wave.SINE, 0.3)
+        // Spielstart 3 „Startschuss“: „Auf die Plätze“ (0,1 s), „Fertig“ (0,85 s), Knall (1,6 s), Fanfare und Jubel.
+        Jingle.RACE_START -> mix(4.2) {
+            timpani(0.1, 0.45)
+            timpani(0.85, 0.55)
+            snareRoll(0.9, 0.7, 0.08, 0.35)
+            gunshot(1.6)
+            showFanfare(1.75)
+            for (k in 0 until 8) noise(1.7 + k * 0.11, 0.05, 0.25, 300.0, 1.0)
+            cheer(1.8, 2.3)
+            reverb()
+        }
+        // Krönender Abschluss des Spielverlaufs: Wirbel, Beckenschlag und große Siegerfanfare.
+        Jingle.FINALE -> mix(4.5) {
+            snareRoll(0.0, 0.9, 0.05, 0.55)
+            timpani(0.9, 0.9)
+            cymbal(0.9, 3.0, 0.55)
+            val notes = listOf(67, 72, 76, 79)
+            notes.forEachIndexed { i, n -> brass(0.9 + i * 0.14, midi(n), if (i == 3) 0.35 else 0.12, 0.2) }
+            brassChord(1.55, listOf(60, 64, 67, 72, 76), 2.3, 0.15)
+            for ((i, f) in listOf(1047.0, 1319.0, 1568.0, 2093.0).withIndex()) bell(1.55 + i * 0.09, f, 2.2, 0.12)
+            timpani(1.55, 0.8)
+            cheer(1.6, 2.8)
+            reverb(0.28)
         }
     }
 
@@ -307,6 +341,189 @@ object SoundSynth {
             }
             noise(0.5, 0.05, 0.4, 4000.0, 2.0)
             noise(1.0, 0.04, 0.35, 5000.0, 2.0)
+        }
+
+        // ------------------------------------------------------------ Instrumente der Jingles
+
+        /** Blechbläser: Sägezähne leicht verstimmt, Tiefpass öffnet beim Anblasen, sanftes Ausklingen. */
+        fun brass(t: Double, freq: Double, dur: Double, vol: Double) {
+            val start = (t * SAMPLE_RATE).toInt()
+            val n = ((dur + 0.15) * SAMPLE_RATE).toInt()
+            var p1 = 0.0; var p2 = 0.0; var p3 = 0.0
+            var low = 0.0; var band = 0.0
+            for (k in 0 until n) {
+                val idx = start + k
+                if (idx >= buf.size) break
+                val x = k.toDouble() / SAMPLE_RATE
+                val vib = 1 + if (x > 0.15) 0.004 * sin(2 * PI * 5.0 * x) else 0.0
+                p1 += freq * vib / SAMPLE_RATE
+                p2 += freq * vib * 1.004 / SAMPLE_RATE
+                p3 += freq * vib * 0.996 / SAMPLE_RATE
+                val raw = wave(Wave.SAW, p1) + wave(Wave.SAW, p2) * 0.8 + wave(Wave.SAW, p3) * 0.8
+                val open = if (x < 0.06) x / 0.06 else 1.0 - 0.35 * ((x - 0.06) / dur).coerceAtMost(1.0)
+                val cutoff = 300 + freq * 5 * open
+                val fc = 2 * sin(PI * cutoff.coerceAtMost(8000.0) / SAMPLE_RATE)
+                low += fc * band
+                val high = raw - low - 1.1 * band
+                band += fc * high
+                val env = when {
+                    x < 0.03 -> x / 0.03
+                    x > dur -> ((dur + 0.15 - x) / 0.15).coerceAtLeast(0.0)
+                    else -> 1.0 - 0.2 * (x / dur)
+                }
+                buf[idx] += low * vol * env * 0.5
+            }
+        }
+
+        fun brassChord(t: Double, notes: List<Int>, dur: Double, vol: Double) =
+            notes.forEach { brass(t, midi(it), dur, vol) }
+
+        /** Glocke: unharmonische Teiltöne, die verschieden schnell abklingen. */
+        fun bell(t: Double, freq: Double, dur: Double, vol: Double) {
+            listOf(1.0 to 1.0, 2.76 to 0.5, 5.4 to 0.25, 8.93 to 0.12).forEach { (ratio, amp) ->
+                tone(t, freq * ratio, dur / ratio.coerceAtMost(3.0), Wave.SINE, vol * amp)
+            }
+        }
+
+        /** Gezupfter Ton (Marimba-artig) für hüpfende Melodien. */
+        fun pluck(t: Double, freq: Double, dur: Double, vol: Double) {
+            tone(t, freq, dur, Wave.SINE, vol)
+            tone(t, freq * 4, dur * 0.3, Wave.SINE, vol * 0.25)
+            tone(t, freq * 2, dur * 0.6, Wave.TRIANGLE, vol * 0.3)
+        }
+
+        /** Becken: helles Rauschen mit langem Ausklang. */
+        fun cymbal(t: Double, dur: Double, vol: Double) {
+            noise(t, dur, vol, 7500.0, 0.6)
+            noise(t, dur * 0.6, vol * 0.6, 4200.0, 0.8)
+            noise(t, 0.08, vol, 2500.0, 0.5)
+        }
+
+        /** Pauke: tiefer Ton, der leicht absinkt, mit Fellanschlag. */
+        fun timpani(t: Double, vol: Double) {
+            tone(t, 98.0, 1.2, Wave.SINE, vol * 0.7, freqEnd = 88.0)
+            tone(t, 147.0, 0.6, Wave.SINE, vol * 0.25, freqEnd = 135.0)
+            noise(t, 0.05, vol * 0.5, 400.0, 0.8)
+        }
+
+        fun kick(t: Double, vol: Double) {
+            tone(t, 140.0, 0.35, Wave.SINE, vol, freqEnd = 45.0)
+            noise(t, 0.02, vol * 0.5, 3000.0, 0.7)
+        }
+
+        /** Trommelwirbel auf der kleinen Trommel, anschwellend. */
+        fun snareRoll(t: Double, dur: Double, step: Double, vol: Double) {
+            var x = 0.0
+            while (x < dur) {
+                val v = vol * (0.35 + 0.65 * x / dur)
+                noise(t + x, 0.05, v, 2200.0, 0.6)
+                noise(t + x, 0.03, v * 0.6, 220.0, 1.0)
+                x += step
+            }
+        }
+
+        /** Rauschen, dessen Tonhöhe gleitet: Luftzug, Vorhang, „Wuuusch“. */
+        fun swoosh(t: Double, dur: Double, vol: Double, from: Double, to: Double) {
+            val slices = 24
+            for (i in 0 until slices) {
+                val r = i.toDouble() / slices
+                val f = from * (to / from).pow(r)
+                val v = vol * sin(PI * (r + 0.5 / slices))
+                noise(t + r * dur, dur / slices * 2.2, v.coerceAtLeast(0.01), f, 1.2)
+            }
+        }
+
+        /** Schiedsrichterpfiff: hoher Ton, schnell „trillernd“ (Kugel in der Pfeife). */
+        fun whistle(t: Double, dur: Double, vol: Double) {
+            val start = (t * SAMPLE_RATE).toInt()
+            var phase = 0.0
+            for (k in 0 until (dur * SAMPLE_RATE).toInt()) {
+                val idx = start + k
+                if (idx >= buf.size) break
+                val x = k.toDouble() / SAMPLE_RATE
+                phase += (2850 + 60 * sin(2 * PI * 28 * x)) / SAMPLE_RATE
+                val trill = 0.55 + 0.45 * sin(2 * PI * 28 * x)
+                val env = when {
+                    x < 0.02 -> x / 0.02
+                    x > dur - 0.05 -> ((dur - x) / 0.05).coerceAtLeast(0.0)
+                    else -> 1.0
+                }
+                buf[idx] += sin(2 * PI * phase) * vol * trill * env
+            }
+            noise(t, dur, vol * 0.15, 2850.0, 3.0)
+        }
+
+        /** „Boing“ einer Feder: Ton springt hoch und zittert. */
+        fun boing(t: Double, dur: Double, vol: Double) {
+            val start = (t * SAMPLE_RATE).toInt()
+            var phase = 0.0
+            for (k in 0 until (dur * SAMPLE_RATE).toInt()) {
+                val idx = start + k
+                if (idx >= buf.size) break
+                val x = k.toDouble() / SAMPLE_RATE
+                val f = 180 + 420 * (1 - (1 - x / dur).pow(3)) * (1 + 0.12 * sin(2 * PI * 18 * x))
+                phase += f / SAMPLE_RATE
+                buf[idx] += (wave(Wave.SINE, phase) + 0.3 * wave(Wave.TRIANGLE, phase * 2)) * vol * (1 - x / dur)
+            }
+        }
+
+        /** Quizshow-Buzzer: zwei verstimmte Rechtecke, gedämpft. */
+        fun showBuzzer(t: Double, dur: Double, vol: Double) {
+            tone(t, 98.0, dur, Wave.SQUARE, vol * 0.6)
+            tone(t, 147.5, dur, Wave.SAW, vol * 0.5)
+            tone(t, 196.8, dur, Wave.SQUARE, vol * 0.25)
+        }
+
+        /** Kurze Showfanfare „Ta-ta-taaa“ mit Schlussakkord. */
+        fun showFanfare(t: Double) {
+            brass(t, midi(67), 0.1, 0.22)
+            brass(t + 0.13, midi(67), 0.1, 0.22)
+            brassChord(t + 0.26, listOf(60, 64, 67, 72), 1.1, 0.16)
+            timpani(t + 0.26, 0.5)
+        }
+
+        /** Jubelnde Menge: Klatschen plus „Uuuh“-Rauschen in Stimmlage. */
+        fun cheer(t: Double, dur: Double) {
+            applause(t, dur)
+            noise(t, dur, 0.18, 700.0, 1.5)
+            noise(t + 0.1, dur * 0.8, 0.12, 1100.0, 2.0)
+        }
+
+        fun snore(t: Double, dur: Double) {
+            noise(t, dur, 0.18, 260.0, 4.0)
+            tone(t, 90.0, dur, Wave.SAW, 0.06, freqEnd = 70.0)
+        }
+
+        fun gunshot(t: Double) {
+            noise(t, 0.04, 1.0, 3000.0, 0.4)
+            noise(t, 0.6, 0.8, 500.0, 0.5)
+            tone(t, 90.0, 0.6, Wave.SINE, 0.7, freqEnd = 40.0)
+        }
+
+        /** Kurzer Jagd-Lauf (wie [chase], aber für die Rennszene). */
+        fun chaseRun(t: Double, dur: Double) {
+            val step = 60.0 / 176 / 4
+            val run = intArrayOf(0, 2, 4, 5, 7, 5, 4, 2)
+            var x = 0.0
+            var i = 0
+            while (x < dur) {
+                if (i % 2 == 0) tone(t + x, midi(45 + if ((i / 4) % 2 == 0) 0 else 7), step * 1.8, Wave.SQUARE, 0.14)
+                pluck(t + x, midi(72 + run[i % run.size] + (i / 16) * 2), step * 1.2, 0.14)
+                if (i % 2 == 1) noise(t + x, 0.03, 0.2, 7000.0, 1.0)
+                i++
+                x += step
+            }
+        }
+
+        /** Einfacher Hall (vier parallele Kammfilter), macht die Jingles räumlicher. */
+        fun reverb(amount: Double = 0.22) {
+            val dry = buf.copyOf()
+            for ((delayMs, fb) in listOf(29.7 to 0.72, 37.1 to 0.70, 41.1 to 0.68, 43.7 to 0.66)) {
+                val d = (delayMs / 1000 * SAMPLE_RATE).toInt()
+                val comb = DoubleArray(buf.size)
+                for (k in d until buf.size) comb[k] = dry[k - d] + fb * comb[k - d]
+                for (k in buf.indices) buf[k] += comb[k] * amount / 4
+            }
         }
 
         fun toPcm(): ShortArray {

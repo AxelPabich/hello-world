@@ -366,7 +366,7 @@ fun QuizMasterRunning(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz
                             contentAlignment = Alignment.Center,
                         ) { if (row.answered) Text("✓", color = theme.ground, fontSize = 13.sp, fontWeight = FontWeight.Bold) }
                         Spacer(Modifier.width(10.dp))
-                        Text(row.name, color = if (row.answered) theme.text else theme.muted, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
+                        Text(de.pabich.buzzer.core.withAvatar(row.avatar, row.name), color = if (row.answered) theme.text else theme.muted, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
                         Text(row.elapsedMs?.let { seconds(it) } ?: "überlegt …", color = theme.muted, fontSize = 14.sp)
                     }
                 }

@@ -40,6 +40,8 @@ class MasterEngine(
         val scoreValue: Long,
         val rttMs: Long?,
         val connected: Boolean,
+        /** Gewähltes Emoticon des Spielers (leer = keins). */
+        val avatar: String = "",
     )
 
     data class Snapshot(
@@ -88,6 +90,7 @@ class MasterEngine(
         val chosen: Int?,
         val outcome: QuizOutcome?,
         val gained: Long,
+        val avatar: String = "",
     )
 
     data class QuizChallengeInfo(val playerId: PlayerId, val name: String, val reason: String)
@@ -126,6 +129,7 @@ class MasterEngine(
     private class Player(val id: PlayerId, val name: String, val local: Boolean) {
         val sync = ClockSync()
         var typingUntil = 0L
+        var avatar = ""
         var connected = true
         var receiveEmojis = true
         var score = 0L
@@ -533,6 +537,7 @@ class MasterEngine(
             is Message.QuizAnswer -> onQuizAnswer(player, message)
             is Message.QuizChallenge -> onQuizChallenge(player, message)
             is Message.Ready -> onReady(player, message)
+            is Message.Avatar -> setAvatar(player.id, message.emoji)
             else -> Unit
         }
     }
@@ -691,8 +696,8 @@ class MasterEngine(
         fun forViewer(viewer: PlayerId?) = Message.Replay(
             labels = shown.map { p ->
                 when {
-                    p.id == viewer -> "Du"
-                    viewer == null || settings.boardShowNames -> p.name
+                    p.id == viewer -> withAvatar(p.avatar, "Du")
+                    viewer == null || settings.boardShowNames -> withAvatar(p.avatar, p.name)
                     else -> "???"
                 }
             },
@@ -709,7 +714,7 @@ class MasterEngine(
 
     private fun broadcastRoster() {
         val entries = listOf(MASTER_ADDRESS to masterName) +
-            players.values.filter { it.connected && !it.local }.map { it.id to it.name }
+            players.values.filter { it.connected && !it.local }.map { it.id to withAvatar(it.avatar, it.name) }
         for (p in players.values) if (p.connected) send(p.id, Message.Roster(entries.filter { it.first != p.id }))
     }
 
@@ -1292,6 +1297,7 @@ class MasterEngine(
                 QuizRow(
                     id = id,
                     name = p.name,
+                    avatar = p.avatar,
                     answered = a != null,
                     elapsedMs = a?.second,
                     chosen = if (t.revealed) a?.first else null,
@@ -1469,7 +1475,7 @@ class MasterEngine(
     /** Rangliste an alle; angezeigt wird sie nur zwischen den Runden. */
     private fun broadcastScoreboard() {
         val show = isPause()
-        val inputs = players.values.filter { it.connected }.map { ScoreInput(it.id, it.name, it.score) }
+        val inputs = players.values.filter { it.connected }.map { ScoreInput(it.id, it.name, it.score, it.avatar) }
         val maxScore = inputs.maxOfOrNull { it.score } ?: 0
         val boardSettings = settings.copy(scoring = scoring)
         for (p in players.values) {
@@ -1485,7 +1491,7 @@ class MasterEngine(
         timeLimitLocked = gameStarted && settings.scoring == ScoringMode.REMAINING_TIME,
         players = players.values.map { p ->
             val (display, place) = displayOf(p)
-            PlayerRow(p.id, p.name, display, place, p.roundReactionMs, scoreText(p), p.score, p.sync.recentMaxRttMs, p.connected)
+            PlayerRow(p.id, p.name, display, place, p.roundReactionMs, scoreText(p), p.score, p.sync.recentMaxRttMs, p.connected, p.avatar)
         },
         answerDeadline = answerDeadline,
         profileName = profileName,
@@ -1508,6 +1514,24 @@ class MasterEngine(
     }
 
     // ------------------------------------------------------------------ Übergabe der Spielleitung
+
+    /** Avatar eines Spielers (vom Spieler gewählt; beim mitspielenden Spielleiter vom Gerät). */
+    fun setAvatar(id: PlayerId, emoji: String) {
+        val p = players[id] ?: return
+        val clean = emoji.trim().take(MAX_AVATAR_LENGTH)
+        if (p.avatar == clean) return
+        p.avatar = clean
+        log("Avatar ${p.name}: ${clean.ifEmpty { "–" }}")
+        broadcastRoster()
+        broadcastScoreboard()
+        notifyChanged()
+    }
+
+    /** Spielregeln der Runde an [to] (bzw. an alle Spieler): beim Beitritt und zu Spielbeginn. */
+    fun sendRules(title: String, lines: List<Pair<String, String>>, to: PlayerId? = null) {
+        val m = Message.Rules(title, lines)
+        for (p in players.values) if (p.connected && !p.local && (to == null || p.id == to)) send(p.id, m)
+    }
 
     /** Name ohne den Zusatz des mitspielenden Spielleiters. */
     private fun baseName(name: String) = name.removeSuffix(MASTER_SUFFIX)
@@ -1633,6 +1657,9 @@ class MasterEngine(
         const val TYPING_TIMEOUT_MS = 8_000L
         const val SUDDEN_DEATH_PAUSE_MS = 1_500L
         const val MAX_REPLAY_MS = 15_000L
+
+        /** Ein Emoticon kann aus mehreren Zeichen bestehen (z. B. mit Hautfarbe). */
+        const val MAX_AVATAR_LENGTH = 16
 
         /** Zusatz am Namen des mitspielenden Spielleiters. */
         const val MASTER_SUFFIX = " (Master)"

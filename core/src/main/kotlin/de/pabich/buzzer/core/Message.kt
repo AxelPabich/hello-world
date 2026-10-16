@@ -186,6 +186,12 @@ sealed interface Message {
         val questions: List<QuizQuestion> = emptyList(),
     ) : Message
 
+    /** S → M: Emoticon, das der Spieler als Avatar gewählt hat (leer = keins). */
+    data class Avatar(val emoji: String) : Message
+
+    /** M → S: Spielregeln der Runde zum einmaligen Anzeigen – beim Beitritt und zu Spielbeginn. */
+    data class Rules(val title: String, val lines: List<Pair<String, String>>) : Message
+
     /** M → S: Der Spielleiter geht, die Spieler dürfen übernehmen (statt [Bye]). */
     data object MasterGone : Message
 
@@ -294,6 +300,11 @@ object MessageCodec {
                 "qq" to encodeQuestions(message.questions),
             )
             Message.MasterGone -> "MASTER_GONE" to emptyMap()
+            is Message.Avatar -> "AVATAR" to mapOf("e" to message.emoji)
+            is Message.Rules -> "RULES" to mapOf(
+                "t" to message.title,
+                "l" to encodeList(message.lines.map { "${enc(it.first)}:${enc(it.second)}" }),
+            )
         }
         val text = buildString {
             append(type)
@@ -386,6 +397,14 @@ object MessageCodec {
                 questions = f["qq"]?.let { decodeQuestions(it) }.orEmpty(),
             )
             "MASTER_GONE" -> Message.MasterGone
+            "AVATAR" -> Message.Avatar(f.getValue("e"))
+            "RULES" -> Message.Rules(
+                f.getValue("t"),
+                decodeList(f.getValue("l")).map {
+                    val i = it.indexOf(':')
+                    dec(it.substring(0, i)) to dec(it.substring(i + 1))
+                },
+            )
             else -> null
         }
     } catch (e: RuntimeException) {

@@ -125,7 +125,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         private set
 
     /** Splash-Screen beim App-Start (zufällige Variante); `null` = vorbei. */
-    var splash by mutableStateOf<Int?>(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.SPLASH_VARIANTS))
+    var splash by mutableStateOf<Int?>(nextVariant(app, "lastSplash", de.pabich.buzzer.ui.SPLASH_VARIANTS))
         private set
 
     /** Laufende Spielstart-Animation (Rennszene); `null` = keine. */
@@ -254,6 +254,37 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Spieler: Rückfrage „gespeicherte Diagnosen an den Spielleiter senden?“ anzeigen. */
     var diagnoseOffer by mutableStateOf(false)
         private set
+
+    /** Spieler: Spielregeln der Runde (beim Beitritt und zu Spielbeginn); `null` = ausgeblendet. */
+    var rules by mutableStateOf<Message.Rules?>(null)
+        private set
+
+    /** Spieler: zuletzt erhaltene Spielregeln – über ⋮ erneut ansehen. */
+    var lastRules by mutableStateOf<Message.Rules?>(null)
+        private set
+
+    fun dismissRules() {
+        rules = null
+    }
+
+    fun showRulesAgain() {
+        rules = lastRules
+    }
+
+    /** Emoticon als Avatar im Spiel (leer = keins); bleibt auf dem Gerät gespeichert. */
+    var avatar by mutableStateOf(app.getSharedPreferences("app", android.content.Context.MODE_PRIVATE).getString("avatar", "").orEmpty())
+        private set
+
+    fun changeAvatar(emoji: String) {
+        avatar = emoji
+        getApplication<Application>().getSharedPreferences("app", android.content.Context.MODE_PRIVATE).edit().putString("avatar", emoji).apply()
+        Diagnostics.log("Avatar: ${emoji.ifEmpty { "–" }}")
+        val endpoint = masterEndpoint
+        when {
+            master != null -> master?.setAvatar(LOCAL_PLAYER_ID, emoji)
+            endpoint != null -> link.send(endpoint, Message.Avatar(emoji))
+        }
+    }
 
     /** Spieler: Der Spielleiter bittet um einen Diagnosebericht – Rückfrage anzeigen. */
     var diagnoseRequest by mutableStateOf(false)
@@ -489,6 +520,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         takenOver = null
         lostPlayers.clear()
         diagnoseRequest = false
+        rules = null
+        lastRules = null
         intro = null
         master = null
         player = null
@@ -560,6 +593,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (engine.chooseKind(kind)) {
             choosingKind = false
             choosingTemplate = kind == GameKind.QUIZ
+            if (kind == GameKind.BUZZER) sendRules(engine)
         } else {
             status = "Die Spielart lässt sich nur zwischen den Runden wechseln."
         }
@@ -593,7 +627,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             startQuizNow()
             return
         }
-        engine.playIntro(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.RACE_VARIANTS))
+        sendRules(engine)
+        engine.playIntro(nextVariant(getApplication(), "lastRace", de.pabich.buzzer.ui.RACE_VARIANTS))
         quizStartPending = scheduler.schedule(de.pabich.buzzer.ui.INTRO_TOTAL_MS + 100L) {
             quizStartPending = null
             if (master === engine) startQuizNow()
@@ -700,7 +735,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (engine.snapshot().phase != MasterEngine.Phase.READY) return
         engine.newGame()
         val others = engine.snapshot().players.any { it.connected && it.id != LOCAL_PLAYER_ID }
-        if (engine.snapshot().kind == GameKind.BUZZER && others) engine.playIntro(kotlin.random.Random.nextInt(de.pabich.buzzer.ui.RACE_VARIANTS))
+        if (engine.snapshot().kind == GameKind.BUZZER && others) {
+            sendRules(engine)
+            engine.playIntro(nextVariant(getApplication(), "lastRace", de.pabich.buzzer.ui.RACE_VARIANTS))
+        }
     }
 
     fun updateSettings(settings: Settings, profileName: String = masterSnapshot?.profileName.orEmpty()) {
@@ -733,6 +771,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             player = local
             playerView = local.view
             engine.addPlayer(LOCAL_PLAYER_ID, "${myName.trim()} (Master)", local = true)
+            engine.setAvatar(LOCAL_PLAYER_ID, avatar)
         } else if (!wanted && player != null) {
             engine.removePlayer(LOCAL_PLAYER_ID)
             player = null
@@ -905,15 +944,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (SoundEvent.CHASE in activeSounds) chaseStream = sound(SoundEvent.CHASE)
     }
 
-    /** Ende der Animation: Musik stoppen (der Endstand bleibt noch kurz stehen). */
+    /** Ende der Animation: Jagdmusik stoppen, krönender Abschluss zum Endstand. */
     fun replayMusicEnd() {
+        if (chaseStream == 0) return
+        sounds.stop(chaseStream)
+        chaseStream = 0
+        if (soundOn) sounds.play(Jingle.FINALE)
+    }
+
+    private fun stopChase() {
         sounds.stop(chaseStream)
         chaseStream = 0
     }
 
     /** Spielverlauf geschlossen. */
     fun replayDone() {
-        replayMusicEnd()
+        stopChase()
         replay = null
     }
 
@@ -1200,6 +1246,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             val peer = PeerInfo.parse(name)
             peerBuilds[endpointId] = peer.build
             engine.addPlayer(endpointId, peer.name)
+            rulesFor(engine)?.let { (title, lines) -> engine.sendRules(title, lines, endpointId) }
             // Mit GitHub-Zugang: Spieler dürfen ihre gespeicherten Diagnosen abgeben.
             if (diagnoseUpload.hasToken) link.send(endpointId, Message.DiagnoseCollect)
             return
@@ -1238,6 +1285,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         player = engineForPlayer
         playerView = engineForPlayer.view
         startWatchdog(engineForPlayer, endpointId)
+        if (avatar.isNotEmpty()) link.send(endpointId, Message.Avatar(avatar))
         engineForPlayer.setReceiveEmojis(receiveEmojis)
         GameService.start(getApplication(), "Du spielst bei ${masterPeer?.name ?: "einer Buzzer-Runde"} mit")
         screen = Screen.PLAYER
@@ -1338,6 +1386,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
                 return
             }
+            is Message.Rules -> {
+                if (master != null || endpointId != masterEndpoint) return
+                Diagnostics.log("Spielregeln erhalten: ${message.title}")
+                rules = message
+                lastRules = message
+                return
+            }
             is Message.Succession -> {
                 if (master != null || endpointId != masterEndpoint) return
                 succession = message
@@ -1392,6 +1447,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         if (engine != null) {
             engine.onMessage(endpointId, message)
         } else if (endpointId == masterEndpoint) {
+            // Sobald gespielt wird, verschwinden die Spielregeln – sie blockieren sonst den Buzzer.
+            if (message is Message.QuizAsk || message is Message.Arm || message is Message.GoAt) rules = null
             player?.onMessage(message)
         }
     }
@@ -1402,6 +1459,52 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         } else {
             text
         }
+    }
+
+    // ------------------------------------------------------------------ Spielregeln
+
+    /** Regeln der laufenden Runde in Klartext – für Spieler beim Beitritt und zu Spielbeginn. */
+    private fun rulesFor(engine: MasterEngine): Pair<String, List<Pair<String, String>>>? {
+        val s = engine.settings
+        val kind = engine.snapshot().kind ?: return null
+        fun sec(ms: Long) = String.format(Locale.GERMANY, "%.1f s", ms / 1000.0).replace(",0 s", " s")
+        val profile = engine.profileName.takeIf { it.isNotEmpty() }?.let { " („$it“)" }.orEmpty()
+        return if (kind == GameKind.QUIZ) {
+            val categories = s.quizCategories.ifEmpty { quizStore.questions.map { it.category }.toSortedSet() }
+            "Quiz$profile – so wird gespielt" to listOfNotNull(
+                "Fragen" to "${s.quizCount}",
+                "Kategorien" to categories.joinToString(),
+                "Schwierigkeit" to s.quizLevels.sortedBy { it.ordinal }.joinToString { it.label }.ifEmpty { "alle Stufen" },
+                "Ablauf" to "Erst die Frage, 3 s später die vier Antworten – bei jedem in anderer Reihenfolge.",
+                "Antwortzeit" to sec(s.quizAnswerMs),
+                "Wertung" to "${s.quizScoring.label}: ${s.quizScoring.description}",
+                ("Countdown" to "Nach der ersten richtigen Antwort bleiben noch ${sec(s.quizCountdownMs)}").takeIf { s.quizScoring == QuizScoring.COUNTDOWN },
+                "Falsche Antworten" to "kosten nie Punkte",
+                "Challenge" to "Hältst du eine Auflösung für falsch, tippe „Challenge“.",
+            )
+        } else {
+            "Buzzer$profile – so wird gespielt" to listOfNotNull(
+                "Ablauf" to "Der Spielleiter stellt die Frage mündlich und gibt dann die Buzzer frei.",
+                "Buzzern" to if (s.startMode == de.pabich.buzzer.core.StartMode.HOLD_RELEASE) {
+                    "Finger auflegen und bei Gelb loslassen"
+                } else {
+                    "Bei Gelb so schnell wie möglich tippen"
+                },
+                "Frühstart" to "Wer zu früh drückt, ist für diese Runde raus.",
+                "Reaktionszeit" to (s.reactionLimitMs?.let(::sec) ?: "ohne Limit"),
+                "Antwortzeit" to (s.answerLimit?.let(::sec) ?: "ohne Limit"),
+                "Wertung" to if (s.scoring == de.pabich.buzzer.core.ScoringMode.CORRECT_ANSWERS) {
+                    "1 Punkt je richtige Antwort"
+                } else {
+                    "Die Restzeit bis zum Limit wird zu Punkten – schnell sein lohnt sich."
+                },
+                "Gleichstand" to "Liegen zwei fast gleichauf, entscheidet ein Sudden Death.",
+            )
+        }
+    }
+
+    private fun sendRules(engine: MasterEngine) {
+        rulesFor(engine)?.let { (title, lines) -> engine.sendRules(title, lines) }
     }
 
     // ------------------------------------------------------------------ Herzschlag
@@ -1839,6 +1942,22 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     companion object {
         /** Nearby-Endpunkt-IDs sind vierstellig, eine Verwechslung ist ausgeschlossen. */
         const val LOCAL_PLAYER_ID = "local-master"
+
+        /** Zur Auswahl als Avatar. */
+        val AVATARS = listOf(
+            "🦊", "🐼", "🐸", "🐙", "🦄", "🐯", "🐨", "🐵", "🐧", "🦁", "🐻", "🐰",
+            "🐢", "🐝", "🦉", "🐳", "🚀", "⭐", "👑", "🎩", "🤖", "👻", "🎸", "⚽",
+            "🍕", "🌵", "🍄", "🔥", "🌈", "🎯", "🧠", "😎",
+        )
+
+        /** Zufällige Variante, aber nie zweimal hintereinander dieselbe (gemerkt auf dem Gerät). */
+        fun nextVariant(context: Context, key: String, count: Int): Int {
+            val prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE)
+            val last = prefs.getInt(key, -1)
+            val v = (0 until count).filter { it != last }.random()
+            prefs.edit().putInt(key, v).apply()
+            return v
+        }
 
         /** Ab diesem Build pingt der Spielleiter in jeder Phase (Herzschlag). */
         const val HEARTBEAT_BUILD = 27

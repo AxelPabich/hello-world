@@ -712,4 +712,22 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   ungültige Dateien räumt die App beim Start weg.
 - „Über & Diagnose“ zeigt zusätzlich „Direkter Download im Browser (buzzer.apk)“ und den Link zum
   Kopieren – Installation dann ohne die App über „Eigene Dateien“.
+
+## 51. Spielregeln, Avatar, Klänge
+
+- **Spielregeln der Runde** (`RULES`): Beim Beitritt (sobald eine Spielart gewählt ist) und zu
+  Spielbeginn (Quiz starten, Buzzer gewählt bzw. „Neues Spiel“) bekommen die Spieler die Regeln in
+  Klartext – Quiz: Fragen, gespielte Kategorien, Stufen, Ablauf, Antwortzeit, Wertung, Challenge;
+  Buzzer: Ablauf, Startmodus, Frühstart, Limits, Wertung, Gleichstand. Das Fenster verschwindet,
+  sobald gespielt wird; über ⋮ „Spielregeln dieser Runde“ lässt es sich erneut öffnen.
+- **Avatar** (`AVATAR`): In den Einstellungen wählt jeder ein Emoticon. Es steht vor dem Namen in
+  Rangliste, Spielverlauf, Empfängerliste und bei den Karten des Spielleiters (auch beim
+  mitspielenden Spielleiter). Wird beim Beitritt und bei jeder Änderung geschickt.
+- **Krönender Abschluss:** Endet die Animation des Spielverlaufs, folgt auf die Jagdmusik eine
+  Siegerfanfare (Wirbel, Beckenschlag, Bläserakkord, Glocken, Jubel).
+- **Start-Animationen:** zufällig, aber nie zweimal hintereinander dieselbe Variante (je Gerät
+  gemerkt). Die Rennszene wählt der Spielleiter und schickt sie mit – alle sehen dieselbe; der
+  Splash-Screen beim App-Start ist je Gerät verschieden (keine Verbindung beim Start).
+- **Klänge der Animationen** neu: Blechbläser, Glocken, Becken, Pauke, Trommelwirbel,
+  Trillerpfeife, Luftzug und Hall, passend zu den Bewegungen der Szenen. Hörproben: `docs/klaenge/`.
 ===== ENDE SPEZIFIKATION.md =====

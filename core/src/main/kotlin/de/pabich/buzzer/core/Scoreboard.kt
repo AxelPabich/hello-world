@@ -8,7 +8,7 @@ data class ScoreEntry(
     val isSelf: Boolean,
 )
 
-data class ScoreInput(val id: PlayerId, val name: String, val score: Long)
+data class ScoreInput(val id: PlayerId, val name: String, val score: Long, val avatar: String = "")
 
 /**
  * Rangliste aus Sicht von [viewer]: gleiche Punkte = gleicher Rang. Sichtbar sind die ersten
@@ -23,10 +23,13 @@ fun buildScoreboard(players: List<ScoreInput>, viewer: PlayerId?, settings: Sett
         val visible = settings.boardPlaces == 0 || rank <= settings.boardPlaces
         if (!visible && !self) return@mapNotNull null
         val label = when {
-            self -> "Du"
-            settings.boardShowNames -> p.name
+            self -> withAvatar(p.avatar, "Du")
+            settings.boardShowNames -> withAvatar(p.avatar, p.name)
             else -> "???"
         }
         ScoreEntry(rank, label, p.score, formatScore(p.score, settings.scoring), self)
     }
 }
+
+/** Name mit dem Emoticon, das der Spieler als Avatar gewählt hat (leer = ohne). */
+fun withAvatar(avatar: String, name: String): String = if (avatar.isEmpty()) name else "$avatar $name"

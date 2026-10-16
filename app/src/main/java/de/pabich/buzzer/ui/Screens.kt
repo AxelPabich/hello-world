@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -67,6 +68,7 @@ import de.pabich.buzzer.core.MasterEngine
 import de.pabich.buzzer.core.MasterEngine.Phase
 import de.pabich.buzzer.core.PlayerEngine
 import de.pabich.buzzer.core.StartMode
+import de.pabich.buzzer.core.withAvatar
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -177,6 +179,29 @@ fun AppSettingsScreen(vm: BuzzerViewModel) {
             SectionTitle("Dieses Gerät")
             ToggleRow("Töne", vm.soundOn) { vm.changeSoundOn(it) }
             ToggleRow("Emoticons empfangen und senden", vm.receiveEmojis) { vm.changeReceiveEmojis(it) }
+
+            SectionTitle("Dein Avatar")
+            Text("Erscheint im Spiel vor deinem Namen – in der Rangliste, im Spielverlauf und beim Spielleiter.", color = theme.muted, fontSize = 14.sp)
+            for (row in (listOf("") + BuzzerViewModel.AVATARS).chunked(8)) {
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                    for (e in row) {
+                        val chosen = vm.avatar == e
+                        Box(
+                            Modifier
+                                .weight(1f)
+                                .aspectRatio(1f)
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(if (chosen) theme.accent else theme.panel)
+                                .clickable { vm.changeAvatar(e) },
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            if (e.isEmpty()) Text("–", color = if (chosen) theme.ground else theme.muted, fontSize = 20.sp) else Text(e, fontSize = 24.sp)
+                        }
+                    }
+                    repeat(8 - row.size) { Spacer(Modifier.weight(1f)) }
+                }
+                Spacer(Modifier.height(4.dp))
+            }
 
             SectionTitle("Design")
             for (t in Themes.all) {
@@ -540,6 +565,9 @@ fun PlayerScreen(vm: BuzzerViewModel) {
                     BarButton("⋮") { showMenu = true }
                     DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
                         DropdownMenuItem(text = { Text("Diagnose senden") }, onClick = { showMenu = false; showDiagnostics = true })
+                        if (vm.lastRules != null) {
+                            DropdownMenuItem(text = { Text("Spielregeln dieser Runde") }, onClick = { showMenu = false; vm.showRulesAgain() })
+                        }
                         if (vm.pendingReports.isNotEmpty()) {
                             DropdownMenuItem(text = { Text("Gespeicherte Diagnosen (${vm.pendingReports.size})") }, onClick = { showMenu = false; showSaved = true })
                         }
@@ -582,6 +610,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
     if (view.readyAsk != null && !view.readyConfirmed && !view.paused) ReadyDialog { vm.confirmReady() }
     DiagnoseOfferDialog(vm)
     DiagnoseRequestDialog(vm)
+    vm.rules?.let { RulesDialog(it) { vm.dismissRules() } }
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showSaved) SavedReportsDialog(vm) { showSaved = false }
     if (showChat) {
@@ -1068,7 +1097,7 @@ private fun PlayerCard(row: MasterEngine.PlayerRow, maxScore: Long, build: Int? 
         Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(
-                    if (row.connected) row.name else "${row.name} (getrennt)",
+                    withAvatar(row.avatar, if (row.connected) row.name else "${row.name} (getrennt)"),
                     color = theme.text,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,

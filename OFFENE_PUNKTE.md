@@ -455,6 +455,10 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+70. **Wünsche vom 16.10.2026** (umgesetzt, kommt mit dem nächsten Build): Spielregeln und gespielte
+    Kategorien beim Beitritt und zu Spielbeginn; Avatar-Emoticon in den Einstellungen; Siegerfanfare
+    als Abschluss des Spielverlaufs; Start-Animationen nie zweimal hintereinander gleich (Rennszene
+    auf allen Geräten gleich); neue Klänge der Animationen (Hörproben in `docs/klaenge/`).
 69. **Aus dem Test vom 15./16.10.2026 (Build 28, alle drei Geräte)** (alle vier in Build 31 umgesetzt):
     - Fehler: Nach „Fragen aktualisieren“ beim Spielleiter fehlten der Nachfolgerin 12 von 20
       Fragen (neue Pakete noch nicht geladen) – das Quiz schrumpfte auf 8 Fragen. Vorschlag: die

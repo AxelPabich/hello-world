@@ -257,3 +257,22 @@ fun UpdateDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
         dismissButton = { TextButton(onClick = { vm.postponeUpdate() }) { Text("Später (bleibt bereit)") } },
     )
 }
+
+/** Spielregeln der Runde – beim Beitritt und zu Spielbeginn; verschwindet, sobald gespielt wird. */
+@Composable
+fun RulesDialog(rules: de.pabich.buzzer.core.Message.Rules, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(rules.title) },
+        text = {
+            Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                for ((label, value) in rules.lines) {
+                    Text(label, style = MaterialTheme.typography.labelLarge)
+                    Text(value, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(Modifier.padding(3.dp))
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text("Alles klar!") } },
+    )
+}
