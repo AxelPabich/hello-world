@@ -25,8 +25,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Empfangene oder geladene neuere Version installieren (Android fragt einmal nach) -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <!-- Updates der eigenen App ab Android 13 möglichst ohne zweite Rückfrage -->
-    <uses-permission android:name="android.permission.UPDATE_PACKAGES_WITHOUT_USER_ACTION" />
 
     <!-- Diagnose: Version der Google Play-Dienste auslesen; Weitergeben: Bluetooth-Senden von Android -->
     <queries>

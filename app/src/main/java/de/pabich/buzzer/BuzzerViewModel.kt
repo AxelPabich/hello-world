@@ -1245,8 +1245,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             }
             val peer = PeerInfo.parse(name)
             peerBuilds[endpointId] = peer.build
+            // Wer nur zurückkommt (Übernahme, Funkabbruch), kennt die Regeln schon.
+            val returning = isReturning(peer)
             engine.addPlayer(endpointId, peer.name)
-            rulesFor(engine)?.let { (title, lines) -> engine.sendRules(title, lines, endpointId) }
+            if (!returning) rulesFor(engine)?.let { (title, lines) -> engine.sendRules(title, lines, endpointId) }
             // Mit GitHub-Zugang: Spieler dürfen ihre gespeicherten Diagnosen abgeben.
             if (diagnoseUpload.hasToken) link.send(endpointId, Message.DiagnoseCollect)
             return
@@ -1421,10 +1423,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 val choice = savedDiagnoseChoice()
                 when (choice) {
                     null -> diagnoseRequest = true
-                    false -> Diagnostics.log("Diagnose nicht gesendet (so eingestellt bis zum nächsten Build)")
+                    false -> Diagnostics.log("Diagnose nicht gesendet (so eingestellt)")
                     true -> {
                         sendDiagnoseToMaster(Diagnostics.buildReport(getApplication(), status, diagPrefs.getBoolean(KEY_SYSTEM, false)))
-                        Diagnostics.log("Diagnose automatisch gesendet (so eingestellt bis zum nächsten Build)")
+                        Diagnostics.log("Diagnose automatisch gesendet (so eingestellt)")
                     }
                 }
                 return
@@ -1713,21 +1715,43 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             if (old.isNotEmpty()) " ${old.joinToString()} kann erst ab Build $DIAG_REQUEST_BUILD antworten – bitte dort „Diagnose senden“ tippen." else ""
     }
 
-    /** Gespeicherte Antwort auf „Diagnose an den Spielleiter?“: `true` senden, `false` nicht, `null` fragen. Gilt bis zum nächsten Build. */
+    /**
+     * Gespeicherte Antwort auf „Diagnose an den Spielleiter?“: `true` senden, `false` nicht, `null`
+     * fragen. Gilt dauerhaft, auch über neue Builds hinweg, bis sie in den Einstellungen zurückgesetzt wird.
+     */
     private fun savedDiagnoseChoice(): Boolean? =
-        if (diagPrefs.getInt(KEY_BUILD, 0) == AppUpdate.ownBuild) diagPrefs.getBoolean(KEY_SEND, false) else null
+        if (diagPrefs.contains(KEY_SEND)) diagPrefs.getBoolean(KEY_SEND, false) else null
 
-    /** Antwort auf die Anfrage des Spielleiters; [remember] = bis zum nächsten Build nicht erneut fragen. */
+    /** Für die Einstellungen: gespeicherte Antwort in Worten, `null` = es wird gefragt. */
+    val diagnoseChoiceText: String?
+        get() = diagnoseChoiceVersion.let {
+            when (savedDiagnoseChoice()) {
+                null -> null
+                false -> "nie senden"
+                true -> if (diagPrefs.getBoolean(KEY_SYSTEM, false)) "immer senden (mit Systemdaten)" else "immer senden"
+            }
+        }
+    private var diagnoseChoiceVersion by mutableIntStateOf(0)
+
+    /** Gespeicherte Antwort löschen – beim nächsten Mal wird wieder gefragt. */
+    fun resetDiagnoseChoice() {
+        diagPrefs.edit().remove(KEY_SEND).remove(KEY_SYSTEM).remove(KEY_BUILD).apply()
+        diagnoseChoiceVersion++
+        Diagnostics.log("Diagnose-Anfragen: wieder fragen")
+    }
+
+    /** Antwort auf die Anfrage des Spielleiters; [remember] = nicht erneut fragen (dauerhaft). */
     fun answerDiagnoseRequest(send: Boolean, includeSystem: Boolean, remember: Boolean) {
         diagnoseRequest = false
         if (remember) {
-            diagPrefs.edit().putInt(KEY_BUILD, AppUpdate.ownBuild).putBoolean(KEY_SEND, send).putBoolean(KEY_SYSTEM, includeSystem).apply()
+            diagPrefs.edit().putBoolean(KEY_SEND, send).putBoolean(KEY_SYSTEM, includeSystem).apply()
+            diagnoseChoiceVersion++
             val what = when {
                 !send -> "nie senden"
                 includeSystem -> "immer senden (mit Systemdaten)"
                 else -> "immer senden"
             }
-            Diagnostics.log("Diagnose-Anfragen: bis zum nächsten Build $what")
+            Diagnostics.log("Diagnose-Anfragen: ab jetzt $what")
         }
         if (send && canSendToMaster) {
             sendDiagnoseToMaster(Diagnostics.buildReport(getApplication(), status, includeSystem))

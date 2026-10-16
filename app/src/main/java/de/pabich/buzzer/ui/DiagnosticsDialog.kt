@@ -334,7 +334,7 @@ fun DiagnoseRequestDialog(vm: BuzzerViewModel) {
                 ) {
                     Checkbox(checked = keep, onCheckedChange = null)
                     Spacer(Modifier.width(8.dp))
-                    Text("Nicht erneut fragen (bis zum nächsten Build)")
+                    Text("Nicht erneut fragen (änderbar in den Einstellungen)")
                 }
             }
         },

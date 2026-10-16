@@ -611,14 +611,41 @@ fun ReviewTicker(modifier: Modifier = Modifier) {
 fun ReadyDialog(
     text: String = "Der Spielleiter möchte gleich starten.",
     onCancel: (() -> Unit)? = null,
+    /** Spieler: Die letzte Frage lässt sich noch anfechten (`null` = nicht möglich). */
+    onChallenge: ((String) -> Unit)? = null,
     onReady: () -> Unit,
 ) {
     val theme = LocalBuzzerTheme.current
+    var asking by remember { mutableStateOf(false) }
+    if (asking && onChallenge != null) {
+        var reason by remember { mutableStateOf("") }
+        AlertDialog(
+            onDismissRequest = { asking = false },
+            title = { Text("Letzte Frage anfechten") },
+            text = {
+                Column {
+                    Text("Der Spielleiter sieht deine Challenge und entscheidet, bevor es weitergeht. Begründung (optional):", fontSize = 14.sp)
+                    OutlinedTextField(
+                        value = reason,
+                        onValueChange = { reason = it.take(MAX_CHAT_LENGTH) },
+                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    )
+                }
+            },
+            confirmButton = { TextButton(onClick = { onChallenge(reason); asking = false }) { Text("Anfechten") } },
+            dismissButton = { TextButton(onClick = { asking = false }) { Text("Abbrechen") } },
+        )
+        return
+    }
     AlertDialog(
         onDismissRequest = {},
         title = { Text("BEREIT?", fontFamily = theme.display, fontSize = 32.sp) },
         text = { Text(text, fontSize = 16.sp) },
-        dismissButton = onCancel?.let { cancel -> { androidx.compose.material3.TextButton(onClick = cancel) { Text("Abfrage abbrechen") } } },
+        dismissButton = when {
+            onCancel != null -> { { androidx.compose.material3.TextButton(onClick = onCancel) { Text("Abfrage abbrechen") } } }
+            onChallenge != null -> { { TextButton(onClick = { asking = true }) { Text("Letzte Frage anfechten") } } }
+            else -> null
+        },
         confirmButton = {
             Box(
                 Modifier

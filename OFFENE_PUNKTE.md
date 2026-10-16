@@ -455,6 +455,17 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+72. **Wünsche und Test vom 16.10.2026, Build 32** (umgesetzt, kommt mit dem nächsten Build):
+    - „Bereit?“ bietet „Letzte Frage anfechten“.
+    - Diagnose-Einstellung „Nicht erneut fragen“ gilt über Builds hinweg; „Wieder fragen“ in den
+      Einstellungen.
+    - Installation: Der Paket-Installer lehnte mehrfach ab (Axel: „Self update is blocked by unknown
+      source package“, Peters Tablet: „Package Verification Result“), erst ein späterer Versuch klappte.
+      Jetzt ohne „Update ohne Rückfrage“ und mit automatischem Ausweg über den Installer-Dialog.
+    - Spielregeln kamen bei jeder Rückkehr erneut – jetzt nur für Neue.
+    Bestätigt: Spielregeln, Avatare, Rückkehr zum bisherigen Spielleiter („Axel ist wieder da“),
+    Punkte beim Wiederbeitritt, Übergaben mit mitgeschickten Fragen, Herzschlag 13 s,
+    Build-Wechsel im Protokoll, Start-Animationen wechseln.
 71. **Fragendatenbank wächst mit jedem Build** (Daueraufgabe ab Build 33): je Kategorie eine neue
     Frage pro Schwierigkeitsstufe (10 Pakete × 3 = 30 Fragen je Build). Festgehalten in `CLAUDE.md`.
 70. **Wünsche vom 16.10.2026** (in Build 32): Spielregeln und gespielte

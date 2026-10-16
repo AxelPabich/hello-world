@@ -690,12 +690,13 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 
 - Spielleiter: ⋮ „Diagnosen der Spieler abrufen“ schickt allen Spielern `DIAG_REQUEST`.
 - Spieler: Rückfrage „Diagnose an den Spielleiter?“ mit „Systeminformationen mitsenden“ (Vorgabe aus),
-  „Bericht ansehen“ und „Nicht erneut fragen (bis zum nächsten Build)“. Mit dem Haken wird die
-  Antwort (senden mit/ohne Systemdaten bzw. nicht senden) gespeichert und gilt, bis eine andere
-  Build-Nummer läuft.
+  „Bericht ansehen“ und „Nicht erneut fragen“. Mit dem Haken wird die Antwort (senden mit/ohne
+  Systemdaten bzw. nicht senden) gespeichert.
 - Gesendete Berichte landen wie bisher beim Spielleiter (mit Token direkt in GitHub).
 - Spieler mit Build < 27 kennen die Anfrage nicht; der Spielleiter sieht ihre Namen im Hinweis.
 - „Diagnose senden“ zeigt ebenfalls „Bericht ansehen“: genau der Text, der verschickt würde.
+- „Nicht erneut fragen“ gilt dauerhaft, auch über neue Builds hinweg; in den Einstellungen steht die
+  gespeicherte Antwort mit „Wieder fragen“.
 
 ## 50. Installation neuer Versionen
 
@@ -730,4 +731,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Splash-Screen beim App-Start ist je Gerät verschieden (keine Verbindung beim Start).
 - **Klänge der Animationen** neu: Blechbläser, Glocken, Becken, Pauke, Trommelwirbel,
   Trillerpfeife, Luftzug und Hall, passend zu den Bewegungen der Szenen. Hörproben: `docs/klaenge/`.
+- **„Bereit?“ mit Challenge:** Im Quiz zeigt die „Bereit?“-Abfrage beim Spieler zusätzlich „Letzte
+  Frage anfechten“, solange die zuletzt aufgelöste Frage noch nicht angefochten ist.
+- **Spielregeln** bekommen nur Neue – wer nach Übernahme oder Funkabbruch zurückkommt, nicht erneut.
+- **Installation:** ohne Bitte um Update ohne Rückfrage; lehnt der Paket-Installer ab (Prüfung
+  fehlgeschlagen, „Self update is blocked“), öffnet sich einmal der klassische Installer-Dialog.
 ===== ENDE SPEZIFIKATION.md =====

@@ -179,6 +179,12 @@ fun AppSettingsScreen(vm: BuzzerViewModel) {
             SectionTitle("Dieses Gerät")
             ToggleRow("Töne", vm.soundOn) { vm.changeSoundOn(it) }
             ToggleRow("Emoticons empfangen und senden", vm.receiveEmojis) { vm.changeReceiveEmojis(it) }
+            vm.diagnoseChoiceText?.let { choice ->
+                Row(Modifier.fillMaxWidth().heightIn(min = 48.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text("Diagnose-Anfragen des Spielleiters: $choice", color = theme.text, fontSize = 16.sp, modifier = Modifier.weight(1f))
+                    TextButton(onClick = { vm.resetDiagnoseChoice() }) { Text("Wieder fragen", color = theme.accent2) }
+                }
+            }
 
             SectionTitle("Dein Avatar")
             Text("Erscheint im Spiel vor deinem Namen – in der Rangliste, im Spielverlauf und beim Spielleiter.", color = theme.muted, fontSize = 14.sp)
@@ -607,7 +613,12 @@ fun PlayerScreen(vm: BuzzerViewModel) {
         vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone, onMusicEnd = vm::replayMusicEnd) }
     }
 
-    if (view.readyAsk != null && !view.readyConfirmed && !view.paused) ReadyDialog { vm.confirmReady() }
+    if (view.readyAsk != null && !view.readyConfirmed && !view.paused) {
+        // Auch bei „Bereit?“ lässt sich die zuletzt aufgelöste Frage noch anfechten.
+        val q = view.quiz
+        val canChallenge = q?.result != null && !q.challenged
+        ReadyDialog(onChallenge = if (canChallenge) { reason -> vm.challenge(reason) } else null) { vm.confirmReady() }
+    }
     DiagnoseOfferDialog(vm)
     DiagnoseRequestDialog(vm)
     vm.rules?.let { RulesDialog(it) { vm.dismissRules() } }

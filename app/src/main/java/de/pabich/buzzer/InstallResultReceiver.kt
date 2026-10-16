@@ -51,7 +51,13 @@ class InstallResultReceiver : BroadcastReceiver() {
                     else -> "Fehler $status"
                 }
                 Diagnostics.log("Update: Installation fehlgeschlagen – $reason ${message.take(200)}".trim())
-                AppUpdate.onInstallResult?.invoke(false, "Installation $reason.")
+                // Manche Geräte lehnen das Update über den Paket-Installer ab (z. B. Galaxy Tab S6:
+                // Prüfung fehlgeschlagen; Android 16: „Self update is blocked“) – dann der klassische Weg.
+                if (AppUpdate.fallbackAfterFailure(context)) {
+                    AppUpdate.onInstallResult?.invoke(false, "Bitte im Installationsdialog bestätigen.")
+                } else {
+                    AppUpdate.onInstallResult?.invoke(false, "Installation $reason.")
+                }
             }
         }
     }

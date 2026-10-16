@@ -87,6 +87,22 @@ object AppUpdate {
     /** Ergebnis einer Installation (`ok`, Hinweis) – für die Anzeige in der App. */
     var onInstallResult: ((Boolean, String) -> Unit)? = null
 
+    /** Zuletzt an den Paket-Installer übergebene APK – für den Ausweg über den Installer-Dialog. */
+    @Volatile
+    private var pendingApk: File? = null
+
+    /**
+     * Der Paket-Installer hat abgelehnt (z. B. „Self update is blocked“ oder Prüfung fehlgeschlagen):
+     * einmal den bisherigen Installer-Dialog versuchen. Liefert `true`, wenn er geöffnet wurde.
+     */
+    fun fallbackAfterFailure(context: Context): Boolean {
+        val apk = pendingApk ?: return false
+        pendingApk = null
+        if (!apk.exists()) return false
+        Diagnostics.log("Update: Ausweg über den Installer-Dialog")
+        return installViaIntent(context.applicationContext, apk)
+    }
+
     /**
      * Startet die Installation über den Paket-Installer von Android (Sitzung): Die APK wird im
      * Hintergrund übergeben, Android fragt den Nutzer, jedes Ergebnis landet im Protokoll
@@ -96,6 +112,7 @@ object AppUpdate {
         val app = context.applicationContext
         Diagnostics.log("Update: Installation von ${apk.name} (${apk.length() / 1024} KB) über den Paket-Installer")
         thread(name = "buzzer-install", isDaemon = true) {
+            pendingApk = apk
             val ok = runCatching { installSession(app, apk) }
                 .onFailure { Diagnostics.log("Update: Paket-Installer nicht nutzbar (${it.javaClass.simpleName}: ${it.message}) – alter Weg") }
                 .isSuccess
@@ -108,7 +125,6 @@ object AppUpdate {
         val params = PackageInstaller.SessionParams(PackageInstaller.SessionParams.MODE_FULL_INSTALL)
         params.setAppPackageName(context.packageName)
         params.setSize(apk.length())
-        if (Build.VERSION.SDK_INT >= 31) params.setRequireUserAction(PackageInstaller.SessionParams.USER_ACTION_NOT_REQUIRED)
         val id = installer.createSession(params)
         try {
             installer.openSession(id).use { session ->
