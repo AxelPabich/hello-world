@@ -28,6 +28,12 @@ import de.pabich.buzzer.core.Display
 import de.pabich.buzzer.core.Settings
 import de.pabich.buzzer.core.SettingsCodec
 import de.pabich.buzzer.core.SoundEvent
+import de.pabich.buzzer.core.SelfTest
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.coroutines.resume
+import kotlin.coroutines.startCoroutine
+import kotlin.coroutines.suspendCoroutine
 import androidx.compose.runtime.mutableStateMapOf
 import java.io.File
 import java.text.SimpleDateFormat
@@ -254,6 +260,21 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Spieler: Rückfrage „gespeicherte Diagnosen an den Spielleiter senden?“ anzeigen. */
     var diagnoseOffer by mutableStateOf(false)
         private set
+
+    /** Spieler: automatischer Testmodus (Selbsttest des Spielleiters) – tippt, antwortet, bestätigt. */
+    private var testMode = false
+
+    /** Spielleiter: Selbsttest läuft; [selfTestStep] = aktueller Schritt. */
+    var selfTestRunning by mutableStateOf(false)
+        private set
+    var selfTestStep by mutableStateOf<String?>(null)
+        private set
+
+    /** Ergebnis des letzten Selbsttests (für die Anzeige), `null` = keins. */
+    var selfTestResults by mutableStateOf<List<SelfTest.Result>?>(null)
+
+    /** Spielleiter: Zähler empfangener Diagnoseberichte (für den Selbsttest). */
+    private var diagReportsReceived = 0
 
     /** Spieler: Spielregeln der Runde (beim Beitritt und zu Spielbeginn); `null` = ausgeblendet. */
     var rules by mutableStateOf<Message.Rules?>(null)
@@ -524,6 +545,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         takenOver = null
         lostPlayers.clear()
         diagnoseRequest = false
+        testMode = false
         rules = null
         lastRules = null
         intro = null
@@ -1375,6 +1397,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             is Message.DiagnoseChunk -> {
                 if (master == null) return
                 reportCollector.add(message)?.let { report ->
+                    diagReportsReceived++
                     Diagnostics.log("Diagnosebericht von ${report.from} erhalten (Build ${report.build}, ${report.text.length} Zeichen)")
                     // Gespeicherte Berichte erst nach dem Hochladen bestätigen – der Spieler löscht sie dann.
                     if (report.saved && diagnoseUpload.hasToken) {
@@ -1428,9 +1451,23 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
                 return
             }
+            is Message.TestMode -> {
+                if (master != null || endpointId != masterEndpoint) return
+                testMode = message.on
+                Diagnostics.log(if (message.on) "Testmodus an – die App spielt selbst" else "Testmodus aus")
+                if (message.on) rules = null
+                status = if (message.on) "Selbsttest des Spielleiters läuft – die App tippt und antwortet von selbst." else null
+                return
+            }
             Message.DiagnoseRequest -> {
                 if (master != null || endpointId != masterEndpoint) return
                 Diagnostics.log("Spielleiter bittet um Diagnose")
+                // Im Testmodus (Selbsttest des Spielleiters) immer mit Systemdaten senden.
+                if (testMode) {
+                    sendDiagnoseToMaster(Diagnostics.buildReport(getApplication(), status, true))
+                    Diagnostics.log("Diagnose im Testmodus gesendet")
+                    return
+                }
                 val choice = savedDiagnoseChoice()
                 when (choice) {
                     null -> diagnoseRequest = true
@@ -1467,6 +1504,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 rules = null
                 if (replay != null) replayDone()
             }
+            if (testMode) autoPlay(message)
             player?.onMessage(message)
         }
     }
@@ -1476,6 +1514,207 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             "Die Suche braucht den eingeschalteten Standort (Schnelleinstellungen → „Standort“). Er wird nur für die Suche genutzt, nicht ausgewertet."
         } else {
             text
+        }
+    }
+
+    // ------------------------------------------------------------------ Selbsttest (Punkt 75)
+
+    /** Spieler im Testmodus: tippt nach zufälliger Reaktionszeit, antwortet zufällig, bestätigt „Bereit?“. */
+    private fun autoPlay(message: Message) {
+        val p = player ?: return
+        val r = kotlin.random.Random
+        fun later(ms: Long, block: () -> Unit) = scheduler.schedule(ms.coerceAtLeast(0)) { if (player === p && testMode) block() }
+        when (message) {
+            is Message.Arm -> later(200) { p.onTouchDown(UptimeClock.now()) }
+            is Message.GoAt -> later(message.goAtLocal + 150 + r.nextLong(500) - UptimeClock.now()) {
+                val t = UptimeClock.now()
+                if (message.mode == de.pabich.buzzer.core.StartMode.HOLD_RELEASE) {
+                    p.onTouchUp(t)
+                } else {
+                    p.onTouchDown(t)
+                    p.onTouchUp(t + 40)
+                }
+            }
+            is Message.QuizAsk -> later(message.answersAtLocal + 800 + r.nextLong(1_700) - UptimeClock.now()) {
+                p.tapAnswer(r.nextInt(message.answers.size), UptimeClock.now())
+            }
+            is Message.ReadyCheck -> if (message.on) later(400) { p.confirmReady() }
+            else -> Unit
+        }
+    }
+
+    /** Selbsttest starten (Spielleiter mit GitHub-Zugang, zwischen den Runden). */
+    fun runSelfTest(live: Boolean) {
+        val engine = master ?: return
+        if (selfTestRunning) return
+        if (!diagnoseUpload.hasToken) {
+            status = "Der Selbsttest braucht den GitHub-Zugang (Token) – die Ergebnisse landen im Diagnose-Repository."
+            return
+        }
+        if (engine.snapshot().phase != MasterEngine.Phase.READY && engine.snapshot().phase != MasterEngine.Phase.QUIZ_REVEAL) {
+            status = "Den Selbsttest bitte zwischen den Runden starten."
+            return
+        }
+        selfTestRunning = true
+        selfTestResults = null
+        Diagnostics.log("Selbsttest gestartet" + if (live) " (mit Live-Test)" else "")
+        launchTest {
+            val results = mutableListOf<SelfTest.Result>()
+            try {
+                selfTestStep = "Spiellogik und Klänge auf diesem Gerät …"
+                results += inBackground { SelfTest.runOffline() }
+                selfTestStep = "Fragenpakete …"
+                results += checkPacks()
+                selfTestStep = "Release-Seite …"
+                val latest = suspendCoroutine<Int?> { c -> AppUpdate.latestBuild { c.resume(it) } }
+                results += SelfTest.Result("Release-Seite erreichbar", latest != null, latest?.let { "neuester Build $it, hier Build ${AppUpdate.ownBuild}" } ?: "nicht erreichbar")
+                if (live) results += liveTest(engine)
+            } catch (e: Throwable) {
+                results += SelfTest.Result("Selbsttest abgebrochen", false, e.message ?: e.javaClass.simpleName)
+            }
+            selfTestStep = "Bericht hochladen …"
+            val text = selfTestReport(results)
+            Diagnostics.log("Selbsttest: ${SelfTest.summary(results)}")
+            addPending(DiagnoseTransfer.Report(System.currentTimeMillis().toString(36), "Selbsttest-" + myName.trim().ifEmpty { "Spielleiter" }, AppUpdate.ownBuild, text))
+            uploadReports()
+            selfTestResults = results
+            selfTestStep = null
+            selfTestRunning = false
+        }
+    }
+
+    private fun checkPacks(): List<SelfTest.Result> {
+        val questions = quizStore.questions
+        val byCategory = questions.groupBy { it.category }
+        val thin = byCategory.filter { (_, qs) -> qs.map { it.level }.toSet().size < 3 }.keys
+        return listOf(
+            SelfTest.Result("Fragenpakete geladen", questions.isNotEmpty(), "${questions.size} Fragen in ${byCategory.size} Kategorien"),
+            SelfTest.Result("Jede Kategorie mit allen drei Stufen", thin.isEmpty(), if (thin.isEmpty()) "" else "fehlt bei: ${thin.joinToString()}"),
+            SelfTest.Result("Keine doppelten Fragen-IDs", questions.map { it.id }.toSet().size == questions.size, ""),
+        )
+    }
+
+    /** Live-Test mit den verbundenen Spielern im Testmodus. */
+    private suspend fun liveTest(engine: MasterEngine): List<SelfTest.Result> {
+        val results = mutableListOf<SelfTest.Result>()
+        val remote = engine.snapshot().players.filter { it.connected && it.id != LOCAL_PLAYER_ID }
+        if (remote.isEmpty()) return listOf(SelfTest.Result("Live-Test", false, "keine Spieler verbunden"))
+        val ids = remote.map { it.id }.toSet()
+        val old = remote.filter { (peerBuilds[it.id] ?: 0) < SELFTEST_BUILD }
+        results += SelfTest.Result(
+            "Spieler mit aktuellem Build", old.isEmpty(),
+            remote.joinToString { "${it.name} (Build ${peerBuilds[it.id] ?: "alt"})" } +
+                if (old.isEmpty()) "" else " – ab Build $SELFTEST_BUILD spielen Spieler im Testmodus mit",
+        )
+        val savedKind = engine.snapshot().kind
+        val savedSettings = engine.settings
+        val savedProfile = engine.profileName
+        val savedTest = testGame
+        testGame = true
+        engine.testGame = true
+        ids.forEach { link.send(it, Message.TestMode(true)) }
+        try {
+            // Uhrenabgleich und Herzschlag
+            selfTestStep = "Uhrenabgleich und Funk-Laufzeit …"
+            sleep(3_000)
+            for (row in engine.snapshot().players.filter { it.id in ids }) {
+                val rtt = row.rttMs
+                results += SelfTest.Result("Funk-Laufzeit ${row.name}", rtt != null && rtt < 1_500, rtt?.let { "$it ms" } ?: "keine Messung")
+            }
+            // Buzzer-Runde
+            selfTestStep = "Buzzer-Runde …"
+            if (engine.snapshot().kind != GameKind.BUZZER) engine.chooseKind(GameKind.BUZZER)
+            engine.updateSettings(savedSettings.copy(startMode = de.pabich.buzzer.core.StartMode.TAP), savedProfile)
+            val released = engine.release()
+            val decided = waitUntil(15_000) {
+                engine.snapshot().phase.let { it == MasterEngine.Phase.ANSWERING || it == MasterEngine.Phase.ROUND_OVER }
+            }
+            sleep(1_000)
+            val rows = engine.snapshot().players.filter { it.id in ids }
+            val buzzed = rows.filter { it.reactionMs != null }
+            results += SelfTest.Result(
+                "Buzzer-Runde: alle buzzern", released && decided && buzzed.size == rows.size,
+                rows.joinToString { "${it.name} ${it.reactionMs?.let { ms -> "$ms ms" } ?: "–"}" },
+            )
+            if (engine.snapshot().phase == MasterEngine.Phase.ANSWERING) engine.markCorrect()
+            waitUntil(5_000) { engine.snapshot().phase == MasterEngine.Phase.ROUND_OVER }
+            engine.nextRound()
+            sleep(800)
+            // Bereit-Abfrage
+            selfTestStep = "Bereit-Abfrage …"
+            engine.askReady()
+            engine.confirmMasterReady()
+            val ready = waitUntil(10_000) { engine.snapshot().ready?.allReady == true }
+            results += SelfTest.Result("Bereit-Abfrage", ready, engine.snapshot().ready?.waitingNames?.takeIf { it.isNotEmpty() }?.let { "fehlt: ${it.joinToString()}" } ?: "")
+            engine.cancelReady()
+            sleep(500)
+            // Quiz-Frage
+            selfTestStep = "Quiz-Frage …"
+            engine.chooseKind(GameKind.QUIZ)
+            val questions = quizStore.questions.shuffled().take(2).map(quizStore::toQuiz)
+            val started = questions.isNotEmpty() && engine.startQuiz(questions)
+            val revealed = started && waitUntil(engine.settings.quizAnswerMs + 15_000) { engine.snapshot().quiz?.revealed == true }
+            val answered = engine.snapshot().quiz?.rows?.filter { it.id in ids && it.answered }?.size ?: 0
+            results += SelfTest.Result("Quiz-Frage: alle antworten", revealed && answered == ids.size, "$answered von ${ids.size} Antworten")
+            if (engine.snapshot().phase != MasterEngine.Phase.READY) engine.stopQuiz()
+            sleep(1_500)
+            replayDone()
+            // Diagnosen einsammeln
+            selfTestStep = "Diagnosen der Spieler einsammeln …"
+            val before = diagReportsReceived
+            requestDiagnoses()
+            val collected = waitUntil(25_000) { diagReportsReceived - before >= ids.size }
+            results += SelfTest.Result("Diagnosen der Spieler", collected, "${diagReportsReceived - before} von ${ids.size}")
+        } finally {
+            ids.forEach { link.send(it, Message.TestMode(false)) }
+            if (savedKind != null && engine.snapshot().kind != savedKind && engine.snapshot().phase == MasterEngine.Phase.READY) engine.chooseKind(savedKind)
+            engine.updateSettings(savedSettings, savedProfile)
+            testGame = savedTest
+            engine.testGame = savedTest
+        }
+        return results
+    }
+
+    private fun selfTestReport(results: List<SelfTest.Result>): String = buildString {
+        appendLine("Buzzer – Selbsttest")
+        appendLine("Ergebnis: ${SelfTest.summary(results)}")
+        appendLine("Spielleiter: ${myName.trim()} (Build ${AppUpdate.ownBuild})")
+        masterSnapshot?.players?.filter { it.connected && it.id != LOCAL_PLAYER_ID }?.takeIf { it.isNotEmpty() }?.let { rows ->
+            appendLine("Spieler: " + rows.joinToString { "${it.name} (Build ${peerBuilds[it.id] ?: "alt"})" })
+        }
+        appendLine()
+        appendLine("== Prüfungen ==")
+        appendLine(SelfTest.format(results))
+        appendLine()
+        append(Diagnostics.buildReport(getApplication(), null, true))
+    }
+
+    // Kleine Ablaufsteuerung ohne Zusatzbibliothek: alles läuft auf dem Main-Thread über den Scheduler.
+    private fun launchTest(block: suspend () -> Unit) {
+        block.startCoroutine(Continuation(EmptyCoroutineContext) { r ->
+            r.exceptionOrNull()?.let {
+                Diagnostics.log("Selbsttest: Fehler ${it.message}")
+                selfTestRunning = false
+                selfTestStep = null
+            }
+        })
+    }
+
+    private suspend fun sleep(ms: Long) = suspendCoroutine<Unit> { c -> scheduler.schedule(ms) { c.resume(Unit) } }
+
+    private suspend fun waitUntil(timeoutMs: Long, condition: () -> Boolean): Boolean {
+        val end = UptimeClock.now() + timeoutMs
+        while (UptimeClock.now() < end) {
+            if (condition()) return true
+            sleep(250)
+        }
+        return condition()
+    }
+
+    private suspend fun <T> inBackground(work: () -> T): T = suspendCoroutine { c ->
+        kotlin.concurrent.thread(name = "buzzer-selftest", isDaemon = true) {
+            val r = runCatching(work)
+            android.os.Handler(android.os.Looper.getMainLooper()).post { c.resumeWith(r) }
         }
     }
 
@@ -2005,6 +2244,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
         /** Ab diesem Build pingt der Spielleiter in jeder Phase (Herzschlag). */
         const val HEARTBEAT_BUILD = 27
+
+        /** Ab diesem Build spielen Spieler im Testmodus des Selbsttests mit. */
+        const val SELFTEST_BUILD = 35
 
         /** Ab diesem Build beantworten Spieler „Diagnosen abrufen“. */
         const val DIAG_REQUEST_BUILD = 27

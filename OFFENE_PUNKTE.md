@@ -455,6 +455,10 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+75. **Selbsttest** (umgesetzt, kommt mit dem nächsten Build): ⋮ „Selbsttest“ für den Spielleiter
+    mit Token – 11 Prüfungen der Spiellogik auf dem Gerät, Fragenpakete, Release-Seite, optional
+    Live-Test mit den Spielern im Testmodus (Buzzer, Bereit, Quiz, Diagnosen); Bericht ins
+    Repository. Spezifikation Abschnitt 52.
 74. **Aus dem Test mit Build 34 (16.10.2026, 13:45–14:08)** (umgesetzt, kommt mit dem nächsten Build):
     - Paket-Installer erneut abgelehnt (Axel: „Self update is blocked“ trotz Rückfrage, dann
       „Install not allowed“; Peter: „Package Verification Result“); der Ausweg über den Dialog

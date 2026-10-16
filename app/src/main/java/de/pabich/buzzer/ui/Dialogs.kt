@@ -276,3 +276,51 @@ fun RulesDialog(rules: de.pabich.buzzer.core.Message.Rules, onDismiss: () -> Uni
         confirmButton = { TextButton(onClick = onDismiss) { Text("Alles klar!") } },
     )
 }
+
+/** Selbsttest starten: Prüfungen auf diesem Gerät, auf Wunsch live mit den verbundenen Spielern. */
+@Composable
+fun SelfTestDialog(playersConnected: Boolean, onStart: (live: Boolean) -> Unit, onDismiss: () -> Unit) {
+    var live by remember { mutableStateOf(playersConnected) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Selbsttest") },
+        text = {
+            Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                Text("Prüft automatisch: Spiellogik mit simulierten Spielern (Buzzer, Quiz, Challenge, Bereit, Übernahme, Wiederbeitritt), Funk-Nachrichten, Klänge, Fragenpakete und die Release-Seite.")
+                Spacer(Modifier.padding(4.dp))
+                CheckRow("Live-Test mit den verbundenen Spielern", live, enabled = playersConnected) { live = it }
+                Text(
+                    "Die Spieler-Apps spielen dabei von selbst: Bereit-Abfrage, eine Buzzer-Runde, eine Quiz-Frage, danach schicken sie ihre Diagnose. " +
+                        "Die Punkte werden zurückgesetzt; die Quiz-Statistik bleibt unberührt (Testspiel). Dauert etwa eine Minute.",
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                Spacer(Modifier.padding(4.dp))
+                Text("Am Ende landet ein Bericht „Selbsttest-…“ mit allen Ergebnissen im Diagnose-Repository.", style = MaterialTheme.typography.bodySmall)
+            }
+        },
+        confirmButton = { TextButton(onClick = { onStart(live && playersConnected) }) { Text("Starten") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
+    )
+}
+
+/** Ergebnis des Selbsttests. */
+@Composable
+fun SelfTestResultsDialog(results: List<de.pabich.buzzer.core.SelfTest.Result>, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Selbsttest: ${de.pabich.buzzer.core.SelfTest.summary(results)}") },
+        text = {
+            Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                for (r in results) {
+                    Text((if (r.ok) "✅ " else "❌ ") + r.name, style = MaterialTheme.typography.bodyMedium)
+                    if (r.detail.isNotEmpty()) Text(r.detail, style = MaterialTheme.typography.bodySmall)
+                    Spacer(Modifier.padding(2.dp))
+                }
+                Spacer(Modifier.padding(4.dp))
+                Text("Der Bericht wird im Diagnose-Repository abgelegt.", style = MaterialTheme.typography.bodySmall)
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text("OK") } },
+    )
+}
+

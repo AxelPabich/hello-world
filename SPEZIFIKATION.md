@@ -741,3 +741,20 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Frage, Freigabe oder „Bereit?“) – dann schließt er auf allen Geräten.
 - **Splash „Hau drauf“:** Die Hand landet berechnet auf der Kuppel des Maskottchens (Hand und
   Maskottchen teilen dieselbe Geometrie, unabhängig vom Seitenverhältnis).
+
+## 52. Selbsttest
+
+- Spielleiter mit GitHub-Zugang: ⋮ „Selbsttest (alles automatisch prüfen)“ zwischen den Runden.
+- **Auf dem Gerät** (`SelfTest.runOffline`, simulierte Spieler mit abweichenden Uhren und Laufzeiten
+  in virtueller Zeit): Codec aller wichtigen Nachrichten, Einstellungen, Buzzer-Reihenfolge,
+  Frühstart, falsch/richtig/Punkte, Quiz-Wertung, Challenge „annullieren“, Bereit-Abfrage mit Go,
+  Übernahme mit mitgeschickten Fragen, Punkte beim Wiederbeitritt, alle Klänge. Dazu Fragenpakete
+  (Anzahl, alle drei Stufen je Kategorie, eindeutige IDs) und die Release-Seite.
+- **Live-Test** (optional, Spieler ab Build 35): Der Spielleiter schaltet die Spieler in den
+  Testmodus (`TEST_MODE`) – sie bestätigen „Bereit?“, buzzern nach 150–650 ms und antworten zufällig
+  von selbst. Geprüft werden Funk-Laufzeit je Spieler, eine Buzzer-Runde, die Bereit-Abfrage, eine
+  Quiz-Frage (Testspiel, Statistik unberührt) und das Einsammeln der Diagnosen (im Testmodus immer
+  mit Systemdaten). Danach Testmodus aus, Spielart und Einstellungen wie vorher; Punkte sind zurückgesetzt.
+- **Ergebnis:** Fenster mit allen Prüfungen; Bericht „Selbsttest-<Name>“ (Ergebnisse plus Protokoll
+  und Systemdaten des Spielleiters) und die Diagnosen der Spieler landen im Diagnose-Repository.
+

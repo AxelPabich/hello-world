@@ -665,6 +665,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var showSaved by remember { mutableStateOf(false) }
     var confirmLeave by remember { mutableStateOf(false) }
     var showHandOver by remember { mutableStateOf(false) }
+    var askSelfTest by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val settings = snapshot.settings
     val pause = snapshot.phase == Phase.READY || snapshot.phase == Phase.ROUND_OVER
@@ -778,6 +779,11 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 )
                             }
                             DropdownMenuItem(
+                                text = { Text("Selbsttest (alles automatisch prüfen)") },
+                                enabled = vm.tokenSaved && !vm.selfTestRunning && (pause || snapshot.phase == Phase.QUIZ_REVEAL),
+                                onClick = { showMenu = false; askSelfTest = true },
+                            )
+                            DropdownMenuItem(
                                 text = { Text("Diagnosen der Spieler abrufen") },
                                 enabled = vm.handOverCandidates.isNotEmpty(),
                                 onClick = { showMenu = false; vm.requestDiagnoses() },
@@ -850,6 +856,9 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     }
                 }
                 snapshot.ready?.let { ReadyPanel(it, onCancel = { vm.cancelReady() }) }
+                vm.selfTestStep?.let { step ->
+                    Text("🧪 Selbsttest: $step", color = theme.accent, fontSize = 14.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 4.dp))
+                }
                 vm.takeoverMissing.takeIf { it.isNotEmpty() }?.let { missing ->
                     // Nach einer Übernahme: erst weitermachen, wenn alle zurück sind.
                     Text(
@@ -992,6 +1001,14 @@ fun MasterScreen(vm: BuzzerViewModel) {
             onDismiss = { confirmLeave = false },
         )
     }
+    if (askSelfTest) {
+        SelfTestDialog(
+            playersConnected = vm.handOverCandidates.isNotEmpty(),
+            onStart = { live -> askSelfTest = false; vm.runSelfTest(live) },
+            onDismiss = { askSelfTest = false },
+        )
+    }
+    vm.selfTestResults?.let { results -> SelfTestResultsDialog(results) { vm.selfTestResults = null } }
     if (showHandOver) {
         HandOverDialog(
             candidates = vm.handOverCandidates,
