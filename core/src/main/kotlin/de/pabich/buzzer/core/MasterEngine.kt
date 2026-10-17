@@ -143,9 +143,15 @@ class MasterEngine(
         val number: Int,
         var question: QuizQuestion,
         val durationMs: Long,
-        val participants: Set<PlayerId>,
+        participants: Set<PlayerId>,
         val answersAt: Long,
     ) {
+        /** Wer mitspielt; kommt jemand mitten in der Frage zurück, ersetzt die neue Verbindung die alte. */
+        val participants = participants.toMutableSet()
+
+        /** Je Teilnehmer der Name (ohne Spielleiter-Zusatz) – daran wird ein Rückkehrer erkannt. */
+        val names = HashMap<PlayerId, String>()
+
         /** Je Spieler: angezeigte Position → Index in der Paket-Reihenfolge. */
         val perms = HashMap<PlayerId, List<Int>>()
 
@@ -304,6 +310,8 @@ class MasterEngine(
         send(id, Message.Mode(kind))
         if (paused) send(id, Message.Pause(true))
         if (!local && isPause()) send(id, succession())
+        if (!local && readyOpen) send(id, Message.ReadyCheck(readyId, true))
+        if (!local) resumeQuizTurn(player)
         broadcastRoster()
         broadcastScoreboard()
         notifyChanged()
@@ -1095,22 +1103,9 @@ class MasterEngine(
         turn = t
         for (p in participants) {
             // Jeder bekommt seine eigene Reihenfolge – Abgucken bringt nichts.
-            val perm = q.answers.indices.shuffled(random)
-            t.perms[p.id] = perm
-            send(
-                p.id,
-                Message.QuizAsk(
-                    number = t.number,
-                    total = quizQuestions.size,
-                    category = q.category,
-                    level = q.level,
-                    text = q.text,
-                    answers = perm.map { q.answers[it] },
-                    questionAtLocal = p.sync.toPlayerTime(questionAt),
-                    answersAtLocal = p.sync.toPlayerTime(answersAt),
-                    durationMs = t.durationMs,
-                ),
-            )
+            t.perms[p.id] = q.answers.indices.shuffled(random)
+            t.names[p.id] = baseName(p.name)
+            send(p.id, quizAsk(t, p))
         }
         phase = Phase.QUIZ_QUESTION
         log("Frage ${t.number}/${quizQuestions.size}: ${q.id}")
@@ -1124,6 +1119,55 @@ class MasterEngine(
         broadcastScoreboard()
         notifyChanged()
         return true
+    }
+
+    private fun quizAsk(t: QuizTurn, p: Player): Message.QuizAsk {
+        val q = t.question
+        val perm = t.perms[p.id] ?: q.answers.indices.toList()
+        return Message.QuizAsk(
+            number = t.number,
+            total = quizQuestions.size,
+            category = q.category,
+            level = q.level,
+            text = q.text,
+            answers = perm.map { q.answers[it] },
+            questionAtLocal = p.sync.toPlayerTime(t.answersAt - QUESTION_LEAD_MS),
+            answersAtLocal = p.sync.toPlayerTime(t.answersAt),
+            durationMs = t.durationMs,
+        )
+    }
+
+    /**
+     * Kommt ein Spieler mitten in einer Quizfrage zurück (kurzer Funkabbruch), übernimmt die neue
+     * Verbindung seinen Platz: gleiche Antwort-Reihenfolge, eine schon gegebene Antwort zählt, und
+     * er kann in der restlichen Zeit noch antworten (Punkt 76).
+     */
+    private fun resumeQuizTurn(player: Player) {
+        val t = turn ?: return
+        if (t.revealed || t.resumed || (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS)) return
+        val name = baseName(player.name)
+        val oldId = t.participants.firstOrNull { it != player.id && t.names[it] == name && players[it]?.connected != true } ?: return
+        t.participants.remove(oldId)
+        t.participants += player.id
+        t.names.remove(oldId)
+        t.names[player.id] = name
+        t.perms.remove(oldId)?.let { t.perms[player.id] = it }
+        t.answers.remove(oldId)?.let { t.answers[player.id] = it }
+        players.remove(oldId)
+        log("${player.name} steigt wieder in Frage ${t.number} ein" + if (player.id in t.answers) " (hatte schon geantwortet)" else "")
+        sendResumedQuestion(t, player.id, 0)
+    }
+
+    /** Die Frage geht erst raus, wenn die Uhr des Rückkehrers abgeglichen ist (sonst stimmt die Restzeit nicht). */
+    private fun sendResumedQuestion(t: QuizTurn, id: PlayerId, tries: Int) {
+        if (turn !== t || t.revealed) return
+        val p = players[id]?.takeIf { it.connected } ?: return
+        if (p.sync.sampleCount < 2 && tries < 12) {
+            t.tasks += scheduler.schedule(250) { sendResumedQuestion(t, id, tries + 1) }
+            return
+        }
+        send(id, quizAsk(t, p))
+        if (t.deadlineElapsed < t.durationMs) send(id, Message.QuizDeadline(t.number, t.deadlineElapsed))
     }
 
     /** Auflösung bei Zeitablauf – mit Sammelfenster für unterwegs befindliche Antworten. */

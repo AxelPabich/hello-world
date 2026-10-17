@@ -455,6 +455,12 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+76. **Wiedereinstieg nach kurzem Funkabbruch** (Wunsch vom 17.10.2026; umgesetzt, kommt mit dem
+    nächsten Build): Bisher wartete ein zurückkehrender Spieler bis zum Rundenende, und der
+    Spielleiter musste den Prüfcode bestätigen, wenn seine alte Verbindung noch hing (Simone,
+    16.10. 14:02) oder der Abbruch länger als 3 Minuten her war (Peter, 14:03). Jetzt kommen
+    Rückkehrer sofort und ohne Rückfrage hinein; eine offene Quizfrage bekommen sie mit der
+    Restzeit und können noch antworten. Spezifikation Abschnitt 53, Tests in `RejoinTest`.
 75. **Selbsttest** (in Build 35): ⋮ „Selbsttest“ für den Spielleiter
     mit Token – 11 Prüfungen der Spiellogik auf dem Gerät, Fragenpakete, Release-Seite, optional
     Live-Test mit den Spielern im Testmodus (Buzzer, Bereit, Quiz, Diagnosen); Bericht ins

@@ -666,11 +666,10 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   fast gleichzeitig, kündigt er seine Gruppe nach 3 s neu an und weist darauf hin, dass vielleicht
   schon jemand übernommen hat.
 - Der neue Spielleiter sieht „Noch nicht zurück: …“, bis alle Mitspieler des Vorgängers wieder da
-  sind (höchstens 3 Minuten). Wer während einer Frage zurückkommt, wird in der nächsten Pause
-  automatisch aufgenommen.
+  sind (höchstens 3 Minuten). Sie werden sofort aufgenommen, auch mitten in einer Runde (Abschnitt 53).
 - Taucht der bisherige Spielleiter wieder auf, bevor jemand übernommen hat, verbinden sich die
-  Spieler wieder mit ihm. Allgemein nimmt ein Spielleiter Spieler, deren Verbindung bei ihm in den
-  letzten 3 Minuten abgebrochen ist, ohne Rückfrage wieder auf (in einer Pause), und wer mit
+  Spieler wieder mit ihm. Allgemein nimmt ein Spielleiter Spieler, deren Verbindung bei ihm in
+  diesem Spiel abgebrochen ist, sofort und ohne Rückfrage wieder auf (Abschnitt 53), und wer mit
   gleichem Namen zurückkommt, bekommt seine Punkte zurück (bis „Neues Spiel“).
 - Der Spielstand enthält die Fragen des laufenden Quiz ab der zuletzt gestellten (wird es zu groß,
   zuerst ohne Quellen, dann ohne Erklärungen) – der Nachfolger braucht die Pakete nicht selbst.
@@ -758,3 +757,16 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - **Ergebnis:** Fenster mit allen Prüfungen; Bericht „Selbsttest-<Name>“ (Ergebnisse plus Protokoll
   und Systemdaten des Spielleiters) und die Diagnosen der Spieler landen im Diagnose-Repository.
 
+## 53. Wiedereinstieg nach kurzem Funkabbruch
+
+- Wer in diesem Spiel schon mitgespielt hat, kommt **sofort und ohne Prüfcode** wieder hinein –
+  auch mitten in einer Runde. Das gilt für Spieler, deren Verbindung beim Spielleiter abgebrochen
+  ist (ohne Zeitgrenze, bis die Gruppe geschlossen wird), und für Spieler, deren alte Verbindung
+  beim Spielleiter noch hängt, weil sie den Abbruch früher bemerkt haben; die alte Verbindung wird
+  ersetzt. Erkannt wird der Rückkehrer am Namen.
+- **Quiz:** Kommt der Spieler zurück, solange die Frage offen ist, bekommt er sie sofort wieder
+  (sobald seine Uhr abgeglichen ist, höchstens nach 3 s) – mit derselben Antwort-Reihenfolge und der
+  restlichen Antwortzeit (auch nach Countdown-Verkürzung). Eine vor dem Abbruch gegebene Antwort
+  zählt weiter. Wer neu beitritt, spielt ab der nächsten Frage mit.
+- **Buzzer:** Der Rückkehrer ersetzt seinen grauen Eintrag und spielt ab der nächsten Runde mit.
+- Läuft gerade „Bereit?“, bekommt der Rückkehrer die Abfrage sofort.

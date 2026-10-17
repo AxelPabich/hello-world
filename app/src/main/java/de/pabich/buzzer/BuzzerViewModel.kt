@@ -152,7 +152,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var takenOver: Message.Succession? = null
     private var takenOverUntil = 0L
 
-    /** Spielleiter: Name → Zeitpunkt des Verbindungsabbruchs; diese Spieler kommen ohne Rückfrage wieder hinein. */
+    /** Spielleiter: Name → Zeitpunkt des Verbindungsabbruchs; diese Spieler kommen im ganzen Spiel ohne Rückfrage wieder hinein. */
     private val lostPlayers = mutableMapOf<String, Long>()
 
     /** Spielleiter: Zeitpunkte der letzten Verbindungsabbrüche (alle auf einmal weg = eigene Funkstörung). */
@@ -1247,8 +1247,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     override fun onConnectionRequest(endpointId: String, name: String, authCode: String) {
         val peer = PeerInfo.parse(name)
         Diagnostics.log("Beitrittsanfrage von $endpointId, Prüfcode $authCode (Build ${peer.build ?: "alt"}, Protokoll ${peer.protocol}${if (peer.updateOnly) ", Update" else ""})")
-        // Nach einer Übernahme kommen die bisherigen Mitspieler ohne Rückfrage wieder hinein.
-        if (master?.canAcceptJoin() == true && isReturning(peer)) {
+        // Wer schon mitgespielt hat (Funkabbruch, Übernahme), kommt sofort und ohne Rückfrage wieder hinein –
+        // auch mitten in einer Runde; eine laufende Quizfrage kann er noch beantworten (Punkt 76).
+        if (master != null && isReturning(peer)) {
             Diagnostics.log("${peer.name} kommt zurück – ohne Rückfrage aufgenommen")
             link.accept(endpointId)
             return
@@ -1874,19 +1875,21 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /**
      * Gehört [peer] zu diesem Spiel und kommt zurück? Nach einer Übernahme die Mitspieler des
-     * Vorgängers; sonst Spieler, deren Verbindung hier vor Kurzem abgebrochen ist.
+     * Vorgängers; sonst Spieler, deren Verbindung in diesem Spiel abgebrochen ist – oder deren alte
+     * Verbindung hier noch hängt (der Spieler hat den Abbruch früher bemerkt als der Spielleiter).
      */
     private fun isReturning(peer: PeerInfo): Boolean {
         if (!peer.compatible || peer.updateOnly || peer.name == myName.trim()) return false
         val now = UptimeClock.now()
-        val lost = lostPlayers[peer.name]?.let { now - it < TAKEN_OVER_ACCEPT_MS } == true
+        val lost = peer.name in lostPlayers ||
+            master?.snapshot()?.players.orEmpty().any { it.id != LOCAL_PLAYER_ID && it.name == peer.name }
         val taken = takenOver
         val fromPredecessor = taken != null && now < takenOverUntil &&
             (peer.name == taken.master || taken.scores.any { it.first == peer.name })
         return lost || fromPredecessor
     }
 
-    /** Wer während einer Frage zurückkam, wartet bis zur Pause – dann ohne Rückfrage aufnehmen. */
+    /** Rückkehrer aus älteren Anfragen (vor Build 36 warteten sie bis zur Pause) ohne Rückfrage aufnehmen. */
     private fun acceptReturning() {
         if (master?.canAcceptJoin() != true) return
         for (request in joinRequests.filter { isReturning(it.peer) }) {

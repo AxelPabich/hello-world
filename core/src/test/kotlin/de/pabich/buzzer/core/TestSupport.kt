@@ -66,7 +66,7 @@ class SimGame(
         master.updateSettings(settings)
     }
 
-    fun addPlayer(id: PlayerId, clockOffsetMs: Long, latencyMs: Long): SimPlayer {
+    fun addPlayer(id: PlayerId, clockOffsetMs: Long, latencyMs: Long, name: String = id): SimPlayer {
         val clock = Clock { time.now + clockOffsetMs }
         lateinit var sim: SimPlayer
         val logLines = playerLogs.getOrPut(id) { mutableListOf() }
@@ -76,7 +76,7 @@ class SimGame(
         }
         sim = SimPlayer(id, clockOffsetMs, latencyMs, engine, clock)
         simPlayers[id] = sim
-        master.addPlayer(id, id)
+        master.addPlayer(id, name)
         return sim
     }
 
