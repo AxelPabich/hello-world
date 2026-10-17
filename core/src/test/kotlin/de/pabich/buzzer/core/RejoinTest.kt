@@ -77,4 +77,30 @@ class RejoinTest {
         g.time.advanceBy(2_000)
         assertTrue(g.received.getValue("Simone").none { it is Message.QuizAsk })
     }
+
+    @Test
+    fun `silent player is reported after 15 s and the question no longer waits`() {
+        val g = quizGame()
+        val silent = mutableListOf<PlayerId>()
+        g.master.onPlayerSilent = { id -> silent += id; g.master.removePlayer(id); true }
+        g.tapRight("Clara", 500)
+        // Peters Funk ist weg: seine Antworten auf den Herzschlag kommen nicht mehr an.
+        g.mutePlayer("Peter")
+        g.time.advanceBy(10_000)
+        assertTrue(silent.isEmpty(), "nach 10 s noch nicht")
+        g.time.advanceBy(8_000)
+        assertEquals(listOf<PlayerId>("Peter"), silent)
+        assertTrue(g.received.getValue("Clara").any { it is Message.QuizResult }, "Frage ohne Peter aufgelöst")
+    }
+
+    @Test
+    fun `silence during a file transfer is tolerated`() {
+        val g = quizGame()
+        var asked = 0
+        g.master.onPlayerSilent = { asked++; false }
+        g.mutePlayer("Peter")
+        g.time.advanceBy(40_000)
+        assertTrue(asked >= 2, "fragt nach der Frist erneut ($asked)")
+        assertTrue(g.master.snapshot().players.any { it.id == "Peter" })
+    }
 }

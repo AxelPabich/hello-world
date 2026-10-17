@@ -757,7 +757,8 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - **Live-Test** (optional, Spieler ab Build 35): Der Spielleiter schaltet die Spieler in den
   Testmodus (`TEST_MODE`) – sie bestätigen „Bereit?“, buzzern nach 150–650 ms und antworten zufällig
   von selbst. Geprüft werden Funk-Laufzeit je Spieler, eine Buzzer-Runde, die Bereit-Abfrage, eine
-  Quiz-Frage (Testspiel, Statistik unberührt) und das Einsammeln der Diagnosen (im Testmodus immer
+  Quiz-Frage (Testspiel, Statistik unberührt; haben alle Spieler geantwortet, antwortet der
+  Spielleiter auch – die Frage wartet nicht die volle Zeit) und das Einsammeln der Diagnosen (im Testmodus immer
   mit Systemdaten). Danach Testmodus aus, Spielart und Einstellungen wie vorher; Punkte sind zurückgesetzt.
 - **Ergebnis:** Fenster mit allen Prüfungen; Bericht „Selbsttest-<Name>“ (Ergebnisse plus Protokoll
   und Systemdaten des Spielleiters) und die Diagnosen der Spieler landen im Diagnose-Repository.
@@ -775,4 +776,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   zählt weiter. Wer neu beitritt, spielt ab der nächsten Frage mit.
 - **Buzzer:** Der Rückkehrer ersetzt seinen grauen Eintrag und spielt ab der nächsten Runde mit.
 - Läuft gerade „Bereit?“, bekommt der Rückkehrer die Abfrage sofort.
+- **Stille Spieler:** Antwortet ein Spieler 15 s lang nicht auf den Herzschlag (alle 2 s), trennt
+  ihn der Spielleiter selbst, statt auf die Meldung des Funks zu warten (die kam im Test erst nach
+  47 s). So wartet keine Frage und keine Bereit-Abfrage auf ihn; kommt er zurück, gilt das oben
+  Gesagte. Läuft gerade eine Datei von oder zu ihm (Update, Diagnose), wartet der Spielleiter eine
+  weitere Frist ab.
 ===== ENDE SPEZIFIKATION.md =====

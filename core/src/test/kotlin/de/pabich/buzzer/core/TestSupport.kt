@@ -71,6 +71,7 @@ class SimGame(
         lateinit var sim: SimPlayer
         val logLines = playerLogs.getOrPut(id) { mutableListOf() }
         val engine = PlayerEngine(clock, time, log = { logLines += it }) { msg ->
+            if (id in muted) return@PlayerEngine
             val bytes = MessageCodec.encode(msg)
             time.schedule(sim.latencyMs) { master.onMessage(id, MessageCodec.decode(bytes)!!) }
         }
@@ -81,6 +82,13 @@ class SimGame(
     }
 
     fun player(id: PlayerId) = simPlayers.getValue(id)
+
+    /** Nachrichten dieses Spielers kommen nicht mehr beim Spielleiter an (Funk weg). */
+    private val muted = mutableSetOf<PlayerId>()
+
+    fun mutePlayer(id: PlayerId) {
+        muted += id
+    }
 
     /** Startet den Uhrenabgleich und lässt ihn einschwingen. */
     fun syncClocks() {

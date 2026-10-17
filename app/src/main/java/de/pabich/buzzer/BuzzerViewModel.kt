@@ -155,6 +155,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Spielleiter: Name → Zeitpunkt des Verbindungsabbruchs; diese Spieler kommen im ganzen Spiel ohne Rückfrage wieder hinein. */
     private val lostPlayers = mutableMapOf<String, Long>()
 
+    /** Spielleiter: wegen Stille selbst getrennt – die spätere Meldung von Nearby nicht doppelt zählen. */
+    private val silentDropped = mutableSetOf<String>()
+
     /** Spielleiter: Zeitpunkte der letzten Verbindungsabbrüche (alle auf einmal weg = eigene Funkstörung). */
     private val recentLosses = mutableListOf<Long>()
 
@@ -415,6 +418,17 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             // Tickende Uhr auf dem Master-Gerät, solange jemand antwortet.
             val deadline = snap.answerDeadline.takeIf { snap.phase == MasterEngine.Phase.ANSWERING }
             updateTicking(deadline.takeIf { SoundEvent.TICK in snap.settings.sounds })
+        }
+        engine.onPlayerSilent = { id ->
+            // Während einer Dateiübertragung (Update, Diagnose) kommen Antworten oft verspätet – dann nicht trennen.
+            if (link.hasFileTransfer(id)) {
+                false
+            } else {
+                link.disconnect(id)
+                onDisconnected(id)
+                silentDropped += id
+                true
+            }
         }
         // Quiz: Nach „Alle bereit – Go!“ startet die nächste Frage kurz nach dem Go-Klang von selbst.
         engine.onAllReady = { id ->
@@ -1345,6 +1359,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onDisconnected(endpointId: String) {
+        // Schon beim Verstummen getrennt; das ist nur die nachträgliche Meldung.
+        if (silentDropped.remove(endpointId)) return
         joinRequests.removeAll { it.endpointId == endpointId }
         val engine = master
         if (engine != null && updateEndpoints.remove(endpointId) != null) {
@@ -1654,7 +1670,14 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             engine.chooseKind(GameKind.QUIZ)
             val questions = quizStore.questions.shuffled().take(2).map(quizStore::toQuiz)
             val started = questions.isNotEmpty() && engine.startQuiz(questions)
-            val revealed = started && waitUntil(engine.settings.quizAnswerMs + 15_000) { engine.snapshot().quiz?.revealed == true }
+            // Sobald alle Spieler geantwortet haben, antwortet auch der Spielleiter – sonst wartet die Frage
+            // die volle Antwortzeit ab.
+            val allIn = started && waitUntil(engine.settings.quizAnswerMs + 10_000) {
+                val q = engine.snapshot().quiz
+                q?.revealed == true || q?.rows?.filter { it.id in ids }?.all { it.answered } == true
+            }
+            if (allIn && engine.snapshot().quiz?.revealed != true) player?.tapAnswer(0, UptimeClock.now())
+            val revealed = started && waitUntil(engine.settings.quizAnswerMs + 5_000) { engine.snapshot().quiz?.revealed == true }
             val answered = engine.snapshot().quiz?.rows?.filter { it.id in ids && it.answered }?.size ?: 0
             results += SelfTest.Result("Quiz-Frage: alle antworten", revealed && answered == ids.size, "$answered von ${ids.size} Antworten")
             if (engine.snapshot().phase != MasterEngine.Phase.READY) engine.stopQuiz()

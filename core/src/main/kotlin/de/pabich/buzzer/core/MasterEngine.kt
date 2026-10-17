@@ -136,6 +136,10 @@ class MasterEngine(
         var status = Status.IDLE
         var roundReactionMs: Long? = null
         var contestReactionMs: Long? = null
+
+        /** Wann zuletzt etwas von diesem Spieler kam (Antwort auf den Herzschlag); `null` = noch nie. */
+        var lastHeardAt: Long? = null
+        var silentReported = false
     }
 
     /** Eine Quizfrage im Spiel. */
@@ -202,6 +206,13 @@ class MasterEngine(
 
     /** Alle haben „Bereit!“ bestätigt (Abfrage [readyCheckId]); die App startet im Quiz dann automatisch. */
     var onAllReady: ((id: Int) -> Unit)? = null
+
+    /**
+     * Ein Spieler antwortet seit [SILENT_PLAYER_MS] nicht mehr auf den Herzschlag (Funk weg, aber die
+     * Verbindung gilt noch als offen). Die App trennt ihn dann – so wartet keine Frage auf ihn (Punkt 77).
+     * Gibt sie `false` zurück (etwa weil gerade eine Datei läuft), wird später erneut gefragt.
+     */
+    var onPlayerSilent: ((PlayerId) -> Boolean)? = null
 
     /** Nummer der laufenden bzw. letzten Bereit-Abfrage. */
     val readyCheckId: Int get() = readyId
@@ -396,10 +407,24 @@ class MasterEngine(
         if (pingTask != null) return
         fun tick() {
             pingTick++
-            for (p in players.values) {
+            val now = clock.now()
+            for (p in players.values.toList()) {
                 if (!p.connected) continue
                 if (p.sync.sampleCount < 8 || pingTick % 8 == 0) {
-                    send(p.id, Message.Ping(++pingSeq, clock.now()))
+                    send(p.id, Message.Ping(++pingSeq, now))
+                }
+                // Erst wer schon einmal geantwortet hat, kann verstummen (ältere Spieler-Apps antworten immer).
+                val heard = p.lastHeardAt ?: continue
+                if (!p.local && !p.silentReported && now - heard > SILENT_PLAYER_MS) {
+                    val callback = onPlayerSilent ?: continue
+                    p.silentReported = true
+                    if (callback(p.id)) {
+                        log("${p.name} antwortet seit ${(now - heard) / 1000} s nicht – getrennt")
+                    } else {
+                        // Noch einmal die volle Frist abwarten.
+                        p.lastHeardAt = now
+                        p.silentReported = false
+                    }
                 }
             }
             pingTask = scheduler.schedule(250) { tick() }
@@ -530,6 +555,8 @@ class MasterEngine(
 
     fun onMessage(from: PlayerId, message: Message) {
         val player = players[from] ?: return
+        player.lastHeardAt = clock.now()
+        player.silentReported = false
         when (message) {
             is Message.Pong -> player.sync.addSample(message.masterTime, message.playerTime, clock.now())
             is Message.Hold -> onHold(player, message)
@@ -1698,6 +1725,9 @@ class MasterEngine(
     companion object {
         /** Quiz: so lange steht die Frage allein, bevor Antworten und Timer erscheinen. */
         const val QUESTION_LEAD_MS = 3_000L
+
+        /** So lange Stille, dann gilt ein Spieler als weg (Herzschlag alle 2 s). */
+        const val SILENT_PLAYER_MS = 15_000L
         const val TYPING_TIMEOUT_MS = 8_000L
         const val SUDDEN_DEATH_PAUSE_MS = 1_500L
         const val MAX_REPLAY_MS = 15_000L

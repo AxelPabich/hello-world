@@ -455,6 +455,15 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+77. **Stille Spieler schneller erkennen** (umgesetzt, kommt mit dem nächsten Build): Im Test
+    am 17.10. um 12:33 meldete der Funk Peters Abbruch erst nach 47 s. Jetzt trennt der Spielleiter
+    einen Spieler nach 15 s ohne Antwort auf den Herzschlag selbst (nicht während einer
+    Dateiübertragung). Spezifikation Abschnitt 53, Tests in `RejoinTest`.
+78. **Selbsttest schneller** (umgesetzt, kommt mit dem nächsten Build): Die Quiz-Frage im
+    Live-Test wartete 18 s auf die Antwort des Spielleiters; jetzt antwortet er, sobald alle Spieler
+    geantwortet haben.
+    Test vom 17.10.: Selbsttest 23 von 23 mit Simone, Peter und Tablett S7; Quiz mit 10 Fragen
+    ohne Störung (die vierfache Challenge bei Frage 2 war absichtlich und hat funktioniert).
 76. **Wiedereinstieg nach kurzem Funkabbruch** (Wunsch vom 17.10.2026; umgesetzt, kommt mit dem
     nächsten Build): Bisher wartete ein zurückkehrender Spieler bis zum Rundenende, und der
     Spielleiter musste den Prüfcode bestätigen, wenn seine alte Verbindung noch hing (Simone,

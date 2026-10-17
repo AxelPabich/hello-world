@@ -56,10 +56,17 @@ class NearbyLink(context: Context, private val listener: Listener) {
     private val incomingFiles = mutableMapOf<Long, Payload>()
     private val outgoingFiles = mutableSetOf<Long>()
 
+    /** Laufende Dateiübertragungen: Payload-ID → Gegenstelle. */
+    private val fileEndpoints = mutableMapOf<Long, String>()
+
+    /** Läuft gerade eine Datei von oder zu [endpointId]? Dann kommen kleine Nachrichten oft verspätet. */
+    fun hasFileTransfer(endpointId: String) = endpointId in fileEndpoints.values
+
     private val payloadCallback = object : PayloadCallback() {
         override fun onPayloadReceived(endpointId: String, payload: Payload) {
             if (payload.type == Payload.Type.FILE) {
                 incomingFiles[payload.id] = payload
+                fileEndpoints[payload.id] = endpointId
                 return
             }
             val bytes = payload.asBytes() ?: return
@@ -71,6 +78,7 @@ class NearbyLink(context: Context, private val listener: Listener) {
             val incoming = incomingFiles[id]
             val outgoing = id in outgoingFiles
             if (incoming == null && !outgoing) return
+            if (update.status != PayloadTransferUpdate.Status.IN_PROGRESS) fileEndpoints.remove(id)
             when (update.status) {
                 PayloadTransferUpdate.Status.IN_PROGRESS ->
                     listener.onTransferProgress(endpointId, id, update.bytesTransferred, update.totalBytes, incoming != null)
@@ -180,9 +188,11 @@ class NearbyLink(context: Context, private val listener: Listener) {
     fun sendFile(endpointId: String, file: File, announce: (Long) -> Unit) {
         val payload = Payload.fromFile(file)
         outgoingFiles += payload.id
+        fileEndpoints[payload.id] = endpointId
         announce(payload.id)
         client.sendPayload(endpointId, payload).addOnFailureListener {
             outgoingFiles.remove(payload.id)
+            fileEndpoints.remove(payload.id)
             listener.onFileSent(endpointId, payload.id, false)
         }
     }
@@ -196,6 +206,7 @@ class NearbyLink(context: Context, private val listener: Listener) {
         pendingNames.clear()
         incomingFiles.clear()
         outgoingFiles.clear()
+        fileEndpoints.clear()
     }
 
     companion object {
