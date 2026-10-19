@@ -772,7 +772,8 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   auch mitten in einer Runde. Das gilt für Spieler, deren Verbindung beim Spielleiter abgebrochen
   ist (ohne Zeitgrenze, bis die Gruppe geschlossen wird), und für Spieler, deren alte Verbindung
   beim Spielleiter noch hängt, weil sie den Abbruch früher bemerkt haben; die alte Verbindung wird
-  ersetzt. Erkannt wird der Rückkehrer am Namen.
+  ersetzt – aus dem Spiel genommen, aber nicht aktiv getrennt (das riss die neue Verbindung zum
+  selben Gerät mit); der Funk beendet sie selbst. Erkannt wird der Rückkehrer am Namen.
 - **Quiz:** Kommt der Spieler zurück, solange die Frage offen ist, bekommt er sie sofort wieder
   (sobald seine Uhr abgeglichen ist, höchstens nach 3 s) – mit derselben Antwort-Reihenfolge und der
   restlichen Antwortzeit (auch nach Countdown-Verkürzung). Eine vor dem Abbruch gegebene Antwort

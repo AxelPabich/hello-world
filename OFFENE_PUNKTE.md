@@ -455,6 +455,16 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+80. **Aus dem Test mit Build 36 (19.10.2026, 21:43–21:55, Axel und Simone)** (umgesetzt, kommt
+    mit dem nächsten Build):
+    - Selbsttest 21 von 21, Quiz-Teil ohne Wartezeit (Punkt 78 bestätigt).
+    - 21:54: Simone 14 s ohne Funk – nach 15 s getrennt, 2 s später ohne Prüfcode zurück, Punkte
+      behalten (Punkte 76 und 77 bestätigt).
+    - 21:45: Simone kam zurück, während ihre alte Verbindung noch hing; der Spielleiter trennte die
+      alte sofort – danach kam über die neue nichts mehr bei ihr an (sie sendete noch), sie verpasste
+      die Fragen 4–6. Jetzt wird die alte Verbindung nur aus dem Spiel genommen, nicht getrennt.
+    - Antwortfelder (Punkt 79) passen auf dem Tablet; Handy als Spielleiter (kompakte Ansicht)
+      noch zu prüfen.
 79. **Antworten immer vollständig im Feld** (Wunsch vom 19.10.2026; in Build 36):
     Lange Antworten wurden abgeschnitten (kompakt feste 78 dp Höhe). Jetzt
     werden alle vier Antworten in der Feldbreite gemessen: erst kleinere Schrift, dann alle vier

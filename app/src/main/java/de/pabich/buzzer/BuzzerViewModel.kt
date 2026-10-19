@@ -155,8 +155,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Spielleiter: Name → Zeitpunkt des Verbindungsabbruchs; diese Spieler kommen im ganzen Spiel ohne Rückfrage wieder hinein. */
     private val lostPlayers = mutableMapOf<String, Long>()
 
-    /** Spielleiter: wegen Stille selbst getrennt – die spätere Meldung von Nearby nicht doppelt zählen. */
-    private val silentDropped = mutableSetOf<String>()
+    /** Spielleiter: wegen Stille getrennte oder durch eine neue Verbindung ersetzte Endpunkte – ihre spätere Meldung von Nearby nicht zählen. */
+    private val droppedEndpoints = mutableSetOf<String>()
 
     /** Spielleiter: Zeitpunkte der letzten Verbindungsabbrüche (alle auf einmal weg = eigene Funkstörung). */
     private val recentLosses = mutableListOf<Long>()
@@ -426,7 +426,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             } else {
                 link.disconnect(id)
                 onDisconnected(id)
-                silentDropped += id
+                droppedEndpoints += id
                 true
             }
         }
@@ -1291,7 +1291,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 Diagnostics.log("${peer.name} war noch über ${old.id} verbunden – alte Verbindung ersetzt")
                 peerBuilds.remove(old.id)
                 engine.removePlayer(old.id)
-                link.disconnect(old.id)
+                // Nicht aktiv trennen: Das riss im Test (19.10., 21:45) die neue Verbindung zum selben Gerät mit –
+                // sie blieb in Richtung Spieler stumm. Die alte räumt der Funk selbst auf (Punkt 80).
+                droppedEndpoints += old.id
             }
             // Wer nur zurückkommt (Übernahme, Funkabbruch), kennt die Regeln schon.
             val returning = isReturning(peer)
@@ -1359,8 +1361,11 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     override fun onDisconnected(endpointId: String) {
-        // Schon beim Verstummen getrennt; das ist nur die nachträgliche Meldung.
-        if (silentDropped.remove(endpointId)) return
+        // Schon beim Verstummen getrennt oder ersetzt; das ist nur die nachträgliche Meldung.
+        if (droppedEndpoints.remove(endpointId)) {
+            Diagnostics.log("Alte Verbindung $endpointId beendet")
+            return
+        }
         joinRequests.removeAll { it.endpointId == endpointId }
         val engine = master
         if (engine != null && updateEndpoints.remove(endpointId) != null) {
