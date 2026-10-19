@@ -1,23 +1,176 @@
 {
   "paket": "kueche",
   "titel": "Küche & Genuss",
-  "version": 5,
+  "version": 6,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "kueche-0002",
+      "id": "kueche-0021",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "mittel",
-      "frage": "Aus welchem Land stammt das Gulasch ursprünglich?",
+      "frage": "Aus welchem Getreide wird schottischer Single Malt Whisky hergestellt?",
       "antworten": [
-        "Aus Ungarn, als Eintopf der Rinderhirten",
-        "Aus Österreich, als Wiener Kaffeehausgericht",
-        "Aus Mexiko, als Variante von Chili con Carne",
-        "Aus Schweden, als Beilage zu Köttbullar"
+        "Aus gemälzter Gerste",
+        "Aus Mais",
+        "Aus Roggen",
+        "Aus Reis"
       ],
-      "erklaerung": "„Gulyás“ bedeutet auf Ungarisch „Rinderhirt“.",
-      "quelle": "https://de.wikipedia.org/wiki/Gulasch",
+      "erklaerung": "Bourbon aus den USA besteht dagegen überwiegend aus Mais.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Single%20Malt%20Whisky",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0016",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welche Nuss ist die Grundlage von Marzipan?",
+      "antworten": [
+        "Mandeln",
+        "Haselnüsse",
+        "Walnüsse",
+        "Erdnüsse"
+      ],
+      "erklaerung": "Mit Aprikosenkernen statt Mandeln heißt es Persipan.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Marzipan",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0027",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was sind Gnocchi?",
+      "antworten": [
+        "Kleine Klößchen, meist aus Kartoffeln",
+        "Gefüllte Teigtaschen",
+        "Dünne Bandnudeln",
+        "Frittierte Reisbällchen"
+      ],
+      "erklaerung": "Gefüllte Teigtaschen wären Ravioli, frittierte Reisbällchen Arancini.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gnocchi",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0029",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Woraus wird Popcorn gemacht?",
+      "antworten": [
+        "Aus Mais",
+        "Aus Reis",
+        "Aus Weizen",
+        "Aus Hirse"
+      ],
+      "erklaerung": "Das Wasser im Korn verdampft beim Erhitzen und lässt es aufplatzen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Popcorn",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0030",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Aus welchem Land stammt der Feta-Käse?",
+      "antworten": [
+        "Griechenland",
+        "Bulgarien",
+        "Türkei",
+        "Italien"
+      ],
+      "erklaerung": "Echter Feta ist seit 2002 eine geschützte Ursprungsbezeichnung aus Griechenland.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Feta",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0007",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Woraus wird echter „Mozzarella di Bufala“ hergestellt?",
+      "antworten": [
+        "Aus Büffelmilch",
+        "Aus Kuhmilch mit Büffelgras-Aroma",
+        "Aus Schafsmilch aus Sardinien",
+        "Aus Sojamilch aus Kampanien"
+      ],
+      "erklaerung": "Er stammt traditionell aus Kampanien.",
+      "quelle": "https://de.wikipedia.org/wiki/Mozzarella",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0023",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Woraus wird Tofu hergestellt?",
+      "antworten": [
+        "Aus Sojabohnen",
+        "Aus Reis",
+        "Aus Kichererbsen",
+        "Aus Kokosmilch"
+      ],
+      "erklaerung": "Sojamilch wird gerinnen gelassen und gepresst – ähnlich wie Käse.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tofu",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0028",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Welche ist die meistangebaute Weißweinrebsorte in Deutschland?",
+      "antworten": [
+        "Riesling",
+        "Müller-Thurgau",
+        "Silvaner",
+        "Grauburgunder"
+      ],
+      "erklaerung": "Deutschland hat die größte Riesling-Anbaufläche der Welt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Riesling",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0010",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Wie nennt man in Italien Nudeln, die bissfest gekocht sind?",
+      "antworten": [
+        "Al dente",
+        "Al forno",
+        "Al fresco",
+        "Al Pacino"
+      ],
+      "erklaerung": "Wörtlich „für den Zahn“. Al forno heißt „aus dem Ofen“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=al+dente",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0012",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was bedeutet der Name des Gerichts „Saltimbocca“ wörtlich?",
+      "antworten": [
+        "„Spring in den Mund“",
+        "„Salz in die Backe“",
+        "„Kleiner Sprung“",
+        "„Fleisch im Mantel“"
+      ],
+      "erklaerung": "Kalbsschnitzel mit Salbei und Schinken – so gut, dass es in den Mund springt.",
+      "quelle": "https://de.wikipedia.org/wiki/Saltimbocca",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -39,20 +192,139 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0015",
+      "id": "kueche-0031",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was ist „Kimchi“?",
+      "antworten": [
+        "Vergorenes, scharf gewürztes Gemüse aus Korea",
+        "Japanische Reisbällchen",
+        "Chinesische Teigtaschen",
+        "Thailändische Kokossuppe"
+      ],
+      "erklaerung": "Meist wird Chinakohl mit Chili, Knoblauch und Ingwer fermentiert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kimchi",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0032",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "leicht",
-      "frage": "Was ist „Ratatouille“?",
+      "frage": "Woraus wird Butter hergestellt?",
       "antworten": [
-        "Ein französisches Schmorgericht aus Gemüse",
-        "Ein Käse aus der Provence",
-        "Ein Nachtisch im Rattankorb",
-        "Ein Fischeintopf aus Marseille"
+        "Aus Sahne (Rahm)",
+        "Aus Pflanzenöl",
+        "Aus Eigelb",
+        "Aus Quark"
       ],
-      "erklaerung": "Der Fischeintopf aus Marseille heißt Bouillabaisse.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ratatouille",
+      "erklaerung": "Beim Buttern wird der Rahm geschlagen, bis sich Fett und Buttermilch trennen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Butter",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0017",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "In welcher Stadt wurde der Aperitif „Aperol“ 1919 erfunden?",
+      "antworten": [
+        "Padua",
+        "Venedig",
+        "Mailand",
+        "Turin"
+      ],
+      "erklaerung": "Die Brüder Barbieri stellten ihn auf einer Messe in Padua vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aperol",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0011",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Aus welcher Pflanze wird Tequila hergestellt?",
+      "antworten": [
+        "Aus der Blauen Agave",
+        "Aus Kaktusfeigen",
+        "Aus Zuckerrohr",
+        "Aus Mais"
+      ],
+      "erklaerung": "Die Agave ist kein Kaktus – ein häufiger Irrtum.",
+      "quelle": "https://de.wikipedia.org/wiki/Tequila",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0025",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was ist „Tahini“?",
+      "antworten": [
+        "Eine Paste aus Sesam",
+        "Ein Joghurtdip mit Gurke",
+        "Ein Gewürz aus Sumach",
+        "Eine Paste aus Kichererbsen"
+      ],
+      "erklaerung": "Tahini gehört in jeden Hummus – die Kichererbsenpaste ist der Hummus selbst.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tahini",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0005",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Woraus werden Pommes frites gemacht?",
+      "antworten": [
+        "Aus Kartoffeln",
+        "Aus Maisgrieß in Stangenform",
+        "Aus gelben Buntstiften, frittiert",
+        "Aus Pastinaken"
+      ],
+      "erklaerung": "In Belgien gelten sie als Nationalgericht.",
+      "quelle": "https://de.wikipedia.org/wiki/Pommes_frites",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0020",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was ist ein „Berliner“ beim Bäcker?",
+      "antworten": [
+        "Ein mit Marmelade gefülltes Hefegebäck",
+        "Eine Currywurst im Brötchen",
+        "Ein Weißbier mit Schuss",
+        "Ein Doppelkorn"
+      ],
+      "erklaerung": "In Berlin selbst sagt man „Pfannkuchen“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Berliner%20%28Geb%C3%A4ck%29",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0003",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist echtes Wasabi?",
+      "antworten": [
+        "Die geriebene Wurzel einer japanischen Pflanze aus der Familie der Kreuzblütler",
+        "Grüner Senf aus gemahlenen Senfkörnern",
+        "Eine Paste aus fermentierten Algen",
+        "Grün gefärbter Meerrettich – und zwar immer"
+      ],
+      "erklaerung": "Beim Sushi außerhalb Japans bekommt man meist tatsächlich gefärbten Meerrettich.",
+      "quelle": "https://de.wikipedia.org/wiki/Wasabi",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -90,53 +362,36 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0027",
+      "id": "kueche-0008",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was sind Gnocchi?",
+      "stufe": "leicht",
+      "frage": "Was ist Sauerkraut?",
       "antworten": [
-        "Kleine Klößchen, meist aus Kartoffeln",
-        "Gefüllte Teigtaschen",
-        "Dünne Bandnudeln",
-        "Frittierte Reisbällchen"
+        "Fein geschnittener, milchsauer vergorener Weißkohl",
+        "In Essig eingelegter Rotkohl",
+        "Gekochter Spitzkohl mit Zitronensaft",
+        "Ein Kraut, das schlechte Laune hat"
       ],
-      "erklaerung": "Gefüllte Teigtaschen wären Ravioli, frittierte Reisbällchen Arancini.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gnocchi",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Die Milchsäurebakterien machen es sauer und haltbar.",
+      "quelle": "https://de.wikipedia.org/wiki/Sauerkraut",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0031",
+      "id": "kueche-0013",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was ist „Kimchi“?",
+      "stufe": "leicht",
+      "frage": "Was ist die Hauptzutat von Hummus?",
       "antworten": [
-        "Vergorenes, scharf gewürztes Gemüse aus Korea",
-        "Japanische Reisbällchen",
-        "Chinesische Teigtaschen",
-        "Thailändische Kokossuppe"
+        "Kichererbsen",
+        "Linsen",
+        "Erbsen",
+        "Pürierte Gummibärchen"
       ],
-      "erklaerung": "Meist wird Chinakohl mit Chili, Knoblauch und Ingwer fermentiert.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kimchi",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0021",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Aus welchem Getreide wird schottischer Single Malt Whisky hergestellt?",
-      "antworten": [
-        "Aus gemälzter Gerste",
-        "Aus Mais",
-        "Aus Roggen",
-        "Aus Reis"
-      ],
-      "erklaerung": "Bourbon aus den USA besteht dagegen überwiegend aus Mais.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Single%20Malt%20Whisky",
+      "erklaerung": "Dazu kommen Sesampaste (Tahini), Zitrone und Knoblauch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hummus",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -158,125 +413,6 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0010",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Wie nennt man in Italien Nudeln, die bissfest gekocht sind?",
-      "antworten": [
-        "Al dente",
-        "Al forno",
-        "Al fresco",
-        "Al Pacino"
-      ],
-      "erklaerung": "Wörtlich „für den Zahn“. Al forno heißt „aus dem Ofen“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=al+dente",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0004",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Welches Gewürz ist, gemessen am Gewicht, das teuerste der Welt?",
-      "antworten": [
-        "Safran, die getrockneten Blütennarben eines Krokus",
-        "Vanille, die fermentierten Schoten einer Orchidee",
-        "Kardamom, die Samenkapseln einer Ingwerpflanze",
-        "Muskatblüte, die Samenhülle der Muskatnuss"
-      ],
-      "erklaerung": "Für 1 kg Safran braucht man über 100.000 handgepflückte Blüten.",
-      "quelle": "https://de.wikipedia.org/wiki/Safran",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0012",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was bedeutet der Name des Gerichts „Saltimbocca“ wörtlich?",
-      "antworten": [
-        "„Spring in den Mund“",
-        "„Salz in die Backe“",
-        "„Kleiner Sprung“",
-        "„Fleisch im Mantel“"
-      ],
-      "erklaerung": "Kalbsschnitzel mit Salbei und Schinken – so gut, dass es in den Mund springt.",
-      "quelle": "https://de.wikipedia.org/wiki/Saltimbocca",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0016",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welche Nuss ist die Grundlage von Marzipan?",
-      "antworten": [
-        "Mandeln",
-        "Haselnüsse",
-        "Walnüsse",
-        "Erdnüsse"
-      ],
-      "erklaerung": "Mit Aprikosenkernen statt Mandeln heißt es Persipan.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Marzipan",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0029",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus wird Popcorn gemacht?",
-      "antworten": [
-        "Aus Mais",
-        "Aus Reis",
-        "Aus Weizen",
-        "Aus Hirse"
-      ],
-      "erklaerung": "Das Wasser im Korn verdampft beim Erhitzen und lässt es aufplatzen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Popcorn",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0003",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist echtes Wasabi?",
-      "antworten": [
-        "Die geriebene Wurzel einer japanischen Pflanze aus der Familie der Kreuzblütler",
-        "Grüner Senf aus gemahlenen Senfkörnern",
-        "Eine Paste aus fermentierten Algen",
-        "Grün gefärbter Meerrettich – und zwar immer"
-      ],
-      "erklaerung": "Beim Sushi außerhalb Japans bekommt man meist tatsächlich gefärbten Meerrettich.",
-      "quelle": "https://de.wikipedia.org/wiki/Wasabi",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0005",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus werden Pommes frites gemacht?",
-      "antworten": [
-        "Aus Kartoffeln",
-        "Aus Maisgrieß in Stangenform",
-        "Aus gelben Buntstiften, frittiert",
-        "Aus Pastinaken"
-      ],
-      "erklaerung": "In Belgien gelten sie als Nationalgericht.",
-      "quelle": "https://de.wikipedia.org/wiki/Pommes_frites",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
       "id": "kueche-0001",
       "version": 1,
       "kategorie": "Küche & Genuss",
@@ -290,108 +426,6 @@
       ],
       "erklaerung": "Dazu kommen Limette, Zwiebel, Salz und oft Chili.",
       "quelle": "https://de.wikipedia.org/wiki/Guacamole",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0023",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus wird Tofu hergestellt?",
-      "antworten": [
-        "Aus Sojabohnen",
-        "Aus Reis",
-        "Aus Kichererbsen",
-        "Aus Kokosmilch"
-      ],
-      "erklaerung": "Sojamilch wird gerinnen gelassen und gepresst – ähnlich wie Käse.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tofu",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0007",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Woraus wird echter „Mozzarella di Bufala“ hergestellt?",
-      "antworten": [
-        "Aus Büffelmilch",
-        "Aus Kuhmilch mit Büffelgras-Aroma",
-        "Aus Schafsmilch aus Sardinien",
-        "Aus Sojamilch aus Kampanien"
-      ],
-      "erklaerung": "Er stammt traditionell aus Kampanien.",
-      "quelle": "https://de.wikipedia.org/wiki/Mozzarella",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0006",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Nach wem wurde die Pizza Margherita der Überlieferung nach benannt?",
-      "antworten": [
-        "Nach Königin Margherita von Italien",
-        "Nach der Tochter des ersten Pizzabäckers",
-        "Nach einer neapolitanischen Gänseblümchensorte",
-        "Nach Margarete Steiff"
-      ],
-      "erklaerung": "Ein neapolitanischer Pizzabäcker soll sie 1889 für die Königin gebacken haben – in den Farben Italiens.",
-      "quelle": "https://de.wikipedia.org/wiki/Pizza_Margherita",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0008",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist Sauerkraut?",
-      "antworten": [
-        "Fein geschnittener, milchsauer vergorener Weißkohl",
-        "In Essig eingelegter Rotkohl",
-        "Gekochter Spitzkohl mit Zitronensaft",
-        "Ein Kraut, das schlechte Laune hat"
-      ],
-      "erklaerung": "Die Milchsäurebakterien machen es sauer und haltbar.",
-      "quelle": "https://de.wikipedia.org/wiki/Sauerkraut",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0026",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Aus welchem Land stammt die Paella?",
-      "antworten": [
-        "Spanien",
-        "Italien",
-        "Portugal",
-        "Mexiko"
-      ],
-      "erklaerung": "Ihre Heimat ist die Gegend um Valencia.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Paella",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0009",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welches Land produziert den meisten Kaffee der Welt?",
-      "antworten": [
-        "Brasilien",
-        "Kolumbien",
-        "Äthiopien",
-        "Vietnam"
-      ],
-      "erklaerung": "Vietnam folgt auf Platz zwei.",
-      "quelle": "https://de.wikipedia.org/wiki/Kaffee",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -413,122 +447,139 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0011",
+      "id": "kueche-0006",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Aus welcher Pflanze wird Tequila hergestellt?",
+      "stufe": "mittel",
+      "frage": "Nach wem wurde die Pizza Margherita der Überlieferung nach benannt?",
       "antworten": [
-        "Aus der Blauen Agave",
-        "Aus Kaktusfeigen",
-        "Aus Zuckerrohr",
-        "Aus Mais"
+        "Nach Königin Margherita von Italien",
+        "Nach der Tochter des ersten Pizzabäckers",
+        "Nach einer neapolitanischen Gänseblümchensorte",
+        "Nach Margarete Steiff"
       ],
-      "erklaerung": "Die Agave ist kein Kaktus – ein häufiger Irrtum.",
-      "quelle": "https://de.wikipedia.org/wiki/Tequila",
+      "erklaerung": "Ein neapolitanischer Pizzabäcker soll sie 1889 für die Königin gebacken haben – in den Farben Italiens.",
+      "quelle": "https://de.wikipedia.org/wiki/Pizza_Margherita",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0017",
+      "id": "kueche-0034",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "schwer",
-      "frage": "In welcher Stadt wurde der Aperitif „Aperol“ 1919 erfunden?",
+      "frage": "Welche Kerntemperatur hat ein Rinderfilet bei der Garstufe „medium“ (rosa)?",
       "antworten": [
-        "Padua",
-        "Venedig",
-        "Mailand",
-        "Turin"
+        "Etwa 55 °C",
+        "Etwa 40 °C",
+        "Etwa 70 °C",
+        "Etwa 85 °C"
       ],
-      "erklaerung": "Die Brüder Barbieri stellten ihn auf einer Messe in Padua vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aperol",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Rare liegt bei etwa 48 °C, well done bei etwa 65 °C und darüber.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Garstufe",
+      "erstellt": "2026-10-19",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0020",
+      "id": "kueche-0015",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "leicht",
-      "frage": "Was ist ein „Berliner“ beim Bäcker?",
+      "frage": "Was ist „Ratatouille“?",
       "antworten": [
-        "Ein mit Marmelade gefülltes Hefegebäck",
-        "Eine Currywurst im Brötchen",
-        "Ein Weißbier mit Schuss",
-        "Ein Doppelkorn"
+        "Ein französisches Schmorgericht aus Gemüse",
+        "Ein Käse aus der Provence",
+        "Ein Nachtisch im Rattankorb",
+        "Ein Fischeintopf aus Marseille"
       ],
-      "erklaerung": "In Berlin selbst sagt man „Pfannkuchen“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Berliner%20%28Geb%C3%A4ck%29",
+      "erklaerung": "Der Fischeintopf aus Marseille heißt Bouillabaisse.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ratatouille",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0028",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Welche ist die meistangebaute Weißweinrebsorte in Deutschland?",
-      "antworten": [
-        "Riesling",
-        "Müller-Thurgau",
-        "Silvaner",
-        "Grauburgunder"
-      ],
-      "erklaerung": "Deutschland hat die größte Riesling-Anbaufläche der Welt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Riesling",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0013",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist die Hauptzutat von Hummus?",
-      "antworten": [
-        "Kichererbsen",
-        "Linsen",
-        "Erbsen",
-        "Pürierte Gummibärchen"
-      ],
-      "erklaerung": "Dazu kommen Sesampaste (Tahini), Zitrone und Knoblauch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hummus",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0025",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was ist „Tahini“?",
-      "antworten": [
-        "Eine Paste aus Sesam",
-        "Ein Joghurtdip mit Gurke",
-        "Ein Gewürz aus Sumach",
-        "Eine Paste aus Kichererbsen"
-      ],
-      "erklaerung": "Tahini gehört in jeden Hummus – die Kichererbsenpaste ist der Hummus selbst.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tahini",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0030",
+      "id": "kueche-0002",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "mittel",
-      "frage": "Aus welchem Land stammt der Feta-Käse?",
+      "frage": "Aus welchem Land stammt das Gulasch ursprünglich?",
       "antworten": [
-        "Griechenland",
-        "Bulgarien",
-        "Türkei",
-        "Italien"
+        "Aus Ungarn, als Eintopf der Rinderhirten",
+        "Aus Österreich, als Wiener Kaffeehausgericht",
+        "Aus Mexiko, als Variante von Chili con Carne",
+        "Aus Schweden, als Beilage zu Köttbullar"
       ],
-      "erklaerung": "Echter Feta ist seit 2002 eine geschützte Ursprungsbezeichnung aus Griechenland.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Feta",
+      "erklaerung": "„Gulyás“ bedeutet auf Ungarisch „Rinderhirt“.",
+      "quelle": "https://de.wikipedia.org/wiki/Gulasch",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0026",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Aus welchem Land stammt die Paella?",
+      "antworten": [
+        "Spanien",
+        "Italien",
+        "Portugal",
+        "Mexiko"
+      ],
+      "erklaerung": "Ihre Heimat ist die Gegend um Valencia.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Paella",
       "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0004",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Welches Gewürz ist, gemessen am Gewicht, das teuerste der Welt?",
+      "antworten": [
+        "Safran, die getrockneten Blütennarben eines Krokus",
+        "Vanille, die fermentierten Schoten einer Orchidee",
+        "Kardamom, die Samenkapseln einer Ingwerpflanze",
+        "Muskatblüte, die Samenhülle der Muskatnuss"
+      ],
+      "erklaerung": "Für 1 kg Safran braucht man über 100.000 handgepflückte Blüten.",
+      "quelle": "https://de.wikipedia.org/wiki/Safran",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0009",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welches Land produziert den meisten Kaffee der Welt?",
+      "antworten": [
+        "Brasilien",
+        "Kolumbien",
+        "Äthiopien",
+        "Vietnam"
+      ],
+      "erklaerung": "Vietnam folgt auf Platz zwei.",
+      "quelle": "https://de.wikipedia.org/wiki/Kaffee",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0033",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist die Hauptzutat von „Pesto alla genovese“?",
+      "antworten": [
+        "Basilikum",
+        "Petersilie",
+        "Rucola",
+        "Spinat"
+      ],
+      "erklaerung": "Dazu kommen Pinienkerne, Knoblauch, Parmesan oder Pecorino und Olivenöl.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pesto",
+      "erstellt": "2026-10-19",
       "gueltigBis": null
     }
   ]

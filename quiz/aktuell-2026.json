@@ -1,160 +1,24 @@
 {
   "paket": "aktuell-2026",
   "titel": "Aktuelles 2026",
-  "version": 5,
+  "version": 6,
   "hinweis": "Fragen zu Ereignissen des Jahres 2026 (Stand 13.10.2026), recherchiert per Websuche; laufen Ende 2027 ab.",
   "fragen": [
     {
-      "id": "akt26-0001",
+      "id": "akt26-0005",
       "version": 1,
       "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welche Nation wurde 2026 Fußball-Weltmeister?",
+      "stufe": "mittel",
+      "frage": "Gegen wen verlor Deutschland das Finale der Handball-EM 2026?",
       "antworten": [
-        "Spanien",
-        "Argentinien",
+        "Dänemark",
+        "Schweden",
         "Frankreich",
-        "San Marino, dank eines Fehlers im Videobeweis"
+        "Island"
       ],
-      "erklaerung": "Spanien schlug Argentinien im Finale am 19. Juli 2026 mit 1:0 nach Verlängerung – der zweite WM-Titel nach 2010.",
-      "quelle": "https://www.npr.org/2026/07/19/nx-s1-5899071/2026-world-cup-fifa-argentina-spain-final-championship",
+      "erklaerung": "27:34 in Herning – Silber für das Team von Alfred Gíslason.",
+      "quelle": "https://www.sportschau.de/handball/em/deutschland-unterliegt-daenemarks-handball-koenigen,bericht-ger-dae-104.html",
       "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0011",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Die Deutschen Peter Hegemann und Georg Nagel erhielten 2026 den Medizin-Nobelpreis – wofür?",
-      "antworten": [
-        "Für die Optogenetik: Nervenzellen mit Licht steuern",
-        "Für mRNA-Impfstoffe",
-        "Für die Genschere CRISPR",
-        "Für künstliche Organe aus dem 3D-Drucker"
-      ],
-      "erklaerung": "Zusammen mit Karl Deisseroth. mRNA wurde 2023 ausgezeichnet, CRISPR 2020 (Chemie).",
-      "quelle": "https://newstime.joyn.de/themen/panorama/nobelpreistraeger2026-frieden-medizin-chemie-physik-wirtschaft-literatur-196616",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0020",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Welcher Begriff wurde zum „Wort des Jahres 2025“ gewählt?",
-      "antworten": [
-        "„KI-Ära“",
-        "„Deal“",
-        "„Sondervermögen“",
-        "„Ampel-Aus“"
-      ],
-      "erklaerung": "„Deal“ kam auf Platz 2, „Sondervermögen“ auf Platz 4. „Ampel-Aus“ war das Wort des Jahres 2024.",
-      "quelle": "https://www.zdfheute.de/politik/deutschland/wort-des-jahres-2025-sprache-100.html",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0016",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer gewann die Champions League 2026?",
-      "antworten": [
-        "Paris Saint-Germain",
-        "Der FC Arsenal",
-        "Real Madrid",
-        "Der FC Bayern München"
-      ],
-      "erklaerung": "PSG schlug Arsenal in Budapest im Elfmeterschießen (1:1 n. V.) und verteidigte den Titel.",
-      "quelle": "https://www.sportschau.de/fussball/championsleague/jubel-nach-elfmeterschiessen-psg-verteidigt-titel-gegen-arsenal,spielbericht-finale-paris-saint-germain-arsenal-100.html",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0008",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Mit welcher Mission flogen im April 2026 erstmals seit über 50 Jahren wieder Menschen zum Mond?",
-      "antworten": [
-        "Artemis II",
-        "Apollo 18",
-        "Gateway I",
-        "Chang’e 7"
-      ],
-      "erklaerung": "Vier Astronauten umrundeten den Mond in der Orion-Kapsel, ohne zu landen (1.–11. April 2026).",
-      "quelle": "https://www.nasa.gov/mission/artemis-ii/",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0024",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welcher deutsche Autohersteller startete im März 2026 erstmals mit eigenem Werksteam in der Formel 1?",
-      "antworten": [
-        "Audi",
-        "BMW",
-        "Porsche",
-        "Volkswagen"
-      ],
-      "erklaerung": "Audi übernahm dafür das Schweizer Sauber-Team; Debüt war in Melbourne mit Nico Hülkenberg und Gabriel Bortoleto.",
-      "quelle": "https://www.auto-motor-und-sport.de/formel-1/audi-f1-debuet-melbourne/",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0006",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wo fanden die Olympischen Winterspiele 2026 statt?",
-      "antworten": [
-        "In Mailand und Cortina d’Ampezzo",
-        "In Garmisch-Partenkirchen",
-        "In Salt Lake City",
-        "Im Kühlregal eines sehr großen Supermarkts"
-      ],
-      "erklaerung": "Vom 6. bis 22. Februar 2026 in Italien.",
-      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0002",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer erzielte das einzige Tor im WM-Finale 2026?",
-      "antworten": [
-        "Ferran Torres",
-        "Lamine Yamal",
-        "Lionel Messi",
-        "Nico Williams"
-      ],
-      "erklaerung": "Nico Williams legte per Kopf auf, Ferran Torres traf und wurde Spieler des Spiels.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_final",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0025",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Aus welchen Ländern kommen die Chemie-Nobelpreisträger 2026?",
-      "antworten": [
-        "Frankreich und Japan",
-        "Deutschland und USA",
-        "Schweden und Kanada",
-        "Großbritannien und China"
-      ],
-      "erklaerung": "Henri Kagan und Kenso Soai – für Entdeckungen zur asymmetrischen Synthese: warum Moleküle in Lebewesen nur in einer Spiegelform vorkommen.",
-      "quelle": "https://www.news.at/technik/chemie-nobelpreis-2026-an-forscher-aus-frankreich-und-japan",
-      "erstellt": "2026-10-16",
       "gueltigBis": "2027-12-31"
     },
     {
@@ -175,37 +39,54 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0003",
+      "id": "akt26-0018",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "mittel",
-      "frage": "Welcher Film gewann bei den Oscars 2026 den Preis als „Bester Film“?",
+      "frage": "Wen besiegte Jannik Sinner im Wimbledon-Finale 2026?",
       "antworten": [
-        "„One Battle After Another“ von Paul Thomas Anderson",
-        "„Blood & Sinners“",
-        "„Hamnet“",
-        "„KPop Demon Hunters“"
+        "Alexander Zverev",
+        "Carlos Alcaraz",
+        "Novak Djokovic",
+        "Daniil Medwedew"
       ],
-      "erklaerung": "Sechs Oscars, auch für die Regie. „Blood & Sinners“ ging mit 16 Nominierungen ins Rennen, „KPop Demon Hunters“ wurde bester Animationsfilm.",
-      "quelle": "https://www.aljazeera.com/news/2026/3/16/oscars-2026-full-list-of-winners",
+      "erklaerung": "In vier Sätzen – Sinners zweiter Wimbledon-Titel in Folge. Bei den Damen gewann Linda Nosková.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Wimbledon_Championships",
       "erstellt": "2026-10-13",
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0022",
+      "id": "akt26-0004",
       "version": 1,
       "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Welches Team gewann im Februar 2026 den Super Bowl LX?",
+      "stufe": "leicht",
+      "frage": "Welches Land gewann den Eurovision Song Contest 2026 in Wien?",
       "antworten": [
-        "Die Seattle Seahawks",
-        "Die New England Patriots",
-        "Die Kansas City Chiefs",
-        "Die Philadelphia Eagles"
+        "Bulgarien mit „Bangaranga“",
+        "Israel",
+        "Rumänien",
+        "Österreich – der Gastgeber gewinnt schließlich immer"
       ],
-      "erklaerung": "29:13 gegen die New England Patriots in Santa Clara; wertvollster Spieler wurde Kenneth Walker III.",
-      "quelle": "https://www.nbcchicago.com/super-bowl/recap-seahawks-defense-patriots-maye/",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Dara holte 516 Punkte und gewann Jury- und Publikumswertung – Bulgariens erster ESC-Sieg. 2027 ist Bulgarien Gastgeber.",
+      "quelle": "https://en.wikipedia.org/wiki/Eurovision_Song_Contest_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0001",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welche Nation wurde 2026 Fußball-Weltmeister?",
+      "antworten": [
+        "Spanien",
+        "Argentinien",
+        "Frankreich",
+        "San Marino, dank eines Fehlers im Videobeweis"
+      ],
+      "erklaerung": "Spanien schlug Argentinien im Finale am 19. Juli 2026 mit 1:0 nach Verlängerung – der zweite WM-Titel nach 2010.",
+      "quelle": "https://www.npr.org/2026/07/19/nx-s1-5899071/2026-world-cup-fifa-argentina-spain-final-championship",
+      "erstellt": "2026-10-13",
       "gueltigBis": "2027-12-31"
     },
     {
@@ -226,189 +107,19 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0010",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wofür gab es den Physik-Nobelpreis 2026?",
-      "antworten": [
-        "Für die Entdeckung hochenergetischer Neutrinos aus dem All",
-        "Für den ersten fehlerfreien Quantencomputer",
-        "Für den Nachweis Dunkler Materie",
-        "Für den Nachweis von Gravitationswellen"
-      ],
-      "erklaerung": "Francis Halzen wurde für das IceCube-Observatorium im antarktischen Eis geehrt. Gravitationswellen waren 2017 dran.",
-      "quelle": "https://www.spektrum.de/news/physik-nobelpreis-2026-fuer-forschung-zu-hochenergetischen-neutrinos/2343916",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0007",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Auf welchem Platz landete Deutschland im Medaillenspiegel der Winterspiele 2026?",
-      "antworten": [
-        "Platz 5",
-        "Platz 1",
-        "Platz 2",
-        "Platz 12"
-      ],
-      "erklaerung": "8 Gold, 10 Silber, 8 Bronze. 2022 in Peking war es noch Platz 2.",
-      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0015",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Gegen wen gewann der FC Bayern das DFB-Pokalfinale 2026 mit 3:0?",
-      "antworten": [
-        "Gegen den VfB Stuttgart",
-        "Gegen Bayer Leverkusen",
-        "Gegen Borussia Dortmund",
-        "Gegen Arminia Bielefeld"
-      ],
-      "erklaerung": "Harry Kane traf dreimal – Bayerns 21. Pokalsieg, der erste seit 2020.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_DFB-Pokal_final",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0017",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer gewann die Tour de France 2026?",
-      "antworten": [
-        "Tadej Pogačar",
-        "Jonas Vingegaard",
-        "Remco Evenepoel",
-        "Primož Roglič"
-      ],
-      "erklaerung": "Sein fünfter Tour-Sieg. Evenepoel wurde Zweiter, Isaac del Toro Dritter.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Tour_de_France",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0005",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Gegen wen verlor Deutschland das Finale der Handball-EM 2026?",
-      "antworten": [
-        "Dänemark",
-        "Schweden",
-        "Frankreich",
-        "Island"
-      ],
-      "erklaerung": "27:34 in Herning – Silber für das Team von Alfred Gíslason.",
-      "quelle": "https://www.sportschau.de/handball/em/deutschland-unterliegt-daenemarks-handball-koenigen,bericht-ger-dae-104.html",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0021",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer wurde im Mai 2026 Ministerpräsident von Baden-Württemberg?",
-      "antworten": [
-        "Cem Özdemir",
-        "Manuel Hagel",
-        "Winfried Kretschmann",
-        "Boris Palmer"
-      ],
-      "erklaerung": "Er folgte auf Winfried Kretschmann, der nach 15 Jahren nicht mehr antrat. Bei der Landtagswahl im März lagen die Grünen knapp vor der CDU.",
-      "quelle": "https://www.baden-wuerttemberg.de/de/service/alle-meldungen/meldung/pid/cem-oezdemir-ist-neuer-ministerpraesident",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0028",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer wurde im Januar 2026 erneut Darts-Weltmeister?",
-      "antworten": [
-        "Luke Littler",
-        "Michael van Gerwen",
-        "Gian van Veen",
-        "Luke Humphries"
-      ],
-      "erklaerung": "Er gewann das Finale im Londoner Ally Pally mit 7:1 gegen Gian van Veen.",
-      "quelle": "https://ran.joyn.de/sports/darts/darts-wm/darts-wm-finale2026-luke-littler-schlaegt-gian-van-veen-tv-uebertragung-gratis-stream-und-liveticker-75125",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0023",
+      "id": "akt26-0002",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "schwer",
-      "frage": "Gegen wen gewann Carlos Alcaraz das Finale der Australian Open 2026?",
+      "frage": "Wer erzielte das einzige Tor im WM-Finale 2026?",
       "antworten": [
-        "Novak Djokovic",
-        "Jannik Sinner",
-        "Alexander Zverev",
-        "Daniil Medwedew"
+        "Ferran Torres",
+        "Lamine Yamal",
+        "Lionel Messi",
+        "Nico Williams"
       ],
-      "erklaerung": "Mit seinem ersten Titel in Melbourne hat Alcaraz alle vier Grand-Slam-Turniere gewonnen. Bei den Frauen siegte Elena Rybakina.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Australian_Open_%E2%80%93_Men%27s_singles",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0012",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer erhielt den Friedensnobelpreis 2026?",
-      "antworten": [
-        "Navi Pillay, frühere UN-Menschenrechtskommissarin",
-        "Greta Thunberg",
-        "Wolodymyr Selenskyj",
-        "Ban Ki-moon"
-      ],
-      "erklaerung": "Die südafrikanische Juristin wurde für ihren Einsatz für Frieden und Völkerrecht geehrt.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Nobel_Peace_Prize",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0014",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer wurde Deutscher Fußballmeister 2025/26?",
-      "antworten": [
-        "FC Bayern München",
-        "Borussia Dortmund",
-        "RB Leipzig",
-        "Der Hamburger SV, nach einer kleinen Pause"
-      ],
-      "erklaerung": "Mit 89 Punkten, 16 vor Dortmund – dazu kam der DFB-Pokal.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Bundesliga+2025%2F26",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0013",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer erhielt den Literaturnobelpreis 2026?",
-      "antworten": [
-        "Die kanadische Dichterin Anne Carson",
-        "Haruki Murakami",
-        "Margaret Atwood",
-        "Salman Rushdie"
-      ],
-      "erklaerung": "Die Schwedische Akademie würdigte ihr kühnes und erfinderisches Werk.",
-      "quelle": "https://www.nobelprize.org/prizes/literature/2026/summary/",
+      "erklaerung": "Nico Williams legte per Kopf auf, Ferran Torres traf und wurde Spieler des Spiels.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_final",
       "erstellt": "2026-10-13",
       "gueltigBis": "2027-12-31"
     },
@@ -430,19 +141,257 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0004",
+      "id": "akt26-0010",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wofür gab es den Physik-Nobelpreis 2026?",
+      "antworten": [
+        "Für die Entdeckung hochenergetischer Neutrinos aus dem All",
+        "Für den ersten fehlerfreien Quantencomputer",
+        "Für den Nachweis Dunkler Materie",
+        "Für den Nachweis von Gravitationswellen"
+      ],
+      "erklaerung": "Francis Halzen wurde für das IceCube-Observatorium im antarktischen Eis geehrt. Gravitationswellen waren 2017 dran.",
+      "quelle": "https://www.spektrum.de/news/physik-nobelpreis-2026-fuer-forschung-zu-hochenergetischen-neutrinos/2343916",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0003",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welcher Film gewann bei den Oscars 2026 den Preis als „Bester Film“?",
+      "antworten": [
+        "„One Battle After Another“ von Paul Thomas Anderson",
+        "„Blood & Sinners“",
+        "„Hamnet“",
+        "„KPop Demon Hunters“"
+      ],
+      "erklaerung": "Sechs Oscars, auch für die Regie. „Blood & Sinners“ ging mit 16 Nominierungen ins Rennen, „KPop Demon Hunters“ wurde bester Animationsfilm.",
+      "quelle": "https://www.aljazeera.com/news/2026/3/16/oscars-2026-full-list-of-winners",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0008",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Mit welcher Mission flogen im April 2026 erstmals seit über 50 Jahren wieder Menschen zum Mond?",
+      "antworten": [
+        "Artemis II",
+        "Apollo 18",
+        "Gateway I",
+        "Chang’e 7"
+      ],
+      "erklaerung": "Vier Astronauten umrundeten den Mond in der Orion-Kapsel, ohne zu landen (1.–11. April 2026).",
+      "quelle": "https://www.nasa.gov/mission/artemis-ii/",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0025",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Aus welchen Ländern kommen die Chemie-Nobelpreisträger 2026?",
+      "antworten": [
+        "Frankreich und Japan",
+        "Deutschland und USA",
+        "Schweden und Kanada",
+        "Großbritannien und China"
+      ],
+      "erklaerung": "Henri Kagan und Kenso Soai – für Entdeckungen zur asymmetrischen Synthese: warum Moleküle in Lebewesen nur in einer Spiegelform vorkommen.",
+      "quelle": "https://www.news.at/technik/chemie-nobelpreis-2026-an-forscher-aus-frankreich-und-japan",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0014",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "leicht",
-      "frage": "Welches Land gewann den Eurovision Song Contest 2026 in Wien?",
+      "frage": "Wer wurde Deutscher Fußballmeister 2025/26?",
       "antworten": [
-        "Bulgarien mit „Bangaranga“",
-        "Israel",
-        "Rumänien",
-        "Österreich – der Gastgeber gewinnt schließlich immer"
+        "FC Bayern München",
+        "Borussia Dortmund",
+        "RB Leipzig",
+        "Der Hamburger SV, nach einer kleinen Pause"
       ],
-      "erklaerung": "Dara holte 516 Punkte und gewann Jury- und Publikumswertung – Bulgariens erster ESC-Sieg. 2027 ist Bulgarien Gastgeber.",
-      "quelle": "https://en.wikipedia.org/wiki/Eurovision_Song_Contest_2026",
+      "erklaerung": "Mit 89 Punkten, 16 vor Dortmund – dazu kam der DFB-Pokal.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Bundesliga+2025%2F26",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0007",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Auf welchem Platz landete Deutschland im Medaillenspiegel der Winterspiele 2026?",
+      "antworten": [
+        "Platz 5",
+        "Platz 1",
+        "Platz 2",
+        "Platz 12"
+      ],
+      "erklaerung": "8 Gold, 10 Silber, 8 Bronze. 2022 in Peking war es noch Platz 2.",
+      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0024",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welcher deutsche Autohersteller startete im März 2026 erstmals mit eigenem Werksteam in der Formel 1?",
+      "antworten": [
+        "Audi",
+        "BMW",
+        "Porsche",
+        "Volkswagen"
+      ],
+      "erklaerung": "Audi übernahm dafür das Schweizer Sauber-Team; Debüt war in Melbourne mit Nico Hülkenberg und Gabriel Bortoleto.",
+      "quelle": "https://www.auto-motor-und-sport.de/formel-1/audi-f1-debuet-melbourne/",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0031",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wen besiegte Alexander Zverev im Finale der US Open 2026?",
+      "antworten": [
+        "Ben Shelton",
+        "Jannik Sinner",
+        "Carlos Alcaraz",
+        "Taylor Fritz"
+      ],
+      "erklaerung": "Mit 6:3, 7:6, 5:7, 6:2 holte er im September seinen zweiten Grand-Slam-Titel.",
+      "quelle": "https://www.aljazeera.com/amp/sports/liveblog/2026/9/13/us-open-mens-singles-final-live-alexander-zverev-vs-ben-shelton",
+      "erstellt": "2026-10-19",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0015",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Gegen wen gewann der FC Bayern das DFB-Pokalfinale 2026 mit 3:0?",
+      "antworten": [
+        "Gegen den VfB Stuttgart",
+        "Gegen Bayer Leverkusen",
+        "Gegen Borussia Dortmund",
+        "Gegen Arminia Bielefeld"
+      ],
+      "erklaerung": "Harry Kane traf dreimal – Bayerns 21. Pokalsieg, der erste seit 2020.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_DFB-Pokal_final",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0006",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wo fanden die Olympischen Winterspiele 2026 statt?",
+      "antworten": [
+        "In Mailand und Cortina d’Ampezzo",
+        "In Garmisch-Partenkirchen",
+        "In Salt Lake City",
+        "Im Kühlregal eines sehr großen Supermarkts"
+      ],
+      "erklaerung": "Vom 6. bis 22. Februar 2026 in Italien.",
+      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0032",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer gewann 2026 die US Open der Damen?",
+      "antworten": [
+        "Elena Rybakina",
+        "Aryna Sabalenka",
+        "Coco Gauff",
+        "Mirra Andreeva"
+      ],
+      "erklaerung": "Sie schlug die Titelverteidigerin Sabalenka im Finale mit 6:4, 5:7, 6:2.",
+      "quelle": "https://tennistourcalendar.com/elena-rybakina-us-open/",
+      "erstellt": "2026-10-19",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0020",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welcher Begriff wurde zum „Wort des Jahres 2025“ gewählt?",
+      "antworten": [
+        "„KI-Ära“",
+        "„Deal“",
+        "„Sondervermögen“",
+        "„Ampel-Aus“"
+      ],
+      "erklaerung": "„Deal“ kam auf Platz 2, „Sondervermögen“ auf Platz 4. „Ampel-Aus“ war das Wort des Jahres 2024.",
+      "quelle": "https://www.zdfheute.de/politik/deutschland/wort-des-jahres-2025-sprache-100.html",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0013",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erhielt den Literaturnobelpreis 2026?",
+      "antworten": [
+        "Die kanadische Dichterin Anne Carson",
+        "Haruki Murakami",
+        "Margaret Atwood",
+        "Salman Rushdie"
+      ],
+      "erklaerung": "Die Schwedische Akademie würdigte ihr kühnes und erfinderisches Werk.",
+      "quelle": "https://www.nobelprize.org/prizes/literature/2026/summary/",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0021",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wer wurde im Mai 2026 Ministerpräsident von Baden-Württemberg?",
+      "antworten": [
+        "Cem Özdemir",
+        "Manuel Hagel",
+        "Winfried Kretschmann",
+        "Boris Palmer"
+      ],
+      "erklaerung": "Er folgte auf Winfried Kretschmann, der nach 15 Jahren nicht mehr antrat. Bei der Landtagswahl im März lagen die Grünen knapp vor der CDU.",
+      "quelle": "https://www.baden-wuerttemberg.de/de/service/alle-meldungen/meldung/pid/cem-oezdemir-ist-neuer-ministerpraesident",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0011",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Die Deutschen Peter Hegemann und Georg Nagel erhielten 2026 den Medizin-Nobelpreis – wofür?",
+      "antworten": [
+        "Für die Optogenetik: Nervenzellen mit Licht steuern",
+        "Für mRNA-Impfstoffe",
+        "Für die Genschere CRISPR",
+        "Für künstliche Organe aus dem 3D-Drucker"
+      ],
+      "erklaerung": "Zusammen mit Karl Deisseroth. mRNA wurde 2023 ausgezeichnet, CRISPR 2020 (Chemie).",
+      "quelle": "https://newstime.joyn.de/themen/panorama/nobelpreistraeger2026-frieden-medizin-chemie-physik-wirtschaft-literatur-196616",
       "erstellt": "2026-10-13",
       "gueltigBis": "2027-12-31"
     },
@@ -481,20 +430,122 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0018",
+      "id": "akt26-0016",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "mittel",
-      "frage": "Wen besiegte Jannik Sinner im Wimbledon-Finale 2026?",
+      "frage": "Wer gewann die Champions League 2026?",
       "antworten": [
-        "Alexander Zverev",
-        "Carlos Alcaraz",
+        "Paris Saint-Germain",
+        "Der FC Arsenal",
+        "Real Madrid",
+        "Der FC Bayern München"
+      ],
+      "erklaerung": "PSG schlug Arsenal in Budapest im Elfmeterschießen (1:1 n. V.) und verteidigte den Titel.",
+      "quelle": "https://www.sportschau.de/fussball/championsleague/jubel-nach-elfmeterschiessen-psg-verteidigt-titel-gegen-arsenal,spielbericht-finale-paris-saint-germain-arsenal-100.html",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0030",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt fand im September 2026 die Basketball-WM der Frauen statt?",
+      "antworten": [
+        "Berlin",
+        "Paris",
+        "Madrid",
+        "Belgrad"
+      ],
+      "erklaerung": "Weltmeister wurden die USA mit 97:79 gegen Frankreich, Deutschland wurde Vierter.",
+      "quelle": "https://www.fiba.basketball/en/news/usa-continue-dominance-with-12th-fiba-womens-basketball-world-cup-title",
+      "erstellt": "2026-10-19",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0022",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welches Team gewann im Februar 2026 den Super Bowl LX?",
+      "antworten": [
+        "Die Seattle Seahawks",
+        "Die New England Patriots",
+        "Die Kansas City Chiefs",
+        "Die Philadelphia Eagles"
+      ],
+      "erklaerung": "29:13 gegen die New England Patriots in Santa Clara; wertvollster Spieler wurde Kenneth Walker III.",
+      "quelle": "https://www.nbcchicago.com/super-bowl/recap-seahawks-defense-patriots-maye/",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0023",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Gegen wen gewann Carlos Alcaraz das Finale der Australian Open 2026?",
+      "antworten": [
         "Novak Djokovic",
+        "Jannik Sinner",
+        "Alexander Zverev",
         "Daniil Medwedew"
       ],
-      "erklaerung": "In vier Sätzen – Sinners zweiter Wimbledon-Titel in Folge. Bei den Damen gewann Linda Nosková.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Wimbledon_Championships",
+      "erklaerung": "Mit seinem ersten Titel in Melbourne hat Alcaraz alle vier Grand-Slam-Turniere gewonnen. Bei den Frauen siegte Elena Rybakina.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Australian_Open_%E2%80%93_Men%27s_singles",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0012",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erhielt den Friedensnobelpreis 2026?",
+      "antworten": [
+        "Navi Pillay, frühere UN-Menschenrechtskommissarin",
+        "Greta Thunberg",
+        "Wolodymyr Selenskyj",
+        "Ban Ki-moon"
+      ],
+      "erklaerung": "Die südafrikanische Juristin wurde für ihren Einsatz für Frieden und Völkerrecht geehrt.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Nobel_Peace_Prize",
       "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0017",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wer gewann die Tour de France 2026?",
+      "antworten": [
+        "Tadej Pogačar",
+        "Jonas Vingegaard",
+        "Remco Evenepoel",
+        "Primož Roglič"
+      ],
+      "erklaerung": "Sein fünfter Tour-Sieg. Evenepoel wurde Zweiter, Isaac del Toro Dritter.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Tour_de_France",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0028",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wer wurde im Januar 2026 erneut Darts-Weltmeister?",
+      "antworten": [
+        "Luke Littler",
+        "Michael van Gerwen",
+        "Gian van Veen",
+        "Luke Humphries"
+      ],
+      "erklaerung": "Er gewann das Finale im Londoner Ally Pally mit 7:1 gegen Gian van Veen.",
+      "quelle": "https://ran.joyn.de/sports/darts/darts-wm/darts-wm-finale2026-luke-littler-schlaegt-gian-van-veen-tv-uebertragung-gratis-stream-und-liveticker-75125",
+      "erstellt": "2026-10-16",
       "gueltigBis": "2027-12-31"
     }
   ]

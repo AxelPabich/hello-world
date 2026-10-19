@@ -1,278 +1,23 @@
 {
   "paket": "bueroalltag",
   "titel": "Büroalltag",
-  "version": 4,
+  "version": 5,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "buero-0011",
+      "id": "buero-0014",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Wie viele Urlaubstage stehen Vollzeitbeschäftigten mit Fünf-Tage-Woche gesetzlich mindestens zu?",
+      "frage": "Welche Firma brachte die Post-it-Haftnotizen auf den Markt?",
       "antworten": [
-        "20",
-        "24",
-        "25",
-        "30"
+        "3M",
+        "Tesa",
+        "Pelikan",
+        "Staples"
       ],
-      "erklaerung": "Das Gesetz nennt 24 Werktage – gerechnet mit Samstag. Bei fünf Arbeitstagen sind das 20.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bundesurlaubsgesetz",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0022",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wofür steht „Re:“ im Betreff einer E-Mail?",
-      "antworten": [
-        "Für eine Antwort auf eine vorherige Nachricht",
-        "Für „Rechnung“",
-        "Für „Rückruf erbeten“",
-        "Für „Rundschreiben“"
-      ],
-      "erklaerung": "Es kommt vom lateinischen „in re“ – in der Sache – und wird als Antwort-Kennzeichen genutzt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Re%20%28E-Mail%29",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0003",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie viele DIN-A4-Blätter ergeben zusammen ein DIN-A0-Blatt?",
-      "antworten": [
-        "16",
-        "4",
-        "8",
-        "32"
-      ],
-      "erklaerung": "Jede Stufe halbiert das Blatt: A0 hat genau einen Quadratmeter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0019",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „PDF“?",
-      "antworten": [
-        "Portable Document Format",
-        "Printed Document File",
-        "Public Data Folder",
-        "Perfekt druckfertig"
-      ],
-      "erklaerung": "Das Format soll auf jedem Gerät gleich aussehen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0020",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Welche Firma entwickelte das PDF-Format?",
-      "antworten": [
-        "Adobe",
-        "Microsoft",
-        "Apple",
-        "IBM"
-      ],
-      "erklaerung": "Adobe stellte es 1993 vor; seit 2008 ist es eine ISO-Norm.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0007",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welche Tastenkombination kopiert unter Windows einen markierten Text?",
-      "antworten": [
-        "Strg + C",
-        "Strg + V",
-        "Strg + X",
-        "Strg + K"
-      ],
-      "erklaerung": "Strg + V fügt ein, Strg + X schneidet aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kopieren%20und%20Einf%C3%BCgen",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0024",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Mit welchem Programm öffnet man typischerweise eine Datei mit der Endung „.docx“?",
-      "antworten": [
-        "Microsoft Word",
-        "Microsoft Excel",
-        "Adobe Photoshop",
-        "Windows Media Player"
-      ],
-      "erklaerung": "Excel-Tabellen enden auf „.xlsx“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Word",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0012",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Ab welcher Arbeitszeit am Tag ist eine Pause von mindestens 30 Minuten vorgeschrieben?",
-      "antworten": [
-        "Ab mehr als sechs Stunden",
-        "Ab vier Stunden",
-        "Ab acht Stunden",
-        "Erst ab zehn Stunden"
-      ],
-      "erklaerung": "Ab mehr als neun Stunden müssen es 45 Minuten sein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0015",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Mit welchem Wochentag beginnt nach der Norm ISO 8601 die Kalenderwoche?",
-      "antworten": [
-        "Montag",
-        "Sonntag",
-        "Samstag",
-        "Mit dem ersten Arbeitstag des Monats"
-      ],
-      "erklaerung": "In den USA beginnt die Woche im Kalender oft am Sonntag.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ISO%208601",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0025",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie heißt die in Deutschland übliche Tastaturbelegung nach den ersten Buchstaben oben links?",
-      "antworten": [
-        "QWERTZ",
-        "QWERTY",
-        "AZERTY",
-        "ABCDEF"
-      ],
-      "erklaerung": "Z und Y sind vertauscht, weil das Z im Deutschen viel häufiger ist; AZERTY gilt in Frankreich.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=QWERTZ",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0004",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie weit liegen die beiden Löcher eines normalen Bürolochers auseinander?",
-      "antworten": [
-        "80 mm",
-        "60 mm",
-        "70 mm",
-        "100 mm"
-      ],
-      "erklaerung": "Der Abstand ist genormt – deshalb passen alle Ordner.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Locher",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0018",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Was zeigt Excel an, wenn eine Spalte zu schmal für eine Zahl ist?",
-      "antworten": [
-        "Lauter Rauten: #####",
-        "#NV",
-        "#WERT!",
-        "Die Zahl in winziger Schrift"
-      ],
-      "erklaerung": "Spalte breiter ziehen – schon ist die Zahl wieder da.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0029",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie groß ist ein Briefumschlag im Format DIN lang?",
-      "antworten": [
-        "110 × 220 mm",
-        "114 × 162 mm",
-        "162 × 229 mm",
-        "125 × 176 mm"
-      ],
-      "erklaerung": "In ihn passt ein zweimal gefaltetes DIN-A4-Blatt; 114 × 162 mm ist C6.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Briefumschlag%20DIN%20lang",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0016",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Welche Woche ist nach ISO 8601 die erste Kalenderwoche des Jahres?",
-      "antworten": [
-        "Die Woche mit dem ersten Donnerstag des Jahres",
-        "Die Woche mit dem 1. Januar",
-        "Die erste vollständige Woche",
-        "Die Woche mit dem ersten Montag"
-      ],
-      "erklaerung": "Deshalb kann der 1. Januar noch in KW 52 oder 53 des Vorjahres liegen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Woche%20ISO%208601",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0028",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Mit welcher Tastenkombination wechselt man unter Windows zwischen offenen Fenstern?",
-      "antworten": [
-        "Alt + Tab",
-        "Strg + W",
-        "Alt + F4",
-        "Strg + Z"
-      ],
-      "erklaerung": "Alt + F4 schließt das Fenster, Strg + Z macht rückgängig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Alt%2BTab",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0010",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wofür steht „ppa.“ vor einer Unterschrift?",
-      "antworten": [
-        "Per procura – der Unterzeichner hat Prokura",
-        "Per Post an alle",
-        "Persönlich, privat, abgeheftet",
-        "Projektplan aktualisiert"
-      ],
-      "erklaerung": "Die Prokura ist eine weitreichende, im Handelsregister eingetragene Vollmacht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Prokura",
+      "erklaerung": "Der Klebstoff war eigentlich ein Fehlschlag: Er hielt zu schwach.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Post-it",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -294,23 +39,6 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0009",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Was bedeutet „i. A.“ vor einer Unterschrift?",
-      "antworten": [
-        "Im Auftrag",
-        "In Vertretung",
-        "Im Anhang",
-        "In Abwesenheit"
-      ],
-      "erklaerung": "„i. V.“ steht für in Vertretung und bedeutet mehr Vollmacht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Im%20Auftrag",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
       "id": "buero-0026",
       "version": 1,
       "kategorie": "Büroalltag",
@@ -325,6 +53,74 @@
       "erklaerung": "Er entwickelte sie in den 1870er-Jahren; die Firma Remington baute die Maschine.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Christopher%20Latham%20Sholes",
       "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0017",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wie heißt das Tabellenkalkulationsprogramm von Microsoft?",
+      "antworten": [
+        "Excel",
+        "Word",
+        "Outlook",
+        "PowerPoint"
+      ],
+      "erklaerung": "Die erste Version erschien 1985 – für den Macintosh.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0001",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welches Format hat ein normales Blatt Druckerpapier in Deutschland?",
+      "antworten": [
+        "DIN A4",
+        "DIN A3",
+        "DIN A5",
+        "Letter"
+      ],
+      "erklaerung": "Das US-Format Letter ist etwas breiter und kürzer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0022",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wofür steht „Re:“ im Betreff einer E-Mail?",
+      "antworten": [
+        "Für eine Antwort auf eine vorherige Nachricht",
+        "Für „Rechnung“",
+        "Für „Rückruf erbeten“",
+        "Für „Rundschreiben“"
+      ],
+      "erklaerung": "Es kommt vom lateinischen „in re“ – in der Sache – und wird als Antwort-Kennzeichen genutzt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Re%20%28E-Mail%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0019",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „PDF“?",
+      "antworten": [
+        "Portable Document Format",
+        "Printed Document File",
+        "Public Data Folder",
+        "Perfekt druckfertig"
+      ],
+      "erklaerung": "Das Format soll auf jedem Gerät gleich aussehen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -345,6 +141,40 @@
       "gueltigBis": null
     },
     {
+      "id": "buero-0028",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Mit welcher Tastenkombination wechselt man unter Windows zwischen offenen Fenstern?",
+      "antworten": [
+        "Alt + Tab",
+        "Strg + W",
+        "Alt + F4",
+        "Strg + Z"
+      ],
+      "erklaerung": "Alt + F4 schließt das Fenster, Strg + Z macht rückgängig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alt%2BTab",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0016",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Welche Woche ist nach ISO 8601 die erste Kalenderwoche des Jahres?",
+      "antworten": [
+        "Die Woche mit dem ersten Donnerstag des Jahres",
+        "Die Woche mit dem 1. Januar",
+        "Die erste vollständige Woche",
+        "Die Woche mit dem ersten Montag"
+      ],
+      "erklaerung": "Deshalb kann der 1. Januar noch in KW 52 oder 53 des Vorjahres liegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Woche%20ISO%208601",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "buero-0005",
       "version": 1,
       "kategorie": "Büroalltag",
@@ -358,6 +188,40 @@
       ],
       "erklaerung": "Der Name stammt vom Durchschlagpapier der Schreibmaschine.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Carbon%20Copy",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0018",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Was zeigt Excel an, wenn eine Spalte zu schmal für eine Zahl ist?",
+      "antworten": [
+        "Lauter Rauten: #####",
+        "#NV",
+        "#WERT!",
+        "Die Zahl in winziger Schrift"
+      ],
+      "erklaerung": "Spalte breiter ziehen – schon ist die Zahl wieder da.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0015",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Mit welchem Wochentag beginnt nach der Norm ISO 8601 die Kalenderwoche?",
+      "antworten": [
+        "Montag",
+        "Sonntag",
+        "Samstag",
+        "Mit dem ersten Arbeitstag des Monats"
+      ],
+      "erklaerung": "In den USA beginnt die Woche im Kalender oft am Sonntag.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ISO%208601",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -379,6 +243,40 @@
       "gueltigBis": null
     },
     {
+      "id": "buero-0032",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Welche Schriftart war in Microsoft Office von 2007 bis 2023 die Standardschrift?",
+      "antworten": [
+        "Calibri",
+        "Arial",
+        "Times New Roman",
+        "Aptos"
+      ],
+      "erklaerung": "Aptos löste Calibri ab; davor war Times New Roman Standard in Word.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Calibri%20%28Schriftart%29",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0009",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Was bedeutet „i. A.“ vor einer Unterschrift?",
+      "antworten": [
+        "Im Auftrag",
+        "In Vertretung",
+        "Im Anhang",
+        "In Abwesenheit"
+      ],
+      "erklaerung": "„i. V.“ steht für in Vertretung und bedeutet mehr Vollmacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Im%20Auftrag",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "buero-0002",
       "version": 1,
       "kategorie": "Büroalltag",
@@ -396,70 +294,172 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0014",
+      "id": "buero-0004",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Welche Firma brachte die Post-it-Haftnotizen auf den Markt?",
+      "stufe": "schwer",
+      "frage": "Wie weit liegen die beiden Löcher eines normalen Bürolochers auseinander?",
       "antworten": [
-        "3M",
-        "Tesa",
-        "Pelikan",
-        "Staples"
+        "80 mm",
+        "60 mm",
+        "70 mm",
+        "100 mm"
       ],
-      "erklaerung": "Der Klebstoff war eigentlich ein Fehlschlag: Er hielt zu schwach.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Post-it",
+      "erklaerung": "Der Abstand ist genormt – deshalb passen alle Ordner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Locher",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "buero-0027",
+      "id": "buero-0007",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "leicht",
-      "frage": "Wofür steht „PS“ unter einem Brief?",
+      "frage": "Welche Tastenkombination kopiert unter Windows einen markierten Text?",
       "antworten": [
-        "Postskriptum – Nachschrift",
-        "Persönliche Sache",
-        "Private Sendung",
-        "Pünktlich senden"
+        "Strg + C",
+        "Strg + V",
+        "Strg + X",
+        "Strg + K"
       ],
-      "erklaerung": "Lateinisch „post scriptum“: nach dem Geschriebenen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Postskriptum",
+      "erklaerung": "Strg + V fügt ein, Strg + X schneidet aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kopieren%20und%20Einf%C3%BCgen",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0031",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „i. V.“ vor einer Unterschrift?",
+      "antworten": [
+        "In Vertretung",
+        "Im Vorstand",
+        "In Vollmacht des Inhabers",
+        "Inhalt vertraulich"
+      ],
+      "erklaerung": "Mit „i. V.“ zeichnet, wer erweiterte Vollmacht hat – mehr als bei „i. A.“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=in%20Vertretung",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0011",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie viele Urlaubstage stehen Vollzeitbeschäftigten mit Fünf-Tage-Woche gesetzlich mindestens zu?",
+      "antworten": [
+        "20",
+        "24",
+        "25",
+        "30"
+      ],
+      "erklaerung": "Das Gesetz nennt 24 Werktage – gerechnet mit Samstag. Bei fünf Arbeitstagen sind das 20.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bundesurlaubsgesetz",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0020",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Welche Firma entwickelte das PDF-Format?",
+      "antworten": [
+        "Adobe",
+        "Microsoft",
+        "Apple",
+        "IBM"
+      ],
+      "erklaerung": "Adobe stellte es 1993 vor; seit 2008 ist es eine ISO-Norm.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0025",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie heißt die in Deutschland übliche Tastaturbelegung nach den ersten Buchstaben oben links?",
+      "antworten": [
+        "QWERTZ",
+        "QWERTY",
+        "AZERTY",
+        "ABCDEF"
+      ],
+      "erklaerung": "Z und Y sind vertauscht, weil das Z im Deutschen viel häufiger ist; AZERTY gilt in Frankreich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=QWERTZ",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "buero-0001",
+      "id": "buero-0030",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "leicht",
-      "frage": "Welches Format hat ein normales Blatt Druckerpapier in Deutschland?",
+      "frage": "Wofür steht „MfG“ am Ende einer Nachricht?",
       "antworten": [
-        "DIN A4",
-        "DIN A3",
-        "DIN A5",
-        "Letter"
+        "Mit freundlichen Grüßen",
+        "Mehr folgt gleich",
+        "Meine feste Gewohnheit",
+        "Mit fröhlichem Gruß"
       ],
-      "erklaerung": "Das US-Format Letter ist etwas breiter und kürzer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erklaerung": "In förmlichen Briefen schreibt man die Grußformel aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gru%C3%9Fformel",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0012",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Ab welcher Arbeitszeit am Tag ist eine Pause von mindestens 30 Minuten vorgeschrieben?",
+      "antworten": [
+        "Ab mehr als sechs Stunden",
+        "Ab vier Stunden",
+        "Ab acht Stunden",
+        "Erst ab zehn Stunden"
+      ],
+      "erklaerung": "Ab mehr als neun Stunden müssen es 45 Minuten sein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "buero-0013",
+      "id": "buero-0029",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wie groß ist ein Briefumschlag im Format DIN lang?",
+      "antworten": [
+        "110 × 220 mm",
+        "114 × 162 mm",
+        "162 × 229 mm",
+        "125 × 176 mm"
+      ],
+      "erklaerung": "In ihn passt ein zweimal gefaltetes DIN-A4-Blatt; 114 × 162 mm ist C6.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Briefumschlag%20DIN%20lang",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0003",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Wie viele Stunden darf man in Deutschland höchstens am Tag arbeiten, wenn es später ausgeglichen wird?",
+      "frage": "Wie viele DIN-A4-Blätter ergeben zusammen ein DIN-A0-Blatt?",
       "antworten": [
-        "Zehn",
-        "Acht",
-        "Zwölf",
-        "Vierzehn"
+        "16",
+        "4",
+        "8",
+        "32"
       ],
-      "erklaerung": "Regulär sind es acht Stunden; zehn sind erlaubt, wenn der Schnitt über sechs Monate bei acht bleibt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
+      "erklaerung": "Jede Stufe halbiert das Blatt: A0 hat genau einen Quadratmeter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -481,20 +481,71 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0017",
+      "id": "buero-0010",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wofür steht „ppa.“ vor einer Unterschrift?",
+      "antworten": [
+        "Per procura – der Unterzeichner hat Prokura",
+        "Per Post an alle",
+        "Persönlich, privat, abgeheftet",
+        "Projektplan aktualisiert"
+      ],
+      "erklaerung": "Die Prokura ist eine weitreichende, im Handelsregister eingetragene Vollmacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Prokura",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0013",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie viele Stunden darf man in Deutschland höchstens am Tag arbeiten, wenn es später ausgeglichen wird?",
+      "antworten": [
+        "Zehn",
+        "Acht",
+        "Zwölf",
+        "Vierzehn"
+      ],
+      "erklaerung": "Regulär sind es acht Stunden; zehn sind erlaubt, wenn der Schnitt über sechs Monate bei acht bleibt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0027",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "leicht",
-      "frage": "Wie heißt das Tabellenkalkulationsprogramm von Microsoft?",
+      "frage": "Wofür steht „PS“ unter einem Brief?",
       "antworten": [
-        "Excel",
-        "Word",
-        "Outlook",
-        "PowerPoint"
+        "Postskriptum – Nachschrift",
+        "Persönliche Sache",
+        "Private Sendung",
+        "Pünktlich senden"
       ],
-      "erklaerung": "Die erste Version erschien 1985 – für den Macintosh.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Lateinisch „post scriptum“: nach dem Geschriebenen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Postskriptum",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0024",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Mit welchem Programm öffnet man typischerweise eine Datei mit der Endung „.docx“?",
+      "antworten": [
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Adobe Photoshop",
+        "Windows Media Player"
+      ],
+      "erklaerung": "Excel-Tabellen enden auf „.xlsx“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Word",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     }
   ]

@@ -1,177 +1,24 @@
 {
   "paket": "technik",
   "titel": "Technik",
-  "version": 5,
+  "version": 6,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "tech-0001",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „HTTP“?",
-      "antworten": [
-        "Hypertext Transfer Protocol",
-        "High Transfer Text Protocol",
-        "Hyperlink Text Transmission Process",
-        "Heimliches Tippen, total privat"
-      ],
-      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
-      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0003",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
-      "antworten": [
-        "Volt",
-        "Ampere",
-        "Watt",
-        "Ohm"
-      ],
-      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
-      "quelle": "https://de.wikipedia.org/wiki/Volt",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0029",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „KI“?",
-      "antworten": [
-        "Künstliche Intelligenz",
-        "Kabellose Internetverbindung",
-        "Kontrollierte Informatik",
-        "Kompakter Index"
-      ],
-      "erklaerung": "KI-Programme lernen aus großen Datenmengen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCnstliche%20Intelligenz",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0009",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer entwickelte 1989 am CERN das World Wide Web?",
-      "antworten": [
-        "Tim Berners-Lee",
-        "Vint Cerf",
-        "Bill Gates",
-        "Linus Torvalds"
-      ],
-      "erklaerung": "Vint Cerf gilt als einer der Väter des Internets – das Web kam von Berners-Lee.",
-      "quelle": "https://de.wikipedia.org/wiki/Tim_Berners-Lee",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0006",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wie viele Bit hat ein Byte?",
-      "antworten": [
-        "Acht",
-        "Vier",
-        "Sechzehn",
-        "Kommt auf die Größe der Brotdose an"
-      ],
-      "erklaerung": "Ein Byte besteht heute praktisch immer aus 8 Bit.",
-      "quelle": "https://de.wikipedia.org/wiki/Byte",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0018",
+      "id": "tech-0031",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
+      "frage": "Wie viele Bit hat eine IPv4-Adresse?",
       "antworten": [
-        "1992",
-        "1985",
-        "1997",
-        "2001"
+        "32",
+        "16",
+        "64",
+        "128"
       ],
-      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0011",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
-      "antworten": [
-        "1992",
-        "1985",
-        "1998",
-        "2001"
-      ],
-      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0027",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "In welcher Einheit wird die elektrische Leistung angegeben?",
-      "antworten": [
-        "Watt",
-        "Volt",
-        "Ampere",
-        "Joule"
-      ],
-      "erklaerung": "Watt = Volt mal Ampere; Joule ist die Einheit der Energie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Watt%20%28Einheit%29",
+      "erklaerung": "Daher gibt es nur rund 4,3 Milliarden IPv4-Adressen; IPv6 hat 128 Bit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IPv4",
       "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0002",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
-      "antworten": [
-        "Konrad Zuse",
-        "Alan Turing",
-        "Charles Babbage",
-        "John von Neumann"
-      ],
-      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
-      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0014",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Welches Tier ist das Maskottchen von Linux?",
-      "antworten": [
-        "Ein Pinguin",
-        "Ein Fuchs",
-        "Eine Schildkröte mit Laptop",
-        "Ein Elefant"
-      ],
-      "erklaerung": "Der Pinguin heißt Tux.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
-      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -192,54 +39,88 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0016",
+      "id": "tech-0015",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
       "antworten": [
-        "Global Positioning System",
-        "General Packet Service",
-        "Geo Point Scanner",
-        "Ganz präzise Schätzung"
+        "Bill Gates",
+        "Steve Jobs",
+        "Steve Wozniak",
+        "Larry Page"
       ],
-      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
+      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "tech-0031",
+      "id": "tech-0024",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wie viele Bit hat eine IPv4-Adresse?",
+      "stufe": "mittel",
+      "frage": "Wer erhielt 1876 in den USA das Patent auf das Telefon?",
       "antworten": [
-        "32",
-        "16",
-        "64",
-        "128"
+        "Alexander Graham Bell",
+        "Thomas Edison",
+        "Philipp Reis",
+        "Nikola Tesla"
       ],
-      "erklaerung": "Daher gibt es nur rund 4,3 Milliarden IPv4-Adressen; IPv6 hat 128 Bit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=IPv4",
+      "erklaerung": "Der Deutsche Philipp Reis hatte schon 1861 ein Telefon vorgeführt – das Patent aber bekam Bell.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alexander%20Graham%20Bell",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "tech-0012",
+      "id": "tech-0006",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wie viele Bit hat ein Byte?",
+      "antworten": [
+        "Acht",
+        "Vier",
+        "Sechzehn",
+        "Kommt auf die Größe der Brotdose an"
+      ],
+      "erklaerung": "Ein Byte besteht heute praktisch immer aus 8 Bit.",
+      "quelle": "https://de.wikipedia.org/wiki/Byte",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0025",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "frage": "Welche Programmiersprache entwickelte James Gosling Mitte der 1990er-Jahre bei Sun Microsystems?",
       "antworten": [
-        "Vier",
-        "Einen",
-        "Zwei",
-        "Zwölf"
+        "Java",
+        "Python",
+        "C++",
+        "JavaScript"
       ],
-      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
-      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Trotz des ähnlichen Namens hat JavaScript mit Java wenig zu tun.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Java%20%28Programmiersprache%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0032",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht „SIM“ bei der SIM-Karte im Handy?",
+      "antworten": [
+        "Subscriber Identity Module",
+        "Simple Internet Mode",
+        "Secure Interface Memory",
+        "System Information Manager"
+      ],
+      "erklaerung": "Die Karte weist den Teilnehmer gegenüber dem Mobilfunknetz aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=SIM-Karte",
+      "erstellt": "2026-10-19",
       "gueltigBis": null
     },
     {
@@ -260,54 +141,20 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0015",
+      "id": "tech-0033",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
+      "frage": "Welche Firma brachte 1979 den Walkman auf den Markt?",
       "antworten": [
-        "Bill Gates",
-        "Steve Jobs",
-        "Steve Wozniak",
-        "Larry Page"
+        "Sony",
+        "Philips",
+        "Grundig",
+        "Panasonic"
       ],
-      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0020",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
-      "antworten": [
-        "Die letzte Aktion wird rückgängig gemacht",
-        "Das Dokument wird ausgedruckt",
-        "Der Computer schläft ein",
-        "Alles wird fett geschrieben"
-      ],
-      "erklaerung": "Strg+Y stellt sie meist wieder her.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0007",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wofür steht die Abkürzung „LASER“?",
-      "antworten": [
-        "Light Amplification by Stimulated Emission of Radiation",
-        "Light Activated Signal Emitting Resonator",
-        "Linear Amplified Spectral Energy Radiation",
-        "Luminous Array of Stimulated Electron Rays"
-      ],
-      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
-      "quelle": "https://de.wikipedia.org/wiki/Laser",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Der tragbare Kassettenspieler wurde zum Welterfolg.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Walkman",
+      "erstellt": "2026-10-19",
       "gueltigBis": null
     },
     {
@@ -324,57 +171,6 @@
       ],
       "erklaerung": "Der QR-Code wurde 1994 von der japanischen Firma Denso Wave entwickelt.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=QR-Code",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0008",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
-      "antworten": [
-        "Auf dem Linux-Kernel",
-        "Auf dem Windows-NT-Kernel",
-        "Auf Darwin, dem Kern von macOS",
-        "Auf Symbian"
-      ],
-      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
-      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0023",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „PIN“ bei der Bankkarte?",
-      "antworten": [
-        "Persönliche Identifikationsnummer",
-        "Private Internet-Nummer",
-        "Prüf- und Identitätsnachweis",
-        "Plastikkarten-Index-Nummer"
-      ],
-      "erklaerung": "Die vier- bis sechsstellige Geheimzahl bestätigt, dass die Karte dem Besitzer gehört.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pers%C3%B6nliche%20Identifikationsnummer",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0022",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wer gilt als erste Programmiererin der Geschichte?",
-      "antworten": [
-        "Ada Lovelace",
-        "Grace Hopper",
-        "Marie Curie",
-        "Hedy Lamarr"
-      ],
-      "erklaerung": "Sie schrieb um 1843 ein Programm für Charles Babbages Analytical Engine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ada%20Lovelace",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -396,53 +192,70 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0004",
+      "id": "tech-0008",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "mittel",
-      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
+      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
       "antworten": [
-        "2007",
-        "2005",
-        "2009",
-        "2010"
+        "Auf dem Linux-Kernel",
+        "Auf dem Windows-NT-Kernel",
+        "Auf Darwin, dem Kern von macOS",
+        "Auf Symbian"
       ],
-      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
+      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
+      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0024",
+      "id": "tech-0034",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer erhielt 1876 in den USA das Patent auf das Telefon?",
+      "stufe": "schwer",
+      "frage": "Wie hieß der erste kommerziell erhältliche Mikroprozessor (1971)?",
       "antworten": [
-        "Alexander Graham Bell",
-        "Thomas Edison",
-        "Philipp Reis",
-        "Nikola Tesla"
+        "Intel 4004",
+        "Intel 8086",
+        "Zilog Z80",
+        "MOS 6502"
       ],
-      "erklaerung": "Der Deutsche Philipp Reis hatte schon 1861 ein Telefon vorgeführt – das Patent aber bekam Bell.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Alexander%20Graham%20Bell",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Der 4-Bit-Prozessor war ursprünglich für einen Tischrechner gedacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Intel%204004",
+      "erstellt": "2026-10-19",
       "gueltigBis": null
     },
     {
-      "id": "tech-0030",
+      "id": "tech-0011",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer ließ 1880 in den USA eine langlebige Glühlampe patentieren?",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
       "antworten": [
-        "Thomas Edison",
-        "Nikola Tesla",
-        "Werner von Siemens",
-        "Alexander Graham Bell"
+        "1992",
+        "1985",
+        "1998",
+        "2001"
       ],
-      "erklaerung": "Glühlampen gab es schon vorher – Edisons Kohlefaden hielt aber deutlich länger.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Thomas%20Alva%20Edison",
+      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0026",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht das „E“ in „E-Mail“?",
+      "antworten": [
+        "Electronic",
+        "Express",
+        "Extern",
+        "Easy"
+      ],
+      "erklaerung": "Electronic Mail – elektronische Post.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=E-Mail",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
@@ -464,37 +277,207 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0026",
+      "id": "tech-0004",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht das „E“ in „E-Mail“?",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
       "antworten": [
-        "Electronic",
-        "Express",
-        "Extern",
-        "Easy"
+        "2007",
+        "2005",
+        "2009",
+        "2010"
       ],
-      "erklaerung": "Electronic Mail – elektronische Post.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=E-Mail",
+      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0007",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wofür steht die Abkürzung „LASER“?",
+      "antworten": [
+        "Light Amplification by Stimulated Emission of Radiation",
+        "Light Activated Signal Emitting Resonator",
+        "Linear Amplified Spectral Energy Radiation",
+        "Luminous Array of Stimulated Electron Rays"
+      ],
+      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
+      "quelle": "https://de.wikipedia.org/wiki/Laser",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0016",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "antworten": [
+        "Global Positioning System",
+        "General Packet Service",
+        "Geo Point Scanner",
+        "Ganz präzise Schätzung"
+      ],
+      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0012",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "antworten": [
+        "Vier",
+        "Einen",
+        "Zwei",
+        "Zwölf"
+      ],
+      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
+      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0002",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
+      "antworten": [
+        "Konrad Zuse",
+        "Alan Turing",
+        "Charles Babbage",
+        "John von Neumann"
+      ],
+      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
+      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0027",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "In welcher Einheit wird die elektrische Leistung angegeben?",
+      "antworten": [
+        "Watt",
+        "Volt",
+        "Ampere",
+        "Joule"
+      ],
+      "erklaerung": "Watt = Volt mal Ampere; Joule ist die Einheit der Energie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Watt%20%28Einheit%29",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "tech-0025",
+      "id": "tech-0018",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "Welche Programmiersprache entwickelte James Gosling Mitte der 1990er-Jahre bei Sun Microsystems?",
+      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
       "antworten": [
-        "Java",
-        "Python",
-        "C++",
-        "JavaScript"
+        "1992",
+        "1985",
+        "1997",
+        "2001"
       ],
-      "erklaerung": "Trotz des ähnlichen Namens hat JavaScript mit Java wenig zu tun.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Java%20%28Programmiersprache%29",
+      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0023",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „PIN“ bei der Bankkarte?",
+      "antworten": [
+        "Persönliche Identifikationsnummer",
+        "Private Internet-Nummer",
+        "Prüf- und Identitätsnachweis",
+        "Plastikkarten-Index-Nummer"
+      ],
+      "erklaerung": "Die vier- bis sechsstellige Geheimzahl bestätigt, dass die Karte dem Besitzer gehört.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pers%C3%B6nliche%20Identifikationsnummer",
       "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0020",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
+      "antworten": [
+        "Die letzte Aktion wird rückgängig gemacht",
+        "Das Dokument wird ausgedruckt",
+        "Der Computer schläft ein",
+        "Alles wird fett geschrieben"
+      ],
+      "erklaerung": "Strg+Y stellt sie meist wieder her.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0001",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „HTTP“?",
+      "antworten": [
+        "Hypertext Transfer Protocol",
+        "High Transfer Text Protocol",
+        "Hyperlink Text Transmission Process",
+        "Heimliches Tippen, total privat"
+      ],
+      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
+      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0029",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „KI“?",
+      "antworten": [
+        "Künstliche Intelligenz",
+        "Kabellose Internetverbindung",
+        "Kontrollierte Informatik",
+        "Kompakter Index"
+      ],
+      "erklaerung": "KI-Programme lernen aus großen Datenmengen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCnstliche%20Intelligenz",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0014",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Welches Tier ist das Maskottchen von Linux?",
+      "antworten": [
+        "Ein Pinguin",
+        "Ein Fuchs",
+        "Eine Schildkröte mit Laptop",
+        "Ein Elefant"
+      ],
+      "erklaerung": "Der Pinguin heißt Tux.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -515,6 +498,23 @@
       "gueltigBis": null
     },
     {
+      "id": "tech-0030",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer ließ 1880 in den USA eine langlebige Glühlampe patentieren?",
+      "antworten": [
+        "Thomas Edison",
+        "Nikola Tesla",
+        "Werner von Siemens",
+        "Alexander Graham Bell"
+      ],
+      "erklaerung": "Glühlampen gab es schon vorher – Edisons Kohlefaden hielt aber deutlich länger.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Thomas%20Alva%20Edison",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
       "id": "tech-0005",
       "version": 1,
       "kategorie": "Technik",
@@ -529,6 +529,57 @@
       "erklaerung": "Ein lokales Funknetz.",
       "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0003",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
+      "antworten": [
+        "Volt",
+        "Ampere",
+        "Watt",
+        "Ohm"
+      ],
+      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
+      "quelle": "https://de.wikipedia.org/wiki/Volt",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0009",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer entwickelte 1989 am CERN das World Wide Web?",
+      "antworten": [
+        "Tim Berners-Lee",
+        "Vint Cerf",
+        "Bill Gates",
+        "Linus Torvalds"
+      ],
+      "erklaerung": "Vint Cerf gilt als einer der Väter des Internets – das Web kam von Berners-Lee.",
+      "quelle": "https://de.wikipedia.org/wiki/Tim_Berners-Lee",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0022",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wer gilt als erste Programmiererin der Geschichte?",
+      "antworten": [
+        "Ada Lovelace",
+        "Grace Hopper",
+        "Marie Curie",
+        "Hedy Lamarr"
+      ],
+      "erklaerung": "Sie schrieb um 1843 ein Programm für Charles Babbages Analytical Engine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ada%20Lovelace",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     }
   ]

@@ -1,26 +1,9 @@
 {
   "paket": "geschichte",
   "titel": "Geschichte",
-  "version": 5,
+  "version": 6,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
-    {
-      "id": "gesch-0028",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde das Deutsche Kaiserreich gegründet?",
-      "antworten": [
-        "1871",
-        "1815",
-        "1848",
-        "1890"
-      ],
-      "erklaerung": "Wilhelm I. wurde am 18. Januar 1871 im Spiegelsaal von Versailles zum Kaiser ausgerufen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutsches%20Kaiserreich",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
     {
       "id": "gesch-0017",
       "version": 1,
@@ -39,308 +22,19 @@
       "gueltigBis": null
     },
     {
-      "id": "gesch-0003",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr erreichte Christoph Kolumbus erstmals Amerika?",
-      "antworten": [
-        "1492",
-        "1498",
-        "1488",
-        "1506"
-      ],
-      "erklaerung": "Er landete im Oktober 1492 auf den Bahamas.",
-      "quelle": "https://de.wikipedia.org/wiki/Christoph_Kolumbus",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0022",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Welcher römische Herrscher wurde an den Iden des März 44 v. Chr. ermordet?",
-      "antworten": [
-        "Gaius Julius Caesar",
-        "Augustus",
-        "Nero",
-        "Marcus Antonius"
-      ],
-      "erklaerung": "Unter den Verschwörern war Brutus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gaius%20Iulius%20Caesar",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0013",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Wer war der erste Präsident der USA?",
-      "antworten": [
-        "George Washington",
-        "Abraham Lincoln",
-        "Thomas Jefferson",
-        "Benjamin Franklin"
-      ],
-      "erklaerung": "Er war von 1789 bis 1797 im Amt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=George%20Washington",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0016",
+      "id": "gesch-0031",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "schwer",
-      "frage": "Wer wurde im Jahr 800 in Rom zum Kaiser gekrönt?",
-      "antworten": [
-        "Karl der Große",
-        "Otto der Große",
-        "Friedrich Barbarossa",
-        "Ludwig der Fromme"
-      ],
-      "erklaerung": "Papst Leo III. krönte ihn am Weihnachtstag 800.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl%20der%20Gro%C3%9Fe",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0019",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde in England die Magna Carta besiegelt?",
-      "antworten": [
-        "1215",
-        "1066",
-        "1492",
-        "1314"
-      ],
-      "erklaerung": "König Johann Ohneland musste darin Rechte des Adels anerkennen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Magna%20Carta",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0014",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr begann der Erste Weltkrieg?",
-      "antworten": [
-        "1914",
-        "1912",
-        "1916",
-        "1918"
-      ],
-      "erklaerung": "1918 endete er.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Erster%20Weltkrieg",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0020",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Welcher französische Kaiser verlor 1815 die Schlacht bei Waterloo?",
-      "antworten": [
-        "Napoleon Bonaparte",
-        "Ludwig XIV.",
-        "Napoleon III.",
-        "Karl der Große"
-      ],
-      "erklaerung": "Danach wurde er nach St. Helena verbannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlacht%20bei%20Waterloo",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0015",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Welche Stadt war von 1949 bis 1990 Hauptstadt der Bundesrepublik Deutschland?",
-      "antworten": [
-        "Bonn",
-        "Frankfurt am Main",
-        "Köln",
-        "Berlin"
-      ],
-      "erklaerung": "Bonn galt als „provisorische“ Hauptstadt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bonn",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0007",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Welches Schiff sank 1912 nach der Kollision mit einem Eisberg?",
-      "antworten": [
-        "Die Titanic",
-        "Die Bismarck",
-        "Die Queen Mary",
-        "Das Traumschiff"
-      ],
-      "erklaerung": "Die Titanic sank auf ihrer Jungfernfahrt.",
-      "quelle": "https://de.wikipedia.org/wiki/Titanic_(Schiff)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0018",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Wer war die erste Bundeskanzlerin Deutschlands?",
-      "antworten": [
-        "Angela Merkel",
-        "Annalena Baerbock",
-        "Ursula von der Leyen",
-        "Hannelore Kraft"
-      ],
-      "erklaerung": "Sie regierte von 2005 bis 2021.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Angela%20Merkel",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0001",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "In welchem Jahr fiel die Berliner Mauer?",
-      "antworten": [
-        "1989",
-        "1987",
-        "1990",
-        "1991"
-      ],
-      "erklaerung": "Am 9. November 1989 wurden die Grenzen geöffnet.",
-      "quelle": "https://de.wikipedia.org/wiki/Berliner_Mauer",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0027",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Wer erfand um 1450 in Mainz den Buchdruck mit beweglichen Lettern?",
-      "antworten": [
-        "Johannes Gutenberg",
-        "Albrecht Dürer",
-        "Martin Luther",
-        "Johannes Kepler"
-      ],
-      "erklaerung": "Sein bekanntestes Werk ist die Gutenberg-Bibel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Johannes%20Gutenberg",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0005",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr wurde die Bundesrepublik Deutschland gegründet?",
+      "frage": "In welchem Jahr wurde die DDR gegründet?",
       "antworten": [
         "1949",
         "1945",
-        "1952",
+        "1953",
         "1961"
       ],
-      "erklaerung": "Das Grundgesetz trat am 23. Mai 1949 in Kraft.",
-      "quelle": "https://de.wikipedia.org/wiki/Grundgesetz_für_die_Bundesrepublik_Deutschland",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0009",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Wer veröffentlichte 1517 seine 95 Thesen in Wittenberg?",
-      "antworten": [
-        "Martin Luther",
-        "Johannes Calvin",
-        "Philipp Melanchthon",
-        "Martin Luther King"
-      ],
-      "erklaerung": "Der Thesenanschlag gilt als Beginn der Reformation.",
-      "quelle": "https://de.wikipedia.org/wiki/95_Thesen",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0021",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Wie heißen die skandinavischen Seefahrer, die etwa 800 bis 1050 Europa unsicher machten?",
-      "antworten": [
-        "Die Wikinger",
-        "Die Hunnen",
-        "Die Kelten",
-        "Die Vandalen"
-      ],
-      "erklaerung": "Mit Hörnerhelmen übrigens nur im Film.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikinger",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0006",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Wie hieß der letzte Kaiser des Deutschen Kaiserreichs?",
-      "antworten": [
-        "Wilhelm II.",
-        "Friedrich III.",
-        "Wilhelm I.",
-        "Franz Joseph I."
-      ],
-      "erklaerung": "Er dankte 1918 ab. Franz Joseph I. war Kaiser von Österreich.",
-      "quelle": "https://de.wikipedia.org/wiki/Wilhelm_II._(Deutsches_Reich)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0008",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Seit wann bezahlt man in Deutschland mit Euro-Münzen und -Scheinen?",
-      "antworten": [
-        "Seit dem 1. Januar 2002",
-        "Seit dem 1. Januar 1999",
-        "Seit dem 1. Januar 2000",
-        "Seit dem 3. Oktober 1990"
-      ],
-      "erklaerung": "1999 kam der Euro als Buchgeld, 2002 als Bargeld.",
-      "quelle": "https://de.wikipedia.org/wiki/Euro",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0024",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr erhielten Frauen in Deutschland das Wahlrecht?",
-      "antworten": [
-        "1918",
-        "1871",
-        "1933",
-        "1949"
-      ],
-      "erklaerung": "Im Januar 1919 durften Frauen zur Nationalversammlung erstmals wählen und gewählt werden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenwahlrecht%20in%20Deutschland",
+      "erklaerung": "Am 7. Oktober 1949 – wenige Monate nach der Bundesrepublik.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutsche%20Demokratische%20Republik",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
@@ -362,6 +56,40 @@
       "gueltigBis": null
     },
     {
+      "id": "gesch-0020",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher französische Kaiser verlor 1815 die Schlacht bei Waterloo?",
+      "antworten": [
+        "Napoleon Bonaparte",
+        "Ludwig XIV.",
+        "Napoleon III.",
+        "Karl der Große"
+      ],
+      "erklaerung": "Danach wurde er nach St. Helena verbannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlacht%20bei%20Waterloo",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0003",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr erreichte Christoph Kolumbus erstmals Amerika?",
+      "antworten": [
+        "1492",
+        "1498",
+        "1488",
+        "1506"
+      ],
+      "erklaerung": "Er landete im Oktober 1492 auf den Bahamas.",
+      "quelle": "https://de.wikipedia.org/wiki/Christoph_Kolumbus",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
       "id": "gesch-0023",
       "version": 1,
       "kategorie": "Geschichte",
@@ -376,40 +104,6 @@
       "erklaerung": "Sie wurde 1886 in New York eingeweiht – ein Geschenk zum 100. Jahrestag der Unabhängigkeit.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Freiheitsstatue",
       "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0025",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "Wer war der erste Bundespräsident der Bundesrepublik Deutschland?",
-      "antworten": [
-        "Theodor Heuss",
-        "Konrad Adenauer",
-        "Heinrich Lübke",
-        "Gustav Heinemann"
-      ],
-      "erklaerung": "Heuss amtierte von 1949 bis 1959; Adenauer war der erste Bundeskanzler.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Theodor%20Heuss",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0010",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr endete der Dreißigjährige Krieg?",
-      "antworten": [
-        "1648",
-        "1618",
-        "1715",
-        "1555"
-      ],
-      "erklaerung": "Mit dem Westfälischen Frieden. 1618 begann er.",
-      "quelle": "https://de.wikipedia.org/wiki/Dreißigjähriger_Krieg",
-      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -430,20 +124,71 @@
       "gueltigBis": null
     },
     {
-      "id": "gesch-0004",
+      "id": "gesch-0005",
       "version": 1,
       "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Wer betrat 1969 als erster Mensch den Mond?",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr wurde die Bundesrepublik Deutschland gegründet?",
       "antworten": [
-        "Neil Armstrong",
-        "Buzz Aldrin",
-        "Juri Gagarin",
-        "Louis Armstrong"
+        "1949",
+        "1945",
+        "1952",
+        "1961"
       ],
-      "erklaerung": "Buzz Aldrin folgte kurz danach; Gagarin war der erste Mensch im All.",
-      "quelle": "https://de.wikipedia.org/wiki/Neil_Armstrong",
+      "erklaerung": "Das Grundgesetz trat am 23. Mai 1949 in Kraft.",
+      "quelle": "https://de.wikipedia.org/wiki/Grundgesetz_für_die_Bundesrepublik_Deutschland",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0022",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher römische Herrscher wurde an den Iden des März 44 v. Chr. ermordet?",
+      "antworten": [
+        "Gaius Julius Caesar",
+        "Augustus",
+        "Nero",
+        "Marcus Antonius"
+      ],
+      "erklaerung": "Unter den Verschwörern war Brutus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gaius%20Iulius%20Caesar",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0010",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr endete der Dreißigjährige Krieg?",
+      "antworten": [
+        "1648",
+        "1618",
+        "1715",
+        "1555"
+      ],
+      "erklaerung": "Mit dem Westfälischen Frieden. 1618 begann er.",
+      "quelle": "https://de.wikipedia.org/wiki/Dreißigjähriger_Krieg",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0015",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welche Stadt war von 1949 bis 1990 Hauptstadt der Bundesrepublik Deutschland?",
+      "antworten": [
+        "Bonn",
+        "Frankfurt am Main",
+        "Köln",
+        "Berlin"
+      ],
+      "erklaerung": "Bonn galt als „provisorische“ Hauptstadt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bonn",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -464,20 +209,54 @@
       "gueltigBis": null
     },
     {
-      "id": "gesch-0031",
+      "id": "gesch-0021",
       "version": 1,
       "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde die DDR gegründet?",
+      "stufe": "leicht",
+      "frage": "Wie heißen die skandinavischen Seefahrer, die etwa 800 bis 1050 Europa unsicher machten?",
       "antworten": [
-        "1949",
-        "1945",
-        "1953",
-        "1961"
+        "Die Wikinger",
+        "Die Hunnen",
+        "Die Kelten",
+        "Die Vandalen"
       ],
-      "erklaerung": "Am 7. Oktober 1949 – wenige Monate nach der Bundesrepublik.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutsche%20Demokratische%20Republik",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Mit Hörnerhelmen übrigens nur im Film.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikinger",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0014",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr begann der Erste Weltkrieg?",
+      "antworten": [
+        "1914",
+        "1912",
+        "1916",
+        "1918"
+      ],
+      "erklaerung": "1918 endete er.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Erster%20Weltkrieg",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0004",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer betrat 1969 als erster Mensch den Mond?",
+      "antworten": [
+        "Neil Armstrong",
+        "Buzz Aldrin",
+        "Juri Gagarin",
+        "Louis Armstrong"
+      ],
+      "erklaerung": "Buzz Aldrin folgte kurz danach; Gagarin war der erste Mensch im All.",
+      "quelle": "https://de.wikipedia.org/wiki/Neil_Armstrong",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -494,6 +273,176 @@
       ],
       "erklaerung": "Die Asche konservierte die Stadt bis heute.",
       "quelle": "https://de.wikipedia.org/wiki/Pompeji",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0032",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wie hieß die letzte Königin des alten Ägypten, die mit Marcus Antonius verbündet war?",
+      "antworten": [
+        "Kleopatra",
+        "Nofretete",
+        "Hatschepsut",
+        "Nefertari"
+      ],
+      "erklaerung": "Kleopatra VII. starb 30 v. Chr.; danach wurde Ägypten römische Provinz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kleopatra%20VII.",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0027",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer erfand um 1450 in Mainz den Buchdruck mit beweglichen Lettern?",
+      "antworten": [
+        "Johannes Gutenberg",
+        "Albrecht Dürer",
+        "Martin Luther",
+        "Johannes Kepler"
+      ],
+      "erklaerung": "Sein bekanntestes Werk ist die Gutenberg-Bibel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Johannes%20Gutenberg",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0019",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde in England die Magna Carta besiegelt?",
+      "antworten": [
+        "1215",
+        "1066",
+        "1492",
+        "1314"
+      ],
+      "erklaerung": "König Johann Ohneland musste darin Rechte des Adels anerkennen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Magna%20Carta",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0013",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer war der erste Präsident der USA?",
+      "antworten": [
+        "George Washington",
+        "Abraham Lincoln",
+        "Thomas Jefferson",
+        "Benjamin Franklin"
+      ],
+      "erklaerung": "Er war von 1789 bis 1797 im Amt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=George%20Washington",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0002",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?",
+      "antworten": [
+        "Konrad Adenauer",
+        "Ludwig Erhard",
+        "Willy Brandt",
+        "Theodor Heuss"
+      ],
+      "erklaerung": "Theodor Heuss war der erste Bundespräsident.",
+      "quelle": "https://de.wikipedia.org/wiki/Konrad_Adenauer",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0001",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "In welchem Jahr fiel die Berliner Mauer?",
+      "antworten": [
+        "1989",
+        "1987",
+        "1990",
+        "1991"
+      ],
+      "erklaerung": "Am 9. November 1989 wurden die Grenzen geöffnet.",
+      "quelle": "https://de.wikipedia.org/wiki/Berliner_Mauer",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0024",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr erhielten Frauen in Deutschland das Wahlrecht?",
+      "antworten": [
+        "1918",
+        "1871",
+        "1933",
+        "1949"
+      ],
+      "erklaerung": "Im Januar 1919 durften Frauen zur Nationalversammlung erstmals wählen und gewählt werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenwahlrecht%20in%20Deutschland",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0028",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde das Deutsche Kaiserreich gegründet?",
+      "antworten": [
+        "1871",
+        "1815",
+        "1848",
+        "1890"
+      ],
+      "erklaerung": "Wilhelm I. wurde am 18. Januar 1871 im Spiegelsaal von Versailles zum Kaiser ausgerufen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutsches%20Kaiserreich",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0016",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "Wer wurde im Jahr 800 in Rom zum Kaiser gekrönt?",
+      "antworten": [
+        "Karl der Große",
+        "Otto der Große",
+        "Friedrich Barbarossa",
+        "Ludwig der Fromme"
+      ],
+      "erklaerung": "Papst Leo III. krönte ihn am Weihnachtstag 800.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl%20der%20Gro%C3%9Fe",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0006",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wie hieß der letzte Kaiser des Deutschen Kaiserreichs?",
+      "antworten": [
+        "Wilhelm II.",
+        "Friedrich III.",
+        "Wilhelm I.",
+        "Franz Joseph I."
+      ],
+      "erklaerung": "Er dankte 1918 ab. Franz Joseph I. war Kaiser von Österreich.",
+      "quelle": "https://de.wikipedia.org/wiki/Wilhelm_II._(Deutsches_Reich)",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -515,20 +464,122 @@
       "gueltigBis": null
     },
     {
-      "id": "gesch-0002",
+      "id": "gesch-0007",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welches Schiff sank 1912 nach der Kollision mit einem Eisberg?",
+      "antworten": [
+        "Die Titanic",
+        "Die Bismarck",
+        "Die Queen Mary",
+        "Das Traumschiff"
+      ],
+      "erklaerung": "Die Titanic sank auf ihrer Jungfernfahrt.",
+      "quelle": "https://de.wikipedia.org/wiki/Titanic_(Schiff)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0033",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "mittel",
-      "frage": "Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?",
+      "frage": "In welchem Jahr endete der Zweite Weltkrieg in Europa?",
       "antworten": [
-        "Konrad Adenauer",
-        "Ludwig Erhard",
-        "Willy Brandt",
-        "Theodor Heuss"
+        "1945",
+        "1944",
+        "1946",
+        "1939"
       ],
-      "erklaerung": "Theodor Heuss war der erste Bundespräsident.",
-      "quelle": "https://de.wikipedia.org/wiki/Konrad_Adenauer",
+      "erklaerung": "Am 8. Mai 1945 trat die bedingungslose Kapitulation der Wehrmacht in Kraft.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ende%20des%20Zweiten%20Weltkrieges%20in%20Europa",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0025",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "Wer war der erste Bundespräsident der Bundesrepublik Deutschland?",
+      "antworten": [
+        "Theodor Heuss",
+        "Konrad Adenauer",
+        "Heinrich Lübke",
+        "Gustav Heinemann"
+      ],
+      "erklaerung": "Heuss amtierte von 1949 bis 1959; Adenauer war der erste Bundeskanzler.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Theodor%20Heuss",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0009",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer veröffentlichte 1517 seine 95 Thesen in Wittenberg?",
+      "antworten": [
+        "Martin Luther",
+        "Johannes Calvin",
+        "Philipp Melanchthon",
+        "Martin Luther King"
+      ],
+      "erklaerung": "Der Thesenanschlag gilt als Beginn der Reformation.",
+      "quelle": "https://de.wikipedia.org/wiki/95_Thesen",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0018",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer war die erste Bundeskanzlerin Deutschlands?",
+      "antworten": [
+        "Angela Merkel",
+        "Annalena Baerbock",
+        "Ursula von der Leyen",
+        "Hannelore Kraft"
+      ],
+      "erklaerung": "Sie regierte von 2005 bis 2021.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Angela%20Merkel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0008",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Seit wann bezahlt man in Deutschland mit Euro-Münzen und -Scheinen?",
+      "antworten": [
+        "Seit dem 1. Januar 2002",
+        "Seit dem 1. Januar 1999",
+        "Seit dem 1. Januar 2000",
+        "Seit dem 3. Oktober 1990"
+      ],
+      "erklaerung": "1999 kam der Euro als Buchgeld, 2002 als Bargeld.",
+      "quelle": "https://de.wikipedia.org/wiki/Euro",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0034",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "Wann versorgten die Westalliierten West-Berlin über die Luftbrücke?",
+      "antworten": [
+        "1948 bis 1949",
+        "1945 bis 1946",
+        "1953 bis 1954",
+        "1961 bis 1962"
+      ],
+      "erklaerung": "Die „Rosinenbomber“ flogen während der sowjetischen Blockade fast ein Jahr lang.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Berliner%20Luftbr%C3%BCcke",
+      "erstellt": "2026-10-19",
       "gueltigBis": null
     }
   ]
