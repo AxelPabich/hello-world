@@ -455,6 +455,10 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+79. **Antworten immer vollständig im Feld** (Wunsch vom 19.10.2026; umgesetzt, kommt mit dem
+    nächsten Build): Lange Antworten wurden abgeschnitten (kompakt feste 78 dp Höhe). Jetzt
+    werden alle vier Antworten in der Feldbreite gemessen: erst kleinere Schrift, dann alle vier
+    Felder gleich höher.
 77. **Stille Spieler schneller erkennen** (umgesetzt, kommt mit dem nächsten Build): Im Test
     am 17.10. um 12:33 meldete der Funk Peters Abbruch erst nach 47 s. Jetzt trennt der Spielleiter
     einen Spieler nach 15 s ohne Antwort auf den Herzschlag selbst (nicht während einer

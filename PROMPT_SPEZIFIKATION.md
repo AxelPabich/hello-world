@@ -366,6 +366,9 @@ mit“. Angezeigt wird „x neue von y passenden Fragen“. Die Einstellungen ge
 
 1. Die Frage erscheint auf allen Geräten gleichzeitig (Uhrenabgleich wie bei der Freigabe).
 2. 3 Sekunden später erscheinen die vier Antworten (2×2-Felder) und der Antworttimer läuft.
+   Jede Antwort steht vollständig im Feld: Passt eine nicht, wird die Schrift etwas kleiner
+   (bis 13 sp, kompakt 12 sp); reicht das nicht, werden alle vier Felder gleich höher (notfalls
+   lässt sich das Antwortfeld verschieben).
    Zeitbalken, Frage und Antworten stehen in **einem** Feld – die Frage direkt über den
    Antworten.
 3. Die Reihenfolge der Antworten ist **für jeden Teilnehmer und jede Frage** zufällig.

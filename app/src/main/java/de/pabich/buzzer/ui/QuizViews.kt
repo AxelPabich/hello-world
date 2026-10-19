@@ -9,6 +9,8 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.layout.Arrangement
@@ -52,7 +54,13 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
@@ -173,30 +181,85 @@ private fun AnswerGrid(quiz: PlayerEngine.QuizView, onTap: (Int, Long) -> Unit, 
         else -> FieldState.OPEN
     }
     val enabled = quiz.stage == QuizStage.ANSWERS && quiz.chosen < 0
-    Column(modifier, verticalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 10.dp)) {
-        for (row in 0 until 2) {
-            Row(
-                if (compact) Modifier.fillMaxWidth().height(78.dp) else Modifier.fillMaxWidth().weight(1f),
-                horizontalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 10.dp),
-            ) {
-                for (col in 0 until 2) {
-                    val pos = row * 2 + col
-                    val text = quiz.answers.getOrNull(pos) ?: continue
-                    val st = state(pos)
-                    AnswerField(
-                        letter = 'A' + pos,
-                        text = text,
-                        state = st,
-                        thumb = st == FieldState.CORRECT && result?.chosenPosition == pos,
-                        chosenInfo = if (st == FieldState.CHOSEN && result == null) quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" } else null,
-                        enabled = enabled,
-                        compact = compact,
-                        onTap = { time -> onTap(pos, time) },
-                        modifier = Modifier.weight(1f).fillMaxHeight(),
-                    )
+    val gap = if (compact) 8.dp else 10.dp
+    BoxWithConstraints(modifier) {
+        // Jede Antwort muss vollständig im Feld stehen (Punkt 79): erst etwas kleinere Schrift, dann
+        // höhere Felder – immer alle vier gleich hoch.
+        val fit = answerFit(quiz.answers, maxWidth, maxHeight, compact, gap)
+        val scroll = rememberScrollState()
+        Column(
+            Modifier.fillMaxWidth().then(if (fit.overflows) Modifier.verticalScroll(scroll) else Modifier),
+            verticalArrangement = Arrangement.spacedBy(gap),
+        ) {
+            for (row in 0 until 2) {
+                Row(
+                    Modifier.fillMaxWidth().height(fit.rowHeight),
+                    horizontalArrangement = Arrangement.spacedBy(gap),
+                ) {
+                    for (col in 0 until 2) {
+                        val pos = row * 2 + col
+                        val text = quiz.answers.getOrNull(pos) ?: continue
+                        val st = state(pos)
+                        AnswerField(
+                            letter = 'A' + pos,
+                            text = text,
+                            state = st,
+                            thumb = st == FieldState.CORRECT && result?.chosenPosition == pos,
+                            chosenInfo = if (st == FieldState.CHOSEN && result == null) quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" } else null,
+                            enabled = enabled,
+                            compact = compact,
+                            fontSize = fit.fontSize,
+                            onTap = { time -> onTap(pos, time) },
+                            modifier = Modifier.weight(1f).fillMaxHeight(),
+                        )
+                    }
                 }
             }
         }
+    }
+}
+
+private class AnswerFit(val fontSize: TextUnit, val rowHeight: Dp, val overflows: Boolean)
+
+/** Innenabstand eines Antwortfelds. */
+private fun fieldPadding(compact: Boolean) = if (compact) 8.dp else 12.dp
+
+private fun answerLineHeight(fontSize: TextUnit) = (fontSize.value * 1.25f).sp
+
+/**
+ * Misst alle Antworten in der Feldbreite: die größte Schrift, bei der jede Antwort in die normale
+ * Feldhöhe passt; sonst die kleinste Schrift und so hohe Felder, dass die längste Antwort passt.
+ */
+@Composable
+private fun answerFit(answers: List<String>, width: Dp, height: Dp, compact: Boolean, gap: Dp): AnswerFit {
+    val measurer = rememberTextMeasurer()
+    val density = LocalDensity.current
+    val pad = fieldPadding(compact)
+    // Rahmen (bis 3 dp) und Buchstabenkreis mit Abstand; unten Platz für „DEINE WAHL“.
+    val textWidth = ((width - gap) / 2 - pad * 2 - 6.dp).coerceAtLeast(40.dp)
+    val chrome = pad * 2 + 6.dp + if (compact) 22.dp + 4.dp else 30.dp + 8.dp + 8.dp + 15.dp
+    val base = when {
+        compact -> 78.dp
+        height != Dp.Infinity -> ((height - gap) / 2).coerceAtLeast(90.dp)
+        else -> 140.dp
+    }
+    val sizes = if (compact) listOf(13.sp, 12.sp) else listOf(16.sp, 15.sp, 14.sp, 13.sp)
+    fun need(size: TextUnit): Dp = with(density) {
+        val widthPx = textWidth.roundToPx()
+        val tallest = answers.maxOfOrNull { text ->
+            measurer.measure(
+                text,
+                style = TextStyle(fontSize = size, lineHeight = answerLineHeight(size), fontWeight = FontWeight.Bold),
+                constraints = Constraints(maxWidth = widthPx),
+            ).size.height
+        } ?: 0
+        tallest.toDp() + chrome
+    }
+    // Die Karte wird jedes Bild neu gezeichnet – gemessen wird nur, wenn sich Antworten oder Platz ändern.
+    return remember(answers, width, height, compact, density) {
+        val font = sizes.firstOrNull { need(it) <= base } ?: sizes.last()
+        val row = maxOf(base, need(font))
+        AnswerFit(font, row, height != Dp.Infinity && row * 2 + gap > height)
     }
 }
 
@@ -209,6 +272,7 @@ private fun AnswerField(
     chosenInfo: String?,
     enabled: Boolean,
     compact: Boolean,
+    fontSize: TextUnit,
     onTap: (Long) -> Unit,
     modifier: Modifier,
 ) {
@@ -245,7 +309,7 @@ private fun AnswerField(
                     drawLine(c, Offset(size.width - inset, inset), Offset(inset, size.height - inset), stroke, StrokeCap.Round)
                 }
             }
-            .padding(if (compact) 8.dp else 12.dp),
+            .padding(fieldPadding(compact)),
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(if (compact) 4.dp else 8.dp)) {
             Box(
@@ -278,11 +342,10 @@ private fun AnswerField(
             Text(
                 text,
                 color = fg,
-                fontSize = if (compact) 13.sp else 16.sp,
+                fontSize = fontSize,
                 fontWeight = if (state == FieldState.OPEN || state == FieldState.DIMMED) FontWeight.SemiBold else FontWeight.Bold,
-                lineHeight = if (compact) 16.sp else 20.sp,
+                lineHeight = answerLineHeight(fontSize),
                 textDecoration = if (state == FieldState.WRONG) TextDecoration.LineThrough else null,
-                overflow = TextOverflow.Ellipsis,
             )
             if (chosenInfo != null && !compact) {
                 Text(chosenInfo, color = fg, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
