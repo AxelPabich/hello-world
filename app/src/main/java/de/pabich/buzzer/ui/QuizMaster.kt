@@ -182,15 +182,15 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
             },
         )
         SetupTitle("Schwierigkeit")
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            for (level in QuizLevel.entries) {
-                val on = level in settings.quizLevels
-                Chip(level.label, on, Modifier.weight(1f)) {
-                    val next = if (on) settings.quizLevels - level else settings.quizLevels + level
-                    if (next.isNotEmpty()) change(settings.copy(quizLevels = next))
-                }
-            }
-        }
+        FlowChips(
+            items = QuizLevel.entries.map { it.label },
+            selected = { label -> QuizLevel.entries.first { it.label == label } in settings.quizLevels },
+            onToggle = { label ->
+                val level = QuizLevel.entries.first { it.label == label }
+                val next = if (level in settings.quizLevels) settings.quizLevels - level else settings.quizLevels + level
+                if (next.isNotEmpty()) change(settings.copy(quizLevels = next))
+            },
+        )
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             Stepper("Fragen", "${settings.quizCount}", Modifier.weight(1f),
                 { change(settings.copy(quizCount = (settings.quizCount - 1).coerceAtLeast(1))) },

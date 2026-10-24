@@ -756,7 +756,7 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   in virtueller Zeit): Codec aller wichtigen Nachrichten, Einstellungen, Buzzer-Reihenfolge,
   Frühstart, falsch/richtig/Punkte, Quiz-Wertung, Challenge „annullieren“, Bereit-Abfrage mit Go,
   Übernahme mit mitgeschickten Fragen, Punkte beim Wiederbeitritt, alle Klänge. Dazu Fragenpakete
-  (Anzahl, alle drei Stufen je Kategorie, eindeutige IDs) und die Release-Seite.
+  (Anzahl, alle Stufen je Kategorie, eindeutige IDs) und die Release-Seite.
 - **Live-Test** (optional, Spieler ab Build 35): Der Spielleiter schaltet die Spieler in den
   Testmodus (`TEST_MODE`) – sie bestätigen „Bereit?“, buzzern nach 150–650 ms und antworten zufällig
   von selbst. Geprüft werden Funk-Laufzeit je Spieler, eine Buzzer-Runde, die Bereit-Abfrage, eine

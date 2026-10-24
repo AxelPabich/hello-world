@@ -88,7 +88,7 @@ data class Settings(
     /** Quiz: gewählte Kategorien, leer = alle. */
     val quizCategories: Set<String> = emptySet(),
     /** Quiz: gewählte Stufen (nach gemessener Schwierigkeit). */
-    val quizLevels: Set<QuizLevel> = QuizLevel.entries.toSet(),
+    val quizLevels: Set<QuizLevel> = QuizLevel.STANDARD,
     val quizCount: Int = 12,
     /** Quiz: Antwortzeit je Frage. */
     val quizAnswerMs: Long = 20_000,
@@ -120,7 +120,7 @@ data class Settings(
             tieThresholdMs = tieThresholdMs.coerceIn(0, 1_000),
             boardPlaces = boardPlaces.coerceIn(0, 99),
             emojis = cleanEmojis + DEFAULT_EMOJIS.drop(cleanEmojis.size),
-            quizLevels = quizLevels.ifEmpty { QuizLevel.entries.toSet() },
+            quizLevels = quizLevels.ifEmpty { QuizLevel.STANDARD },
             quizCount = quizCount.coerceIn(1, 50),
             quizAnswerMs = quizAnswerMs.coerceIn(5_000, 120_000),
             // Höchstens die halbe Antwortzeit – sonst greift der Countdown nie.

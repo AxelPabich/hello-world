@@ -13,9 +13,15 @@ enum class QuizLevel(val key: String, val label: String) {
     EASY("leicht", "Leicht"),
     MEDIUM("mittel", "Mittel"),
     HARD("schwer", "Schwer"),
+
+    /** Über „schwer“: nur für Kenner (Wunsch vom 24.10.2026). Nicht in der Grundauswahl. */
+    INGOMANIA("ingomania", "Ingomania"),
     ;
 
     companion object {
+        /** Grundauswahl im Quiz; Ingomania muss der Spielleiter bewusst dazuwählen. */
+        val STANDARD: Set<QuizLevel> get() = setOf(EASY, MEDIUM, HARD)
+
         fun byKey(key: String): QuizLevel? = entries.firstOrNull { it.key == key.trim().lowercase() || it.name == key }
     }
 }

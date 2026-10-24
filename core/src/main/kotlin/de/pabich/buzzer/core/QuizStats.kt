@@ -47,6 +47,7 @@ object Difficulty {
         QuizLevel.EASY -> 0.8
         QuizLevel.MEDIUM -> 0.55
         QuizLevel.HARD -> 0.3
+        QuizLevel.INGOMANIA -> 0.12
     }
 
     /** Geglätteter Anteil richtiger Antworten. */
@@ -56,13 +57,16 @@ object Difficulty {
     fun measured(stats: QuestionStats, author: QuizLevel): QuizLevel? {
         if (stats.answers < MIN_ANSWERS) return null
         val q = quote(stats, author)
+        // Ingomania gibt es nur als Autoren-Stufe: Fragen anderer Autoren-Stufen werden höchstens „schwer“.
+        val top = if (author == QuizLevel.INGOMANIA) QuizLevel.INGOMANIA else QuizLevel.HARD
         var level = when {
             q >= 0.7 -> QuizLevel.EASY
             q >= 0.4 -> QuizLevel.MEDIUM
-            else -> QuizLevel.HARD
+            q >= 0.2 || top == QuizLevel.HARD -> QuizLevel.HARD
+            else -> QuizLevel.INGOMANIA
         }
         // Brauchten auch die Richtigen lange, ist die Frage eine Stufe schwerer.
-        if (stats.correct > 0 && stats.correctTimeShare / stats.correct > 0.6 && level != QuizLevel.HARD) {
+        if (stats.correct > 0 && stats.correctTimeShare / stats.correct > 0.6 && level != top) {
             level = QuizLevel.entries[level.ordinal + 1]
         }
         return level

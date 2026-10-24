@@ -1608,10 +1608,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private fun checkPacks(): List<SelfTest.Result> {
         val questions = quizStore.questions
         val byCategory = questions.groupBy { it.category }
-        val thin = byCategory.filter { (_, qs) -> qs.map { it.level }.toSet().size < 3 }.keys
+        val thin = byCategory.filter { (_, qs) -> qs.map { it.level }.toSet().size < de.pabich.buzzer.core.QuizLevel.entries.size }.keys
         return listOf(
             SelfTest.Result("Fragenpakete geladen", questions.isNotEmpty(), "${questions.size} Fragen in ${byCategory.size} Kategorien"),
-            SelfTest.Result("Jede Kategorie mit allen drei Stufen", thin.isEmpty(), if (thin.isEmpty()) "" else "fehlt bei: ${thin.joinToString()}"),
+            SelfTest.Result("Jede Kategorie mit allen Stufen", thin.isEmpty(), if (thin.isEmpty()) "" else "fehlt bei: ${thin.joinToString()}"),
             SelfTest.Result("Keine doppelten Fragen-IDs", questions.map { it.id }.toSet().size == questions.size, ""),
         )
     }
