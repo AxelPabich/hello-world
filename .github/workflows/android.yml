@@ -5,6 +5,15 @@ on:
     branches: [main, master, "claude/**"]
   pull_request:
   workflow_dispatch:
+    inputs:
+      major:
+        description: "Als Major Release veröffentlichen (dauerhafte Release-Seite v<Version>.<Nr>)"
+        type: boolean
+        default: false
+      rollback_to:
+        description: "Rollback: Quelltext dieses Standes (z. B. build-37) als NEUEN Build veröffentlichen"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -17,10 +26,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # Wird zu versionCode und versionName (1.0.<Nummer>) der App.
+      # Wird zu versionCode und, zusammen mit der Datei VERSION, zu versionName (z. B. 2.0.<Nummer>) der App.
       BUILD_NUMBER: ${{ github.run_number }}
     steps:
+      # Bei einem Rollback wird der Quelltext des angegebenen Standes gebaut – aber mit der neuen,
+      # höheren Build-Nummer, denn Android installiert keine niedrigere Nummer über eine höhere.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.rollback_to || github.ref }}
+
+      - name: Version und Quelltext-Stand festhalten
+        run: |
+          echo "SRC_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "APP_VERSION=$(cat VERSION 2>/dev/null | tr -d '[:space:]' || true)" >> "$GITHUB_ENV"
 
       - uses: actions/setup-java@v4
         with:
@@ -50,12 +68,53 @@ jobs:
         if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
+          ROLLBACK_TO: ${{ inputs.rollback_to }}
         run: |
+          VERSION_NAME="${APP_VERSION:-1.0}.${BUILD_NUMBER}"
+          SOURCE="${GITHUB_REF_NAME} (${SRC_SHA::7})"
+          [ -n "$ROLLBACK_TO" ] && SOURCE="ROLLBACK auf ${ROLLBACK_TO} (${SRC_SHA::7})"
           # buzzer.apk bleibt der feste Link, buzzer-build-<Nr>.apk zeigt die Variante.
           cp "buzzer-build-${BUILD_NUMBER}.apk" buzzer.apk
           gh release delete buzzer-latest --yes --cleanup-tag || true
           gh release create buzzer-latest buzzer.apk "buzzer-build-${BUILD_NUMBER}.apk" \
             --prerelease \
-            --target "$GITHUB_SHA" \
+            --target "$SRC_SHA" \
             --title "Buzzer – Build ${BUILD_NUMBER}" \
-            --notes "Build ${BUILD_NUMBER} (Version 1.0.${BUILD_NUMBER}), automatisch gebaut aus ${GITHUB_REF_NAME} (${GITHUB_SHA::7}). Debug-APK zum Testen."
+            --notes "Build ${BUILD_NUMBER} (Version ${VERSION_NAME}), automatisch gebaut aus ${SOURCE}. Debug-APK zum Testen."
+
+      # Jeder Build bekommt eine eigene Seite „build-<Nr>“ mit seiner APK; der Stand im Repository
+      # (Tag build-<Nr>) bleibt dauerhaft – daraus lässt sich jederzeit ein Rollback bauen.
+      # Die APK-Seiten der letzten 10 Builds bleiben, ältere werden gelöscht (die Tags nicht).
+      - name: Seite „build-<Nr>“ anlegen, alte aufräumen
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ROLLBACK_TO: ${{ inputs.rollback_to }}
+        run: |
+          VERSION_NAME="${APP_VERSION:-1.0}.${BUILD_NUMBER}"
+          NOTE="Build ${BUILD_NUMBER} (Version ${VERSION_NAME}) aus ${GITHUB_REF_NAME} (${SRC_SHA::7})."
+          [ -n "$ROLLBACK_TO" ] && NOTE="Rollback: Quelltext von ${ROLLBACK_TO} (${SRC_SHA::7}) als neuer Build ${BUILD_NUMBER} (Version ${VERSION_NAME})."
+          gh release create "build-${BUILD_NUMBER}" "buzzer-build-${BUILD_NUMBER}.apk" \
+            --prerelease \
+            --target "$SRC_SHA" \
+            --title "Buzzer – Build ${BUILD_NUMBER}" \
+            --notes "$NOTE"
+          gh release list --limit 300 --json tagName --jq '.[].tagName' | { grep '^build-' || true; } | tail -n +11 | while read -r tag; do
+            gh release delete "$tag" --yes || true
+          done
+
+      # Major Release: eigene, dauerhafte Release-Seite (wird auf GitHub als „Latest“ markiert).
+      - name: Major Release veröffentlichen
+        if: github.event_name == 'workflow_dispatch' && inputs.major
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          MAJOR="${APP_VERSION:-1.0}"
+          VERSION_NAME="${MAJOR}.${BUILD_NUMBER}"
+          NOTES_FILE="docs/release/${MAJOR}.md"
+          [ -f "$NOTES_FILE" ] || { echo "Buzzer ${VERSION_NAME}" > release-notes.md; NOTES_FILE=release-notes.md; }
+          gh release create "v${VERSION_NAME}" "buzzer-build-${BUILD_NUMBER}.apk" \
+            --target "$SRC_SHA" \
+            --latest \
+            --title "Buzzer ${MAJOR} – Major Release (Build ${BUILD_NUMBER})" \
+            --notes-file "$NOTES_FILE"

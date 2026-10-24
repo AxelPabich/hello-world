@@ -17,7 +17,9 @@ android {
         // Build-Nummer kommt aus der GitHub Action (Lauf-Nummer); lokal 1.
         val buildNumber = System.getenv("BUILD_NUMBER")?.toIntOrNull() ?: 1
         versionCode = buildNumber
-        versionName = "1.0.$buildNumber"
+        // Haupt- und Nebenversion stehen in der Datei VERSION im Repository (Major Release = dort erhöhen).
+        val versionPrefix = rootProject.file("VERSION").takeIf { it.exists() }?.readText()?.trim()?.takeIf { it.isNotEmpty() } ?: "1.0"
+        versionName = "$versionPrefix.$buildNumber"
     }
 
     // Fester Schlüssel, damit jeder Build als Update über den vorherigen installiert werden kann

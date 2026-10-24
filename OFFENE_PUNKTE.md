@@ -461,6 +461,14 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+84. **Major Release und Rollback** (Wunsch vom 24.10.2026; umgesetzt, wirkt ab dem nächsten Build):
+    Datei `VERSION` (jetzt `2.0`) bestimmt Haupt.Neben, Version also `2.0.<Nr>`. Der Workflow kann
+    mit `major = true` ein Major Release veröffentlichen und mit `rollback_to = build-<Nr>` den Quelltext
+    eines früheren Standes als neuen Build mit höherer Nummer bauen (Android erlaubt keinen Downgrade).
+    Jeder Build bekommt Seite und Tag `build-<Nr>` (APK-Seiten der letzten 10 bleiben). Tags für die
+    schon gebauten Stände ließen sich hier nicht pushen – dafür Commit-IDs: Build 35 `90456ce`,
+    36 `ee3a1a9`, 37 `743258e`. Der erste Lauf mit dem neuen Workflow ist der Test – Fehler im Workflow
+    zeigen sich erst dort. Spezifikation Abschnitt 56, Release-Notizen `docs/release/2.0.md`.
 83. **Spielleiter-Ansicht näher an der der Spieler** (Wunsch vom 24.10.2026; umgesetzt, kommt mit
     dem nächsten Build): Während einer Quizfrage große Frage mit vier Antwortfeldern wie bei den
     Spielern (Titel der Seite entfällt, Wischzeile „wer hat geantwortet“, Knöpfe darunter), in der

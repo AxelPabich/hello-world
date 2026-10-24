@@ -212,7 +212,8 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 ## 12. Diagnose und Build-Nummer
 
 - Jede APK trägt eine **Build-Nummer** (Lauf-Nummer der GitHub Action):
-  Version `1.0.<Nr>`, Dateiname `buzzer-build-<Nr>.apk`. Sie steht auch auf dem
+  Version `<Haupt.Neben>.<Nr>` (z. B. `2.0.38`; Haupt- und Nebenversion stehen in der Datei `VERSION`),
+  Dateiname `buzzer-build-<Nr>.apk`. Sie steht auch auf dem
   Startbildschirm.
 - Bei einer Fehlermeldung und auf dem Startbildschirm gibt es **„Diagnose senden“**.
   Der Bericht enthält die Fehlermeldung, die letzten Ereignisse der App und ggf.
@@ -812,3 +813,21 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - **Auflösung:** gleiche Kopfzeile; spielt der Spielleiter mit, auch sein Ergebnis-Banner
   („Richtig! +1“). Die Verteilung je Antwort, Challenge und Entscheidungen bleiben.
 - **Buzzer:** Spielt der Spielleiter mit, bekommt sein Buzzer die Hälfte des Bildschirms.
+
+## 56. Major Release und Rollback
+
+- **Versionsnummer:** `versionName` = Inhalt der Datei `VERSION` (Haupt.Neben, derzeit `2.0`) + Build-Nummer;
+  `versionCode` bleibt die Build-Nummer (Lauf-Nummer der GitHub Action) und steigt immer.
+- **Major Release:** „Run workflow“ mit `major = true` legt zusätzlich die dauerhafte Release-Seite
+  `v<Version>.<Nr>` an (als „Latest“ markiert, Notizen aus `docs/release/<Haupt.Neben>.md`).
+- **Jeder Build** bekommt die Seite `build-<Nr>` mit seiner APK und den Tag `build-<Nr>` auf dem gebauten
+  Stand; die APK-Seiten der letzten 10 Builds bleiben, ältere werden gelöscht, die Tags nicht. Der feste
+  Link `buzzer-latest` / `buzzer.apk` zeigt weiter auf den neuesten Build.
+- **Rollback:** „Run workflow“ mit `rollback_to` (Tag `build-<Nr>`, Release-Tag oder Commit-ID) baut den
+  Quelltext dieses Standes als **neuen Build mit der nächsten Nummer** – Android lässt keine niedrigere
+  Nummer über eine höhere installieren (außer nach Deinstallation, dann gingen die Daten verloren).
+  Er wird wie ein Update installiert und per Funk weitergegeben; Profile und Statistik bleiben erhalten.
+  Die Release-Notizen nennen den Rollback ausdrücklich. Vor der Einführung der Tags: Build 35 = `90456ce`,
+  Build 36 = `ee3a1a9`, Build 37 = `743258e`.
+- Die Protokollversion bleibt bei einer Hauptversion gleich, damit Geräte mit älterem Build weiter mitspielen.
+

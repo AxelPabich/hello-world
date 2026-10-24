@@ -6,6 +6,10 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
 
 - Gebaut wird nur auf Anweisung („Erstelle Build …“): GitHub Actions `android.yml` per
   `workflow_dispatch` auf dem Arbeits-Branch; die Build-Nummer ist die Run-Nummer.
+- Major Release: „Erstelle Build … als Major Release“ → `workflow_dispatch` mit `major = true`; vorher die
+  Hauptversion in der Datei `VERSION` erhöhen und die Release-Notizen in `docs/release/<Version>.md`
+  schreiben. Rollback: „Rollback auf Build N“ → `workflow_dispatch` mit `rollback_to = build-N` (baut
+  den alten Quelltext als NEUEN Build; Stände 35–37: `90456ce`, `ee3a1a9`, `743258e`).
 - Sonst Commits mit `[skip ci]`; neue Wünsche und Testergebnisse in `OFFENE_PUNKTE.md` festhalten.
 - Pull Requests und Merges nach `master` nur auf Anweisung.
 - `PROMPT_SPEZIFIKATION.md` enthält zwischen „===== BEGINN SPEZIFIKATION.md =====“ und
@@ -16,7 +20,8 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
 ## Fragendatenbank wächst mit jedem Build (Wunsch vom 16.10.2026)
 
 Vor **jedem Build** kommt in **jeder bestehenden Kategorie** je **eine neue Frage pro
-Schwierigkeitsstufe** dazu (leicht, mittel, schwer – also drei Fragen je Paket in `quiz/`):
+Schwierigkeitsstufe** dazu. Die Stufen stehen in `quiz/index.json` („stufen“, zurzeit leicht, mittel,
+schwer, ingomania – also vier Fragen je Paket in `quiz/`):
 
 - Format wie in `quiz/README.md`: erste Antwort richtig, Erklärung, Quelle, `erstellt` = Datum.
 - IDs fortlaufend je Paket weiterzählen; keine Dubletten zu vorhandenen Fragen.
