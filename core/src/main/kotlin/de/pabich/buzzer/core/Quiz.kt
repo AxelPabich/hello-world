@@ -9,20 +9,82 @@ enum class GameKind(val label: String) {
     QUIZ("Quiz"),
 }
 
-enum class QuizLevel(val key: String, val label: String) {
-    EASY("leicht", "Leicht"),
-    MEDIUM("mittel", "Mittel"),
-    HARD("schwer", "Schwer"),
+/**
+ * Eine Schwierigkeitsstufe. Welche Stufen es gibt, steht in der Fragendatenbank (`quiz/index.json`,
+ * „stufen“) und gilt nach dem Laden für die ganze App ([QuizLevels]) – neue Stufen brauchen keinen
+ * neuen Build. Die Reihenfolge der Liste ist die Reihenfolge von leicht nach schwer.
+ */
+class QuizLevel(
+    val key: String,
+    val label: String,
+    /** Erwarteter Anteil richtiger Antworten, solange noch zu wenig gemessen wurde. */
+    val startValue: Double = 0.3,
+    /** Ab diesem Anteil richtiger Antworten gilt die Frage nach der Messung mindestens als diese Stufe. */
+    val measuredFrom: Double = 0.0,
+    /** Nur Fragen, deren Autor diese Stufe vergeben hat, behalten sie; die Messung vergibt sie nicht. */
+    val authorOnly: Boolean = false,
+    /** In der Grundauswahl des Quiz vorgewählt. */
+    val standard: Boolean = true,
+) {
+    override fun equals(other: Any?) = other is QuizLevel && other.key == key
+    override fun hashCode() = key.hashCode()
+    override fun toString() = key
 
-    /** Über „schwer“: nur für Kenner (Wunsch vom 24.10.2026). Nicht in der Grundauswahl. */
-    INGOMANIA("ingomania", "Ingomania"),
-    ;
+    /** Position in der Stufenliste (leichteste zuerst). */
+    val ordinal: Int get() = entries.indexOf(this).let { if (it < 0) Int.MAX_VALUE else it }
+
+    /** Name, den ältere Apps (ohne Stufenliste) in Nachrichten erwarten. */
+    val legacyName: String
+        get() = when (key) {
+            "leicht" -> "EASY"
+            "mittel" -> "MEDIUM"
+            else -> "HARD"
+        }
 
     companion object {
-        /** Grundauswahl im Quiz; Ingomania muss der Spielleiter bewusst dazuwählen. */
-        val STANDARD: Set<QuizLevel> get() = setOf(EASY, MEDIUM, HARD)
+        val EASY = QuizLevel("leicht", "Leicht", 0.8, 0.7)
+        val MEDIUM = QuizLevel("mittel", "Mittel", 0.55, 0.4)
+        val HARD = QuizLevel("schwer", "Schwer", 0.3, 0.2)
+        val INGOMANIA = QuizLevel("ingomania", "Ingomania", 0.12, 0.0, authorOnly = true, standard = false)
 
-        fun byKey(key: String): QuizLevel? = entries.firstOrNull { it.key == key.trim().lowercase() || it.name == key }
+        /** Stufen, solange keine Fragendatenbank geladen ist (und für die Tests). */
+        val DEFAULTS = listOf(EASY, MEDIUM, HARD, INGOMANIA)
+
+        /** Alle bekannten Stufen, leichteste zuerst. */
+        val entries: List<QuizLevel> get() = QuizLevels.all
+
+        /** Grundauswahl im Quiz; Stufen mit `standard = false` muss der Spielleiter bewusst dazuwählen. */
+        val STANDARD: Set<QuizLevel> get() = entries.filter { it.standard }.toSet()
+
+        fun byKey(key: String): QuizLevel? {
+            val k = key.trim().lowercase()
+            return entries.firstOrNull { it.key == k } ?: when (k) {
+                "easy" -> EASY
+                "medium" -> MEDIUM
+                "hard" -> HARD
+                else -> null
+            }
+        }
+
+        /** Stufe aus einer Nachricht: eigene Liste, sonst anhand von Schlüssel und Beschriftung nachgebaut. */
+        fun fromWire(key: String?, label: String?, legacy: String): QuizLevel =
+            key?.let { byKey(it) ?: QuizLevel(it, label?.takeIf { l -> l.isNotBlank() } ?: it, authorOnly = true, standard = false) }
+                ?: byKey(legacy) ?: HARD
+    }
+}
+
+/** Die in der Fragendatenbank verwalteten Stufen (siehe [QuizLevel]). */
+object QuizLevels {
+    @Volatile
+    var all: List<QuizLevel> = QuizLevel.DEFAULTS
+        private set
+
+    fun update(levels: List<QuizLevel>) {
+        if (levels.isNotEmpty()) all = levels.distinctBy { it.key }
+    }
+
+    fun reset() {
+        all = QuizLevel.DEFAULTS
     }
 }
 
@@ -118,6 +180,23 @@ object QuestionPacks {
             created = (m["erstellt"] as? String).orEmpty(),
             validUntil = (m["gueltigBis"] as? String)?.takeIf { it.isNotBlank() },
         )
+    }
+
+    /** Stufen aus dem Index („stufen“); leer, wenn der Index keine nennt. */
+    fun parseLevels(text: String): List<QuizLevel> {
+        val root = MiniJson.parse(text) as? Map<*, *> ?: return emptyList()
+        return (root["stufen"] as? List<*>).orEmpty().mapNotNull { e ->
+            val m = e as? Map<*, *> ?: return@mapNotNull null
+            val key = (m["schluessel"] as? String)?.trim()?.lowercase()?.takeIf { it.isNotEmpty() } ?: return@mapNotNull null
+            QuizLevel(
+                key = key,
+                label = (m["name"] as? String)?.trim()?.takeIf { it.isNotEmpty() } ?: key.replaceFirstChar { it.uppercase() },
+                startValue = (m["startwert"] as? Number)?.toDouble()?.coerceIn(0.0, 1.0) ?: 0.3,
+                measuredFrom = (m["gemessenAb"] as? Number)?.toDouble()?.coerceIn(0.0, 1.0) ?: 0.0,
+                authorOnly = m["nurAutor"] as? Boolean ?: false,
+                standard = m["vorgewaehlt"] as? Boolean ?: true,
+            )
+        }.distinctBy { it.key }
     }
 
     /** Index der Pakete im Repository: Dateiname → Version. */

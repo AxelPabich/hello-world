@@ -1,64 +1,98 @@
 {
+  "stufen": [
+    {
+      "schluessel": "leicht",
+      "name": "Leicht",
+      "startwert": 0.8,
+      "gemessenAb": 0.7,
+      "nurAutor": false,
+      "vorgewaehlt": true
+    },
+    {
+      "schluessel": "mittel",
+      "name": "Mittel",
+      "startwert": 0.55,
+      "gemessenAb": 0.4,
+      "nurAutor": false,
+      "vorgewaehlt": true
+    },
+    {
+      "schluessel": "schwer",
+      "name": "Schwer",
+      "startwert": 0.3,
+      "gemessenAb": 0.2,
+      "nurAutor": false,
+      "vorgewaehlt": true
+    },
+    {
+      "schluessel": "ingomania",
+      "name": "Ingomania",
+      "startwert": 0.12,
+      "gemessenAb": 0.0,
+      "nurAutor": true,
+      "vorgewaehlt": false
+    }
+  ],
   "pakete": [
     {
       "datei": "technik.json",
       "titel": "Technik",
-      "version": 7,
-      "fragen": 64
+      "version": 8,
+      "fragen": 84
     },
     {
       "datei": "geschichte.json",
       "titel": "Geschichte",
-      "version": 7,
-      "fragen": 64
+      "version": 8,
+      "fragen": 84
     },
     {
       "datei": "erdkunde.json",
       "titel": "Erdkunde",
-      "version": 7,
-      "fragen": 64
+      "version": 8,
+      "fragen": 84
     },
     {
       "datei": "film.json",
       "titel": "Film & Fernsehen",
-      "version": 7,
-      "fragen": 64
+      "version": 8,
+      "fragen": 84
     },
     {
       "datei": "sehenswuerdigkeiten.json",
       "titel": "Sehenswürdigkeiten",
-      "version": 7,
-      "fragen": 64
+      "version": 8,
+      "fragen": 84
     },
     {
       "datei": "kueche.json",
       "titel": "Küche & Genuss",
-      "version": 7,
-      "fragen": 64
+      "version": 8,
+      "fragen": 84
     },
     {
       "datei": "aktuell-2026.json",
       "titel": "Aktuelles 2026",
-      "version": 7,
-      "fragen": 62
+      "version": 8,
+      "fragen": 82
     },
     {
       "datei": "einzelhandel.json",
       "titel": "Einzelhandel",
-      "version": 6,
-      "fragen": 62
+      "version": 7,
+      "fragen": 82
     },
     {
       "datei": "bueroalltag.json",
       "titel": "Büroalltag",
-      "version": 6,
-      "fragen": 62
+      "version": 7,
+      "fragen": 82
     },
     {
       "datei": "besserwisser.json",
       "titel": "Besserwisser",
-      "version": 6,
-      "fragen": 62
+      "version": 7,
+      "fragen": 82
     }
   ]
 }

@@ -182,11 +182,13 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
             },
         )
         SetupTitle("Schwierigkeit")
+        // Die Stufen kommen aus der Fragendatenbank (index.json) – neue erscheinen hier von selbst.
+        val levels = remember(dataVersion) { QuizLevel.entries }
         FlowChips(
-            items = QuizLevel.entries.map { it.label },
-            selected = { label -> QuizLevel.entries.first { it.label == label } in settings.quizLevels },
+            items = levels.map { it.label },
+            selected = { label -> levels.first { it.label == label } in settings.quizLevels },
             onToggle = { label ->
-                val level = QuizLevel.entries.first { it.label == label }
+                val level = levels.first { it.label == label }
                 val next = if (level in settings.quizLevels) settings.quizLevels - level else settings.quizLevels + level
                 if (next.isNotEmpty()) change(settings.copy(quizLevels = next))
             },

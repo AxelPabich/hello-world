@@ -1,247 +1,9 @@
 {
   "paket": "aktuell-2026",
   "titel": "Aktuelles 2026",
-  "version": 7,
+  "version": 8,
   "hinweis": "Fragen zu Ereignissen des Jahres 2026 (Stand 13.10.2026), recherchiert per Websuche; laufen Ende 2027 ab.",
   "fragen": [
-    {
-      "id": "akt26-0019",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Was kostet das Deutschlandticket seit Januar 2026 im Monat?",
-      "antworten": [
-        "63 Euro",
-        "49 Euro",
-        "58 Euro",
-        "129,99 Euro"
-      ],
-      "erklaerung": "Gestartet 2023 mit 49 €, 2025 dann 58 €. Die 129,99 € stammten aus einem gefälschten TikTok-Video.",
-      "quelle": "https://correctiv.org/faktencheck/aus-der-community/2026/01/15/deutschlandticket-tiktok-video-erfindet-drastischen-preisanstieg-fuer-2026/",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0024",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welcher deutsche Autohersteller startete im März 2026 erstmals mit eigenem Werksteam in der Formel 1?",
-      "antworten": [
-        "Audi",
-        "BMW",
-        "Porsche",
-        "Volkswagen"
-      ],
-      "erklaerung": "Audi übernahm dafür das Schweizer Sauber-Team; Debüt war in Melbourne mit Nico Hülkenberg und Gabriel Bortoleto.",
-      "quelle": "https://www.auto-motor-und-sport.de/formel-1/audi-f1-debuet-melbourne/",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0017",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer gewann die Tour de France 2026?",
-      "antworten": [
-        "Tadej Pogačar",
-        "Jonas Vingegaard",
-        "Remco Evenepoel",
-        "Primož Roglič"
-      ],
-      "erklaerung": "Sein fünfter Tour-Sieg. Evenepoel wurde Zweiter, Isaac del Toro Dritter.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Tour_de_France",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0042",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer wurde in der Saison 2025/26 Torschützenkönig der Fußball-Bundesliga?",
-      "antworten": [
-        "Harry Kane",
-        "Deniz Undav",
-        "Serhou Guirassy",
-        "Michael Olise"
-      ],
-      "erklaerung": "Kane erzielte 36 Tore und sicherte sich den Titel zum dritten Mal in Folge.",
-      "quelle": "https://www.zdfheute.de/sport/fussball-bundesliga/bundesliga-torjaeger-harry-kane-kanone-100.html",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0028",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer wurde im Januar 2026 erneut Darts-Weltmeister?",
-      "antworten": [
-        "Luke Littler",
-        "Michael van Gerwen",
-        "Gian van Veen",
-        "Luke Humphries"
-      ],
-      "erklaerung": "Er gewann das Finale im Londoner Ally Pally mit 7:1 gegen Gian van Veen.",
-      "quelle": "https://ran.joyn.de/sports/darts/darts-wm/darts-wm-finale2026-luke-littler-schlaegt-gian-van-veen-tv-uebertragung-gratis-stream-und-liveticker-75125",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0035",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer wurde im Mai 2026 Eishockey-Weltmeister?",
-      "antworten": [
-        "Finnland",
-        "Schweiz",
-        "Kanada",
-        "Schweden"
-      ],
-      "erklaerung": "Finnland gewann das Finale am 31. Mai 2026 in Zürich mit 1:0 nach Verlängerung gegen Gastgeber Schweiz.",
-      "quelle": "https://www.srf.ch/sport/eishockey/wm/finnland-ist-weltmeister-wieder-in-der-overtime-nati-bleibt-auch-an-heim-wm-nur-silber",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0006",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wo fanden die Olympischen Winterspiele 2026 statt?",
-      "antworten": [
-        "In Mailand und Cortina d’Ampezzo",
-        "In Garmisch-Partenkirchen",
-        "In Salt Lake City",
-        "Im Kühlregal eines sehr großen Supermarkts"
-      ],
-      "erklaerung": "Vom 6. bis 22. Februar 2026 in Italien.",
-      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0014",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer wurde Deutscher Fußballmeister 2025/26?",
-      "antworten": [
-        "FC Bayern München",
-        "Borussia Dortmund",
-        "RB Leipzig",
-        "Der Hamburger SV, nach einer kleinen Pause"
-      ],
-      "erklaerung": "Mit 89 Punkten, 16 vor Dortmund – dazu kam der DFB-Pokal.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Bundesliga+2025%2F26",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0031",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wen besiegte Alexander Zverev im Finale der US Open 2026?",
-      "antworten": [
-        "Ben Shelton",
-        "Jannik Sinner",
-        "Carlos Alcaraz",
-        "Taylor Fritz"
-      ],
-      "erklaerung": "Mit 6:3, 7:6, 5:7, 6:2 holte er im September seinen zweiten Grand-Slam-Titel.",
-      "quelle": "https://www.aljazeera.com/amp/sports/liveblog/2026/9/13/us-open-mens-singles-final-live-alexander-zverev-vs-ben-shelton",
-      "erstellt": "2026-10-19",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0038",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welches Team gewann 2026 die NBA-Meisterschaft?",
-      "antworten": [
-        "New York Knicks",
-        "San Antonio Spurs",
-        "Boston Celtics",
-        "Los Angeles Lakers"
-      ],
-      "erklaerung": "Die Knicks schlugen die Spurs in den Finals 4:1 und holten ihren ersten Titel seit 1973.",
-      "quelle": "https://www.2822news.com/sports/the-new-york-knicks-win-the-nba-championship/amp/",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0046",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer wurde nach der Landtagswahl 2026 Ministerpräsident von Rheinland-Pfalz?",
-      "antworten": [
-        "Gordon Schnieder (CDU)",
-        "Alexander Schweitzer (SPD)",
-        "Julia Klöckner (CDU)",
-        "Malu Dreyer (SPD)"
-      ],
-      "erklaerung": "Die CDU gewann am 22. März 2026 vor der SPD; nach 35 Jahren SPD-Führung bildete Schnieder eine Koalition mit der SPD.",
-      "quelle": "https://ms-aktuell.de/welt/rheinland-pfalz-koalition-cdu-spd-schnieder/",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0053",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer erzielte das Siegtor im Finale der Eishockey-WM 2026 zwischen Finnland und der Schweiz?",
-      "antworten": [
-        "Konsta Helenius",
-        "Mikko Lehtonen",
-        "Sebastian Aho",
-        "Roope Hintz"
-      ],
-      "erklaerung": "Der 20-jährige Helenius traf nach 70:42 Minuten in der Verlängerung; Lehtonen gab die Vorlage.",
-      "quelle": "https://www.srf.ch/sport/eishockey/wm/der-juengste-richtet-s-im-final-held-helenius-veredelt-finnlands-fast-perfekte-wm",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0037",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer gewann im April 2026 das Golfturnier „Masters“ in Augusta?",
-      "antworten": [
-        "Rory McIlroy",
-        "Scottie Scheffler",
-        "Jon Rahm",
-        "Bryson DeChambeau"
-      ],
-      "erklaerung": "McIlroy verteidigte seinen Titel mit einem Schlag Vorsprung auf Scheffler (12 unter Par).",
-      "quelle": "https://thegolfnewsnet.com/golfnewsnetteam/2026/04/12/2026-masters-tournament-final-results-prize-money-payout-pga-tour-leaderboard-and-how-much-each-golfer-won-142146",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0010",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wofür gab es den Physik-Nobelpreis 2026?",
-      "antworten": [
-        "Für die Entdeckung hochenergetischer Neutrinos aus dem All",
-        "Für den ersten fehlerfreien Quantencomputer",
-        "Für den Nachweis Dunkler Materie",
-        "Für den Nachweis von Gravitationswellen"
-      ],
-      "erklaerung": "Francis Halzen wurde für das IceCube-Observatorium im antarktischen Eis geehrt. Gravitationswellen waren 2017 dran.",
-      "quelle": "https://www.spektrum.de/news/physik-nobelpreis-2026-fuer-forschung-zu-hochenergetischen-neutrinos/2343916",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
     {
       "id": "akt26-0008",
       "version": 1,
@@ -256,40 +18,6 @@
       ],
       "erklaerung": "Vier Astronauten umrundeten den Mond in der Orion-Kapsel, ohne zu landen (1.–11. April 2026).",
       "quelle": "https://www.nasa.gov/mission/artemis-ii/",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0021",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer wurde im Mai 2026 Ministerpräsident von Baden-Württemberg?",
-      "antworten": [
-        "Cem Özdemir",
-        "Manuel Hagel",
-        "Winfried Kretschmann",
-        "Boris Palmer"
-      ],
-      "erklaerung": "Er folgte auf Winfried Kretschmann, der nach 15 Jahren nicht mehr antrat. Bei der Landtagswahl im März lagen die Grünen knapp vor der CDU.",
-      "quelle": "https://www.baden-wuerttemberg.de/de/service/alle-meldungen/meldung/pid/cem-oezdemir-ist-neuer-ministerpraesident",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0005",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Gegen wen verlor Deutschland das Finale der Handball-EM 2026?",
-      "antworten": [
-        "Dänemark",
-        "Schweden",
-        "Frankreich",
-        "Island"
-      ],
-      "erklaerung": "27:34 in Herning – Silber für das Team von Alfred Gíslason.",
-      "quelle": "https://www.sportschau.de/handball/em/deutschland-unterliegt-daenemarks-handball-koenigen,bericht-ger-dae-104.html",
       "erstellt": "2026-10-13",
       "gueltigBis": "2027-12-31"
     },
@@ -311,20 +39,258 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0007",
+      "id": "akt26-0073",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wie viel Prozent erreichte die SPD bei der Landtagswahl in Baden-Württemberg im März 2026 (vorläufiges Ergebnis)?",
+      "antworten": [
+        "5,5 Prozent",
+        "7,2 Prozent",
+        "9,8 Prozent",
+        "4,4 Prozent"
+      ],
+      "erklaerung": "Das war das schlechteste Ergebnis der SPD im Südwesten überhaupt; FDP und Linke scheiterten mit je 4,4 Prozent.",
+      "quelle": "https://www.apotheke-adhoc.de/nachrichten/detail/politik/baden-wuerttemberg-gruenen-knapp-vorne/print.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0029",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer gewann 2026 die French Open der Damen?",
+      "antworten": [
+        "Mirra Andreeva",
+        "Iga Świątek",
+        "Aryna Sabalenka",
+        "Coco Gauff"
+      ],
+      "erklaerung": "Die vierfache Siegerin Świątek schied schon im Achtelfinale aus.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_French_Open",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0040",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welche Partei wurde bei der Landtagswahl in Sachsen-Anhalt im September 2026 mit weitem Abstand stärkste Kraft?",
+      "antworten": [
+        "AfD",
+        "CDU",
+        "SPD",
+        "Die Linke"
+      ],
+      "erklaerung": "Die AfD kam auf 43,8 Prozent, die CDU nur auf 17,2 Prozent – die absolute Mehrheit verfehlte die AfD.",
+      "quelle": "https://www.kas.de/documents/d/guest/wahlanalyse-der-landtagswahl-in-sachsen-anhalt-am-6-september-2026-1",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0028",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "mittel",
-      "frage": "Auf welchem Platz landete Deutschland im Medaillenspiegel der Winterspiele 2026?",
+      "frage": "Wer wurde im Januar 2026 erneut Darts-Weltmeister?",
       "antworten": [
-        "Platz 5",
-        "Platz 1",
-        "Platz 2",
-        "Platz 12"
+        "Luke Littler",
+        "Michael van Gerwen",
+        "Gian van Veen",
+        "Luke Humphries"
       ],
-      "erklaerung": "8 Gold, 10 Silber, 8 Bronze. 2022 in Peking war es noch Platz 2.",
-      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Er gewann das Finale im Londoner Ally Pally mit 7:1 gegen Gian van Veen.",
+      "quelle": "https://ran.joyn.de/sports/darts/darts-wm/darts-wm-finale2026-luke-littler-schlaegt-gian-van-veen-tv-uebertragung-gratis-stream-und-liveticker-75125",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0037",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wer gewann im April 2026 das Golfturnier „Masters“ in Augusta?",
+      "antworten": [
+        "Rory McIlroy",
+        "Scottie Scheffler",
+        "Jon Rahm",
+        "Bryson DeChambeau"
+      ],
+      "erklaerung": "McIlroy verteidigte seinen Titel mit einem Schlag Vorsprung auf Scheffler (12 unter Par).",
+      "quelle": "https://thegolfnewsnet.com/golfnewsnetteam/2026/04/12/2026-masters-tournament-final-results-prize-money-payout-pga-tour-leaderboard-and-how-much-each-golfer-won-142146",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0064",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Mit welchem Ergebnis gewann Linda Nosková das Damen-Finale von Wimbledon 2026 gegen Karolina Muchová?",
+      "antworten": [
+        "6:2, 5:7, 6:3",
+        "6:2, 6:4",
+        "7:5, 6:7, 6:4",
+        "6:3, 6:7, 6:2"
+      ],
+      "erklaerung": "Am 11. Juli 2026 vergab Nosková im zweiten Satz fünf Matchbälle, holte aber im dritten Satz den ersten Grand-Slam-Titel ihrer Karriere.",
+      "quelle": "https://www.aljazeera.com/amp/sports/2026/7/11/noskova-defeats-muchova-in-wimbledon-final-to-record-first-grand-slam-title",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0043",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Gegen welche Mannschaft schied Deutschland bei der Fußball-WM 2026 im Sechzehntelfinale aus?",
+      "antworten": [
+        "Paraguay",
+        "Ecuador",
+        "Elfenbeinküste",
+        "Curaçao"
+      ],
+      "erklaerung": "Am 29. Juni 2026 verlor das DFB-Team in Foxborough im Elfmeterschießen.",
+      "quelle": "https://www.echo24.de/sport/fussball/wm-aus-gegen-paraguay-bundestrainer-nagelsmann-spricht-ueber-zukunft-zr-94375112.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0023",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Gegen wen gewann Carlos Alcaraz das Finale der Australian Open 2026?",
+      "antworten": [
+        "Novak Djokovic",
+        "Jannik Sinner",
+        "Alexander Zverev",
+        "Daniil Medwedew"
+      ],
+      "erklaerung": "Mit seinem ersten Titel in Melbourne hat Alcaraz alle vier Grand-Slam-Turniere gewonnen. Bei den Frauen siegte Elena Rybakina.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Australian_Open_%E2%80%93_Men%27s_singles",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0080",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Welcher Film erhielt bei den Filmfestspielen von Cannes 2026 den Großen Preis der Jury (Grand Prix)?",
+      "antworten": [
+        "„Minotaur“ von Andrei Swjaginzew",
+        "„Fjord“ von Cristian Mungiu",
+        "„Coward“",
+        "„All of a Sudden“"
+      ],
+      "erklaerung": "Die Goldene Palme ging an „Fjord“; den Preis der Jury erhielt Valeska Grisebach für „Das geträumte Abenteuer“.",
+      "quelle": "https://www.netzwelt.de/news/254287-cannes-2026-gewinner-ueberblick.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0042",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wer wurde in der Saison 2025/26 Torschützenkönig der Fußball-Bundesliga?",
+      "antworten": [
+        "Harry Kane",
+        "Deniz Undav",
+        "Serhou Guirassy",
+        "Michael Olise"
+      ],
+      "erklaerung": "Kane erzielte 36 Tore und sicherte sich den Titel zum dritten Mal in Folge.",
+      "quelle": "https://www.zdfheute.de/sport/fussball-bundesliga/bundesliga-torjaeger-harry-kane-kanone-100.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0062",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Welche Marke übersprang der DAX am 3. August 2026 erstmals im Schlusskurs?",
+      "antworten": [
+        "26.000 Punkte",
+        "25.000 Punkte",
+        "24.000 Punkte",
+        "30.000 Punkte"
+      ],
+      "erklaerung": "Der Schlusskurs lag bei 26.001,31 Punkten; einen Tag später folgte ein neues Rekordhoch.",
+      "quelle": "https://ms-aktuell.de/welt/04082026-dax-rekordhoch-26266/",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0076",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Mit welchem Ergebnis gewannen die USA das olympische Eishockey-Finale 2026 gegen Kanada?",
+      "antworten": [
+        "2:1 nach Verlängerung",
+        "3:2 nach Penaltyschießen",
+        "4:3 nach 60 Minuten",
+        "1:0 nach Verlängerung"
+      ],
+      "erklaerung": "Das Finale am 22. Februar 2026 in Mailand wurde erst in der Overtime entschieden; Kanada bekam Silber.",
+      "quelle": "https://www.zdfheute.de/sport/olympia-2026-eishockey-finale-maenner-kanada-usa-100.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0081",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wer gewann bei der Tour de France 2026 das Grüne Trikot der Punktewertung?",
+      "antworten": [
+        "Mads Pedersen",
+        "Jonathan Milan",
+        "Jasper Philipsen",
+        "Tadej Pogačar"
+      ],
+      "erklaerung": "Pedersen (Lidl-Trek) sicherte sich die Punktewertung; Richard Carapaz gewann das Bergtrikot.",
+      "quelle": "https://www.radsport-news.com/sport/sportnews_146286.htm",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0054",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Welche Mannschaft holte bei der Eishockey-WM 2026 erstmals eine WM-Medaille und gewann Bronze?",
+      "antworten": [
+        "Norwegen",
+        "Kanada",
+        "Tschechien",
+        "Deutschland"
+      ],
+      "erklaerung": "Norwegen schlug Kanada am 31. Mai 2026 mit 3:2 nach Verlängerung; Noah Steen traf zum Sieg.",
+      "quelle": "https://sport.sky.de/eishockey/artikel/norwegen-schockt-kanada-und-holt-erstmals-wm-bronze-steen-trifft-in-der-verlaengerung/13549618/35553",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0075",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wen besiegte Alexander Zverev im Halbfinale der French Open 2026?",
+      "antworten": [
+        "Jakub Menšík",
+        "Flavio Cobolli",
+        "Matteo Arnaldi",
+        "Casper Ruud"
+      ],
+      "erklaerung": "Zverev gewann 7:5, 6:2, 3:6, 6:3 und siegte im Finale am 7. Juni gegen Flavio Cobolli.",
+      "quelle": "https://de.euronews.com/2026/06/07/deutscher-zverev-holt-ersten-grand-slam-titel-gegen-italiener-cobolli",
+      "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
@@ -345,6 +311,210 @@
       "gueltigBis": "2027-12-31"
     },
     {
+      "id": "akt26-0072",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wie viele der 199 Parlamentssitze gewann die Tisza-Partei von Péter Magyar bei der Ungarn-Wahl am 12. April 2026?",
+      "antworten": [
+        "141 Sitze",
+        "133 Sitze",
+        "120 Sitze",
+        "155 Sitze"
+      ],
+      "erklaerung": "Damit hatte Tisza eine Zweidrittelmehrheit; Fidesz kam auf 52 Sitze, Mi Hazánk auf sechs. Orbáns 16 Jahre an der Macht endeten.",
+      "quelle": "https://www.bluewin.ch/de/news/international/zweidrittelmehrheit-fuer-tisza-gesichert-betrugsvorwurf-von-magyar-li.3195432",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0055",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Welche Partei scheiterte bei der Landtagswahl in Mecklenburg-Vorpommern 2026 erstmals in einem Bundesland an der Fünf-Prozent-Hürde?",
+      "antworten": [
+        "CDU",
+        "FDP",
+        "BSW",
+        "Die Grünen"
+      ],
+      "erklaerung": "Die CDU kam am 20. September 2026 vorläufig nur auf 4,9 Prozent; die AfD wurde mit 38,2 Prozent stärkste Kraft vor der SPD.",
+      "quelle": "https://www.stuttgarter-zeitung.de/politik/wahl-in-mecklenburg-vorpommern-cdu-scheitert-an-5-prozent-huerde-79487184.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0017",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wer gewann die Tour de France 2026?",
+      "antworten": [
+        "Tadej Pogačar",
+        "Jonas Vingegaard",
+        "Remco Evenepoel",
+        "Primož Roglič"
+      ],
+      "erklaerung": "Sein fünfter Tour-Sieg. Evenepoel wurde Zweiter, Isaac del Toro Dritter.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Tour_de_France",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0060",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer wurde 2026 zum wertvollsten Spieler der NBA-Finals (Finals MVP) gewählt?",
+      "antworten": [
+        "Jalen Brunson",
+        "Victor Wembanyama",
+        "Karl-Anthony Towns",
+        "OG Anunoby"
+      ],
+      "erklaerung": "Brunson erzielte im entscheidenden fünften Spiel (94:90) 45 Punkte und kam in der Serie auf 32,6 Punkte im Schnitt.",
+      "quelle": "https://www.2822news.com/sports/the-new-york-knicks-win-the-nba-championship/amp/",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0048",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welcher Film gewann 2026 in Cannes die Goldene Palme?",
+      "antworten": [
+        "„Fjord“",
+        "„Minotaur“",
+        "„Vaterland“",
+        "„Coward“"
+      ],
+      "erklaerung": "Cristian Mungius „Fjord“ mit Sebastian Stan und Renate Reinsve siegte bei den 79. Filmfestspielen (12.–23. Mai 2026).",
+      "quelle": "https://www.netzwelt.de/news/254287-cannes-2026-gewinner-ueberblick.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0065",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wer erzielte im Champions-League-Finale 2026 in Budapest die frühe Führung für den FC Arsenal?",
+      "antworten": [
+        "Kai Havertz",
+        "Bukayo Saka",
+        "Gabriel Martinelli",
+        "Martin Ødegaard"
+      ],
+      "erklaerung": "Havertz traf in der Anfangsphase; Ousmane Dembélé glich per Elfmeter aus, PSG gewann am 30. Mai 2026 im Elfmeterschießen.",
+      "quelle": "https://www.tsn.ca/soccer/champions-league/article/psg-defeats-arsenal-on-penalties-to-defend-champions-league-title/",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0003",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welcher Film gewann bei den Oscars 2026 den Preis als „Bester Film“?",
+      "antworten": [
+        "„One Battle After Another“ von Paul Thomas Anderson",
+        "„Blood & Sinners“",
+        "„Hamnet“",
+        "„KPop Demon Hunters“"
+      ],
+      "erklaerung": "Sechs Oscars, auch für die Regie. „Blood & Sinners“ ging mit 16 Nominierungen ins Rennen, „KPop Demon Hunters“ wurde bester Animationsfilm.",
+      "quelle": "https://www.aljazeera.com/news/2026/3/16/oscars-2026-full-list-of-winners",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0030",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt fand im September 2026 die Basketball-WM der Frauen statt?",
+      "antworten": [
+        "Berlin",
+        "Paris",
+        "Madrid",
+        "Belgrad"
+      ],
+      "erklaerung": "Weltmeister wurden die USA mit 97:79 gegen Frankreich, Deutschland wurde Vierter.",
+      "quelle": "https://www.fiba.basketball/en/news/usa-continue-dominance-with-12th-fiba-womens-basketball-world-cup-title",
+      "erstellt": "2026-10-19",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0033",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welcher Künstler gewann bei den Grammys 2026 den Preis für das „Album des Jahres“?",
+      "antworten": [
+        "Bad Bunny",
+        "Sabrina Carpenter",
+        "Lady Gaga",
+        "Tyler, The Creator"
+      ],
+      "erklaerung": "Bad Bunny siegte am 1. Februar 2026 in Los Angeles mit „DeBÍ TiRAR MáS FOToS“ – als erstes spanischsprachiges Album in dieser Kategorie.",
+      "quelle": "https://www.grammy.com/awards/categories/album-of-the-year/2026/",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0079",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Welcher Song gewann bei den Grammys 2026 die Auszeichnung „Record of the Year“?",
+      "antworten": [
+        "„Luther“ von Kendrick Lamar und SZA",
+        "„Wildflower“ von Billie Eilish",
+        "„Manchild“ von Sabrina Carpenter",
+        "„DtMF“ von Bad Bunny"
+      ],
+      "erklaerung": "Die 68. Grammys fanden am 1. Februar 2026 statt; „Wildflower“ wurde Song des Jahres, Olivia Dean bester neuer Künstler.",
+      "quelle": "https://www.thestatesman.com/entertainment/grammy-awards-2026-full-list-of-winners-album-record-song-of-the-year-and-more-1503550473.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0022",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welches Team gewann im Februar 2026 den Super Bowl LX?",
+      "antworten": [
+        "Die Seattle Seahawks",
+        "Die New England Patriots",
+        "Die Kansas City Chiefs",
+        "Die Philadelphia Eagles"
+      ],
+      "erklaerung": "29:13 gegen die New England Patriots in Santa Clara; wertvollster Spieler wurde Kenneth Walker III.",
+      "quelle": "https://www.nbcchicago.com/super-bowl/recap-seahawks-defense-patriots-maye/",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0069",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Welche Weltrekordzeit lief die Amerikanerin Masai Russell am selben Abend in Zürich über 100 m Hürden?",
+      "antworten": [
+        "12,09 Sekunden",
+        "12,12 Sekunden",
+        "12,16 Sekunden",
+        "12,04 Sekunden"
+      ],
+      "erklaerung": "Neben dos Santos gelang ihr beim Weltklasse Zürich ebenfalls ein Weltrekord (27. August 2026).",
+      "quelle": "https://www.zdfheute.de/sport/diamond-league-dos-santos-400-meter-huerden-weltrekord-100.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
       "id": "akt26-0047",
       "version": 1,
       "kategorie": "Aktuelles 2026",
@@ -362,20 +532,71 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0020",
+      "id": "akt26-0004",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welches Land gewann den Eurovision Song Contest 2026 in Wien?",
+      "antworten": [
+        "Bulgarien mit „Bangaranga“",
+        "Israel",
+        "Rumänien",
+        "Österreich – der Gastgeber gewinnt schließlich immer"
+      ],
+      "erklaerung": "Dara holte 516 Punkte und gewann Jury- und Publikumswertung – Bulgariens erster ESC-Sieg. 2027 ist Bulgarien Gastgeber.",
+      "quelle": "https://en.wikipedia.org/wiki/Eurovision_Song_Contest_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0044",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "mittel",
-      "frage": "Welcher Begriff wurde zum „Wort des Jahres 2025“ gewählt?",
+      "frage": "Wer gewann bei den Oscars 2026 den Preis als beste Hauptdarstellerin?",
       "antworten": [
-        "„KI-Ära“",
-        "„Deal“",
-        "„Sondervermögen“",
-        "„Ampel-Aus“"
+        "Jessie Buckley",
+        "Emma Stone",
+        "Renate Reinsve",
+        "Kate Hudson"
       ],
-      "erklaerung": "„Deal“ kam auf Platz 2, „Sondervermögen“ auf Platz 4. „Ampel-Aus“ war das Wort des Jahres 2024.",
-      "quelle": "https://www.zdfheute.de/politik/deutschland/wort-des-jahres-2025-sprache-100.html",
+      "erklaerung": "Buckley wurde für „Hamnet“ ausgezeichnet (Verleihung am 15. März 2026).",
+      "quelle": "https://www.tvmovie.de/news/oscar-gewinner-2026-one-battle-after-another-raeumt-gross-ab-156974",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0013",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erhielt den Literaturnobelpreis 2026?",
+      "antworten": [
+        "Die kanadische Dichterin Anne Carson",
+        "Haruki Murakami",
+        "Margaret Atwood",
+        "Salman Rushdie"
+      ],
+      "erklaerung": "Die Schwedische Akademie würdigte ihr kühnes und erfinderisches Werk.",
+      "quelle": "https://www.nobelprize.org/prizes/literature/2026/summary/",
       "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0071",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wer gewann den Großen Preis der Niederlande 2026 in Zandvoort, nachdem er Mercedes-Pilot Antonelli in der Schlussphase überholt hatte?",
+      "antworten": [
+        "Lando Norris",
+        "George Russell",
+        "Charles Leclerc",
+        "Lewis Hamilton"
+      ],
+      "erklaerung": "Norris gewann vor Antonelli und Russell; Russell hatte am Samstag den Sprint gewonnen, Verstappen schied nach einer Runde aus.",
+      "quelle": "https://www.silverstone.co.uk/news/f1-2026-dutch-grand-prix-results-norris-overcomes-antonelli-win-zandvoort-russell-takes-sprint",
+      "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
@@ -393,6 +614,312 @@
       "erklaerung": "Harry Kane traf dreimal – Bayerns 21. Pokalsieg, der erste seit 2020.",
       "quelle": "https://en.wikipedia.org/wiki/2026_DFB-Pokal_final",
       "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0053",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erzielte das Siegtor im Finale der Eishockey-WM 2026 zwischen Finnland und der Schweiz?",
+      "antworten": [
+        "Konsta Helenius",
+        "Mikko Lehtonen",
+        "Sebastian Aho",
+        "Roope Hintz"
+      ],
+      "erklaerung": "Der 20-jährige Helenius traf nach 70:42 Minuten in der Verlängerung; Lehtonen gab die Vorlage.",
+      "quelle": "https://www.srf.ch/sport/eishockey/wm/der-juengste-richtet-s-im-final-held-helenius-veredelt-finnlands-fast-perfekte-wm",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0007",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Auf welchem Platz landete Deutschland im Medaillenspiegel der Winterspiele 2026?",
+      "antworten": [
+        "Platz 5",
+        "Platz 1",
+        "Platz 2",
+        "Platz 12"
+      ],
+      "erklaerung": "8 Gold, 10 Silber, 8 Bronze. 2022 in Peking war es noch Platz 2.",
+      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0011",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Die Deutschen Peter Hegemann und Georg Nagel erhielten 2026 den Medizin-Nobelpreis – wofür?",
+      "antworten": [
+        "Für die Optogenetik: Nervenzellen mit Licht steuern",
+        "Für mRNA-Impfstoffe",
+        "Für die Genschere CRISPR",
+        "Für künstliche Organe aus dem 3D-Drucker"
+      ],
+      "erklaerung": "Zusammen mit Karl Deisseroth. mRNA wurde 2023 ausgezeichnet, CRISPR 2020 (Chemie).",
+      "quelle": "https://newstime.joyn.de/themen/panorama/nobelpreistraeger2026-frieden-medizin-chemie-physik-wirtschaft-literatur-196616",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0066",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Welcher Arsenal-Spieler schoss im Elfmeterschießen des Champions-League-Finales 2026 den entscheidenden Elfmeter über das Tor?",
+      "antworten": [
+        "Gabriel Magalhães",
+        "Declan Rice",
+        "Eberechi Eze",
+        "William Saliba"
+      ],
+      "erklaerung": "Mit Gabriels Fehlschuss war das Elfmeterschießen entschieden; PSG verteidigte seinen Titel nach dem 1:1 nach Verlängerung.",
+      "quelle": "https://www.tsn.ca/soccer/champions-league/article/psg-defeats-arsenal-on-penalties-to-defend-champions-league-title/",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0074",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wer gewann bei den Oscars 2026 den Preis als bester Nebendarsteller?",
+      "antworten": [
+        "Sean Penn",
+        "Benicio del Toro",
+        "Stellan Skarsgård",
+        "Delroy Lindo"
+      ],
+      "erklaerung": "Penn siegte für „One Battle After Another“ (Verleihung am 15. März 2026); Amy Madigan wurde beste Nebendarstellerin.",
+      "quelle": "https://www.promiflash.de/news/2026/03/16/oscarverleihung-2026-alle-gewinner-auf-einen-blick.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0056",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Welche Partei wurde bei der Berlin-Wahl im September 2026 hinter der Linken Zweite?",
+      "antworten": [
+        "CDU",
+        "AfD",
+        "Die Grünen",
+        "SPD"
+      ],
+      "erklaerung": "Die CDU erreichte vorläufig 18,8 Prozent (Linke 25,7, AfD 16,3); die SPD fiel mit 12,1 Prozent auf ihr schlechtestes Berliner Ergebnis.",
+      "quelle": "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/581533/wahl-zum-abgeordnetenhaus-berlin-2026-die-linke-wird-erstmals-staerkste-kraft/",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0078",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wer wurde bei der Vierschanzentournee 2025/26 Gesamtzweiter hinter Domen Prevc?",
+      "antworten": [
+        "Jan Hörl",
+        "Stephan Embacher",
+        "Daniel Tschofenig",
+        "Felix Hoffmann"
+      ],
+      "erklaerung": "Hörl lag 42,3 Punkte hinter Prevc, Embacher wurde mit 45,0 Punkten Rückstand Dritter; Tourneeende war am 6. Januar 2026.",
+      "quelle": "https://www.heidelberg24.de/sport/vierschanzentournee-2025-26-der-endstand-der-gesamtwertung-zr-94102314.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0014",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wer wurde Deutscher Fußballmeister 2025/26?",
+      "antworten": [
+        "FC Bayern München",
+        "Borussia Dortmund",
+        "RB Leipzig",
+        "Der Hamburger SV, nach einer kleinen Pause"
+      ],
+      "erklaerung": "Mit 89 Punkten, 16 vor Dortmund – dazu kam der DFB-Pokal.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Bundesliga+2025%2F26",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0005",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Gegen wen verlor Deutschland das Finale der Handball-EM 2026?",
+      "antworten": [
+        "Dänemark",
+        "Schweden",
+        "Frankreich",
+        "Island"
+      ],
+      "erklaerung": "27:34 in Herning – Silber für das Team von Alfred Gíslason.",
+      "quelle": "https://www.sportschau.de/handball/em/deutschland-unterliegt-daenemarks-handball-koenigen,bericht-ger-dae-104.html",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0006",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wo fanden die Olympischen Winterspiele 2026 statt?",
+      "antworten": [
+        "In Mailand und Cortina d’Ampezzo",
+        "In Garmisch-Partenkirchen",
+        "In Salt Lake City",
+        "Im Kühlregal eines sehr großen Supermarkts"
+      ],
+      "erklaerung": "Vom 6. bis 22. Februar 2026 in Italien.",
+      "quelle": "https://de.wikipedia.org/wiki/Medaillenspiegel_der_Olympischen_Winterspiele_2026",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0036",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "In welchem Land war die totale Sonnenfinsternis am 12. August 2026 zu sehen (in Deutschland nur teilweise)?",
+      "antworten": [
+        "Spanien",
+        "Italien",
+        "Griechenland",
+        "Frankreich"
+      ],
+      "erklaerung": "Der Schatten zog von Grönland über Island nach Spanien und ins westliche Mittelmeer. In Deutschland war nur eine partielle Finsternis kurz vor Sonnenuntergang zu sehen.",
+      "quelle": "https://starwalk.space/de/news/total-solar-eclipse-august-12-2026",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0067",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wer erzielte im Relegations-Rückspiel 2026 das Siegtor für den SC Paderborn gegen den VfL Wolfsburg?",
+      "antworten": [
+        "Laurin Curda",
+        "Filip Bilbija",
+        "Sven Michel",
+        "Adrian Fein"
+      ],
+      "erklaerung": "Curda traf am 25. Mai 2026 in der Verlängerung zum 2:1; Paderborn stieg auf, Wolfsburg erstmals seit 1997 ab.",
+      "quelle": "https://www.zdfheute.de/sport/fussball-bundesliga/bundesliga-relegation-rueckspiel-sc-paderborn-07-vfl-wolfsburg-tore-ergebnis-100.html",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0024",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welcher deutsche Autohersteller startete im März 2026 erstmals mit eigenem Werksteam in der Formel 1?",
+      "antworten": [
+        "Audi",
+        "BMW",
+        "Porsche",
+        "Volkswagen"
+      ],
+      "erklaerung": "Audi übernahm dafür das Schweizer Sauber-Team; Debüt war in Melbourne mit Nico Hülkenberg und Gabriel Bortoleto.",
+      "quelle": "https://www.auto-motor-und-sport.de/formel-1/audi-f1-debuet-melbourne/",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0050",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wer gewann im Mai 2026 den Giro d’Italia?",
+      "antworten": [
+        "Jonas Vingegaard",
+        "Tadej Pogačar",
+        "Primož Roglič",
+        "Remco Evenepoel"
+      ],
+      "erklaerung": "Vingegaard siegte vor dem Österreicher Felix Gall; die Schlussetappe in Rom gewann Jonathan Milan.",
+      "quelle": "https://www.sportschau.de/live-und-ergebnisse/radsport/giro-d-italia/se108175/2026/wertungen-uebersicht",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0068",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Welche Zeit lief Alison dos Santos bei seinem Weltrekord über 400 m Hürden in Zürich am 27. August 2026?",
+      "antworten": [
+        "45,80 Sekunden",
+        "45,94 Sekunden",
+        "46,09 Sekunden",
+        "46,29 Sekunden"
+      ],
+      "erklaerung": "Er unterbot Karsten Warholms Rekord von Tokio 2021 um 14 Hundertstel; Warholm wurde in 46,69 Sekunden Zweiter.",
+      "quelle": "https://www.srf.ch/sport/leichtathletik/highlight-im-letzigrund-dos-santos-verbluefft-mit-neuem-weltrekord-ueber-400-m-huerden",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0061",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer wurde als bislang ältester Spieler zum wertvollsten Spieler der Stanley-Cup-Playoffs 2026 (Conn Smythe Trophy) gewählt?",
+      "antworten": [
+        "Jordan Staal",
+        "Brandon Bussi",
+        "Sebastian Aho",
+        "Jack Eichel"
+      ],
+      "erklaerung": "Staal erzielte sechs Tore in der Finalserie, die Carolina gegen Vegas gewann.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Stanley_Cup_Final",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0070",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wer wurde beim Formel-1-Saisonauftakt 2026 in Melbourne Zweiter hinter Sieger George Russell?",
+      "antworten": [
+        "Kimi Antonelli",
+        "Charles Leclerc",
+        "Lewis Hamilton",
+        "Lando Norris"
+      ],
+      "erklaerung": "Antonelli lag am 8. März 2026 rund 3 Sekunden hinter seinem Mercedes-Teamkollegen; Leclerc wurde Dritter, Verstappen nur Sechster.",
+      "quelle": "https://www.sportschau.de/live-und-ergebnisse/motorsport/formel-1/co543/grosser-preis-von-australien/ma11135568/ergebnisse",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0077",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Welchen seit Apollo 13 (1970) bestehenden Rekord brach die Artemis-II-Crew im April 2026?",
+      "antworten": [
+        "Größte Entfernung von der Erde",
+        "Längste Mission im Mondorbit",
+        "Höchste Geschwindigkeit eines Raumschiffs",
+        "Nächste Annäherung an den Mond"
+      ],
+      "erklaerung": "Orion entfernte sich rund 406.000 Kilometer von der Erde und übertraf damit Apollo 13 (etwa 400.000 Kilometer).",
+      "quelle": "https://www.globalsecurity.org/space/library/news/2026/space-260406-nasa01.htm",
+      "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
@@ -430,37 +957,54 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0011",
+      "id": "akt26-0019",
       "version": 1,
       "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Die Deutschen Peter Hegemann und Georg Nagel erhielten 2026 den Medizin-Nobelpreis – wofür?",
+      "stufe": "leicht",
+      "frage": "Was kostet das Deutschlandticket seit Januar 2026 im Monat?",
       "antworten": [
-        "Für die Optogenetik: Nervenzellen mit Licht steuern",
-        "Für mRNA-Impfstoffe",
-        "Für die Genschere CRISPR",
-        "Für künstliche Organe aus dem 3D-Drucker"
+        "63 Euro",
+        "49 Euro",
+        "58 Euro",
+        "129,99 Euro"
       ],
-      "erklaerung": "Zusammen mit Karl Deisseroth. mRNA wurde 2023 ausgezeichnet, CRISPR 2020 (Chemie).",
-      "quelle": "https://newstime.joyn.de/themen/panorama/nobelpreistraeger2026-frieden-medizin-chemie-physik-wirtschaft-literatur-196616",
+      "erklaerung": "Gestartet 2023 mit 49 €, 2025 dann 58 €. Die 129,99 € stammten aus einem gefälschten TikTok-Video.",
+      "quelle": "https://correctiv.org/faktencheck/aus-der-community/2026/01/15/deutschlandticket-tiktok-video-erfindet-drastischen-preisanstieg-fuer-2026/",
       "erstellt": "2026-10-13",
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0013",
+      "id": "akt26-0021",
       "version": 1,
       "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer erhielt den Literaturnobelpreis 2026?",
+      "stufe": "leicht",
+      "frage": "Wer wurde im Mai 2026 Ministerpräsident von Baden-Württemberg?",
       "antworten": [
-        "Die kanadische Dichterin Anne Carson",
-        "Haruki Murakami",
-        "Margaret Atwood",
-        "Salman Rushdie"
+        "Cem Özdemir",
+        "Manuel Hagel",
+        "Winfried Kretschmann",
+        "Boris Palmer"
       ],
-      "erklaerung": "Die Schwedische Akademie würdigte ihr kühnes und erfinderisches Werk.",
-      "quelle": "https://www.nobelprize.org/prizes/literature/2026/summary/",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Er folgte auf Winfried Kretschmann, der nach 15 Jahren nicht mehr antrat. Bei der Landtagswahl im März lagen die Grünen knapp vor der CDU.",
+      "quelle": "https://www.baden-wuerttemberg.de/de/service/alle-meldungen/meldung/pid/cem-oezdemir-ist-neuer-ministerpraesident",
+      "erstellt": "2026-10-16",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0063",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Wie endete das WM-Spiel um Platz 3 2026 zwischen England und Frankreich in Miami?",
+      "antworten": [
+        "England gewann 6:4",
+        "Frankreich gewann 4:3",
+        "England gewann 2:1",
+        "England gewann 4:2 nach Verlängerung"
+      ],
+      "erklaerung": "England setzte sich im torreichen kleinen Finale mit 6:4 durch; Mbappé traf doppelt und sicherte sich damit den Goldenen Schuh.",
+      "quelle": "https://sport.orf.at/stories/3160480/",
+      "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
@@ -481,53 +1025,19 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0045",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer gewann bei den Oscars 2026 den Preis als bester Hauptdarsteller?",
-      "antworten": [
-        "Michael B. Jordan",
-        "Timothée Chalamet",
-        "Leonardo DiCaprio",
-        "Ethan Hawke"
-      ],
-      "erklaerung": "Jordan siegte für seine Doppelrolle in „Blood & Sinners“ und setzte sich unter anderem gegen Chalamet durch.",
-      "quelle": "https://www.tvmovie.de/news/oscar-gewinner-2026-one-battle-after-another-raeumt-gross-ab-156974",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0056",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Welche Partei wurde bei der Berlin-Wahl im September 2026 hinter der Linken Zweite?",
-      "antworten": [
-        "CDU",
-        "AfD",
-        "Die Grünen",
-        "SPD"
-      ],
-      "erklaerung": "Die CDU erreichte vorläufig 18,8 Prozent (Linke 25,7, AfD 16,3); die SPD fiel mit 12,1 Prozent auf ihr schlechtestes Berliner Ergebnis.",
-      "quelle": "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/581533/wahl-zum-abgeordnetenhaus-berlin-2026-die-linke-wird-erstmals-staerkste-kraft/",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0036",
+      "id": "akt26-0038",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "leicht",
-      "frage": "In welchem Land war die totale Sonnenfinsternis am 12. August 2026 zu sehen (in Deutschland nur teilweise)?",
+      "frage": "Welches Team gewann 2026 die NBA-Meisterschaft?",
       "antworten": [
-        "Spanien",
-        "Italien",
-        "Griechenland",
-        "Frankreich"
+        "New York Knicks",
+        "San Antonio Spurs",
+        "Boston Celtics",
+        "Los Angeles Lakers"
       ],
-      "erklaerung": "Der Schatten zog von Grönland über Island nach Spanien und ins westliche Mittelmeer. In Deutschland war nur eine partielle Finsternis kurz vor Sonnenuntergang zu sehen.",
-      "quelle": "https://starwalk.space/de/news/total-solar-eclipse-august-12-2026",
+      "erklaerung": "Die Knicks schlugen die Spurs in den Finals 4:1 und holten ihren ersten Titel seit 1973.",
+      "quelle": "https://www.2822news.com/sports/the-new-york-knicks-win-the-nba-championship/amp/",
       "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
@@ -549,23 +1059,6 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0050",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer gewann im Mai 2026 den Giro d’Italia?",
-      "antworten": [
-        "Jonas Vingegaard",
-        "Tadej Pogačar",
-        "Primož Roglič",
-        "Remco Evenepoel"
-      ],
-      "erklaerung": "Vingegaard siegte vor dem Österreicher Felix Gall; die Schlussetappe in Rom gewann Jonathan Milan.",
-      "quelle": "https://www.sportschau.de/live-und-ergebnisse/radsport/giro-d-italia/se108175/2026/wertungen-uebersicht",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
       "id": "akt26-0058",
       "version": 1,
       "kategorie": "Aktuelles 2026",
@@ -583,291 +1076,36 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0001",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welche Nation wurde 2026 Fußball-Weltmeister?",
-      "antworten": [
-        "Spanien",
-        "Argentinien",
-        "Frankreich",
-        "San Marino, dank eines Fehlers im Videobeweis"
-      ],
-      "erklaerung": "Spanien schlug Argentinien im Finale am 19. Juli 2026 mit 1:0 nach Verlängerung – der zweite WM-Titel nach 2010.",
-      "quelle": "https://www.npr.org/2026/07/19/nx-s1-5899071/2026-world-cup-fifa-argentina-spain-final-championship",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0030",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "In welcher Stadt fand im September 2026 die Basketball-WM der Frauen statt?",
-      "antworten": [
-        "Berlin",
-        "Paris",
-        "Madrid",
-        "Belgrad"
-      ],
-      "erklaerung": "Weltmeister wurden die USA mit 97:79 gegen Frankreich, Deutschland wurde Vierter.",
-      "quelle": "https://www.fiba.basketball/en/news/usa-continue-dominance-with-12th-fiba-womens-basketball-world-cup-title",
-      "erstellt": "2026-10-19",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0060",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer wurde 2026 zum wertvollsten Spieler der NBA-Finals (Finals MVP) gewählt?",
-      "antworten": [
-        "Jalen Brunson",
-        "Victor Wembanyama",
-        "Karl-Anthony Towns",
-        "OG Anunoby"
-      ],
-      "erklaerung": "Brunson erzielte im entscheidenden fünften Spiel (94:90) 45 Punkte und kam in der Serie auf 32,6 Punkte im Schnitt.",
-      "quelle": "https://www.2822news.com/sports/the-new-york-knicks-win-the-nba-championship/amp/",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0004",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welches Land gewann den Eurovision Song Contest 2026 in Wien?",
-      "antworten": [
-        "Bulgarien mit „Bangaranga“",
-        "Israel",
-        "Rumänien",
-        "Österreich – der Gastgeber gewinnt schließlich immer"
-      ],
-      "erklaerung": "Dara holte 516 Punkte und gewann Jury- und Publikumswertung – Bulgariens erster ESC-Sieg. 2027 ist Bulgarien Gastgeber.",
-      "quelle": "https://en.wikipedia.org/wiki/Eurovision_Song_Contest_2026",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0003",
+      "id": "akt26-0046",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "mittel",
-      "frage": "Welcher Film gewann bei den Oscars 2026 den Preis als „Bester Film“?",
+      "frage": "Wer wurde nach der Landtagswahl 2026 Ministerpräsident von Rheinland-Pfalz?",
       "antworten": [
-        "„One Battle After Another“ von Paul Thomas Anderson",
-        "„Blood & Sinners“",
-        "„Hamnet“",
-        "„KPop Demon Hunters“"
+        "Gordon Schnieder (CDU)",
+        "Alexander Schweitzer (SPD)",
+        "Julia Klöckner (CDU)",
+        "Malu Dreyer (SPD)"
       ],
-      "erklaerung": "Sechs Oscars, auch für die Regie. „Blood & Sinners“ ging mit 16 Nominierungen ins Rennen, „KPop Demon Hunters“ wurde bester Animationsfilm.",
-      "quelle": "https://www.aljazeera.com/news/2026/3/16/oscars-2026-full-list-of-winners",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Die CDU gewann am 22. März 2026 vor der SPD; nach 35 Jahren SPD-Führung bildete Schnieder eine Koalition mit der SPD.",
+      "quelle": "https://ms-aktuell.de/welt/rheinland-pfalz-koalition-cdu-spd-schnieder/",
+      "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0049",
+      "id": "akt26-0045",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "mittel",
-      "frage": "Wer wurde im Februar 2026 Dschungelkönig bei „Ich bin ein Star – Holt mich hier raus!“?",
+      "frage": "Wer gewann bei den Oscars 2026 den Preis als bester Hauptdarsteller?",
       "antworten": [
-        "Gil Ofarim",
-        "Samira Yavuz",
-        "Hubert Fella",
-        "Ross Antony"
+        "Michael B. Jordan",
+        "Timothée Chalamet",
+        "Leonardo DiCaprio",
+        "Ethan Hawke"
       ],
-      "erklaerung": "Ofarim gewann das Finale der 19. Staffel am 8. Februar 2026 vor Samira Yavuz.",
-      "quelle": "https://www.tvmovie.de/news/dschungelcamp-gil-ofarim-ist-dschungelkoenig-und-die-fans-laufen-sturm-155892",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0022",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Welches Team gewann im Februar 2026 den Super Bowl LX?",
-      "antworten": [
-        "Die Seattle Seahawks",
-        "Die New England Patriots",
-        "Die Kansas City Chiefs",
-        "Die Philadelphia Eagles"
-      ],
-      "erklaerung": "29:13 gegen die New England Patriots in Santa Clara; wertvollster Spieler wurde Kenneth Walker III.",
-      "quelle": "https://www.nbcchicago.com/super-bowl/recap-seahawks-defense-patriots-maye/",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0009",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer flog mit Artemis II als erster Nicht-Amerikaner zum Mond?",
-      "antworten": [
-        "Jeremy Hansen aus Kanada",
-        "Alexander Gerst",
-        "Thomas Pesquet",
-        "Matthias Maurer"
-      ],
-      "erklaerung": "Mit an Bord: Reid Wiseman, Victor Glover und Christina Koch.",
-      "quelle": "https://de.wikipedia.org/wiki/Artemis_2",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0032",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer gewann 2026 die US Open der Damen?",
-      "antworten": [
-        "Elena Rybakina",
-        "Aryna Sabalenka",
-        "Coco Gauff",
-        "Mirra Andreeva"
-      ],
-      "erklaerung": "Sie schlug die Titelverteidigerin Sabalenka im Finale mit 6:4, 5:7, 6:2.",
-      "quelle": "https://tennistourcalendar.com/elena-rybakina-us-open/",
-      "erstellt": "2026-10-19",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0061",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer wurde als bislang ältester Spieler zum wertvollsten Spieler der Stanley-Cup-Playoffs 2026 (Conn Smythe Trophy) gewählt?",
-      "antworten": [
-        "Jordan Staal",
-        "Brandon Bussi",
-        "Sebastian Aho",
-        "Jack Eichel"
-      ],
-      "erklaerung": "Staal erzielte sechs Tore in der Finalserie, die Carolina gegen Vegas gewann.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Stanley_Cup_Final",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0012",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer erhielt den Friedensnobelpreis 2026?",
-      "antworten": [
-        "Navi Pillay, frühere UN-Menschenrechtskommissarin",
-        "Greta Thunberg",
-        "Wolodymyr Selenskyj",
-        "Ban Ki-moon"
-      ],
-      "erklaerung": "Die südafrikanische Juristin wurde für ihren Einsatz für Frieden und Völkerrecht geehrt.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Nobel_Peace_Prize",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0062",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Welche Marke übersprang der DAX am 3. August 2026 erstmals im Schlusskurs?",
-      "antworten": [
-        "26.000 Punkte",
-        "25.000 Punkte",
-        "24.000 Punkte",
-        "30.000 Punkte"
-      ],
-      "erklaerung": "Der Schlusskurs lag bei 26.001,31 Punkten; einen Tag später folgte ein neues Rekordhoch.",
-      "quelle": "https://ms-aktuell.de/welt/04082026-dax-rekordhoch-26266/",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0002",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer erzielte das einzige Tor im WM-Finale 2026?",
-      "antworten": [
-        "Ferran Torres",
-        "Lamine Yamal",
-        "Lionel Messi",
-        "Nico Williams"
-      ],
-      "erklaerung": "Nico Williams legte per Kopf auf, Ferran Torres traf und wurde Spieler des Spiels.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_final",
-      "erstellt": "2026-10-13",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0034",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welches Land stand bei den Olympischen Winterspielen 2026 an der Spitze des Medaillenspiegels?",
-      "antworten": [
-        "Norwegen",
-        "USA",
-        "Italien",
-        "Kanada"
-      ],
-      "erklaerung": "Norwegen holte einen Rekord von 18 Goldmedaillen (41 Medaillen insgesamt) und lag zum vierten Mal in Folge vorn.",
-      "quelle": "https://www.leinetal24.de/sport/nach-irrem-medaillen-raubzug-will-norwegen-olympia-zurueckholen-zr-94183323.html",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0023",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Gegen wen gewann Carlos Alcaraz das Finale der Australian Open 2026?",
-      "antworten": [
-        "Novak Djokovic",
-        "Jannik Sinner",
-        "Alexander Zverev",
-        "Daniil Medwedew"
-      ],
-      "erklaerung": "Mit seinem ersten Titel in Melbourne hat Alcaraz alle vier Grand-Slam-Turniere gewonnen. Bei den Frauen siegte Elena Rybakina.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_Australian_Open_%E2%80%93_Men%27s_singles",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0029",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer gewann 2026 die French Open der Damen?",
-      "antworten": [
-        "Mirra Andreeva",
-        "Iga Świątek",
-        "Aryna Sabalenka",
-        "Coco Gauff"
-      ],
-      "erklaerung": "Die vierfache Siegerin Świątek schied schon im Achtelfinale aus.",
-      "quelle": "https://en.wikipedia.org/wiki/2026_French_Open",
-      "erstellt": "2026-10-16",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0055",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Welche Partei scheiterte bei der Landtagswahl in Mecklenburg-Vorpommern 2026 erstmals in einem Bundesland an der Fünf-Prozent-Hürde?",
-      "antworten": [
-        "CDU",
-        "FDP",
-        "BSW",
-        "Die Grünen"
-      ],
-      "erklaerung": "Die CDU kam am 20. September 2026 vorläufig nur auf 4,9 Prozent; die AfD wurde mit 38,2 Prozent stärkste Kraft vor der SPD.",
-      "quelle": "https://www.stuttgarter-zeitung.de/politik/wahl-in-mecklenburg-vorpommern-cdu-scheitert-an-5-prozent-huerde-79487184.html",
+      "erklaerung": "Jordan siegte für seine Doppelrolle in „Blood & Sinners“ und setzte sich unter anderem gegen Chalamet durch.",
+      "quelle": "https://www.tvmovie.de/news/oscar-gewinner-2026-one-battle-after-another-raeumt-gross-ab-156974",
       "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
@@ -889,121 +1127,155 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0033",
+      "id": "akt26-0039",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "leicht",
-      "frage": "Welcher Künstler gewann bei den Grammys 2026 den Preis für das „Album des Jahres“?",
+      "frage": "Wer gewann das Europa-League-Finale 2026 in Istanbul gegen den SC Freiburg?",
       "antworten": [
-        "Bad Bunny",
-        "Sabrina Carpenter",
-        "Lady Gaga",
-        "Tyler, The Creator"
+        "Aston Villa",
+        "FC Arsenal",
+        "AS Rom",
+        "Real Betis"
       ],
-      "erklaerung": "Bad Bunny siegte am 1. Februar 2026 in Los Angeles mit „DeBÍ TiRAR MáS FOToS“ – als erstes spanischsprachiges Album in dieser Kategorie.",
-      "quelle": "https://www.grammy.com/awards/categories/album-of-the-year/2026/",
+      "erklaerung": "Aston Villa siegte am 20. Mai 2026 mit 3:0 – der erste Titel des Klubs seit 30 Jahren.",
+      "quelle": "https://www.bundesliga.com/de/bundesliga/news/europa-league-finale-sc-freiburg-aston-villa-liveticker-spielbericht-37466",
       "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0041",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welche Partei wurde bei der Berlin-Wahl im September 2026 erstmals stärkste Kraft?",
-      "antworten": [
-        "Die Linke",
-        "CDU",
-        "SPD",
-        "Die Grünen"
-      ],
-      "erklaerung": "Die Linke erreichte am 20. September 2026 vorläufig 25,7 Prozent und verdoppelte ihr Ergebnis von 2023.",
-      "quelle": "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/581533/wahl-zum-abgeordnetenhaus-berlin-2026-die-linke-wird-erstmals-staerkste-kraft/",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0057",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "schwer",
-      "frage": "Wer wurde beim Giro d’Italia 2026 Gesamtzweiter hinter Jonas Vingegaard?",
-      "antworten": [
-        "Felix Gall",
-        "Jai Hindley",
-        "Thymen Arensman",
-        "Giulio Ciccone"
-      ],
-      "erklaerung": "Der Österreicher Gall lag 5:22 Minuten zurück – das beste Giro-Ergebnis eines Österreichers.",
-      "quelle": "https://www.sportschau.de/live-und-ergebnisse/radsport/giro-d-italia/se108175/2026/wertungen-uebersicht",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0048",
+      "id": "akt26-0049",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "mittel",
-      "frage": "Welcher Film gewann 2026 in Cannes die Goldene Palme?",
+      "frage": "Wer wurde im Februar 2026 Dschungelkönig bei „Ich bin ein Star – Holt mich hier raus!“?",
       "antworten": [
-        "„Fjord“",
-        "„Minotaur“",
-        "„Vaterland“",
-        "„Coward“"
+        "Gil Ofarim",
+        "Samira Yavuz",
+        "Hubert Fella",
+        "Ross Antony"
       ],
-      "erklaerung": "Cristian Mungius „Fjord“ mit Sebastian Stan und Renate Reinsve siegte bei den 79. Filmfestspielen (12.–23. Mai 2026).",
-      "quelle": "https://www.netzwelt.de/news/254287-cannes-2026-gewinner-ueberblick.html",
+      "erklaerung": "Ofarim gewann das Finale der 19. Staffel am 8. Februar 2026 vor Samira Yavuz.",
+      "quelle": "https://www.tvmovie.de/news/dschungelcamp-gil-ofarim-ist-dschungelkoenig-und-die-fans-laufen-sturm-155892",
       "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0054",
+      "id": "akt26-0032",
       "version": 1,
       "kategorie": "Aktuelles 2026",
       "stufe": "schwer",
-      "frage": "Welche Mannschaft holte bei der Eishockey-WM 2026 erstmals eine WM-Medaille und gewann Bronze?",
+      "frage": "Wer gewann 2026 die US Open der Damen?",
+      "antworten": [
+        "Elena Rybakina",
+        "Aryna Sabalenka",
+        "Coco Gauff",
+        "Mirra Andreeva"
+      ],
+      "erklaerung": "Sie schlug die Titelverteidigerin Sabalenka im Finale mit 6:4, 5:7, 6:2.",
+      "quelle": "https://tennistourcalendar.com/elena-rybakina-us-open/",
+      "erstellt": "2026-10-19",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0001",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welche Nation wurde 2026 Fußball-Weltmeister?",
+      "antworten": [
+        "Spanien",
+        "Argentinien",
+        "Frankreich",
+        "San Marino, dank eines Fehlers im Videobeweis"
+      ],
+      "erklaerung": "Spanien schlug Argentinien im Finale am 19. Juli 2026 mit 1:0 nach Verlängerung – der zweite WM-Titel nach 2010.",
+      "quelle": "https://www.npr.org/2026/07/19/nx-s1-5899071/2026-world-cup-fifa-argentina-spain-final-championship",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0009",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer flog mit Artemis II als erster Nicht-Amerikaner zum Mond?",
+      "antworten": [
+        "Jeremy Hansen aus Kanada",
+        "Alexander Gerst",
+        "Thomas Pesquet",
+        "Matthias Maurer"
+      ],
+      "erklaerung": "Mit an Bord: Reid Wiseman, Victor Glover und Christina Koch.",
+      "quelle": "https://de.wikipedia.org/wiki/Artemis_2",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0012",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer erhielt den Friedensnobelpreis 2026?",
+      "antworten": [
+        "Navi Pillay, frühere UN-Menschenrechtskommissarin",
+        "Greta Thunberg",
+        "Wolodymyr Selenskyj",
+        "Ban Ki-moon"
+      ],
+      "erklaerung": "Die südafrikanische Juristin wurde für ihren Einsatz für Frieden und Völkerrecht geehrt.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_Nobel_Peace_Prize",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0020",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Welcher Begriff wurde zum „Wort des Jahres 2025“ gewählt?",
+      "antworten": [
+        "„KI-Ära“",
+        "„Deal“",
+        "„Sondervermögen“",
+        "„Ampel-Aus“"
+      ],
+      "erklaerung": "„Deal“ kam auf Platz 2, „Sondervermögen“ auf Platz 4. „Ampel-Aus“ war das Wort des Jahres 2024.",
+      "quelle": "https://www.zdfheute.de/politik/deutschland/wort-des-jahres-2025-sprache-100.html",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0035",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Wer wurde im Mai 2026 Eishockey-Weltmeister?",
+      "antworten": [
+        "Finnland",
+        "Schweiz",
+        "Kanada",
+        "Schweden"
+      ],
+      "erklaerung": "Finnland gewann das Finale am 31. Mai 2026 in Zürich mit 1:0 nach Verlängerung gegen Gastgeber Schweiz.",
+      "quelle": "https://www.srf.ch/sport/eishockey/wm/finnland-ist-weltmeister-wieder-in-der-overtime-nati-bleibt-auch-an-heim-wm-nur-silber",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0034",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "leicht",
+      "frage": "Welches Land stand bei den Olympischen Winterspielen 2026 an der Spitze des Medaillenspiegels?",
       "antworten": [
         "Norwegen",
-        "Kanada",
-        "Tschechien",
-        "Deutschland"
+        "USA",
+        "Italien",
+        "Kanada"
       ],
-      "erklaerung": "Norwegen schlug Kanada am 31. Mai 2026 mit 3:2 nach Verlängerung; Noah Steen traf zum Sieg.",
-      "quelle": "https://sport.sky.de/eishockey/artikel/norwegen-schockt-kanada-und-holt-erstmals-wm-bronze-steen-trifft-in-der-verlaengerung/13549618/35553",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0043",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Gegen welche Mannschaft schied Deutschland bei der Fußball-WM 2026 im Sechzehntelfinale aus?",
-      "antworten": [
-        "Paraguay",
-        "Ecuador",
-        "Elfenbeinküste",
-        "Curaçao"
-      ],
-      "erklaerung": "Am 29. Juni 2026 verlor das DFB-Team in Foxborough im Elfmeterschießen.",
-      "quelle": "https://www.echo24.de/sport/fussball/wm-aus-gegen-paraguay-bundestrainer-nagelsmann-spricht-ueber-zukunft-zr-94375112.html",
-      "erstellt": "2026-10-24",
-      "gueltigBis": "2027-12-31"
-    },
-    {
-      "id": "akt26-0040",
-      "version": 1,
-      "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Welche Partei wurde bei der Landtagswahl in Sachsen-Anhalt im September 2026 mit weitem Abstand stärkste Kraft?",
-      "antworten": [
-        "AfD",
-        "CDU",
-        "SPD",
-        "Die Linke"
-      ],
-      "erklaerung": "Die AfD kam auf 43,8 Prozent, die CDU nur auf 17,2 Prozent – die absolute Mehrheit verfehlte die AfD.",
-      "quelle": "https://www.kas.de/documents/d/guest/wahlanalyse-der-landtagswahl-in-sachsen-anhalt-am-6-september-2026-1",
+      "erklaerung": "Norwegen holte einen Rekord von 18 Goldmedaillen (41 Medaillen insgesamt) und lag zum vierten Mal in Folge vorn.",
+      "quelle": "https://www.leinetal24.de/sport/nach-irrem-medaillen-raubzug-will-norwegen-olympia-zurueckholen-zr-94183323.html",
       "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
@@ -1025,36 +1297,104 @@
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0039",
+      "id": "akt26-0002",
       "version": 1,
       "kategorie": "Aktuelles 2026",
-      "stufe": "leicht",
-      "frage": "Wer gewann das Europa-League-Finale 2026 in Istanbul gegen den SC Freiburg?",
+      "stufe": "schwer",
+      "frage": "Wer erzielte das einzige Tor im WM-Finale 2026?",
       "antworten": [
-        "Aston Villa",
-        "FC Arsenal",
-        "AS Rom",
-        "Real Betis"
+        "Ferran Torres",
+        "Lamine Yamal",
+        "Lionel Messi",
+        "Nico Williams"
       ],
-      "erklaerung": "Aston Villa siegte am 20. Mai 2026 mit 3:0 – der erste Titel des Klubs seit 30 Jahren.",
-      "quelle": "https://www.bundesliga.com/de/bundesliga/news/europa-league-finale-sc-freiburg-aston-villa-liveticker-spielbericht-37466",
+      "erklaerung": "Nico Williams legte per Kopf auf, Ferran Torres traf und wurde Spieler des Spiels.",
+      "quelle": "https://en.wikipedia.org/wiki/2026_FIFA_World_Cup_final",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0031",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wen besiegte Alexander Zverev im Finale der US Open 2026?",
+      "antworten": [
+        "Ben Shelton",
+        "Jannik Sinner",
+        "Carlos Alcaraz",
+        "Taylor Fritz"
+      ],
+      "erklaerung": "Mit 6:3, 7:6, 5:7, 6:2 holte er im September seinen zweiten Grand-Slam-Titel.",
+      "quelle": "https://www.aljazeera.com/amp/sports/liveblog/2026/9/13/us-open-mens-singles-final-live-alexander-zverev-vs-ben-shelton",
+      "erstellt": "2026-10-19",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0010",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "mittel",
+      "frage": "Wofür gab es den Physik-Nobelpreis 2026?",
+      "antworten": [
+        "Für die Entdeckung hochenergetischer Neutrinos aus dem All",
+        "Für den ersten fehlerfreien Quantencomputer",
+        "Für den Nachweis Dunkler Materie",
+        "Für den Nachweis von Gravitationswellen"
+      ],
+      "erklaerung": "Francis Halzen wurde für das IceCube-Observatorium im antarktischen Eis geehrt. Gravitationswellen waren 2017 dran.",
+      "quelle": "https://www.spektrum.de/news/physik-nobelpreis-2026-fuer-forschung-zu-hochenergetischen-neutrinos/2343916",
+      "erstellt": "2026-10-13",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0057",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "schwer",
+      "frage": "Wer wurde beim Giro d’Italia 2026 Gesamtzweiter hinter Jonas Vingegaard?",
+      "antworten": [
+        "Felix Gall",
+        "Jai Hindley",
+        "Thymen Arensman",
+        "Giulio Ciccone"
+      ],
+      "erklaerung": "Der Österreicher Gall lag 5:22 Minuten zurück – das beste Giro-Ergebnis eines Österreichers.",
+      "quelle": "https://www.sportschau.de/live-und-ergebnisse/radsport/giro-d-italia/se108175/2026/wertungen-uebersicht",
       "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     },
     {
-      "id": "akt26-0044",
+      "id": "akt26-0041",
       "version": 1,
       "kategorie": "Aktuelles 2026",
-      "stufe": "mittel",
-      "frage": "Wer gewann bei den Oscars 2026 den Preis als beste Hauptdarstellerin?",
+      "stufe": "leicht",
+      "frage": "Welche Partei wurde bei der Berlin-Wahl im September 2026 erstmals stärkste Kraft?",
       "antworten": [
-        "Jessie Buckley",
-        "Emma Stone",
-        "Renate Reinsve",
-        "Kate Hudson"
+        "Die Linke",
+        "CDU",
+        "SPD",
+        "Die Grünen"
       ],
-      "erklaerung": "Buckley wurde für „Hamnet“ ausgezeichnet (Verleihung am 15. März 2026).",
-      "quelle": "https://www.tvmovie.de/news/oscar-gewinner-2026-one-battle-after-another-raeumt-gross-ab-156974",
+      "erklaerung": "Die Linke erreichte am 20. September 2026 vorläufig 25,7 Prozent und verdoppelte ihr Ergebnis von 2023.",
+      "quelle": "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/581533/wahl-zum-abgeordnetenhaus-berlin-2026-die-linke-wird-erstmals-staerkste-kraft/",
+      "erstellt": "2026-10-24",
+      "gueltigBis": "2027-12-31"
+    },
+    {
+      "id": "akt26-0082",
+      "version": 1,
+      "kategorie": "Aktuelles 2026",
+      "stufe": "ingomania",
+      "frage": "Auf welchem Platz landete Gastgeber Österreich mit „Tanzschein“ von Cosmó beim ESC 2026 in Wien?",
+      "antworten": [
+        "Platz 24",
+        "Platz 15",
+        "Platz 19",
+        "Platz 21"
+      ],
+      "erklaerung": "Österreich bekam im Finale in Wien nur 6 Punkte; Bulgarien gewann.",
+      "quelle": "https://www.weekend.at/lifestyle/unterhaltung/cosmo-esc-2026-tanzschein-ergebnis-platz-24",
       "erstellt": "2026-10-24",
       "gueltigBis": "2027-12-31"
     }

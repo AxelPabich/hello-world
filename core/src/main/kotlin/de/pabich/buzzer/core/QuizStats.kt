@@ -43,12 +43,7 @@ object Difficulty {
     /** Ab so vielen Antworten ersetzt die gemessene Stufe die des Autors. */
     const val MIN_ANSWERS = 6
 
-    fun startValue(level: QuizLevel) = when (level) {
-        QuizLevel.EASY -> 0.8
-        QuizLevel.MEDIUM -> 0.55
-        QuizLevel.HARD -> 0.3
-        QuizLevel.INGOMANIA -> 0.12
-    }
+    fun startValue(level: QuizLevel) = level.startValue
 
     /** Geglätteter Anteil richtiger Antworten. */
     fun quote(stats: QuestionStats, author: QuizLevel): Double =
@@ -57,17 +52,13 @@ object Difficulty {
     fun measured(stats: QuestionStats, author: QuizLevel): QuizLevel? {
         if (stats.answers < MIN_ANSWERS) return null
         val q = quote(stats, author)
-        // Ingomania gibt es nur als Autoren-Stufe: Fragen anderer Autoren-Stufen werden höchstens „schwer“.
-        val top = if (author == QuizLevel.INGOMANIA) QuizLevel.INGOMANIA else QuizLevel.HARD
-        var level = when {
-            q >= 0.7 -> QuizLevel.EASY
-            q >= 0.4 -> QuizLevel.MEDIUM
-            q >= 0.2 || top == QuizLevel.HARD -> QuizLevel.HARD
-            else -> QuizLevel.INGOMANIA
-        }
+        // Stufen mit „nurAutor“ vergibt die Messung nicht an Fragen anderer Autoren-Stufen.
+        val allowed = QuizLevel.entries.filter { !it.authorOnly || it == author }.ifEmpty { listOf(author) }
+        var level = allowed.sortedByDescending { it.measuredFrom }.firstOrNull { q >= it.measuredFrom } ?: allowed.last()
         // Brauchten auch die Richtigen lange, ist die Frage eine Stufe schwerer.
-        if (stats.correct > 0 && stats.correctTimeShare / stats.correct > 0.6 && level != top) {
-            level = QuizLevel.entries[level.ordinal + 1]
+        if (stats.correct > 0 && stats.correctTimeShare / stats.correct > 0.6) {
+            val i = allowed.indexOf(level)
+            if (i in 0 until allowed.lastIndex) level = allowed[i + 1]
         }
         return level
     }

@@ -269,8 +269,8 @@ object MessageCodec {
             Message.Bye -> "BYE" to emptyMap()
             is Message.Mode -> "MODE" to mapOf("k" to (message.kind?.name ?: ""))
             is Message.QuizAsk -> "QUIZ_ASK" to mapOf(
-                "n" to message.number, "t" to message.total, "c" to message.category, "l" to wireLevel(message.level).name,
-                "i" to (message.level == QuizLevel.INGOMANIA),
+                "n" to message.number, "t" to message.total, "c" to message.category, "l" to message.level.legacyName,
+                "lk" to message.level.key, "ll" to message.level.label,
                 "q" to message.text, "a" to encodeList(message.answers), "qa" to message.questionAtLocal,
                 "aa" to message.answersAtLocal, "d" to message.durationMs,
             )
@@ -368,7 +368,7 @@ object MessageCodec {
             "MODE" -> Message.Mode(f.getValue("k").takeIf { it.isNotEmpty() }?.let { GameKind.valueOf(it) })
             "QUIZ_ASK" -> Message.QuizAsk(
                 int("n"), int("t"), f.getValue("c"),
-                if (f["i"] == "true") QuizLevel.INGOMANIA else QuizLevel.valueOf(f.getValue("l")), f.getValue("q"),
+                QuizLevel.fromWire(f["lk"], f["ll"], f.getValue("l")), f.getValue("q"),
                 decodeList(f.getValue("a")), long("qa"), long("aa"), long("d"),
             )
             "QUIZ_ANSWER" -> Message.QuizAnswer(int("n"), int("p"), long("e"))
@@ -423,12 +423,6 @@ object MessageCodec {
 
     private fun encodeList(items: List<String>) = items.joinToString(",") { enc(it) }
 
-    /**
-     * Ältere Apps kennen „Ingomania“ nicht und könnten die Nachricht nicht lesen: Sie bekommen „schwer“,
-     * neue Apps erkennen Ingomania am Zusatzfeld `i` (in der Frage selbst); im Spielstand genügt „schwer“.
-     */
-    private fun wireLevel(level: QuizLevel) = if (level == QuizLevel.INGOMANIA) QuizLevel.HARD else level
-
     private fun decodeList(text: String): List<String> =
         if (text.isEmpty()) emptyList() else text.split(',').map { dec(it) }
 
@@ -436,7 +430,7 @@ object MessageCodec {
     private fun encodeQuestions(questions: List<QuizQuestion>): String {
         fun build(source: Boolean, explanation: Boolean, count: Int = questions.size) = questions.take(count).joinToString(";") { q ->
             encodeList(
-                listOf(q.id, q.category, wireLevel(q.level).name, q.text) + q.answers +
+                listOf(q.id, q.category, q.level.legacyName, q.text) + q.answers +
                     listOf(q.correctIndex.toString(), if (explanation) q.explanation else "", if (source) q.source else ""),
             )
         }
@@ -454,7 +448,7 @@ object MessageCodec {
             if (v.size < 7) return@mapNotNull null
             val n = v.size - 7 // Anzahl Antworten
             QuizQuestion(
-                id = v[0], category = v[1], level = QuizLevel.valueOf(v[2]), text = v[3],
+                id = v[0], category = v[1], level = QuizLevel.byKey(v[2]) ?: QuizLevel.HARD, text = v[3],
                 answers = v.subList(4, 4 + n), correctIndex = v[4 + n].toInt(),
                 explanation = v[5 + n], source = v[6 + n],
             )

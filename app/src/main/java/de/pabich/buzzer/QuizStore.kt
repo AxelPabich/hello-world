@@ -10,6 +10,7 @@ import de.pabich.buzzer.core.ParticipantResult
 import de.pabich.buzzer.core.Question
 import de.pabich.buzzer.core.QuestionPack
 import de.pabich.buzzer.core.QuestionPacks
+import de.pabich.buzzer.core.QuizLevels
 import de.pabich.buzzer.core.QuizQuestion
 import de.pabich.buzzer.core.StatsBook
 import java.io.File
@@ -22,6 +23,8 @@ import kotlin.concurrent.thread
 class QuizStore(private val context: Context) {
     private val downloadDir = File(context.filesDir, "quiz").apply { mkdirs() }
     private val statsFile = File(context.filesDir, "quiz-stats.json")
+    /** Zuletzt geladener Fragenindex (Stufen und Paketliste) aus dem Repository. */
+    private val indexFile = File(context.filesDir, "quiz-index.json")
     /** Statistik aus Testspielen: beeinflusst weder Auswahl noch Schwierigkeit. */
     private val testStatsFile = File(context.filesDir, "quiz-stats-test.json")
     private val main = Handler(Looper.getMainLooper())
@@ -48,8 +51,15 @@ class QuizStore(private val context: Context) {
     /** Eingebaute Pakete plus geladene; bei gleichem Namen gewinnt die höhere Version. */
     private fun reload() {
         val problems = mutableListOf<String>()
+        // Die Stufen verwaltet die Fragendatenbank (index.json): der geladene Index gilt vor dem eingebauten,
+        // so erscheinen neue Stufen und Kategorien ohne neuen Build.
+        val bundledIndex = runCatching { context.assets.open("index.json").use { it.readBytes().toString(Charsets.UTF_8) } }.getOrNull()
+        val downloadedIndex = runCatching { indexFile.readText() }.getOrNull()
+        val downloadedLevels = downloadedIndex?.let { runCatching { QuestionPacks.parseLevels(it) }.getOrDefault(emptyList()) }.orEmpty()
+        val bundledLevels = bundledIndex?.let { runCatching { QuestionPacks.parseLevels(it) }.getOrDefault(emptyList()) }.orEmpty()
+        QuizLevels.update(downloadedLevels + bundledLevels.filter { b -> downloadedLevels.none { it.key == b.key } })
         val bundled = runCatching {
-            QuestionPacks.parseIndex(context.assets.open("index.json").use { it.readBytes().toString(Charsets.UTF_8) }).keys.mapNotNull { name ->
+            QuestionPacks.parseIndex(bundledIndex ?: error("index.json fehlt")).keys.mapNotNull { name ->
                 runCatching { QuestionPacks.parse(context.assets.open(name).use { it.readBytes().toString(Charsets.UTF_8) }, problems) }.getOrNull()
             }
         }.getOrDefault(emptyList())
@@ -133,7 +143,10 @@ class QuizStore(private val context: Context) {
     fun refresh(onDone: (String) -> Unit) {
         thread(name = "buzzer-quiz-update", isDaemon = true) {
             val message = runCatching {
-                val index = QuestionPacks.parseIndex(AppUpdate.fetchText("$REPO_URL/index.json"))
+                val indexText = AppUpdate.fetchText("$REPO_URL/index.json")
+                val index = QuestionPacks.parseIndex(indexText)
+                // Stufenliste merken, bevor die Pakete mit neuen Stufen gelesen werden.
+                if (QuestionPacks.parseLevels(indexText).isNotEmpty()) indexFile.writeText(indexText)
                 val have = packs.associate { "${it.name}.json" to it.version }
                 var loaded = 0
                 for ((file, version) in index) {
