@@ -1,23 +1,125 @@
 {
   "paket": "geschichte",
   "titel": "Geschichte",
-  "version": 6,
+  "version": 7,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "gesch-0017",
+      "id": "gesch-0057",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr endete traditionell das Weströmische Reich?",
+      "antworten": [
+        "476",
+        "410",
+        "395",
+        "565"
+      ],
+      "erklaerung": "476 wurde der letzte Kaiser Romulus Augustulus abgesetzt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Untergang%20des%20Westr%C3%B6mischen%20Reiches",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0022",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher römische Herrscher wurde an den Iden des März 44 v. Chr. ermordet?",
+      "antworten": [
+        "Gaius Julius Caesar",
+        "Augustus",
+        "Nero",
+        "Marcus Antonius"
+      ],
+      "erklaerung": "Unter den Verschwörern war Brutus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gaius%20Iulius%20Caesar",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0013",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "leicht",
-      "frage": "Wer baute die Pyramiden von Gizeh?",
+      "frage": "Wer war der erste Präsident der USA?",
       "antworten": [
-        "Die alten Ägypter",
-        "Die Römer",
-        "Die Wikinger",
-        "Außerirdische mit Baukran"
+        "George Washington",
+        "Abraham Lincoln",
+        "Thomas Jefferson",
+        "Benjamin Franklin"
       ],
-      "erklaerung": "Sie entstanden vor rund 4.500 Jahren als Grabmäler der Pharaonen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pyramiden%20von%20Gizeh",
+      "erklaerung": "Er war von 1789 bis 1797 im Amt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=George%20Washington",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0027",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer erfand um 1450 in Mainz den Buchdruck mit beweglichen Lettern?",
+      "antworten": [
+        "Johannes Gutenberg",
+        "Albrecht Dürer",
+        "Martin Luther",
+        "Johannes Kepler"
+      ],
+      "erklaerung": "Sein bekanntestes Werk ist die Gutenberg-Bibel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Johannes%20Gutenberg",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0033",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr endete der Zweite Weltkrieg in Europa?",
+      "antworten": [
+        "1945",
+        "1944",
+        "1946",
+        "1939"
+      ],
+      "erklaerung": "Am 8. Mai 1945 trat die bedingungslose Kapitulation der Wehrmacht in Kraft.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ende%20des%20Zweiten%20Weltkrieges%20in%20Europa",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0039",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wie hieß der Staat, der bis 1991 Russland und viele Nachbarländer umfasste?",
+      "antworten": [
+        "Sowjetunion",
+        "Österreich-Ungarn",
+        "Jugoslawien",
+        "Tschechoslowakei"
+      ],
+      "erklaerung": "Die UdSSR löste sich Ende 1991 auf; Russland ist ihr Nachfolgestaat.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sowjetunion",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0016",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "Wer wurde im Jahr 800 in Rom zum Kaiser gekrönt?",
+      "antworten": [
+        "Karl der Große",
+        "Otto der Große",
+        "Friedrich Barbarossa",
+        "Ludwig der Fromme"
+      ],
+      "erklaerung": "Papst Leo III. krönte ihn am Weihnachtstag 800.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl%20der%20Gro%C3%9Fe",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -39,71 +141,37 @@
       "gueltigBis": null
     },
     {
-      "id": "gesch-0011",
+      "id": "gesch-0054",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "mittel",
-      "frage": "Wer war Bundeskanzler, als Deutschland 1990 wiedervereinigt wurde?",
+      "frage": "Welche Seuche wütete von 1347 bis 1353 in Europa als „Schwarzer Tod“?",
       "antworten": [
-        "Helmut Kohl",
-        "Helmut Schmidt",
-        "Gerhard Schröder",
-        "Willy Brandt"
+        "Die Pest",
+        "Die Cholera",
+        "Die Pocken",
+        "Das Fleckfieber"
       ],
-      "erklaerung": "Helmut Kohl regierte von 1982 bis 1998.",
-      "quelle": "https://de.wikipedia.org/wiki/Helmut_Kohl",
+      "erklaerung": "Die Pest forderte Millionen Todesopfer und veränderte Europa nachhaltig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schwarzer%20Tod",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0012",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welche antike Stadt wurde im Jahr 79 n. Chr. beim Ausbruch des Vesuvs verschüttet?",
+      "antworten": [
+        "Pompeji",
+        "Karthago",
+        "Troja",
+        "Atlantis"
+      ],
+      "erklaerung": "Die Asche konservierte die Stadt bis heute.",
+      "quelle": "https://de.wikipedia.org/wiki/Pompeji",
       "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0020",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Welcher französische Kaiser verlor 1815 die Schlacht bei Waterloo?",
-      "antworten": [
-        "Napoleon Bonaparte",
-        "Ludwig XIV.",
-        "Napoleon III.",
-        "Karl der Große"
-      ],
-      "erklaerung": "Danach wurde er nach St. Helena verbannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlacht%20bei%20Waterloo",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0003",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr erreichte Christoph Kolumbus erstmals Amerika?",
-      "antworten": [
-        "1492",
-        "1498",
-        "1488",
-        "1506"
-      ],
-      "erklaerung": "Er landete im Oktober 1492 auf den Bahamas.",
-      "quelle": "https://de.wikipedia.org/wiki/Christoph_Kolumbus",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0023",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Welches Land schenkte den USA die Freiheitsstatue?",
-      "antworten": [
-        "Frankreich",
-        "Großbritannien",
-        "Spanien",
-        "Italien"
-      ],
-      "erklaerung": "Sie wurde 1886 in New York eingeweiht – ein Geschenk zum 100. Jahrestag der Unabhängigkeit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Freiheitsstatue",
-      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -124,88 +192,71 @@
       "gueltigBis": null
     },
     {
-      "id": "gesch-0005",
+      "id": "gesch-0011",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "mittel",
-      "frage": "In welchem Jahr wurde die Bundesrepublik Deutschland gegründet?",
+      "frage": "Wer war Bundeskanzler, als Deutschland 1990 wiedervereinigt wurde?",
       "antworten": [
-        "1949",
-        "1945",
-        "1952",
-        "1961"
+        "Helmut Kohl",
+        "Helmut Schmidt",
+        "Gerhard Schröder",
+        "Willy Brandt"
       ],
-      "erklaerung": "Das Grundgesetz trat am 23. Mai 1949 in Kraft.",
-      "quelle": "https://de.wikipedia.org/wiki/Grundgesetz_für_die_Bundesrepublik_Deutschland",
+      "erklaerung": "Helmut Kohl regierte von 1982 bis 1998.",
+      "quelle": "https://de.wikipedia.org/wiki/Helmut_Kohl",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "gesch-0022",
+      "id": "gesch-0024",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "mittel",
-      "frage": "Welcher römische Herrscher wurde an den Iden des März 44 v. Chr. ermordet?",
+      "frage": "In welchem Jahr erhielten Frauen in Deutschland das Wahlrecht?",
       "antworten": [
-        "Gaius Julius Caesar",
-        "Augustus",
-        "Nero",
-        "Marcus Antonius"
+        "1918",
+        "1871",
+        "1933",
+        "1949"
       ],
-      "erklaerung": "Unter den Verschwörern war Brutus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gaius%20Iulius%20Caesar",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Im Januar 1919 durften Frauen zur Nationalversammlung erstmals wählen und gewählt werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenwahlrecht%20in%20Deutschland",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "gesch-0010",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr endete der Dreißigjährige Krieg?",
-      "antworten": [
-        "1648",
-        "1618",
-        "1715",
-        "1555"
-      ],
-      "erklaerung": "Mit dem Westfälischen Frieden. 1618 begann er.",
-      "quelle": "https://de.wikipedia.org/wiki/Dreißigjähriger_Krieg",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0015",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Welche Stadt war von 1949 bis 1990 Hauptstadt der Bundesrepublik Deutschland?",
-      "antworten": [
-        "Bonn",
-        "Frankfurt am Main",
-        "Köln",
-        "Berlin"
-      ],
-      "erklaerung": "Bonn galt als „provisorische“ Hauptstadt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bonn",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0029",
+      "id": "gesch-0007",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "leicht",
-      "frage": "In welchem Land fanden die Olympischen Spiele der Antike statt?",
+      "frage": "Welches Schiff sank 1912 nach der Kollision mit einem Eisberg?",
       "antworten": [
-        "Griechenland",
-        "Italien",
-        "Ägypten",
-        "Türkei"
+        "Die Titanic",
+        "Die Bismarck",
+        "Die Queen Mary",
+        "Das Traumschiff"
       ],
-      "erklaerung": "Sie wurden ab 776 v. Chr. in Olympia ausgetragen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Spiele%20der%20Antike",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Die Titanic sank auf ihrer Jungfernfahrt.",
+      "quelle": "https://de.wikipedia.org/wiki/Titanic_(Schiff)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0053",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher US-Präsident wurde 1963 in Dallas erschossen?",
+      "antworten": [
+        "John F. Kennedy",
+        "Lyndon B. Johnson",
+        "Richard Nixon",
+        "Ronald Reagan"
+      ],
+      "erklaerung": "Kennedy war der 35. Präsident der USA und seit 1961 im Amt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=John%20F.%20Kennedy",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -223,6 +274,380 @@
       "erklaerung": "Mit Hörnerhelmen übrigens nur im Film.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Wikinger",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0037",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welche japanische Stadt wurde 1945 von der ersten Atombombe getroffen?",
+      "antworten": [
+        "Hiroshima",
+        "Tokio",
+        "Kyoto",
+        "Osaka"
+      ],
+      "erklaerung": "Die Bombe fiel am 6. August 1945; drei Tage später folgte Nagasaki.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hiroshima",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0028",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde das Deutsche Kaiserreich gegründet?",
+      "antworten": [
+        "1871",
+        "1815",
+        "1848",
+        "1890"
+      ],
+      "erklaerung": "Wilhelm I. wurde am 18. Januar 1871 im Spiegelsaal von Versailles zum Kaiser ausgerufen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutsches%20Kaiserreich",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0020",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher französische Kaiser verlor 1815 die Schlacht bei Waterloo?",
+      "antworten": [
+        "Napoleon Bonaparte",
+        "Ludwig XIV.",
+        "Napoleon III.",
+        "Karl der Große"
+      ],
+      "erklaerung": "Danach wurde er nach St. Helena verbannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlacht%20bei%20Waterloo",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0026",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer war 1961 der erste Mensch im Weltall?",
+      "antworten": [
+        "Juri Gagarin",
+        "Neil Armstrong",
+        "Sigmund Jähn",
+        "John Glenn"
+      ],
+      "erklaerung": "Gagarin umrundete am 12. April 1961 einmal die Erde. Sigmund Jähn war 1978 der erste Deutsche im All.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Juri%20Gagarin",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0061",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurden die Römischen Verträge zur Gründung der EWG unterzeichnet?",
+      "antworten": [
+        "1957",
+        "1951",
+        "1963",
+        "1973"
+      ],
+      "erklaerung": "Sechs Staaten, darunter die Bundesrepublik, gründeten damit die Vorläuferin der EU.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%B6mische%20Vertr%C3%A4ge",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0058",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr eroberten die Osmanen Konstantinopel?",
+      "antworten": [
+        "1453",
+        "1492",
+        "1389",
+        "1517"
+      ],
+      "erklaerung": "Sultan Mehmed II. beendete damit das Byzantinische Reich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eroberung%20Konstantinopels",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0048",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer wird als „Eiserner Kanzler“ des Kaiserreichs bezeichnet?",
+      "antworten": [
+        "Otto von Bismarck",
+        "Bernhard von Bülow",
+        "Leo von Caprivi",
+        "Theobald von Bethmann Hollweg"
+      ],
+      "erklaerung": "Bismarck war von 1871 bis 1890 Reichskanzler.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Otto%20von%20Bismarck",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0032",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wie hieß die letzte Königin des alten Ägypten, die mit Marcus Antonius verbündet war?",
+      "antworten": [
+        "Kleopatra",
+        "Nofretete",
+        "Hatschepsut",
+        "Nefertari"
+      ],
+      "erklaerung": "Kleopatra VII. starb 30 v. Chr.; danach wurde Ägypten römische Provinz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kleopatra%20VII.",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0001",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "In welchem Jahr fiel die Berliner Mauer?",
+      "antworten": [
+        "1989",
+        "1987",
+        "1990",
+        "1991"
+      ],
+      "erklaerung": "Am 9. November 1989 wurden die Grenzen geöffnet.",
+      "quelle": "https://de.wikipedia.org/wiki/Berliner_Mauer",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0040",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welcher Politiker wurde nach 27 Jahren Haft Präsident von Südafrika?",
+      "antworten": [
+        "Nelson Mandela",
+        "Barack Obama",
+        "Mahatma Gandhi",
+        "Desmond Tutu"
+      ],
+      "erklaerung": "Mandela kämpfte gegen die Apartheid und war von 1994 bis 1999 Präsident.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nelson%20Mandela",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0043",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welche britische Königin starb 2022 nach 70 Jahren auf dem Thron?",
+      "antworten": [
+        "Elisabeth II.",
+        "Victoria",
+        "Maria Stuart",
+        "Anne"
+      ],
+      "erklaerung": "Elisabeth II. regierte seit 1952; ihr Nachfolger wurde ihr Sohn Charles III.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Elisabeth%20II.",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0002",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?",
+      "antworten": [
+        "Konrad Adenauer",
+        "Ludwig Erhard",
+        "Willy Brandt",
+        "Theodor Heuss"
+      ],
+      "erklaerung": "Theodor Heuss war der erste Bundespräsident.",
+      "quelle": "https://de.wikipedia.org/wiki/Konrad_Adenauer",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0041",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welche Sprache sprachen die alten Römer?",
+      "antworten": [
+        "Latein",
+        "Griechisch",
+        "Italienisch",
+        "Etruskisch"
+      ],
+      "erklaerung": "Aus dem Latein entwickelten sich unter anderem Italienisch, Französisch und Spanisch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Latein",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0023",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welches Land schenkte den USA die Freiheitsstatue?",
+      "antworten": [
+        "Frankreich",
+        "Großbritannien",
+        "Spanien",
+        "Italien"
+      ],
+      "erklaerung": "Sie wurde 1886 in New York eingeweiht – ein Geschenk zum 100. Jahrestag der Unabhängigkeit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Freiheitsstatue",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0047",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wie hieß der mittelalterliche Handelsbund norddeutscher Städte mit Lübeck an der Spitze?",
+      "antworten": [
+        "Die Hanse",
+        "Der Rheinbund",
+        "Der Zollverein",
+        "Die Liga"
+      ],
+      "erklaerung": "Die Hanse beherrschte im Spätmittelalter den Handel an Nord- und Ostsee.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hanse",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0055",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die Berliner Mauer gebaut?",
+      "antworten": [
+        "1961",
+        "1953",
+        "1949",
+        "1968"
+      ],
+      "erklaerung": "Der Bau begann in der Nacht zum 13. August 1961.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Berliner%20Mauer",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0025",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "Wer war der erste Bundespräsident der Bundesrepublik Deutschland?",
+      "antworten": [
+        "Theodor Heuss",
+        "Konrad Adenauer",
+        "Heinrich Lübke",
+        "Gustav Heinemann"
+      ],
+      "erklaerung": "Heuss amtierte von 1949 bis 1959; Adenauer war der erste Bundeskanzler.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Theodor%20Heuss",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0060",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr fand die Oktoberrevolution in Russland statt?",
+      "antworten": [
+        "1917",
+        "1905",
+        "1914",
+        "1922"
+      ],
+      "erklaerung": "Die Bolschewiki unter Lenin übernahmen die Macht in Petrograd.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Oktoberrevolution",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0019",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde in England die Magna Carta besiegelt?",
+      "antworten": [
+        "1215",
+        "1066",
+        "1492",
+        "1314"
+      ],
+      "erklaerung": "König Johann Ohneland musste darin Rechte des Adels anerkennen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Magna%20Carta",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0063",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr ereignete sich der Reaktorunfall von Tschernobyl?",
+      "antworten": [
+        "1986",
+        "1979",
+        "1991",
+        "1975"
+      ],
+      "erklaerung": "Am 26. April 1986 explodierte Block 4 des Kernkraftwerks in der heutigen Ukraine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nuklearkatastrophe%20von%20Tschernobyl",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0036",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer schrieb im Versteck in Amsterdam ein weltberühmtes Tagebuch?",
+      "antworten": [
+        "Anne Frank",
+        "Sophie Scholl",
+        "Rosa Luxemburg",
+        "Clara Schumann"
+      ],
+      "erklaerung": "Anne Frank versteckte sich von 1942 bis 1944 mit ihrer Familie im Hinterhaus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Anne%20Frank",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0009",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wer veröffentlichte 1517 seine 95 Thesen in Wittenberg?",
+      "antworten": [
+        "Martin Luther",
+        "Johannes Calvin",
+        "Philipp Melanchthon",
+        "Martin Luther King"
+      ],
+      "erklaerung": "Der Thesenanschlag gilt als Beginn der Reformation.",
+      "quelle": "https://de.wikipedia.org/wiki/95_Thesen",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -260,292 +685,37 @@
       "gueltigBis": null
     },
     {
-      "id": "gesch-0012",
+      "id": "gesch-0045",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "mittel",
-      "frage": "Welche antike Stadt wurde im Jahr 79 n. Chr. beim Ausbruch des Vesuvs verschüttet?",
+      "frage": "Wie hieß das Schiff, mit dem die Pilgerväter 1620 nach Nordamerika segelten?",
       "antworten": [
-        "Pompeji",
-        "Karthago",
-        "Troja",
-        "Atlantis"
+        "Mayflower",
+        "Santa Maria",
+        "Endeavour",
+        "Victory"
       ],
-      "erklaerung": "Die Asche konservierte die Stadt bis heute.",
-      "quelle": "https://de.wikipedia.org/wiki/Pompeji",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Die Mayflower brachte rund 100 Siedler nach Plymouth im heutigen Massachusetts.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mayflower",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "gesch-0032",
+      "id": "gesch-0044",
       "version": 1,
       "kategorie": "Geschichte",
       "stufe": "leicht",
-      "frage": "Wie hieß die letzte Königin des alten Ägypten, die mit Marcus Antonius verbündet war?",
+      "frage": "Wer entdeckte 1928 das Penicillin?",
       "antworten": [
-        "Kleopatra",
-        "Nofretete",
-        "Hatschepsut",
-        "Nefertari"
+        "Alexander Fleming",
+        "Louis Pasteur",
+        "Robert Koch",
+        "Marie Curie"
       ],
-      "erklaerung": "Kleopatra VII. starb 30 v. Chr.; danach wurde Ägypten römische Provinz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kleopatra%20VII.",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0027",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Wer erfand um 1450 in Mainz den Buchdruck mit beweglichen Lettern?",
-      "antworten": [
-        "Johannes Gutenberg",
-        "Albrecht Dürer",
-        "Martin Luther",
-        "Johannes Kepler"
-      ],
-      "erklaerung": "Sein bekanntestes Werk ist die Gutenberg-Bibel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Johannes%20Gutenberg",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0019",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde in England die Magna Carta besiegelt?",
-      "antworten": [
-        "1215",
-        "1066",
-        "1492",
-        "1314"
-      ],
-      "erklaerung": "König Johann Ohneland musste darin Rechte des Adels anerkennen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Magna%20Carta",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0013",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Wer war der erste Präsident der USA?",
-      "antworten": [
-        "George Washington",
-        "Abraham Lincoln",
-        "Thomas Jefferson",
-        "Benjamin Franklin"
-      ],
-      "erklaerung": "Er war von 1789 bis 1797 im Amt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=George%20Washington",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0002",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Wer war der erste Bundeskanzler der Bundesrepublik Deutschland?",
-      "antworten": [
-        "Konrad Adenauer",
-        "Ludwig Erhard",
-        "Willy Brandt",
-        "Theodor Heuss"
-      ],
-      "erklaerung": "Theodor Heuss war der erste Bundespräsident.",
-      "quelle": "https://de.wikipedia.org/wiki/Konrad_Adenauer",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0001",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "In welchem Jahr fiel die Berliner Mauer?",
-      "antworten": [
-        "1989",
-        "1987",
-        "1990",
-        "1991"
-      ],
-      "erklaerung": "Am 9. November 1989 wurden die Grenzen geöffnet.",
-      "quelle": "https://de.wikipedia.org/wiki/Berliner_Mauer",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0024",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr erhielten Frauen in Deutschland das Wahlrecht?",
-      "antworten": [
-        "1918",
-        "1871",
-        "1933",
-        "1949"
-      ],
-      "erklaerung": "Im Januar 1919 durften Frauen zur Nationalversammlung erstmals wählen und gewählt werden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenwahlrecht%20in%20Deutschland",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0028",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde das Deutsche Kaiserreich gegründet?",
-      "antworten": [
-        "1871",
-        "1815",
-        "1848",
-        "1890"
-      ],
-      "erklaerung": "Wilhelm I. wurde am 18. Januar 1871 im Spiegelsaal von Versailles zum Kaiser ausgerufen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutsches%20Kaiserreich",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0016",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "Wer wurde im Jahr 800 in Rom zum Kaiser gekrönt?",
-      "antworten": [
-        "Karl der Große",
-        "Otto der Große",
-        "Friedrich Barbarossa",
-        "Ludwig der Fromme"
-      ],
-      "erklaerung": "Papst Leo III. krönte ihn am Weihnachtstag 800.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl%20der%20Gro%C3%9Fe",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0006",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Wie hieß der letzte Kaiser des Deutschen Kaiserreichs?",
-      "antworten": [
-        "Wilhelm II.",
-        "Friedrich III.",
-        "Wilhelm I.",
-        "Franz Joseph I."
-      ],
-      "erklaerung": "Er dankte 1918 ab. Franz Joseph I. war Kaiser von Österreich.",
-      "quelle": "https://de.wikipedia.org/wiki/Wilhelm_II._(Deutsches_Reich)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0026",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Wer war 1961 der erste Mensch im Weltall?",
-      "antworten": [
-        "Juri Gagarin",
-        "Neil Armstrong",
-        "Sigmund Jähn",
-        "John Glenn"
-      ],
-      "erklaerung": "Gagarin umrundete am 12. April 1961 einmal die Erde. Sigmund Jähn war 1978 der erste Deutsche im All.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Juri%20Gagarin",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0007",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Welches Schiff sank 1912 nach der Kollision mit einem Eisberg?",
-      "antworten": [
-        "Die Titanic",
-        "Die Bismarck",
-        "Die Queen Mary",
-        "Das Traumschiff"
-      ],
-      "erklaerung": "Die Titanic sank auf ihrer Jungfernfahrt.",
-      "quelle": "https://de.wikipedia.org/wiki/Titanic_(Schiff)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0033",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr endete der Zweite Weltkrieg in Europa?",
-      "antworten": [
-        "1945",
-        "1944",
-        "1946",
-        "1939"
-      ],
-      "erklaerung": "Am 8. Mai 1945 trat die bedingungslose Kapitulation der Wehrmacht in Kraft.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ende%20des%20Zweiten%20Weltkrieges%20in%20Europa",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0025",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "schwer",
-      "frage": "Wer war der erste Bundespräsident der Bundesrepublik Deutschland?",
-      "antworten": [
-        "Theodor Heuss",
-        "Konrad Adenauer",
-        "Heinrich Lübke",
-        "Gustav Heinemann"
-      ],
-      "erklaerung": "Heuss amtierte von 1949 bis 1959; Adenauer war der erste Bundeskanzler.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Theodor%20Heuss",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0009",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "mittel",
-      "frage": "Wer veröffentlichte 1517 seine 95 Thesen in Wittenberg?",
-      "antworten": [
-        "Martin Luther",
-        "Johannes Calvin",
-        "Philipp Melanchthon",
-        "Martin Luther King"
-      ],
-      "erklaerung": "Der Thesenanschlag gilt als Beginn der Reformation.",
-      "quelle": "https://de.wikipedia.org/wiki/95_Thesen",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "gesch-0018",
-      "version": 1,
-      "kategorie": "Geschichte",
-      "stufe": "leicht",
-      "frage": "Wer war die erste Bundeskanzlerin Deutschlands?",
-      "antworten": [
-        "Angela Merkel",
-        "Annalena Baerbock",
-        "Ursula von der Leyen",
-        "Hannelore Kraft"
-      ],
-      "erklaerung": "Sie regierte von 2005 bis 2021.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Angela%20Merkel",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Der Schimmelpilz Penicillium hemmte das Wachstum von Bakterien; das erste Antibiotikum.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alexander%20Fleming",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -566,6 +736,210 @@
       "gueltigBis": null
     },
     {
+      "id": "gesch-0029",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "In welchem Land fanden die Olympischen Spiele der Antike statt?",
+      "antworten": [
+        "Griechenland",
+        "Italien",
+        "Ägypten",
+        "Türkei"
+      ],
+      "erklaerung": "Sie wurden ab 776 v. Chr. in Olympia ausgetragen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Spiele%20der%20Antike",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0017",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer baute die Pyramiden von Gizeh?",
+      "antworten": [
+        "Die alten Ägypter",
+        "Die Römer",
+        "Die Wikinger",
+        "Außerirdische mit Baukran"
+      ],
+      "erklaerung": "Sie entstanden vor rund 4.500 Jahren als Grabmäler der Pharaonen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pyramiden%20von%20Gizeh",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0062",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr besiegten die Germanen unter Arminius die Römer im Teutoburger Wald?",
+      "antworten": [
+        "9 n. Chr.",
+        "49 n. Chr.",
+        "90 n. Chr.",
+        "476 n. Chr."
+      ],
+      "erklaerung": "Der römische Feldherr Varus verlor dabei drei Legionen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Varusschlacht",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0038",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welcher Künstler der Renaissance malte die Mona Lisa?",
+      "antworten": [
+        "Leonardo da Vinci",
+        "Michelangelo",
+        "Raffael",
+        "Albrecht Dürer"
+      ],
+      "erklaerung": "Das Gemälde hängt heute im Louvre in Paris.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mona%20Lisa",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0015",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welche Stadt war von 1949 bis 1990 Hauptstadt der Bundesrepublik Deutschland?",
+      "antworten": [
+        "Bonn",
+        "Frankfurt am Main",
+        "Köln",
+        "Berlin"
+      ],
+      "erklaerung": "Bonn galt als „provisorische“ Hauptstadt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bonn",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0005",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr wurde die Bundesrepublik Deutschland gegründet?",
+      "antworten": [
+        "1949",
+        "1945",
+        "1952",
+        "1961"
+      ],
+      "erklaerung": "Das Grundgesetz trat am 23. Mai 1949 in Kraft.",
+      "quelle": "https://de.wikipedia.org/wiki/Grundgesetz_für_die_Bundesrepublik_Deutschland",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0056",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr siegte Wilhelm der Eroberer in der Schlacht bei Hastings?",
+      "antworten": [
+        "1066",
+        "1215",
+        "1415",
+        "986"
+      ],
+      "erklaerung": "Danach wurde der Normannenherzog König von England.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlacht%20bei%20Hastings",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0064",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr fand die Völkerschlacht bei Leipzig statt?",
+      "antworten": [
+        "1813",
+        "1806",
+        "1815",
+        "1848"
+      ],
+      "erklaerung": "Die Verbündeten besiegten Napoleon und beendeten seine Herrschaft in Deutschland.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=V%C3%B6lkerschlacht%20bei%20Leipzig",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0051",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher Seefahrer brach 1519 zur ersten Weltumsegelung auf?",
+      "antworten": [
+        "Ferdinand Magellan",
+        "Vasco da Gama",
+        "James Cook",
+        "Marco Polo"
+      ],
+      "erklaerung": "Magellan starb 1521 auf den Philippinen; nur ein Schiff seiner Flotte kehrte 1522 zurück.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ferdinand%20Magellan",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0049",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher französische König wurde 1793 während der Revolution hingerichtet?",
+      "antworten": [
+        "Ludwig XVI.",
+        "Ludwig XIV.",
+        "Karl X.",
+        "Heinrich IV."
+      ],
+      "erklaerung": "Ludwig XVI. wurde in Paris mit der Guillotine hingerichtet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ludwig%20XVI.",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0052",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welche Stadt war die Hauptstadt des Oströmischen (Byzantinischen) Reiches?",
+      "antworten": [
+        "Konstantinopel",
+        "Alexandria",
+        "Antiochia",
+        "Ravenna"
+      ],
+      "erklaerung": "Konstantinopel ist das heutige Istanbul.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Konstantinopel",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0018",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Wer war die erste Bundeskanzlerin Deutschlands?",
+      "antworten": [
+        "Angela Merkel",
+        "Annalena Baerbock",
+        "Ursula von der Leyen",
+        "Hannelore Kraft"
+      ],
+      "erklaerung": "Sie regierte von 2005 bis 2021.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Angela%20Merkel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "gesch-0034",
       "version": 1,
       "kategorie": "Geschichte",
@@ -580,6 +954,142 @@
       "erklaerung": "Die „Rosinenbomber“ flogen während der sowjetischen Blockade fast ein Jahr lang.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Berliner%20Luftbr%C3%BCcke",
       "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0035",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "In welchem Land stürmte das Volk 1789 die Bastille?",
+      "antworten": [
+        "Frankreich",
+        "England",
+        "Spanien",
+        "Österreich"
+      ],
+      "erklaerung": "Der Sturm auf die Bastille am 14. Juli 1789 gilt als Beginn der Französischen Revolution.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bastille",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0006",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Wie hieß der letzte Kaiser des Deutschen Kaiserreichs?",
+      "antworten": [
+        "Wilhelm II.",
+        "Friedrich III.",
+        "Wilhelm I.",
+        "Franz Joseph I."
+      ],
+      "erklaerung": "Er dankte 1918 ab. Franz Joseph I. war Kaiser von Österreich.",
+      "quelle": "https://de.wikipedia.org/wiki/Wilhelm_II._(Deutsches_Reich)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0050",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Über welches Reich herrschte Alexander der Große zuerst als König?",
+      "antworten": [
+        "Makedonien",
+        "Persien",
+        "Ägypten",
+        "Sparta"
+      ],
+      "erklaerung": "Er bestieg 336 v. Chr. den Thron und eroberte das Perserreich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alexander%20der%20Gro%C3%9Fe",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0010",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr endete der Dreißigjährige Krieg?",
+      "antworten": [
+        "1648",
+        "1618",
+        "1715",
+        "1555"
+      ],
+      "erklaerung": "Mit dem Westfälischen Frieden. 1618 begann er.",
+      "quelle": "https://de.wikipedia.org/wiki/Dreißigjähriger_Krieg",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0059",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr erklärten die USA ihre Unabhängigkeit von Großbritannien?",
+      "antworten": [
+        "1776",
+        "1789",
+        "1812",
+        "1492"
+      ],
+      "erklaerung": "Die Erklärung wurde am 4. Juli 1776 verabschiedet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Amerikanische%20Unabh%C3%A4ngigkeitserkl%C3%A4rung",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0042",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "leicht",
+      "frage": "Welche Epoche folgte in Europa auf die Steinzeit?",
+      "antworten": [
+        "Die Bronzezeit",
+        "Die Eiszeit",
+        "Das Mittelalter",
+        "Die Antike"
+      ],
+      "erklaerung": "Bronze ist eine Legierung aus Kupfer und Zinn und gab der Epoche den Namen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bronzezeit",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0003",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr erreichte Christoph Kolumbus erstmals Amerika?",
+      "antworten": [
+        "1492",
+        "1498",
+        "1488",
+        "1506"
+      ],
+      "erklaerung": "Er landete im Oktober 1492 auf den Bahamas.",
+      "quelle": "https://de.wikipedia.org/wiki/Christoph_Kolumbus",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0046",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "mittel",
+      "frage": "Welcher Pharao ist für sein 1922 entdecktes Grab mit der goldenen Maske berühmt?",
+      "antworten": [
+        "Tutanchamun",
+        "Ramses II.",
+        "Cheops",
+        "Echnaton"
+      ],
+      "erklaerung": "Howard Carter fand das nahezu unberührte Grab im Tal der Könige.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tutanchamun",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     }
   ]

@@ -1,142 +1,108 @@
 {
   "paket": "sehenswuerdigkeiten",
   "titel": "Sehenswürdigkeiten",
-  "version": 6,
+  "version": 7,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "sehen-0004",
+      "id": "sehen-0061",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "schwer",
-      "frage": "Wie lange dauerte der Bau des Kölner Doms von der Grundsteinlegung bis zur Vollendung?",
+      "frage": "Wie hoch ist der Fuji, der höchste Berg Japans?",
       "antworten": [
-        "Rund 630 Jahre, von 1248 bis 1880",
-        "Rund 80 Jahre, von 1820 bis 1900",
-        "Rund 300 Jahre, im Mittelalter abgeschlossen",
-        "Er ist noch nicht fertig, die Kölner warten auf eine Baugenehmigung"
+        "Rund 3.776 m",
+        "Rund 2.950 m",
+        "Rund 4.800 m",
+        "Rund 5.200 m"
       ],
-      "erklaerung": "Der Bau ruhte etwa 300 Jahre; der Kran auf dem Südturm wurde ein Wahrzeichen.",
-      "quelle": "https://de.wikipedia.org/wiki/Kölner_Dom",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Der Vulkan gilt als heilig und ist UNESCO-Welterbe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fuji%20%28Berg%29",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "sehen-0032",
+      "id": "sehen-0042",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "leicht",
-      "frage": "In welcher Stadt steht die Tower Bridge?",
+      "frage": "In welcher Stadt steht das Empire State Building?",
       "antworten": [
-        "London",
-        "Edinburgh",
-        "Dublin",
-        "Manchester"
+        "New York",
+        "Chicago",
+        "Los Angeles",
+        "Washington, D.C."
       ],
-      "erklaerung": "Die Klappbrücke über die Themse wurde 1894 eröffnet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tower%20Bridge",
-      "erstellt": "2026-10-19",
+      "erklaerung": "Das Hochhaus in Manhattan wurde 1931 eröffnet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Empire%20State%20Building",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "sehen-0012",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "Wo steht der berühmte Schiefe Turm?",
-      "antworten": [
-        "In Pisa, auf der Piazza dei Miracoli",
-        "In Venedig, er neigt sich wegen der Gondel-Wellen",
-        "Auf Sylt, vom Wind schiefgeweht",
-        "In Rom, neben dem Kolosseum"
-      ],
-      "erklaerung": "Er ist der Glockenturm des Doms von Pisa.",
-      "quelle": "https://de.wikipedia.org/wiki/Schiefer_Turm_von_Pisa",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0007",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welchem Land liegt die Inka-Stadt Machu Picchu?",
-      "antworten": [
-        "Peru",
-        "Mexiko",
-        "Bolivien",
-        "Chile"
-      ],
-      "erklaerung": "Sie liegt hoch in den Anden über dem Urubamba-Tal.",
-      "quelle": "https://de.wikipedia.org/wiki/Machu_Picchu",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0022",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt steht das Atomium?",
-      "antworten": [
-        "In Brüssel",
-        "In Antwerpen",
-        "In Paris",
-        "In Luxemburg"
-      ],
-      "erklaerung": "Es wurde für die Weltausstellung 1958 gebaut.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Atomium",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0021",
+      "id": "sehen-0031",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "schwer",
-      "frage": "Welche Kirche in Dresden wurde 2005 nach dem Wiederaufbau neu geweiht?",
+      "frage": "In welchem Land liegt die Tempelstadt Bagan mit über 2000 Pagoden?",
       "antworten": [
-        "Die Frauenkirche",
-        "Die Kreuzkirche",
-        "Die Hofkirche",
-        "Der Zwinger"
+        "Myanmar",
+        "Thailand",
+        "Kambodscha",
+        "Laos"
       ],
-      "erklaerung": "Sie war 1945 zerstört worden; die Ruine blieb jahrzehntelang als Mahnmal stehen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenkirche%20%28Dresden%29",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0024",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welchem Land liegt die Felsenstadt Petra?",
-      "antworten": [
-        "Jordanien",
-        "Ägypten",
-        "Israel",
-        "Marokko"
-      ],
-      "erklaerung": "Die Nabatäer meißelten die Fassaden vor rund 2000 Jahren direkt in den Sandstein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Petra%20%28Jordanien%29",
+      "erklaerung": "Angkor Wat dagegen steht in Kambodscha.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bagan",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "sehen-0005",
+      "id": "sehen-0033",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "In welcher Stadt steht das Brandenburger Tor?",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt steht die maurische Palastanlage Alhambra?",
       "antworten": [
-        "Berlin",
-        "Potsdam",
-        "Brandenburg an der Havel",
-        "Hamburg"
+        "Granada",
+        "Sevilla",
+        "Córdoba",
+        "Toledo"
       ],
-      "erklaerung": "Es wurde 1791 am Pariser Platz fertiggestellt.",
-      "quelle": "https://de.wikipedia.org/wiki/Brandenburger_Tor",
+      "erklaerung": "Die Alhambra ist UNESCO-Weltkulturerbe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alhambra",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0030",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt steht die große Christusstatue „Cristo Redentor“?",
+      "antworten": [
+        "Rio de Janeiro",
+        "Lissabon",
+        "Buenos Aires",
+        "São Paulo"
+      ],
+      "erklaerung": "Sie steht auf dem Berg Corcovado und ist rund 30 Meter hoch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Cristo%20Redentor",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0009",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "Welches Bauwerk ließ Großmogul Shah Jahan für seine verstorbene Frau errichten?",
+      "antworten": [
+        "Das Taj Mahal",
+        "Die Alhambra",
+        "Angkor Wat",
+        "Die Felsenstadt Petra"
+      ],
+      "erklaerung": "Das Mausoleum steht in Agra in Indien.",
+      "quelle": "https://de.wikipedia.org/wiki/Taj_Mahal",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -158,105 +124,54 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0017",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "Wie hoch ist der Burj Khalifa in Dubai?",
-      "antworten": [
-        "Rund 828 m",
-        "Rund 632 m",
-        "Rund 541 m",
-        "Rund 1.000 m"
-      ],
-      "erklaerung": "632 m misst der Shanghai Tower, 541 m das One World Trade Center.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Burj%20Khalifa",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0023",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "In welcher Stadt steht der Kreml mit dem Roten Platz?",
-      "antworten": [
-        "Moskau",
-        "Sankt Petersburg",
-        "Kiew",
-        "Warschau"
-      ],
-      "erklaerung": "„Kreml“ bedeutet Burg – auch andere russische Städte haben einen, der bekannteste steht in Moskau.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Moskauer%20Kreml",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0030",
+      "id": "sehen-0024",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "mittel",
-      "frage": "In welcher Stadt steht die große Christusstatue „Cristo Redentor“?",
+      "frage": "In welchem Land liegt die Felsenstadt Petra?",
       "antworten": [
-        "Rio de Janeiro",
-        "Lissabon",
-        "Buenos Aires",
-        "São Paulo"
-      ],
-      "erklaerung": "Sie steht auf dem Berg Corcovado und ist rund 30 Meter hoch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Cristo%20Redentor",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0034",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "In welchem Land liegen die aus dem Fels gehauenen Kirchen von Lalibela?",
-      "antworten": [
-        "Äthiopien",
         "Jordanien",
-        "Türkei",
-        "Armenien"
+        "Ägypten",
+        "Israel",
+        "Marokko"
       ],
-      "erklaerung": "Die elf Kirchen entstanden vermutlich im 12. und 13. Jahrhundert.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Felsenkirchen%20von%20Lalibela",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0010",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "Wie hoch ist der Eiffelturm heute einschließlich Antennen?",
-      "antworten": [
-        "Rund 330 Meter",
-        "Rund 200 Meter",
-        "Rund 450 Meter",
-        "Rund 828 Meter"
-      ],
-      "erklaerung": "828 Meter misst der Burj Khalifa in Dubai.",
-      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0028",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "schwer",
-      "frage": "Wie heißt der höchste Wasserfall der Erde?",
-      "antworten": [
-        "Salto Ángel in Venezuela",
-        "Niagarafälle",
-        "Iguazú-Fälle",
-        "Victoriafälle"
-      ],
-      "erklaerung": "Er stürzt fast 1000 Meter in die Tiefe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Salto%20%C3%81ngel",
+      "erklaerung": "Die Nabatäer meißelten die Fassaden vor rund 2000 Jahren direkt in den Sandstein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Petra%20%28Jordanien%29",
       "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0037",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welchem Land steht der berühmte Steinkreis Stonehenge?",
+      "antworten": [
+        "England",
+        "Irland",
+        "Frankreich",
+        "Dänemark"
+      ],
+      "erklaerung": "Die Anlage in der Grafschaft Wiltshire ist mehrere tausend Jahre alt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Stonehenge",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0035",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht das Museum Louvre mit der Mona Lisa?",
+      "antworten": [
+        "Paris",
+        "Rom",
+        "Madrid",
+        "London"
+      ],
+      "erklaerung": "Der Louvre war früher ein Königsschloss; die Glaspyramide im Hof wurde 1989 eröffnet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Louvre",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -277,53 +192,36 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0015",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welchem Land steht die Tempelanlage Angkor Wat?",
-      "antworten": [
-        "Kambodscha",
-        "Thailand",
-        "Vietnam",
-        "Myanmar"
-      ],
-      "erklaerung": "Sie ist sogar auf der Flagge Kambodschas abgebildet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Angkor%20Wat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0031",
+      "id": "sehen-0059",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "schwer",
-      "frage": "In welchem Land liegt die Tempelstadt Bagan mit über 2000 Pagoden?",
+      "frage": "In welcher deutschen Stadt steht das römische Stadttor Porta Nigra?",
       "antworten": [
-        "Myanmar",
-        "Thailand",
-        "Kambodscha",
-        "Laos"
+        "Trier",
+        "Köln",
+        "Regensburg",
+        "Augsburg"
       ],
-      "erklaerung": "Angkor Wat dagegen steht in Kambodscha.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bagan",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Das Tor aus dem 2. Jahrhundert ist das besterhaltene römische Stadttor nördlich der Alpen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Porta%20Nigra",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "sehen-0001",
+      "id": "sehen-0012",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "leicht",
-      "frage": "Wofür wurde der Eiffelturm ursprünglich gebaut?",
+      "frage": "Wo steht der berühmte Schiefe Turm?",
       "antworten": [
-        "Als Eingangsportal der Weltausstellung 1889 in Paris",
-        "Als Grillspieß für Napoleons Geburtstags-Barbecue",
-        "Als Leuchtturm für die Schifffahrt auf der Seine",
-        "Als Kletterturm für französische Bergsteiger im Wintertraining"
+        "In Pisa, auf der Piazza dei Miracoli",
+        "In Venedig, er neigt sich wegen der Gondel-Wellen",
+        "Auf Sylt, vom Wind schiefgeweht",
+        "In Rom, neben dem Kolosseum"
       ],
-      "erklaerung": "Er sollte eigentlich nach 20 Jahren wieder abgebaut werden.",
-      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
+      "erklaerung": "Er ist der Glockenturm des Doms von Pisa.",
+      "quelle": "https://de.wikipedia.org/wiki/Schiefer_Turm_von_Pisa",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
@@ -345,20 +243,292 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0009",
+      "id": "sehen-0038",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Wer ist am Mount Rushmore in den Fels gemeißelt?",
+      "antworten": [
+        "Vier US-Präsidenten",
+        "Vier Indianerhäuptlinge",
+        "Vier britische Könige",
+        "Vier Apollo-Astronauten"
+      ],
+      "erklaerung": "Zu sehen sind Washington, Jefferson, Theodore Roosevelt und Lincoln.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mount%20Rushmore%20National%20Memorial",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0016",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "mittel",
-      "frage": "Welches Bauwerk ließ Großmogul Shah Jahan für seine verstorbene Frau errichten?",
+      "frage": "Auf welchem Felsen in Athen steht der Parthenon?",
       "antworten": [
-        "Das Taj Mahal",
-        "Die Alhambra",
-        "Angkor Wat",
-        "Die Felsenstadt Petra"
+        "Auf der Akropolis",
+        "Auf dem Olymp",
+        "Auf dem Lykabettus",
+        "Auf dem Areopag"
       ],
-      "erklaerung": "Das Mausoleum steht in Agra in Indien.",
-      "quelle": "https://de.wikipedia.org/wiki/Taj_Mahal",
+      "erklaerung": "Der Olymp liegt weit im Norden Griechenlands.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Akropolis",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0015",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welchem Land steht die Tempelanlage Angkor Wat?",
+      "antworten": [
+        "Kambodscha",
+        "Thailand",
+        "Vietnam",
+        "Myanmar"
+      ],
+      "erklaerung": "Sie ist sogar auf der Flagge Kambodschas abgebildet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Angkor%20Wat",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0005",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht das Brandenburger Tor?",
+      "antworten": [
+        "Berlin",
+        "Potsdam",
+        "Brandenburg an der Havel",
+        "Hamburg"
+      ],
+      "erklaerung": "Es wurde 1791 am Pariser Platz fertiggestellt.",
+      "quelle": "https://de.wikipedia.org/wiki/Brandenburger_Tor",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0043",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt führt die Rialtobrücke über den Canal Grande?",
+      "antworten": [
+        "Venedig",
+        "Amsterdam",
+        "Florenz",
+        "Brügge"
+      ],
+      "erklaerung": "Die Steinbrücke aus dem 16. Jahrhundert ist eine der ältesten Brücken über den Canal Grande.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rialtobr%C3%BCcke",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0051",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "Welche Gestalt hat die Große Sphinx von Gizeh?",
+      "antworten": [
+        "Löwenkörper mit Menschenkopf",
+        "Adlerkörper mit Löwenkopf",
+        "Stierkörper mit Menschenkopf",
+        "Menschenkörper mit Schakalkopf"
+      ],
+      "erklaerung": "Sie wurde aus dem Kalksteinfelsen des Plateaus herausgearbeitet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gro%C3%9Fe%20Sphinx%20von%20Gizeh",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0058",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Zwischen welchen beiden Ländern liegen die Iguazú-Wasserfälle?",
+      "antworten": [
+        "Argentinien und Brasilien",
+        "Chile und Peru",
+        "Bolivien und Paraguay",
+        "Venezuela und Kolumbien"
+      ],
+      "erklaerung": "Die Fälle bestehen aus rund 270 einzelnen Wasserfällen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Iguaz%C3%BA-Wasserf%C3%A4lle",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0032",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht die Tower Bridge?",
+      "antworten": [
+        "London",
+        "Edinburgh",
+        "Dublin",
+        "Manchester"
+      ],
+      "erklaerung": "Die Klappbrücke über die Themse wurde 1894 eröffnet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tower%20Bridge",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0049",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt überquert die Karlsbrücke die Moldau?",
+      "antworten": [
+        "Prag",
+        "Budapest",
+        "Wien",
+        "Krakau"
+      ],
+      "erklaerung": "Die Steinbrücke mit ihren Statuen verbindet Altstadt und Kleinseite.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karlsbr%C3%BCcke",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0019",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Wie heißt die rote Hängebrücke in San Francisco?",
+      "antworten": [
+        "Golden Gate Bridge",
+        "Brooklyn Bridge",
+        "Tower Bridge",
+        "Öresundbrücke"
+      ],
+      "erklaerung": "Die Farbe heißt offiziell „International Orange“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Golden%20Gate%20Bridge",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0027",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt steht die Hagia Sophia?",
+      "antworten": [
+        "Istanbul",
+        "Athen",
+        "Rom",
+        "Kairo"
+      ],
+      "erklaerung": "Sie war Kirche, Moschee und Museum – seit 2020 ist sie wieder eine Moschee.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hagia%20Sophia",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0063",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Welcher König machte Schloss Versailles bei Paris zur Residenz des Hofes?",
+      "antworten": [
+        "Ludwig XIV., der Sonnenkönig",
+        "Napoleon I.",
+        "Heinrich IV.",
+        "Karl der Große"
+      ],
+      "erklaerung": "Ab 1682 residierte der Hof dauerhaft in Versailles.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schloss%20Versailles",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0010",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie hoch ist der Eiffelturm heute einschließlich Antennen?",
+      "antworten": [
+        "Rund 330 Meter",
+        "Rund 200 Meter",
+        "Rund 450 Meter",
+        "Rund 828 Meter"
+      ],
+      "erklaerung": "828 Meter misst der Burj Khalifa in Dubai.",
+      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0052",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "An der Grenze welcher beiden Länder stürzen die Victoriafälle in die Tiefe?",
+      "antworten": [
+        "Sambia und Simbabwe",
+        "Kenia und Tansania",
+        "Namibia und Angola",
+        "Südafrika und Lesotho"
+      ],
+      "erklaerung": "Der Fluss Sambesi bildet hier die Grenze; die Einheimischen nennen sie „donnernder Rauch“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Victoriaf%C3%A4lle",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0060",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie hoch ist der Mount Everest nach der offiziellen Neumessung von 2020?",
+      "antworten": [
+        "Rund 8.849 m",
+        "Rund 8.611 m",
+        "Rund 7.200 m",
+        "Rund 9.500 m"
+      ],
+      "erklaerung": "China und Nepal gaben 2020 gemeinsam den Wert 8.848,86 m bekannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mount%20Everest",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0064",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde der Eiffelturm zur Weltausstellung fertiggestellt?",
+      "antworten": [
+        "1889",
+        "1875",
+        "1900",
+        "1912"
+      ],
+      "erklaerung": "Er war damals das höchste Bauwerk der Welt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eiffelturm",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0045",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "Welcher König ließ Schloss Sanssouci in Potsdam bauen?",
+      "antworten": [
+        "Friedrich II. (der Große)",
+        "Kaiser Wilhelm I.",
+        "August der Starke",
+        "Friedrich Wilhelm I."
+      ],
+      "erklaerung": "Das Sommerschloss wurde ab 1745 errichtet; der Name bedeutet „ohne Sorge“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schloss%20Sanssouci",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -375,6 +545,176 @@
       ],
       "erklaerung": "Das Amphitheater wurde im Jahr 80 n. Chr. eröffnet.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Kolosseum",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0047",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welchem Land liegt die Maya-Stadt Chichén Itzá mit der Stufenpyramide El Castillo?",
+      "antworten": [
+        "Mexiko",
+        "Guatemala",
+        "Peru",
+        "Honduras"
+      ],
+      "erklaerung": "Sie liegt auf der Halbinsel Yucatán und gehört zu den neuen sieben Weltwundern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Chich%C3%A9n%20Itz%C3%A1",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0046",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "Wie heißt der Ayers Rock in Australien in der Sprache der Aborigines?",
+      "antworten": [
+        "Uluru",
+        "Kata Tjuta",
+        "Wollumbin",
+        "Karlu Karlu"
+      ],
+      "erklaerung": "Der Sandsteinfelsen mitten im Outback gilt den Anangu als heilig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Uluru",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0034",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "In welchem Land liegen die aus dem Fels gehauenen Kirchen von Lalibela?",
+      "antworten": [
+        "Äthiopien",
+        "Jordanien",
+        "Türkei",
+        "Armenien"
+      ],
+      "erklaerung": "Die elf Kirchen entstanden vermutlich im 12. und 13. Jahrhundert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Felsenkirchen%20von%20Lalibela",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0056",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie hoch ist die Zugspitze, Deutschlands höchster Berg?",
+      "antworten": [
+        "Rund 2.960 m",
+        "Rund 2.500 m",
+        "Rund 3.400 m",
+        "Rund 3.800 m"
+      ],
+      "erklaerung": "Der Gipfel liegt an der Grenze zu Österreich im Wettersteingebirge.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zugspitze",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0050",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "An der Grenze welcher beiden Länder liegt das Matterhorn?",
+      "antworten": [
+        "Schweiz und Italien",
+        "Österreich und Italien",
+        "Schweiz und Frankreich",
+        "Deutschland und Österreich"
+      ],
+      "erklaerung": "Die markante Pyramide ragt bei Zermatt rund 4.478 m hoch auf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Matterhorn",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0017",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie hoch ist der Burj Khalifa in Dubai?",
+      "antworten": [
+        "Rund 828 m",
+        "Rund 632 m",
+        "Rund 541 m",
+        "Rund 1.000 m"
+      ],
+      "erklaerung": "632 m misst der Shanghai Tower, 541 m das One World Trade Center.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Burj%20Khalifa",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0022",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt steht das Atomium?",
+      "antworten": [
+        "In Brüssel",
+        "In Antwerpen",
+        "In Paris",
+        "In Luxemburg"
+      ],
+      "erklaerung": "Es wurde für die Weltausstellung 1958 gebaut.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Atomium",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0055",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die Freiheitsstatue in New York eingeweiht?",
+      "antworten": [
+        "1886",
+        "1865",
+        "1901",
+        "1923"
+      ],
+      "erklaerung": "Die Statue war ein Geschenk Frankreichs an die USA.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Freiheitsstatue",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0018",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht das Hofbräuhaus?",
+      "antworten": [
+        "München",
+        "Bamberg",
+        "Wien",
+        "Bremen"
+      ],
+      "erklaerung": "Die Hofbräu-Brauerei gründete Herzog Wilhelm V. im Jahr 1589.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hofbr%C3%A4uhaus%20am%20Platzl",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0021",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Welche Kirche in Dresden wurde 2005 nach dem Wiederaufbau neu geweiht?",
+      "antworten": [
+        "Die Frauenkirche",
+        "Die Kreuzkirche",
+        "Die Hofkirche",
+        "Der Zwinger"
+      ],
+      "erklaerung": "Sie war 1945 zerstört worden; die Ruine blieb jahrzehntelang als Mahnmal stehen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Frauenkirche%20%28Dresden%29",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -396,156 +736,20 @@
       "gueltigBis": null
     },
     {
-      "id": "sehen-0027",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt steht die Hagia Sophia?",
-      "antworten": [
-        "Istanbul",
-        "Athen",
-        "Rom",
-        "Kairo"
-      ],
-      "erklaerung": "Sie war Kirche, Moschee und Museum – seit 2020 ist sie wieder eine Moschee.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hagia%20Sophia",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0003",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "Woraus besteht die Außenhaut der Freiheitsstatue in New York?",
-      "antworten": [
-        "Aus dünnen Kupferplatten, die durch Patina grün geworden sind",
-        "Aus grün lackiertem Gusseisen",
-        "Aus massivem grünem Marmor",
-        "Aus Pappmaché mit einem sehr guten Anstrich"
-      ],
-      "erklaerung": "Das innere Eisengerüst entwarf übrigens Gustave Eiffel.",
-      "quelle": "https://de.wikipedia.org/wiki/Freiheitsstatue",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0018",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "In welcher Stadt steht das Hofbräuhaus?",
-      "antworten": [
-        "München",
-        "Bamberg",
-        "Wien",
-        "Bremen"
-      ],
-      "erklaerung": "Die Hofbräu-Brauerei gründete Herzog Wilhelm V. im Jahr 1589.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hofbr%C3%A4uhaus%20am%20Platzl",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0014",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "Welche Stadt ist für ihr Opernhaus mit segelartigem Dach bekannt?",
-      "antworten": [
-        "Sydney",
-        "Melbourne",
-        "Auckland",
-        "Kapstadt"
-      ],
-      "erklaerung": "Das Sydney Opera House ist seit 2007 UNESCO-Welterbe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sydney%20Opera%20House",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0026",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "In welcher Stadt steht die Kathedrale Notre-Dame, die 2019 brannte?",
-      "antworten": [
-        "Paris",
-        "Lyon",
-        "Brüssel",
-        "Marseille"
-      ],
-      "erklaerung": "Nach dem Wiederaufbau wurde sie im Dezember 2024 wiedereröffnet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Notre-Dame%20de%20Paris",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0025",
+      "id": "sehen-0057",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
       "stufe": "schwer",
-      "frage": "In welchem Jahr wurde die Elbphilharmonie in Hamburg eröffnet?",
+      "frage": "Wie hoch war die Cheops-Pyramide ursprünglich?",
       "antworten": [
-        "2017",
-        "2010",
-        "2013",
-        "2020"
+        "Rund 146 m",
+        "Rund 90 m",
+        "Rund 230 m",
+        "Rund 330 m"
       ],
-      "erklaerung": "Geplant war die Eröffnung ursprünglich für 2010 – die Kosten stiegen auf rund 866 Millionen Euro.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Elbphilharmonie",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0016",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "Auf welchem Felsen in Athen steht der Parthenon?",
-      "antworten": [
-        "Auf der Akropolis",
-        "Auf dem Olymp",
-        "Auf dem Lykabettus",
-        "Auf dem Areopag"
-      ],
-      "erklaerung": "Der Olymp liegt weit im Norden Griechenlands.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Akropolis",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0019",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "leicht",
-      "frage": "Wie heißt die rote Hängebrücke in San Francisco?",
-      "antworten": [
-        "Golden Gate Bridge",
-        "Brooklyn Bridge",
-        "Tower Bridge",
-        "Öresundbrücke"
-      ],
-      "erklaerung": "Die Farbe heißt offiziell „International Orange“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Golden%20Gate%20Bridge",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "sehen-0033",
-      "version": 1,
-      "kategorie": "Sehenswürdigkeiten",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt steht die maurische Palastanlage Alhambra?",
-      "antworten": [
-        "Granada",
-        "Sevilla",
-        "Córdoba",
-        "Toledo"
-      ],
-      "erklaerung": "Die Alhambra ist UNESCO-Weltkulturerbe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Alhambra",
-      "erstellt": "2026-10-19",
+      "erklaerung": "Durch den verlorenen Spitzenstein und Verwitterung misst sie heute etwa 139 m.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Cheops-Pyramide",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -566,6 +770,23 @@
       "gueltigBis": null
     },
     {
+      "id": "sehen-0036",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Welcher Fluss hat den Grand Canyon in den USA geschaffen?",
+      "antworten": [
+        "Der Colorado River",
+        "Der Mississippi",
+        "Der Missouri",
+        "Der Hudson River"
+      ],
+      "erklaerung": "Der Fluss grub sich über Millionen Jahre bis zu rund 1.800 m tief in das Gestein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Grand%20Canyon",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
       "id": "sehen-0020",
       "version": 1,
       "kategorie": "Sehenswürdigkeiten",
@@ -580,6 +801,295 @@
       "erklaerung": "Die Osterinsel gehört zu Chile.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Moai",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0044",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt liegt der Markusplatz mit dem Markusdom?",
+      "antworten": [
+        "Venedig",
+        "Rom",
+        "Florenz",
+        "Mailand"
+      ],
+      "erklaerung": "Der Platz liegt am Canal Grande.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Markusplatz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0028",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie heißt der höchste Wasserfall der Erde?",
+      "antworten": [
+        "Salto Ángel in Venezuela",
+        "Niagarafälle",
+        "Iguazú-Fälle",
+        "Victoriafälle"
+      ],
+      "erklaerung": "Er stürzt fast 1000 Meter in die Tiefe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Salto%20%C3%81ngel",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0014",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Welche Stadt ist für ihr Opernhaus mit segelartigem Dach bekannt?",
+      "antworten": [
+        "Sydney",
+        "Melbourne",
+        "Auckland",
+        "Kapstadt"
+      ],
+      "erklaerung": "Das Sydney Opera House ist seit 2007 UNESCO-Welterbe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sydney%20Opera%20House",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0062",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Welches antike Bauwerk in Rom besitzt eine große Kuppel mit einer runden Öffnung (Oculus) in der Mitte?",
+      "antworten": [
+        "Das Pantheon",
+        "Das Kolosseum",
+        "Der Circus Maximus",
+        "Die Engelsburg"
+      ],
+      "erklaerung": "Das Pantheon wurde unter Kaiser Hadrian neu errichtet und ist erstaunlich gut erhalten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pantheon%20%28Rom%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0041",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht der Trevi-Brunnen, in den Besucher Münzen werfen?",
+      "antworten": [
+        "Rom",
+        "Florenz",
+        "Mailand",
+        "Barcelona"
+      ],
+      "erklaerung": "Wer mit der rechten Hand über die linke Schulter eine Münze wirft, kehrt der Sage nach nach Rom zurück.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Trevi-Brunnen",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0053",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt sitzt die Bronzefigur der Kleinen Meerjungfrau am Hafen?",
+      "antworten": [
+        "Kopenhagen",
+        "Oslo",
+        "Stockholm",
+        "Helsinki"
+      ],
+      "erklaerung": "Die Figur geht auf ein Märchen von Hans Christian Andersen zurück und wurde 1913 aufgestellt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kleine%20Meerjungfrau%20%28Kopenhagen%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0025",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die Elbphilharmonie in Hamburg eröffnet?",
+      "antworten": [
+        "2017",
+        "2010",
+        "2013",
+        "2020"
+      ],
+      "erklaerung": "Geplant war die Eröffnung ursprünglich für 2010 – die Kosten stiegen auf rund 866 Millionen Euro.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Elbphilharmonie",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0007",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welchem Land liegt die Inka-Stadt Machu Picchu?",
+      "antworten": [
+        "Peru",
+        "Mexiko",
+        "Bolivien",
+        "Chile"
+      ],
+      "erklaerung": "Sie liegt hoch in den Anden über dem Urubamba-Tal.",
+      "quelle": "https://de.wikipedia.org/wiki/Machu_Picchu",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0001",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Wofür wurde der Eiffelturm ursprünglich gebaut?",
+      "antworten": [
+        "Als Eingangsportal der Weltausstellung 1889 in Paris",
+        "Als Grillspieß für Napoleons Geburtstags-Barbecue",
+        "Als Leuchtturm für die Schifffahrt auf der Seine",
+        "Als Kletterturm für französische Bergsteiger im Wintertraining"
+      ],
+      "erklaerung": "Er sollte eigentlich nach 20 Jahren wieder abgebaut werden.",
+      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0003",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "Woraus besteht die Außenhaut der Freiheitsstatue in New York?",
+      "antworten": [
+        "Aus dünnen Kupferplatten, die durch Patina grün geworden sind",
+        "Aus grün lackiertem Gusseisen",
+        "Aus massivem grünem Marmor",
+        "Aus Pappmaché mit einem sehr guten Anstrich"
+      ],
+      "erklaerung": "Das innere Eisengerüst entwarf übrigens Gustave Eiffel.",
+      "quelle": "https://de.wikipedia.org/wiki/Freiheitsstatue",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0039",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "An der Grenze welcher beiden Länder liegen die Niagarafälle?",
+      "antworten": [
+        "USA und Kanada",
+        "USA und Mexiko",
+        "Kanada und Alaska",
+        "Brasilien und Argentinien"
+      ],
+      "erklaerung": "Der Niagara River fließt zwischen dem Eriesee und dem Ontariosee.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Niagaraf%C3%A4lle",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0054",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt steht Schloss Schönbrunn, die Sommerresidenz der Habsburger?",
+      "antworten": [
+        "Wien",
+        "Salzburg",
+        "Graz",
+        "Innsbruck"
+      ],
+      "erklaerung": "Kaiserin Maria Theresia ließ das Schloss im 18. Jahrhundert prachtvoll ausbauen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schloss%20Sch%C3%B6nbrunn",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0023",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht der Kreml mit dem Roten Platz?",
+      "antworten": [
+        "Moskau",
+        "Sankt Petersburg",
+        "Kiew",
+        "Warschau"
+      ],
+      "erklaerung": "„Kreml“ bedeutet Burg – auch andere russische Städte haben einen, der bekannteste steht in Moskau.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Moskauer%20Kreml",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0004",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "schwer",
+      "frage": "Wie lange dauerte der Bau des Kölner Doms von der Grundsteinlegung bis zur Vollendung?",
+      "antworten": [
+        "Rund 630 Jahre, von 1248 bis 1880",
+        "Rund 80 Jahre, von 1820 bis 1900",
+        "Rund 300 Jahre, im Mittelalter abgeschlossen",
+        "Er ist noch nicht fertig, die Kölner warten auf eine Baugenehmigung"
+      ],
+      "erklaerung": "Der Bau ruhte etwa 300 Jahre; der Kran auf dem Südturm wurde ein Wahrzeichen.",
+      "quelle": "https://de.wikipedia.org/wiki/Kölner_Dom",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0040",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Vor der Küste welches Landes liegt das Great Barrier Reef?",
+      "antworten": [
+        "Australien",
+        "Neuseeland",
+        "Südafrika",
+        "Indonesien"
+      ],
+      "erklaerung": "Es ist das größte Korallenriff der Erde und aus dem Weltall sichtbar.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Great%20Barrier%20Reef",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0026",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "In welcher Stadt steht die Kathedrale Notre-Dame, die 2019 brannte?",
+      "antworten": [
+        "Paris",
+        "Lyon",
+        "Brüssel",
+        "Marseille"
+      ],
+      "erklaerung": "Nach dem Wiederaufbau wurde sie im Dezember 2024 wiedereröffnet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Notre-Dame%20de%20Paris",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0048",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "mittel",
+      "frage": "In welchem Land liegt die Klosterinsel Mont-Saint-Michel, die bei Flut vom Meer umschlossen wird?",
+      "antworten": [
+        "Frankreich",
+        "Italien",
+        "Spanien",
+        "Belgien"
+      ],
+      "erklaerung": "Sie liegt an der Küste der Normandie und ist UNESCO-Welterbe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mont-Saint-Michel",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     }
   ]

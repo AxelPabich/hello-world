@@ -1,7 +1,7 @@
 {
   "paket": "film",
   "titel": "Film & Fernsehen",
-  "version": 6,
+  "version": 7,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -22,54 +22,292 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0017",
+      "id": "film-0047",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt das Raumschiff von Captain Kirk?",
+      "stufe": "mittel",
+      "frage": "Wer moderierte 1981 die erste Ausgabe von „Wetten, dass..?“?",
       "antworten": [
-        "USS Enterprise",
-        "Millennium Falcon",
-        "Serenity",
-        "Galactica"
+        "Frank Elstner",
+        "Thomas Gottschalk",
+        "Wim Thoelke",
+        "Hans-Joachim Kulenkampff"
       ],
-      "erklaerung": "Der Millennium Falcon gehört Han Solo aus „Star Wars“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=USS%20Enterprise",
+      "erklaerung": "Thomas Gottschalk übernahm die Show 1987.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wetten%2C%20dass..%3F",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0046",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer führte Regie bei „Titanic“ (1997)?",
+      "antworten": [
+        "James Cameron",
+        "Steven Spielberg",
+        "Ridley Scott",
+        "Roland Emmerich"
+      ],
+      "erklaerung": "Cameron drehte auch „Terminator“ und „Avatar“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=James%20Cameron",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0015",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt wohnen die Simpsons?",
+      "antworten": [
+        "Springfield",
+        "Shelbyville",
+        "Quahog",
+        "South Park"
+      ],
+      "erklaerung": "Quahog ist die Stadt der „Family Guy“-Familie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Simpsons",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "film-0025",
+      "id": "film-0029",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "schwer",
-      "frage": "Welchen Oberinspektor spielte Horst Tappert ab 1974 in einer ZDF-Krimiserie?",
+      "stufe": "leicht",
+      "frage": "Wie heißt der kleine Elefant mit den riesigen Ohren aus dem Disney-Film von 1941?",
       "antworten": [
-        "Derrick",
-        "Der Alte",
-        "Kottan",
-        "Schimanski"
+        "Dumbo",
+        "Benjamin Blümchen",
+        "Babar",
+        "Jumbo"
       ],
-      "erklaerung": "„Harry, hol schon mal den Wagen“ – gesagt hat Derrick den Satz so allerdings nie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Derrick%20%28Fernsehserie%29",
+      "erklaerung": "Mit seinen Ohren lernt Dumbo fliegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dumbo%20%281941%29",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "film-0028",
+      "id": "film-0048",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wie heißt der Apachenhäuptling in „Der Schuh des Manitu“?",
+      "antworten": [
+        "Abahachi",
+        "Winnetou",
+        "Old Shatterhand",
+        "Ranger"
+      ],
+      "erklaerung": "Sein Blutsbruder ist Ranger; beide werden von Michael „Bully“ Herbig und Christian Tramitz gespielt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20Schuh%20des%20Manitu",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0043",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wer spielt Jack Sparrow in „Fluch der Karibik“?",
+      "antworten": [
+        "Johnny Depp",
+        "Orlando Bloom",
+        "Tom Cruise",
+        "Hugh Jackman"
+      ],
+      "erklaerung": "Orlando Bloom spielt in den Filmen den Will Turner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fluch%20der%20Karibik",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0044",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der größte Gegenspieler von Batman mit dem weiß geschminkten Gesicht und dem grünen Haar?",
+      "antworten": [
+        "Joker",
+        "Pinguin",
+        "Riddler",
+        "Bane"
+      ],
+      "erklaerung": "Der Joker lacht gern und treibt in Gotham City sein Unwesen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Joker%20%28Comicfigur%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0063",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "schwer",
-      "frage": "Wer spielte im Film „Das Boot“ (1981) den Kapitän?",
+      "frage": "Welche Quizshow moderierte Hans Rosenthal mit dem Ausruf „Das war spitze!“?",
       "antworten": [
-        "Jürgen Prochnow",
-        "Herbert Grönemeyer",
-        "Klaus Wennemann",
-        "Götz George"
+        "Dalli Dalli",
+        "Der große Preis",
+        "Einer wird gewinnen",
+        "Am laufenden Band"
       ],
-      "erklaerung": "Grönemeyer spielte den Kriegsberichterstatter Leutnant Werner.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Das%20Boot%20%28Film%29",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Die ZDF-Show lief von 1971 bis 1986.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dalli%20Dalli",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0039",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der beste Freund von Harry Potter mit den roten Haaren?",
+      "antworten": [
+        "Ron Weasley",
+        "Neville Longbottom",
+        "Draco Malfoy",
+        "Cedric Diggory"
+      ],
+      "erklaerung": "Ron und Hermine Granger sind Harrys engste Freunde in Hogwarts.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ron%20Weasley",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0006",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Welche Hautfarbe haben die Schlümpfe?",
+      "antworten": [
+        "Blau",
+        "Grün",
+        "Lila",
+        "Schlumpfgelb mit Punkten"
+      ],
+      "erklaerung": "Die Schlümpfe erfand der belgische Zeichner Peyo.",
+      "quelle": "https://de.wikipedia.org/wiki/Die_Schlümpfe",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0035",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der Cowboy in „Toy Story“?",
+      "antworten": [
+        "Woody",
+        "Buzz",
+        "Rex",
+        "Andy"
+      ],
+      "erklaerung": "Buzz Lightyear ist der Space Ranger, Andy der Besitzer der Spielzeuge.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Toy%20Story",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0038",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Was wächst Pinocchio, wenn er lügt?",
+      "antworten": [
+        "Die Nase",
+        "Die Ohren",
+        "Die Haare",
+        "Die Finger"
+      ],
+      "erklaerung": "Die Holzpuppe wird von Meister Geppetto geschnitzt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pinocchio",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0049",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wie heißt der Erzfeind von Sherlock Holmes?",
+      "antworten": [
+        "Professor Moriarty",
+        "Dr. Watson",
+        "Inspektor Lestrade",
+        "Mycroft Holmes"
+      ],
+      "erklaerung": "Watson ist Holmes' Freund, Lestrade ein Scotland-Yard-Inspektor, Mycroft sein Bruder.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sherlock%20Holmes",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0020",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Welche Zeichentrickfigur fragt „What's up, Doc?“",
+      "antworten": [
+        "Bugs Bunny",
+        "Daffy Duck",
+        "Micky Maus",
+        "Schweinchen Dick"
+      ],
+      "erklaerung": "Auf Deutsch meist „Was gibt's Neues, Doc?“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bugs%20Bunny",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0037",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der junge Löwe, der in „Der König der Löwen“ König wird?",
+      "antworten": [
+        "Simba",
+        "Mufasa",
+        "Scar",
+        "Timon"
+      ],
+      "erklaerung": "Mufasa ist sein Vater, Scar sein böser Onkel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20K%C3%B6nig%20der%20L%C3%B6wen%20%281994%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0059",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Seit welchem Jahr lief die Serie „Lindenstraße“ im Ersten?",
+      "antworten": [
+        "1985",
+        "1978",
+        "1990",
+        "1982"
+      ],
+      "erklaerung": "Die Serie startete im Dezember 1985 und endete im März 2020.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lindenstra%C3%9Fe",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0010",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Seit welchem Jahr gibt es die „Tagesschau“?",
+      "antworten": [
+        "1952",
+        "1949",
+        "1963",
+        "1971"
+      ],
+      "erklaerung": "Die erste Sendung lief am 26. Dezember 1952.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tagesschau+ARD",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -90,105 +328,54 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0003",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Welcher Film gewann 2020 als erster nicht-englischsprachiger Film den Oscar als „Bester Film“?",
-      "antworten": [
-        "„Parasite“ von Bong Joon-ho aus Südkorea",
-        "„Das Boot“ von Wolfgang Petersen",
-        "„Die fabelhafte Welt der Amélie“",
-        "„Der Schuh des Manitu“"
-      ],
-      "erklaerung": "Bei der Oscarverleihung im Februar 2020.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Oscarverleihung+2020",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0001",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Wie bestellt James Bond seinen Martini?",
-      "antworten": [
-        "Geschüttelt, nicht gerührt",
-        "Als warme Milch mit Honig, die Mission war anstrengend",
-        "Halb Apfelschorle, halb Kamillentee",
-        "Gerührt, nicht geschüttelt"
-      ],
-      "erklaerung": "Klassiker seit den Romanen von Ian Fleming.",
-      "quelle": "https://de.wikipedia.org/wiki/James_Bond",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0018",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Wer führte Regie bei „Der weiße Hai“ (1975)?",
-      "antworten": [
-        "Steven Spielberg",
-        "George Lucas",
-        "Francis Ford Coppola",
-        "Ridley Scott"
-      ],
-      "erklaerung": "Der Film gilt als erster Sommer-Blockbuster.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20wei%C3%9Fe%20Hai",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0008",
+      "id": "film-0041",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "leicht",
-      "frage": "Wer spielte den Jack in „Titanic“ (1997)?",
+      "frage": "Wie heißt die gelbe Schwammfigur, die in einer Ananas unter dem Meer wohnt?",
       "antworten": [
-        "Leonardo DiCaprio",
-        "Brad Pitt",
-        "Matt Damon",
-        "Johnny Depp"
+        "SpongeBob Schwammkopf",
+        "Patrick Star",
+        "Thaddäus Tentakel",
+        "Mr. Krabs"
       ],
-      "erklaerung": "An seiner Seite: Kate Winslet als Rose.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanic+1997+Film",
+      "erklaerung": "Patrick ist der Seestern, Thaddäus der Nachbar und Mr. Krabs der Chef im Krossen Krabben.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=SpongeBob%20Schwammkopf",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0002",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Welche Figur spielt Axel Prahl im Münsteraner „Tatort“?",
+      "antworten": [
+        "Hauptkommissar Frank Thiel",
+        "Rechtsmediziner Prof. Karl-Friedrich Boerne",
+        "Kommissar Horst Schimanski",
+        "Den Hausmeister, der ständig die Leichen findet"
+      ],
+      "erklaerung": "Boerne wird von Jan Josef Liefers gespielt, Schimanski ermittelte in Duisburg.",
+      "quelle": "https://de.wikipedia.org/wiki/Axel_Prahl",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "film-0019",
+      "id": "film-0053",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "schwer",
-      "frage": "In welchem Ort spielt die Fernsehserie „Die Schwarzwaldklinik“?",
+      "stufe": "mittel",
+      "frage": "Wie heißt der traurige graue Esel aus „Winnie Puuh“?",
       "antworten": [
-        "Im Glottertal",
-        "In Titisee-Neustadt",
-        "In Baden-Baden",
-        "In Triberg"
+        "I-Aah",
+        "Ferkel",
+        "Tigger",
+        "Rabbit"
       ],
-      "erklaerung": "Die Klinik-Außenaufnahmen entstanden in Glottertal bei Freiburg.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Schwarzwaldklinik",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0034",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "schwer",
-      "frage": "Wer führte Regie bei „Pulp Fiction“ (1994)?",
-      "antworten": [
-        "Quentin Tarantino",
-        "Martin Scorsese",
-        "Steven Soderbergh",
-        "David Fincher"
-      ],
-      "erklaerung": "Der Film gewann in Cannes die Goldene Palme.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pulp%20Fiction",
-      "erstellt": "2026-10-19",
+      "erklaerung": "Er verliert ständig seinen Schwanz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Winnie%20Puuh",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -226,292 +413,37 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0006",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Welche Hautfarbe haben die Schlümpfe?",
-      "antworten": [
-        "Blau",
-        "Grün",
-        "Lila",
-        "Schlumpfgelb mit Punkten"
-      ],
-      "erklaerung": "Die Schlümpfe erfand der belgische Zeichner Peyo.",
-      "quelle": "https://de.wikipedia.org/wiki/Die_Schlümpfe",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0027",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Welcher Zauberer ruft in „Der Herr der Ringe“: „Du kannst nicht vorbei!“?",
-      "antworten": [
-        "Gandalf",
-        "Saruman",
-        "Radagast",
-        "Dumbledore"
-      ],
-      "erklaerung": "Er stellt sich auf der Brücke von Khazad-dûm dem Balrog entgegen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gandalf",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0024",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Wer spielte 1990 in „Pretty Woman“ an der Seite von Richard Gere?",
-      "antworten": [
-        "Julia Roberts",
-        "Meg Ryan",
-        "Sandra Bullock",
-        "Michelle Pfeiffer"
-      ],
-      "erklaerung": "Die Rolle machte Julia Roberts weltberühmt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pretty%20Woman",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0020",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Welche Zeichentrickfigur fragt „What's up, Doc?“",
-      "antworten": [
-        "Bugs Bunny",
-        "Daffy Duck",
-        "Micky Maus",
-        "Schweinchen Dick"
-      ],
-      "erklaerung": "Auf Deutsch meist „Was gibt's Neues, Doc?“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bugs%20Bunny",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0012",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der größte Gegenspieler von Harry Potter?",
-      "antworten": [
-        "Lord Voldemort",
-        "Darth Vader",
-        "Sauron",
-        "Onkel Vernon, wegen des Schranks unter der Treppe"
-      ],
-      "erklaerung": "„Der, dessen Name nicht genannt werden darf“.",
-      "quelle": "https://de.wikipedia.org/wiki/Lord_Voldemort",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0005",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der Butler in „Dinner for One“?",
-      "antworten": [
-        "James",
-        "Alfred",
-        "Jeeves",
-        "Herr Kaiser von der Versicherung"
-      ],
-      "erklaerung": "Same procedure as every year, James!",
-      "quelle": "https://de.wikipedia.org/wiki/Dinner_for_One",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0007",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt spielt die Serie „Friends“?",
-      "antworten": [
-        "New York",
-        "Los Angeles",
-        "Chicago",
-        "Boston"
-      ],
-      "erklaerung": "Treffpunkt ist das Café „Central Perk“ in Manhattan.",
-      "quelle": "https://de.wikipedia.org/wiki/Friends",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0002",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Welche Figur spielt Axel Prahl im Münsteraner „Tatort“?",
-      "antworten": [
-        "Hauptkommissar Frank Thiel",
-        "Rechtsmediziner Prof. Karl-Friedrich Boerne",
-        "Kommissar Horst Schimanski",
-        "Den Hausmeister, der ständig die Leichen findet"
-      ],
-      "erklaerung": "Boerne wird von Jan Josef Liefers gespielt, Schimanski ermittelte in Duisburg.",
-      "quelle": "https://de.wikipedia.org/wiki/Axel_Prahl",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0029",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der kleine Elefant mit den riesigen Ohren aus dem Disney-Film von 1941?",
-      "antworten": [
-        "Dumbo",
-        "Benjamin Blümchen",
-        "Babar",
-        "Jumbo"
-      ],
-      "erklaerung": "Mit seinen Ohren lernt Dumbo fliegen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Dumbo%20%281941%29",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0015",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt wohnen die Simpsons?",
-      "antworten": [
-        "Springfield",
-        "Shelbyville",
-        "Quahog",
-        "South Park"
-      ],
-      "erklaerung": "Quahog ist die Stadt der „Family Guy“-Familie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Simpsons",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0030",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Wer sang den Titelsong des James-Bond-Films „Skyfall“?",
-      "antworten": [
-        "Adele",
-        "Sam Smith",
-        "Billie Eilish",
-        "Tina Turner"
-      ],
-      "erklaerung": "Der Song gewann 2013 den Oscar.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Skyfall%20%28Lied%29",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0009",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Von welchem Planeten stammt Superman?",
-      "antworten": [
-        "Krypton",
-        "Vulkan",
-        "Tatooine",
-        "Melmac"
-      ],
-      "erklaerung": "Vulkan ist aus „Star Trek“, Tatooine aus „Star Wars“, Melmac die Heimat von Alf.",
-      "quelle": "https://de.wikipedia.org/wiki/Superman",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0033",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "mittel",
-      "frage": "Wer spielte 1984 den „Terminator“?",
-      "antworten": [
-        "Arnold Schwarzenegger",
-        "Sylvester Stallone",
-        "Bruce Willis",
-        "Dolph Lundgren"
-      ],
-      "erklaerung": "Sein Satz „I'll be back“ wurde zum Filmzitat.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Terminator%20%28Film%29",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0032",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der gemütliche Bär im „Dschungelbuch“?",
-      "antworten": [
-        "Balu",
-        "Baghira",
-        "Shir Khan",
-        "Kaa"
-      ],
-      "erklaerung": "Baghira ist der Panther, Shir Khan der Tiger und Kaa die Schlange.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Das%20Dschungelbuch%20%281967%29",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0013",
-      "version": 1,
-      "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der Schneemann in „Die Eiskönigin“?",
-      "antworten": [
-        "Olaf",
-        "Sven",
-        "Kristoff",
-        "Frosti"
-      ],
-      "erklaerung": "Sven ist das Rentier, Kristoff der Eisverkäufer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Eisk%C3%B6nigin%20%E2%80%93%20V%C3%B6llig%20unverfroren",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "film-0011",
+      "id": "film-0064",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "schwer",
-      "frage": "Welcher Film gewann 1998 insgesamt elf Oscars, darunter „Bester Film“?",
+      "frage": "In welchem Jahr erschien „Toy Story“, der erste komplett computeranimierte Spielfilm?",
       "antworten": [
-        "„Titanic“",
-        "„Der Pate“",
-        "„Forrest Gump“",
-        "„Der Herr der Ringe: Die Rückkehr des Königs“"
+        "1995",
+        "1989",
+        "2001",
+        "1992"
       ],
-      "erklaerung": "„Die Rückkehr des Königs“ schaffte ebenfalls elf – aber erst 2004.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Oscarverleihung+1998",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Der Film stammt von Pixar und Regisseur John Lasseter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Toy%20Story",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "film-0026",
+      "id": "film-0057",
       "version": 1,
       "kategorie": "Film & Fernsehen",
-      "stufe": "leicht",
-      "frage": "Wie heißt der kleine Clownfisch, den sein Vater in einem Pixar-Film sucht?",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr kam der erste „Harry Potter“-Film in die Kinos?",
       "antworten": [
-        "Nemo",
-        "Dorie",
-        "Marlin",
-        "Gill"
+        "2001",
+        "1997",
+        "1999",
+        "2004"
       ],
-      "erklaerung": "„Findet Nemo“ kam 2003 in die Kinos; Marlin ist der Vater, Dorie die vergessliche Begleiterin.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Findet%20Nemo",
-      "erstellt": "2026-10-16",
+      "erklaerung": "„Harry Potter und der Stein der Weisen“ lief im Herbst 2001 an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Harry%20Potter%20und%20der%20Stein%20der%20Weisen%20%28Film%29",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -532,19 +464,223 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0031",
+      "id": "film-0062",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "schwer",
-      "frage": "Wer führte Regie bei „Lola rennt“ (1998)?",
+      "frage": "Welche Titelrolle spielte Heinz Rühmann 1956 in einem Film von Helmut Käutner?",
       "antworten": [
-        "Tom Tykwer",
-        "Wolfgang Petersen",
-        "Fatih Akin",
-        "Til Schweiger"
+        "Der Hauptmann von Köpenick",
+        "Der Räuber Hotzenplotz",
+        "Der Hauptmann von Kaiserslautern",
+        "Der Pfarrer von St. Pauli"
       ],
-      "erklaerung": "In der Hauptrolle rannte Franka Potente durch Berlin.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lola%20rennt",
+      "erklaerung": "Der Film erzählt die wahre Geschichte des Schusters Wilhelm Voigt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20Hauptmann%20von%20K%C3%B6penick%20%281956%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0036",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Welche Farbe hat der Oger Shrek?",
+      "antworten": [
+        "Grün",
+        "Blau",
+        "Braun",
+        "Grau"
+      ],
+      "erklaerung": "Shrek lebt in einem Sumpf und rettet im ersten Film Prinzessin Fiona.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Shrek%20%E2%80%93%20Der%20tollk%C3%BChne%20Held",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0017",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt das Raumschiff von Captain Kirk?",
+      "antworten": [
+        "USS Enterprise",
+        "Millennium Falcon",
+        "Serenity",
+        "Galactica"
+      ],
+      "erklaerung": "Der Millennium Falcon gehört Han Solo aus „Star Wars“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=USS%20Enterprise",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0032",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der gemütliche Bär im „Dschungelbuch“?",
+      "antworten": [
+        "Balu",
+        "Baghira",
+        "Shir Khan",
+        "Kaa"
+      ],
+      "erklaerung": "Baghira ist der Panther, Shir Khan der Tiger und Kaa die Schlange.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Das%20Dschungelbuch%20%281967%29",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0052",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Welcher britische Schauspieler wurde mit der Rolle des tollpatschigen „Mr. Bean“ berühmt?",
+      "antworten": [
+        "Rowan Atkinson",
+        "Hugh Grant",
+        "Colin Firth",
+        "Michael Caine"
+      ],
+      "erklaerung": "Mr. Bean kommt fast ohne Worte aus und hat einen Teddy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rowan%20Atkinson",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0012",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der größte Gegenspieler von Harry Potter?",
+      "antworten": [
+        "Lord Voldemort",
+        "Darth Vader",
+        "Sauron",
+        "Onkel Vernon, wegen des Schranks unter der Treppe"
+      ],
+      "erklaerung": "„Der, dessen Name nicht genannt werden darf“.",
+      "quelle": "https://de.wikipedia.org/wiki/Lord_Voldemort",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0025",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Welchen Oberinspektor spielte Horst Tappert ab 1974 in einer ZDF-Krimiserie?",
+      "antworten": [
+        "Derrick",
+        "Der Alte",
+        "Kottan",
+        "Schimanski"
+      ],
+      "erklaerung": "„Harry, hol schon mal den Wagen“ – gesagt hat Derrick den Satz so allerdings nie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Derrick%20%28Fernsehserie%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0040",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wem erscheint der Kobold Pumuckl?",
+      "antworten": [
+        "Meister Eder",
+        "Käpt'n Blaubär",
+        "Professor Brummel",
+        "Herrn Meier"
+      ],
+      "erklaerung": "Der Schreinermeister Eder lebt in München und hat den Pumuckl an seinem Leimtopf kleben.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Meister%20Eder%20und%20sein%20Pumuckl",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0007",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt spielt die Serie „Friends“?",
+      "antworten": [
+        "New York",
+        "Los Angeles",
+        "Chicago",
+        "Boston"
+      ],
+      "erklaerung": "Treffpunkt ist das Café „Central Perk“ in Manhattan.",
+      "quelle": "https://de.wikipedia.org/wiki/Friends",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0003",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Welcher Film gewann 2020 als erster nicht-englischsprachiger Film den Oscar als „Bester Film“?",
+      "antworten": [
+        "„Parasite“ von Bong Joon-ho aus Südkorea",
+        "„Das Boot“ von Wolfgang Petersen",
+        "„Die fabelhafte Welt der Amélie“",
+        "„Der Schuh des Manitu“"
+      ],
+      "erklaerung": "Bei der Oscarverleihung im Februar 2020.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Oscarverleihung+2020",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0018",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer führte Regie bei „Der weiße Hai“ (1975)?",
+      "antworten": [
+        "Steven Spielberg",
+        "George Lucas",
+        "Francis Ford Coppola",
+        "Ridley Scott"
+      ],
+      "erklaerung": "Der Film gilt als erster Sommer-Blockbuster.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20wei%C3%9Fe%20Hai",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0050",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "In welchem Land spielt der Musicalfilm „Meine Lieder – meine Träume“ („The Sound of Music“)?",
+      "antworten": [
+        "Österreich",
+        "Schweiz",
+        "Deutschland",
+        "Italien"
+      ],
+      "erklaerung": "Die Familie von Trapp lebt in Salzburg.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Meine%20Lieder%20%E2%80%93%20meine%20Tr%C3%A4ume",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0028",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer spielte im Film „Das Boot“ (1981) den Kapitän?",
+      "antworten": [
+        "Jürgen Prochnow",
+        "Herbert Grönemeyer",
+        "Klaus Wennemann",
+        "Götz George"
+      ],
+      "erklaerung": "Grönemeyer spielte den Kriegsberichterstatter Leutnant Werner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Das%20Boot%20%28Film%29",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
@@ -566,19 +702,393 @@
       "gueltigBis": null
     },
     {
-      "id": "film-0010",
+      "id": "film-0009",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Von welchem Planeten stammt Superman?",
+      "antworten": [
+        "Krypton",
+        "Vulkan",
+        "Tatooine",
+        "Melmac"
+      ],
+      "erklaerung": "Vulkan ist aus „Star Trek“, Tatooine aus „Star Wars“, Melmac die Heimat von Alf.",
+      "quelle": "https://de.wikipedia.org/wiki/Superman",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0001",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wie bestellt James Bond seinen Martini?",
+      "antworten": [
+        "Geschüttelt, nicht gerührt",
+        "Als warme Milch mit Honig, die Mission war anstrengend",
+        "Halb Apfelschorle, halb Kamillentee",
+        "Gerührt, nicht geschüttelt"
+      ],
+      "erklaerung": "Klassiker seit den Romanen von Ian Fleming.",
+      "quelle": "https://de.wikipedia.org/wiki/James_Bond",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0055",
       "version": 1,
       "kategorie": "Film & Fernsehen",
       "stufe": "schwer",
-      "frage": "Seit welchem Jahr gibt es die „Tagesschau“?",
+      "frage": "Wer spielte 1972 den Mafiaboss Vito Corleone in „Der Pate“?",
       "antworten": [
-        "1952",
-        "1949",
-        "1963",
-        "1971"
+        "Marlon Brando",
+        "Al Pacino",
+        "Robert De Niro",
+        "Robert Duvall"
       ],
-      "erklaerung": "Die erste Sendung lief am 26. Dezember 1952.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tagesschau+ARD",
+      "erklaerung": "Brando erhielt dafür den Oscar, lehnte ihn aber ab. Al Pacino spielte den Sohn Michael.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20Pate%20%28Film%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0054",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "In welchem Pixar-Film will eine Ratte in Paris Meisterkoch werden?",
+      "antworten": [
+        "Ratatouille",
+        "Cars",
+        "Oben",
+        "Wall-E"
+      ],
+      "erklaerung": "Die Ratte Rémy kocht heimlich mit Hilfe des Kochlehrlings Linguini.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ratatouille%20%28Film%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0051",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "In welcher Fantasy-Serie kämpfen die Häuser Stark und Lannister um den Eisernen Thron?",
+      "antworten": [
+        "Game of Thrones",
+        "Vikings",
+        "The Witcher",
+        "Die Tudors"
+      ],
+      "erklaerung": "Die Serie basiert auf den Romanen von George R. R. Martin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Game%20of%20Thrones",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0011",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Welcher Film gewann 1998 insgesamt elf Oscars, darunter „Bester Film“?",
+      "antworten": [
+        "„Titanic“",
+        "„Der Pate“",
+        "„Forrest Gump“",
+        "„Der Herr der Ringe: Die Rückkehr des Königs“"
+      ],
+      "erklaerung": "„Die Rückkehr des Königs“ schaffte ebenfalls elf – aber erst 2004.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Oscarverleihung+1998",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0058",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer spielte den Kneipenbesitzer Rick in „Casablanca“ (1942)?",
+      "antworten": [
+        "Humphrey Bogart",
+        "Cary Grant",
+        "Clark Gable",
+        "James Stewart"
+      ],
+      "erklaerung": "An seiner Seite spielte Ingrid Bergman Ilsa.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Casablanca%20%28Film%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0060",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer führte Regie bei „Einer flog über das Kuckucksnest“ (1975)?",
+      "antworten": [
+        "Miloš Forman",
+        "Roman Polanski",
+        "Sidney Lumet",
+        "Sydney Pollack"
+      ],
+      "erklaerung": "Der Film mit Jack Nicholson gewann die fünf wichtigsten Oscars.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Einer%20flog%20%C3%BCber%20das%20Kuckucksnest%20%28Film%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0027",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Welcher Zauberer ruft in „Der Herr der Ringe“: „Du kannst nicht vorbei!“?",
+      "antworten": [
+        "Gandalf",
+        "Saruman",
+        "Radagast",
+        "Dumbledore"
+      ],
+      "erklaerung": "Er stellt sich auf der Brücke von Khazad-dûm dem Balrog entgegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gandalf",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0045",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer spielt die Hauptrolle in „Forrest Gump“ (1994)?",
+      "antworten": [
+        "Tom Hanks",
+        "Kevin Spacey",
+        "Robin Williams",
+        "Dustin Hoffman"
+      ],
+      "erklaerung": "Hanks gewann dafür seinen zweiten Oscar als bester Hauptdarsteller.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Forrest%20Gump",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0024",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer spielte 1990 in „Pretty Woman“ an der Seite von Richard Gere?",
+      "antworten": [
+        "Julia Roberts",
+        "Meg Ryan",
+        "Sandra Bullock",
+        "Michelle Pfeiffer"
+      ],
+      "erklaerung": "Die Rolle machte Julia Roberts weltberühmt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pretty%20Woman",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0026",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der kleine Clownfisch, den sein Vater in einem Pixar-Film sucht?",
+      "antworten": [
+        "Nemo",
+        "Dorie",
+        "Marlin",
+        "Gill"
+      ],
+      "erklaerung": "„Findet Nemo“ kam 2003 in die Kinos; Marlin ist der Vater, Dorie die vergessliche Begleiterin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Findet%20Nemo",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0019",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "In welchem Ort spielt die Fernsehserie „Die Schwarzwaldklinik“?",
+      "antworten": [
+        "Im Glottertal",
+        "In Titisee-Neustadt",
+        "In Baden-Baden",
+        "In Triberg"
+      ],
+      "erklaerung": "Die Klinik-Außenaufnahmen entstanden in Glottertal bei Freiburg.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Schwarzwaldklinik",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0005",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der Butler in „Dinner for One“?",
+      "antworten": [
+        "James",
+        "Alfred",
+        "Jeeves",
+        "Herr Kaiser von der Versicherung"
+      ],
+      "erklaerung": "Same procedure as every year, James!",
+      "quelle": "https://de.wikipedia.org/wiki/Dinner_for_One",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0030",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer sang den Titelsong des James-Bond-Films „Skyfall“?",
+      "antworten": [
+        "Adele",
+        "Sam Smith",
+        "Billie Eilish",
+        "Tina Turner"
+      ],
+      "erklaerung": "Der Song gewann 2013 den Oscar.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Skyfall%20%28Lied%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0033",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "mittel",
+      "frage": "Wer spielte 1984 den „Terminator“?",
+      "antworten": [
+        "Arnold Schwarzenegger",
+        "Sylvester Stallone",
+        "Bruce Willis",
+        "Dolph Lundgren"
+      ],
+      "erklaerung": "Sein Satz „I'll be back“ wurde zum Filmzitat.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Terminator%20%28Film%29",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0042",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Welche Haarfarbe hat Pippi Langstrumpf?",
+      "antworten": [
+        "Rot",
+        "Blond",
+        "Schwarz",
+        "Braun"
+      ],
+      "erklaerung": "Pippi trägt zwei abstehende Zöpfe und hat ein Pferd namens Kleiner Onkel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pippi%20Langstrumpf",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0056",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer führte Regie bei dem Thriller „Psycho“ (1960) mit der berühmten Duschszene?",
+      "antworten": [
+        "Alfred Hitchcock",
+        "Stanley Kubrick",
+        "Orson Welles",
+        "Billy Wilder"
+      ],
+      "erklaerung": "Hitchcock drehte auch „Die Vögel“ und „Der unsichtbare Dritte“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Psycho%20%281960%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0013",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wie heißt der Schneemann in „Die Eiskönigin“?",
+      "antworten": [
+        "Olaf",
+        "Sven",
+        "Kristoff",
+        "Frosti"
+      ],
+      "erklaerung": "Sven ist das Rentier, Kristoff der Eisverkäufer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Eisk%C3%B6nigin%20%E2%80%93%20V%C3%B6llig%20unverfroren",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0061",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Welche Schauspielerin spielte in den 1950ern in drei Filmen die Kaiserin „Sissi“?",
+      "antworten": [
+        "Romy Schneider",
+        "Hildegard Knef",
+        "Marika Rökk",
+        "Lilli Palmer"
+      ],
+      "erklaerung": "Karlheinz Böhm spielte Kaiser Franz Joseph.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sissi%20%28Filmreihe%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0031",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer führte Regie bei „Lola rennt“ (1998)?",
+      "antworten": [
+        "Tom Tykwer",
+        "Wolfgang Petersen",
+        "Fatih Akin",
+        "Til Schweiger"
+      ],
+      "erklaerung": "In der Hauptrolle rannte Franka Potente durch Berlin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lola%20rennt",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0034",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "schwer",
+      "frage": "Wer führte Regie bei „Pulp Fiction“ (1994)?",
+      "antworten": [
+        "Quentin Tarantino",
+        "Martin Scorsese",
+        "Steven Soderbergh",
+        "David Fincher"
+      ],
+      "erklaerung": "Der Film gewann in Cannes die Goldene Palme.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pulp%20Fiction",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0008",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "leicht",
+      "frage": "Wer spielte den Jack in „Titanic“ (1997)?",
+      "antworten": [
+        "Leonardo DiCaprio",
+        "Brad Pitt",
+        "Matt Damon",
+        "Johnny Depp"
+      ],
+      "erklaerung": "An seiner Seite: Kate Winslet als Rose.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanic+1997+Film",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     }

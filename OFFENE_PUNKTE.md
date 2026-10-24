@@ -456,12 +456,11 @@ Kategorien recherchieren.
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
 81. **Selbsttest vom 24.10.2026 (Axel Build 36, Tablett S7 und Peter noch Build 35)**
-    (umgesetzt, kommt mit dem nächsten Build): 21 von 22 – „Buzzer-Runde: alle buzzern“ schlug
+    (in Build 37): 21 von 22 – „Buzzer-Runde: alle buzzern“ schlug
     nur fehl, weil die Spieler zufällig gleichzeitig buzzerten (3 ms Abstand): Gleichstand, Sudden
     Death, Entscheidung nach 18 s statt der erlaubten 15 s. Spiel korrekt, Test wartet jetzt bis
     zu 40 s. Funk-Laufzeiten an dem Tag 692 ms (Tablett S7) und 805 ms (Peter), sonst ca. 250 ms.
-80. **Aus dem Test mit Build 36 (19.10.2026, 21:43–21:55, Axel und Simone)** (umgesetzt, kommt
-    mit dem nächsten Build):
+80. **Aus dem Test mit Build 36 (19.10.2026, 21:43–21:55, Axel und Simone)** (in Build 37):
     - Selbsttest 21 von 21, Quiz-Teil ohne Wartezeit (Punkt 78 bestätigt).
     - 21:54: Simone 14 s ohne Funk – nach 15 s getrennt, 2 s später ohne Prüfcode zurück, Punkte
       behalten (Punkte 76 und 77 bestätigt).
@@ -539,6 +538,11 @@ die Korrektur greift ab dem Update auf Build 34.
     Open (Zverev, Andreeva), Darts-WM (Littler).
     Build 36: +30 Fragen (34/34/34/34/34/34/32/32/32/32); „Aktuelles 2026“ per Websuche:
     Basketball-WM der Frauen in Berlin, US Open (Zverev gegen Shelton, Rybakina).
+    Build 37: auf Wunsch (24.10.2026) je 10 neue Fragen pro Kategorie und Stufe = +300 Fragen
+    (64/64/64/64/64/64/62/62/62/62). Aktuelles 2026: 30 Fragen per Websuche mit konkreten
+    Quellen (Eishockey-WM, Masters, NBA, Stanley Cup, Cannes, Berlinale, Oscars, Landtagswahlen
+    u. a.); NBA, Cannes, Stanley Cup und Dschungelkönig zusätzlich selbst gegengeprüft. Beim
+    Durchsehen 11 Fragen wegen Dubletten zu anderen Paketen oder unsicherer Fakten ersetzt.
 70. **Wünsche vom 16.10.2026** (in Build 32): Spielregeln und gespielte
     Kategorien beim Beitritt und zu Spielbeginn; Avatar-Emoticon in den Einstellungen; Siegerfanfare
     als Abschluss des Spielverlaufs; Start-Animationen nie zweimal hintereinander gleich (Rennszene
