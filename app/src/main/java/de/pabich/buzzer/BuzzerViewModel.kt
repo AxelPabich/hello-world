@@ -1648,7 +1648,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             if (engine.snapshot().kind != GameKind.BUZZER) engine.chooseKind(GameKind.BUZZER)
             engine.updateSettings(savedSettings.copy(startMode = de.pabich.buzzer.core.StartMode.TAP), savedProfile)
             val released = engine.release()
-            val decided = waitUntil(15_000) {
+            // Der Spielleiter-Spieler buzzert im Test nicht (10 s Wartezeit); ein Gleichstand der Spieler
+            // (unter 5 ms) bringt noch ein Sudden Death dazu – dafür genug Zeit lassen.
+            val decided = waitUntil(40_000) {
                 engine.snapshot().phase.let { it == MasterEngine.Phase.ANSWERING || it == MasterEngine.Phase.ROUND_OVER }
             }
             sleep(1_000)

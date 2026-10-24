@@ -455,6 +455,11 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+81. **Selbsttest vom 24.10.2026 (Axel Build 36, Tablett S7 und Peter noch Build 35)**
+    (umgesetzt, kommt mit dem nächsten Build): 21 von 22 – „Buzzer-Runde: alle buzzern“ schlug
+    nur fehl, weil die Spieler zufällig gleichzeitig buzzerten (3 ms Abstand): Gleichstand, Sudden
+    Death, Entscheidung nach 18 s statt der erlaubten 15 s. Spiel korrekt, Test wartet jetzt bis
+    zu 40 s. Funk-Laufzeiten an dem Tag 692 ms (Tablett S7) und 805 ms (Peter), sonst ca. 250 ms.
 80. **Aus dem Test mit Build 36 (19.10.2026, 21:43–21:55, Axel und Simone)** (umgesetzt, kommt
     mit dem nächsten Build):
     - Selbsttest 21 von 21, Quiz-Teil ohne Wartezeit (Punkt 78 bestätigt).
