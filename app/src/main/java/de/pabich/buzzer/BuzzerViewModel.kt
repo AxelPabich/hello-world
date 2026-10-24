@@ -61,7 +61,7 @@ data class ReceivedUpdate(val file: File, val build: Int, val from: String)
 /** Ein auffliegendes Emoticon. */
 data class FlyingEmote(val id: Long, val from: String, val emoji: String)
 
-data class ChatLine(val from: String, val text: String, val toAll: Boolean, val outgoing: Boolean)
+data class ChatLine(val from: String, val text: String, val toAll: Boolean, val outgoing: Boolean, val id: Long = 0)
 
 /**
  * Spieler nach dem Wegfall des Spielleiters (Punkt 59): [expected] = bestimmter Nachfolger,
@@ -1198,9 +1198,21 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     private fun addChat(line: ChatLine) {
-        chat += line
+        chat += line.copy(id = ++chatCounter)
         if (!line.outgoing && SoundEvent.CHAT in activeSounds) sound(SoundEvent.CHAT)
         while (chat.size > 30) chat.removeAt(0)
+    }
+
+    private var chatCounter = 0L
+
+    /** Bis zu welcher Nachricht der Spielleiter den Chat schon gesehen hat. */
+    private var chatSeenId by mutableStateOf(0L)
+
+    /** Neue, noch nicht gesehene Nachrichten anderer – der Spielleiter bekommt sie in jeder Phase angezeigt. */
+    val unreadChat: List<ChatLine> get() = chat.filter { !it.outgoing && it.id > chatSeenId }
+
+    fun markChatRead() {
+        chatSeenId = chatCounter
     }
 
     /** Kurznachrichten sind nur in den Rundenpausen möglich. */

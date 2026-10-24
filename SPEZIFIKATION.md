@@ -260,8 +260,9 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 
 ## 15. Kurznachrichten und Emoticons
 
-- **Kurznachrichten** (max. 100 Zeichen) nur in den Rundenpausen, an einzelne
-  Teilnehmer, den Spielleiter oder alle. Sie laufen über das Master-Gerät.
+- **Kurznachrichten** (max. 100 Zeichen) werden nur in den Rundenpausen gesendet, an einzelne
+  Teilnehmer, den Spielleiter oder alle. Sie laufen über das Master-Gerät. Der Spielleiter kann
+  den Chat **jederzeit lesen** (Abschnitt 57).
 - **Emoticons** jederzeit, auch während Buzzern und Antworten. Die 7 Emoticons sind je
   Profil wählbar und stehen als Knöpfe am oberen Rand. Diese Leiste gehört nicht zur
   Buzzer-Fläche. Ein Emoticon erscheint mit dem Namen des Absenders am rechten Rand
@@ -327,7 +328,7 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 
 ## 21. Spielpause
 
-- Zwischen den Runden kann der Master das Spiel pausieren. Alle Spieler-Bildschirme
+- Der Master kann das Spiel jederzeit pausieren, auch mitten in der Runde (Abschnitt 57). Alle Spieler-Bildschirme
   werden verdeckt: „Kurze Pause – Gleich geht es weiter“. Während der Pause lässt sich
   keine Runde freigeben; wer neu beitritt, sieht die Pause ebenfalls.
 
@@ -537,8 +538,8 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 
 ## 37. Pause per Knopf
 
-- Neben dem Menü ⋮ hat der Spielleiter einen Pause-Knopf (II / ▶), aktiv in den Pausen und bei
-  der Auflösung.
+- Neben dem Menü ⋮ hat der Spielleiter einen Pause-Knopf (II / ▶), jederzeit aktiv, sobald eine
+  Spielart gewählt ist – auch mitten in der Runde (Abschnitt 57).
 
 ## 38. Get Ready
 
@@ -830,3 +831,22 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Die Release-Notizen nennen den Rollback ausdrücklich. Vor der Einführung der Tags: Build 35 = `90456ce`,
   Build 36 = `ee3a1a9`, Build 37 = `743258e`.
 - Die Protokollversion bleibt bei einer Hauptversion gleich, damit Geräte mit älterem Build weiter mitspielen.
+
+## 57. Pause in der Runde, Chat für den Spielleiter
+
+- **Pause jederzeit:** Der Pause-Knopf (und ⋮ „Spiel pausieren“) geht in jeder Phase, sobald eine Spielart
+  gewählt ist. Die Spieler sehen „Kurze Pause“ wie sonst.
+  - **Quizfrage:** Die Zeit steht. Beim Weiterspielen rücken Einblenden und Antwortzeit um die Dauer der
+  Pause nach hinten (Nachricht `QUIZ_SHIFT`); die Restzeit ist dieselbe wie vor der Pause. Der Zähler des
+  Spielleiters bleibt stehen. Während der Pause zählt nur, was vor ihrem Beginn getippt wurde; „Frage
+  überspringen“ geht in der Pause nicht, „Jetzt auflösen“ schon. Ältere Apps (vor Build 39) kennen
+  die Verschiebung nicht: Dort läuft die Zeit der Frage weiter und die Antwort wird nach der Pause
+  evtl. nicht mehr angenommen.
+  - **Buzzer vor der Entscheidung** (Warten, Countdown, Freigabe, Sudden-Death-Vorbereitung): Die Runde wird
+  abgebrochen und zählt nicht (die Rundennummer wird zurückgesetzt); nach der Pause gibt der Spielleiter
+  sie neu frei. Eine Reaktionsmessung lässt sich nicht anhalten.
+  - **Antwortzeit** (Buzzer): Sie bleibt stehen und läuft nach der Pause mit der Restzeit weiter.
+- **Chat lesen:** Der Spielleiter hat den Chat in jeder Phase: Der Knopf ✉ ist immer aktiv, ein Punkt zeigt
+  ungelesene Nachrichten, neue Nachrichten erscheinen während der Runde als Zeile unter der Kopfzeile
+  (Tipp öffnet den Chat), und das Chatfenster zeigt den ganzen Verlauf (die letzten 30 Nachrichten).
+  Senden bleibt auf die Pausen beschränkt.

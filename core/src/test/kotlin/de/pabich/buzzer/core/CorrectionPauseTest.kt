@@ -116,7 +116,7 @@ class CorrectionPauseTest {
         g.time.advanceBy(200)
         assertFalse(g.view("Axel").paused)
         assertTrue(g.master.release())
-        assertFalse(g.master.setPaused(true)) // nicht mitten in der Runde
+        assertTrue(g.master.setPaused(true)) // mitten in der Runde: sie wird abgebrochen (siehe PauseInRoundTest)
     }
 
     @Test

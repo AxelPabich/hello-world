@@ -188,6 +188,7 @@ class PlayerEngine(
                 show(Display.BLACK, if (message.kind == GameKind.QUIZ) "Quiz – gleich kommt die erste Frage" else "Warte auf den Spielleiter", 0, view.score)
             }
             is Message.QuizAsk -> onQuizAsk(message)
+            is Message.QuizShift -> onQuizShift(message)
             is Message.ReadyCheck -> {
                 log(if (message.on) "Bereit-Abfrage" else "Bereit-Abfrage beendet")
                 update { it.copy(readyAsk = if (message.on) message.id else null, readyConfirmed = false) }
@@ -313,14 +314,37 @@ class PlayerEngine(
         )
         // Während der Frage lenkt die Rangliste nur ab.
         update { it.copy(quiz = q, showBoard = false, kind = GameKind.QUIZ) }
+        scheduleQuizStages(m.number, m.questionAtLocal, m.answersAtLocal)
+        scheduleQuizClose()
+    }
+
+    private fun scheduleQuizStages(number: Int, questionAt: Long, answersAt: Long) {
         fun to(stage: QuizStage, at: Long) {
             quizTasks += scheduler.schedule((at - clock.now()).coerceAtLeast(0)) {
                 val cur = view.quiz
-                if (cur != null && cur.number == m.number && cur.stage.ordinal < stage.ordinal) update { it.copy(quiz = cur.copy(stage = stage)) }
+                if (cur != null && cur.number == number && cur.stage.ordinal < stage.ordinal) update { it.copy(quiz = cur.copy(stage = stage)) }
             }
         }
-        to(QuizStage.QUESTION, m.questionAtLocal)
-        to(QuizStage.ANSWERS, m.answersAtLocal)
+        to(QuizStage.QUESTION, questionAt)
+        to(QuizStage.ANSWERS, answersAt)
+    }
+
+    /** Pause mitten in der Frage ist vorbei: Einblenden und Antwortzeit rücken um die Dauer der Pause nach hinten. */
+    private fun onQuizShift(m: Message.QuizShift) {
+        val q = view.quiz ?: return
+        if (q.number != m.number || q.stage == QuizStage.REVEALED) return
+        log("Pause vorbei – die Frage läuft ${m.shiftMs / 1000} s später weiter")
+        cancelQuizTasks()
+        val now = clock.now()
+        val questionAt = q.questionAt + m.shiftMs
+        val answersAt = q.answersAt + m.shiftMs
+        val stage = when {
+            now >= answersAt -> QuizStage.ANSWERS
+            now >= questionAt -> QuizStage.QUESTION
+            else -> QuizStage.WAITING
+        }
+        update { it.copy(quiz = q.copy(questionAt = questionAt, answersAt = answersAt, stage = stage)) }
+        scheduleQuizStages(m.number, questionAt, answersAt)
         scheduleQuizClose()
     }
 

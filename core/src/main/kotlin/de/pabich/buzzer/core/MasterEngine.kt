@@ -148,7 +148,8 @@ class MasterEngine(
         var question: QuizQuestion,
         val durationMs: Long,
         participants: Set<PlayerId>,
-        val answersAt: Long,
+        /** Einblenden der Antworten (Master-Uhr); verschiebt sich um die Dauer einer Pause mitten in der Frage. */
+        var answersAt: Long,
     ) {
         /** Wer mitspielt; kommt jemand mitten in der Frage zurück, ersetzt die neue Verbindung die alte. */
         val participants = participants.toMutableSet()
@@ -262,6 +263,14 @@ class MasterEngine(
 
     var paused = false
         private set
+
+    /** Pause mitten in einer Quizfrage: welche Frage und seit wann (Master-Uhr). */
+    private var pausedTurn: QuizTurn? = null
+    private var pausedAt = 0L
+
+    /** Pause während einer Antwortzeit (Buzzer): wer antwortet und wie viel Zeit noch bleibt. */
+    private var frozenAnswerPlayer: PlayerId? = null
+    private var frozenAnswerMs = 0L
 
     var kind: GameKind? = null
         private set
@@ -708,15 +717,82 @@ class MasterEngine(
         return true
     }
 
-    /** Spielpause nur zwischen den Runden; die Spieler sehen dann ein Pausen-Overlay. */
+    /**
+     * Spielpause – jederzeit; die Spieler sehen dann ein Pausen-Overlay. Mitten in der Runde:
+     * Quizfrage → die Zeit steht, danach läuft sie weiter; Buzzer vor der Entscheidung → die Runde wird
+     * abgebrochen und danach neu gestartet; laufende Antwortzeit → sie steht und läuft weiter.
+     */
     fun setPaused(on: Boolean): Boolean {
-        if (on && !isPause()) return false
+        if (handedOver) return false
+        if (on && !isPause() && !pauseInRound()) return false
         if (paused == on) return true
+        if (!on) resumeInRound()
         paused = on
         log(if (on) "Spiel pausiert" else "Pause beendet")
         players.values.filter { it.connected }.forEach { send(it.id, Message.Pause(on)) }
         notifyChanged()
         return true
+    }
+
+    /** Hält die laufende Runde an (siehe [setPaused]); `false`, wenn gerade nichts läuft, was man anhalten könnte. */
+    private fun pauseInRound(): Boolean {
+        when (phase) {
+            Phase.QUIZ_QUESTION, Phase.QUIZ_ANSWERS -> {
+                val t = turn?.takeIf { !it.revealed } ?: return false
+                cancelQuizTasks(t)
+                pausedTurn = t
+                pausedAt = clock.now()
+            }
+            Phase.ANSWERING -> {
+                val id = answerTimerPlayer
+                val deadline = answerDeadline
+                if (id != null && deadline != null) {
+                    frozenAnswerPlayer = id
+                    frozenAnswerMs = (deadline - clock.now()).coerceAtLeast(500)
+                    cancelAnswerTimer()
+                }
+            }
+            Phase.ANSWER_TIMEOUT -> Unit
+            Phase.WAIT_HOLD, Phase.COUNTDOWN, Phase.RUNNING, Phase.SUDDEN_DEATH_PREP -> {
+                // Eine Reaktionsrunde lässt sich nicht anhalten: abbrechen, nach der Pause neu freigeben.
+                log("Runde $round wegen Pause abgebrochen – sie wird danach neu gestartet")
+                if (round > 0 && recordedRound < round) round--
+                nextRound()
+            }
+            else -> return false
+        }
+        return true
+    }
+
+    /** Setzt eine in [pauseInRound] angehaltene Runde fort. */
+    private fun resumeInRound() {
+        val t = pausedTurn
+        pausedTurn = null
+        if (t != null && turn === t && !t.revealed && (phase == Phase.QUIZ_QUESTION || phase == Phase.QUIZ_ANSWERS)) {
+            val shift = (clock.now() - pausedAt).coerceAtLeast(0)
+            t.answersAt += shift
+            log("Frage ${t.number} läuft nach ${shift / 1000} s Pause weiter")
+            if (phase == Phase.QUIZ_QUESTION) scheduleQuizStage(t)
+            scheduleReveal(t)
+            for (id in t.participants) players[id]?.takeIf { it.connected }?.let { send(id, Message.QuizShift(t.number, shift)) }
+        }
+        val answering = frozenAnswerPlayer
+        frozenAnswerPlayer = null
+        if (answering != null && phase == Phase.ANSWERING && answeringPlayer() == answering) {
+            answerTimerPlayer = answering
+            answerDeadline = clock.now() + frozenAnswerMs
+            answerTask = scheduler.schedule(frozenAnswerMs) { onAnswerTimeout(answering) }
+        }
+    }
+
+    /** Wechsel von „Frage“ zu „Antworten“ zum Einblendezeitpunkt. */
+    private fun scheduleQuizStage(t: QuizTurn) {
+        t.tasks += scheduler.schedule((t.answersAt - clock.now()).coerceAtLeast(0)) {
+            if (turn === t && phase == Phase.QUIZ_QUESTION) {
+                phase = Phase.QUIZ_ANSWERS
+                notifyChanged()
+            }
+        }
     }
 
     /** Spielverlauf geht nur in den Pausen und erst nach mindestens einer Runde. */
@@ -992,6 +1068,7 @@ class MasterEngine(
     fun skipQuestion(): Boolean {
         val t = turn ?: return false
         if (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS) return false
+        if (paused) return false
         cancelQuizTasks(t)
         t.revealed = true
         log("Frage ${t.number} übersprungen")
@@ -1112,6 +1189,7 @@ class MasterEngine(
     private fun askNext(): Boolean {
         autoReadyTask?.cancel()
         autoReadyTask = null
+        pausedTurn = null
         val participants = players.values.filter { it.connected }
         if (participants.isEmpty()) {
             finishQuiz()
@@ -1136,12 +1214,7 @@ class MasterEngine(
         }
         phase = Phase.QUIZ_QUESTION
         log("Frage ${t.number}/${quizQuestions.size}: ${q.id}")
-        t.tasks += scheduler.schedule(answersAt - clock.now()) {
-            if (turn === t && phase == Phase.QUIZ_QUESTION) {
-                phase = Phase.QUIZ_ANSWERS
-                notifyChanged()
-            }
-        }
+        scheduleQuizStage(t)
         scheduleReveal(t)
         broadcastScoreboard()
         notifyChanged()
@@ -1209,6 +1282,8 @@ class MasterEngine(
         val t = turn ?: return
         if (m.number != t.number || t.revealed || player.id !in t.participants || player.id in t.answers) return
         if (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS) return
+        // Während einer Pause zählt nur, was vor ihrem Beginn getippt wurde (und noch unterwegs war).
+        if (pausedTurn === t && m.elapsedMs > pausedAt - t.answersAt + 750) return
         val perm = t.perms[player.id] ?: return
         if (m.position !in perm.indices || m.elapsedMs < 0 || m.elapsedMs > t.durationMs + 1_000) return
         val chosen = perm[m.position]
@@ -1278,6 +1353,7 @@ class MasterEngine(
     private fun reveal(t: QuizTurn) {
         if (t.revealed || turn !== t) return
         t.revealed = true
+        if (pausedTurn === t) pausedTurn = null
         cancelQuizTasks(t)
         t.awards = computeAwards(t)
         t.awards.forEach { (id, amount) -> players[id]?.let { it.score += amount } }
@@ -1307,6 +1383,7 @@ class MasterEngine(
     private fun finishQuiz() {
         autoReadyTask?.cancel()
         autoReadyTask = null
+        pausedTurn = null
         turn?.let { cancelQuizTasks(it) }
         setReviewing(false)
         quizFinished = true
@@ -1358,7 +1435,8 @@ class MasterEngine(
             total = quizQuestions.size,
             question = t.question,
             answersAt = t.answersAt,
-            deadline = t.answersAt + t.deadlineElapsed,
+            // Während einer Pause bleibt der Zähler des Spielleiters stehen.
+            deadline = t.answersAt + t.deadlineElapsed + if (pausedTurn === t) clock.now() - pausedAt else 0L,
             durationMs = t.durationMs,
             revealed = t.revealed,
             annulled = t.annulled,

@@ -678,7 +678,13 @@ fun MasterScreen(vm: BuzzerViewModel) {
             ) {
                 BarButton(if (vm.soundOn) "🔊" else "🔇") { vm.changeSoundOn(!vm.soundOn) }
                 if (settings.messagesEnabled) {
-                    BarButton("✉", enabled = vm.canChat) { showChat = true }
+                    // Lesen geht immer, Senden nur in den Pausen; ein Punkt zeigt ungelesene Nachrichten.
+                    Box {
+                        BarButton("✉") { showChat = true; vm.markChatRead() }
+                        if (vm.unreadChat.isNotEmpty()) {
+                            Box(Modifier.align(Alignment.TopEnd).padding(top = 4.dp, end = 4.dp).size(12.dp).background(theme.accent, CircleShape))
+                        }
+                    }
                     // Jemand tippt gerade: mit der nächsten Frage noch kurz warten.
                     if (snapshot.someoneTyping) TypingDots(Modifier.padding(end = 6.dp))
                 }
@@ -717,8 +723,8 @@ fun MasterScreen(vm: BuzzerViewModel) {
                         ) {
                             Text("🐇🐢", fontSize = 18.sp, modifier = Modifier.alpha(if (snapshot.canShowReplay) 1f else 0.35f))
                         }
-                        // Pause direkt per Knopf (nur zwischen den Runden bzw. bei der Auflösung).
-                        val canPause = snapshot.paused || pause || snapshot.phase == Phase.QUIZ_REVEAL
+                        // Pause direkt per Knopf – jederzeit im Spiel, auch mitten in der Runde.
+                        val canPause = snapshot.paused || (!choosing && snapshot.kind != null)
                         Box(
                             Modifier
                                 .padding(end = 8.dp)
@@ -828,7 +834,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
                             )
                             DropdownMenuItem(
                                 text = { Text(if (snapshot.paused) "Pause beenden" else "Spiel pausieren") },
-                                enabled = snapshot.paused || pause,
+                                enabled = snapshot.paused || (!choosing && snapshot.kind != null),
                                 onClick = { showMenu = false; vm.setPaused(!snapshot.paused) },
                             )
                             DropdownMenuItem(
@@ -874,6 +880,22 @@ fun MasterScreen(vm: BuzzerViewModel) {
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(bottom = 4.dp),
+                    )
+                }
+                // Neue Nachrichten sieht der Spielleiter in jeder Phase; ein Tipp öffnet den Chat.
+                val unread = vm.unreadChat
+                if (unread.isNotEmpty() && !vm.masterIdle) {
+                    ChatPanel(
+                        unread,
+                        theme.text,
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = 6.dp)
+                            .clip(RoundedCornerShape(12.dp))
+                            .background(theme.panel)
+                            .clickable { showChat = true; vm.markChatRead() }
+                            .padding(horizontal = 12.dp, vertical = 8.dp),
+                        maxLines = 2,
                     )
                 }
                 if (vm.joinRequests.isNotEmpty() && !vm.masterIdle) {
@@ -997,7 +1019,9 @@ fun MasterScreen(vm: BuzzerViewModel) {
         ChatDialog(
             recipients = snapshot.players.filter { it.connected && it.id != BuzzerViewModel.LOCAL_PLAYER_ID }.map { it.id to it.name },
             onSend = { to, name, text -> vm.sendChat(to, name, text) },
-            onDismiss = { showChat = false },
+            onDismiss = { showChat = false; vm.markChatRead() },
+            history = vm.chat.toList(),
+            canSend = vm.canChat,
         )
     }
     if (confirmLeave) {

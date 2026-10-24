@@ -102,6 +102,9 @@ sealed interface Message {
     /** M → S: Antwortzeit verkürzt (Countdown nach der ersten richtigen Antwort), ab Einblenden gerechnet. */
     data class QuizDeadline(val number: Int, val deadlineMs: Long) : Message
 
+    /** M → S: Nach einer Pause mitten in der Frage verschieben sich Einblenden und Antwortzeit um [shiftMs]. */
+    data class QuizShift(val number: Int, val shiftMs: Long) : Message
+
     /** M → S: Auflösung aus Sicht des Empfängers; Positionen in seiner Reihenfolge, -1 = keine. */
     data class QuizResult(
         val number: Int,
@@ -276,6 +279,7 @@ object MessageCodec {
             )
             is Message.QuizAnswer -> "QUIZ_ANSWER" to mapOf("n" to message.number, "p" to message.position, "e" to message.elapsedMs)
             is Message.QuizDeadline -> "QUIZ_DEADLINE" to mapOf("n" to message.number, "d" to message.deadlineMs)
+            is Message.QuizShift -> "QUIZ_SHIFT" to mapOf("n" to message.number, "ms" to message.shiftMs)
             is Message.QuizResult -> "QUIZ_RESULT" to mapOf(
                 "n" to message.number, "cp" to message.correctPosition, "ch" to message.chosenPosition,
                 "o" to message.outcome.name, "g" to message.gained, "s" to message.score,
@@ -373,6 +377,7 @@ object MessageCodec {
             )
             "QUIZ_ANSWER" -> Message.QuizAnswer(int("n"), int("p"), long("e"))
             "QUIZ_DEADLINE" -> Message.QuizDeadline(int("n"), long("d"))
+            "QUIZ_SHIFT" -> Message.QuizShift(int("n"), long("ms"))
             "QUIZ_RESULT" -> Message.QuizResult(
                 int("n"), int("cp"), int("ch"), QuizOutcome.valueOf(f.getValue("o")), f.getValue("g"), f.getValue("s"),
                 f.getValue("x"), f.getValue("src"), bool("cor"),

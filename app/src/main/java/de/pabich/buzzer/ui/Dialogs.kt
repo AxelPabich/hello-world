@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -28,6 +29,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import de.pabich.buzzer.ChatLine
 import de.pabich.buzzer.ConfigStore
 import de.pabich.buzzer.ReceivedProfile
 import de.pabich.buzzer.core.ALL_ADDRESS
@@ -74,6 +77,10 @@ fun ChatDialog(
     onSend: (to: String, toName: String, text: String) -> Unit,
     onDismiss: () -> Unit,
     onTyping: () -> Unit = {},
+    /** Bisheriger Verlauf (der Spielleiter liest ihn jederzeit); leer = nur Eingabe. */
+    history: List<ChatLine> = emptyList(),
+    /** Senden ist nur in den Pausen möglich; Lesen immer. */
+    canSend: Boolean = true,
 ) {
     var to by remember { mutableStateOf(ALL_ADDRESS) }
     var text by remember { mutableStateOf("") }
@@ -83,6 +90,22 @@ fun ChatDialog(
         title = { Text("Kurznachricht") },
         text = {
             Column {
+                if (history.isNotEmpty()) {
+                    Column(Modifier.heightIn(max = 160.dp).verticalScroll(rememberScrollState(), reverseScrolling = true)) {
+                        for (line in history) {
+                            Text(
+                                "${line.from}${if (line.toAll && !line.outgoing) " (an alle)" else ""}: ${line.text}",
+                                fontSize = 14.sp,
+                                color = if (line.outgoing) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f) else MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.padding(vertical = 2.dp),
+                            )
+                        }
+                    }
+                    Spacer(Modifier.height(8.dp))
+                }
+                if (!canSend) {
+                    Text("Senden ist nur in den Pausen möglich.", fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f))
+                }
                 Column(Modifier.heightIn(max = 220.dp).verticalScroll(rememberScrollState())) {
                     for ((address, name) in all) {
                         Row(
@@ -108,14 +131,14 @@ fun ChatDialog(
         },
         confirmButton = {
             TextButton(
-                enabled = text.isNotBlank(),
+                enabled = canSend && text.isNotBlank(),
                 onClick = {
                     onSend(to, all.first { it.first == to }.second, text)
                     onDismiss()
                 },
             ) { Text("Senden") }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text(if (history.isNotEmpty() || !canSend) "Schließen" else "Abbrechen") } },
     )
 }
 

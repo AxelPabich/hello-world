@@ -461,6 +461,13 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+85. **Pause in der Runde, Chat jederzeit lesbar** (Wunsch vom 24.10.2026; umgesetzt, kommt mit dem
+    nächsten Build): Der Pause-Knopf geht jetzt auch mitten in der Runde – Quizfrage: Zeit steht und läuft
+    mit der Restzeit weiter; Buzzer vor der Entscheidung: Runde wird abgebrochen und neu freigegeben;
+    Antwortzeit: steht. Der Spielleiter kann den Chat jederzeit lesen (Punkt am ✉, neue Nachrichten
+    als Zeile in der Runde, Verlauf im Fenster); Senden bleibt auf die Pausen beschränkt. Mit älteren
+    Spieler-Apps funktioniert die Verschiebung der Quizzeit nicht. Spezifikation Abschnitt 57,
+    Tests `PauseInRoundTest`. Die Oberfläche ist noch am Gerät zu prüfen.
 84. **Major Release und Rollback** (Wunsch vom 24.10.2026; in Build 38 = Version 2.0.38):
     Datei `VERSION` (jetzt `2.0`) bestimmt Haupt.Neben, Version also `2.0.<Nr>`. Der Workflow kann
     mit `major = true` ein Major Release veröffentlichen und mit `rollback_to = build-<Nr>` den Quelltext
