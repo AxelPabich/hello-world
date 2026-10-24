@@ -461,7 +461,7 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
-84. **Major Release und Rollback** (Wunsch vom 24.10.2026; umgesetzt, wirkt ab dem nächsten Build):
+84. **Major Release und Rollback** (Wunsch vom 24.10.2026; in Build 38 = Version 2.0.38):
     Datei `VERSION` (jetzt `2.0`) bestimmt Haupt.Neben, Version also `2.0.<Nr>`. Der Workflow kann
     mit `major = true` ein Major Release veröffentlichen und mit `rollback_to = build-<Nr>` den Quelltext
     eines früheren Standes als neuen Build mit höherer Nummer bauen (Android erlaubt keinen Downgrade).
@@ -469,8 +469,7 @@ Kategorien recherchieren.
     schon gebauten Stände ließen sich hier nicht pushen – dafür Commit-IDs: Build 35 `90456ce`,
     36 `ee3a1a9`, 37 `743258e`. Der erste Lauf mit dem neuen Workflow ist der Test – Fehler im Workflow
     zeigen sich erst dort. Spezifikation Abschnitt 56, Release-Notizen `docs/release/2.0.md`.
-83. **Spielleiter-Ansicht näher an der der Spieler** (Wunsch vom 24.10.2026; umgesetzt, kommt mit
-    dem nächsten Build): Während einer Quizfrage große Frage mit vier Antwortfeldern wie bei den
+83. **Spielleiter-Ansicht näher an der der Spieler** (Wunsch vom 24.10.2026; in Build 38): Während einer Quizfrage große Frage mit vier Antwortfeldern wie bei den
     Spielern (Titel der Seite entfällt, Wischzeile „wer hat geantwortet“, Knöpfe darunter), in der
     Auflösung gleiche Kopfzeile und Ergebnis-Banner, im Buzzer-Spiel der Buzzer des Masters auf
     halber Höhe. Spezifikation Abschnitt 55. Noch am Gerät zu prüfen (Handy und Tablett).
@@ -562,6 +561,9 @@ die Korrektur greift ab dem Update auf Build 34.
     Quellen (Eishockey-WM, Masters, NBA, Stanley Cup, Cannes, Berlinale, Oscars, Landtagswahlen
     u. a.); NBA, Cannes, Stanley Cup und Dschungelkönig zusätzlich selbst gegengeprüft. Beim
     Durchsehen 11 Fragen wegen Dubletten zu anderen Paketen oder unsicherer Fakten ersetzt.
+    Build 38 (Major Release 2.0): +40 Fragen, je Kategorie eine pro Stufe, jetzt vier Stufen
+    (88/88/88/88/88/88/86/86/86/86); „Aktuelles 2026“ per Websuche: Leichtathletik-EM Birmingham
+    (Stadt, 21 deutsche Medaillen), Oscar-Regie (Paul Thomas Anderson), Vuelta-Sieger (Enric Mas).
 70. **Wünsche vom 16.10.2026** (in Build 32): Spielregeln und gespielte
     Kategorien beim Beitritt und zu Spielbeginn; Avatar-Emoticon in den Einstellungen; Siegerfanfare
     als Abschluss des Spielverlaufs; Start-Animationen nie zweimal hintereinander gleich (Rennszene

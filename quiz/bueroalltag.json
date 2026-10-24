@@ -1,227 +1,125 @@
 {
   "paket": "bueroalltag",
   "titel": "Büroalltag",
-  "version": 7,
+  "version": 8,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "buero-0006",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Was passiert mit Empfängern im „Bcc“-Feld einer E-Mail?",
-      "antworten": [
-        "Die anderen Empfänger sehen sie nicht",
-        "Sie bekommen die Mail erst am nächsten Tag",
-        "Sie dürfen nicht antworten",
-        "Sie bekommen nur den Betreff"
-      ],
-      "erklaerung": "Bcc steht für Blind Carbon Copy.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blind%20Carbon%20Copy",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0008",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wofür steht „ASAP“?",
-      "antworten": [
-        "As soon as possible – so bald wie möglich",
-        "Always send a PDF",
-        "Alle sofort an den Platz",
-        "Abteilung Service und Planung"
-      ],
-      "erklaerung": "Gern benutzt, selten so gemeint.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ASAP",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0027",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wofür steht „PS“ unter einem Brief?",
-      "antworten": [
-        "Postskriptum – Nachschrift",
-        "Persönliche Sache",
-        "Private Sendung",
-        "Pünktlich senden"
-      ],
-      "erklaerung": "Lateinisch „post scriptum“: nach dem Geschriebenen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Postskriptum",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0028",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Mit welcher Tastenkombination wechselt man unter Windows zwischen offenen Fenstern?",
-      "antworten": [
-        "Alt + Tab",
-        "Strg + W",
-        "Alt + F4",
-        "Strg + Z"
-      ],
-      "erklaerung": "Alt + F4 schließt das Fenster, Strg + Z macht rückgängig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Alt%2BTab",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0010",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wofür steht „ppa.“ vor einer Unterschrift?",
-      "antworten": [
-        "Per procura – der Unterzeichner hat Prokura",
-        "Per Post an alle",
-        "Persönlich, privat, abgeheftet",
-        "Projektplan aktualisiert"
-      ],
-      "erklaerung": "Die Prokura ist eine weitreichende, im Handelsregister eingetragene Vollmacht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Prokura",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0071",
+      "id": "buero-0073",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "ingomania",
-      "frage": "Welche Normenreihe beschäftigt sich mit der Ergonomie der Mensch-System-Interaktion, etwa bei der Bildschirmarbeit?",
+      "frage": "Wer trägt in Deutschland die Beiträge zur gesetzlichen Unfallversicherung?",
       "antworten": [
-        "DIN EN ISO 9241",
-        "DIN EN ISO 9001",
-        "DIN EN ISO 14001",
-        "DIN EN ISO 27001"
+        "Allein der Arbeitgeber",
+        "Arbeitgeber und Arbeitnehmer je zur Hälfte",
+        "Allein der Arbeitnehmer",
+        "Der Bund aus Steuermitteln"
       ],
-      "erklaerung": "9001 betrifft Qualitätsmanagement, 14001 Umweltmanagement und 27001 Informationssicherheit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ISO%209241",
+      "erklaerung": "Die Beiträge zahlen die Unternehmen an die Berufsgenossenschaften. Die Unfallversicherung ist damit die einzige Sozialversicherung ohne Arbeitnehmeranteil.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gesetzliche%20Unfallversicherung%20%28Deutschland%29",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "buero-0039",
+      "id": "buero-0037",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "leicht",
-      "frage": "Welches Symbol steht in E-Mail-Programmen für einen Dateianhang?",
+      "frage": "Wie nennt man es, wenn Beschäftigte ihre Arbeit von zu Hause aus erledigen?",
       "antworten": [
-        "Eine Büroklammer",
-        "Eine Schere",
-        "Ein Stern",
-        "Ein Briefmarkenbild"
+        "Homeoffice",
+        "Jobsharing",
+        "Leiharbeit",
+        "Kurzarbeit"
       ],
-      "erklaerung": "Die Büroklammer symbolisiert, dass etwas an die Nachricht „angeheftet“ ist.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%BCroklammer",
+      "erklaerung": "Der Begriff ist eingedeutscht, im Englischen sagt man „working from home“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Telearbeit",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "buero-0078",
+      "id": "buero-0032",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Aus welchem Küchengerät entwickelte Adolf Ehinger 1935 den ersten Aktenvernichter?",
+      "stufe": "schwer",
+      "frage": "Welche Schriftart war in Microsoft Office von 2007 bis 2023 die Standardschrift?",
       "antworten": [
-        "Aus einer Nudelmaschine",
-        "Aus einer Kaffeemühle",
-        "Aus einem Fleischwolf",
-        "Aus einer Brotschneidemaschine"
+        "Calibri",
+        "Arial",
+        "Times New Roman",
+        "Aptos"
       ],
-      "erklaerung": "Ehinger aus Balingen wollte regimekritische Flugblätter beseitigen. Seine Firma „EBA“ baute danach Reißwölfe in Serie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aktenvernichter",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0068",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Wie hieß die animierte Büroklammer, die in deutschen Office-Versionen ab 1997 als Assistent Hilfe anbot?",
-      "antworten": [
-        "Karl Klammer",
-        "Paul Papier",
-        "Hugo Hefter",
-        "Otto Ordner"
-      ],
-      "erklaerung": "Im Original heißt die Figur „Clippit“, genannt „Clippy“. Sie wurde in vielen Versionen als nervig empfunden und später abgeschafft.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl%20Klammer",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0050",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Was bedeutet „Kernzeit“ bei Gleitzeit?",
-      "antworten": [
-        "Zeitraum, in dem alle anwesend sein müssen",
-        "Die Zeit der Mittagspause",
-        "Die Zeit für Überstunden",
-        "Die Zeit der Betriebsversammlung"
-      ],
-      "erklaerung": "Außerhalb der Kernzeit können Beschäftigte Beginn und Ende ihrer Arbeit selbst wählen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gleitzeit",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0030",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wofür steht „MfG“ am Ende einer Nachricht?",
-      "antworten": [
-        "Mit freundlichen Grüßen",
-        "Mehr folgt gleich",
-        "Meine feste Gewohnheit",
-        "Mit fröhlichem Gruß"
-      ],
-      "erklaerung": "In förmlichen Briefen schreibt man die Grußformel aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gru%C3%9Fformel",
+      "erklaerung": "Aptos löste Calibri ab; davor war Times New Roman Standard in Word.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Calibri%20%28Schriftart%29",
       "erstellt": "2026-10-19",
       "gueltigBis": null
     },
     {
-      "id": "buero-0077",
+      "id": "buero-0004",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Wer erfand das Kopierverfahren Xerographie, auf dem Büro-Fotokopierer beruhen?",
+      "stufe": "schwer",
+      "frage": "Wie weit liegen die beiden Löcher eines normalen Bürolochers auseinander?",
       "antworten": [
-        "Chester Carlson",
-        "Edwin Land",
-        "George Eastman",
-        "Chester Greenwood"
+        "80 mm",
+        "60 mm",
+        "70 mm",
+        "100 mm"
       ],
-      "erklaerung": "Der Patentanwalt Chester Carlson fertigte 1938 die erste Xerokopie an. Erst 1959 brachte Xerox den Büro-Kopierer 914 auf den Markt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Xerographie",
+      "erklaerung": "Der Abstand ist genormt – deshalb passen alle Ordner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Locher",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0046",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Mit welcher Tastenkombination sperrt man unter Windows schnell den Bildschirm?",
+      "antworten": [
+        "Windows-Taste + L",
+        "Windows-Taste + D",
+        "Windows-Taste + E",
+        "Windows-Taste + S"
+      ],
+      "erklaerung": "L steht für „Lock“. So bleibt der Rechner beim Kaffeeholen geschützt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Windows-Taste",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "buero-0053",
+      "id": "buero-0083",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie lang ist die gesetzliche Grundkündigungsfrist für Arbeitnehmer?",
+      "stufe": "leicht",
+      "frage": "Mit welcher Taste löscht man auf der Tastatur das Zeichen links vom Cursor?",
       "antworten": [
-        "Vier Wochen zum 15. oder zum Monatsende",
-        "Zwei Wochen zum Monatsende",
-        "Drei Monate zum Quartalsende",
-        "Ein Monat zum Jahresende"
+        "Rücktaste (Backspace)",
+        "Entf",
+        "Esc",
+        "Tab"
       ],
-      "erklaerung": "Sie steht im Bürgerlichen Gesetzbuch; für Arbeitgeber verlängert sie sich mit der Betriebszugehörigkeit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCndigungsfrist",
+      "erklaerung": "„Entf“ löscht dagegen das Zeichen rechts vom Cursor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCcktaste",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0048",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „z. Hd.“ in einer Briefanschrift?",
+      "antworten": [
+        "Zu Händen",
+        "Zur Handlung",
+        "Zum Handelsregister",
+        "Zahlbar sofort"
+      ],
+      "erklaerung": "Es nennt die Person in einer Firma, die den Brief erhalten soll.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zu%20H%C3%A4nden",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -243,37 +141,326 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0044",
+      "id": "buero-0008",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wofür steht „ASAP“?",
+      "antworten": [
+        "As soon as possible – so bald wie möglich",
+        "Always send a PDF",
+        "Alle sofort an den Platz",
+        "Abteilung Service und Planung"
+      ],
+      "erklaerung": "Gern benutzt, selten so gemeint.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ASAP",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0022",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Wie lange darf eine Probezeit nach dem Gesetz höchstens dauern?",
+      "frage": "Wofür steht „Re:“ im Betreff einer E-Mail?",
       "antworten": [
-        "Sechs Monate",
-        "Drei Monate",
-        "Neun Monate",
-        "Zwölf Monate"
+        "Für eine Antwort auf eine vorherige Nachricht",
+        "Für „Rechnung“",
+        "Für „Rückruf erbeten“",
+        "Für „Rundschreiben“"
       ],
-      "erklaerung": "In der Probezeit gilt laut Gesetz eine verkürzte Kündigungsfrist von zwei Wochen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Probezeit",
+      "erklaerung": "Es kommt vom lateinischen „in re“ – in der Sache – und wird als Antwort-Kennzeichen genutzt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Re%20%28E-Mail%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0056",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wie viele Stunden Ruhezeit müssen laut Arbeitszeitgesetz mindestens zwischen zwei Arbeitstagen liegen?",
+      "antworten": [
+        "Elf Stunden",
+        "Acht Stunden",
+        "Neun Stunden",
+        "Zwölf Stunden"
+      ],
+      "erklaerung": "Es gibt Ausnahmen, etwa im Krankenhaus oder Gastgewerbe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "buero-0005",
+      "id": "buero-0031",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „i. V.“ vor einer Unterschrift?",
+      "antworten": [
+        "In Vertretung",
+        "Im Vorstand",
+        "In Vollmacht des Inhabers",
+        "Inhalt vertraulich"
+      ],
+      "erklaerung": "Mit „i. V.“ zeichnet, wer erweiterte Vollmacht hat – mehr als bei „i. A.“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=in%20Vertretung",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0014",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Welche Firma brachte die Post-it-Haftnotizen auf den Markt?",
+      "antworten": [
+        "3M",
+        "Tesa",
+        "Pelikan",
+        "Staples"
+      ],
+      "erklaerung": "Der Klebstoff war eigentlich ein Fehlschlag: Er hielt zu schwach.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Post-it",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0062",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Welche Tastenkombination öffnet unter Windows direkt den Task-Manager?",
+      "antworten": [
+        "Strg + Umschalt + Esc",
+        "Strg + Alt + Tab",
+        "Alt + Umschalt + T",
+        "Strg + Umschalt + M"
+      ],
+      "erklaerung": "Strg + Alt + Entf führt dagegen zu einem Auswahlbildschirm.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Task-Manager",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0063",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Die Erfinderin des Korrekturfluids „Liquid Paper“, Bette Nesmith Graham, war die Mutter welches Musikers?",
+      "antworten": [
+        "Michael Nesmith (The Monkees)",
+        "Mick Jagger (The Rolling Stones)",
+        "Ringo Starr (The Beatles)",
+        "Brian Wilson (The Beach Boys)"
+      ],
+      "erklaerung": "Die Sekretärin mischte das Mittel in den 1950er-Jahren in ihrer Küche an. Ihr Sohn Michael war Gitarrist der Band The Monkees.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Liquid%20Paper",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0085",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Welche Excel-Funktion sucht einen Wert in der ersten Spalte und liefert einen Wert derselben Zeile?",
+      "antworten": [
+        "SVERWEIS",
+        "WVERWEIS",
+        "SUMMEWENN",
+        "INDIREKT"
+      ],
+      "erklaerung": "WVERWEIS arbeitet dagegen in der ersten Zeile.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tabellenkalkulation",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0078",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Aus welchem Küchengerät entwickelte Adolf Ehinger 1935 den ersten Aktenvernichter?",
+      "antworten": [
+        "Aus einer Nudelmaschine",
+        "Aus einer Kaffeemühle",
+        "Aus einem Fleischwolf",
+        "Aus einer Brotschneidemaschine"
+      ],
+      "erklaerung": "Ehinger aus Balingen wollte regimekritische Flugblätter beseitigen. Seine Firma „EBA“ baute danach Reißwölfe in Serie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aktenvernichter",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0074",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "In welchem Jahr gab es mit dem Betriebsrätegesetz erstmals gesetzlich vorgeschriebene Betriebsräte im ganzen Deutschen Reich?",
+      "antworten": [
+        "1920",
+        "1891",
+        "1933",
+        "1952"
+      ],
+      "erklaerung": "Das Gesetz trat 1920 in der Weimarer Republik in Kraft. 1952 folgte das erste Betriebsverfassungsgesetz der Bundesrepublik.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Betriebsr%C3%A4tegesetz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0019",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „PDF“?",
+      "antworten": [
+        "Portable Document Format",
+        "Printed Document File",
+        "Public Data Folder",
+        "Perfekt druckfertig"
+      ],
+      "erklaerung": "Das Format soll auf jedem Gerät gleich aussehen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0052",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Welche Funktionstaste öffnet in den meisten Programmen die Hilfe?",
+      "antworten": [
+        "F1",
+        "F5",
+        "F8",
+        "F12"
+      ],
+      "erklaerung": "F1 ist seit Jahrzehnten die Hilfe-Taste unter Windows.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Funktionstaste",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0041",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "leicht",
-      "frage": "Wofür steht „Cc“ bei einer E-Mail?",
+      "frage": "Wie heißt der Zusammenschluss von Arbeitnehmern, der zum Beispiel Tarifverträge aushandelt?",
       "antworten": [
-        "Carbon Copy – eine Kopie an weitere Empfänger",
-        "Computer Center",
-        "Copy Confirmed",
-        "Chef checkt's"
+        "Gewerkschaft",
+        "Handelskammer",
+        "Innung",
+        "Bürgerinitiative"
       ],
-      "erklaerung": "Der Name stammt vom Durchschlagpapier der Schreibmaschine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Carbon%20Copy",
+      "erklaerung": "Bekannte Beispiele sind ver.di und die IG Metall.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gewerkschaft",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0010",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wofür steht „ppa.“ vor einer Unterschrift?",
+      "antworten": [
+        "Per procura – der Unterzeichner hat Prokura",
+        "Per Post an alle",
+        "Persönlich, privat, abgeheftet",
+        "Projektplan aktualisiert"
+      ],
+      "erklaerung": "Die Prokura ist eine weitreichende, im Handelsregister eingetragene Vollmacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Prokura",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0072",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Welcher Zeugnissatz entspricht im Arbeitszeugnis der Note „sehr gut“?",
+      "antworten": [
+        "„stets zu unserer vollsten Zufriedenheit“",
+        "„zu unserer vollen Zufriedenheit“",
+        "„zu unserer Zufriedenheit“",
+        "„im Großen und Ganzen zufrieden“"
+      ],
+      "erklaerung": "Zeugnissprache ist ein Code: „stets zur vollen Zufriedenheit“ wäre nur eine 2, „zur vollen Zufriedenheit“ eine 3.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeugnis",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0030",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wofür steht „MfG“ am Ende einer Nachricht?",
+      "antworten": [
+        "Mit freundlichen Grüßen",
+        "Mehr folgt gleich",
+        "Meine feste Gewohnheit",
+        "Mit fröhlichem Gruß"
+      ],
+      "erklaerung": "In förmlichen Briefen schreibt man die Grußformel aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gru%C3%9Fformel",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0086",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Welche Maße hat ein Briefumschlag im Format C5?",
+      "antworten": [
+        "162 × 229 mm",
+        "114 × 162 mm",
+        "110 × 220 mm",
+        "229 × 324 mm"
+      ],
+      "erklaerung": "In einen C5-Umschlag passt ein einmal gefaltetes DIN-A4-Blatt; C4 misst 229 × 324 mm.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Briefumschlag",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0076",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Wer wählte 1971 das @-Zeichen, um Benutzernamen und Rechner in E-Mail-Adressen zu trennen?",
+      "antworten": [
+        "Ray Tomlinson",
+        "Vint Cerf",
+        "Tim Berners-Lee",
+        "Douglas Engelbart"
+      ],
+      "erklaerung": "Tomlinson verschickte die erste Netzwerk-E-Mail zwischen zwei Rechnern am ARPANET und suchte ein Zeichen, das in Namen nicht vorkam.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ray%20Tomlinson",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0026",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wer gilt als Erfinder der QWERTY-Tastaturanordnung für Schreibmaschinen?",
+      "antworten": [
+        "Christopher Latham Sholes",
+        "Thomas Edison",
+        "Remington",
+        "Peter Mitterhofer"
+      ],
+      "erklaerung": "Er entwickelte sie in den 1870er-Jahren; die Firma Remington baute die Maschine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Christopher%20Latham%20Sholes",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -294,6 +481,312 @@
       "gueltigBis": null
     },
     {
+      "id": "buero-0049",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Welche Form muss eine Kündigung des Arbeitsverhältnisses in Deutschland haben?",
+      "antworten": [
+        "Schriftlich mit eigenhändiger Unterschrift",
+        "Mündlich genügt",
+        "Per E-Mail genügt",
+        "Per Textnachricht genügt"
+      ],
+      "erklaerung": "Eine Kündigung per E-Mail oder mündlich ist unwirksam.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCndigung%20%28Arbeitsrecht%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0065",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Welcher ungarische Journalist ließ sich 1938 den Kugelschreiber patentieren?",
+      "antworten": [
+        "László Bíró",
+        "Marcel Bich",
+        "Lothar von Faber",
+        "George Parker"
+      ],
+      "erklaerung": "Bíró entwickelte ihn mit seinem Bruder György; im Englischen heißt der Kugelschreiber bis heute „biro“. Marcel Bich machte ihn später mit „Bic“ zum Massenprodukt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=L%C3%A1szl%C3%B3%20B%C3%ADr%C3%B3",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0039",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welches Symbol steht in E-Mail-Programmen für einen Dateianhang?",
+      "antworten": [
+        "Eine Büroklammer",
+        "Eine Schere",
+        "Ein Stern",
+        "Ein Briefmarkenbild"
+      ],
+      "erklaerung": "Die Büroklammer symbolisiert, dass etwas an die Nachricht „angeheftet“ ist.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%BCroklammer",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0084",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Welche Dateiendung haben Excel-Arbeitsmappen seit 2007 üblicherweise?",
+      "antworten": [
+        ".xlsx",
+        ".xlsw",
+        ".csv",
+        ".xlst"
+      ],
+      "erklaerung": "Das „x“ steht für das XML-Format von Office Open XML.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Office%20Open%20XML",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0061",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurden in Deutschland die fünfstelligen Postleitzahlen eingeführt?",
+      "antworten": [
+        "1993",
+        "1968",
+        "1975",
+        "2001"
+      ],
+      "erklaerung": "Mit der Wiedervereinigung musste das Postleitsystem vereinheitlicht werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Postleitzahl%20%28Deutschland%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0059",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wie lange zahlt der Arbeitgeber bei Krankheit in der Regel das Gehalt weiter?",
+      "antworten": [
+        "Bis zu sechs Wochen",
+        "Bis zu zwei Wochen",
+        "Bis zu drei Monaten",
+        "Bis zu einem Jahr"
+      ],
+      "erklaerung": "Danach springt die Krankenkasse mit dem Krankengeld ein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Entgeltfortzahlung",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0075",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "In welchem Unternehmen wurde 1967 die Gleitzeit in Deutschland erstmals im großen Stil eingeführt?",
+      "antworten": [
+        "Messerschmitt-Bölkow-Blohm",
+        "Siemens",
+        "Volkswagen",
+        "Robert Bosch"
+      ],
+      "erklaerung": "Die Personalberaterin Christel Kämmerer entwickelte das Modell für MBB in Ottobrunn bei München, um Verkehrsspitzen zu entzerren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gleitzeit",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0024",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Mit welchem Programm öffnet man typischerweise eine Datei mit der Endung „.docx“?",
+      "antworten": [
+        "Microsoft Word",
+        "Microsoft Excel",
+        "Adobe Photoshop",
+        "Windows Media Player"
+      ],
+      "erklaerung": "Excel-Tabellen enden auf „.xlsx“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Word",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0021",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welche Tastenkombination speichert in den meisten Programmen das Dokument?",
+      "antworten": [
+        "Strg + S",
+        "Strg + P",
+        "Strg + A",
+        "Strg + D"
+      ],
+      "erklaerung": "Strg + P druckt, Strg + A markiert alles.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tastenkombination",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0053",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wie lang ist die gesetzliche Grundkündigungsfrist für Arbeitnehmer?",
+      "antworten": [
+        "Vier Wochen zum 15. oder zum Monatsende",
+        "Zwei Wochen zum Monatsende",
+        "Drei Monate zum Quartalsende",
+        "Ein Monat zum Jahresende"
+      ],
+      "erklaerung": "Sie steht im Bürgerlichen Gesetzbuch; für Arbeitgeber verlängert sie sich mit der Betriebszugehörigkeit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCndigungsfrist",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0042",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Mit welchem Microsoft-Programm erstellt man typischerweise Folienpräsentationen?",
+      "antworten": [
+        "PowerPoint",
+        "Access",
+        "Publisher",
+        "OneNote"
+      ],
+      "erklaerung": "Dateien enden auf „.pptx“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20PowerPoint",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0047",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Auf welche Endung enden Präsentationen von PowerPoint seit 2007 üblicherweise?",
+      "antworten": [
+        ".pptx",
+        ".docx",
+        ".xlsx",
+        ".pdfx"
+      ],
+      "erklaerung": "Das „x“ steht für das XML-basierte Dateiformat von Office.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Office%20Open%20XML",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0036",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Womit verbindet man mehrere Blätter mit kleinen Metallklammern?",
+      "antworten": [
+        "Mit einem Hefter",
+        "Mit einem Locher",
+        "Mit einem Falzbein",
+        "Mit einem Stempelkissen"
+      ],
+      "erklaerung": "Der Hefter wird auch Tacker genannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Heftger%C3%A4t",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0027",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wofür steht „PS“ unter einem Brief?",
+      "antworten": [
+        "Postskriptum – Nachschrift",
+        "Persönliche Sache",
+        "Private Sendung",
+        "Pünktlich senden"
+      ],
+      "erklaerung": "Lateinisch „post scriptum“: nach dem Geschriebenen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Postskriptum",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0009",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Was bedeutet „i. A.“ vor einer Unterschrift?",
+      "antworten": [
+        "Im Auftrag",
+        "In Vertretung",
+        "Im Anhang",
+        "In Abwesenheit"
+      ],
+      "erklaerung": "„i. V.“ steht für in Vertretung und bedeutet mehr Vollmacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Im%20Auftrag",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0006",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Was passiert mit Empfängern im „Bcc“-Feld einer E-Mail?",
+      "antworten": [
+        "Die anderen Empfänger sehen sie nicht",
+        "Sie bekommen die Mail erst am nächsten Tag",
+        "Sie dürfen nicht antworten",
+        "Sie bekommen nur den Betreff"
+      ],
+      "erklaerung": "Bcc steht für Blind Carbon Copy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blind%20Carbon%20Copy",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0038",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welche Taste auf der Tastatur schreibt dauerhaft Großbuchstaben, bis man sie erneut drückt?",
+      "antworten": [
+        "Feststelltaste",
+        "Tabulatortaste",
+        "Einfügetaste",
+        "Escape-Taste"
+      ],
+      "erklaerung": "Auf Englisch heißt sie „Caps Lock“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Feststelltaste",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0013",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie viele Stunden darf man in Deutschland höchstens am Tag arbeiten, wenn es später ausgeglichen wird?",
+      "antworten": [
+        "Zehn",
+        "Acht",
+        "Zwölf",
+        "Vierzehn"
+      ],
+      "erklaerung": "Regulär sind es acht Stunden; zehn sind erlaubt, wenn der Schnitt über sechs Monate bei acht bleibt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
       "id": "buero-0067",
       "version": 1,
       "kategorie": "Büroalltag",
@@ -311,71 +804,105 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0051",
+      "id": "buero-0017",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Welche Versicherung gehört NICHT zur gesetzlichen Sozialversicherung in Deutschland?",
+      "stufe": "leicht",
+      "frage": "Wie heißt das Tabellenkalkulationsprogramm von Microsoft?",
       "antworten": [
-        "Berufsunfähigkeitsversicherung",
-        "Rentenversicherung",
-        "Krankenversicherung",
-        "Arbeitslosenversicherung"
+        "Excel",
+        "Word",
+        "Outlook",
+        "PowerPoint"
       ],
-      "erklaerung": "Die Berufsunfähigkeitsversicherung ist eine private Vorsorge. Gesetzlich sind außerdem Pflege- und Unfallversicherung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sozialversicherung%20%28Deutschland%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0055",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Welches Seitenverhältnis haben alle Blätter der DIN-A-Reihe?",
-      "antworten": [
-        "1 : √2 (etwa 1 : 1,41)",
-        "3 : 4",
-        "1 : 2",
-        "2 : 3"
-      ],
-      "erklaerung": "Deshalb hat ein halbiertes Blatt wieder dieselben Proportionen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0060",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie viele Zeilen hat ein Tabellenblatt in aktuellen Excel-Versionen?",
-      "antworten": [
-        "1.048.576",
-        "65.536",
-        "1.000.000",
-        "16.384"
-      ],
-      "erklaerung": "Das ist 2 hoch 20. Excel 2003 hatte nur 65.536 Zeilen.",
+      "erklaerung": "Die erste Version erschien 1985 – für den Macintosh.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0023",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Was regelt die Norm DIN 5008?",
+      "antworten": [
+        "Schreib- und Gestaltungsregeln für Briefe und Texte",
+        "Die Größe von Briefumschlägen",
+        "Die Ergonomie von Bürostühlen",
+        "Die Farben von Aktenordnern"
+      ],
+      "erklaerung": "Sie legt zum Beispiel fest, wie Datum, Anschrift und Telefonnummern geschrieben werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=DIN%205008",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0040",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wie nennt man das Zeichen „@“ in einer E-Mail-Adresse umgangssprachlich?",
+      "antworten": [
+        "Klammeraffe",
+        "Schrägstrich",
+        "Bindestrich",
+        "Gänsefüßchen"
+      ],
+      "erklaerung": "Gesprochen wird es meist „at“; es trennt Benutzername und Domain.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=At-Zeichen",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "buero-0003",
+      "id": "buero-0050",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Wie viele DIN-A4-Blätter ergeben zusammen ein DIN-A0-Blatt?",
+      "frage": "Was bedeutet „Kernzeit“ bei Gleitzeit?",
       "antworten": [
-        "16",
-        "4",
-        "8",
-        "32"
+        "Zeitraum, in dem alle anwesend sein müssen",
+        "Die Zeit der Mittagspause",
+        "Die Zeit für Überstunden",
+        "Die Zeit der Betriebsversammlung"
       ],
-      "erklaerung": "Jede Stufe halbiert das Blatt: A0 hat genau einen Quadratmeter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Außerhalb der Kernzeit können Beschäftigte Beginn und Ende ihrer Arbeit selbst wählen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gleitzeit",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0034",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welche Tastenkombination öffnet in vielen Programmen die Suche nach einem Wort?",
+      "antworten": [
+        "Strg + F",
+        "Strg + G",
+        "Strg + N",
+        "Strg + H"
+      ],
+      "erklaerung": "F steht für „Find“, englisch für finden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tastenkombination",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0025",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie heißt die in Deutschland übliche Tastaturbelegung nach den ersten Buchstaben oben links?",
+      "antworten": [
+        "QWERTZ",
+        "QWERTY",
+        "AZERTY",
+        "ABCDEF"
+      ],
+      "erklaerung": "Z und Y sind vertauscht, weil das Z im Deutschen viel häufiger ist; AZERTY gilt in Frankreich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=QWERTZ",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -413,91 +940,6 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0064",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Welcher Stuttgarter Feinmechaniker erfand 1896 den Hebelordner für Büros?",
-      "antworten": [
-        "Louis Leitz",
-        "Carl Zeiss",
-        "Friedrich Soennecken",
-        "Gottlieb Daimler"
-      ],
-      "erklaerung": "Der Leitz-Ordner mit Hebelmechanik wurde zum Inbegriff des Aktenordners. Friedrich Soennecken erfand dagegen 1886 den Locher.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Louis%20Leitz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0042",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Mit welchem Microsoft-Programm erstellt man typischerweise Folienpräsentationen?",
-      "antworten": [
-        "PowerPoint",
-        "Access",
-        "Publisher",
-        "OneNote"
-      ],
-      "erklaerung": "Dateien enden auf „.pptx“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20PowerPoint",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0041",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wie heißt der Zusammenschluss von Arbeitnehmern, der zum Beispiel Tarifverträge aushandelt?",
-      "antworten": [
-        "Gewerkschaft",
-        "Handelskammer",
-        "Innung",
-        "Bürgerinitiative"
-      ],
-      "erklaerung": "Bekannte Beispiele sind ver.di und die IG Metall.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gewerkschaft",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0047",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Auf welche Endung enden Präsentationen von PowerPoint seit 2007 üblicherweise?",
-      "antworten": [
-        ".pptx",
-        ".docx",
-        ".xlsx",
-        ".pdfx"
-      ],
-      "erklaerung": "Das „x“ steht für das XML-basierte Dateiformat von Office.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Office%20Open%20XML",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0024",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Mit welchem Programm öffnet man typischerweise eine Datei mit der Endung „.docx“?",
-      "antworten": [
-        "Microsoft Word",
-        "Microsoft Excel",
-        "Adobe Photoshop",
-        "Windows Media Player"
-      ],
-      "erklaerung": "Excel-Tabellen enden auf „.xlsx“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Word",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
       "id": "buero-0070",
       "version": 1,
       "kategorie": "Büroalltag",
@@ -515,36 +957,155 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0020",
+      "id": "buero-0055",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Welches Seitenverhältnis haben alle Blätter der DIN-A-Reihe?",
+      "antworten": [
+        "1 : √2 (etwa 1 : 1,41)",
+        "3 : 4",
+        "1 : 2",
+        "2 : 3"
+      ],
+      "erklaerung": "Deshalb hat ein halbiertes Blatt wieder dieselben Proportionen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0081",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Welcher Göttinger Physiker beschrieb schon 1786 in einem Brief die Vorteile eines Papierformats im Seitenverhältnis 1 : √2?",
+      "antworten": [
+        "Georg Christoph Lichtenberg",
+        "Carl Friedrich Gauß",
+        "Walter Porstmann",
+        "Alexander von Humboldt"
+      ],
+      "erklaerung": "Lichtenberg erkannte, dass sich ein solches Blatt beim Halbieren in ähnliche Rechtecke teilt. Walter Porstmann entwarf daraus 1922 das DIN-Format.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0060",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wie viele Zeilen hat ein Tabellenblatt in aktuellen Excel-Versionen?",
+      "antworten": [
+        "1.048.576",
+        "65.536",
+        "1.000.000",
+        "16.384"
+      ],
+      "erklaerung": "Das ist 2 hoch 20. Excel 2003 hatte nur 65.536 Zeilen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0043",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Welche Firma entwickelte das PDF-Format?",
+      "frage": "Wer wählt in einem Betrieb den Betriebsrat?",
       "antworten": [
-        "Adobe",
-        "Microsoft",
-        "Apple",
-        "IBM"
+        "Die Beschäftigten des Betriebs",
+        "Die Geschäftsführung",
+        "Die Gewerkschaft",
+        "Die Industrie- und Handelskammer"
       ],
-      "erklaerung": "Adobe stellte es 1993 vor; seit 2008 ist es eine ISO-Norm.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
+      "erklaerung": "Der Betriebsrat vertritt die Interessen der Belegschaft gegenüber dem Arbeitgeber.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Betriebsrat",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0064",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Welcher Stuttgarter Feinmechaniker erfand 1896 den Hebelordner für Büros?",
+      "antworten": [
+        "Louis Leitz",
+        "Carl Zeiss",
+        "Friedrich Soennecken",
+        "Gottlieb Daimler"
+      ],
+      "erklaerung": "Der Leitz-Ordner mit Hebelmechanik wurde zum Inbegriff des Aktenordners. Friedrich Soennecken erfand dagegen 1886 den Locher.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Louis%20Leitz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0005",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Wofür steht „Cc“ bei einer E-Mail?",
+      "antworten": [
+        "Carbon Copy – eine Kopie an weitere Empfänger",
+        "Computer Center",
+        "Copy Confirmed",
+        "Chef checkt's"
+      ],
+      "erklaerung": "Der Name stammt vom Durchschlagpapier der Schreibmaschine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Carbon%20Copy",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "buero-0004",
+      "id": "buero-0018",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie weit liegen die beiden Löcher eines normalen Bürolochers auseinander?",
+      "stufe": "mittel",
+      "frage": "Was zeigt Excel an, wenn eine Spalte zu schmal für eine Zahl ist?",
       "antworten": [
-        "80 mm",
-        "60 mm",
-        "70 mm",
-        "100 mm"
+        "Lauter Rauten: #####",
+        "#NV",
+        "#WERT!",
+        "Die Zahl in winziger Schrift"
       ],
-      "erklaerung": "Der Abstand ist genormt – deshalb passen alle Ordner.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Locher",
+      "erklaerung": "Spalte breiter ziehen – schon ist die Zahl wieder da.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0002",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie groß ist ein DIN-A4-Blatt?",
+      "antworten": [
+        "210 × 297 mm",
+        "200 × 300 mm",
+        "216 × 279 mm",
+        "148 × 210 mm"
+      ],
+      "erklaerung": "148 × 210 mm ist DIN A5, 216 × 279 mm das US-Format Letter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0003",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Wie viele DIN-A4-Blätter ergeben zusammen ein DIN-A0-Blatt?",
+      "antworten": [
+        "16",
+        "4",
+        "8",
+        "32"
+      ],
+      "erklaerung": "Jede Stufe halbiert das Blatt: A0 hat genau einen Quadratmeter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -566,325 +1127,19 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0023",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Was regelt die Norm DIN 5008?",
-      "antworten": [
-        "Schreib- und Gestaltungsregeln für Briefe und Texte",
-        "Die Größe von Briefumschlägen",
-        "Die Ergonomie von Bürostühlen",
-        "Die Farben von Aktenordnern"
-      ],
-      "erklaerung": "Sie legt zum Beispiel fest, wie Datum, Anschrift und Telefonnummern geschrieben werden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=DIN%205008",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0019",
+      "id": "buero-0044",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „PDF“?",
+      "frage": "Wie lange darf eine Probezeit nach dem Gesetz höchstens dauern?",
       "antworten": [
-        "Portable Document Format",
-        "Printed Document File",
-        "Public Data Folder",
-        "Perfekt druckfertig"
+        "Sechs Monate",
+        "Drei Monate",
+        "Neun Monate",
+        "Zwölf Monate"
       ],
-      "erklaerung": "Das Format soll auf jedem Gerät gleich aussehen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0034",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welche Tastenkombination öffnet in vielen Programmen die Suche nach einem Wort?",
-      "antworten": [
-        "Strg + F",
-        "Strg + G",
-        "Strg + N",
-        "Strg + H"
-      ],
-      "erklaerung": "F steht für „Find“, englisch für finden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tastenkombination",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0032",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Welche Schriftart war in Microsoft Office von 2007 bis 2023 die Standardschrift?",
-      "antworten": [
-        "Calibri",
-        "Arial",
-        "Times New Roman",
-        "Aptos"
-      ],
-      "erklaerung": "Aptos löste Calibri ab; davor war Times New Roman Standard in Word.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Calibri%20%28Schriftart%29",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0049",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Welche Form muss eine Kündigung des Arbeitsverhältnisses in Deutschland haben?",
-      "antworten": [
-        "Schriftlich mit eigenhändiger Unterschrift",
-        "Mündlich genügt",
-        "Per E-Mail genügt",
-        "Per Textnachricht genügt"
-      ],
-      "erklaerung": "Eine Kündigung per E-Mail oder mündlich ist unwirksam.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCndigung%20%28Arbeitsrecht%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0016",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Welche Woche ist nach ISO 8601 die erste Kalenderwoche des Jahres?",
-      "antworten": [
-        "Die Woche mit dem ersten Donnerstag des Jahres",
-        "Die Woche mit dem 1. Januar",
-        "Die erste vollständige Woche",
-        "Die Woche mit dem ersten Montag"
-      ],
-      "erklaerung": "Deshalb kann der 1. Januar noch in KW 52 oder 53 des Vorjahres liegen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Woche%20ISO%208601",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0001",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welches Format hat ein normales Blatt Druckerpapier in Deutschland?",
-      "antworten": [
-        "DIN A4",
-        "DIN A3",
-        "DIN A5",
-        "Letter"
-      ],
-      "erklaerung": "Das US-Format Letter ist etwas breiter und kürzer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0066",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Woher stammt das Wort „Büro“ ursprünglich?",
-      "antworten": [
-        "Von einem groben Wolltuch, mit dem Schreibtische bedeckt wurden",
-        "Vom lateinischen „burus“ für Ordnung",
-        "Vom Namen eines französischen Verwalters",
-        "Vom germanischen Wort für „Burg“"
-      ],
-      "erklaerung": "Das französische „bure“ bezeichnete einen groben Wollstoff, später den damit bezogenen Schreibtisch und schließlich den Arbeitsraum.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%BCro",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0038",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welche Taste auf der Tastatur schreibt dauerhaft Großbuchstaben, bis man sie erneut drückt?",
-      "antworten": [
-        "Feststelltaste",
-        "Tabulatortaste",
-        "Einfügetaste",
-        "Escape-Taste"
-      ],
-      "erklaerung": "Auf Englisch heißt sie „Caps Lock“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Feststelltaste",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0037",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wie nennt man es, wenn Beschäftigte ihre Arbeit von zu Hause aus erledigen?",
-      "antworten": [
-        "Homeoffice",
-        "Jobsharing",
-        "Leiharbeit",
-        "Kurzarbeit"
-      ],
-      "erklaerung": "Der Begriff ist eingedeutscht, im Englischen sagt man „working from home“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Telearbeit",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0007",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welche Tastenkombination kopiert unter Windows einen markierten Text?",
-      "antworten": [
-        "Strg + C",
-        "Strg + V",
-        "Strg + X",
-        "Strg + K"
-      ],
-      "erklaerung": "Strg + V fügt ein, Strg + X schneidet aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kopieren%20und%20Einf%C3%BCgen",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0043",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wer wählt in einem Betrieb den Betriebsrat?",
-      "antworten": [
-        "Die Beschäftigten des Betriebs",
-        "Die Geschäftsführung",
-        "Die Gewerkschaft",
-        "Die Industrie- und Handelskammer"
-      ],
-      "erklaerung": "Der Betriebsrat vertritt die Interessen der Belegschaft gegenüber dem Arbeitgeber.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Betriebsrat",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0073",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Wer trägt in Deutschland die Beiträge zur gesetzlichen Unfallversicherung?",
-      "antworten": [
-        "Allein der Arbeitgeber",
-        "Arbeitgeber und Arbeitnehmer je zur Hälfte",
-        "Allein der Arbeitnehmer",
-        "Der Bund aus Steuermitteln"
-      ],
-      "erklaerung": "Die Beiträge zahlen die Unternehmen an die Berufsgenossenschaften. Die Unfallversicherung ist damit die einzige Sozialversicherung ohne Arbeitnehmeranteil.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gesetzliche%20Unfallversicherung%20%28Deutschland%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0018",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Was zeigt Excel an, wenn eine Spalte zu schmal für eine Zahl ist?",
-      "antworten": [
-        "Lauter Rauten: #####",
-        "#NV",
-        "#WERT!",
-        "Die Zahl in winziger Schrift"
-      ],
-      "erklaerung": "Spalte breiter ziehen – schon ist die Zahl wieder da.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0062",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Welche Tastenkombination öffnet unter Windows direkt den Task-Manager?",
-      "antworten": [
-        "Strg + Umschalt + Esc",
-        "Strg + Alt + Tab",
-        "Alt + Umschalt + T",
-        "Strg + Umschalt + M"
-      ],
-      "erklaerung": "Strg + Alt + Entf führt dagegen zu einem Auswahlbildschirm.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Task-Manager",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0002",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie groß ist ein DIN-A4-Blatt?",
-      "antworten": [
-        "210 × 297 mm",
-        "200 × 300 mm",
-        "216 × 279 mm",
-        "148 × 210 mm"
-      ],
-      "erklaerung": "148 × 210 mm ist DIN A5, 216 × 279 mm das US-Format Letter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0045",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Mit welchem Zeichen beginnt in Excel eine Formel?",
-      "antworten": [
-        "Mit einem Gleichheitszeichen",
-        "Mit einem Pluszeichen",
-        "Mit einem Doppelpunkt",
-        "Mit einem Anführungszeichen"
-      ],
-      "erklaerung": "Zum Beispiel „=A1+B1“ rechnet zwei Zellen zusammen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0029",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie groß ist ein Briefumschlag im Format DIN lang?",
-      "antworten": [
-        "110 × 220 mm",
-        "114 × 162 mm",
-        "162 × 229 mm",
-        "125 × 176 mm"
-      ],
-      "erklaerung": "In ihn passt ein zweimal gefaltetes DIN-A4-Blatt; 114 × 162 mm ist C6.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Briefumschlag%20DIN%20lang",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0048",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Was bedeutet „z. Hd.“ in einer Briefanschrift?",
-      "antworten": [
-        "Zu Händen",
-        "Zur Handlung",
-        "Zum Handelsregister",
-        "Zahlbar sofort"
-      ],
-      "erklaerung": "Es nennt die Person in einer Firma, die den Brief erhalten soll.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zu%20H%C3%A4nden",
+      "erklaerung": "In der Probezeit gilt laut Gesetz eine verkürzte Kündigungsfrist von zwei Wochen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Probezeit",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -906,20 +1161,20 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0074",
+      "id": "buero-0028",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "In welchem Jahr gab es mit dem Betriebsrätegesetz erstmals gesetzlich vorgeschriebene Betriebsräte im ganzen Deutschen Reich?",
+      "stufe": "mittel",
+      "frage": "Mit welcher Tastenkombination wechselt man unter Windows zwischen offenen Fenstern?",
       "antworten": [
-        "1920",
-        "1891",
-        "1933",
-        "1952"
+        "Alt + Tab",
+        "Strg + W",
+        "Alt + F4",
+        "Strg + Z"
       ],
-      "erklaerung": "Das Gesetz trat 1920 in der Weimarer Republik in Kraft. 1952 folgte das erste Betriebsverfassungsgesetz der Bundesrepublik.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Betriebsr%C3%A4tegesetz",
-      "erstellt": "2026-10-24",
+      "erklaerung": "Alt + F4 schließt das Fenster, Strg + Z macht rückgängig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alt%2BTab",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -940,359 +1195,87 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0063",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Die Erfinderin des Korrekturfluids „Liquid Paper“, Bette Nesmith Graham, war die Mutter welches Musikers?",
-      "antworten": [
-        "Michael Nesmith (The Monkees)",
-        "Mick Jagger (The Rolling Stones)",
-        "Ringo Starr (The Beatles)",
-        "Brian Wilson (The Beach Boys)"
-      ],
-      "erklaerung": "Die Sekretärin mischte das Mittel in den 1950er-Jahren in ihrer Küche an. Ihr Sohn Michael war Gitarrist der Band The Monkees.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Liquid%20Paper",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0056",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie viele Stunden Ruhezeit müssen laut Arbeitszeitgesetz mindestens zwischen zwei Arbeitstagen liegen?",
-      "antworten": [
-        "Elf Stunden",
-        "Acht Stunden",
-        "Neun Stunden",
-        "Zwölf Stunden"
-      ],
-      "erklaerung": "Es gibt Ausnahmen, etwa im Krankenhaus oder Gastgewerbe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0069",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Wie hieß die erste Tabellenkalkulation für Personalcomputer (1979)?",
-      "antworten": [
-        "VisiCalc",
-        "Lotus 1-2-3",
-        "Multiplan",
-        "SuperCalc"
-      ],
-      "erklaerung": "Dan Bricklin und Bob Frankston entwickelten VisiCalc für den Apple II. Es gilt als Programm, das Computer für Büros attraktiv machte.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=VisiCalc",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0021",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welche Tastenkombination speichert in den meisten Programmen das Dokument?",
-      "antworten": [
-        "Strg + S",
-        "Strg + P",
-        "Strg + A",
-        "Strg + D"
-      ],
-      "erklaerung": "Strg + P druckt, Strg + A markiert alles.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tastenkombination",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0031",
+      "id": "buero-0045",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Was bedeutet „i. V.“ vor einer Unterschrift?",
+      "frage": "Mit welchem Zeichen beginnt in Excel eine Formel?",
       "antworten": [
-        "In Vertretung",
-        "Im Vorstand",
-        "In Vollmacht des Inhabers",
-        "Inhalt vertraulich"
+        "Mit einem Gleichheitszeichen",
+        "Mit einem Pluszeichen",
+        "Mit einem Doppelpunkt",
+        "Mit einem Anführungszeichen"
       ],
-      "erklaerung": "Mit „i. V.“ zeichnet, wer erweiterte Vollmacht hat – mehr als bei „i. A.“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=in%20Vertretung",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0036",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Womit verbindet man mehrere Blätter mit kleinen Metallklammern?",
-      "antworten": [
-        "Mit einem Hefter",
-        "Mit einem Locher",
-        "Mit einem Falzbein",
-        "Mit einem Stempelkissen"
-      ],
-      "erklaerung": "Der Hefter wird auch Tacker genannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Heftger%C3%A4t",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0046",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Mit welcher Tastenkombination sperrt man unter Windows schnell den Bildschirm?",
-      "antworten": [
-        "Windows-Taste + L",
-        "Windows-Taste + D",
-        "Windows-Taste + E",
-        "Windows-Taste + S"
-      ],
-      "erklaerung": "L steht für „Lock“. So bleibt der Rechner beim Kaffeeholen geschützt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Windows-Taste",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0017",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Wie heißt das Tabellenkalkulationsprogramm von Microsoft?",
-      "antworten": [
-        "Excel",
-        "Word",
-        "Outlook",
-        "PowerPoint"
-      ],
-      "erklaerung": "Die erste Version erschien 1985 – für den Macintosh.",
+      "erklaerung": "Zum Beispiel „=A1+B1“ rechnet zwei Zellen zusammen.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Excel",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0020",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "mittel",
+      "frage": "Welche Firma entwickelte das PDF-Format?",
+      "antworten": [
+        "Adobe",
+        "Microsoft",
+        "Apple",
+        "IBM"
+      ],
+      "erklaerung": "Adobe stellte es 1993 vor; seit 2008 ist es eine ISO-Norm.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "buero-0026",
+      "id": "buero-0066",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wer gilt als Erfinder der QWERTY-Tastaturanordnung für Schreibmaschinen?",
+      "stufe": "ingomania",
+      "frage": "Woher stammt das Wort „Büro“ ursprünglich?",
       "antworten": [
-        "Christopher Latham Sholes",
-        "Thomas Edison",
-        "Remington",
-        "Peter Mitterhofer"
+        "Von einem groben Wolltuch, mit dem Schreibtische bedeckt wurden",
+        "Vom lateinischen „burus“ für Ordnung",
+        "Vom Namen eines französischen Verwalters",
+        "Vom germanischen Wort für „Burg“"
       ],
-      "erklaerung": "Er entwickelte sie in den 1870er-Jahren; die Firma Remington baute die Maschine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Christopher%20Latham%20Sholes",
-      "erstellt": "2026-10-16",
+      "erklaerung": "Das französische „bure“ bezeichnete einen groben Wollstoff, später den damit bezogenen Schreibtisch und schließlich den Arbeitsraum.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%BCro",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "buero-0040",
+      "id": "buero-0007",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "leicht",
-      "frage": "Wie nennt man das Zeichen „@“ in einer E-Mail-Adresse umgangssprachlich?",
+      "frage": "Welche Tastenkombination kopiert unter Windows einen markierten Text?",
       "antworten": [
-        "Klammeraffe",
-        "Schrägstrich",
-        "Bindestrich",
-        "Gänsefüßchen"
+        "Strg + C",
+        "Strg + V",
+        "Strg + X",
+        "Strg + K"
       ],
-      "erklaerung": "Gesprochen wird es meist „at“; es trennt Benutzername und Domain.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=At-Zeichen",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0025",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie heißt die in Deutschland übliche Tastaturbelegung nach den ersten Buchstaben oben links?",
-      "antworten": [
-        "QWERTZ",
-        "QWERTY",
-        "AZERTY",
-        "ABCDEF"
-      ],
-      "erklaerung": "Z und Y sind vertauscht, weil das Z im Deutschen viel häufiger ist; AZERTY gilt in Frankreich.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=QWERTZ",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0022",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wofür steht „Re:“ im Betreff einer E-Mail?",
-      "antworten": [
-        "Für eine Antwort auf eine vorherige Nachricht",
-        "Für „Rechnung“",
-        "Für „Rückruf erbeten“",
-        "Für „Rundschreiben“"
-      ],
-      "erklaerung": "Es kommt vom lateinischen „in re“ – in der Sache – und wird als Antwort-Kennzeichen genutzt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Re%20%28E-Mail%29",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0065",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Welcher ungarische Journalist ließ sich 1938 den Kugelschreiber patentieren?",
-      "antworten": [
-        "László Bíró",
-        "Marcel Bich",
-        "Lothar von Faber",
-        "George Parker"
-      ],
-      "erklaerung": "Bíró entwickelte ihn mit seinem Bruder György; im Englischen heißt der Kugelschreiber bis heute „biro“. Marcel Bich machte ihn später mit „Bic“ zum Massenprodukt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=L%C3%A1szl%C3%B3%20B%C3%ADr%C3%B3",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0052",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Welche Funktionstaste öffnet in den meisten Programmen die Hilfe?",
-      "antworten": [
-        "F1",
-        "F5",
-        "F8",
-        "F12"
-      ],
-      "erklaerung": "F1 ist seit Jahrzehnten die Hilfe-Taste unter Windows.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Funktionstaste",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0013",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "mittel",
-      "frage": "Wie viele Stunden darf man in Deutschland höchstens am Tag arbeiten, wenn es später ausgeglichen wird?",
-      "antworten": [
-        "Zehn",
-        "Acht",
-        "Zwölf",
-        "Vierzehn"
-      ],
-      "erklaerung": "Regulär sind es acht Stunden; zehn sind erlaubt, wenn der Schnitt über sechs Monate bei acht bleibt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeitgesetz",
+      "erklaerung": "Strg + V fügt ein, Strg + X schneidet aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kopieren%20und%20Einf%C3%BCgen",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "buero-0076",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Wer wählte 1971 das @-Zeichen, um Benutzernamen und Rechner in E-Mail-Adressen zu trennen?",
-      "antworten": [
-        "Ray Tomlinson",
-        "Vint Cerf",
-        "Tim Berners-Lee",
-        "Douglas Engelbart"
-      ],
-      "erklaerung": "Tomlinson verschickte die erste Netzwerk-E-Mail zwischen zwei Rechnern am ARPANET und suchte ein Zeichen, das in Namen nicht vorkam.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ray%20Tomlinson",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0061",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurden in Deutschland die fünfstelligen Postleitzahlen eingeführt?",
-      "antworten": [
-        "1993",
-        "1968",
-        "1975",
-        "2001"
-      ],
-      "erklaerung": "Mit der Wiedervereinigung musste das Postleitsystem vereinheitlicht werden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Postleitzahl%20%28Deutschland%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0014",
+      "id": "buero-0051",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "mittel",
-      "frage": "Welche Firma brachte die Post-it-Haftnotizen auf den Markt?",
+      "frage": "Welche Versicherung gehört NICHT zur gesetzlichen Sozialversicherung in Deutschland?",
       "antworten": [
-        "3M",
-        "Tesa",
-        "Pelikan",
-        "Staples"
+        "Berufsunfähigkeitsversicherung",
+        "Rentenversicherung",
+        "Krankenversicherung",
+        "Arbeitslosenversicherung"
       ],
-      "erklaerung": "Der Klebstoff war eigentlich ein Fehlschlag: Er hielt zu schwach.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Post-it",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0072",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "ingomania",
-      "frage": "Welcher Zeugnissatz entspricht im Arbeitszeugnis der Note „sehr gut“?",
-      "antworten": [
-        "„stets zu unserer vollsten Zufriedenheit“",
-        "„zu unserer vollen Zufriedenheit“",
-        "„zu unserer Zufriedenheit“",
-        "„im Großen und Ganzen zufrieden“"
-      ],
-      "erklaerung": "Zeugnissprache ist ein Code: „stets zur vollen Zufriedenheit“ wäre nur eine 2, „zur vollen Zufriedenheit“ eine 3.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Arbeitszeugnis",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0059",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Wie lange zahlt der Arbeitgeber bei Krankheit in der Regel das Gehalt weiter?",
-      "antworten": [
-        "Bis zu sechs Wochen",
-        "Bis zu zwei Wochen",
-        "Bis zu drei Monaten",
-        "Bis zu einem Jahr"
-      ],
-      "erklaerung": "Danach springt die Krankenkasse mit dem Krankengeld ein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Entgeltfortzahlung",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "buero-0033",
-      "version": 1,
-      "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Welche Tastenkombination macht unter Windows den letzten Schritt rückgängig?",
-      "antworten": [
-        "Strg + Z",
-        "Strg + Y",
-        "Strg + R",
-        "Strg + U"
-      ],
-      "erklaerung": "Strg + Z ist der Klassiker gegen Tippfehler und versehentliches Löschen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tastenkombination",
+      "erklaerung": "Die Berufsunfähigkeitsversicherung ist eine private Vorsorge. Gesetzlich sind außerdem Pflege- und Unfallversicherung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sozialversicherung%20%28Deutschland%29",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1314,53 +1297,87 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0009",
+      "id": "buero-0016",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "leicht",
-      "frage": "Was bedeutet „i. A.“ vor einer Unterschrift?",
+      "stufe": "schwer",
+      "frage": "Welche Woche ist nach ISO 8601 die erste Kalenderwoche des Jahres?",
       "antworten": [
-        "Im Auftrag",
-        "In Vertretung",
-        "Im Anhang",
-        "In Abwesenheit"
+        "Die Woche mit dem ersten Donnerstag des Jahres",
+        "Die Woche mit dem 1. Januar",
+        "Die erste vollständige Woche",
+        "Die Woche mit dem ersten Montag"
       ],
-      "erklaerung": "„i. V.“ steht für in Vertretung und bedeutet mehr Vollmacht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Im%20Auftrag",
+      "erklaerung": "Deshalb kann der 1. Januar noch in KW 52 oder 53 des Vorjahres liegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Woche%20ISO%208601",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "buero-0075",
+      "id": "buero-0069",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "ingomania",
-      "frage": "In welchem Unternehmen wurde 1967 die Gleitzeit in Deutschland erstmals im großen Stil eingeführt?",
+      "frage": "Wie hieß die erste Tabellenkalkulation für Personalcomputer (1979)?",
       "antworten": [
-        "Messerschmitt-Bölkow-Blohm",
-        "Siemens",
-        "Volkswagen",
-        "Robert Bosch"
+        "VisiCalc",
+        "Lotus 1-2-3",
+        "Multiplan",
+        "SuperCalc"
       ],
-      "erklaerung": "Die Personalberaterin Christel Kämmerer entwickelte das Modell für MBB in Ottobrunn bei München, um Verkehrsspitzen zu entzerren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gleitzeit",
+      "erklaerung": "Dan Bricklin und Bob Frankston entwickelten VisiCalc für den Apple II. Es gilt als Programm, das Computer für Büros attraktiv machte.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=VisiCalc",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "buero-0058",
+      "id": "buero-0077",
       "version": 1,
       "kategorie": "Büroalltag",
-      "stufe": "schwer",
-      "frage": "Nach welcher Wartezeit entsteht der volle gesetzliche Urlaubsanspruch erstmals?",
+      "stufe": "ingomania",
+      "frage": "Wer erfand das Kopierverfahren Xerographie, auf dem Büro-Fotokopierer beruhen?",
       "antworten": [
-        "Nach sechs Monaten",
-        "Nach drei Monaten",
-        "Nach einem Jahr",
-        "Sofort am ersten Tag"
+        "Chester Carlson",
+        "Edwin Land",
+        "George Eastman",
+        "Chester Greenwood"
       ],
-      "erklaerung": "Vorher gibt es nur Teilurlaub, für jeden vollen Monat ein Zwölftel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bundesurlaubsgesetz",
+      "erklaerung": "Der Patentanwalt Chester Carlson fertigte 1938 die erste Xerokopie an. Erst 1959 brachte Xerox den Büro-Kopierer 914 auf den Markt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Xerographie",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0033",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welche Tastenkombination macht unter Windows den letzten Schritt rückgängig?",
+      "antworten": [
+        "Strg + Z",
+        "Strg + Y",
+        "Strg + R",
+        "Strg + U"
+      ],
+      "erklaerung": "Strg + Z ist der Klassiker gegen Tippfehler und versehentliches Löschen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tastenkombination",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0068",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "Wie hieß die animierte Büroklammer, die in deutschen Office-Versionen ab 1997 als Assistent Hilfe anbot?",
+      "antworten": [
+        "Karl Klammer",
+        "Paul Papier",
+        "Hugo Hefter",
+        "Otto Ordner"
+      ],
+      "erklaerung": "Im Original heißt die Figur „Clippit“, genannt „Clippy“. Sie wurde in vielen Versionen als nervig empfunden und später abgeschafft.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl%20Klammer",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1382,20 +1399,71 @@
       "gueltigBis": null
     },
     {
-      "id": "buero-0081",
+      "id": "buero-0058",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Nach welcher Wartezeit entsteht der volle gesetzliche Urlaubsanspruch erstmals?",
+      "antworten": [
+        "Nach sechs Monaten",
+        "Nach drei Monaten",
+        "Nach einem Jahr",
+        "Sofort am ersten Tag"
+      ],
+      "erklaerung": "Vorher gibt es nur Teilurlaub, für jeden vollen Monat ein Zwölftel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bundesurlaubsgesetz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0071",
       "version": 1,
       "kategorie": "Büroalltag",
       "stufe": "ingomania",
-      "frage": "Welcher Göttinger Physiker beschrieb schon 1786 in einem Brief die Vorteile eines Papierformats im Seitenverhältnis 1 : √2?",
+      "frage": "Welche Normenreihe beschäftigt sich mit der Ergonomie der Mensch-System-Interaktion, etwa bei der Bildschirmarbeit?",
       "antworten": [
-        "Georg Christoph Lichtenberg",
-        "Carl Friedrich Gauß",
-        "Walter Porstmann",
-        "Alexander von Humboldt"
+        "DIN EN ISO 9241",
+        "DIN EN ISO 9001",
+        "DIN EN ISO 14001",
+        "DIN EN ISO 27001"
       ],
-      "erklaerung": "Lichtenberg erkannte, dass sich ein solches Blatt beim Halbieren in ähnliche Rechtecke teilt. Walter Porstmann entwarf daraus 1922 das DIN-Format.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erklaerung": "9001 betrifft Qualitätsmanagement, 14001 Umweltmanagement und 27001 Informationssicherheit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ISO%209241",
       "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0029",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "schwer",
+      "frage": "Wie groß ist ein Briefumschlag im Format DIN lang?",
+      "antworten": [
+        "110 × 220 mm",
+        "114 × 162 mm",
+        "162 × 229 mm",
+        "125 × 176 mm"
+      ],
+      "erklaerung": "In ihn passt ein zweimal gefaltetes DIN-A4-Blatt; 114 × 162 mm ist C6.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Briefumschlag%20DIN%20lang",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0001",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "leicht",
+      "frage": "Welches Format hat ein normales Blatt Druckerpapier in Deutschland?",
+      "antworten": [
+        "DIN A4",
+        "DIN A3",
+        "DIN A5",
+        "Letter"
+      ],
+      "erklaerung": "Das US-Format Letter ist etwas breiter und kürzer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papierformat",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     }
   ]
