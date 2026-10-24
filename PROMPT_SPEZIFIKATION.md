@@ -358,7 +358,7 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 
 ## 24. Quiz-Modus
 
-**Einrichten (Master):** Kategorien, Schwierigkeit (leicht/mittel/schwer, nach gemessener
+**Einrichten (Master):** Kategorien, Schwierigkeit (alle Stufen der Fragendatenbank, nach gemessener
 Stufe), Fragen pro Spiel, Antwortzeit, Wertung, bei „Countdown“ dessen Länge, „Ich spiele
 mit“. Angezeigt wird „x neue von y passenden Fragen“. Die Einstellungen gehören zum Profil.
 
@@ -431,9 +431,11 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   gespielt, dann Zufall. Unter gleich neuen Fragen wechseln die Kategorien ab. Reichen die
   neuen Fragen nicht, kommen bekannte erneut (älteste zuerst) mit dem Hinweis, neue anzufordern.
 - **Schwierigkeit lernt mit:** Quote = (richtig + 2·Startwert) / (Antworten + 2) mit Startwert
-  leicht 0,8 / mittel 0,55 / schwer 0,3; ≥ 0,7 leicht, ≥ 0,4 mittel, sonst schwer. Brauchten
-  die Richtigen im Schnitt mehr als 60 % der Zeit, eine Stufe schwerer. Ab 6 Antworten gilt
-  die gemessene Stufe.
+  je Stufe aus der Fragendatenbank („startwert“, z. B. leicht 0,8 / mittel 0,55 / schwer 0,3 /
+  Ingomania 0,12); die Messung vergibt die höchste Stufe, deren „gemessenAb“ erreicht ist (leicht
+  0,7, mittel 0,4, schwer 0,2); Stufen mit „nurAutor“ vergibt sie nicht an Fragen anderer Stufen.
+  Brauchten die Richtigen im Schnitt mehr als 60 % der Zeit, eine Stufe schwerer. Ab 6 Antworten
+  gilt die gemessene Stufe.
 - **Statistik teilen** (`.buzzstats`, JSON) – zur Auswertung durch Claude.
 
 ## 26. App-Versionen abgleichen
@@ -785,4 +787,34 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   47 s). So wartet keine Frage und keine Bereit-Abfrage auf ihn; kommt er zurück, gilt das oben
   Gesagte. Läuft gerade eine Datei von oder zu ihm (Update, Diagnose), wartet der Spielleiter eine
   weitere Frist ab.
+
+## 54. Stufen und Kategorien liegen in der Fragendatenbank
+
+- **Stufen** stehen in `quiz/index.json` unter „stufen“ (Reihenfolge = leicht bis schwer):
+  `schluessel`, `name`, `startwert`, `gemessenAb`, `nurAutor`, `vorgewaehlt`. Die App liest sie beim
+  Start aus dem eingebauten Index; „Fragen aktualisieren“ lädt den neuesten Index und merkt ihn
+  sich (`quiz-index.json`), der geladene Index gilt vor dem eingebauten. Eine neue Stufe erscheint
+  so in der Auswahl, in der Statistik und in den Nachrichten, ohne dass der Code geändert wird.
+- Ohne Index (oder ohne „stufen“) gelten eingebaute Standardstufen. Eine Frage mit unbekannter
+  Stufe wird übersprungen und im Protokoll gemeldet.
+- **Vierte Stufe „Ingomania“** (Wunsch vom 24.10.2026): die schwerste Stufe, `vorgewaehlt: false`
+  (der Spielleiter wählt sie bewusst dazu) und `nurAutor: true`. Je Kategorie 20 Fragen.
+- **Kategorien** sind die Pakete der Datenbank: jede Datei, die der Index listet, ist eine
+  Kategorie (Titel = Kategorie der Fragen). Ein neues Paket im Index erscheint ohne Codeänderung.
+- **Ältere Apps:** Nachrichten tragen die Stufe weiter als EASY/MEDIUM/HARD (unbekannte Stufen als
+  HARD) plus die neuen Felder `lk` (Schlüssel) und `ll` (Beschriftung); neue Apps bauen unbekannte
+  Stufen daraus nach.
+- Die Paketprüfung (`QuestionPackFilesTest`) verlangt: jede Stufe des Index ist in jeder Kategorie
+  vertreten, jede Frage nennt eine Stufe des Index.
+
+## 55. Spielleiter-Ansicht während des Spiels
+
+- **Quizfrage läuft:** Der Spielleiter sieht dieselbe Ansicht wie die Spieler: Kopfzeile „FRAGE n / m ·
+  Kategorie · Stufe“, die große Frage mit den vier Antwortfeldern (spielt er mit, tippt er hier;
+  sonst sieht er die Karte mit der markierten Lösung und dem Zeitbalken). Der Titel der
+  Spielleiter-Seite entfällt in dieser Zeit. Darunter nur Zusätzliches: eine Wischzeile, wer schon
+  geantwortet hat, und „Jetzt auflösen“ / „Frage überspringen“.
+- **Auflösung:** gleiche Kopfzeile; spielt der Spielleiter mit, auch sein Ergebnis-Banner
+  („Richtig! +1“). Die Verteilung je Antwort, Challenge und Entscheidungen bleiben.
+- **Buzzer:** Spielt der Spielleiter mit, bekommt sein Buzzer die Hälfte des Bildschirms.
 ===== ENDE SPEZIFIKATION.md =====

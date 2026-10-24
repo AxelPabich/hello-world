@@ -685,15 +685,22 @@ fun MasterScreen(vm: BuzzerViewModel) {
             }
             val choosing = vm.choosingKind || snapshot.kind == null
             Column(Modifier.padding(horizontal = 16.dp)) {
-                Row(Modifier.padding(top = 14.dp, bottom = 8.dp), verticalAlignment = Alignment.Top) {
+                // Läuft eine Quizfrage, sieht der Spielleiter dieselbe Karte wie die Spieler – ohne den Titel darüber.
+                val questionRunning = !choosing && snapshot.kind == GameKind.QUIZ &&
+                    (snapshot.phase == Phase.QUIZ_QUESTION || snapshot.phase == Phase.QUIZ_ANSWERS)
+                Row(Modifier.padding(top = if (questionRunning) 6.dp else 14.dp, bottom = if (questionRunning) 2.dp else 8.dp), verticalAlignment = Alignment.Top) {
                     Column(Modifier.weight(1f)) {
-                        val kindLabel = if (choosing) "Spiel leiten" else snapshot.kind?.label ?: ""
-                        Kicker(
-                            kindLabel + (if (snapshot.kind == GameKind.BUZZER && !choosing) " · Runde ${snapshot.round}" else "") +
-                                (if (snapshot.kind == GameKind.QUIZ && vm.testGame && !choosing) " · TESTSPIEL" else "") +
-                                if (snapshot.profileName.isNotEmpty()) " · ${snapshot.profileName}" else "",
-                        )
-                        BigTitle(if (choosing) "Spielart wählen" else phaseText(snapshot), color = theme.text, size = 26.sp)
+                        if (!questionRunning) {
+                            val kindLabel = if (choosing) "Spiel leiten" else snapshot.kind?.label ?: ""
+                            Kicker(
+                                kindLabel + (if (snapshot.kind == GameKind.BUZZER && !choosing) " · Runde ${snapshot.round}" else "") +
+                                    (if (snapshot.kind == GameKind.QUIZ && vm.testGame && !choosing) " · TESTSPIEL" else "") +
+                                    if (snapshot.profileName.isNotEmpty()) " · ${snapshot.profileName}" else "",
+                            )
+                            BigTitle(if (choosing) "Spielart wählen" else phaseText(snapshot), color = theme.text, size = 26.sp)
+                        } else if (vm.testGame) {
+                            Kicker("TESTSPIEL")
+                        }
                     }
                     if (!choosing) {
                         // Spielverlauf für alle: Hase und Schildkröte als Wettrennen.
@@ -1024,7 +1031,8 @@ private fun ColumnScope.BuzzerMasterBody(vm: BuzzerViewModel, snapshot: MasterEn
     val theme = LocalBuzzerTheme.current
     val settings = snapshot.settings
     val pause = snapshot.phase == Phase.READY || snapshot.phase == Phase.ROUND_OVER
-    Column(Modifier.weight(2f).padding(horizontal = 16.dp)) {
+    // Spielt der Master mit, bekommt sein Buzzer die Hälfte des Bildschirms (wie bei den Spielern).
+    Column(Modifier.weight(if (settings.masterPlays) 1f else 2f).padding(horizontal = 16.dp)) {
         if (snapshot.phase == Phase.READY) {
             Text(
                 limitsText(PlayerEngine.Rules(reactionLimitMs = settings.reactionLimitMs, answerLimitMs = settings.answerLimit)),

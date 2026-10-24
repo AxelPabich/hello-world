@@ -3,6 +3,7 @@ package de.pabich.buzzer.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -338,55 +339,85 @@ private fun Stepper(label: String, value: String, modifier: Modifier, onMinus: (
 fun QuizMasterRunning(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz: MasterEngine.QuizSnapshot, modifier: Modifier = Modifier) {
     val theme = LocalBuzzerTheme.current
     val local = vm.playerView?.quiz?.takeIf { snapshot.settings.masterPlays && it.number == quiz.number }
-    Column(modifier) {
-        Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            QuizHeader(quiz.number, quiz.total, quiz.question.category, quiz.question.level.label, Modifier.fillMaxWidth().padding(top = 10.dp))
-            if (local == null) {
-                // Der Master spielt nicht mit: Frage und Lösung nur für ihn.
-                AnswerCountdown(quiz.deadline, quiz.durationMs, theme.accent2, Modifier.fillMaxWidth())
-                Text(quiz.question.text, color = theme.text, fontSize = 19.sp, fontWeight = FontWeight.Bold)
-                for ((i, a) in quiz.question.answers.withIndex()) {
-                    val correct = i == quiz.question.correctIndex
-                    Text(
-                        (if (correct) "✓ " else "· ") + a,
-                        color = if (correct) Color(0xFF7CFF8A) else theme.muted,
-                        fontSize = 14.sp,
-                        fontWeight = if (correct) FontWeight.Bold else FontWeight.Normal,
-                    )
-                }
-                Text("Lösung nur für dich sichtbar", color = theme.muted, fontSize = 12.sp)
-            }
-            val answered = quiz.rows.count { it.answered }
-            Text("ANTWORTEN · $answered VON ${quiz.rows.size}", color = theme.muted, fontSize = 13.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
-            Column(Modifier.clip(RoundedCornerShape(14.dp)).background(theme.panel)) {
-                for (row in quiz.rows) {
-                    Row(Modifier.fillMaxWidth().padding(horizontal = 14.dp, vertical = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Box(
-                            Modifier
-                                .size(22.dp)
-                                .then(if (row.answered) Modifier.background(theme.accent2, CircleShape) else Modifier.border(2.dp, theme.line, CircleShape)),
-                            contentAlignment = Alignment.Center,
-                        ) { if (row.answered) Text("✓", color = theme.ground, fontSize = 13.sp, fontWeight = FontWeight.Bold) }
-                        Spacer(Modifier.width(10.dp))
-                        Text(de.pabich.buzzer.core.withAvatar(row.avatar, row.name), color = if (row.answered) theme.text else theme.muted, fontSize = 16.sp, fontWeight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
-                        Text(row.elapsedMs?.let { seconds(it) } ?: "überlegt …", color = theme.muted, fontSize = 14.sp)
-                    }
-                }
-            }
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                GhostButton("Jetzt auflösen", { vm.revealNow() }, Modifier.weight(1f))
-                GhostButton("Frage überspringen", { vm.skipQuestion() }, Modifier.weight(1f))
-            }
-            Spacer(Modifier.height(6.dp))
-        }
+    // Wie bei den Spielern: Kopfzeile, große Frage mit den vier Antwortfeldern. Darunter nur, was der Spielleiter zusätzlich braucht.
+    Column(modifier.padding(horizontal = 16.dp)) {
+        QuizHeader(quiz.number, quiz.total, quiz.question.category, quiz.question.level.label, Modifier.fillMaxWidth().padding(top = 4.dp))
         if (local != null) {
             QuizCard(
                 quiz = local,
                 onTap = { pos, time -> vm.tapAnswer(pos, time) },
-                compact = true,
-                title = "DEIN TIPP",
-                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                modifier = Modifier.fillMaxWidth().weight(1f).padding(top = 8.dp),
             )
+        } else {
+            // Der Master spielt nicht mit: dieselbe Karte, aber mit der markierten Lösung – nur für ihn.
+            AnswerCountdown(quiz.deadline, quiz.durationMs, theme.accent2, Modifier.fillMaxWidth().padding(top = 8.dp))
+            QuizCard(
+                quiz = remember(quiz.number) { solutionView(quiz) },
+                onTap = { _, _ -> },
+                modifier = Modifier.fillMaxWidth().weight(1f).padding(top = 8.dp),
+            )
+            Text("Lösung nur für dich sichtbar", color = theme.muted, fontSize = 12.sp, modifier = Modifier.padding(top = 4.dp))
+        }
+        AnswerTracker(quiz, Modifier.padding(top = 8.dp))
+        Row(Modifier.padding(vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+            GhostButton("Jetzt auflösen", { vm.revealNow() }, Modifier.weight(1f))
+            GhostButton("Frage überspringen", { vm.skipQuestion() }, Modifier.weight(1f))
+        }
+    }
+}
+
+/** Die Frage so, wie die Spieler sie sehen – mit der richtigen Antwort markiert (für einen Spielleiter, der nicht mitspielt). */
+private fun solutionView(quiz: MasterEngine.QuizSnapshot): de.pabich.buzzer.core.PlayerEngine.QuizView {
+    val q = quiz.question
+    return de.pabich.buzzer.core.PlayerEngine.QuizView(
+        number = quiz.number, total = quiz.total, category = q.category, level = q.level, text = q.text, answers = q.answers,
+        questionAt = 0, answersAt = 0, durationMs = quiz.durationMs, deadlineMs = quiz.durationMs,
+        stage = de.pabich.buzzer.core.PlayerEngine.QuizStage.REVEALED,
+        result = de.pabich.buzzer.core.Message.QuizResult(
+            number = quiz.number, correctPosition = q.correctIndex, chosenPosition = -1, outcome = QuizOutcome.NONE,
+            gained = "", score = "", explanation = "", source = "", corrected = false,
+        ),
+    )
+}
+
+/** Wer schon geantwortet hat – eine Zeile zum Wischen, damit die Antwortfelder den Platz behalten. */
+@Composable
+private fun AnswerTracker(quiz: MasterEngine.QuizSnapshot, modifier: Modifier = Modifier) {
+    val theme = LocalBuzzerTheme.current
+    val answered = quiz.rows.count { it.answered }
+    Column(modifier.fillMaxWidth()) {
+        Text("ANTWORTEN · $answered VON ${quiz.rows.size}", color = theme.muted, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+        Row(
+            Modifier.padding(top = 4.dp).horizontalScroll(rememberScrollState()),
+            horizontalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            for (row in quiz.rows) {
+                Row(
+                    Modifier.clip(RoundedCornerShape(10.dp)).background(theme.panel).padding(horizontal = 10.dp, vertical = 6.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Box(
+                        Modifier
+                            .size(18.dp)
+                            .then(if (row.answered) Modifier.background(theme.accent2, CircleShape) else Modifier.border(2.dp, theme.line, CircleShape)),
+                        contentAlignment = Alignment.Center,
+                    ) { if (row.answered) Text("✓", color = theme.ground, fontSize = 11.sp, fontWeight = FontWeight.Bold) }
+                    Spacer(Modifier.width(6.dp))
+                    Text(
+                        de.pabich.buzzer.core.withAvatar(row.avatar, row.name),
+                        color = if (row.answered) theme.text else theme.muted,
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        maxLines = 1,
+                    )
+                    Text(
+                        row.elapsedMs?.let { seconds(it) } ?: " …",
+                        color = theme.muted,
+                        fontSize = 12.sp,
+                        modifier = Modifier.padding(start = 6.dp),
+                    )
+                }
+            }
         }
     }
 }
@@ -402,7 +433,11 @@ fun QuizMasterReveal(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz:
     val q = quiz.question
     Column(modifier) {
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("FRAGE ${quiz.number} / ${quiz.total} · AUFLÖSUNG", color = theme.accent, fontFamily = theme.display, fontSize = 20.sp, modifier = Modifier.padding(top = 10.dp))
+            // Wie bei den Spielern: Kopfzeile und – wenn der Spielleiter mitspielt – sein Ergebnis als Banner.
+            QuizHeader(quiz.number, quiz.total, q.category, q.level.label, Modifier.fillMaxWidth().padding(top = 10.dp))
+            vm.playerView?.quiz?.takeIf { snapshot.settings.masterPlays && it.number == quiz.number }?.result?.let { r ->
+                QuizResultBanner(r, vm.soundOn, Modifier.fillMaxWidth())
+            }
             Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(theme.panel).padding(12.dp)) {
                 Text(q.text, color = theme.text, fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 Text(levelLine(vm, q.id, q.level), color = theme.muted, fontSize = 13.sp, modifier = Modifier.padding(top = 4.dp))

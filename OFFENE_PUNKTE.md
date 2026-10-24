@@ -455,6 +455,17 @@ Kategorien recherchieren.
 67. **Direkter Download-Link** (in Build 29): In „Über & Diagnose“ beim
     Update-Bereich „Direkter Download im Browser (buzzer.apk)“ plus kopierbarer Link – Ausweg, wenn
     die Installation aus der App hängt (Datei dann über „Eigene Dateien“ öffnen).
+82. **Neue Stufe „Ingomania“, Stufen und Kategorien aus der Fragendatenbank** (Wunsch vom
+    24.10.2026; umgesetzt, kommt mit dem nächsten Build): vierte, schwerste Stufe mit je 20 Fragen
+    pro Kategorie (200 Fragen; Pakete jetzt 84/84/84/84/84/84/82/82/82/82), nicht vorgewählt. Die
+    Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
+    eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
+    Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+83. **Spielleiter-Ansicht näher an der der Spieler** (Wunsch vom 24.10.2026; umgesetzt, kommt mit
+    dem nächsten Build): Während einer Quizfrage große Frage mit vier Antwortfeldern wie bei den
+    Spielern (Titel der Seite entfällt, Wischzeile „wer hat geantwortet“, Knöpfe darunter), in der
+    Auflösung gleiche Kopfzeile und Ergebnis-Banner, im Buzzer-Spiel der Buzzer des Masters auf
+    halber Höhe. Spezifikation Abschnitt 55. Noch am Gerät zu prüfen (Handy und Tablett).
 81. **Selbsttest vom 24.10.2026 (Axel Build 36, Tablett S7 und Peter noch Build 35)**
     (in Build 37): 21 von 22 – „Buzzer-Runde: alle buzzern“ schlug
     nur fehl, weil die Spieler zufällig gleichzeitig buzzerten (3 ms Abstand): Gleichstand, Sudden
