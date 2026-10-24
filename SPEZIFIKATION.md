@@ -830,4 +830,3 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Die Release-Notizen nennen den Rollback ausdrücklich. Vor der Einführung der Tags: Build 35 = `90456ce`,
   Build 36 = `ee3a1a9`, Build 37 = `743258e`.
 - Die Protokollversion bleibt bei einer Hauptversion gleich, damit Geräte mit älterem Build weiter mitspielen.
-
