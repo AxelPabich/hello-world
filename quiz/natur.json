@@ -1,142 +1,91 @@
 {
   "paket": "natur",
   "titel": "Bienchen & Blümchen",
-  "version": 1,
+  "version": 2,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler. Fauna und Flora: Tiere und Pflanzen.",
   "fragen": [
     {
-      "id": "natur-0032",
+      "id": "natur-0069",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Welche Heilpflanze mit weißen Blüten und gelber Mitte wird oft als Tee bei Magenbeschwerden getrunken?",
+      "stufe": "ingomania",
+      "frage": "Wie nennt man den Zustand scheinbar ohne Stoffwechsel, in den Bärtierchen bei Austrocknung fallen?",
       "antworten": [
-        "Die Kamille",
-        "Der Rittersporn",
-        "Die Primel",
-        "Die Margerite"
+        "Kryptobiose",
+        "Diapause",
+        "Torpor",
+        "Winterstarre"
       ],
-      "erklaerung": "Echte Kamille wirkt entzündungshemmend und krampflösend und ist eine der bekanntesten Heilpflanzen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Echte%20Kamille",
+      "erklaerung": "In der Kryptobiose überstehen Bärtierchen Austrocknung, Kälte und Strahlung. Bei Wasser kehren sie ins aktive Leben zurück.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%A4rtierchen%20Kryptobiose",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0007",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Wie heißt ein junges Pferd?",
-      "antworten": [
-        "Fohlen",
-        "Kitz",
-        "Welpe",
-        "Ferkel"
-      ],
-      "erklaerung": "Ein Fohlen ist ein Pferdejunges, bei Eseln und Zebras heißt es ebenso.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fohlen",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0060",
+      "id": "natur-0050",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "schwer",
-      "frage": "Wie viele Laufbeine (einschließlich der Scheren) hat ein Zehnfußkrebs wie der Hummer?",
+      "frage": "Welcher Giftstoff steckt in grünen Stellen und Keimen der Kartoffel?",
       "antworten": [
-        "Zehn",
-        "Acht",
-        "Sechs",
-        "Zwölf"
+        "Solanin",
+        "Capsaicin",
+        "Coffein",
+        "Nikotin"
       ],
-      "erklaerung": "Daher der Name „Zehnfüßer“ (Decapoda).",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehnfu%C3%9Fkrebse",
+      "erklaerung": "Solanin schützt die Nachtschattengewächse vor Fraßfeinden. Es bildet sich vermehrt bei Licht und Kälte und ist hitzebeständig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Solanin",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0008",
+      "id": "natur-0067",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Woher stammt der als Parfümgrundstoff geschätzte Ambra?",
+      "antworten": [
+        "Aus dem Darm von Pottwalen",
+        "Aus Drüsen von Moschusochsen",
+        "Aus Harz eines Baumes",
+        "Aus Drüsen der Zibetkatze"
+      ],
+      "erklaerung": "Ambra bildet sich bei Pottwalen im Darm um unverdauliche Tintenfischschnäbel. Sie wird ausgeschieden und treibt im Meer, wo sie reift.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ambra",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0081",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "leicht",
-      "frage": "Welche Pflanze „brennt“, wenn man sie mit bloßer Haut berührt?",
+      "frage": "Wie heißt das Jungtier des Frosches, das im Wasser lebt und Kiemen besitzt?",
       "antworten": [
-        "Die Brennnessel",
-        "Der Löwenzahn",
-        "Das Gänseblümchen",
-        "Der Klee"
+        "Kaulquappe",
+        "Raupe",
+        "Puppe",
+        "Made"
       ],
-      "erklaerung": "Die Brennnessel hat Brennhaare, die bei Berührung ein reizendes Sekret abgeben.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Brennnessel",
+      "erklaerung": "Aus dem Froschlaich schlüpfen Kaulquappen, die sich später zum Frosch entwickeln.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaulquappe",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0059",
+      "id": "natur-0052",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "schwer",
-      "frage": "Woraus wird Opium gewonnen?",
+      "frage": "Welche Wirkstoffe machen den Roten Fingerhut giftig und zugleich zur Arzneipflanze?",
       "antworten": [
-        "Aus dem Milchsaft unreifer Mohnkapseln",
-        "Aus den Blütenblättern des Mohns",
-        "Aus den reifen Mohnsamen",
-        "Aus der Wurzel des Mohns"
+        "Herzglykoside (Digitoxin)",
+        "Atropin",
+        "Colchicin",
+        "Coniin"
       ],
-      "erklaerung": "Der Schlafmohn wird an den unreifen Kapseln angeritzt, der getrocknete Milchsaft ist Rohopium. Die reifen Samen sind dagegen Backzutat.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlafmohn",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0035",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Wie wächst die Ananas?",
-      "antworten": [
-        "Auf einer niedrigen Bodenpflanze",
-        "An hohen Palmen",
-        "An Sträuchern wie Himbeeren",
-        "An Kletterranken"
-      ],
-      "erklaerung": "Die Ananas sitzt als Sammelfrucht auf einem kurzen Stängel in der Mitte einer bodennahen Rosette stachliger Blätter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ananas",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0015",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welches Tier ist das größte der Erde?",
-      "antworten": [
-        "Der Blauwal",
-        "Der Elefant",
-        "Der Weiße Hai",
-        "Der Pottwal"
-      ],
-      "erklaerung": "Der Blauwal wird bis zu 30 Meter lang und ist das größte bekannte Tier, das je gelebt hat.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blauwal",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0023",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Wie nennt man Tiere, die sowohl Pflanzen als auch Fleisch fressen?",
-      "antworten": [
-        "Allesfresser",
-        "Pflanzenfresser",
-        "Aasfresser",
-        "Filtrierer"
-      ],
-      "erklaerung": "Allesfresser (Omnivoren) wie Mensch, Schwein und Bär nutzen pflanzliche und tierische Nahrung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Allesfresser",
+      "erklaerung": "Die Herzglykoside der Digitalis-Arten stärken in genau dosierter Form das Herz. In der Pflanze sind sie hochgiftig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Roter%20Fingerhut",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -158,70 +107,36 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0030",
+      "id": "natur-0027",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "mittel",
-      "frage": "Welches Gas nehmen Pflanzen bei der Photosynthese auf?",
+      "frage": "Von welchem Wildtier stammt der Haushund ab?",
       "antworten": [
-        "Kohlenstoffdioxid",
-        "Stickstoff",
-        "Wasserstoff",
-        "Helium"
+        "Vom Wolf",
+        "Vom Fuchs",
+        "Vom Schakal",
+        "Vom Kojoten"
       ],
-      "erklaerung": "Aus Kohlenstoffdioxid und Wasser bilden Pflanzen mithilfe von Licht Traubenzucker und Sauerstoff.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Photosynthese",
+      "erklaerung": "Der Haushund wurde vor vielen tausend Jahren aus dem Wolf domestiziert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Haushund",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0069",
+      "id": "natur-0062",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "ingomania",
-      "frage": "Wie nennt man den Zustand scheinbar ohne Stoffwechsel, in den Bärtierchen bei Austrocknung fallen?",
+      "frage": "An welcher Körperstelle sitzt der Giftsporn des männlichen Schnabeltiers?",
       "antworten": [
-        "Kryptobiose",
-        "Diapause",
-        "Torpor",
-        "Winterstarre"
+        "An den Hinterbeinen",
+        "An den Vorderbeinen",
+        "Am Schwanzansatz",
+        "Am Schnabel"
       ],
-      "erklaerung": "In der Kryptobiose überstehen Bärtierchen Austrocknung, Kälte und Strahlung. Bei Wasser kehren sie ins aktive Leben zurück.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%A4rtierchen%20Kryptobiose",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0019",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Auf welchem Kontinent leben Kängurus in freier Wildbahn?",
-      "antworten": [
-        "In Australien",
-        "In Afrika",
-        "In Südamerika",
-        "In Asien"
-      ],
-      "erklaerung": "Kängurus sind Beuteltiere und kommen in Australien und auf einigen Nachbarinseln vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%A4ngurus",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0045",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Welcher Vogel legt bei seinem Zug zwischen Arktis und Antarktis die weiteste Strecke aller Zugvögel zurück?",
-      "antworten": [
-        "Die Küstenseeschwalbe",
-        "Der Weißstorch",
-        "Der Mauersegler",
-        "Der Kranich"
-      ],
-      "erklaerung": "Die Küstenseeschwalbe brütet in der Arktis und überwintert im Südpolarmeer. Pro Jahr kommen so Zehntausende Kilometer zusammen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCstenseeschwalbe",
+      "erklaerung": "Das Gift des Sporns kann bei Kämpfen unter Männchen stark schmerzen. Es zählt zu den seltenen Giften bei Säugetieren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schnabeltier",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -243,104 +158,70 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0005",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welches Tier wird als „König der Tiere“ bezeichnet?",
-      "antworten": [
-        "Der Löwe",
-        "Der Tiger",
-        "Der Bär",
-        "Der Adler"
-      ],
-      "erklaerung": "Der Löwe gilt wegen seiner Mähne und Stärke seit alters als König der Tiere.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=L%C3%B6we",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0038",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Welcher heimische Nadelbaum wirft im Herbst seine Nadeln ab?",
-      "antworten": [
-        "Die Lärche",
-        "Die Fichte",
-        "Die Tanne",
-        "Die Kiefer"
-      ],
-      "erklaerung": "Die Lärche ist ein sommergrüner Nadelbaum, dessen Nadeln sich im Herbst gelb färben und abfallen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=L%C3%A4rchen",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0009",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "In welches Tier verwandelt sich eine Raupe?",
-      "antworten": [
-        "In einen Schmetterling",
-        "In eine Libelle",
-        "In einen Käfer",
-        "In eine Spinne"
-      ],
-      "erklaerung": "Schmetterlinge durchlaufen eine vollständige Verwandlung: Ei, Raupe, Puppe, Falter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schmetterlinge",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0042",
+      "id": "natur-0059",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "schwer",
-      "frage": "Wie viele Halswirbel hat eine Giraffe?",
+      "frage": "Woraus wird Opium gewonnen?",
       "antworten": [
-        "Sieben",
-        "Zwölf",
-        "Neun",
-        "Vierzehn"
+        "Aus dem Milchsaft unreifer Mohnkapseln",
+        "Aus den Blütenblättern des Mohns",
+        "Aus den reifen Mohnsamen",
+        "Aus der Wurzel des Mohns"
       ],
-      "erklaerung": "Fast alle Säugetiere haben sieben Halswirbel, auch Giraffe und Mensch. Bei der Giraffe sind sie nur extrem gestreckt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Giraffe%20Halswirbel",
+      "erklaerung": "Der Schlafmohn wird an den unreifen Kapseln angeritzt, der getrocknete Milchsaft ist Rohopium. Die reifen Samen sind dagegen Backzutat.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlafmohn",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0018",
+      "id": "natur-0037",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Was ist die Hauptnahrung des Großen Pandas?",
+      "stufe": "mittel",
+      "frage": "Aus den Blüten welcher Pflanze wird das Gewürz Safran gewonnen?",
       "antworten": [
-        "Bambus",
-        "Eukalyptus",
-        "Gras",
-        "Beeren"
+        "Aus dem Krokus",
+        "Aus der Tulpe",
+        "Aus der Lilie",
+        "Aus der Narzisse"
       ],
-      "erklaerung": "Große Pandas fressen fast ausschließlich Bambus, bis zu 12 Kilogramm am Tag.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gro%C3%9Fer%20Panda",
+      "erklaerung": "Safran sind die Narben des Safran-Krokus; für ein Kilo braucht man Zehntausende Blüten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Safran",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0002",
+      "id": "natur-0080",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "In welcher Lebensgemeinschaft stehen Trüffel mit ihren Wirtsbäumen?",
+      "antworten": [
+        "Mykorrhiza",
+        "Knöllchensymbiose",
+        "Flechtensymbiose",
+        "Epiphytismus"
+      ],
+      "erklaerung": "Trüffel umhüllen Baumwurzeln mit Pilzgeflecht und tauschen Nährstoffe gegen Zucker. Die Fruchtkörper entwickeln sich unterirdisch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tr%C3%BCffel%20Mykorrhiza",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0012",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "leicht",
-      "frage": "Wie viele Beine hat ein Insekt?",
+      "frage": "Welche Farbe hat die Mitte eines Gänseblümchens?",
       "antworten": [
-        "Sechs",
-        "Vier",
-        "Acht",
-        "Zehn"
+        "Gelb",
+        "Rot",
+        "Weiß",
+        "Blau"
       ],
-      "erklaerung": "Alle Insekten haben drei Beinpaare, also sechs Beine, die am Brustabschnitt sitzen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Insekten",
+      "erklaerung": "Das Gänseblümchen hat weiße Zungenblüten rundherum und gelbe Röhrenblüten in der Mitte.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=G%C3%A4nsebl%C3%BCmchen",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -362,70 +243,70 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0039",
+      "id": "natur-0034",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "mittel",
-      "frage": "Von welchem Baum ernähren sich Koalas fast ausschließlich?",
+      "frage": "Aus der Rinde welchen Baumes wird Kork gewonnen?",
       "antworten": [
-        "Vom Eukalyptus",
-        "Vom Ahorn",
-        "Von der Palme",
-        "Vom Bambus"
+        "Der Korkeiche",
+        "Der Birke",
+        "Der Kiefer",
+        "Der Linde"
       ],
-      "erklaerung": "Koalas fressen die giftigen Eukalyptusblätter, die sie dank spezieller Verdauung vertragen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Koala",
+      "erklaerung": "Die Korkeiche wächst vor allem in Portugal und Spanien; ihre Rinde wird alle neun Jahre geschält.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Korkeiche",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0046",
+      "id": "natur-0066",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Wo liegt das Laichgebiet des Europäischen Aals?",
+      "stufe": "ingomania",
+      "frage": "Wie heißt die Mimikry, bei der mehrere wehrhafte Arten einander ähnlich sehen?",
       "antworten": [
-        "In der Sargassosee",
-        "In der Nordsee",
-        "Im Schwarzen Meer",
-        "Im Golf von Mexiko"
+        "Müllersche Mimikry",
+        "Batessche Mimikry",
+        "Peckhamsche Mimikry",
+        "Mertensche Mimikry"
       ],
-      "erklaerung": "Europäische Aale wandern zum Ablaichen quer über den Atlantik in die Sargassosee. Die Larven treiben anschließend mit dem Golfstrom zurück nach Europa.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Europ%C3%A4ischer%20Aal",
+      "erklaerung": "Bei der Müllerschen Mimikry teilen sich ähnlich gewarnte Arten die Lernkosten der Fressfeinde. Die Batessche Mimikry ahmt dagegen eine wehrhafte Art nach.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mimikry",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0056",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Warum sind Rhabarberblätter nicht essbar?",
-      "antworten": [
-        "Sie enthalten viel Oxalsäure",
-        "Sie enthalten Blausäure",
-        "Sie enthalten Solanin",
-        "Sie enthalten Nikotin"
-      ],
-      "erklaerung": "Gegessen werden nur die Stiele. Die Blätter enthalten besonders viel Oxalsäure, die in größeren Mengen schädlich ist.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rhabarber",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0021",
+      "id": "natur-0030",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "mittel",
-      "frage": "Welches Säugetier legt Eier?",
+      "frage": "Welches Gas nehmen Pflanzen bei der Photosynthese auf?",
       "antworten": [
-        "Das Schnabeltier",
-        "Das Faultier",
-        "Das Erdferkel",
-        "Das Stachelschwein"
+        "Kohlenstoffdioxid",
+        "Stickstoff",
+        "Wasserstoff",
+        "Helium"
       ],
-      "erklaerung": "Schnabeltier und Ameisenigel sind die eierlegenden Säugetiere (Kloakentiere), die Jungen werden aber gesäugt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schnabeltier",
+      "erklaerung": "Aus Kohlenstoffdioxid und Wasser bilden Pflanzen mithilfe von Licht Traubenzucker und Sauerstoff.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Photosynthese",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0019",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Auf welchem Kontinent leben Kängurus in freier Wildbahn?",
+      "antworten": [
+        "In Australien",
+        "In Afrika",
+        "In Südamerika",
+        "In Asien"
+      ],
+      "erklaerung": "Kängurus sind Beuteltiere und kommen in Australien und auf einigen Nachbarinseln vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%A4ngurus",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -447,19 +328,70 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0071",
+      "id": "natur-0041",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Was verrät der Winkel des Schwänzellaufs der Honigbiene zur Senkrechten im Stock?",
+      "antworten": [
+        "Die Richtung der Futterquelle zur Sonne",
+        "Die Entfernung der Futterquelle",
+        "Die Menge des verfügbaren Nektars",
+        "Die Blütenart der Futterquelle"
+      ],
+      "erklaerung": "Beim Schwänzeltanz entspricht der Winkel zur Senkrechten dem Winkel zwischen Sonnenstand und Futterquelle. Die Entfernung zeigt die Dauer des Schwänzellaufs an; entschlüsselt hat das Karl von Frisch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schw%C3%A4nzeltanz",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0084",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "ingomania",
-      "frage": "Wie heißt es, wenn Blüten wie beim Kakaobaum direkt am Stamm entstehen?",
+      "frage": "Zu welcher Baumart gehört die „Methusalem“ genannte Kiefer in den White Mountains Kaliforniens, mit fast 4800 Jahren einer der ältesten bekannten Einzelbäume?",
       "antworten": [
-        "Kauliflorie",
-        "Kleistogamie",
-        "Heterostylie",
-        "Anemophilie"
+        "Grannenkiefer",
+        "Küstenmammutbaum",
+        "Riesenmammutbaum",
+        "Douglasie"
       ],
-      "erklaerung": "Kauliflorie kommt bei Tropenbäumen vor. Die Blüten und Früchte sitzen dann direkt an Stamm oder dicken Ästen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kauliflorie",
+      "erklaerung": "Methusalem ist eine Langlebige Kiefer (Grannenkiefer, Pinus longaeva) und über 4800 Jahre alt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Grannenkiefer",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0055",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Zu welcher Pflanzengruppe gehört der Bambus?",
+      "antworten": [
+        "Süßgräser",
+        "Palmengewächse",
+        "Schachtelhalme",
+        "Binsengewächse"
+      ],
+      "erklaerung": "Bambus ist ein Riesengras mit hohlen Halmen. Manche Arten wachsen an einem Tag fast einen Meter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bambus",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0032",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welche Heilpflanze mit weißen Blüten und gelber Mitte wird oft als Tee bei Magenbeschwerden getrunken?",
+      "antworten": [
+        "Die Kamille",
+        "Der Rittersporn",
+        "Die Primel",
+        "Die Margerite"
+      ],
+      "erklaerung": "Echte Kamille wirkt entzündungshemmend und krampflösend und ist eine der bekanntesten Heilpflanzen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Echte%20Kamille",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -498,240 +430,19 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0036",
+      "id": "natur-0022",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "mittel",
-      "frage": "Welches Gemüse besteht aus den Blütenständen der Pflanze?",
+      "frage": "Wie viele Königinnen leben normalerweise in einem Honigbienenvolk?",
       "antworten": [
-        "Der Blumenkohl",
-        "Die Kohlrübe",
-        "Der Rotkohl",
-        "Der Kohlrabi"
-      ],
-      "erklaerung": "Beim Blumenkohl isst man die dicht gedrängten, unentwickelten Blütenstände.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blumenkohl",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0065",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Welches Tier ist der nächste lebende Verwandte der Giraffe?",
-      "antworten": [
-        "Das Okapi",
-        "Das Zebra",
-        "Die Elenantilope",
-        "Der Tapir"
-      ],
-      "erklaerung": "Okapi und Giraffe bilden zusammen die Familie der Giraffen. Das Okapi lebt im Regenwald des Kongo und hat gestreifte Beine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Okapi",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0040",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Welches Tier baut Dämme aus Ästen und Zweigen?",
-      "antworten": [
-        "Der Biber",
-        "Der Fischotter",
-        "Die Bisamratte",
-        "Der Dachs"
-      ],
-      "erklaerung": "Mit den Dämmen staut der Biber Bäche zu Teichen, in denen er seine Burg baut.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Biber",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0034",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Aus der Rinde welchen Baumes wird Kork gewonnen?",
-      "antworten": [
-        "Der Korkeiche",
-        "Der Birke",
-        "Der Kiefer",
-        "Der Linde"
-      ],
-      "erklaerung": "Die Korkeiche wächst vor allem in Portugal und Spanien; ihre Rinde wird alle neun Jahre geschält.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Korkeiche",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0055",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Zu welcher Pflanzengruppe gehört der Bambus?",
-      "antworten": [
-        "Süßgräser",
-        "Palmengewächse",
-        "Schachtelhalme",
-        "Binsengewächse"
-      ],
-      "erklaerung": "Bambus ist ein Riesengras mit hohlen Halmen. Manche Arten wachsen an einem Tag fast einen Meter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bambus",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0037",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Aus den Blüten welcher Pflanze wird das Gewürz Safran gewonnen?",
-      "antworten": [
-        "Aus dem Krokus",
-        "Aus der Tulpe",
-        "Aus der Lilie",
-        "Aus der Narzisse"
-      ],
-      "erklaerung": "Safran sind die Narben des Safran-Krokus; für ein Kilo braucht man Zehntausende Blüten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Safran",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0026",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Was ist ein Seepferdchen zoologisch?",
-      "antworten": [
-        "Ein Fisch",
-        "Ein Krebstier",
-        "Ein Weichtier",
-        "Ein Säugetier"
-      ],
-      "erklaerung": "Seepferdchen gehören zu den Knochenfischen; bei ihnen trägt das Männchen die Jungen in einer Bruttasche aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Seepferdchen",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0072",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Wie viele Chromosomensätze hat das Nährgewebe (Endosperm) im Samen der meisten Bedecktsamer?",
-      "antworten": [
-        "Drei",
+        "Eine",
         "Zwei",
-        "Vier",
-        "Einen"
+        "Drei",
+        "Hunderte"
       ],
-      "erklaerung": "Bei der doppelten Befruchtung verschmelzen zwei Spermakerne: Einer mit der Eizelle, einer mit dem Zentralkern. So ist das Endosperm triploid.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Doppelte%20Befruchtung",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0047",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "In welches Land fliegen die Monarchfalter aus Ostkanada und dem Nordosten der USA zum Überwintern?",
-      "antworten": [
-        "Mexiko",
-        "Kuba",
-        "Brasilien",
-        "Florida (USA)"
-      ],
-      "erklaerung": "Die Monarchfalter versammeln sich in den Bergwäldern Mexikos. Für den Rückweg braucht es mehrere Generationen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Monarchfalter",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0048",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Welcher Vogel kann als einzige Vogelgruppe aktiv rückwärts fliegen?",
-      "antworten": [
-        "Der Kolibri",
-        "Der Mauersegler",
-        "Der Eisvogel",
-        "Die Wasseramsel"
-      ],
-      "erklaerung": "Kolibris schlagen ihre Flügel in einer Art Achterbewegung und können so in der Luft stehen und rückwärts fliegen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kolibris",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0041",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Was verrät der Winkel des Schwänzellaufs der Honigbiene zur Senkrechten im Stock?",
-      "antworten": [
-        "Die Richtung der Futterquelle zur Sonne",
-        "Die Entfernung der Futterquelle",
-        "Die Menge des verfügbaren Nektars",
-        "Die Blütenart der Futterquelle"
-      ],
-      "erklaerung": "Beim Schwänzeltanz entspricht der Winkel zur Senkrechten dem Winkel zwischen Sonnenstand und Futterquelle. Die Entfernung zeigt die Dauer des Schwänzellaufs an; entschlüsselt hat das Karl von Frisch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schw%C3%A4nzeltanz",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0070",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Zu welcher Insektenordnung gehören die Glühwürmchen?",
-      "antworten": [
-        "Käfer",
-        "Schmetterlinge",
-        "Zweiflügler",
-        "Wanzen"
-      ],
-      "erklaerung": "Leuchtkäfer sind wie der Name sagt Käfer. Die Larven sehen wurmartig aus, das Leuchten dient der Partnersuche.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Leuchtk%C3%A4fer",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0068",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Wo sitzen beim Kiwi die Nasenlöcher?",
-      "antworten": [
-        "An der Spitze des Schnabels",
-        "Zwischen den Augen",
-        "An der Schnabelwurzel",
-        "Am Hinterkopf"
-      ],
-      "erklaerung": "Der Kiwi sucht seine Nahrung im Boden mit dem Geruchssinn. Dafür liegen seine Nasenlöcher ganz vorn am langen Schnabel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kiwi%20Vogel",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0028",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Wie heißt die Larve des Maikäfers?",
-      "antworten": [
-        "Engerling",
-        "Raupe",
-        "Made",
-        "Puppe"
-      ],
-      "erklaerung": "Engerlinge leben mehrere Jahre im Boden und fressen Wurzeln, bevor sie sich zum Käfer verwandeln.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Maik%C3%A4fer",
+      "erklaerung": "Ein Volk hat nur eine Königin, die allein Eier legt; die Arbeiterinnen sind unfruchtbare Weibchen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Honigbienen",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -753,189 +464,19 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0027",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Von welchem Wildtier stammt der Haushund ab?",
-      "antworten": [
-        "Vom Wolf",
-        "Vom Fuchs",
-        "Vom Schakal",
-        "Vom Kojoten"
-      ],
-      "erklaerung": "Der Haushund wurde vor vielen tausend Jahren aus dem Wolf domestiziert.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Haushund",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0075",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Auf welcher Insel ist die Titanwurz mit ihrem riesigen Blütenstand heimisch?",
-      "antworten": [
-        "Sumatra",
-        "Borneo",
-        "Madagaskar",
-        "Neuguinea"
-      ],
-      "erklaerung": "Die Titanwurz hat den größten unverzweigten Blütenstand der Welt und riecht nach Aas, um Aaskäfer anzulocken.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanwurz",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0051",
+      "id": "natur-0083",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "schwer",
-      "frage": "Welches Gift verursacht die tödliche Wirkung des Grünen Knollenblätterpilzes?",
+      "frage": "Wie viele Herzen hat ein Gemeiner Krake?",
       "antworten": [
-        "Amatoxine (Amanitin)",
-        "Muscarin",
-        "Psilocybin",
-        "Orellanin"
+        "Drei",
+        "Eins",
+        "Zwei",
+        "Vier"
       ],
-      "erklaerung": "Amatoxine schädigen vor allem die Leber. Sie überstehen Kochen und Trocknen unverändert.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gr%C3%BCner%20Knollenbl%C3%A4tterpilz",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0033",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Zu welchem Reich gehören Pilze?",
-      "antworten": [
-        "Zu einem eigenen Reich",
-        "Zu den Pflanzen",
-        "Zu den Tieren",
-        "Zu den Bakterien"
-      ],
-      "erklaerung": "Pilze bilden ein eigenes Reich und sind enger mit Tieren als mit Pflanzen verwandt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pilze",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0066",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Wie heißt die Mimikry, bei der mehrere wehrhafte Arten einander ähnlich sehen?",
-      "antworten": [
-        "Müllersche Mimikry",
-        "Batessche Mimikry",
-        "Peckhamsche Mimikry",
-        "Mertensche Mimikry"
-      ],
-      "erklaerung": "Bei der Müllerschen Mimikry teilen sich ähnlich gewarnte Arten die Lernkosten der Fressfeinde. Die Batessche Mimikry ahmt dagegen eine wehrhafte Art nach.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mimikry",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0076",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Welche Baumart erreicht die größte Höhe aller Baumarten?",
-      "antworten": [
-        "Küstenmammutbaum",
-        "Riesenmammutbaum",
-        "Douglasie",
-        "Eukalyptus (Eucalyptus regnans)"
-      ],
-      "erklaerung": "Der Küstenmammutbaum wächst an der Pazifikküste der USA. Der Riesenmammutbaum ist dagegen das massigste Gewächs.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCstenmammutbaum",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0053",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Aus der Rinde welchen Baumes wurde das Salicin gewonnen, ein Vorläufer des Aspirin-Wirkstoffs?",
-      "antworten": [
-        "Weide",
-        "Eiche",
-        "Linde",
-        "Buche"
-      ],
-      "erklaerung": "Weidenrinde enthält Salicin, aus dem der Körper Salicylsäure bildet. Daraus entwickelte Bayer später Acetylsalicylsäure.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Weiden%20Salicin",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0004",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welche Pflanze speichert in ihrem Stamm Wasser und trägt Stacheln?",
-      "antworten": [
-        "Der Kaktus",
-        "Die Tulpe",
-        "Der Farn",
-        "Das Veilchen"
-      ],
-      "erklaerung": "Kakteen speichern Wasser in ihrem verdickten Spross; die Stacheln sind umgebildete Blätter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kakteengew%C3%A4chse",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0016",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welches Gemüse ist orange und gilt als Lieblingsfutter von Hasen?",
-      "antworten": [
-        "Die Karotte",
-        "Die Gurke",
-        "Der Spinat",
-        "Der Lauch"
-      ],
-      "erklaerung": "Die Karotte (Möhre) ist eine Wurzel und enthält viel Beta-Carotin, das dem Körper als Vitamin-A-Vorstufe dient.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Karotte",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0079",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Zu welcher Pflanzenfamilie gehört das Edelweiß?",
-      "antworten": [
-        "Korbblütler",
-        "Rosengewächse",
-        "Nelkengewächse",
-        "Enziangewächse"
-      ],
-      "erklaerung": "Das Edelweiß hat unter filzigen Hochblättern viele kleine Blüten im Korb. Die weißen Haare schützen vor Kälte und Strahlung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Edelwei%C3%9F",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0063",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Welche Qualle kann der Überlieferung nach durch Rückbildung zum Polypenstadium theoretisch unsterblich werden?",
-      "antworten": [
-        "Turritopsis dohrnii",
-        "Ohrenqualle",
-        "Feuerqualle",
-        "Kompassqualle"
-      ],
-      "erklaerung": "Turritopsis dohrnii kann sich nach Stress oder Verletzung vom erwachsenen Tier in ein Jugendstadium zurückverwandeln.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Turritopsis%20dohrnii",
+      "erklaerung": "Zwei Kiemenherzen pumpen das Blut durch die Kiemen, ein Systemherz versorgt den Körper.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kraken",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -957,342 +498,53 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0052",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Welche Wirkstoffe machen den Roten Fingerhut giftig und zugleich zur Arzneipflanze?",
-      "antworten": [
-        "Herzglykoside (Digitoxin)",
-        "Atropin",
-        "Colchicin",
-        "Coniin"
-      ],
-      "erklaerung": "Die Herzglykoside der Digitalis-Arten stärken in genau dosierter Form das Herz. In der Pflanze sind sie hochgiftig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Roter%20Fingerhut",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0012",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welche Farbe hat die Mitte eines Gänseblümchens?",
-      "antworten": [
-        "Gelb",
-        "Rot",
-        "Weiß",
-        "Blau"
-      ],
-      "erklaerung": "Das Gänseblümchen hat weiße Zungenblüten rundherum und gelbe Röhrenblüten in der Mitte.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=G%C3%A4nsebl%C3%BCmchen",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0006",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welcher Baum trägt Eicheln als Früchte?",
-      "antworten": [
-        "Die Eiche",
-        "Die Buche",
-        "Die Kastanie",
-        "Die Birke"
-      ],
-      "erklaerung": "Eicheln sind die Nussfrüchte der Eiche und waren früher wichtiges Schweinefutter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eichel%20Frucht",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0043",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "In welchem Land lebt der Axolotl in freier Wildbahn?",
-      "antworten": [
-        "Mexiko",
-        "Brasilien",
-        "Kolumbien",
-        "Australien"
-      ],
-      "erklaerung": "Der Axolotl kommt nur in den Seen um Mexiko-Stadt vor (Xochimilco). In der Natur ist er stark bedroht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Axolotl",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0017",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Wie nennt man einen Menschen, der Bienen hält?",
-      "antworten": [
-        "Imker",
-        "Förster",
-        "Gärtner",
-        "Falkner"
-      ],
-      "erklaerung": "Imker betreuen Bienenvölker in Stöcken und ernten Honig und Wachs.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Imker",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0080",
+      "id": "natur-0071",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "ingomania",
-      "frage": "In welcher Lebensgemeinschaft stehen Trüffel mit ihren Wirtsbäumen?",
+      "frage": "Wie heißt es, wenn Blüten wie beim Kakaobaum direkt am Stamm entstehen?",
       "antworten": [
-        "Mykorrhiza",
-        "Knöllchensymbiose",
-        "Flechtensymbiose",
-        "Epiphytismus"
+        "Kauliflorie",
+        "Kleistogamie",
+        "Heterostylie",
+        "Anemophilie"
       ],
-      "erklaerung": "Trüffel umhüllen Baumwurzeln mit Pilzgeflecht und tauschen Nährstoffe gegen Zucker. Die Fruchtkörper entwickeln sich unterirdisch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tr%C3%BCffel%20Mykorrhiza",
+      "erklaerung": "Kauliflorie kommt bei Tropenbäumen vor. Die Blüten und Früchte sitzen dann direkt an Stamm oder dicken Ästen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kauliflorie",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0011",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welches Landtier hat den längsten Hals?",
-      "antworten": [
-        "Die Giraffe",
-        "Das Kamel",
-        "Der Strauß",
-        "Das Lama"
-      ],
-      "erklaerung": "Die Giraffe hat einen bis zu zwei Meter langen Hals, aber wie wir nur sieben Halswirbel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Giraffe",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0022",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Wie viele Königinnen leben normalerweise in einem Honigbienenvolk?",
-      "antworten": [
-        "Eine",
-        "Zwei",
-        "Drei",
-        "Hunderte"
-      ],
-      "erklaerung": "Ein Volk hat nur eine Königin, die allein Eier legt; die Arbeiterinnen sind unfruchtbare Weibchen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Honigbienen",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0073",
+      "id": "natur-0070",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "ingomania",
-      "frage": "Was ist das Mutterkorn im Roggen?",
+      "frage": "Zu welcher Insektenordnung gehören die Glühwürmchen?",
       "antworten": [
-        "Dauerform eines Schlauchpilzes",
-        "Eine alte Roggensorte",
-        "Ein Befall durch Mehlkäfer",
-        "Ein Bakterienbefall der Ähre"
+        "Käfer",
+        "Schmetterlinge",
+        "Zweiflügler",
+        "Wanzen"
       ],
-      "erklaerung": "Das Mutterkorn ist das Dauerlager des Pilzes Claviceps purpurea. Sein Gift löste im Mittelalter das Antoniusfeuer aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mutterkorn",
+      "erklaerung": "Leuchtkäfer sind wie der Name sagt Käfer. Die Larven sehen wurmartig aus, das Leuchten dient der Partnersuche.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Leuchtk%C3%A4fer",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "natur-0057",
+      "id": "natur-0060",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
       "stufe": "schwer",
-      "frage": "Nach welcher Zahlenfolge sind die Spiralen der Samen im Korb einer Sonnenblume gewöhnlich angeordnet?",
+      "frage": "Wie viele Laufbeine (einschließlich der Scheren) hat ein Zehnfußkrebs wie der Hummer?",
       "antworten": [
-        "Fibonacci-Folge",
-        "Primzahlen",
-        "Quadratzahlen",
-        "Zweierpotenzen"
+        "Zehn",
+        "Acht",
+        "Sechs",
+        "Zwölf"
       ],
-      "erklaerung": "Die Spiralzahlen sind benachbarte Fibonacci-Zahlen, etwa 34 und 55. So packen sich die Samen am dichtesten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fibonacci-Folge%20Sonnenblume",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0029",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Welches dieser Tiere hält echten Winterschlaf?",
-      "antworten": [
-        "Der Igel",
-        "Der Braunbär",
-        "Das Eichhörnchen",
-        "Das Reh"
-      ],
-      "erklaerung": "Igel senken Körpertemperatur und Herzschlag stark ab; Bär und Eichhörnchen halten nur Winterruhe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Winterschlaf",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0031",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Welches Blatt ziert die Flagge Kanadas?",
-      "antworten": [
-        "Das Ahornblatt",
-        "Das Eichenblatt",
-        "Das Kleeblatt",
-        "Das Lorbeerblatt"
-      ],
-      "erklaerung": "Das rote Ahornblatt auf der Flagge ist seit 1965 Nationalsymbol Kanadas.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Flagge%20Kanadas",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0067",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Woher stammt der als Parfümgrundstoff geschätzte Ambra?",
-      "antworten": [
-        "Aus dem Darm von Pottwalen",
-        "Aus Drüsen von Moschusochsen",
-        "Aus Harz eines Baumes",
-        "Aus Drüsen der Zibetkatze"
-      ],
-      "erklaerung": "Ambra bildet sich bei Pottwalen im Darm um unverdauliche Tintenfischschnäbel. Sie wird ausgeschieden und treibt im Meer, wo sie reift.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ambra",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0062",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "An welcher Körperstelle sitzt der Giftsporn des männlichen Schnabeltiers?",
-      "antworten": [
-        "An den Hinterbeinen",
-        "An den Vorderbeinen",
-        "Am Schwanzansatz",
-        "Am Schnabel"
-      ],
-      "erklaerung": "Das Gift des Sporns kann bei Kämpfen unter Männchen stark schmerzen. Es zählt zu den seltenen Giften bei Säugetieren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schnabeltier",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0074",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "ingomania",
-      "frage": "Wie viele Berührungen der Fühlhaare innerhalb von etwa 20 Sekunden lösen bei der Venusfliegenfalle das Zuklappen der Falle aus?",
-      "antworten": [
-        "Zwei",
-        "Eine",
-        "Fünf",
-        "Zehn"
-      ],
-      "erklaerung": "Die Pflanze zählt die Reize, so schnappt sie nicht bei jedem Regentropfen zu. Eine einzelne Berührung reicht nicht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Venusfliegenfalle",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0003",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welche Farbe hat der Hut des giftigen Fliegenpilzes?",
-      "antworten": [
-        "Rot mit weißen Punkten",
-        "Braun mit gelben Streifen",
-        "Blau mit weißen Punkten",
-        "Grün mit roten Punkten"
-      ],
-      "erklaerung": "Der Fliegenpilz hat einen roten Hut mit weißen Flocken und gilt als giftig; er ist ein beliebtes Glückssymbol.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fliegenpilz",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0025",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "mittel",
-      "frage": "Welcher Vogel legt seine Eier in fremde Nester?",
-      "antworten": [
-        "Der Kuckuck",
-        "Die Amsel",
-        "Die Schwalbe",
-        "Der Spatz"
-      ],
-      "erklaerung": "Kuckucksweibchen schmuggeln ihre Eier in Nester anderer Vogelarten, die den Jungvogel aufziehen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kuckucke",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0054",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Was ist die Mistel biologisch?",
-      "antworten": [
-        "Ein Halbparasit mit eigener Photosynthese",
-        "Ein Vollparasit ohne Blattgrün",
-        "Eine Flechte auf Baumrinde",
-        "Ein Epiphyt, der nur Regenwasser nutzt"
-      ],
-      "erklaerung": "Die Mistel zapft mit Senkern die Wasserleitungen ihres Wirtsbaums an, betreibt aber selbst Photosynthese.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mistel",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0014",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "leicht",
-      "frage": "Welche Blume gilt als Symbol der Liebe?",
-      "antworten": [
-        "Die Rose",
-        "Die Sonnenblume",
-        "Die Narzisse",
-        "Die Distel"
-      ],
-      "erklaerung": "Vor allem die rote Rose wird traditionell zum Valentinstag und für Liebesbekundungen verschenkt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rosen",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "natur-0058",
-      "version": 1,
-      "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Wie kommt der Unterschied zwischen schwarzem und weißem Pfeffer zustande?",
-      "antworten": [
-        "Weißer Pfeffer wird ohne Fruchtschale verarbeitet",
-        "Sie stammen von verschiedenen Pflanzenarten",
-        "Weißer Pfeffer wird mit Kalk gebleicht",
-        "Sie wachsen in unterschiedlichen Erdteilen"
-      ],
-      "erklaerung": "Beide stammen vom Echten Pfeffer. Für weißen Pfeffer werden reife Früchte eingeweicht und von der Schale befreit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pfeffer%20Gew%C3%BCrz",
+      "erklaerung": "Daher der Name „Zehnfüßer“ (Decapoda).",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehnfu%C3%9Fkrebse",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1314,19 +566,36 @@
       "gueltigBis": null
     },
     {
-      "id": "natur-0050",
+      "id": "natur-0002",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
-      "stufe": "schwer",
-      "frage": "Welcher Giftstoff steckt in grünen Stellen und Keimen der Kartoffel?",
+      "stufe": "leicht",
+      "frage": "Wie viele Beine hat ein Insekt?",
       "antworten": [
-        "Solanin",
-        "Capsaicin",
-        "Coffein",
-        "Nikotin"
+        "Sechs",
+        "Vier",
+        "Acht",
+        "Zehn"
       ],
-      "erklaerung": "Solanin schützt die Nachtschattengewächse vor Fraßfeinden. Es bildet sich vermehrt bei Licht und Kälte und ist hitzebeständig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Solanin",
+      "erklaerung": "Alle Insekten haben drei Beinpaare, also sechs Beine, die am Brustabschnitt sitzen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Insekten",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0073",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Was ist das Mutterkorn im Roggen?",
+      "antworten": [
+        "Dauerform eines Schlauchpilzes",
+        "Eine alte Roggensorte",
+        "Ein Befall durch Mehlkäfer",
+        "Ein Bakterienbefall der Ähre"
+      ],
+      "erklaerung": "Das Mutterkorn ist das Dauerlager des Pilzes Claviceps purpurea. Sein Gift löste im Mittelalter das Antoniusfeuer aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mutterkorn",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1348,6 +617,703 @@
       "gueltigBis": null
     },
     {
+      "id": "natur-0038",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welcher heimische Nadelbaum wirft im Herbst seine Nadeln ab?",
+      "antworten": [
+        "Die Lärche",
+        "Die Fichte",
+        "Die Tanne",
+        "Die Kiefer"
+      ],
+      "erklaerung": "Die Lärche ist ein sommergrüner Nadelbaum, dessen Nadeln sich im Herbst gelb färben und abfallen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=L%C3%A4rchen",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0074",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Wie viele Berührungen der Fühlhaare innerhalb von etwa 20 Sekunden lösen bei der Venusfliegenfalle das Zuklappen der Falle aus?",
+      "antworten": [
+        "Zwei",
+        "Eine",
+        "Fünf",
+        "Zehn"
+      ],
+      "erklaerung": "Die Pflanze zählt die Reize, so schnappt sie nicht bei jedem Regentropfen zu. Eine einzelne Berührung reicht nicht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Venusfliegenfalle",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0058",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Wie kommt der Unterschied zwischen schwarzem und weißem Pfeffer zustande?",
+      "antworten": [
+        "Weißer Pfeffer wird ohne Fruchtschale verarbeitet",
+        "Sie stammen von verschiedenen Pflanzenarten",
+        "Weißer Pfeffer wird mit Kalk gebleicht",
+        "Sie wachsen in unterschiedlichen Erdteilen"
+      ],
+      "erklaerung": "Beide stammen vom Echten Pfeffer. Für weißen Pfeffer werden reife Früchte eingeweicht und von der Schale befreit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pfeffer%20Gew%C3%BCrz",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0079",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Zu welcher Pflanzenfamilie gehört das Edelweiß?",
+      "antworten": [
+        "Korbblütler",
+        "Rosengewächse",
+        "Nelkengewächse",
+        "Enziangewächse"
+      ],
+      "erklaerung": "Das Edelweiß hat unter filzigen Hochblättern viele kleine Blüten im Korb. Die weißen Haare schützen vor Kälte und Strahlung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Edelwei%C3%9F",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0048",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Welcher Vogel kann als einzige Vogelgruppe aktiv rückwärts fliegen?",
+      "antworten": [
+        "Der Kolibri",
+        "Der Mauersegler",
+        "Der Eisvogel",
+        "Die Wasseramsel"
+      ],
+      "erklaerung": "Kolibris schlagen ihre Flügel in einer Art Achterbewegung und können so in der Luft stehen und rückwärts fliegen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kolibris",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0042",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Wie viele Halswirbel hat eine Giraffe?",
+      "antworten": [
+        "Sieben",
+        "Zwölf",
+        "Neun",
+        "Vierzehn"
+      ],
+      "erklaerung": "Fast alle Säugetiere haben sieben Halswirbel, auch Giraffe und Mensch. Bei der Giraffe sind sie nur extrem gestreckt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Giraffe%20Halswirbel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0072",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Wie viele Chromosomensätze hat das Nährgewebe (Endosperm) im Samen der meisten Bedecktsamer?",
+      "antworten": [
+        "Drei",
+        "Zwei",
+        "Vier",
+        "Einen"
+      ],
+      "erklaerung": "Bei der doppelten Befruchtung verschmelzen zwei Spermakerne: Einer mit der Eizelle, einer mit dem Zentralkern. So ist das Endosperm triploid.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Doppelte%20Befruchtung",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0026",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Was ist ein Seepferdchen zoologisch?",
+      "antworten": [
+        "Ein Fisch",
+        "Ein Krebstier",
+        "Ein Weichtier",
+        "Ein Säugetier"
+      ],
+      "erklaerung": "Seepferdchen gehören zu den Knochenfischen; bei ihnen trägt das Männchen die Jungen in einer Bruttasche aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Seepferdchen",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0025",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welcher Vogel legt seine Eier in fremde Nester?",
+      "antworten": [
+        "Der Kuckuck",
+        "Die Amsel",
+        "Die Schwalbe",
+        "Der Spatz"
+      ],
+      "erklaerung": "Kuckucksweibchen schmuggeln ihre Eier in Nester anderer Vogelarten, die den Jungvogel aufziehen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kuckucke",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0017",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Wie nennt man einen Menschen, der Bienen hält?",
+      "antworten": [
+        "Imker",
+        "Förster",
+        "Gärtner",
+        "Falkner"
+      ],
+      "erklaerung": "Imker betreuen Bienenvölker in Stöcken und ernten Honig und Wachs.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Imker",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0043",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "In welchem Land lebt der Axolotl in freier Wildbahn?",
+      "antworten": [
+        "Mexiko",
+        "Brasilien",
+        "Kolumbien",
+        "Australien"
+      ],
+      "erklaerung": "Der Axolotl kommt nur in den Seen um Mexiko-Stadt vor (Xochimilco). In der Natur ist er stark bedroht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Axolotl",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0021",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welches Säugetier legt Eier?",
+      "antworten": [
+        "Das Schnabeltier",
+        "Das Faultier",
+        "Das Erdferkel",
+        "Das Stachelschwein"
+      ],
+      "erklaerung": "Schnabeltier und Ameisenigel sind die eierlegenden Säugetiere (Kloakentiere), die Jungen werden aber gesäugt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schnabeltier",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0007",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Wie heißt ein junges Pferd?",
+      "antworten": [
+        "Fohlen",
+        "Kitz",
+        "Welpe",
+        "Ferkel"
+      ],
+      "erklaerung": "Ein Fohlen ist ein Pferdejunges, bei Eseln und Zebras heißt es ebenso.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fohlen",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0008",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welche Pflanze „brennt“, wenn man sie mit bloßer Haut berührt?",
+      "antworten": [
+        "Die Brennnessel",
+        "Der Löwenzahn",
+        "Das Gänseblümchen",
+        "Der Klee"
+      ],
+      "erklaerung": "Die Brennnessel hat Brennhaare, die bei Berührung ein reizendes Sekret abgeben.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Brennnessel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0063",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Welche Qualle kann der Überlieferung nach durch Rückbildung zum Polypenstadium theoretisch unsterblich werden?",
+      "antworten": [
+        "Turritopsis dohrnii",
+        "Ohrenqualle",
+        "Feuerqualle",
+        "Kompassqualle"
+      ],
+      "erklaerung": "Turritopsis dohrnii kann sich nach Stress oder Verletzung vom erwachsenen Tier in ein Jugendstadium zurückverwandeln.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Turritopsis%20dohrnii",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0040",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welches Tier baut Dämme aus Ästen und Zweigen?",
+      "antworten": [
+        "Der Biber",
+        "Der Fischotter",
+        "Die Bisamratte",
+        "Der Dachs"
+      ],
+      "erklaerung": "Mit den Dämmen staut der Biber Bäche zu Teichen, in denen er seine Burg baut.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Biber",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0033",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Zu welchem Reich gehören Pilze?",
+      "antworten": [
+        "Zu einem eigenen Reich",
+        "Zu den Pflanzen",
+        "Zu den Tieren",
+        "Zu den Bakterien"
+      ],
+      "erklaerung": "Pilze bilden ein eigenes Reich und sind enger mit Tieren als mit Pflanzen verwandt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pilze",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0011",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welches Landtier hat den längsten Hals?",
+      "antworten": [
+        "Die Giraffe",
+        "Das Kamel",
+        "Der Strauß",
+        "Das Lama"
+      ],
+      "erklaerung": "Die Giraffe hat einen bis zu zwei Meter langen Hals, aber wie wir nur sieben Halswirbel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Giraffe",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0065",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Welches Tier ist der nächste lebende Verwandte der Giraffe?",
+      "antworten": [
+        "Das Okapi",
+        "Das Zebra",
+        "Die Elenantilope",
+        "Der Tapir"
+      ],
+      "erklaerung": "Okapi und Giraffe bilden zusammen die Familie der Giraffen. Das Okapi lebt im Regenwald des Kongo und hat gestreifte Beine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Okapi",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0057",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Nach welcher Zahlenfolge sind die Spiralen der Samen im Korb einer Sonnenblume gewöhnlich angeordnet?",
+      "antworten": [
+        "Fibonacci-Folge",
+        "Primzahlen",
+        "Quadratzahlen",
+        "Zweierpotenzen"
+      ],
+      "erklaerung": "Die Spiralzahlen sind benachbarte Fibonacci-Zahlen, etwa 34 und 55. So packen sich die Samen am dichtesten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fibonacci-Folge%20Sonnenblume",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0076",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Welche Baumart erreicht die größte Höhe aller Baumarten?",
+      "antworten": [
+        "Küstenmammutbaum",
+        "Riesenmammutbaum",
+        "Douglasie",
+        "Eukalyptus (Eucalyptus regnans)"
+      ],
+      "erklaerung": "Der Küstenmammutbaum wächst an der Pazifikküste der USA. Der Riesenmammutbaum ist dagegen das massigste Gewächs.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCstenmammutbaum",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0023",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Wie nennt man Tiere, die sowohl Pflanzen als auch Fleisch fressen?",
+      "antworten": [
+        "Allesfresser",
+        "Pflanzenfresser",
+        "Aasfresser",
+        "Filtrierer"
+      ],
+      "erklaerung": "Allesfresser (Omnivoren) wie Mensch, Schwein und Bär nutzen pflanzliche und tierische Nahrung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Allesfresser",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0053",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Aus der Rinde welchen Baumes wurde das Salicin gewonnen, ein Vorläufer des Aspirin-Wirkstoffs?",
+      "antworten": [
+        "Weide",
+        "Eiche",
+        "Linde",
+        "Buche"
+      ],
+      "erklaerung": "Weidenrinde enthält Salicin, aus dem der Körper Salicylsäure bildet. Daraus entwickelte Bayer später Acetylsalicylsäure.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Weiden%20Salicin",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0035",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Wie wächst die Ananas?",
+      "antworten": [
+        "Auf einer niedrigen Bodenpflanze",
+        "An hohen Palmen",
+        "An Sträuchern wie Himbeeren",
+        "An Kletterranken"
+      ],
+      "erklaerung": "Die Ananas sitzt als Sammelfrucht auf einem kurzen Stängel in der Mitte einer bodennahen Rosette stachliger Blätter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ananas",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0014",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welche Blume gilt als Symbol der Liebe?",
+      "antworten": [
+        "Die Rose",
+        "Die Sonnenblume",
+        "Die Narzisse",
+        "Die Distel"
+      ],
+      "erklaerung": "Vor allem die rote Rose wird traditionell zum Valentinstag und für Liebesbekundungen verschenkt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rosen",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0004",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welche Pflanze speichert in ihrem Stamm Wasser und trägt Stacheln?",
+      "antworten": [
+        "Der Kaktus",
+        "Die Tulpe",
+        "Der Farn",
+        "Das Veilchen"
+      ],
+      "erklaerung": "Kakteen speichern Wasser in ihrem verdickten Spross; die Stacheln sind umgebildete Blätter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kakteengew%C3%A4chse",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0047",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "In welches Land fliegen die Monarchfalter aus Ostkanada und dem Nordosten der USA zum Überwintern?",
+      "antworten": [
+        "Mexiko",
+        "Kuba",
+        "Brasilien",
+        "Florida (USA)"
+      ],
+      "erklaerung": "Die Monarchfalter versammeln sich in den Bergwäldern Mexikos. Für den Rückweg braucht es mehrere Generationen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Monarchfalter",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0039",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Von welchem Baum ernähren sich Koalas fast ausschließlich?",
+      "antworten": [
+        "Vom Eukalyptus",
+        "Vom Ahorn",
+        "Von der Palme",
+        "Vom Bambus"
+      ],
+      "erklaerung": "Koalas fressen die giftigen Eukalyptusblätter, die sie dank spezieller Verdauung vertragen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Koala",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0068",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Wo sitzen beim Kiwi die Nasenlöcher?",
+      "antworten": [
+        "An der Spitze des Schnabels",
+        "Zwischen den Augen",
+        "An der Schnabelwurzel",
+        "Am Hinterkopf"
+      ],
+      "erklaerung": "Der Kiwi sucht seine Nahrung im Boden mit dem Geruchssinn. Dafür liegen seine Nasenlöcher ganz vorn am langen Schnabel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kiwi%20Vogel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0006",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welcher Baum trägt Eicheln als Früchte?",
+      "antworten": [
+        "Die Eiche",
+        "Die Buche",
+        "Die Kastanie",
+        "Die Birke"
+      ],
+      "erklaerung": "Eicheln sind die Nussfrüchte der Eiche und waren früher wichtiges Schweinefutter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eichel%20Frucht",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0045",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Welcher Vogel legt bei seinem Zug zwischen Arktis und Antarktis die weiteste Strecke aller Zugvögel zurück?",
+      "antworten": [
+        "Die Küstenseeschwalbe",
+        "Der Weißstorch",
+        "Der Mauersegler",
+        "Der Kranich"
+      ],
+      "erklaerung": "Die Küstenseeschwalbe brütet in der Arktis und überwintert im Südpolarmeer. Pro Jahr kommen so Zehntausende Kilometer zusammen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=K%C3%BCstenseeschwalbe",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0003",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welche Farbe hat der Hut des giftigen Fliegenpilzes?",
+      "antworten": [
+        "Rot mit weißen Punkten",
+        "Braun mit gelben Streifen",
+        "Blau mit weißen Punkten",
+        "Grün mit roten Punkten"
+      ],
+      "erklaerung": "Der Fliegenpilz hat einen roten Hut mit weißen Flocken und gilt als giftig; er ist ein beliebtes Glückssymbol.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fliegenpilz",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0036",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welches Gemüse besteht aus den Blütenständen der Pflanze?",
+      "antworten": [
+        "Der Blumenkohl",
+        "Die Kohlrübe",
+        "Der Rotkohl",
+        "Der Kohlrabi"
+      ],
+      "erklaerung": "Beim Blumenkohl isst man die dicht gedrängten, unentwickelten Blütenstände.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blumenkohl",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0082",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welche heimische Pflanze fängt Insekten mit klebrigen Tentakeln an ihren Blättern?",
+      "antworten": [
+        "Der Sonnentau",
+        "Das Fettkraut",
+        "Der Fieberklee",
+        "Die Sumpfdotterblume"
+      ],
+      "erklaerung": "Der Rundblättrige Sonnentau wächst in Mooren und verdaut gefangene Insekten, um den Stickstoffmangel auszugleichen. (Das Fettkraut fängt mit klebrigen Blättern, hat aber keine Tentakel.)",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sonnentau",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0054",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Was ist die Mistel biologisch?",
+      "antworten": [
+        "Ein Halbparasit mit eigener Photosynthese",
+        "Ein Vollparasit ohne Blattgrün",
+        "Eine Flechte auf Baumrinde",
+        "Ein Epiphyt, der nur Regenwasser nutzt"
+      ],
+      "erklaerung": "Die Mistel zapft mit Senkern die Wasserleitungen ihres Wirtsbaums an, betreibt aber selbst Photosynthese.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mistel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0031",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welches Blatt ziert die Flagge Kanadas?",
+      "antworten": [
+        "Das Ahornblatt",
+        "Das Eichenblatt",
+        "Das Kleeblatt",
+        "Das Lorbeerblatt"
+      ],
+      "erklaerung": "Das rote Ahornblatt auf der Flagge ist seit 1965 Nationalsymbol Kanadas.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Flagge%20Kanadas",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0018",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Was ist die Hauptnahrung des Großen Pandas?",
+      "antworten": [
+        "Bambus",
+        "Eukalyptus",
+        "Gras",
+        "Beeren"
+      ],
+      "erklaerung": "Große Pandas fressen fast ausschließlich Bambus, bis zu 12 Kilogramm am Tag.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gro%C3%9Fer%20Panda",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0051",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Welches Gift verursacht die tödliche Wirkung des Grünen Knollenblätterpilzes?",
+      "antworten": [
+        "Amatoxine (Amanitin)",
+        "Muscarin",
+        "Psilocybin",
+        "Orellanin"
+      ],
+      "erklaerung": "Amatoxine schädigen vor allem die Leber. Sie überstehen Kochen und Trocknen unverändert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gr%C3%BCner%20Knollenbl%C3%A4tterpilz",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0056",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Warum sind Rhabarberblätter nicht essbar?",
+      "antworten": [
+        "Sie enthalten viel Oxalsäure",
+        "Sie enthalten Blausäure",
+        "Sie enthalten Solanin",
+        "Sie enthalten Nikotin"
+      ],
+      "erklaerung": "Gegessen werden nur die Stiele. Die Blätter enthalten besonders viel Oxalsäure, die in größeren Mengen schädlich ist.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rhabarber",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0015",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welches Tier ist das größte der Erde?",
+      "antworten": [
+        "Der Blauwal",
+        "Der Elefant",
+        "Der Weiße Hai",
+        "Der Pottwal"
+      ],
+      "erklaerung": "Der Blauwal wird bis zu 30 Meter lang und ist das größte bekannte Tier, das je gelebt hat.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blauwal",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0028",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Larve des Maikäfers?",
+      "antworten": [
+        "Engerling",
+        "Raupe",
+        "Made",
+        "Puppe"
+      ],
+      "erklaerung": "Engerlinge leben mehrere Jahre im Boden und fressen Wurzeln, bevor sie sich zum Käfer verwandeln.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Maik%C3%A4fer",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
       "id": "natur-0020",
       "version": 1,
       "kategorie": "Bienchen & Blümchen",
@@ -1361,6 +1327,108 @@
       ],
       "erklaerung": "Chlorophyll ermöglicht die Photosynthese und macht die Blätter grün.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Chlorophyll",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0046",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "schwer",
+      "frage": "Wo liegt das Laichgebiet des Europäischen Aals?",
+      "antworten": [
+        "In der Sargassosee",
+        "In der Nordsee",
+        "Im Schwarzen Meer",
+        "Im Golf von Mexiko"
+      ],
+      "erklaerung": "Europäische Aale wandern zum Ablaichen quer über den Atlantik in die Sargassosee. Die Larven treiben anschließend mit dem Golfstrom zurück nach Europa.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Europ%C3%A4ischer%20Aal",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0029",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "mittel",
+      "frage": "Welches dieser Tiere hält echten Winterschlaf?",
+      "antworten": [
+        "Der Igel",
+        "Der Braunbär",
+        "Das Eichhörnchen",
+        "Das Reh"
+      ],
+      "erklaerung": "Igel senken Körpertemperatur und Herzschlag stark ab; Bär und Eichhörnchen halten nur Winterruhe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Winterschlaf",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0075",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "ingomania",
+      "frage": "Auf welcher Insel ist die Titanwurz mit ihrem riesigen Blütenstand heimisch?",
+      "antworten": [
+        "Sumatra",
+        "Borneo",
+        "Madagaskar",
+        "Neuguinea"
+      ],
+      "erklaerung": "Die Titanwurz hat den größten unverzweigten Blütenstand der Welt und riecht nach Aas, um Aaskäfer anzulocken.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanwurz",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0016",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welches Gemüse ist orange und gilt als Lieblingsfutter von Hasen?",
+      "antworten": [
+        "Die Karotte",
+        "Die Gurke",
+        "Der Spinat",
+        "Der Lauch"
+      ],
+      "erklaerung": "Die Karotte (Möhre) ist eine Wurzel und enthält viel Beta-Carotin, das dem Körper als Vitamin-A-Vorstufe dient.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karotte",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0009",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "In welches Tier verwandelt sich eine Raupe?",
+      "antworten": [
+        "In einen Schmetterling",
+        "In eine Libelle",
+        "In einen Käfer",
+        "In eine Spinne"
+      ],
+      "erklaerung": "Schmetterlinge durchlaufen eine vollständige Verwandlung: Ei, Raupe, Puppe, Falter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schmetterlinge",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "natur-0005",
+      "version": 1,
+      "kategorie": "Bienchen & Blümchen",
+      "stufe": "leicht",
+      "frage": "Welches Tier wird als „König der Tiere“ bezeichnet?",
+      "antworten": [
+        "Der Löwe",
+        "Der Tiger",
+        "Der Bär",
+        "Der Adler"
+      ],
+      "erklaerung": "Der Löwe gilt wegen seiner Mähne und Stärke seit alters als König der Tiere.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=L%C3%B6we",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     }

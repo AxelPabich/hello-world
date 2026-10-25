@@ -461,6 +461,13 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+97. **Beitritt nach App-Neustart (Fehler 8003)** (Diagnose vom 25.10.2026, Tablett S7; in Build 39): Meldet
+    Nearby `STATUS_ALREADY_CONNECTED_TO_ENDPOINT`, trennt die App die hängende alte Verbindung und
+    wiederholt den Beitritt bis zu 3-mal selbst (Pause 1,2 s).
+96. **Neue Fragen für Build 39**: je eine pro Kategorie und Stufe (13 × 4 = 52), „Aktuelles 2026“ per
+    Websuche geprüft (Commonwealth Games, Deutscher Buchpreis, Rad-WM Zeitfahren). Eisbär-Frage
+    (`besser-0002`, Version 2) bleibt, Erklärung ergänzt: Haare farblos, durchsichtig, hohl; Haut schwarz;
+    „Fellfarbe“ wäre weiß – deshalb wird gezielt nach den Haaren gefragt.
 95. **Zufallsverteilung der Antwortfelder abschaltbar** (Wunsch vom 25.10.2026; kommt mit dem nächsten
     Build): Schalter „Antworten für jeden Spieler anders mischen“ (Quiz einrichten, Standard an). Aus:
     alle sehen dieselbe Reihenfolge – Chancengleichheit bei Zeitwertung.

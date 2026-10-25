@@ -161,11 +161,25 @@ class NearbyLink(context: Context, private val listener: Listener) {
 
     fun stopDiscovery() = client.stopDiscovery()
 
-    fun requestConnection(myName: String, endpointId: String) {
+    private val retryHandler = android.os.Handler(android.os.Looper.getMainLooper())
+
+    /**
+     * Beitritt anfragen. Hängt nach einem App-Neustart noch die alte Verbindung im System
+     * (`8003: STATUS_ALREADY_CONNECTED_TO_ENDPOINT`), wird sie getrennt und der Beitritt bis zu
+     * [ALREADY_CONNECTED_RETRIES]-mal selbst wiederholt.
+     */
+    fun requestConnection(myName: String, endpointId: String, attempt: Int = 0) {
         client.requestConnection(myName, endpointId, lifecycleCallback)
             .addOnFailureListener {
-                listener.onError("Verbindungsanfrage fehlgeschlagen: ${it.message}")
-                listener.onConnectionFailed(endpointId, it.message ?: it.javaClass.simpleName)
+                val message = it.message ?: it.javaClass.simpleName
+                if (message.contains("8003") && attempt < ALREADY_CONNECTED_RETRIES) {
+                    Diagnostics.log("Alte Verbindung zu $endpointId hängt noch – wird getrennt, Beitritt neu (${attempt + 1}/$ALREADY_CONNECTED_RETRIES)")
+                    client.disconnectFromEndpoint(endpointId)
+                    retryHandler.postDelayed({ requestConnection(myName, endpointId, attempt + 1) }, ALREADY_CONNECTED_DELAY_MS)
+                    return@addOnFailureListener
+                }
+                listener.onError("Verbindungsanfrage fehlgeschlagen: $message")
+                listener.onConnectionFailed(endpointId, message)
             }
     }
 
@@ -210,6 +224,9 @@ class NearbyLink(context: Context, private val listener: Listener) {
     }
 
     companion object {
+        private const val ALREADY_CONNECTED_RETRIES = 3
+        private const val ALREADY_CONNECTED_DELAY_MS = 1_200L
+
         const val SERVICE_ID = "de.pabich.buzzer"
     }
 }

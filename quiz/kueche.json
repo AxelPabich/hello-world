@@ -1,125 +1,142 @@
 {
   "paket": "kueche",
   "titel": "Küche & Genuss",
-  "version": 9,
+  "version": 10,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "kueche-0080",
+      "id": "kueche-0043",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Wer erfand 1875 in Vevey die Milchschokolade?",
+      "stufe": "leicht",
+      "frage": "Woraus werden Spaghetti traditionell hergestellt?",
       "antworten": [
-        "Daniel Peter",
-        "Rodolphe Lindt",
-        "Philippe Suchard",
-        "Jean Tobler"
+        "Aus Hartweizengrieß und Wasser",
+        "Aus Reismehl und Eiern",
+        "Aus Kartoffelstärke",
+        "Aus Maismehl und Milch"
       ],
-      "erklaerung": "Peter verwendete Kondensmilch seines Nachbarn Henri Nestlé; daraus entstand später die Firma Nestlé-Peter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Daniel%20Peter",
+      "erklaerung": "Italienische Trockenpasta besteht klassisch nur aus Hartweizengrieß und Wasser.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spaghetti",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0061",
+      "id": "kueche-0003",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist echtes Wasabi?",
+      "antworten": [
+        "Die geriebene Wurzel einer japanischen Pflanze aus der Familie der Kreuzblütler",
+        "Grüner Senf aus gemahlenen Senfkörnern",
+        "Eine Paste aus fermentierten Algen",
+        "Grün gefärbter Meerrettich – und zwar immer"
+      ],
+      "erklaerung": "Beim Sushi außerhalb Japans bekommt man meist tatsächlich gefärbten Meerrettich.",
+      "quelle": "https://de.wikipedia.org/wiki/Wasabi",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0070",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Aus welcher Rebsorte wird der piemontesische Rotwein Barolo gekeltert?",
+      "antworten": [
+        "Nebbiolo",
+        "Sangiovese",
+        "Barbera",
+        "Montepulciano"
+      ],
+      "erklaerung": "Barolo wird zu 100 Prozent aus Nebbiolo erzeugt und gilt als „König der Weine“ des Piemonts.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Barolo",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0017",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "schwer",
-      "frage": "Welche Beere gibt Gin sein typisches Hauptaroma?",
+      "frage": "In welcher Stadt wurde der Aperitif „Aperol“ 1919 erfunden?",
       "antworten": [
-        "Wacholder",
-        "Himbeere",
-        "Holunder",
-        "Preiselbeere"
+        "Padua",
+        "Venedig",
+        "Mailand",
+        "Turin"
       ],
-      "erklaerung": "Ohne Wacholder darf ein Getränk nicht als Gin verkauft werden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gin",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0016",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welche Nuss ist die Grundlage von Marzipan?",
-      "antworten": [
-        "Mandeln",
-        "Haselnüsse",
-        "Walnüsse",
-        "Erdnüsse"
-      ],
-      "erklaerung": "Mit Aprikosenkernen statt Mandeln heißt es Persipan.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Marzipan",
+      "erklaerung": "Die Brüder Barbieri stellten ihn auf einer Messe in Padua vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aperol",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0076",
+      "id": "kueche-0009",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Wer konstruierte 1679 einen Dampfkochtopf, den Vorläufer des heutigen Schnellkochtopfs?",
+      "stufe": "mittel",
+      "frage": "Welches Land produziert den meisten Kaffee der Welt?",
       "antworten": [
-        "Denis Papin",
-        "Justus von Liebig",
-        "Benjamin Thompson",
-        "Nicolas Appert"
+        "Brasilien",
+        "Kolumbien",
+        "Äthiopien",
+        "Vietnam"
       ],
-      "erklaerung": "Der französische Physiker Papin nannte seinen „Digestor“ auch Papinischer Topf; der Überdruck erhöht die Siedetemperatur des Wassers.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Papinscher%20Topf",
+      "erklaerung": "Vietnam folgt auf Platz zwei.",
+      "quelle": "https://de.wikipedia.org/wiki/Kaffee",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0050",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welche Käsesorte ist die typische Zutat im italienischen Tiramisu?",
+      "antworten": [
+        "Mascarpone",
+        "Ricotta",
+        "Gorgonzola",
+        "Mozzarella"
+      ],
+      "erklaerung": "Mascarpone ist ein cremiger Frischkäse aus Sahne.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tiramisu",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0018",
+      "id": "kueche-0023",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welches Gewürz gibt Currypulver vor allem seine gelbe Farbe?",
+      "stufe": "leicht",
+      "frage": "Woraus wird Tofu hergestellt?",
       "antworten": [
-        "Kurkuma",
-        "Safran",
-        "Paprika",
-        "Senfkörner"
+        "Aus Sojabohnen",
+        "Aus Reis",
+        "Aus Kichererbsen",
+        "Aus Kokosmilch"
       ],
-      "erklaerung": "Kurkuma wird auch Gelbwurz genannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kurkuma",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Sojamilch wird gerinnen gelassen und gepresst – ähnlich wie Käse.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tofu",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0074",
+      "id": "kueche-0064",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Welcher französische Apotheker warb im 18. Jahrhundert erfolgreich für den Anbau der Kartoffel in Frankreich?",
+      "stufe": "schwer",
+      "frage": "Aus welchem Getreide wird Pumpernickel gebacken?",
       "antworten": [
-        "Antoine-Augustin Parmentier",
-        "Jean Anthelme Brillat-Savarin",
-        "François Vatel",
-        "Marie-Antoine Carême"
+        "Aus Roggen",
+        "Aus Hafer",
+        "Aus Dinkel",
+        "Aus Gerste"
       ],
-      "erklaerung": "Parmentier hatte als Kriegsgefangener in Preußen Kartoffeln kennengelernt; zahlreiche Kartoffelgerichte tragen heute seinen Namen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Antoine%20Augustin%20Parmentier",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0046",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Woraus besteht das orientalische Gebäck Baklava hauptsächlich?",
-      "antworten": [
-        "Dünner Teig, Nüsse und Sirup",
-        "Hefeteig, Rosinen und Zuckerguss",
-        "Mürbeteig, Äpfel und Zimt",
-        "Biskuit, Sahne und Früchte"
-      ],
-      "erklaerung": "Zwischen viele hauchdünne Teigblätter kommen gehackte Nüsse, anschließend wird es mit Sirup oder Honig getränkt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Baklava",
+      "erklaerung": "Das dunkle Vollkornbrot aus Westfalen backt viele Stunden bei niedriger Temperatur.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pumpernickel",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -141,20 +158,20 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0008",
+      "id": "kueche-0028",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist Sauerkraut?",
+      "stufe": "schwer",
+      "frage": "Welche ist die meistangebaute Weißweinrebsorte in Deutschland?",
       "antworten": [
-        "Fein geschnittener, milchsauer vergorener Weißkohl",
-        "In Essig eingelegter Rotkohl",
-        "Gekochter Spitzkohl mit Zitronensaft",
-        "Ein Kraut, das schlechte Laune hat"
+        "Riesling",
+        "Müller-Thurgau",
+        "Silvaner",
+        "Grauburgunder"
       ],
-      "erklaerung": "Die Milchsäurebakterien machen es sauer und haltbar.",
-      "quelle": "https://de.wikipedia.org/wiki/Sauerkraut",
-      "erstellt": "2026-10-13",
+      "erklaerung": "Deutschland hat die größte Riesling-Anbaufläche der Welt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Riesling",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -175,19 +192,36 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0086",
+      "id": "kueche-0078",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Aus welcher Pflanze wird Vanille gewonnen?",
+      "stufe": "ingomania",
+      "frage": "Was gibt die Typenzahl bei Mehl, etwa „Type 405“, an?",
       "antworten": [
-        "Aus einer Orchidee",
-        "Aus einer Palme",
-        "Aus einem Busch",
-        "Aus einem Moos"
+        "Den Mineralstoffgehalt in mg pro 100 g Mehl",
+        "Den Mahlgrad in Mikrometern",
+        "Den Eiweißgehalt in Promille",
+        "Die Anzahl der Mahlvorgänge"
       ],
-      "erklaerung": "Die Gewürzvanille ist die Frucht einer Kletterorchidee.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gew%C3%BCrzvanille",
+      "erklaerung": "Die Zahl nennt die beim Verbrennen zurückbleibende Asche; je höher sie ist, desto mehr Schalenanteile enthält das Mehl.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mehltype",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0059",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Wie heißt die Bräunungsreaktion beim Braten, die Röstaromen erzeugt?",
+      "antworten": [
+        "Maillard-Reaktion",
+        "Karamellisierung",
+        "Gärung",
+        "Pasteurisierung"
+      ],
+      "erklaerung": "Dabei reagieren Aminosäuren und Zucker bei Hitze miteinander.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Maillard-Reaktion",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -205,6 +239,924 @@
       ],
       "erklaerung": "Viele Laibe reifen deutlich länger, 24 oder 36 Monate sind verbreitet.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Parmigiano%20Reggiano",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0010",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Wie nennt man in Italien Nudeln, die bissfest gekocht sind?",
+      "antworten": [
+        "Al dente",
+        "Al forno",
+        "Al fresco",
+        "Al Pacino"
+      ],
+      "erklaerung": "Wörtlich „für den Zahn“. Al forno heißt „aus dem Ofen“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=al+dente",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0052",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "In welchem Land wurde das Pilsner Bier erfunden?",
+      "antworten": [
+        "In Tschechien",
+        "In Deutschland",
+        "In Belgien",
+        "In Österreich"
+      ],
+      "erklaerung": "Das erste Pilsner wurde 1842 in der Stadt Pilsen gebraut.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pilsner",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0058",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Woraus wird die japanische Würzpaste Miso hergestellt?",
+      "antworten": [
+        "Aus fermentierten Sojabohnen",
+        "Aus getrocknetem Seetang",
+        "Aus eingelegtem Ingwer",
+        "Aus gemahlenen Sesamkörnern"
+      ],
+      "erklaerung": "Meist werden Sojabohnen mit Salz und einem Schimmelpilz (Koji) vergoren. Miso-Suppe ist ein Klassiker.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Miso",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0074",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Welcher französische Apotheker warb im 18. Jahrhundert erfolgreich für den Anbau der Kartoffel in Frankreich?",
+      "antworten": [
+        "Antoine-Augustin Parmentier",
+        "Jean Anthelme Brillat-Savarin",
+        "François Vatel",
+        "Marie-Antoine Carême"
+      ],
+      "erklaerung": "Parmentier hatte als Kriegsgefangener in Preußen Kartoffeln kennengelernt; zahlreiche Kartoffelgerichte tragen heute seinen Namen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Antoine%20Augustin%20Parmentier",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0042",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Wofür benutzt man ein Nudelholz?",
+      "antworten": [
+        "Zum Ausrollen von Teig",
+        "Zum Rühren von Suppe",
+        "Zum Entkernen von Obst",
+        "Zum Wenden von Fleisch"
+      ],
+      "erklaerung": "Mit dem Nudelholz wird Teig für Kuchen, Plätzchen oder Nudeln gleichmäßig dünn gerollt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nudelholz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0090",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Wie heißt das längliche französische Gebäck aus Brandteig mit Creme-Füllung und Glasur?",
+      "antworten": [
+        "Éclair",
+        "Macaron",
+        "Madeleine",
+        "Croissant"
+      ],
+      "erklaerung": "Das Éclair ist ein längliches Brandteiggebäck, gefüllt mit Creme und glasiert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=%C3%89clair",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0039",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Von welchem Tier stammt Schinken üblicherweise?",
+      "antworten": [
+        "Vom Schwein",
+        "Vom Rind",
+        "Vom Schaf",
+        "Vom Huhn"
+      ],
+      "erklaerung": "Schinken ist die gepökelte oder geräucherte Keule des Schweins.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schinken",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0086",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Aus welcher Pflanze wird Vanille gewonnen?",
+      "antworten": [
+        "Aus einer Orchidee",
+        "Aus einer Palme",
+        "Aus einem Busch",
+        "Aus einem Moos"
+      ],
+      "erklaerung": "Die Gewürzvanille ist die Frucht einer Kletterorchidee.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gew%C3%BCrzvanille",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0088",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Aus welcher Rebsorte wird Prosecco hergestellt?",
+      "antworten": [
+        "Glera",
+        "Garganega",
+        "Trebbiano",
+        "Pinot Grigio"
+      ],
+      "erklaerung": "Früher hieß die Rebsorte selbst „Prosecco“, erst seit 2009 Glera.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Prosecco",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0016",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welche Nuss ist die Grundlage von Marzipan?",
+      "antworten": [
+        "Mandeln",
+        "Haselnüsse",
+        "Walnüsse",
+        "Erdnüsse"
+      ],
+      "erklaerung": "Mit Aprikosenkernen statt Mandeln heißt es Persipan.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Marzipan",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0092",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Wer veröffentlichte 1903 das Standardwerk der klassischen französischen Küche „Le Guide culinaire“?",
+      "antworten": [
+        "Auguste Escoffier",
+        "Paul Bocuse",
+        "Fernand Point",
+        "Alain Ducasse"
+      ],
+      "erklaerung": "Auguste Escoffier brachte 1903 „Le Guide culinaire“ heraus und modernisierte die französische Küche.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Auguste%20Escoffier",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0069",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "In welcher Stadt wurde 1516 das bayerische Reinheitsgebot für Bier erlassen?",
+      "antworten": [
+        "Ingolstadt",
+        "München",
+        "Regensburg",
+        "Nürnberg"
+      ],
+      "erklaerung": "Die Herzöge Wilhelm IV. und Ludwig X. verkündeten es auf dem Landständetag in Ingolstadt; es gilt als eines der ältesten Lebensmittelgesetze.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Reinheitsgebot",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0019",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist „Umami“?",
+      "antworten": [
+        "Eine der fünf Grundgeschmacksrichtungen",
+        "Ein japanisches Küchenmesser",
+        "Ein Reiswein",
+        "Eine essbare Algenart"
+      ],
+      "erklaerung": "Umami steht für herzhaft-würzig, etwa bei Parmesan oder Sojasoße.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Umami",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0040",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Welches Getränk wird aus Wasser, Malz, Hopfen und Hefe gebraut?",
+      "antworten": [
+        "Bier",
+        "Wein",
+        "Most",
+        "Met"
+      ],
+      "erklaerung": "Das deutsche Reinheitsgebot von 1516 erlaubt nur Wasser, Hopfen und Malz; die Hefe wurde später ergänzt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bier",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0015",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was ist „Ratatouille“?",
+      "antworten": [
+        "Ein französisches Schmorgericht aus Gemüse",
+        "Ein Käse aus der Provence",
+        "Ein Nachtisch im Rattankorb",
+        "Ein Fischeintopf aus Marseille"
+      ],
+      "erklaerung": "Der Fischeintopf aus Marseille heißt Bouillabaisse.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ratatouille",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0005",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Woraus werden Pommes frites gemacht?",
+      "antworten": [
+        "Aus Kartoffeln",
+        "Aus Maisgrieß in Stangenform",
+        "Aus gelben Buntstiften, frittiert",
+        "Aus Pastinaken"
+      ],
+      "erklaerung": "In Belgien gelten sie als Nationalgericht.",
+      "quelle": "https://de.wikipedia.org/wiki/Pommes_frites",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0037",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Welcher Käse ist für seine großen Löcher bekannt?",
+      "antworten": [
+        "Emmentaler",
+        "Camembert",
+        "Gouda",
+        "Parmesan"
+      ],
+      "erklaerung": "Beim Reifen bilden Bakterien Gas, das die Löcher im Teig entstehen lässt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Emmentaler%20%28K%C3%A4se%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0076",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Wer konstruierte 1679 einen Dampfkochtopf, den Vorläufer des heutigen Schnellkochtopfs?",
+      "antworten": [
+        "Denis Papin",
+        "Justus von Liebig",
+        "Benjamin Thompson",
+        "Nicolas Appert"
+      ],
+      "erklaerung": "Der französische Physiker Papin nannte seinen „Digestor“ auch Papinischer Topf; der Überdruck erhöht die Siedetemperatur des Wassers.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Papinscher%20Topf",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0073",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Wer entwickelte 1841 auf Réunion das bis heute übliche Verfahren, Vanilleblüten von Hand zu bestäuben?",
+      "antworten": [
+        "Edmond Albius, ein zwölfjähriger versklavter Junge",
+        "Charles Morren, ein belgischer Botaniker",
+        "Auguste Escoffier, ein französischer Koch",
+        "Pierre Poivre, ein Gouverneur von Mauritius"
+      ],
+      "erklaerung": "Außerhalb Mexikos fehlen die natürlichen Bestäuber; Albius’ Handgriff mit einem Holzstäbchen machte den Vanilleanbau weltweit möglich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Edmond%20Albius",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0087",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Wie nennt man das schonende Garen in Flüssigkeit knapp unter dem Siedepunkt?",
+      "antworten": [
+        "Pochieren",
+        "Blanchieren",
+        "Dünsten",
+        "Schmoren"
+      ],
+      "erklaerung": "Typisch für „pochierte Eier“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pochieren",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0065",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Nach wem ist die Scoville-Skala zur Messung der Schärfe von Chilis benannt?",
+      "antworten": [
+        "Wilbur Scoville, einem US-Pharmazeuten",
+        "John Pemberton, dem Erfinder von Coca-Cola",
+        "Henry Heinz, dem Ketchup-Hersteller",
+        "Harland Sanders, dem Gründer von KFC"
+      ],
+      "erklaerung": "Wilbur Scoville entwickelte den Test 1912 als Pharmakologe; ursprünglich verdünnten Prüfer einen Chili-Extrakt, bis die Schärfe nicht mehr spürbar war.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Scoville-Skala",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0013",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was ist die Hauptzutat von Hummus?",
+      "antworten": [
+        "Kichererbsen",
+        "Linsen",
+        "Erbsen",
+        "Pürierte Gummibärchen"
+      ],
+      "erklaerung": "Dazu kommen Sesampaste (Tahini), Zitrone und Knoblauch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hummus",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0001",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was macht Guacamole grün?",
+      "antworten": [
+        "Zerdrückte Avocado",
+        "Grüne Lebensmittelfarbe vom letzten Kindergeburtstag",
+        "Pürierte Gummibärchen, nur die grünen",
+        "Eine Handvoll Spinat und viel Optimismus"
+      ],
+      "erklaerung": "Dazu kommen Limette, Zwiebel, Salz und oft Chili.",
+      "quelle": "https://de.wikipedia.org/wiki/Guacamole",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0047",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Aus welchem Obst wird Calvados gebrannt?",
+      "antworten": [
+        "Aus Äpfeln",
+        "Aus Birnen",
+        "Aus Pflaumen",
+        "Aus Kirschen"
+      ],
+      "erklaerung": "Der Apfelbrand stammt aus der Normandie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Calvados",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0068",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "In welcher Abtei wirkte der Benediktiner Dom Pérignon als Kellermeister?",
+      "antworten": [
+        "Hautvillers",
+        "Cluny",
+        "Clairvaux",
+        "Cîteaux"
+      ],
+      "erklaerung": "Pierre Pérignon leitete von 1668 bis zu seinem Tod 1715 den Keller der Abtei Hautvillers bei Épernay in der Champagne.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pierre%20P%C3%A9rignon",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0032",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Woraus wird Butter hergestellt?",
+      "antworten": [
+        "Aus Sahne (Rahm)",
+        "Aus Pflanzenöl",
+        "Aus Eigelb",
+        "Aus Quark"
+      ],
+      "erklaerung": "Beim Buttern wird der Rahm geschlagen, bis sich Fett und Buttermilch trennen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Butter",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0081",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Welches Material verwendete Melitta Bentz für ihren ersten Kaffeefilter um 1908?",
+      "antworten": [
+        "Löschpapier aus dem Schulheft ihres Sohnes",
+        "Ein Stück Leinentuch",
+        "Zeitungspapier",
+        "Ein Seidentaschentuch"
+      ],
+      "erklaerung": "Sie durchlöcherte einen Messingtopf und legte Löschpapier hinein; so entstand in Dresden der Papierfilter, der den Kaffeesatz zurückhielt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Melitta%20Bentz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0067",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Von welcher klassischen Grundsoße wird die Sauce béarnaise abgeleitet?",
+      "antworten": [
+        "Sauce hollandaise",
+        "Sauce béchamel",
+        "Sauce velouté",
+        "Sauce espagnole"
+      ],
+      "erklaerung": "Die Béarnaise ist eine Variante der Hollandaise: Statt Zitronensaft kommt eine Reduktion aus Essig, Schalotten und Estragon hinein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sauce%20b%C3%A9arnaise",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0002",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Aus welchem Land stammt das Gulasch ursprünglich?",
+      "antworten": [
+        "Aus Ungarn, als Eintopf der Rinderhirten",
+        "Aus Österreich, als Wiener Kaffeehausgericht",
+        "Aus Mexiko, als Variante von Chili con Carne",
+        "Aus Schweden, als Beilage zu Köttbullar"
+      ],
+      "erklaerung": "„Gulyás“ bedeutet auf Ungarisch „Rinderhirt“.",
+      "quelle": "https://de.wikipedia.org/wiki/Gulasch",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0091",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Von welchem Fisch stammt der Rogen des Beluga-Kaviars?",
+      "antworten": [
+        "Hausen",
+        "Lachs",
+        "Hering",
+        "Kabeljau"
+      ],
+      "erklaerung": "Beluga-Kaviar stammt vom Hausen, einer Störart.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaviar",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0079",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Aus welcher Milch wird echter Roquefort hergestellt?",
+      "antworten": [
+        "Aus Schafsmilch",
+        "Aus Kuhmilch",
+        "Aus Ziegenmilch",
+        "Aus Büffelmilch"
+      ],
+      "erklaerung": "Der französische Blauschimmelkäse reift in den Kalksteinhöhlen von Roquefort-sur-Soulzon und besitzt eine geschützte Ursprungsbezeichnung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Roquefort",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0026",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Aus welchem Land stammt die Paella?",
+      "antworten": [
+        "Spanien",
+        "Italien",
+        "Portugal",
+        "Mexiko"
+      ],
+      "erklaerung": "Ihre Heimat ist die Gegend um Valencia.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Paella",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0053",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welcher Reis eignet sich am besten für Risotto?",
+      "antworten": [
+        "Rundkornreis, z. B. Arborio",
+        "Basmatireis",
+        "Wildreis",
+        "Parboiled-Langkornreis"
+      ],
+      "erklaerung": "Rundkornreis gibt viel Stärke ab und macht das Risotto cremig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Risotto",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0051",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist Chorizo?",
+      "antworten": [
+        "Eine spanische Wurst mit Paprika",
+        "Ein italienischer Schinken",
+        "Ein französischer Käse",
+        "Eine portugiesische Fischsoße"
+      ],
+      "erklaerung": "Das Paprikapulver gibt der spanischen Wurst Farbe und Würze.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Chorizo",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0007",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Woraus wird echter „Mozzarella di Bufala“ hergestellt?",
+      "antworten": [
+        "Aus Büffelmilch",
+        "Aus Kuhmilch mit Büffelgras-Aroma",
+        "Aus Schafsmilch aus Sardinien",
+        "Aus Sojamilch aus Kampanien"
+      ],
+      "erklaerung": "Er stammt traditionell aus Kampanien.",
+      "quelle": "https://de.wikipedia.org/wiki/Mozzarella",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0082",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Welche beiden Zutaten außer Malz prägen das obergärige Bier Gose?",
+      "antworten": [
+        "Koriander und Salz",
+        "Zimt und Honig",
+        "Kümmel und Pfeffer",
+        "Lavendel und Zucker"
+      ],
+      "erklaerung": "Die Gose stammt aus Goslar und wurde in Leipzig berühmt; sie schmeckt leicht säuerlich und salzig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gose",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0075",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Wodurch erhält der chinesische Schwarztee Lapsang Souchong sein typisches Raucharoma?",
+      "antworten": [
+        "Trocknen über Kiefernholzfeuer",
+        "Lagerung in Whiskyfässern",
+        "Zugabe von geräuchertem Speck",
+        "Röstung über Torffeuer"
+      ],
+      "erklaerung": "Beim traditionellen Verfahren aus der Provinz Fujian werden die Blätter über Feuer aus Kiefernholz getrocknet und dabei geräuchert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lapsang%20Souchong",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0012",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was bedeutet der Name des Gerichts „Saltimbocca“ wörtlich?",
+      "antworten": [
+        "„Spring in den Mund“",
+        "„Salz in die Backe“",
+        "„Kleiner Sprung“",
+        "„Fleisch im Mantel“"
+      ],
+      "erklaerung": "Kalbsschnitzel mit Salbei und Schinken – so gut, dass es in den Mund springt.",
+      "quelle": "https://de.wikipedia.org/wiki/Saltimbocca",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0061",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Welche Beere gibt Gin sein typisches Hauptaroma?",
+      "antworten": [
+        "Wacholder",
+        "Himbeere",
+        "Holunder",
+        "Preiselbeere"
+      ],
+      "erklaerung": "Ohne Wacholder darf ein Getränk nicht als Gin verkauft werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gin",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0014",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Aus welchem Land stammt Sushi in seiner heutigen Form?",
+      "antworten": [
+        "Japan",
+        "China",
+        "Korea",
+        "Thailand"
+      ],
+      "erklaerung": "Die Ursprünge als Konservierungsmethode liegen in Südostasien, das heutige Sushi ist japanisch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sushi",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0083",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Welche ungewöhnliche Zutat gehört klassisch in die mexikanische Soße Mole poblano?",
+      "antworten": [
+        "Zartbitterschokolade",
+        "Kokosmilch",
+        "Joghurt",
+        "Sojasoße"
+      ],
+      "erklaerung": "Die dunkle Soße aus Puebla vereint viele Chilisorten, Nüsse, Gewürze und ein wenig Schokolade; sie wird oft zu Truthahn gereicht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mole%20poblano",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0033",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist die Hauptzutat von „Pesto alla genovese“?",
+      "antworten": [
+        "Basilikum",
+        "Petersilie",
+        "Rucola",
+        "Spinat"
+      ],
+      "erklaerung": "Dazu kommen Pinienkerne, Knoblauch, Parmesan oder Pecorino und Olivenöl.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pesto",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0066",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Für welchen Staatsmann kreierte der 16-jährige Küchenlehrling Franz Sacher 1832 die Vorform der Sachertorte?",
+      "antworten": [
+        "Fürst Metternich",
+        "Kaiser Franz Joseph",
+        "Fürst Schwarzenberg",
+        "Graf Radetzky"
+      ],
+      "erklaerung": "Der Legende nach sprang der junge Sacher ein, als der Küchenchef erkrankt war, und schuf für Staatskanzler Metternich einen Schokoladenkuchen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sachertorte",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0004",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Welches Gewürz ist, gemessen am Gewicht, das teuerste der Welt?",
+      "antworten": [
+        "Safran, die getrockneten Blütennarben eines Krokus",
+        "Vanille, die fermentierten Schoten einer Orchidee",
+        "Kardamom, die Samenkapseln einer Ingwerpflanze",
+        "Muskatblüte, die Samenhülle der Muskatnuss"
+      ],
+      "erklaerung": "Für 1 kg Safran braucht man über 100.000 handgepflückte Blüten.",
+      "quelle": "https://de.wikipedia.org/wiki/Safran",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0071",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Woraus wird der brasilianische Zuckerrohrschnaps Cachaça gebrannt?",
+      "antworten": [
+        "Aus frischem, vergorenem Zuckerrohrsaft",
+        "Aus Zuckerrohrmelasse",
+        "Aus vergorenem Agavensaft",
+        "Aus Maniokwurzeln"
+      ],
+      "erklaerung": "Cachaça entsteht aus dem frischen Zuckerrohrsaft; der meiste Rum dagegen wird aus Melasse, einem Nebenprodukt der Zuckerherstellung, gebrannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Cacha%C3%A7a",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0027",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was sind Gnocchi?",
+      "antworten": [
+        "Kleine Klößchen, meist aus Kartoffeln",
+        "Gefüllte Teigtaschen",
+        "Dünne Bandnudeln",
+        "Frittierte Reisbällchen"
+      ],
+      "erklaerung": "Gefüllte Teigtaschen wären Ravioli, frittierte Reisbällchen Arancini.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gnocchi",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0045",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was ist Ghee?",
+      "antworten": [
+        "Geklärte Butter",
+        "Ein indischer Frischkäse",
+        "Ein Sesamöl",
+        "Eine Kokosmilch"
+      ],
+      "erklaerung": "Beim Klären wird Wasser und Milcheiweiß entfernt; Ghee ist in der indischen Küche sehr verbreitet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ghee",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0046",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Woraus besteht das orientalische Gebäck Baklava hauptsächlich?",
+      "antworten": [
+        "Dünner Teig, Nüsse und Sirup",
+        "Hefeteig, Rosinen und Zuckerguss",
+        "Mürbeteig, Äpfel und Zimt",
+        "Biskuit, Sahne und Früchte"
+      ],
+      "erklaerung": "Zwischen viele hauchdünne Teigblätter kommen gehackte Nüsse, anschließend wird es mit Sirup oder Honig getränkt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Baklava",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0008",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Was ist Sauerkraut?",
+      "antworten": [
+        "Fein geschnittener, milchsauer vergorener Weißkohl",
+        "In Essig eingelegter Rotkohl",
+        "Gekochter Spitzkohl mit Zitronensaft",
+        "Ein Kraut, das schlechte Laune hat"
+      ],
+      "erklaerung": "Die Milchsäurebakterien machen es sauer und haltbar.",
+      "quelle": "https://de.wikipedia.org/wiki/Sauerkraut",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0021",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Aus welchem Getreide wird schottischer Single Malt Whisky hergestellt?",
+      "antworten": [
+        "Aus gemälzter Gerste",
+        "Aus Mais",
+        "Aus Roggen",
+        "Aus Reis"
+      ],
+      "erklaerung": "Bourbon aus den USA besteht dagegen überwiegend aus Mais.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Single%20Malt%20Whisky",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0084",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Bei welcher Temperatur müssen die Trauben für deutschen Eiswein spätestens gelesen werden?",
+      "antworten": [
+        "Bei höchstens minus 7 °C",
+        "Bei höchstens minus 2 °C",
+        "Bei höchstens minus 12 °C",
+        "Bei höchstens minus 20 °C"
+      ],
+      "erklaerung": "Die gefrorenen Trauben werden gepresst, sodass nur wenig, dafür stark konzentrierter süßer Most austritt; das Weingesetz verlangt mindestens minus 7 °C.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eiswein",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0025",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was ist „Tahini“?",
+      "antworten": [
+        "Eine Paste aus Sesam",
+        "Ein Joghurtdip mit Gurke",
+        "Ein Gewürz aus Sumach",
+        "Eine Paste aus Kichererbsen"
+      ],
+      "erklaerung": "Tahini gehört in jeden Hummus – die Kichererbsenpaste ist der Hummus selbst.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tahini",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0085",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "leicht",
+      "frage": "Aus welchen Nüssen besteht ein klassischer Nuss-Nougat-Aufstrich hauptsächlich?",
+      "antworten": [
+        "Haselnüssen",
+        "Walnüssen",
+        "Mandeln",
+        "Erdnüssen"
+      ],
+      "erklaerung": "Nougat entsteht aus Haselnüssen oder Mandeln, Zucker und Kakao.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nuss-Nugat-Creme",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0048",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Welcher Stoff sorgt für die Schärfe von Chili?",
+      "antworten": [
+        "Capsaicin",
+        "Piperin",
+        "Koffein",
+        "Menthol"
+      ],
+      "erklaerung": "Piperin macht dagegen den schwarzen Pfeffer scharf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Capsaicin",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -243,122 +1195,20 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0001",
+      "id": "kueche-0029",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "leicht",
-      "frage": "Was macht Guacamole grün?",
+      "frage": "Woraus wird Popcorn gemacht?",
       "antworten": [
-        "Zerdrückte Avocado",
-        "Grüne Lebensmittelfarbe vom letzten Kindergeburtstag",
-        "Pürierte Gummibärchen, nur die grünen",
-        "Eine Handvoll Spinat und viel Optimismus"
+        "Aus Mais",
+        "Aus Reis",
+        "Aus Weizen",
+        "Aus Hirse"
       ],
-      "erklaerung": "Dazu kommen Limette, Zwiebel, Salz und oft Chili.",
-      "quelle": "https://de.wikipedia.org/wiki/Guacamole",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0012",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was bedeutet der Name des Gerichts „Saltimbocca“ wörtlich?",
-      "antworten": [
-        "„Spring in den Mund“",
-        "„Salz in die Backe“",
-        "„Kleiner Sprung“",
-        "„Fleisch im Mantel“"
-      ],
-      "erklaerung": "Kalbsschnitzel mit Salbei und Schinken – so gut, dass es in den Mund springt.",
-      "quelle": "https://de.wikipedia.org/wiki/Saltimbocca",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0027",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was sind Gnocchi?",
-      "antworten": [
-        "Kleine Klößchen, meist aus Kartoffeln",
-        "Gefüllte Teigtaschen",
-        "Dünne Bandnudeln",
-        "Frittierte Reisbällchen"
-      ],
-      "erklaerung": "Gefüllte Teigtaschen wären Ravioli, frittierte Reisbällchen Arancini.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gnocchi",
+      "erklaerung": "Das Wasser im Korn verdampft beim Erhitzen und lässt es aufplatzen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Popcorn",
       "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0088",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Aus welcher Rebsorte wird Prosecco hergestellt?",
-      "antworten": [
-        "Glera",
-        "Garganega",
-        "Trebbiano",
-        "Pinot Grigio"
-      ],
-      "erklaerung": "Früher hieß die Rebsorte selbst „Prosecco“, erst seit 2009 Glera.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Prosecco",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0052",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "In welchem Land wurde das Pilsner Bier erfunden?",
-      "antworten": [
-        "In Tschechien",
-        "In Deutschland",
-        "In Belgien",
-        "In Österreich"
-      ],
-      "erklaerung": "Das erste Pilsner wurde 1842 in der Stadt Pilsen gebraut.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pilsner",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0024",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was macht eine original italienische Spaghetti Carbonara cremig?",
-      "antworten": [
-        "Eigelb und Käse",
-        "Sahne",
-        "Crème fraîche",
-        "Mehlschwitze"
-      ],
-      "erklaerung": "Im Original kommen Guanciale, Eigelb, Pecorino und Pfeffer hinein – keine Sahne.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spaghetti%20alla%20carbonara",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0009",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welches Land produziert den meisten Kaffee der Welt?",
-      "antworten": [
-        "Brasilien",
-        "Kolumbien",
-        "Äthiopien",
-        "Vietnam"
-      ],
-      "erklaerung": "Vietnam folgt auf Platz zwei.",
-      "quelle": "https://de.wikipedia.org/wiki/Kaffee",
-      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -379,105 +1229,54 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0059",
+      "id": "kueche-0049",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Aus welchem Land stammen Rösti?",
+      "antworten": [
+        "Aus der Schweiz",
+        "Aus Österreich",
+        "Aus Belgien",
+        "Aus Schweden"
+      ],
+      "erklaerung": "Die gebratenen Kartoffelfladen sind ein Schweizer Nationalgericht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%B6sti",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0054",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "mittel",
+      "frage": "Was versteht man unter „Sous-vide“?",
+      "antworten": [
+        "Garen im Vakuumbeutel im Wasserbad",
+        "Frittieren in heißem Öl",
+        "Räuchern über Holzspänen",
+        "Backen im Salzmantel"
+      ],
+      "erklaerung": "Das Gargut gart lange bei niedriger, genau gehaltener Temperatur.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sous-vide",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0011",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "schwer",
-      "frage": "Wie heißt die Bräunungsreaktion beim Braten, die Röstaromen erzeugt?",
+      "frage": "Aus welcher Pflanze wird Tequila hergestellt?",
       "antworten": [
-        "Maillard-Reaktion",
-        "Karamellisierung",
-        "Gärung",
-        "Pasteurisierung"
+        "Aus der Blauen Agave",
+        "Aus Kaktusfeigen",
+        "Aus Zuckerrohr",
+        "Aus Mais"
       ],
-      "erklaerung": "Dabei reagieren Aminosäuren und Zucker bei Hitze miteinander.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Maillard-Reaktion",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0067",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Von welcher klassischen Grundsoße wird die Sauce béarnaise abgeleitet?",
-      "antworten": [
-        "Sauce hollandaise",
-        "Sauce béchamel",
-        "Sauce velouté",
-        "Sauce espagnole"
-      ],
-      "erklaerung": "Die Béarnaise ist eine Variante der Hollandaise: Statt Zitronensaft kommt eine Reduktion aus Essig, Schalotten und Estragon hinein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sauce%20b%C3%A9arnaise",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0075",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Wodurch erhält der chinesische Schwarztee Lapsang Souchong sein typisches Raucharoma?",
-      "antworten": [
-        "Trocknen über Kiefernholzfeuer",
-        "Lagerung in Whiskyfässern",
-        "Zugabe von geräuchertem Speck",
-        "Röstung über Torffeuer"
-      ],
-      "erklaerung": "Beim traditionellen Verfahren aus der Provinz Fujian werden die Blätter über Feuer aus Kiefernholz getrocknet und dabei geräuchert.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lapsang%20Souchong",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0057",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was ist Ceviche, das Nationalgericht Perus?",
-      "antworten": [
-        "Roher Fisch, in Limettensaft mariniert",
-        "Gegrilltes Meerschweinchen",
-        "Maissuppe mit Bohnen",
-        "Frittierte Bananen mit Reis"
-      ],
-      "erklaerung": "Die Säure des Limettensafts gart den Fisch gewissermaßen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ceviche",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0042",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Wofür benutzt man ein Nudelholz?",
-      "antworten": [
-        "Zum Ausrollen von Teig",
-        "Zum Rühren von Suppe",
-        "Zum Entkernen von Obst",
-        "Zum Wenden von Fleisch"
-      ],
-      "erklaerung": "Mit dem Nudelholz wird Teig für Kuchen, Plätzchen oder Nudeln gleichmäßig dünn gerollt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nudelholz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0017",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "In welcher Stadt wurde der Aperitif „Aperol“ 1919 erfunden?",
-      "antworten": [
-        "Padua",
-        "Venedig",
-        "Mailand",
-        "Turin"
-      ],
-      "erklaerung": "Die Brüder Barbieri stellten ihn auf einer Messe in Padua vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aperol",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Die Agave ist kein Kaktus – ein häufiger Irrtum.",
+      "quelle": "https://de.wikipedia.org/wiki/Tequila",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
@@ -515,104 +1314,53 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0078",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Was gibt die Typenzahl bei Mehl, etwa „Type 405“, an?",
-      "antworten": [
-        "Den Mineralstoffgehalt in mg pro 100 g Mehl",
-        "Den Mahlgrad in Mikrometern",
-        "Den Eiweißgehalt in Promille",
-        "Die Anzahl der Mahlvorgänge"
-      ],
-      "erklaerung": "Die Zahl nennt die beim Verbrennen zurückbleibende Asche; je höher sie ist, desto mehr Schalenanteile enthält das Mehl.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mehltype",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0035",
+      "id": "kueche-0089",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "leicht",
-      "frage": "Welches Tier produziert Honig?",
+      "frage": "Welches Gemüse ist die Hauptzutat der kalten spanischen Suppe Gazpacho?",
       "antworten": [
-        "Die Biene",
-        "Die Libelle",
-        "Die Fliege",
-        "Der Schmetterling"
+        "Tomaten",
+        "Kartoffeln",
+        "Kohl",
+        "Spinat"
       ],
-      "erklaerung": "Bienen sammeln Nektar und verarbeiten ihn im Stock zu Honig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Honig",
-      "erstellt": "2026-10-24",
+      "erklaerung": "Gazpacho wird vor allem aus Tomaten, Gurke, Paprika, Brot und Olivenöl zubereitet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gazpacho",
+      "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0062",
+      "id": "kueche-0057",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "schwer",
-      "frage": "Aus welcher spanischen Region stammt der Sherry?",
+      "frage": "Was ist Ceviche, das Nationalgericht Perus?",
       "antworten": [
-        "Andalusien",
-        "Katalonien",
-        "Galicien",
-        "Navarra"
+        "Roher Fisch, in Limettensaft mariniert",
+        "Gegrilltes Meerschweinchen",
+        "Maissuppe mit Bohnen",
+        "Frittierte Bananen mit Reis"
       ],
-      "erklaerung": "Das Herz des Sherrygebiets liegt um die Stadt Jerez de la Frontera.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sherry",
+      "erklaerung": "Die Säure des Limettensafts gart den Fisch gewissermaßen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ceviche",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0083",
+      "id": "kueche-0077",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "ingomania",
-      "frage": "Welche ungewöhnliche Zutat gehört klassisch in die mexikanische Soße Mole poblano?",
+      "frage": "Welcher Franzose entwickelte um 1800 das Haltbarmachen von Lebensmitteln in verschlossenen Glasgefäßen im Wasserbad?",
       "antworten": [
-        "Zartbitterschokolade",
-        "Kokosmilch",
-        "Joghurt",
-        "Sojasoße"
+        "Nicolas Appert",
+        "Louis Pasteur",
+        "Peter Durand",
+        "Auguste Escoffier"
       ],
-      "erklaerung": "Die dunkle Soße aus Puebla vereint viele Chilisorten, Nüsse, Gewürze und ein wenig Schokolade; sie wird oft zu Truthahn gereicht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mole%20poblano",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0031",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was ist „Kimchi“?",
-      "antworten": [
-        "Vergorenes, scharf gewürztes Gemüse aus Korea",
-        "Japanische Reisbällchen",
-        "Chinesische Teigtaschen",
-        "Thailändische Kokossuppe"
-      ],
-      "erklaerung": "Meist wird Chinakohl mit Chili, Knoblauch und Ingwer fermentiert.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kimchi",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0049",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Aus welchem Land stammen Rösti?",
-      "antworten": [
-        "Aus der Schweiz",
-        "Aus Österreich",
-        "Aus Belgien",
-        "Aus Schweden"
-      ],
-      "erklaerung": "Die gebratenen Kartoffelfladen sind ein Schweizer Nationalgericht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%B6sti",
+      "erklaerung": "Appert gewann damit einen von Napoleon ausgelobten Preis für ein Verfahren, die Armee haltbar zu verpflegen; das Einkochen heißt im Englischen „appertization“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nicolas%20Appert",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -634,36 +1382,70 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0047",
+      "id": "kueche-0038",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Aus welchem Obst wird Calvados gebrannt?",
+      "stufe": "leicht",
+      "frage": "Aus welchen Bohnen wird Schokolade hergestellt?",
       "antworten": [
-        "Aus Äpfeln",
-        "Aus Birnen",
-        "Aus Pflaumen",
-        "Aus Kirschen"
+        "Aus Kakaobohnen",
+        "Aus Kaffeebohnen",
+        "Aus Sojabohnen",
+        "Aus Vanilleschoten"
       ],
-      "erklaerung": "Der Apfelbrand stammt aus der Normandie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Calvados",
+      "erklaerung": "Die Kakaobohnen werden fermentiert, geröstet und zu Kakaomasse gemahlen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kakaobohne",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0039",
+      "id": "kueche-0062",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Aus welcher spanischen Region stammt der Sherry?",
+      "antworten": [
+        "Andalusien",
+        "Katalonien",
+        "Galicien",
+        "Navarra"
+      ],
+      "erklaerung": "Das Herz des Sherrygebiets liegt um die Stadt Jerez de la Frontera.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sherry",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0072",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Welche kleine Gewürzinsel tauschten die Niederländer 1667 im Frieden von Breda gegen Manhattan?",
+      "antworten": [
+        "Run",
+        "Banda Neira",
+        "Ambon",
+        "Ternate"
+      ],
+      "erklaerung": "Die Insel Run war wegen ihrer Muskatnüsse begehrt; die Engländer erhielten dafür Nieuw Amsterdam, das spätere New York.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Run%20%28Insel%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0035",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "leicht",
-      "frage": "Von welchem Tier stammt Schinken üblicherweise?",
+      "frage": "Welches Tier produziert Honig?",
       "antworten": [
-        "Vom Schwein",
-        "Vom Rind",
-        "Vom Schaf",
-        "Vom Huhn"
+        "Die Biene",
+        "Die Libelle",
+        "Die Fliege",
+        "Der Schmetterling"
       ],
-      "erklaerung": "Schinken ist die gepökelte oder geräucherte Keule des Schweins.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schinken",
+      "erklaerung": "Bienen sammeln Nektar und verarbeiten ihn im Stock zu Honig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Honig",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -685,767 +1467,36 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0005",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus werden Pommes frites gemacht?",
-      "antworten": [
-        "Aus Kartoffeln",
-        "Aus Maisgrieß in Stangenform",
-        "Aus gelben Buntstiften, frittiert",
-        "Aus Pastinaken"
-      ],
-      "erklaerung": "In Belgien gelten sie als Nationalgericht.",
-      "quelle": "https://de.wikipedia.org/wiki/Pommes_frites",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0066",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Für welchen Staatsmann kreierte der 16-jährige Küchenlehrling Franz Sacher 1832 die Vorform der Sachertorte?",
-      "antworten": [
-        "Fürst Metternich",
-        "Kaiser Franz Joseph",
-        "Fürst Schwarzenberg",
-        "Graf Radetzky"
-      ],
-      "erklaerung": "Der Legende nach sprang der junge Sacher ein, als der Küchenchef erkrankt war, und schuf für Staatskanzler Metternich einen Schokoladenkuchen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sachertorte",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0037",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Welcher Käse ist für seine großen Löcher bekannt?",
-      "antworten": [
-        "Emmentaler",
-        "Camembert",
-        "Gouda",
-        "Parmesan"
-      ],
-      "erklaerung": "Beim Reifen bilden Bakterien Gas, das die Löcher im Teig entstehen lässt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Emmentaler%20%28K%C3%A4se%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0053",
+      "id": "kueche-0024",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "mittel",
-      "frage": "Welcher Reis eignet sich am besten für Risotto?",
+      "frage": "Was macht eine original italienische Spaghetti Carbonara cremig?",
       "antworten": [
-        "Rundkornreis, z. B. Arborio",
-        "Basmatireis",
-        "Wildreis",
-        "Parboiled-Langkornreis"
+        "Eigelb und Käse",
+        "Sahne",
+        "Crème fraîche",
+        "Mehlschwitze"
       ],
-      "erklaerung": "Rundkornreis gibt viel Stärke ab und macht das Risotto cremig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Risotto",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0026",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Aus welchem Land stammt die Paella?",
-      "antworten": [
-        "Spanien",
-        "Italien",
-        "Portugal",
-        "Mexiko"
-      ],
-      "erklaerung": "Ihre Heimat ist die Gegend um Valencia.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Paella",
+      "erklaerung": "Im Original kommen Guanciale, Eigelb, Pecorino und Pfeffer hinein – keine Sahne.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spaghetti%20alla%20carbonara",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0014",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Aus welchem Land stammt Sushi in seiner heutigen Form?",
-      "antworten": [
-        "Japan",
-        "China",
-        "Korea",
-        "Thailand"
-      ],
-      "erklaerung": "Die Ursprünge als Konservierungsmethode liegen in Südostasien, das heutige Sushi ist japanisch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sushi",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0069",
+      "id": "kueche-0080",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "ingomania",
-      "frage": "In welcher Stadt wurde 1516 das bayerische Reinheitsgebot für Bier erlassen?",
+      "frage": "Wer erfand 1875 in Vevey die Milchschokolade?",
       "antworten": [
-        "Ingolstadt",
-        "München",
-        "Regensburg",
-        "Nürnberg"
+        "Daniel Peter",
+        "Rodolphe Lindt",
+        "Philippe Suchard",
+        "Jean Tobler"
       ],
-      "erklaerung": "Die Herzöge Wilhelm IV. und Ludwig X. verkündeten es auf dem Landständetag in Ingolstadt; es gilt als eines der ältesten Lebensmittelgesetze.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Reinheitsgebot",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0007",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Woraus wird echter „Mozzarella di Bufala“ hergestellt?",
-      "antworten": [
-        "Aus Büffelmilch",
-        "Aus Kuhmilch mit Büffelgras-Aroma",
-        "Aus Schafsmilch aus Sardinien",
-        "Aus Sojamilch aus Kampanien"
-      ],
-      "erklaerung": "Er stammt traditionell aus Kampanien.",
-      "quelle": "https://de.wikipedia.org/wiki/Mozzarella",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0073",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Wer entwickelte 1841 auf Réunion das bis heute übliche Verfahren, Vanilleblüten von Hand zu bestäuben?",
-      "antworten": [
-        "Edmond Albius, ein zwölfjähriger versklavter Junge",
-        "Charles Morren, ein belgischer Botaniker",
-        "Auguste Escoffier, ein französischer Koch",
-        "Pierre Poivre, ein Gouverneur von Mauritius"
-      ],
-      "erklaerung": "Außerhalb Mexikos fehlen die natürlichen Bestäuber; Albius’ Handgriff mit einem Holzstäbchen machte den Vanilleanbau weltweit möglich.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Edmond%20Albius",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0023",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus wird Tofu hergestellt?",
-      "antworten": [
-        "Aus Sojabohnen",
-        "Aus Reis",
-        "Aus Kichererbsen",
-        "Aus Kokosmilch"
-      ],
-      "erklaerung": "Sojamilch wird gerinnen gelassen und gepresst – ähnlich wie Käse.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tofu",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0065",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Nach wem ist die Scoville-Skala zur Messung der Schärfe von Chilis benannt?",
-      "antworten": [
-        "Wilbur Scoville, einem US-Pharmazeuten",
-        "John Pemberton, dem Erfinder von Coca-Cola",
-        "Henry Heinz, dem Ketchup-Hersteller",
-        "Harland Sanders, dem Gründer von KFC"
-      ],
-      "erklaerung": "Wilbur Scoville entwickelte den Test 1912 als Pharmakologe; ursprünglich verdünnten Prüfer einen Chili-Extrakt, bis die Schärfe nicht mehr spürbar war.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Scoville-Skala",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0050",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welche Käsesorte ist die typische Zutat im italienischen Tiramisu?",
-      "antworten": [
-        "Mascarpone",
-        "Ricotta",
-        "Gorgonzola",
-        "Mozzarella"
-      ],
-      "erklaerung": "Mascarpone ist ein cremiger Frischkäse aus Sahne.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tiramisu",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0087",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Wie nennt man das schonende Garen in Flüssigkeit knapp unter dem Siedepunkt?",
-      "antworten": [
-        "Pochieren",
-        "Blanchieren",
-        "Dünsten",
-        "Schmoren"
-      ],
-      "erklaerung": "Typisch für „pochierte Eier“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pochieren",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0028",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Welche ist die meistangebaute Weißweinrebsorte in Deutschland?",
-      "antworten": [
-        "Riesling",
-        "Müller-Thurgau",
-        "Silvaner",
-        "Grauburgunder"
-      ],
-      "erklaerung": "Deutschland hat die größte Riesling-Anbaufläche der Welt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Riesling",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0079",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Aus welcher Milch wird echter Roquefort hergestellt?",
-      "antworten": [
-        "Aus Schafsmilch",
-        "Aus Kuhmilch",
-        "Aus Ziegenmilch",
-        "Aus Büffelmilch"
-      ],
-      "erklaerung": "Der französische Blauschimmelkäse reift in den Kalksteinhöhlen von Roquefort-sur-Soulzon und besitzt eine geschützte Ursprungsbezeichnung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Roquefort",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0082",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Welche beiden Zutaten außer Malz prägen das obergärige Bier Gose?",
-      "antworten": [
-        "Koriander und Salz",
-        "Zimt und Honig",
-        "Kümmel und Pfeffer",
-        "Lavendel und Zucker"
-      ],
-      "erklaerung": "Die Gose stammt aus Goslar und wurde in Leipzig berühmt; sie schmeckt leicht säuerlich und salzig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gose",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0051",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist Chorizo?",
-      "antworten": [
-        "Eine spanische Wurst mit Paprika",
-        "Ein italienischer Schinken",
-        "Ein französischer Käse",
-        "Eine portugiesische Fischsoße"
-      ],
-      "erklaerung": "Das Paprikapulver gibt der spanischen Wurst Farbe und Würze.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Chorizo",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0044",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was sind Rosinen?",
-      "antworten": [
-        "Getrocknete Weintrauben",
-        "Getrocknete Pflaumen",
-        "Getrocknete Kirschen",
-        "Getrocknete Datteln"
-      ],
-      "erklaerung": "Sie stecken zum Beispiel in Stollen und Müsli.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rosine",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0084",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Bei welcher Temperatur müssen die Trauben für deutschen Eiswein spätestens gelesen werden?",
-      "antworten": [
-        "Bei höchstens minus 7 °C",
-        "Bei höchstens minus 2 °C",
-        "Bei höchstens minus 12 °C",
-        "Bei höchstens minus 20 °C"
-      ],
-      "erklaerung": "Die gefrorenen Trauben werden gepresst, sodass nur wenig, dafür stark konzentrierter süßer Most austritt; das Weingesetz verlangt mindestens minus 7 °C.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eiswein",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0015",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist „Ratatouille“?",
-      "antworten": [
-        "Ein französisches Schmorgericht aus Gemüse",
-        "Ein Käse aus der Provence",
-        "Ein Nachtisch im Rattankorb",
-        "Ein Fischeintopf aus Marseille"
-      ],
-      "erklaerung": "Der Fischeintopf aus Marseille heißt Bouillabaisse.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ratatouille",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0048",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Welcher Stoff sorgt für die Schärfe von Chili?",
-      "antworten": [
-        "Capsaicin",
-        "Piperin",
-        "Koffein",
-        "Menthol"
-      ],
-      "erklaerung": "Piperin macht dagegen den schwarzen Pfeffer scharf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Capsaicin",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0010",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Wie nennt man in Italien Nudeln, die bissfest gekocht sind?",
-      "antworten": [
-        "Al dente",
-        "Al forno",
-        "Al fresco",
-        "Al Pacino"
-      ],
-      "erklaerung": "Wörtlich „für den Zahn“. Al forno heißt „aus dem Ofen“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=al+dente",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0002",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Aus welchem Land stammt das Gulasch ursprünglich?",
-      "antworten": [
-        "Aus Ungarn, als Eintopf der Rinderhirten",
-        "Aus Österreich, als Wiener Kaffeehausgericht",
-        "Aus Mexiko, als Variante von Chili con Carne",
-        "Aus Schweden, als Beilage zu Köttbullar"
-      ],
-      "erklaerung": "„Gulyás“ bedeutet auf Ungarisch „Rinderhirt“.",
-      "quelle": "https://de.wikipedia.org/wiki/Gulasch",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0072",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Welche kleine Gewürzinsel tauschten die Niederländer 1667 im Frieden von Breda gegen Manhattan?",
-      "antworten": [
-        "Run",
-        "Banda Neira",
-        "Ambon",
-        "Ternate"
-      ],
-      "erklaerung": "Die Insel Run war wegen ihrer Muskatnüsse begehrt; die Engländer erhielten dafür Nieuw Amsterdam, das spätere New York.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Run%20%28Insel%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0071",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Woraus wird der brasilianische Zuckerrohrschnaps Cachaça gebrannt?",
-      "antworten": [
-        "Aus frischem, vergorenem Zuckerrohrsaft",
-        "Aus Zuckerrohrmelasse",
-        "Aus vergorenem Agavensaft",
-        "Aus Maniokwurzeln"
-      ],
-      "erklaerung": "Cachaça entsteht aus dem frischen Zuckerrohrsaft; der meiste Rum dagegen wird aus Melasse, einem Nebenprodukt der Zuckerherstellung, gebrannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Cacha%C3%A7a",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0045",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist Ghee?",
-      "antworten": [
-        "Geklärte Butter",
-        "Ein indischer Frischkäse",
-        "Ein Sesamöl",
-        "Eine Kokosmilch"
-      ],
-      "erklaerung": "Beim Klären wird Wasser und Milcheiweiß entfernt; Ghee ist in der indischen Küche sehr verbreitet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ghee",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0085",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Aus welchen Nüssen besteht ein klassischer Nuss-Nougat-Aufstrich hauptsächlich?",
-      "antworten": [
-        "Haselnüssen",
-        "Walnüssen",
-        "Mandeln",
-        "Erdnüssen"
-      ],
-      "erklaerung": "Nougat entsteht aus Haselnüssen oder Mandeln, Zucker und Kakao.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nuss-Nugat-Creme",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0003",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist echtes Wasabi?",
-      "antworten": [
-        "Die geriebene Wurzel einer japanischen Pflanze aus der Familie der Kreuzblütler",
-        "Grüner Senf aus gemahlenen Senfkörnern",
-        "Eine Paste aus fermentierten Algen",
-        "Grün gefärbter Meerrettich – und zwar immer"
-      ],
-      "erklaerung": "Beim Sushi außerhalb Japans bekommt man meist tatsächlich gefärbten Meerrettich.",
-      "quelle": "https://de.wikipedia.org/wiki/Wasabi",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0032",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus wird Butter hergestellt?",
-      "antworten": [
-        "Aus Sahne (Rahm)",
-        "Aus Pflanzenöl",
-        "Aus Eigelb",
-        "Aus Quark"
-      ],
-      "erklaerung": "Beim Buttern wird der Rahm geschlagen, bis sich Fett und Buttermilch trennen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Butter",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0029",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus wird Popcorn gemacht?",
-      "antworten": [
-        "Aus Mais",
-        "Aus Reis",
-        "Aus Weizen",
-        "Aus Hirse"
-      ],
-      "erklaerung": "Das Wasser im Korn verdampft beim Erhitzen und lässt es aufplatzen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Popcorn",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0077",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Welcher Franzose entwickelte um 1800 das Haltbarmachen von Lebensmitteln in verschlossenen Glasgefäßen im Wasserbad?",
-      "antworten": [
-        "Nicolas Appert",
-        "Louis Pasteur",
-        "Peter Durand",
-        "Auguste Escoffier"
-      ],
-      "erklaerung": "Appert gewann damit einen von Napoleon ausgelobten Preis für ein Verfahren, die Armee haltbar zu verpflegen; das Einkochen heißt im Englischen „appertization“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nicolas%20Appert",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0019",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist „Umami“?",
-      "antworten": [
-        "Eine der fünf Grundgeschmacksrichtungen",
-        "Ein japanisches Küchenmesser",
-        "Ein Reiswein",
-        "Eine essbare Algenart"
-      ],
-      "erklaerung": "Umami steht für herzhaft-würzig, etwa bei Parmesan oder Sojasoße.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Umami",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0025",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Was ist „Tahini“?",
-      "antworten": [
-        "Eine Paste aus Sesam",
-        "Ein Joghurtdip mit Gurke",
-        "Ein Gewürz aus Sumach",
-        "Eine Paste aus Kichererbsen"
-      ],
-      "erklaerung": "Tahini gehört in jeden Hummus – die Kichererbsenpaste ist der Hummus selbst.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tahini",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0064",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Aus welchem Getreide wird Pumpernickel gebacken?",
-      "antworten": [
-        "Aus Roggen",
-        "Aus Hafer",
-        "Aus Dinkel",
-        "Aus Gerste"
-      ],
-      "erklaerung": "Das dunkle Vollkornbrot aus Westfalen backt viele Stunden bei niedriger Temperatur.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pumpernickel",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0040",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Welches Getränk wird aus Wasser, Malz, Hopfen und Hefe gebraut?",
-      "antworten": [
-        "Bier",
-        "Wein",
-        "Most",
-        "Met"
-      ],
-      "erklaerung": "Das deutsche Reinheitsgebot von 1516 erlaubt nur Wasser, Hopfen und Malz; die Hefe wurde später ergänzt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bier",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0043",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Woraus werden Spaghetti traditionell hergestellt?",
-      "antworten": [
-        "Aus Hartweizengrieß und Wasser",
-        "Aus Reismehl und Eiern",
-        "Aus Kartoffelstärke",
-        "Aus Maismehl und Milch"
-      ],
-      "erklaerung": "Italienische Trockenpasta besteht klassisch nur aus Hartweizengrieß und Wasser.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spaghetti",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0004",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Welches Gewürz ist, gemessen am Gewicht, das teuerste der Welt?",
-      "antworten": [
-        "Safran, die getrockneten Blütennarben eines Krokus",
-        "Vanille, die fermentierten Schoten einer Orchidee",
-        "Kardamom, die Samenkapseln einer Ingwerpflanze",
-        "Muskatblüte, die Samenhülle der Muskatnuss"
-      ],
-      "erklaerung": "Für 1 kg Safran braucht man über 100.000 handgepflückte Blüten.",
-      "quelle": "https://de.wikipedia.org/wiki/Safran",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0033",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was ist die Hauptzutat von „Pesto alla genovese“?",
-      "antworten": [
-        "Basilikum",
-        "Petersilie",
-        "Rucola",
-        "Spinat"
-      ],
-      "erklaerung": "Dazu kommen Pinienkerne, Knoblauch, Parmesan oder Pecorino und Olivenöl.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pesto",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0070",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Aus welcher Rebsorte wird der piemontesische Rotwein Barolo gekeltert?",
-      "antworten": [
-        "Nebbiolo",
-        "Sangiovese",
-        "Barbera",
-        "Montepulciano"
-      ],
-      "erklaerung": "Barolo wird zu 100 Prozent aus Nebbiolo erzeugt und gilt als „König der Weine“ des Piemonts.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Barolo",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0068",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "In welcher Abtei wirkte der Benediktiner Dom Pérignon als Kellermeister?",
-      "antworten": [
-        "Hautvillers",
-        "Cluny",
-        "Clairvaux",
-        "Cîteaux"
-      ],
-      "erklaerung": "Pierre Pérignon leitete von 1668 bis zu seinem Tod 1715 den Keller der Abtei Hautvillers bei Épernay in der Champagne.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pierre%20P%C3%A9rignon",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0011",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Aus welcher Pflanze wird Tequila hergestellt?",
-      "antworten": [
-        "Aus der Blauen Agave",
-        "Aus Kaktusfeigen",
-        "Aus Zuckerrohr",
-        "Aus Mais"
-      ],
-      "erklaerung": "Die Agave ist kein Kaktus – ein häufiger Irrtum.",
-      "quelle": "https://de.wikipedia.org/wiki/Tequila",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0058",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "schwer",
-      "frage": "Woraus wird die japanische Würzpaste Miso hergestellt?",
-      "antworten": [
-        "Aus fermentierten Sojabohnen",
-        "Aus getrocknetem Seetang",
-        "Aus eingelegtem Ingwer",
-        "Aus gemahlenen Sesamkörnern"
-      ],
-      "erklaerung": "Meist werden Sojabohnen mit Salz und einem Schimmelpilz (Koji) vergoren. Miso-Suppe ist ein Klassiker.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Miso",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0081",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "ingomania",
-      "frage": "Welches Material verwendete Melitta Bentz für ihren ersten Kaffeefilter um 1908?",
-      "antworten": [
-        "Löschpapier aus dem Schulheft ihres Sohnes",
-        "Ein Stück Leinentuch",
-        "Zeitungspapier",
-        "Ein Seidentaschentuch"
-      ],
-      "erklaerung": "Sie durchlöcherte einen Messingtopf und legte Löschpapier hinein; so entstand in Dresden der Papierfilter, der den Kaffeesatz zurückhielt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Melitta%20Bentz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0013",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Was ist die Hauptzutat von Hummus?",
-      "antworten": [
-        "Kichererbsen",
-        "Linsen",
-        "Erbsen",
-        "Pürierte Gummibärchen"
-      ],
-      "erklaerung": "Dazu kommen Sesampaste (Tahini), Zitrone und Knoblauch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hummus",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "kueche-0038",
-      "version": 1,
-      "kategorie": "Küche & Genuss",
-      "stufe": "leicht",
-      "frage": "Aus welchen Bohnen wird Schokolade hergestellt?",
-      "antworten": [
-        "Aus Kakaobohnen",
-        "Aus Kaffeebohnen",
-        "Aus Sojabohnen",
-        "Aus Vanilleschoten"
-      ],
-      "erklaerung": "Die Kakaobohnen werden fermentiert, geröstet und zu Kakaomasse gemahlen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kakaobohne",
+      "erklaerung": "Peter verwendete Kondensmilch seines Nachbarn Henri Nestlé; daraus entstand später die Firma Nestlé-Peter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Daniel%20Peter",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1467,37 +1518,54 @@
       "gueltigBis": null
     },
     {
-      "id": "kueche-0054",
+      "id": "kueche-0044",
       "version": 1,
       "kategorie": "Küche & Genuss",
-      "stufe": "mittel",
-      "frage": "Was versteht man unter „Sous-vide“?",
+      "stufe": "leicht",
+      "frage": "Was sind Rosinen?",
       "antworten": [
-        "Garen im Vakuumbeutel im Wasserbad",
-        "Frittieren in heißem Öl",
-        "Räuchern über Holzspänen",
-        "Backen im Salzmantel"
+        "Getrocknete Weintrauben",
+        "Getrocknete Pflaumen",
+        "Getrocknete Kirschen",
+        "Getrocknete Datteln"
       ],
-      "erklaerung": "Das Gargut gart lange bei niedriger, genau gehaltener Temperatur.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sous-vide",
+      "erklaerung": "Sie stecken zum Beispiel in Stollen und Müsli.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rosine",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "kueche-0021",
+      "id": "kueche-0018",
       "version": 1,
       "kategorie": "Küche & Genuss",
       "stufe": "mittel",
-      "frage": "Aus welchem Getreide wird schottischer Single Malt Whisky hergestellt?",
+      "frage": "Welches Gewürz gibt Currypulver vor allem seine gelbe Farbe?",
       "antworten": [
-        "Aus gemälzter Gerste",
-        "Aus Mais",
-        "Aus Roggen",
-        "Aus Reis"
+        "Kurkuma",
+        "Safran",
+        "Paprika",
+        "Senfkörner"
       ],
-      "erklaerung": "Bourbon aus den USA besteht dagegen überwiegend aus Mais.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Single%20Malt%20Whisky",
+      "erklaerung": "Kurkuma wird auch Gelbwurz genannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kurkuma",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0031",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "schwer",
+      "frage": "Was ist „Kimchi“?",
+      "antworten": [
+        "Vergorenes, scharf gewürztes Gemüse aus Korea",
+        "Japanische Reisbällchen",
+        "Chinesische Teigtaschen",
+        "Thailändische Kokossuppe"
+      ],
+      "erklaerung": "Meist wird Chinakohl mit Chili, Knoblauch und Ingwer fermentiert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kimchi",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     }
   ]

@@ -1,108 +1,91 @@
 {
   "paket": "besserwisser",
   "titel": "Besserwisser",
-  "version": 8,
+  "version": 10,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
-      "id": "besser-0003",
+      "id": "besser-0075",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Wie viele Herzen hat ein Oktopus?",
+      "stufe": "ingomania",
+      "frage": "Wärmt ein Schnaps bei Kälte den Körper wirklich?",
       "antworten": [
-        "Drei",
-        "Eins",
-        "Zwei",
-        "Acht – eins pro Arm"
+        "Nein, er lässt den Körper schneller auskühlen",
+        "Ja, für mehrere Stunden",
+        "Ja, aber nur bei Kräuterschnaps",
+        "Nur bei Rotwein, nicht bei Schnaps"
       ],
-      "erklaerung": "Zwei pumpen Blut durch die Kiemen, eins durch den Körper.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kraken",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Alkohol erweitert die Hautgefäße, es fühlt sich warm an, doch der Körper gibt dadurch mehr Wärme ab.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Alkohol%20K%C3%B6rpertemperatur",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "besser-0026",
+      "id": "besser-0057",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "schwer",
-      "frage": "Auf welchem Kontinent liegen die meisten Staaten?",
+      "frage": "Wer erfand die Guillotine?",
       "antworten": [
-        "Afrika",
-        "Asien",
-        "Europa",
-        "Südamerika"
+        "Der Arzt Antoine Louis",
+        "Joseph-Ignace Guillotin",
+        "Napoleon Bonaparte",
+        "Maximilien Robespierre"
       ],
-      "erklaerung": "Afrika zählt 54 von den Vereinten Nationen anerkannte Staaten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Afrika",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0076",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Was ist die Blindschleiche zoologisch?",
-      "antworten": [
-        "Eine beinlose Echse",
-        "Eine harmlose Schlange",
-        "Ein Lurch",
-        "Ein Wurm"
-      ],
-      "erklaerung": "Die Blindschleiche gehört zu den Schleichen und damit zu den Echsen. Sie kann wie diese ihren Schwanz abwerfen und hat Augenlider.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blindschleiche",
+      "erklaerung": "Guillotin setzte sich nur für eine humanere Hinrichtung ein. Konstruiert wurde sie nach Louis' Plänen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Guillotine",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "besser-0064",
+      "id": "besser-0079",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "ingomania",
-      "frage": "Fiel Isaac Newton ein Apfel auf den Kopf und brachte ihn auf die Gravitation?",
+      "frage": "Was haben Koalas mit Menschen gemeinsam?",
       "antworten": [
-        "Nein, er sah einen Apfel nur fallen",
-        "Ja, im Garten von Woolsthorpe",
-        "Ja, aber erst viele Jahre später",
-        "Nein, es war eine Kastanie"
+        "Ihre Fingerabdrücke sehen sehr ähnlich aus",
+        "Ihre Blutgruppen",
+        "Ihre Zahnzahl",
+        "Ihre Schlafdauer"
       ],
-      "erklaerung": "Newton erzählte später, er habe einen Apfel fallen sehen. Die Geschichte vom Treffer am Kopf ist eine spätere Ausschmückung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Isaac%20Newton",
+      "erklaerung": "Koalas haben Fingerabdrücke, die denen des Menschen so ähneln, dass sie selbst unter dem Mikroskop schwer zu unterscheiden sind.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Koalas",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "besser-0019",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wie viel Prozent seines Gehirns nutzt der Mensch?",
-      "antworten": [
-        "Praktisch alles – nur nicht alles gleichzeitig",
-        "Nur etwa 10 Prozent",
-        "Etwa die Hälfte",
-        "Genau 33 Prozent"
-      ],
-      "erklaerung": "Der 10-Prozent-Mythos hält sich hartnäckig, ist aber widerlegt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehn-Prozent-Mythos",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0073",
+      "id": "besser-0074",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "ingomania",
-      "frage": "In welchem Werk von Arthur Conan Doyle sagt Sherlock Holmes „Elementar, mein lieber Watson“?",
+      "frage": "Wofür dienten die „Vomitorien“ in römischen Amphitheatern?",
       "antworten": [
-        "In keinem",
-        "In „Das Zeichen der Vier“",
-        "In „Der Hund von Baskerville“",
-        "In „Eine Studie in Scharlachrot“"
+        "Als Ein- und Ausgänge für die Zuschauer",
+        "Zum Erbrechen nach dem Festmahl",
+        "Als Käfige für Raubtiere",
+        "Als Waffenkammern"
       ],
-      "erklaerung": "Der berühmte Satz kommt in den Original-Erzählungen nicht vor. Er stammt aus späteren Bühnen- und Filmfassungen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sherlock%20Holmes",
+      "erklaerung": "Das lateinische „vomere“ meint „ausspeien“: Durch die Gänge strömten die Massen rasch hinaus. Mit Erbrechen hat es nichts zu tun.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Vomitorium",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0054",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Gab es im Mittelalter die „Eiserne Jungfrau“ als Foltergerät?",
+      "antworten": [
+        "Nein, sie ist eine Erfindung des 18./19. Jahrhunderts",
+        "Ja, sie war weit verbreitet",
+        "Ja, aber nur in Spanien",
+        "Ja, bei der Inquisition"
+      ],
+      "erklaerung": "Belege aus dem Mittelalter fehlen. Die bekannten Exemplare entstanden später als Schauobjekte.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eiserne%20Jungfrau",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -124,189 +107,87 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0035",
+      "id": "besser-0025",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wachsen Haare und Fingernägel nach dem Tod weiter?",
+      "stufe": "mittel",
+      "frage": "Haben Goldfische wirklich nur ein Drei-Sekunden-Gedächtnis?",
       "antworten": [
-        "Nein, die Haut zieht sich nur zurück",
-        "Ja, noch mehrere Wochen",
-        "Ja, aber nur die Haare",
-        "Nur die Fingernägel"
+        "Nein, sie können sich monatelang erinnern",
+        "Ja, genau drei Sekunden",
+        "Ja, aber nur im Aquarium",
+        "Nein, gar keins"
       ],
-      "erklaerung": "Die Haut trocknet aus und schrumpft, dadurch wirken Haare und Nägel länger.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tod",
+      "erklaerung": "In Versuchen lernten Goldfische Signale und behielten sie über Monate.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Goldfisch",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0011",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Aus welchem Land stammen die sogenannten Panamahüte ursprünglich?",
+      "antworten": [
+        "Aus Ecuador",
+        "Aus Panama",
+        "Aus Kolumbien",
+        "Aus Kuba"
+      ],
+      "erklaerung": "Sie wurden über Panama verschifft und von den Arbeitern am Panamakanal getragen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Panamahut",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0045",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Ist altes Fensterglas unten dicker, weil Glas sehr langsam fließt?",
+      "antworten": [
+        "Nein, das liegt an der früheren Herstellung",
+        "Ja, Glas ist eine zähe Flüssigkeit",
+        "Ja, wegen der Schwerkraft",
+        "Nur bei farbigem Glas"
+      ],
+      "erklaerung": "Glas ist ein amorpher Feststoff. Altes Glas war ungleichmäßig, die dickere Kante wurde beim Einbau oft nach unten gesetzt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Glas",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "besser-0086",
+      "id": "besser-0032",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Bleibt verschluckter Kaugummi sieben Jahre im Magen?",
+      "stufe": "schwer",
+      "frage": "War Albert Einstein in der Schule schlecht in Mathematik?",
       "antworten": [
-        "Nein, er wird normal ausgeschieden",
-        "Ja, genau sieben Jahre",
-        "Ja, er löst sich nie auf",
-        "Nur bei Kindern"
+        "Nein, er war in Mathe sehr gut",
+        "Ja, er fiel durch",
+        "Ja, bis zum Abitur",
+        "Er hatte nie Mathematik"
       ],
-      "erklaerung": "Der Körper verdaut ihn nicht, aber er wandert in einigen Tagen durch den Darm.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaugummi",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0038",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Bekommt man Warzen, wenn man eine Kröte anfasst?",
-      "antworten": [
-        "Nein, Warzen kommen von Viren",
-        "Ja, durch das Krötengift",
-        "Ja, aber nur bei Erdkröten",
-        "Nur bei nassen Händen"
-      ],
-      "erklaerung": "Menschliche Warzen werden durch Humane Papillomviren ausgelöst, nicht durch Kröten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Warze",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0036",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Macht Zucker Kinder hyperaktiv?",
-      "antworten": [
-        "Nein, Studien zeigen keinen Beleg dafür",
-        "Ja, immer innerhalb einer Stunde",
-        "Ja, aber nur Traubenzucker",
-        "Nur Zucker aus Honig"
-      ],
-      "erklaerung": "In kontrollierten Versuchen verhielten sich Kinder mit und ohne Zucker gleich. Die Erwartung der Eltern spielt eine große Rolle.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zucker",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0030",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Ist die Erdnuss botanisch eine Nuss?",
-      "antworten": [
-        "Nein, eine Hülsenfrucht",
-        "Ja, eine echte Nuss",
-        "Nein, ein Steinobst",
-        "Nein, eine Wurzelknolle"
-      ],
-      "erklaerung": "Die Erdnuss ist mit Erbsen und Bohnen verwandt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Erdnuss",
+      "erklaerung": "Der Mythos geht wohl auf ein missverstandenes Notensystem zurück.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Albert%20Einstein",
       "erstellt": "2026-10-19",
       "gueltigBis": null
     },
     {
-      "id": "besser-0053",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Welcher Berg ist, vom Erdmittelpunkt aus gemessen, der „höchste“?",
-      "antworten": [
-        "Der Chimborazo in Ecuador",
-        "Der Mount Everest",
-        "Der K2",
-        "Der Kilimandscharo"
-      ],
-      "erklaerung": "Wegen der Erdabplattung liegt sein Gipfel am weitesten vom Erdmittelpunkt entfernt. Der Everest ist über dem Meeresspiegel am höchsten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Chimborazo",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0033",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Schlägt der Blitz nie zweimal an der gleichen Stelle ein?",
-      "antworten": [
-        "Doch, hohe Bauwerke werden oft mehrfach getroffen",
-        "Stimmt, nie zweimal",
-        "Nur bei Gewitter im Sommer",
-        "Nur bei Bäumen nicht"
-      ],
-      "erklaerung": "Der Blitz sucht sich bevorzugt hohe, spitze Ziele. Das Empire State Building wird jedes Jahr mehrere Dutzend Mal getroffen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blitz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0013",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Welche Farbe hat die „Black Box“ im Flugzeug?",
-      "antworten": [
-        "Orange",
-        "Schwarz",
-        "Silber",
-        "Rot-weiß gestreift"
-      ],
-      "erklaerung": "Die Signalfarbe macht sie nach einem Unglück leichter auffindbar.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Flugschreiber",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0007",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Wie viele Knochen hat ein erwachsener Mensch ungefähr?",
-      "antworten": [
-        "Etwa 206",
-        "Etwa 150",
-        "Etwa 300",
-        "Etwa 412"
-      ],
-      "erklaerung": "Babys haben mehr – viele wachsen später zusammen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Skelett%20des%20Menschen",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0052",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Ist Spinat ein außergewöhnlich guter Eisenlieferant?",
-      "antworten": [
-        "Nein, Linsen enthalten deutlich mehr",
-        "Ja, der beste aller Pflanzen",
-        "Ja, mehr als Fleisch",
-        "Er enthält gar kein Eisen"
-      ],
-      "erklaerung": "Spinat enthält etwa drei bis vier Milligramm Eisen pro 100 Gramm. Das ist nicht besonders viel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spinat",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0063",
+      "id": "besser-0066",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "ingomania",
-      "frage": "Was ist älter: die Universität Oxford oder die Aztekenstadt Tenochtitlán?",
+      "frage": "Wodurch entstehen die Mondphasen?",
       "antworten": [
-        "Oxford",
-        "Tenochtitlán",
-        "Beide gleich alt",
-        "Nicht feststellbar"
+        "Durch den Blickwinkel auf die beleuchtete Hälfte",
+        "Durch den Schatten der Erde",
+        "Durch Wolken vor dem Mond",
+        "Durch die Neigung der Mondbahn allein"
       ],
-      "erklaerung": "In Oxford wird seit etwa 1096 gelehrt, Tenochtitlán wurde erst um 1325 gegründet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=University%20of%20Oxford",
+      "erklaerung": "Der Mond wird immer zur Hälfte von der Sonne beleuchtet, wir sehen je nach Stellung unterschiedlich viel davon. Der Erdschatten verursacht nur Mondfinsternisse.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mondphase",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -328,19 +209,155 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0062",
+      "id": "besser-0029",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "schwer",
-      "frage": "Wie viel Prozent eines Eisbergs liegen unter Wasser?",
+      "frage": "Wo wächst die Venusfliegenfalle ursprünglich?",
       "antworten": [
-        "Rund 90 Prozent",
-        "Etwa die Hälfte",
-        "Rund 70 Prozent",
-        "Nur etwa 10 Prozent"
+        "In Sümpfen von North und South Carolina (USA)",
+        "Im Amazonas-Regenwald",
+        "Auf Madagaskar",
+        "In Indonesien"
       ],
-      "erklaerung": "Eis ist etwas leichter als Meerwasser, daher ragt nur etwa ein Zehntel heraus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eisberg",
+      "erklaerung": "Ihr natürliches Verbreitungsgebiet ist sehr klein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Venusfliegenfalle",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0071",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Wer lebte zeitlich näher am Tyrannosaurus rex: der Stegosaurus oder der Mensch?",
+      "antworten": [
+        "Der Mensch",
+        "Der Stegosaurus",
+        "Beide gleich nah",
+        "Keiner von beiden"
+      ],
+      "erklaerung": "Der Stegosaurus lebte vor rund 150 Millionen Jahren, der T. rex vor etwa 68 bis 66 Millionen. Von da bis heute sind es weniger.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Stegosaurus",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0013",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welche Farbe hat die „Black Box“ im Flugzeug?",
+      "antworten": [
+        "Orange",
+        "Schwarz",
+        "Silber",
+        "Rot-weiß gestreift"
+      ],
+      "erklaerung": "Die Signalfarbe macht sie nach einem Unglück leichter auffindbar.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Flugschreiber",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0033",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Schlägt der Blitz nie zweimal an der gleichen Stelle ein?",
+      "antworten": [
+        "Doch, hohe Bauwerke werden oft mehrfach getroffen",
+        "Stimmt, nie zweimal",
+        "Nur bei Gewitter im Sommer",
+        "Nur bei Bäumen nicht"
+      ],
+      "erklaerung": "Der Blitz sucht sich bevorzugt hohe, spitze Ziele. Das Empire State Building wird jedes Jahr mehrere Dutzend Mal getroffen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blitz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0064",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Fiel Isaac Newton ein Apfel auf den Kopf und brachte ihn auf die Gravitation?",
+      "antworten": [
+        "Nein, er sah einen Apfel nur fallen",
+        "Ja, im Garten von Woolsthorpe",
+        "Ja, aber erst viele Jahre später",
+        "Nein, es war eine Kastanie"
+      ],
+      "erklaerung": "Newton erzählte später, er habe einen Apfel fallen sehen. Die Geschichte vom Treffer am Kopf ist eine spätere Ausschmückung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Isaac%20Newton",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0055",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Wie lange dauerte der kürzeste Krieg der Geschichte, der Anglo-Sansibar-Krieg 1896?",
+      "antworten": [
+        "Weniger als eine Stunde",
+        "Etwa einen Tag",
+        "Drei Tage",
+        "Eine Woche"
+      ],
+      "erklaerung": "Die britische Flotte beschoss den Sultanspalast, nach rund 40 Minuten war der Krieg vorbei.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Anglo-Sansibar-Krieg",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0048",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Wollte Kolumbus beweisen, dass die Erde eine Kugel ist?",
+      "antworten": [
+        "Nein, die Kugelgestalt war längst bekannt",
+        "Ja, genau das",
+        "Ja, gegen den Papst",
+        "Er hielt sie für eine Scheibe"
+      ],
+      "erklaerung": "Seit der Antike wusste man, dass die Erde rund ist. Kolumbus unterschätzte nur ihre Größe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Christoph%20Kolumbus",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0006",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Welches ist das größte Organ des Menschen?",
+      "antworten": [
+        "Die Haut",
+        "Die Leber",
+        "Die Lunge",
+        "Das Gehirn"
+      ],
+      "erklaerung": "Sie bringt es bei Erwachsenen auf rund zwei Quadratmeter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Haut",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0050",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Sagte Marie Antoinette „Sollen sie doch Kuchen essen“?",
+      "antworten": [
+        "Nein, dafür gibt es keinen Beleg",
+        "Ja, bei einer Hungersnot",
+        "Ja, vor dem Volk",
+        "Ja, in einem Brief"
+      ],
+      "erklaerung": "Der Satz taucht schon bei Rousseau auf, als sie noch ein Kind war. Er wurde ihr erst später angedichtet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Marie%20Antoinette",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -363,7 +380,7 @@
     },
     {
       "id": "besser-0002",
-      "version": 1,
+      "version": 2,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
       "frage": "Welche Farbe haben die Haare eines Eisbären eigentlich?",
@@ -373,417 +390,9 @@
         "Hellgelb",
         "Hellgrau"
       ],
-      "erklaerung": "Sie streuen das Licht und wirken dadurch weiß. Die Haut darunter ist schwarz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eisb%C3%A4r",
+      "erklaerung": "Die Haare selbst sind farblos, durchsichtig und innen hohl – sie enthalten kein Pigment. Weiß wirken sie nur, weil sie das Licht streuen, so wie Schnee oder Eis. Die Haut darunter ist schwarz. Fragt man dagegen nach der Fellfarbe, ist „weiß“ richtig – das Fell als Ganzes wirkt weiß.",
+      "quelle": "https://www.duda.news/wissen/welche-farbe-hat-das-fell-von-eisbaeren/",
       "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0027",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Ist ein Wal ein Fisch?",
-      "antworten": [
-        "Nein, ein Säugetier",
-        "Ja, der größte Fisch",
-        "Ja, ein Knorpelfisch",
-        "Nein, ein Reptil"
-      ],
-      "erklaerung": "Wale atmen Luft und säugen ihre Jungen. Der größte Fisch ist der Walhai.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wale",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0023",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Wie lange braucht das Licht von der Sonne bis zur Erde?",
-      "antworten": [
-        "Gut 8 Minuten",
-        "Etwa 1 Sekunde",
-        "Etwa eine Stunde",
-        "Fast einen Tag"
-      ],
-      "erklaerung": "Wir sehen die Sonne also immer so, wie sie vor gut acht Minuten war.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Astronomische%20Einheit%20Lichtlaufzeit",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0085",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Ist ein Blitz heißer als die Oberfläche der Sonne?",
-      "antworten": [
-        "Ja, mehrfach heißer",
-        "Nein, deutlich kühler",
-        "Etwa gleich heiß",
-        "Das lässt sich nicht messen"
-      ],
-      "erklaerung": "Im Blitzkanal herrschen bis zu 30.000 Grad, die Sonnenoberfläche hat rund 5.500 Grad.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blitz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0011",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Aus welchem Land stammen die sogenannten Panamahüte ursprünglich?",
-      "antworten": [
-        "Aus Ecuador",
-        "Aus Panama",
-        "Aus Kolumbien",
-        "Aus Kuba"
-      ],
-      "erklaerung": "Sie wurden über Panama verschifft und von den Arbeitern am Panamakanal getragen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Panamahut",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0042",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Erkältet man sich durch nasse Haare?",
-      "antworten": [
-        "Nein, dafür braucht es Viren",
-        "Ja, immer",
-        "Ja, aber nur im Winter",
-        "Nur bei kaltem Wasser"
-      ],
-      "erklaerung": "Erkältungen werden durch Viren ausgelöst. Auskühlen kann höchstens die Abwehr schwächen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Erk%C3%A4ltung",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0067",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "In welchem Monat ist die Erde der Sonne am nächsten?",
-      "antworten": [
-        "Im Januar",
-        "Im Juli",
-        "Im März",
-        "Im September"
-      ],
-      "erklaerung": "Das Perihel liegt Anfang Januar. Die Jahreszeiten entstehen durch die Neigung der Erdachse, nicht durch den Abstand zur Sonne.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Perihel",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0059",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Woher stammt der Mythos, Karotten verbesserten die Nachtsicht?",
-      "antworten": [
-        "Aus britischer Kriegspropaganda",
-        "Aus einer Werbung für Karottensaft",
-        "Aus einer Studie von 1950",
-        "Aus dem alten Ägypten"
-      ],
-      "erklaerung": "Großbritannien verschleierte im Zweiten Weltkrieg sein Radar, indem es Erfolge der Piloten der Möhrenkost zuschrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Karotte",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0072",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Wie heißt in Mary Shelleys Roman „Frankenstein“ die Person namens Frankenstein?",
-      "antworten": [
-        "Der Wissenschaftler Viktor",
-        "Das erschaffene Wesen",
-        "Der Gehilfe Igor",
-        "Der Dorfarzt"
-      ],
-      "erklaerung": "Viktor Frankenstein erschafft das namenlose Wesen. Dass das Monster „Frankenstein“ heißt, ist ein verbreiteter Irrtum.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Frankenstein%20oder%20Der%20moderne%20Prometheus",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0024",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wie viele Beine hat eine Spinne?",
-      "antworten": [
-        "Acht",
-        "Sechs",
-        "Zehn",
-        "Zwölf"
-      ],
-      "erklaerung": "Spinnen sind keine Insekten – die haben sechs Beine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Webspinnen",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0004",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Was ist eine Tomate botanisch gesehen?",
-      "antworten": [
-        "Eine Beere",
-        "Ein Gemüse",
-        "Eine Nuss",
-        "Eine Steinfrucht"
-      ],
-      "erklaerung": "Auch Gurken, Kürbisse und Bananen zählen botanisch zu den Beeren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tomate",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0022",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Welche Farbe hat das Blut in unseren Venen?",
-      "antworten": [
-        "Dunkelrot",
-        "Blau",
-        "Violett",
-        "Grünlich"
-      ],
-      "erklaerung": "Venen wirken nur durch die Haut bläulich – sauerstoffarmes Blut ist dunkelrot.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Blut",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0082",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Welche Farbe hat das Blut von Kraken und Tintenfischen?",
-      "antworten": [
-        "Blau",
-        "Rot",
-        "Grün",
-        "Farblos"
-      ],
-      "erklaerung": "Statt Eisen (Hämoglobin) enthält ihr Blut kupferhaltiges Hämocyanin, das sauerstoffreich blau erscheint.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=H%C3%A4mocyanin",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0001",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Kann man die Chinesische Mauer mit bloßem Auge vom Mond aus sehen?",
-      "antworten": [
-        "Nein, dafür ist sie viel zu schmal",
-        "Ja, als einziges Bauwerk",
-        "Ja, aber nur nachts",
-        "Nur bei Vollmond"
-      ],
-      "erklaerung": "Selbst aus der niedrigen Erdumlaufbahn ist sie kaum zu erkennen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Chinesische%20Mauer",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0047",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Gibt es auf der Zunge getrennte Zonen für süß, sauer, salzig und bitter?",
-      "antworten": [
-        "Nein, jede Sorte schmeckt man überall",
-        "Ja, süß schmeckt man vorn",
-        "Ja, bitter nur seitlich",
-        "Ja, salzig nur in der Mitte"
-      ],
-      "erklaerung": "Die berühmte Zungenkarte beruht auf einem Übersetzungsfehler. Alle Geschmacksrichtungen werden an allen Stellen wahrgenommen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Geschmackssinn",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0021",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Ist eine Fledermaus ein Vogel?",
-      "antworten": [
-        "Nein, ein Säugetier",
-        "Ja, ein Nachtvogel",
-        "Ja, eine Unterart der Eule",
-        "Nein, ein Insekt"
-      ],
-      "erklaerung": "Fledermäuse säugen ihre Jungen – und sind die einzigen Säugetiere, die richtig fliegen können.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fledertiere",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0014",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Hat ein Tausendfüßer wirklich tausend Beine?",
-      "antworten": [
-        "Meist deutlich weniger – erst 2021 fand man eine Art mit über 1000",
-        "Ja, immer genau tausend",
-        "Ja, aber nur die Weibchen",
-        "Nein, genau hundert"
-      ],
-      "erklaerung": "Die australische Art Eumillipes persephone hat bis zu 1306 Beine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Doppelf%C3%BC%C3%9Fer",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0056",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Lebte Kleopatra zeitlich näher an der Mondlandung oder am Bau der Cheops-Pyramide?",
-      "antworten": [
-        "Näher an der Mondlandung",
-        "Näher am Pyramidenbau",
-        "Genau in der Mitte",
-        "Beides ist gleich weit"
-      ],
-      "erklaerung": "Die Pyramide entstand um 2560 v. Chr., Kleopatra starb 30 v. Chr. – bis 1969 sind es rund 2000 Jahre.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kleopatra%20VII.",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0032",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "War Albert Einstein in der Schule schlecht in Mathematik?",
-      "antworten": [
-        "Nein, er war in Mathe sehr gut",
-        "Ja, er fiel durch",
-        "Ja, bis zum Abitur",
-        "Er hatte nie Mathematik"
-      ],
-      "erklaerung": "Der Mythos geht wohl auf ein missverstandenes Notensystem zurück.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Albert%20Einstein",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0060",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Was ist auf der Venus länger: ein Tag oder ein Jahr?",
-      "antworten": [
-        "Ein Tag",
-        "Ein Jahr",
-        "Beides ist gleich lang",
-        "Das lässt sich nicht sagen"
-      ],
-      "erklaerung": "Ein Venustag dauert rund 243 Erdtage, ein Umlauf um die Sonne nur etwa 225.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Venus%20%28Planet%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0050",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Sagte Marie Antoinette „Sollen sie doch Kuchen essen“?",
-      "antworten": [
-        "Nein, dafür gibt es keinen Beleg",
-        "Ja, bei einer Hungersnot",
-        "Ja, vor dem Volk",
-        "Ja, in einem Brief"
-      ],
-      "erklaerung": "Der Satz taucht schon bei Rousseau auf, als sie noch ein Kind war. Er wurde ihr erst später angedichtet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Marie%20Antoinette",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0044",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Bekommt man durch das Knacken der Fingergelenke Arthrose?",
-      "antworten": [
-        "Nein, dafür gibt es keinen Beleg",
-        "Ja, mit Sicherheit",
-        "Ja, aber nur an den Daumen",
-        "Nur bei Frauen"
-      ],
-      "erklaerung": "Das Geräusch entsteht durch Gasbläschen in der Gelenkflüssigkeit. Studien fanden kein erhöhtes Arthroserisiko.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gelenkknacken",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0066",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Wodurch entstehen die Mondphasen?",
-      "antworten": [
-        "Durch den Blickwinkel auf die beleuchtete Hälfte",
-        "Durch den Schatten der Erde",
-        "Durch Wolken vor dem Mond",
-        "Durch die Neigung der Mondbahn allein"
-      ],
-      "erklaerung": "Der Mond wird immer zur Hälfte von der Sonne beleuchtet, wir sehen je nach Stellung unterschiedlich viel davon. Der Erdschatten verursacht nur Mondfinsternisse.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mondphase",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0049",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Was ist die Banane botanisch gesehen?",
-      "antworten": [
-        "Eine Beere an einer Staude",
-        "Eine Baumfrucht",
-        "Eine Nuss",
-        "Eine Steinfrucht"
-      ],
-      "erklaerung": "Die Bananenpflanze ist kein Baum, sondern die größte krautige Pflanze der Erde. Der Scheinstamm besteht aus Blattscheiden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bananen",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0081",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Wofür stand ursprünglich die Abkürzung „OK“?",
-      "antworten": [
-        "Für „oll korrect“, ein Scherz um 1839",
-        "Für „Ordnung und Klarheit“",
-        "Für „Ohne Kritik“",
-        "Für „Old Kentucky“"
-      ],
-      "erklaerung": "Die Abkürzung kam um 1839 in Bostoner Zeitungen als scherzhafte Verballhornung von „all correct“ auf und verbreitete sich danach weltweit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=OK%20%28Wort%29",
-      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -804,104 +413,19 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0017",
+      "id": "besser-0014",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
-      "frage": "War Napoleon Bonaparte besonders klein?",
+      "frage": "Hat ein Tausendfüßer wirklich tausend Beine?",
       "antworten": [
-        "Nein, mit etwa 1,69 m war er für seine Zeit eher durchschnittlich",
-        "Ja, er maß nur 1,52 m",
-        "Ja, er war kleinwüchsig",
-        "Nein, er war fast zwei Meter groß"
+        "Meist deutlich weniger – erst 2021 fand man eine Art mit über 1000",
+        "Ja, immer genau tausend",
+        "Ja, aber nur die Weibchen",
+        "Nein, genau hundert"
       ],
-      "erklaerung": "Der Mythos kommt auch von der Verwechslung französischer und englischer Maßeinheiten und von britischer Spottpropaganda.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Napoleon%20Bonaparte",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0079",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Was haben Koalas mit Menschen gemeinsam?",
-      "antworten": [
-        "Ihre Fingerabdrücke sehen sehr ähnlich aus",
-        "Ihre Blutgruppen",
-        "Ihre Zahnzahl",
-        "Ihre Schlafdauer"
-      ],
-      "erklaerung": "Koalas haben Fingerabdrücke, die denen des Menschen so ähneln, dass sie selbst unter dem Mikroskop schwer zu unterscheiden sind.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Koalas",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0043",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Verliert der Mensch die meiste Körperwärme über den Kopf?",
-      "antworten": [
-        "Nein, nur im Verhältnis zur Körperfläche",
-        "Ja, etwa die Hälfte",
-        "Ja, drei Viertel",
-        "Ja, fast alles"
-      ],
-      "erklaerung": "Der Kopf macht etwa sieben bis zehn Prozent der Körperoberfläche aus und gibt in etwa entsprechend viel Wärme ab.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=W%C3%A4rmeabgabe",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0070",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Wie lautet die Einzahl von „Spaghetti“ im Italienischen?",
-      "antworten": [
-        "Spaghetto",
-        "Spaghetta",
-        "Spaghett",
-        "Es gibt keine Einzahl"
-      ],
-      "erklaerung": "„Spaghetti“ ist die Mehrzahl von „spaghetto“, einer Verkleinerungsform von „spago“ (Schnur).",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spaghetti",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0016",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Wie viele Monate im Jahr haben 28 Tage?",
-      "antworten": [
-        "Alle zwölf",
-        "Nur einer",
-        "Zwei",
-        "Keiner – der Februar hat 28,25"
-      ],
-      "erklaerung": "Achtundzwanzig Tage hat jeder Monat – manche eben noch ein paar mehr.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Monat",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0012",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Woraus besteht die Mine eines Bleistifts?",
-      "antworten": [
-        "Aus Graphit und Ton",
-        "Aus Blei",
-        "Aus Kohle und Wachs",
-        "Aus Bleiglanz"
-      ],
-      "erklaerung": "Blei war nie drin – Graphit wurde früher für ein Bleierz gehalten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bleistift",
+      "erklaerung": "Die australische Art Eumillipes persephone hat bis zu 1306 Beine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Doppelf%C3%BC%C3%9Fer",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -923,37 +447,190 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0028",
+      "id": "besser-0001",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Kann man die Chinesische Mauer mit bloßem Auge vom Mond aus sehen?",
+      "antworten": [
+        "Nein, dafür ist sie viel zu schmal",
+        "Ja, als einziges Bauwerk",
+        "Ja, aber nur nachts",
+        "Nur bei Vollmond"
+      ],
+      "erklaerung": "Selbst aus der niedrigen Erdumlaufbahn ist sie kaum zu erkennen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Chinesische%20Mauer",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0073",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "In welchem Werk von Arthur Conan Doyle sagt Sherlock Holmes „Elementar, mein lieber Watson“?",
+      "antworten": [
+        "In keinem",
+        "In „Das Zeichen der Vier“",
+        "In „Der Hund von Baskerville“",
+        "In „Eine Studie in Scharlachrot“"
+      ],
+      "erklaerung": "Der berühmte Satz kommt in den Original-Erzählungen nicht vor. Er stammt aus späteren Bühnen- und Filmfassungen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sherlock%20Holmes",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0090",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Wie viele Herzkammern hat ein Krokodil?",
+      "antworten": [
+        "Vier",
+        "Drei",
+        "Zwei",
+        "Eine"
+      ],
+      "erklaerung": "Anders als andere Reptilien haben Krokodile ein Herz mit vier Kammern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Krokodile",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0044",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
-      "frage": "Macht die rote Farbe des Tuchs den Stier beim Stierkampf wütend?",
+      "frage": "Bekommt man durch das Knacken der Fingergelenke Arthrose?",
       "antworten": [
-        "Nein, Rinder sehen Rot kaum – es ist die Bewegung",
-        "Ja, Rot reizt Stiere besonders",
-        "Ja, aber nur bei Sonnenschein",
-        "Nein, es ist der Geruch des Stoffs"
+        "Nein, dafür gibt es keinen Beleg",
+        "Ja, mit Sicherheit",
+        "Ja, aber nur an den Daumen",
+        "Nur bei Frauen"
       ],
-      "erklaerung": "Rinder haben nur zwei Arten von Farbzapfen und unterscheiden Rot schlecht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Stierkampf%20Muleta",
+      "erklaerung": "Das Geräusch entsteht durch Gasbläschen in der Gelenkflüssigkeit. Studien fanden kein erhöhtes Arthroserisiko.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gelenkknacken",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0020",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Dreht sich das Wasser im Abfluss auf der Südhalbkugel immer andersherum?",
+      "antworten": [
+        "Nein, die Corioliskraft ist dafür viel zu schwach",
+        "Ja, immer im Uhrzeigersinn",
+        "Ja, immer gegen den Uhrzeigersinn",
+        "Nur am Äquator nicht"
+      ],
+      "erklaerung": "Die Form des Beckens und kleine Strömungen entscheiden die Richtung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Corioliskraft",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0067",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "In welchem Monat ist die Erde der Sonne am nächsten?",
+      "antworten": [
+        "Im Januar",
+        "Im Juli",
+        "Im März",
+        "Im September"
+      ],
+      "erklaerung": "Das Perihel liegt Anfang Januar. Die Jahreszeiten entstehen durch die Neigung der Erdachse, nicht durch den Abstand zur Sonne.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Perihel",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0031",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Wie schlafen Delfine?",
+      "antworten": [
+        "Mit jeweils einer Gehirnhälfte",
+        "Gar nicht",
+        "Nur an Land",
+        "Nur im Winter"
+      ],
+      "erklaerung": "So können sie weiter auftauchen, um Luft zu holen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Unihemisph%C3%A4rischer%20Schlaf",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0022",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welche Farbe hat das Blut in unseren Venen?",
+      "antworten": [
+        "Dunkelrot",
+        "Blau",
+        "Violett",
+        "Grünlich"
+      ],
+      "erklaerung": "Venen wirken nur durch die Haut bläulich – sauerstoffarmes Blut ist dunkelrot.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blut",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "besser-0037",
+      "id": "besser-0038",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "leicht",
-      "frage": "Was speichert ein Kamel in seinem Höcker?",
+      "frage": "Bekommt man Warzen, wenn man eine Kröte anfasst?",
       "antworten": [
-        "Fett",
-        "Wasser",
-        "Luft",
-        "Sand"
+        "Nein, Warzen kommen von Viren",
+        "Ja, durch das Krötengift",
+        "Ja, aber nur bei Erdkröten",
+        "Nur bei nassen Händen"
       ],
-      "erklaerung": "Das Fett dient als Energiereserve. Wasser speichert das Kamel im ganzen Körper, vor allem im Blut.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kamele",
+      "erklaerung": "Menschliche Warzen werden durch Humane Papillomviren ausgelöst, nicht durch Kröten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Warze",
       "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0085",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Ist ein Blitz heißer als die Oberfläche der Sonne?",
+      "antworten": [
+        "Ja, mehrfach heißer",
+        "Nein, deutlich kühler",
+        "Etwa gleich heiß",
+        "Das lässt sich nicht messen"
+      ],
+      "erklaerung": "Im Blitzkanal herrschen bis zu 30.000 Grad, die Sonnenoberfläche hat rund 5.500 Grad.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blitz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0003",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Wie viele Herzen hat ein Oktopus?",
+      "antworten": [
+        "Drei",
+        "Eins",
+        "Zwei",
+        "Acht – eins pro Arm"
+      ],
+      "erklaerung": "Zwei pumpen Blut durch die Kiemen, eins durch den Körper.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kraken",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -974,19 +651,240 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0075",
+      "id": "besser-0080",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "ingomania",
-      "frage": "Wärmt ein Schnaps bei Kälte den Körper wirklich?",
+      "frage": "Wie lange braucht die Erde für eine volle Drehung relativ zu den Fixsternen?",
       "antworten": [
-        "Nein, er lässt den Körper schneller auskühlen",
-        "Ja, für mehrere Stunden",
-        "Ja, aber nur bei Kräuterschnaps",
-        "Nur bei Rotwein, nicht bei Schnaps"
+        "Etwa 23 Stunden und 56 Minuten",
+        "Genau 24 Stunden",
+        "Etwa 24 Stunden und 4 Minuten",
+        "Etwa 23 Stunden"
       ],
-      "erklaerung": "Alkohol erweitert die Hautgefäße, es fühlt sich warm an, doch der Körper gibt dadurch mehr Wärme ab.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Alkohol%20K%C3%B6rpertemperatur",
+      "erklaerung": "Dieser Sterntag ist kürzer als der Sonnentag, weil die Erde sich auf ihrer Bahn weiterbewegt und sich etwas mehr drehen muss.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sterntag",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0072",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Wie heißt in Mary Shelleys Roman „Frankenstein“ die Person namens Frankenstein?",
+      "antworten": [
+        "Der Wissenschaftler Viktor",
+        "Das erschaffene Wesen",
+        "Der Gehilfe Igor",
+        "Der Dorfarzt"
+      ],
+      "erklaerung": "Viktor Frankenstein erschafft das namenlose Wesen. Dass das Monster „Frankenstein“ heißt, ist ein verbreiteter Irrtum.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Frankenstein%20oder%20Der%20moderne%20Prometheus",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0028",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Macht die rote Farbe des Tuchs den Stier beim Stierkampf wütend?",
+      "antworten": [
+        "Nein, Rinder sehen Rot kaum – es ist die Bewegung",
+        "Ja, Rot reizt Stiere besonders",
+        "Ja, aber nur bei Sonnenschein",
+        "Nein, es ist der Geruch des Stoffs"
+      ],
+      "erklaerung": "Rinder haben nur zwei Arten von Farbzapfen und unterscheiden Rot schlecht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Stierkampf%20Muleta",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0087",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Sind Fledermäuse blind?",
+      "antworten": [
+        "Nein, sie können sehen",
+        "Ja, völlig blind",
+        "Nur tagsüber blind",
+        "Nur Jungtiere sehen etwas"
+      ],
+      "erklaerung": "Fledermäuse sehen, orientieren sich nachts aber zusätzlich per Echoortung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Flederm%C3%A4use",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0043",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Verliert der Mensch die meiste Körperwärme über den Kopf?",
+      "antworten": [
+        "Nein, nur im Verhältnis zur Körperfläche",
+        "Ja, etwa die Hälfte",
+        "Ja, drei Viertel",
+        "Ja, fast alles"
+      ],
+      "erklaerung": "Der Kopf macht etwa sieben bis zehn Prozent der Körperoberfläche aus und gibt in etwa entsprechend viel Wärme ab.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=W%C3%A4rmeabgabe",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0063",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Was ist älter: die Universität Oxford oder die Aztekenstadt Tenochtitlán?",
+      "antworten": [
+        "Oxford",
+        "Tenochtitlán",
+        "Beide gleich alt",
+        "Nicht feststellbar"
+      ],
+      "erklaerung": "In Oxford wird seit etwa 1096 gelehrt, Tenochtitlán wurde erst um 1325 gegründet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=University%20of%20Oxford",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0039",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Werden Haare dicker und dunkler, wenn man sie rasiert?",
+      "antworten": [
+        "Nein, sie wirken nur kantiger",
+        "Ja, deutlich dicker",
+        "Ja, aber nur am Bart",
+        "Ja, aber nur bei Frauen"
+      ],
+      "erklaerung": "Nachwachsende Stoppeln haben eine stumpfe Spitze und wirken daher kräftiger. Dicke und Farbe ändern sich nicht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rasur",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0082",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Welche Farbe hat das Blut von Kraken und Tintenfischen?",
+      "antworten": [
+        "Blau",
+        "Rot",
+        "Grün",
+        "Farblos"
+      ],
+      "erklaerung": "Statt Eisen (Hämoglobin) enthält ihr Blut kupferhaltiges Hämocyanin, das sauerstoffreich blau erscheint.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=H%C3%A4mocyanin",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0023",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Wie lange braucht das Licht von der Sonne bis zur Erde?",
+      "antworten": [
+        "Gut 8 Minuten",
+        "Etwa 1 Sekunde",
+        "Etwa eine Stunde",
+        "Fast einen Tag"
+      ],
+      "erklaerung": "Wir sehen die Sonne also immer so, wie sie vor gut acht Minuten war.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Astronomische%20Einheit%20Lichtlaufzeit",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0076",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Was ist die Blindschleiche zoologisch?",
+      "antworten": [
+        "Eine beinlose Echse",
+        "Eine harmlose Schlange",
+        "Ein Lurch",
+        "Ein Wurm"
+      ],
+      "erklaerung": "Die Blindschleiche gehört zu den Schleichen und damit zu den Echsen. Sie kann wie diese ihren Schwanz abwerfen und hat Augenlider.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Blindschleiche",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0024",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Wie viele Beine hat eine Spinne?",
+      "antworten": [
+        "Acht",
+        "Sechs",
+        "Zehn",
+        "Zwölf"
+      ],
+      "erklaerung": "Spinnen sind keine Insekten – die haben sechs Beine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Webspinnen",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0052",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Ist Spinat ein außergewöhnlich guter Eisenlieferant?",
+      "antworten": [
+        "Nein, Linsen enthalten deutlich mehr",
+        "Ja, der beste aller Pflanzen",
+        "Ja, mehr als Fleisch",
+        "Er enthält gar kein Eisen"
+      ],
+      "erklaerung": "Spinat enthält etwa drei bis vier Milligramm Eisen pro 100 Gramm. Das ist nicht besonders viel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spinat",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0058",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Verschwinden im Bermudadreieck mehr Schiffe als anderswo?",
+      "antworten": [
+        "Nein, die Zahl liegt nicht über dem Schnitt",
+        "Ja, ein Vielfaches",
+        "Ja, nur Flugzeuge",
+        "Ja, wegen Magnetfeldern"
+      ],
+      "erklaerung": "Versicherer und Küstenwache sahen keine erhöhte Unglücksrate. Es ist eine stark befahrene Region mit Stürmen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bermudadreieck",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0035",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Wachsen Haare und Fingernägel nach dem Tod weiter?",
+      "antworten": [
+        "Nein, die Haut zieht sich nur zurück",
+        "Ja, noch mehrere Wochen",
+        "Ja, aber nur die Haare",
+        "Nur die Fingernägel"
+      ],
+      "erklaerung": "Die Haut trocknet aus und schrumpft, dadurch wirken Haare und Nägel länger.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tod",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1025,87 +923,189 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0031",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Wie schlafen Delfine?",
-      "antworten": [
-        "Mit jeweils einer Gehirnhälfte",
-        "Gar nicht",
-        "Nur an Land",
-        "Nur im Winter"
-      ],
-      "erklaerung": "So können sie weiter auftauchen, um Luft zu holen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Unihemisph%C3%A4rischer%20Schlaf",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0080",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Wie lange braucht die Erde für eine volle Drehung relativ zu den Fixsternen?",
-      "antworten": [
-        "Etwa 23 Stunden und 56 Minuten",
-        "Genau 24 Stunden",
-        "Etwa 24 Stunden und 4 Minuten",
-        "Etwa 23 Stunden"
-      ],
-      "erklaerung": "Dieser Sterntag ist kürzer als der Sonnentag, weil die Erde sich auf ihrer Bahn weiterbewegt und sich etwas mehr drehen muss.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sterntag",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0083",
+      "id": "besser-0019",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "leicht",
-      "frage": "Sind Spinnen Insekten?",
+      "frage": "Wie viel Prozent seines Gehirns nutzt der Mensch?",
       "antworten": [
-        "Nein, sie sind Spinnentiere",
-        "Ja, mit acht Beinen",
-        "Ja, aber ohne Flügel",
-        "Nein, sie sind Krebstiere"
+        "Praktisch alles – nur nicht alles gleichzeitig",
+        "Nur etwa 10 Prozent",
+        "Etwa die Hälfte",
+        "Genau 33 Prozent"
       ],
-      "erklaerung": "Insekten haben sechs Beine, Spinnentiere acht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spinnentiere",
-      "erstellt": "2026-10-24",
+      "erklaerung": "Der 10-Prozent-Mythos hält sich hartnäckig, ist aber widerlegt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zehn-Prozent-Mythos",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
-      "id": "besser-0071",
+      "id": "besser-0070",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "ingomania",
-      "frage": "Wer lebte zeitlich näher am Tyrannosaurus rex: der Stegosaurus oder der Mensch?",
+      "frage": "Wie lautet die Einzahl von „Spaghetti“ im Italienischen?",
       "antworten": [
-        "Der Mensch",
-        "Der Stegosaurus",
-        "Beide gleich nah",
-        "Keiner von beiden"
+        "Spaghetto",
+        "Spaghetta",
+        "Spaghett",
+        "Es gibt keine Einzahl"
       ],
-      "erklaerung": "Der Stegosaurus lebte vor rund 150 Millionen Jahren, der T. rex vor etwa 68 bis 66 Millionen. Von da bis heute sind es weniger.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Stegosaurus",
+      "erklaerung": "„Spaghetti“ ist die Mehrzahl von „spaghetto“, einer Verkleinerungsform von „spago“ (Schnur).",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spaghetti",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "besser-0058",
+      "id": "besser-0089",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "schwer",
-      "frage": "Verschwinden im Bermudadreieck mehr Schiffe als anderswo?",
+      "frage": "Wie viele Hauptstädte hat Südafrika?",
       "antworten": [
-        "Nein, die Zahl liegt nicht über dem Schnitt",
-        "Ja, ein Vielfaches",
-        "Ja, nur Flugzeuge",
-        "Ja, wegen Magnetfeldern"
+        "Drei",
+        "Eine",
+        "Zwei",
+        "Vier"
       ],
-      "erklaerung": "Versicherer und Küstenwache sahen keine erhöhte Unglücksrate. Es ist eine stark befahrene Region mit Stürmen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bermudadreieck",
+      "erklaerung": "Südafrika hat drei Hauptstädte: Pretoria, Kapstadt und Bloemfontein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=S%C3%BCdafrika",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0040",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Welche Farbe hat die Sonne, wenn man sie aus dem Weltall betrachtet?",
+      "antworten": [
+        "Weiß",
+        "Gelb",
+        "Orange",
+        "Rot"
+      ],
+      "erklaerung": "Die Sonne strahlt in allen Farben. Die Atmosphäre streut das blaue Licht heraus, darum wirkt sie von der Erde aus gelblich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sonne",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0021",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Ist eine Fledermaus ein Vogel?",
+      "antworten": [
+        "Nein, ein Säugetier",
+        "Ja, ein Nachtvogel",
+        "Ja, eine Unterart der Eule",
+        "Nein, ein Insekt"
+      ],
+      "erklaerung": "Fledermäuse säugen ihre Jungen – und sind die einzigen Säugetiere, die richtig fliegen können.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fledertiere",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0088",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Was ist eine Sternschnuppe?",
+      "antworten": [
+        "Ein kleiner Gesteinsbrocken, der in der Atmosphäre verglüht",
+        "Ein herabfallender Stern",
+        "Ein Stück eines explodierten Planeten",
+        "Ein Komet, der die Erde berührt"
+      ],
+      "erklaerung": "Sternschnuppen sind Meteoroiden, die beim Eintritt in die Atmosphäre verglühen, keine Sterne.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Meteor%20%28Astronomie%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0047",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Gibt es auf der Zunge getrennte Zonen für süß, sauer, salzig und bitter?",
+      "antworten": [
+        "Nein, jede Sorte schmeckt man überall",
+        "Ja, süß schmeckt man vorn",
+        "Ja, bitter nur seitlich",
+        "Ja, salzig nur in der Mitte"
+      ],
+      "erklaerung": "Die berühmte Zungenkarte beruht auf einem Übersetzungsfehler. Alle Geschmacksrichtungen werden an allen Stellen wahrgenommen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Geschmackssinn",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0015",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Welches Tier ist im Sturzflug das schnellste der Welt?",
+      "antworten": [
+        "Der Wanderfalke",
+        "Der Gepard",
+        "Der Steinadler",
+        "Der Mauersegler"
+      ],
+      "erklaerung": "Im Sturzflug erreicht er über 300 km/h. Der Gepard ist das schnellste Landtier.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wanderfalke",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0081",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Wofür stand ursprünglich die Abkürzung „OK“?",
+      "antworten": [
+        "Für „oll korrect“, ein Scherz um 1839",
+        "Für „Ordnung und Klarheit“",
+        "Für „Ohne Kritik“",
+        "Für „Old Kentucky“"
+      ],
+      "erklaerung": "Die Abkürzung kam um 1839 in Bostoner Zeitungen als scherzhafte Verballhornung von „all correct“ auf und verbreitete sich danach weltweit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=OK%20%28Wort%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0061",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Beugt hochdosiertes Vitamin C Erkältungen vor?",
+      "antworten": [
+        "Nein, nur Dauer und Schwere leicht gemildert",
+        "Ja, es verhindert sie sicher",
+        "Ja, bei Kindern vollständig",
+        "Nur im Winter"
+      ],
+      "erklaerung": "Auswertungen vieler Studien fanden kaum Schutz bei normaler Bevölkerung, nur eine leichte Verkürzung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Vitamin%20C",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0053",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Welcher Berg ist, vom Erdmittelpunkt aus gemessen, der „höchste“?",
+      "antworten": [
+        "Der Chimborazo in Ecuador",
+        "Der Mount Everest",
+        "Der K2",
+        "Der Kilimandscharo"
+      ],
+      "erklaerung": "Wegen der Erdabplattung liegt sein Gipfel am weitesten vom Erdmittelpunkt entfernt. Der Everest ist über dem Meeresspiegel am höchsten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Chimborazo",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1127,20 +1127,156 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0015",
+      "id": "besser-0012",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Woraus besteht die Mine eines Bleistifts?",
+      "antworten": [
+        "Aus Graphit und Ton",
+        "Aus Blei",
+        "Aus Kohle und Wachs",
+        "Aus Bleiglanz"
+      ],
+      "erklaerung": "Blei war nie drin – Graphit wurde früher für ein Bleierz gehalten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bleistift",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0030",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Ist die Erdnuss botanisch eine Nuss?",
+      "antworten": [
+        "Nein, eine Hülsenfrucht",
+        "Ja, eine echte Nuss",
+        "Nein, ein Steinobst",
+        "Nein, eine Wurzelknolle"
+      ],
+      "erklaerung": "Die Erdnuss ist mit Erbsen und Bohnen verwandt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Erdnuss",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0017",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "mittel",
-      "frage": "Welches Tier ist im Sturzflug das schnellste der Welt?",
+      "frage": "War Napoleon Bonaparte besonders klein?",
       "antworten": [
-        "Der Wanderfalke",
-        "Der Gepard",
-        "Der Steinadler",
-        "Der Mauersegler"
+        "Nein, mit etwa 1,69 m war er für seine Zeit eher durchschnittlich",
+        "Ja, er maß nur 1,52 m",
+        "Ja, er war kleinwüchsig",
+        "Nein, er war fast zwei Meter groß"
       ],
-      "erklaerung": "Im Sturzflug erreicht er über 300 km/h. Der Gepard ist das schnellste Landtier.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wanderfalke",
+      "erklaerung": "Der Mythos kommt auch von der Verwechslung französischer und englischer Maßeinheiten und von britischer Spottpropaganda.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Napoleon%20Bonaparte",
       "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0069",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "ingomania",
+      "frage": "Um wie viel kann der Eiffelturm im Sommer durch Hitze höher werden?",
+      "antworten": [
+        "Bis zu etwa 15 Zentimeter",
+        "Etwa einen Meter",
+        "Nur wenige Millimeter",
+        "Etwa 50 Zentimeter"
+      ],
+      "erklaerung": "Das Eisen dehnt sich bei Wärme aus. Zwischen Winter und heißem Sommer unterscheidet sich die Höhe um bis zu rund 15 Zentimeter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eiffelturm%20W%C3%A4rmeausdehnung",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0026",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Auf welchem Kontinent liegen die meisten Staaten?",
+      "antworten": [
+        "Afrika",
+        "Asien",
+        "Europa",
+        "Südamerika"
+      ],
+      "erklaerung": "Afrika zählt 54 von den Vereinten Nationen anerkannte Staaten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Afrika",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0007",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Wie viele Knochen hat ein erwachsener Mensch ungefähr?",
+      "antworten": [
+        "Etwa 206",
+        "Etwa 150",
+        "Etwa 300",
+        "Etwa 412"
+      ],
+      "erklaerung": "Babys haben mehr – viele wachsen später zusammen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Skelett%20des%20Menschen",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0004",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Was ist eine Tomate botanisch gesehen?",
+      "antworten": [
+        "Eine Beere",
+        "Ein Gemüse",
+        "Eine Nuss",
+        "Eine Steinfrucht"
+      ],
+      "erklaerung": "Auch Gurken, Kürbisse und Bananen zählen botanisch zu den Beeren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tomate",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0046",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "mittel",
+      "frage": "Warum wechseln Chamäleons vor allem ihre Farbe?",
+      "antworten": [
+        "Zur Verständigung und Temperaturregelung",
+        "Nur zur Tarnung",
+        "Um Beute anzulocken",
+        "Wegen des Hungers"
+      ],
+      "erklaerung": "Die Farbe zeigt Stimmung und Rivalität und hilft beim Wärmehaushalt. Die Tarnung ist eher nebensächlich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Cham%C3%A4leons",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0059",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Woher stammt der Mythos, Karotten verbesserten die Nachtsicht?",
+      "antworten": [
+        "Aus britischer Kriegspropaganda",
+        "Aus einer Werbung für Karottensaft",
+        "Aus einer Studie von 1950",
+        "Aus dem alten Ägypten"
+      ],
+      "erklaerung": "Großbritannien verschleierte im Zweiten Weltkrieg sein Radar, indem es Erfolge der Piloten der Möhrenkost zuschrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karotte",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -1157,6 +1293,91 @@
       ],
       "erklaerung": "Er dauerte von 1337 bis 1453, mit längeren Pausen.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Hundertj%C3%A4hriger%20Krieg",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0056",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Lebte Kleopatra zeitlich näher an der Mondlandung oder am Bau der Cheops-Pyramide?",
+      "antworten": [
+        "Näher an der Mondlandung",
+        "Näher am Pyramidenbau",
+        "Genau in der Mitte",
+        "Beides ist gleich weit"
+      ],
+      "erklaerung": "Die Pyramide entstand um 2560 v. Chr., Kleopatra starb 30 v. Chr. – bis 1969 sind es rund 2000 Jahre.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kleopatra%20VII.",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0037",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Was speichert ein Kamel in seinem Höcker?",
+      "antworten": [
+        "Fett",
+        "Wasser",
+        "Luft",
+        "Sand"
+      ],
+      "erklaerung": "Das Fett dient als Energiereserve. Wasser speichert das Kamel im ganzen Körper, vor allem im Blut.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kamele",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0036",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Macht Zucker Kinder hyperaktiv?",
+      "antworten": [
+        "Nein, Studien zeigen keinen Beleg dafür",
+        "Ja, immer innerhalb einer Stunde",
+        "Ja, aber nur Traubenzucker",
+        "Nur Zucker aus Honig"
+      ],
+      "erklaerung": "In kontrollierten Versuchen verhielten sich Kinder mit und ohne Zucker gleich. Die Erwartung der Eltern spielt eine große Rolle.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zucker",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0062",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "schwer",
+      "frage": "Wie viel Prozent eines Eisbergs liegen unter Wasser?",
+      "antworten": [
+        "Rund 90 Prozent",
+        "Etwa die Hälfte",
+        "Rund 70 Prozent",
+        "Nur etwa 10 Prozent"
+      ],
+      "erklaerung": "Eis ist etwas leichter als Meerwasser, daher ragt nur etwa ein Zehntel heraus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eisberg",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0016",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Wie viele Monate im Jahr haben 28 Tage?",
+      "antworten": [
+        "Alle zwölf",
+        "Nur einer",
+        "Zwei",
+        "Keiner – der Februar hat 28,25"
+      ],
+      "erklaerung": "Achtundzwanzig Tage hat jeder Monat – manche eben noch ein paar mehr.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Monat",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -1178,36 +1399,87 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0069",
+      "id": "besser-0060",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "ingomania",
-      "frage": "Um wie viel kann der Eiffelturm im Sommer durch Hitze höher werden?",
+      "stufe": "schwer",
+      "frage": "Was ist auf der Venus länger: ein Tag oder ein Jahr?",
       "antworten": [
-        "Bis zu etwa 15 Zentimeter",
-        "Etwa einen Meter",
-        "Nur wenige Millimeter",
-        "Etwa 50 Zentimeter"
+        "Ein Tag",
+        "Ein Jahr",
+        "Beides ist gleich lang",
+        "Das lässt sich nicht sagen"
       ],
-      "erklaerung": "Das Eisen dehnt sich bei Wärme aus. Zwischen Winter und heißem Sommer unterscheidet sich die Höhe um bis zu rund 15 Zentimeter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eiffelturm%20W%C3%A4rmeausdehnung",
+      "erklaerung": "Ein Venustag dauert rund 243 Erdtage, ein Umlauf um die Sonne nur etwa 225.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Venus%20%28Planet%29",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "besser-0057",
+      "id": "besser-0049",
       "version": 1,
       "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Wer erfand die Guillotine?",
+      "stufe": "mittel",
+      "frage": "Was ist die Banane botanisch gesehen?",
       "antworten": [
-        "Der Arzt Antoine Louis",
-        "Joseph-Ignace Guillotin",
-        "Napoleon Bonaparte",
-        "Maximilien Robespierre"
+        "Eine Beere an einer Staude",
+        "Eine Baumfrucht",
+        "Eine Nuss",
+        "Eine Steinfrucht"
       ],
-      "erklaerung": "Guillotin setzte sich nur für eine humanere Hinrichtung ein. Konstruiert wurde sie nach Louis' Plänen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Guillotine",
+      "erklaerung": "Die Bananenpflanze ist kein Baum, sondern die größte krautige Pflanze der Erde. Der Scheinstamm besteht aus Blattscheiden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bananen",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0027",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Ist ein Wal ein Fisch?",
+      "antworten": [
+        "Nein, ein Säugetier",
+        "Ja, der größte Fisch",
+        "Ja, ein Knorpelfisch",
+        "Nein, ein Reptil"
+      ],
+      "erklaerung": "Wale atmen Luft und säugen ihre Jungen. Der größte Fisch ist der Walhai.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wale",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0083",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Sind Spinnen Insekten?",
+      "antworten": [
+        "Nein, sie sind Spinnentiere",
+        "Ja, mit acht Beinen",
+        "Ja, aber ohne Flügel",
+        "Nein, sie sind Krebstiere"
+      ],
+      "erklaerung": "Insekten haben sechs Beine, Spinnentiere acht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spinnentiere",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0034",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Steckt der Strauß bei Gefahr den Kopf in den Sand?",
+      "antworten": [
+        "Nein, das ist ein Mythos",
+        "Ja, um sich zu verstecken",
+        "Ja, aber nur die Küken",
+        "Nur bei Sandstürmen"
+      ],
+      "erklaerung": "Strauße rennen weg oder legen sich flach auf den Boden. Beim Nestpflegen drehen sie die Eier mit dem Schnabel, das sah wohl wie Kopfvergraben aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Afrikanischer%20Strau%C3%9F",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1229,240 +1501,36 @@
       "gueltigBis": null
     },
     {
-      "id": "besser-0039",
+      "id": "besser-0042",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "leicht",
-      "frage": "Werden Haare dicker und dunkler, wenn man sie rasiert?",
+      "frage": "Erkältet man sich durch nasse Haare?",
       "antworten": [
-        "Nein, sie wirken nur kantiger",
-        "Ja, deutlich dicker",
-        "Ja, aber nur am Bart",
-        "Ja, aber nur bei Frauen"
+        "Nein, dafür braucht es Viren",
+        "Ja, immer",
+        "Ja, aber nur im Winter",
+        "Nur bei kaltem Wasser"
       ],
-      "erklaerung": "Nachwachsende Stoppeln haben eine stumpfe Spitze und wirken daher kräftiger. Dicke und Farbe ändern sich nicht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rasur",
+      "erklaerung": "Erkältungen werden durch Viren ausgelöst. Auskühlen kann höchstens die Abwehr schwächen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Erk%C3%A4ltung",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "besser-0045",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Ist altes Fensterglas unten dicker, weil Glas sehr langsam fließt?",
-      "antworten": [
-        "Nein, das liegt an der früheren Herstellung",
-        "Ja, Glas ist eine zähe Flüssigkeit",
-        "Ja, wegen der Schwerkraft",
-        "Nur bei farbigem Glas"
-      ],
-      "erklaerung": "Glas ist ein amorpher Feststoff. Altes Glas war ungleichmäßig, die dickere Kante wurde beim Einbau oft nach unten gesetzt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Glas",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0054",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Gab es im Mittelalter die „Eiserne Jungfrau“ als Foltergerät?",
-      "antworten": [
-        "Nein, sie ist eine Erfindung des 18./19. Jahrhunderts",
-        "Ja, sie war weit verbreitet",
-        "Ja, aber nur in Spanien",
-        "Ja, bei der Inquisition"
-      ],
-      "erklaerung": "Belege aus dem Mittelalter fehlen. Die bekannten Exemplare entstanden später als Schauobjekte.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eiserne%20Jungfrau",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0048",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Wollte Kolumbus beweisen, dass die Erde eine Kugel ist?",
-      "antworten": [
-        "Nein, die Kugelgestalt war längst bekannt",
-        "Ja, genau das",
-        "Ja, gegen den Papst",
-        "Er hielt sie für eine Scheibe"
-      ],
-      "erklaerung": "Seit der Antike wusste man, dass die Erde rund ist. Kolumbus unterschätzte nur ihre Größe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Christoph%20Kolumbus",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0074",
+      "id": "besser-0086",
       "version": 1,
       "kategorie": "Besserwisser",
       "stufe": "ingomania",
-      "frage": "Wofür dienten die „Vomitorien“ in römischen Amphitheatern?",
+      "frage": "Bleibt verschluckter Kaugummi sieben Jahre im Magen?",
       "antworten": [
-        "Als Ein- und Ausgänge für die Zuschauer",
-        "Zum Erbrechen nach dem Festmahl",
-        "Als Käfige für Raubtiere",
-        "Als Waffenkammern"
+        "Nein, er wird normal ausgeschieden",
+        "Ja, genau sieben Jahre",
+        "Ja, er löst sich nie auf",
+        "Nur bei Kindern"
       ],
-      "erklaerung": "Das lateinische „vomere“ meint „ausspeien“: Durch die Gänge strömten die Massen rasch hinaus. Mit Erbrechen hat es nichts zu tun.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Vomitorium",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0029",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Wo wächst die Venusfliegenfalle ursprünglich?",
-      "antworten": [
-        "In Sümpfen von North und South Carolina (USA)",
-        "Im Amazonas-Regenwald",
-        "Auf Madagaskar",
-        "In Indonesien"
-      ],
-      "erklaerung": "Ihr natürliches Verbreitungsgebiet ist sehr klein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Venusfliegenfalle",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0061",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Beugt hochdosiertes Vitamin C Erkältungen vor?",
-      "antworten": [
-        "Nein, nur Dauer und Schwere leicht gemildert",
-        "Ja, es verhindert sie sicher",
-        "Ja, bei Kindern vollständig",
-        "Nur im Winter"
-      ],
-      "erklaerung": "Auswertungen vieler Studien fanden kaum Schutz bei normaler Bevölkerung, nur eine leichte Verkürzung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Vitamin%20C",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0040",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Welche Farbe hat die Sonne, wenn man sie aus dem Weltall betrachtet?",
-      "antworten": [
-        "Weiß",
-        "Gelb",
-        "Orange",
-        "Rot"
-      ],
-      "erklaerung": "Die Sonne strahlt in allen Farben. Die Atmosphäre streut das blaue Licht heraus, darum wirkt sie von der Erde aus gelblich.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sonne",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0025",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Haben Goldfische wirklich nur ein Drei-Sekunden-Gedächtnis?",
-      "antworten": [
-        "Nein, sie können sich monatelang erinnern",
-        "Ja, genau drei Sekunden",
-        "Ja, aber nur im Aquarium",
-        "Nein, gar keins"
-      ],
-      "erklaerung": "In Versuchen lernten Goldfische Signale und behielten sie über Monate.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Goldfisch",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0055",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Wie lange dauerte der kürzeste Krieg der Geschichte, der Anglo-Sansibar-Krieg 1896?",
-      "antworten": [
-        "Weniger als eine Stunde",
-        "Etwa einen Tag",
-        "Drei Tage",
-        "Eine Woche"
-      ],
-      "erklaerung": "Die britische Flotte beschoss den Sultanspalast, nach rund 40 Minuten war der Krieg vorbei.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Anglo-Sansibar-Krieg",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0020",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "schwer",
-      "frage": "Dreht sich das Wasser im Abfluss auf der Südhalbkugel immer andersherum?",
-      "antworten": [
-        "Nein, die Corioliskraft ist dafür viel zu schwach",
-        "Ja, immer im Uhrzeigersinn",
-        "Ja, immer gegen den Uhrzeigersinn",
-        "Nur am Äquator nicht"
-      ],
-      "erklaerung": "Die Form des Beckens und kleine Strömungen entscheiden die Richtung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Corioliskraft",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0006",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Welches ist das größte Organ des Menschen?",
-      "antworten": [
-        "Die Haut",
-        "Die Leber",
-        "Die Lunge",
-        "Das Gehirn"
-      ],
-      "erklaerung": "Sie bringt es bei Erwachsenen auf rund zwei Quadratmeter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Haut",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0034",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "leicht",
-      "frage": "Steckt der Strauß bei Gefahr den Kopf in den Sand?",
-      "antworten": [
-        "Nein, das ist ein Mythos",
-        "Ja, um sich zu verstecken",
-        "Ja, aber nur die Küken",
-        "Nur bei Sandstürmen"
-      ],
-      "erklaerung": "Strauße rennen weg oder legen sich flach auf den Boden. Beim Nestpflegen drehen sie die Eier mit dem Schnabel, das sah wohl wie Kopfvergraben aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Afrikanischer%20Strau%C3%9F",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "besser-0046",
-      "version": 1,
-      "kategorie": "Besserwisser",
-      "stufe": "mittel",
-      "frage": "Warum wechseln Chamäleons vor allem ihre Farbe?",
-      "antworten": [
-        "Zur Verständigung und Temperaturregelung",
-        "Nur zur Tarnung",
-        "Um Beute anzulocken",
-        "Wegen des Hungers"
-      ],
-      "erklaerung": "Die Farbe zeigt Stimmung und Rivalität und hilft beim Wärmehaushalt. Die Tarnung ist eher nebensächlich.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Cham%C3%A4leons",
+      "erklaerung": "Der Körper verdaut ihn nicht, aber er wandert in einigen Tagen durch den Darm.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaugummi",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     }

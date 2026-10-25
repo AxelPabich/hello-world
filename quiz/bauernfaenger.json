@@ -1,210 +1,57 @@
 {
   "paket": "bauernfaenger",
   "titel": "Nepper, Schlepper, Bauernfänger",
-  "version": 1,
+  "version": 2,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler. Betrug, Tricks, Hochstapler und Fälschungen – zum Erkennen und Staunen.",
   "fragen": [
     {
-      "id": "bauernfaenger-0080",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welcher junge Brite fälschte 1795 angebliche Shakespeare-Dokumente und ein „verschollenes“ Stück?",
-      "antworten": [
-        "William Henry Ireland",
-        "Thomas Chatterton",
-        "James Macpherson",
-        "Horace Walpole"
-      ],
-      "erklaerung": "Das Stück „Vortigern and Rowena“ wurde 1796 aufgeführt und fiel durch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=William%20Henry%20Ireland",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0027",
+      "id": "bauernfaenger-0032",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
       "stufe": "mittel",
-      "frage": "Welche online gekaufte Ware ist vom gesetzlichen Widerrufsrecht in der Regel ausgenommen?",
+      "frage": "Aus welchen Knochen bestand der 1953 als Fälschung entlarvte „Piltdown-Mensch“?",
       "antworten": [
-        "Nach Kundenwunsch angefertigte Ware",
-        "Bücher",
-        "Kleidung",
-        "Spielzeug"
+        "Menschenschädel und Orang-Utan-Kiefer",
+        "Neandertalerschädel und Wolfskiefer",
+        "Affenschädel und Menschenkiefer",
+        "Nur aus Tierknochen eines Bären"
       ],
-      "erklaerung": "Individuell angefertigte Waren sind ausgenommen, weil sie sich nicht anderweitig verkaufen lassen. Für normale Ware gilt ein Widerrufsrecht von 14 Tagen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
+      "erklaerung": "Der angebliche „Missing Link“ von 1912 war eine Mischung aus Teilen eines Menschenschädels und eines Orang-Utan-Kiefers. Die Fälschung führte die Forschung jahrzehntelang in die Irre.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Piltdown-Mensch",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "bauernfaenger-0056",
+      "id": "bauernfaenger-0073",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "An welcher Universität wurde Karl-Theodor zu Guttenberg 2011 der Doktortitel wegen Plagiats aberkannt?",
+      "stufe": "ingomania",
+      "frage": "Wie legte Fred Lorz beim Marathon der Olympischen Spiele 1904 einen Teil der Strecke zurück?",
       "antworten": [
-        "Universität Bayreuth",
-        "Universität München",
-        "Universität Würzburg",
-        "Universität Heidelberg"
+        "Im Auto",
+        "Mit der Straßenbahn",
+        "Auf einem Fahrrad",
+        "Auf einem Pferdewagen"
       ],
-      "erklaerung": "Die Universität entzog den Titel im Februar 2011; im März trat Guttenberg als Verteidigungsminister zurück.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl-Theodor%20zu%20Guttenberg",
+      "erklaerung": "Lorz überquerte als Erster die Ziellinie, wurde aber entlarvt. Der Sieg ging an Thomas Hicks.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Sommerspiele%201904",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "bauernfaenger-0060",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Welcher Händler brachte 1995 mit Spekulationsverlusten die britische Barings Bank zu Fall?",
-      "antworten": [
-        "Nick Leeson",
-        "Jérôme Kerviel",
-        "Kweku Adoboli",
-        "Bernard Madoff"
-      ],
-      "erklaerung": "Leeson verheimlichte Verluste in einem Fehlerkonto; die Bank war 233 Jahre alt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nick%20Leeson",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0054",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Welcher Stoff wurde 1985 in österreichischem Wein entdeckt und löste den Weinskandal aus?",
-      "antworten": [
-        "Diethylenglykol",
-        "Methanol",
-        "Blei",
-        "Ethylacetat"
-      ],
-      "erklaerung": "Winzer hatten Wein damit gesüßt. Der Skandal ruinierte den Ruf des österreichischen Weins vorübergehend und führte zu einem sehr strengen Weingesetz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Weinskandal",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0041",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Auf welches angebliche Geschäft stützte Charles Ponzi 1919/1920 in Boston sein Anlagemodell?",
-      "antworten": [
-        "Handel mit internationalen Postantwortscheinen",
-        "Import von Kaffee aus Brasilien",
-        "Spekulation mit Eisenbahnaktien",
-        "Handel mit Goldminen-Anteilen"
-      ],
-      "erklaerung": "Ponzi versprach 50 Prozent Gewinn in 45 Tagen und zahlte alte Anleger aus dem Geld neuer aus. Daher heißen solche Betrugsmodelle Ponzi-Schema.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Charles%20Ponzi",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0052",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Woher stammt das \"Ph\" im Wort Phishing?",
-      "antworten": [
-        "Von \"Phreaking\", der Hackerszene der Telefonnetze",
-        "Von \"Philanthropie\"",
-        "Vom griechischen Wort \"phýsis\"",
-        "Von der Firma Phillips"
-      ],
-      "erklaerung": "Phishing spielt auf \"fishing\" an: Zugangsdaten werden wie mit einem Köder geangelt. Das Ph übernahm man vom Phreaking.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Phishing",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0009",
+      "id": "bauernfaenger-0016",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
       "stufe": "leicht",
-      "frage": "Was ist eine „Mogelpackung“?",
+      "frage": "Welcher „Lügenbaron“ erzählte, er sei auf einer Kanonenkugel geritten?",
       "antworten": [
-        "Eine Verpackung, die mehr Inhalt vortäuscht, als drin ist",
-        "Eine besonders umweltfreundliche Verpackung",
-        "Ein Geschenk mit Überraschungsinhalt",
-        "Eine beschädigte Verpackung"
+        "Münchhausen",
+        "Rübezahl",
+        "Till Eulenspiegel",
+        "Robin Hood"
       ],
-      "erklaerung": "Mogelpackungen sind überdimensioniert oder enthalten viel Luft. Verbraucherzentralen vergeben dafür sogar jährlich einen Negativpreis.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mogelpackung",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0049",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "In welchem Konzentrationslager wurden im Zweiten Weltkrieg britische Pfundnoten (Aktion Bernhard) gefälscht?",
-      "antworten": [
-        "Sachsenhausen",
-        "Dachau",
-        "Buchenwald",
-        "Mauthausen"
-      ],
-      "erklaerung": "Häftlinge mussten unter SS-Aufsicht Banknoten fälschen. Der Film \"Die Fälscher\" (2007) erzählt davon.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Unternehmen%20Bernhard",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0050",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Welcher Stoff wurde bei Ben Johnson nach seinem 100-m-Lauf in Seoul 1988 nachgewiesen?",
-      "antworten": [
-        "Stanozolol",
-        "Nandrolon",
-        "Erythropoetin",
-        "Clenbuterol"
-      ],
-      "erklaerung": "Johnson verlor die Goldmedaille und seinen Weltrekord von 9,79 Sekunden. Der Fall gilt als Wendepunkt im Anti-Doping-Kampf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ben%20Johnson%20%28Leichtathlet%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0042",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Zu wie vielen Jahren Haft wurde Bernard Madoff 2009 wegen seines Anlagebetrugs verurteilt?",
-      "antworten": [
-        "150 Jahre",
-        "25 Jahre",
-        "75 Jahre",
-        "300 Jahre"
-      ],
-      "erklaerung": "Madoff betrieb jahrzehntelang ein Schneeballsystem; der Schaden wurde auf rund 65 Milliarden Dollar an angeblichen Kontoständen beziffert. Er starb 2021 im Gefängnis.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bernard%20Madoff",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0045",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Welcher Stern-Reporter brachte 1983 die gefälschten Hitler-Tagebücher ins Blatt?",
-      "antworten": [
-        "Gerd Heidemann",
-        "Henri Nannen",
-        "Wolf Schneider",
-        "Peter Koch"
-      ],
-      "erklaerung": "Heidemann hatte die Tagebücher von Konrad Kujau erhalten. Das Bundesarchiv erklärte sie wenige Wochen nach der Veröffentlichung für Fälschungen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hitler-Tageb%C3%BCcher",
+      "erklaerung": "Die Geschichten gehen auf den Freiherrn Hieronymus von Münchhausen zurück und wurden von Rudolf Erich Raspe und Gottfried August Bürger bekannt gemacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Baron%20M%C3%BCnchhausen",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -226,6 +73,448 @@
       "gueltigBis": null
     },
     {
+      "id": "bauernfaenger-0076",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "In welchem Jahr nahm sich der schwedische \"Zündholzkönig\" Ivar Kreuger nach dem Zusammenbruch seines Konzerns das Leben?",
+      "antworten": [
+        "1932",
+        "1914",
+        "1948",
+        "1929"
+      ],
+      "erklaerung": "Kreuger hatte Bilanzen manipuliert und Anleger getäuscht. Er starb in Paris.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ivar%20Kreuger",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0042",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Zu wie vielen Jahren Haft wurde Bernard Madoff 2009 wegen seines Anlagebetrugs verurteilt?",
+      "antworten": [
+        "150 Jahre",
+        "25 Jahre",
+        "75 Jahre",
+        "300 Jahre"
+      ],
+      "erklaerung": "Madoff betrieb jahrzehntelang ein Schneeballsystem; der Schaden wurde auf rund 65 Milliarden Dollar an angeblichen Kontoständen beziffert. Er starb 2021 im Gefängnis.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bernard%20Madoff",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0071",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welcher Kardinal wurde in der Halsbandaffäre 1785 von Jeanne de La Motte getäuscht?",
+      "antworten": [
+        "Louis de Rohan",
+        "Richelieu",
+        "Mazarin",
+        "Fleury"
+      ],
+      "erklaerung": "Die Betrügerin ließ ihn glauben, er erwerbe das Halsband für Marie Antoinette. Die Affäre schadete dem Ansehen der Königin schwer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Halsbandaff%C3%A4re",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0019",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Wie nennt man eine erfundene Falschmeldung in der Presse umgangssprachlich?",
+      "antworten": [
+        "Zeitungsente",
+        "Zeitungsgans",
+        "Zeitungshahn",
+        "Zeitungsschwan"
+      ],
+      "erklaerung": "Eine Ente ist eine unbestätigte oder erfundene Meldung. Das Wort wird seit dem 18. Jahrhundert so verwendet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zeitungsente",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0024",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Welches Pariser Wahrzeichen „verkaufte“ der Betrüger Victor Lustig 1925 als angeblichen Schrott?",
+      "antworten": [
+        "Den Eiffelturm",
+        "Den Arc de Triomphe",
+        "Die Notre-Dame",
+        "Die Pyramide des Louvre"
+      ],
+      "erklaerung": "Lustig gab sich als Beamter aus und lud Schrotthändler zu einem Scheinverfahren ein. Er soll den Trick sogar ein zweites Mal versucht haben.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Victor%20Lustig",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0027",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Welche online gekaufte Ware ist vom gesetzlichen Widerrufsrecht in der Regel ausgenommen?",
+      "antworten": [
+        "Nach Kundenwunsch angefertigte Ware",
+        "Bücher",
+        "Kleidung",
+        "Spielzeug"
+      ],
+      "erklaerung": "Individuell angefertigte Waren sind ausgenommen, weil sie sich nicht anderweitig verkaufen lassen. Für normale Ware gilt ein Widerrufsrecht von 14 Tagen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0043",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Welcher Schauspieler spielte im Film \"Catch Me If You Can\" (2002) den Vater von Frank Abagnale Jr.?",
+      "antworten": [
+        "Christopher Walken",
+        "Tom Hanks",
+        "Martin Sheen",
+        "Robert De Niro"
+      ],
+      "erklaerung": "Walken wurde für die Rolle des Frank Abagnale Sr. für den Oscar nominiert. Leonardo DiCaprio spielte den Sohn, Tom Hanks den FBI-Agenten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Catch%20Me%20If%20You%20Can",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0038",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Woher stammt der Begriff „Spam“ für unerwünschte Massen-Mails?",
+      "antworten": [
+        "Von einem Sketch der Monty Pythons über Dosenfleisch",
+        "Von einer Software namens Spamix",
+        "Von einer Abkürzung für „Special Mail“",
+        "Von einem Hacker namens Sam"
+      ],
+      "erklaerung": "In einem Monty-Python-Sketch wird das Dosenfleisch Spam dauernd wiederholt. Daher nannte man ständig wiederkehrende Nachrichten Spam.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spam",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0033",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Welcher Schöpfer von Sherlock Holmes hielt die Feenfotos von Cottingley (1917) für echt?",
+      "antworten": [
+        "Arthur Conan Doyle",
+        "Agatha Christie",
+        "Edgar Allan Poe",
+        "Charles Dickens"
+      ],
+      "erklaerung": "Zwei Mädchen fotografierten sich mit ausgeschnittenen Papierfeen. Conan Doyle verteidigte sie öffentlich, erst 1983 gaben die Cousinen den Schwindel zu.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Feen%20von%20Cottingley",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0004",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Bei welchem Straßenspiel muss man erraten, unter welchem Becher oder Hütchen eine Kugel liegt – meist ein Betrug?",
+      "antworten": [
+        "Hütchenspiel",
+        "Kniffel",
+        "Mau-Mau",
+        "Roulette"
+      ],
+      "erklaerung": "Beim Hütchenspiel lenken Komplizen und Fingerfertigkeit ab, sodass Mitspieler praktisch immer verlieren. Das Spiel gilt als Glücksspielbetrug.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=H%C3%BCtchenspiel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0084",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Als was gab sich der Hochstapler Ferdinand Waldo Demara („The Great Impostor“) im Koreakrieg auf dem kanadischen Zerstörer HMCS Cayuga aus?",
+      "antworten": [
+        "Als Schiffsarzt",
+        "Als Kapitän",
+        "Als Funker",
+        "Als Schiffskoch"
+      ],
+      "erklaerung": "Demara gab sich als Arzt aus und führte an Bord sogar Operationen durch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ferdinand%20Demara",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0053",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Worauf spielt die Bezeichnung \"419-Betrug\" für Vorschussbetrug per E-Mail an?",
+      "antworten": [
+        "Auf einen Paragrafen im nigerianischen Strafgesetzbuch",
+        "Auf die Postleitzahl von Lagos",
+        "Auf ein Gründungsjahr 419",
+        "Auf einen Zeitungsartikel Nr. 419"
+      ],
+      "erklaerung": "Section 419 des nigerianischen Strafgesetzbuchs betrifft Betrug. Die Masche mit angeblichen Millionenerbschaften ist schon als Briefbetrug bekannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Vorschussbetrug",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0031",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Wer wies 1440 nach, dass die „Konstantinische Schenkung“ eine Fälschung ist?",
+      "antworten": [
+        "Lorenzo Valla",
+        "Thomas Morus",
+        "Erasmus von Rotterdam",
+        "Niccolò Machiavelli"
+      ],
+      "erklaerung": "Der Humanist Valla zeigte anhand der Sprache, dass das Dokument nicht aus der Zeit Konstantins stammen kann. Es gilt als eine der berühmtesten Fälschungen des Mittelalters.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Konstantinische%20Schenkung",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0068",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Wer war Anna Anderson, die sich als Zarentochter Anastasia ausgab, nach DNA-Analysen laut Forschung wirklich?",
+      "antworten": [
+        "Franziska Schanzkowska",
+        "Tatjana Romanowa",
+        "Maria Nikolajewna",
+        "Olga Tschechowa"
+      ],
+      "erklaerung": "Die Analysen von 1994 zeigten keine Verwandtschaft mit der Zarenfamilie. Stattdessen passte ihre DNA zu Verwandten Schanzkowskas.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Anna%20Anderson",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0018",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Wie nennt man jemanden, der ohne gültigen Fahrschein Bus oder Bahn fährt?",
+      "antworten": [
+        "Schwarzfahrer",
+        "Rotfahrer",
+        "Blaufahrer",
+        "Grünfahrer"
+      ],
+      "erklaerung": "Schwarzfahren gilt rechtlich als „Erschleichen von Leistungen“. Neben dem erhöhten Beförderungsentgelt kann eine Strafanzeige folgen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schwarzfahren",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0013",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Als was geben sich die Betrüger im Märchen „Des Kaisers neue Kleider“ aus?",
+      "antworten": [
+        "Weber",
+        "Schneider",
+        "Goldschmiede",
+        "Hofnarren"
+      ],
+      "erklaerung": "Die Betrüger versprechen Stoff, den nur Kluge sehen können, und lassen den Kaiser nackt gehen. Hans Christian Andersen schrieb das Märchen 1837.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Des%20Kaisers%20neue%20Kleider",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0070",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Über welchen Milliardär veröffentlichte Clifford Irving 1971 eine erfundene \"autorisierte\" Biografie?",
+      "antworten": [
+        "Howard Hughes",
+        "John D. Rockefeller",
+        "Aristoteles Onassis",
+        "Henry Ford"
+      ],
+      "erklaerung": "Der Verlag McGraw-Hill ließ das Buch vor dem Druck stoppen. Irving wurde zu Haft verurteilt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Clifford%20Irving",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0066",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welcher Betreuer der Festina-Mannschaft wurde 1998 vor der Tour de France mit Dopingmitteln im Auto gestoppt?",
+      "antworten": [
+        "Willy Voet",
+        "Bruno Roussel",
+        "Richard Virenque",
+        "Jef d'Hont"
+      ],
+      "erklaerung": "Die Festina-Affäre erschütterte die Tour de France 1998. Der Zoll fand große Mengen EPO und anderer Mittel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Festina-Aff%C3%A4re",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0056",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "An welcher Universität wurde Karl-Theodor zu Guttenberg 2011 der Doktortitel wegen Plagiats aberkannt?",
+      "antworten": [
+        "Universität Bayreuth",
+        "Universität München",
+        "Universität Würzburg",
+        "Universität Heidelberg"
+      ],
+      "erklaerung": "Die Universität entzog den Titel im Februar 2011; im März trat Guttenberg als Verteidigungsminister zurück.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karl-Theodor%20zu%20Guttenberg",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0079",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welcher Amateurarchäologe gilt als Hauptverdächtiger der Piltdown-Fälschung?",
+      "antworten": [
+        "Charles Dawson",
+        "Arthur Smith Woodward",
+        "Pierre Teilhard de Chardin",
+        "Arthur Keith"
+      ],
+      "erklaerung": "Dawson „entdeckte“ 1912 die Knochen; die Fälschung flog erst 1953 auf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Piltdown-Mensch",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0002",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Von welchem englischen Wort leitet sich „Phishing“ ab?",
+      "antworten": [
+        "Fishing (Angeln)",
+        "Finishing (Vollenden)",
+        "Pushing (Drängen)",
+        "Phasing (Staffeln)"
+      ],
+      "erklaerung": "Beim Phishing „angeln“ Betrüger mit gefälschten Nachrichten nach Zugangsdaten. Das ph soll an das ältere Wort Phreaking aus der Hackerszene erinnern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Phishing",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0006",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Was behaupten Betrüger typischerweise bei einem „Schockanruf“?",
+      "antworten": [
+        "Ein Angehöriger sei in einen Unfall verwickelt und brauche sofort Geld",
+        "Das Handy sei gewonnen worden",
+        "Der Strom werde abgeschaltet",
+        "Ein Paket liege bereit"
+      ],
+      "erklaerung": "Beim Schockanruf wird mit erfundenen Notlagen Panik erzeugt, damit Opfer nicht nachdenken. Im Zweifel auflegen und Angehörige unter bekannter Nummer anrufen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schockanruf",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0022",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Wer fälschte die 1983 vom „Stern“ veröffentlichten „Hitler-Tagebücher“?",
+      "antworten": [
+        "Konrad Kujau",
+        "Gerd Heidemann",
+        "Henri Nannen",
+        "Hans Filbinger"
+      ],
+      "erklaerung": "Der Fälscher Konrad Kujau schrieb die Bände selbst, der Reporter Gerd Heidemann vermittelte sie dem Stern. Beide wurden verurteilt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hitler-Tageb%C3%BCcher",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0035",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Wen gab Anna Anderson vor zu sein, bevor DNA-Analysen dies widerlegten?",
+      "antworten": [
+        "Die Zarentochter Anastasia",
+        "Die Kaiserin Sisi",
+        "Die Königin Luise",
+        "Die Zarin Katharina"
+      ],
+      "erklaerung": "Anna Anderson behauptete ab 1920, das Massaker an der Zarenfamilie überlebt zu haben. Genetische Tests belegten 1994, dass sie nicht Anastasia war.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Anna%20Anderson",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0011",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Wer versteckte sich der Sage nach im hölzernen Pferd vor Troja?",
+      "antworten": [
+        "Griechische Krieger",
+        "Trojanische Priester",
+        "Römische Händler",
+        "Persische Späher"
+      ],
+      "erklaerung": "Die Griechen ließen das Pferd als vermeintliches Geschenk vor Troja zurück und eroberten die Stadt aus dem Inneren. Die List steht bis heute sprichwörtlich für getarnte Angriffe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Trojanisches%20Pferd",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0039",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "In welchem Paragrafen des deutschen Strafgesetzbuchs ist der Betrug geregelt?",
+      "antworten": [
+        "§ 263",
+        "§ 242",
+        "§ 123",
+        "§ 303"
+      ],
+      "erklaerung": "§ 263 StGB stellt Betrug unter Strafe. § 242 betrifft Diebstahl, § 303 Sachbeschädigung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Betrug%20%28Deutschland%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
       "id": "bauernfaenger-0065",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
@@ -239,6 +528,312 @@
       ],
       "erklaerung": "Holmes hatte Investoren über die Leistung ihrer Bluttest-Technik getäuscht. Sie wurde wegen Betrugs verurteilt.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Elizabeth%20Holmes",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0074",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welcher US-Präsident sollte laut dem Weinhändler Hardy Rodenstock früher Flaschen besessen haben?",
+      "antworten": [
+        "Thomas Jefferson",
+        "George Washington",
+        "Abraham Lincoln",
+        "Benjamin Franklin"
+      ],
+      "erklaerung": "Die angeblichen Jefferson-Flaschen wurden später als Fälschungen angesehen. Ein Gericht stützte Zweifel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hardy%20Rodenstock",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0049",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "In welchem Konzentrationslager wurden im Zweiten Weltkrieg britische Pfundnoten (Aktion Bernhard) gefälscht?",
+      "antworten": [
+        "Sachsenhausen",
+        "Dachau",
+        "Buchenwald",
+        "Mauthausen"
+      ],
+      "erklaerung": "Häftlinge mussten unter SS-Aufsicht Banknoten fälschen. Der Film \"Die Fälscher\" (2007) erzählt davon.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Unternehmen%20Bernhard",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0045",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Welcher Stern-Reporter brachte 1983 die gefälschten Hitler-Tagebücher ins Blatt?",
+      "antworten": [
+        "Gerd Heidemann",
+        "Henri Nannen",
+        "Wolf Schneider",
+        "Peter Koch"
+      ],
+      "erklaerung": "Heidemann hatte die Tagebücher von Konrad Kujau erhalten. Das Bundesarchiv erklärte sie wenige Wochen nach der Veröffentlichung für Fälschungen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hitler-Tageb%C3%BCcher",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0064",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "In welchem Land führte 1997 der Zusammenbruch von Pyramidensystemen zu schweren Unruhen?",
+      "antworten": [
+        "Albanien",
+        "Rumänien",
+        "Bulgarien",
+        "Jugoslawien"
+      ],
+      "erklaerung": "Viele Albaner hatten ihr Erspartes in dubiose Anlagefonds investiert. Der Aufstand kostete Hunderte Menschen das Leben.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Unruhen%20in%20Albanien%201997",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0050",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Welcher Stoff wurde bei Ben Johnson nach seinem 100-m-Lauf in Seoul 1988 nachgewiesen?",
+      "antworten": [
+        "Stanozolol",
+        "Nandrolon",
+        "Erythropoetin",
+        "Clenbuterol"
+      ],
+      "erklaerung": "Johnson verlor die Goldmedaille und seinen Weltrekord von 9,79 Sekunden. Der Fall gilt als Wendepunkt im Anti-Doping-Kampf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ben%20Johnson%20%28Leichtathlet%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0052",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Woher stammt das \"Ph\" im Wort Phishing?",
+      "antworten": [
+        "Von \"Phreaking\", der Hackerszene der Telefonnetze",
+        "Von \"Philanthropie\"",
+        "Vom griechischen Wort \"phýsis\"",
+        "Von der Firma Phillips"
+      ],
+      "erklaerung": "Phishing spielt auf \"fishing\" an: Zugangsdaten werden wie mit einem Köder geangelt. Das Ph übernahm man vom Phreaking.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Phishing",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0030",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „Zwei-Faktor-Authentifizierung“ beim Login?",
+      "antworten": [
+        "Ein zweiter, unabhängiger Nachweis neben dem Passwort",
+        "Zwei Passwörter nacheinander",
+        "Der Login auf zwei Geräten gleichzeitig",
+        "Zweimal dieselbe PIN"
+      ],
+      "erklaerung": "Zusätzlich zum Passwort braucht man etwa einen Code per App oder Sicherheitsschlüssel. Das erschwert den Missbrauch gestohlener Passwörter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zwei-Faktor-Authentisierung",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0063",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Als wer gab sich der Hochstapler Harry Domela 1926/27 in Deutschland aus?",
+      "antworten": [
+        "Als Enkel Kaiser Wilhelms II.",
+        "Als Sohn des Zaren Nikolaus II.",
+        "Als Neffe Hindenburgs",
+        "Als bayerischer Kronprinz"
+      ],
+      "erklaerung": "Domela wurde in Adelskreisen herumgereicht. Er schrieb später das Buch \"Der falsche Prinz\".",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Harry%20Domela",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0059",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Wie nennt man das Ausspähen von Karten- und PIN-Daten mit manipulierten Geldautomaten?",
+      "antworten": [
+        "Skimming",
+        "Phishing",
+        "Spoofing",
+        "Pharming"
+      ],
+      "erklaerung": "Dabei wird der Magnetstreifen kopiert und die PIN per Kamera oder Tastaturaufsatz ausgespäht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Skimming",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0078",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Wer ließ von dem 1869 \"entdeckten\" Cardiff-Riesen eine eigene Nachbildung anfertigen?",
+      "antworten": [
+        "P. T. Barnum",
+        "Thomas Edison",
+        "Buffalo Bill",
+        "William Randolph Hearst"
+      ],
+      "erklaerung": "George Hull hatte den Riesen aus Gips anfertigen und vergraben lassen. Barnum zeigte seine Kopie, nachdem er ihn nicht kaufen konnte.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Cardiff-Riese",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0023",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Welchen Maler fälschte Han van Meegeren so gut, dass sogar Hermann Göring darauf hereinfiel?",
+      "antworten": [
+        "Jan Vermeer",
+        "Rembrandt",
+        "Vincent van Gogh",
+        "Frans Hals"
+      ],
+      "erklaerung": "Van Meegeren verkaufte während der NS-Zeit „neue Vermeers“. Nach dem Krieg bewies er seine Fälschungen durch ein weiteres gemaltes Bild.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Han%20van%20Meegeren",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0040",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Wofür dienten „Gaunerzinken“ an Hauswänden?",
+      "antworten": [
+        "Als geheime Zeichen unter Landfahrenden und Dieben",
+        "Als Hausnummern",
+        "Als Zunftzeichen der Maurer",
+        "Als Hinweise für den Briefträger"
+      ],
+      "erklaerung": "Mit Kreide oder Ritzzeichen markierte man etwa, ob ein Haus lohnend oder gefährlich war. Die Zeichen sind seit dem Mittelalter belegt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gaunerzinken",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0017",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Was bedeutet „ein Wolf im Schafspelz“?",
+      "antworten": [
+        "Jemand, der harmlos wirkt, aber gefährlich ist",
+        "Ein sehr scheuer Mensch",
+        "Ein Schäfer in Not",
+        "Ein besonders freundlicher Hund"
+      ],
+      "erklaerung": "Die Redewendung stammt aus der Bibel (Matthäus 7,15) und warnt vor falschen Propheten. Sie beschreibt Täuschung durch harmlosen Anschein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wolf%20im%20Schafspelz",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0077",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Zu welcher Strafe wurde der Baulöwe Jürgen Schneider 1997 in Frankfurt verurteilt?",
+      "antworten": [
+        "6 Jahre und 9 Monate",
+        "2 Jahre auf Bewährung",
+        "10 Jahre",
+        "4 Jahre und 3 Monate"
+      ],
+      "erklaerung": "Schneiders Pleite 1994 hinterließ rund 5 Milliarden D-Mark Schulden. Die Banken hatten Gutachten kaum geprüft.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=J%C3%BCrgen%20Schneider%20%28Bauunternehmer%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0046",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Welche Wirtschaftsprüfungsgesellschaft ging nach dem Enron-Skandal 2001/2002 praktisch unter?",
+      "antworten": [
+        "Arthur Andersen",
+        "Ernst & Young",
+        "Price Waterhouse",
+        "Coopers & Lybrand"
+      ],
+      "erklaerung": "Enron hatte Verluste in Zweckgesellschaften versteckt. Arthur Andersen wurde wegen Aktenvernichtung verurteilt und verlor seine Kunden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Enron",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0062",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welches falsche Vermeer-Gemälde Han van Meegerens lobte der Kunsthistoriker Abraham Bredius 1937 als Meisterwerk?",
+      "antworten": [
+        "Christus und die Jünger in Emmaus",
+        "Der Astronom",
+        "Die Kupplerin",
+        "Das Milchmädchen"
+      ],
+      "erklaerung": "Van Meegeren schuf das Bild im Stil Vermeers. Die Fälschung wurde 1945 offenbar, als er sie gestehen musste, um den Vorwurf des Landesverrats abzuwenden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Han%20van%20Meegeren",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0041",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Auf welches angebliche Geschäft stützte Charles Ponzi 1919/1920 in Boston sein Anlagemodell?",
+      "antworten": [
+        "Handel mit internationalen Postantwortscheinen",
+        "Import von Kaffee aus Brasilien",
+        "Spekulation mit Eisenbahnaktien",
+        "Handel mit Goldminen-Anteilen"
+      ],
+      "erklaerung": "Ponzi versprach 50 Prozent Gewinn in 45 Tagen und zahlte alte Anleger aus dem Geld neuer aus. Daher heißen solche Betrugsmodelle Ponzi-Schema.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Charles%20Ponzi",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0069",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "In welchem Land lag die angebliche Goldmine Busang, mit der Bre-X 1997 Anleger täuschte?",
+      "antworten": [
+        "Indonesien",
+        "Kanada",
+        "Papua-Neuguinea",
+        "Brasilien"
+      ],
+      "erklaerung": "Proben waren manipuliert worden. Der Kurs brach 1997 ein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bre-X",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -277,257 +872,19 @@
       "gueltigBis": null
     },
     {
-      "id": "bauernfaenger-0032",
+      "id": "bauernfaenger-0028",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
       "stufe": "mittel",
-      "frage": "Aus welchen Knochen bestand der 1953 als Fälschung entlarvte „Piltdown-Mensch“?",
+      "frage": "Welche Angabe gehört bei einer gewerblichen Website ins Impressum?",
       "antworten": [
-        "Menschenschädel und Orang-Utan-Kiefer",
-        "Neandertalerschädel und Wolfskiefer",
-        "Affenschädel und Menschenkiefer",
-        "Nur aus Tierknochen eines Bären"
+        "Name und ladungsfähige Anschrift des Anbieters",
+        "Das Lieblingsessen des Inhabers",
+        "Die Zahl der Besucher",
+        "Der Name des Webdesigners"
       ],
-      "erklaerung": "Der angebliche „Missing Link“ von 1912 war eine Mischung aus Teilen eines Menschenschädels und eines Orang-Utan-Kiefers. Die Fälschung führte die Forschung jahrzehntelang in die Irre.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Piltdown-Mensch",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0069",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "In welchem Land lag die angebliche Goldmine Busang, mit der Bre-X 1997 Anleger täuschte?",
-      "antworten": [
-        "Indonesien",
-        "Kanada",
-        "Papua-Neuguinea",
-        "Brasilien"
-      ],
-      "erklaerung": "Proben waren manipuliert worden. Der Kurs brach 1997 ein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bre-X",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0006",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Was behaupten Betrüger typischerweise bei einem „Schockanruf“?",
-      "antworten": [
-        "Ein Angehöriger sei in einen Unfall verwickelt und brauche sofort Geld",
-        "Das Handy sei gewonnen worden",
-        "Der Strom werde abgeschaltet",
-        "Ein Paket liege bereit"
-      ],
-      "erklaerung": "Beim Schockanruf wird mit erfundenen Notlagen Panik erzeugt, damit Opfer nicht nachdenken. Im Zweifel auflegen und Angehörige unter bekannter Nummer anrufen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schockanruf",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0066",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welcher Betreuer der Festina-Mannschaft wurde 1998 vor der Tour de France mit Dopingmitteln im Auto gestoppt?",
-      "antworten": [
-        "Willy Voet",
-        "Bruno Roussel",
-        "Richard Virenque",
-        "Jef d'Hont"
-      ],
-      "erklaerung": "Die Festina-Affäre erschütterte die Tour de France 1998. Der Zoll fand große Mengen EPO und anderer Mittel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Festina-Aff%C3%A4re",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0071",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welcher Kardinal wurde in der Halsbandaffäre 1785 von Jeanne de La Motte getäuscht?",
-      "antworten": [
-        "Louis de Rohan",
-        "Richelieu",
-        "Mazarin",
-        "Fleury"
-      ],
-      "erklaerung": "Die Betrügerin ließ ihn glauben, er erwerbe das Halsband für Marie Antoinette. Die Affäre schadete dem Ansehen der Königin schwer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Halsbandaff%C3%A4re",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0020",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Welche Nummer wählt man, wenn man bei einem verdächtigen Anruf die echte Polizei braucht?",
-      "antworten": [
-        "110",
-        "112",
-        "116 117",
-        "115"
-      ],
-      "erklaerung": "Die 110 ist der Polizeinotruf, die 112 der Notruf für Feuerwehr und Rettungsdienst. Echte Polizisten fordern nie Geld oder Wertsachen zur „Verwahrung“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Falsche%20Polizeibeamte",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0030",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Was bedeutet „Zwei-Faktor-Authentifizierung“ beim Login?",
-      "antworten": [
-        "Ein zweiter, unabhängiger Nachweis neben dem Passwort",
-        "Zwei Passwörter nacheinander",
-        "Der Login auf zwei Geräten gleichzeitig",
-        "Zweimal dieselbe PIN"
-      ],
-      "erklaerung": "Zusätzlich zum Passwort braucht man etwa einen Code per App oder Sicherheitsschlüssel. Das erschwert den Missbrauch gestohlener Passwörter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zwei-Faktor-Authentisierung",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0078",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Wer ließ von dem 1869 \"entdeckten\" Cardiff-Riesen eine eigene Nachbildung anfertigen?",
-      "antworten": [
-        "P. T. Barnum",
-        "Thomas Edison",
-        "Buffalo Bill",
-        "William Randolph Hearst"
-      ],
-      "erklaerung": "George Hull hatte den Riesen aus Gips anfertigen und vergraben lassen. Barnum zeigte seine Kopie, nachdem er ihn nicht kaufen konnte.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Cardiff-Riese",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0012",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Was ist ein „Hochstapler“?",
-      "antworten": [
-        "Jemand, der eine falsche Identität oder Stellung vortäuscht",
-        "Ein besonders fleißiger Lagerarbeiter",
-        "Ein Zirkusartist",
-        "Ein Bergsteiger"
-      ],
-      "erklaerung": "Hochstapler täuschen etwa Titel, Beruf oder Vermögen vor, um Vorteile zu erlangen. Der Begriff kommt aus dem Rotwelschen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hochstapler",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0019",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Wie nennt man eine erfundene Falschmeldung in der Presse umgangssprachlich?",
-      "antworten": [
-        "Zeitungsente",
-        "Zeitungsgans",
-        "Zeitungshahn",
-        "Zeitungsschwan"
-      ],
-      "erklaerung": "Eine Ente ist eine unbestätigte oder erfundene Meldung. Das Wort wird seit dem 18. Jahrhundert so verwendet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zeitungsente",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0048",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Was bedeutete \"rot\" im Namen der Gaunersprache Rotwelsch ursprünglich?",
-      "antworten": [
-        "Bettler",
-        "Rotwein",
-        "Hinrichtung",
-        "Fremder"
-      ],
-      "erklaerung": "Im Wort Rotwelsch steht \"rot\" für den Bettler, \"welsch\" für unverständlich. Die Geheimsprache der Gauner und Landfahrer lieferte viele Wörter wie \"Kohle\" oder \"Zinken\".",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rotwelsch",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0033",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Welcher Schöpfer von Sherlock Holmes hielt die Feenfotos von Cottingley (1917) für echt?",
-      "antworten": [
-        "Arthur Conan Doyle",
-        "Agatha Christie",
-        "Edgar Allan Poe",
-        "Charles Dickens"
-      ],
-      "erklaerung": "Zwei Mädchen fotografierten sich mit ausgeschnittenen Papierfeen. Conan Doyle verteidigte sie öffentlich, erst 1983 gaben die Cousinen den Schwindel zu.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Feen%20von%20Cottingley",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0018",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Wie nennt man jemanden, der ohne gültigen Fahrschein Bus oder Bahn fährt?",
-      "antworten": [
-        "Schwarzfahrer",
-        "Rotfahrer",
-        "Blaufahrer",
-        "Grünfahrer"
-      ],
-      "erklaerung": "Schwarzfahren gilt rechtlich als „Erschleichen von Leistungen“. Neben dem erhöhten Beförderungsentgelt kann eine Strafanzeige folgen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schwarzfahren",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0061",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welche Summe beschlagnahmte der falsche Hauptmann Wilhelm Voigt am 16. Oktober 1906 in der Kasse von Köpenick?",
-      "antworten": [
-        "4002 Mark und 37 Pfennig",
-        "3500 Mark",
-        "12.000 Mark",
-        "1200 Mark und 50 Pfennig"
-      ],
-      "erklaerung": "Voigt ließ mit einer Uniform und Soldaten das Rathaus besetzen. Der Bürgermeister wurde festgenommen, die Kasse mitgenommen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hauptmann%20von%20K%C3%B6penick",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0064",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "In welchem Land führte 1997 der Zusammenbruch von Pyramidensystemen zu schweren Unruhen?",
-      "antworten": [
-        "Albanien",
-        "Rumänien",
-        "Bulgarien",
-        "Jugoslawien"
-      ],
-      "erklaerung": "Viele Albaner hatten ihr Erspartes in dubiose Anlagefonds investiert. Der Aufstand kostete Hunderte Menschen das Leben.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Unruhen%20in%20Albanien%201997",
+      "erklaerung": "Das Impressum ist in Deutschland Pflicht und macht den Anbieter greifbar. Fehlt es, ist das ein Warnzeichen bei Online-Shops.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Impressum",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -549,767 +906,19 @@
       "gueltigBis": null
     },
     {
-      "id": "bauernfaenger-0011",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Wer versteckte sich der Sage nach im hölzernen Pferd vor Troja?",
-      "antworten": [
-        "Griechische Krieger",
-        "Trojanische Priester",
-        "Römische Händler",
-        "Persische Späher"
-      ],
-      "erklaerung": "Die Griechen ließen das Pferd als vermeintliches Geschenk vor Troja zurück und eroberten die Stadt aus dem Inneren. Die List steht bis heute sprichwörtlich für getarnte Angriffe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Trojanisches%20Pferd",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0037",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Wie nennt man Phishing, das per SMS erfolgt?",
-      "antworten": [
-        "Smishing",
-        "Spamming",
-        "Skimming",
-        "Mobbing"
-      ],
-      "erklaerung": "Smishing verbindet SMS und Phishing: Eine Kurznachricht lockt auf eine gefälschte Seite. Unbekannte Links in SMS sollte man nicht anklicken.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Phishing%20Smishing",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0001",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Wen geben Betrüger beim „Enkeltrick“ am Telefon vor zu sein?",
-      "antworten": [
-        "Einen Verwandten in Geldnot",
-        "Einen Bankmitarbeiter",
-        "Einen Lottogewinner",
-        "Einen Postboten"
-      ],
-      "erklaerung": "Beim Enkeltrick melden sich Betrüger bei meist älteren Menschen als angeblicher Enkel oder Verwandter und bitten dringend um Geld. Wer misstrauisch bleibt und nachfragt, schützt sich.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Enkeltrick",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0014",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Was sollte man tun, wenn ein „Gewinn“ nur gegen Vorauszahlung einer Gebühr ausgezahlt werden soll?",
-      "antworten": [
-        "Nichts zahlen – das ist ein Betrugsmerkmal",
-        "Schnell zahlen, damit der Gewinn nicht verfällt",
-        "Die Kontodaten mitteilen",
-        "Die Gebühr in bar schicken"
-      ],
-      "erklaerung": "Seriöse Gewinnspiele verlangen für die Auszahlung keine Vorabgebühren. Solche Forderungen sind ein typisches Merkmal der Gewinnspiel-Abzocke.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Vorschussbetrug",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0035",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Wen gab Anna Anderson vor zu sein, bevor DNA-Analysen dies widerlegten?",
-      "antworten": [
-        "Die Zarentochter Anastasia",
-        "Die Kaiserin Sisi",
-        "Die Königin Luise",
-        "Die Zarin Katharina"
-      ],
-      "erklaerung": "Anna Anderson behauptete ab 1920, das Massaker an der Zarenfamilie überlebt zu haben. Genetische Tests belegten 1994, dass sie nicht Anastasia war.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Anna%20Anderson",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0074",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welcher US-Präsident sollte laut dem Weinhändler Hardy Rodenstock früher Flaschen besessen haben?",
-      "antworten": [
-        "Thomas Jefferson",
-        "George Washington",
-        "Abraham Lincoln",
-        "Benjamin Franklin"
-      ],
-      "erklaerung": "Die angeblichen Jefferson-Flaschen wurden später als Fälschungen angesehen. Ein Gericht stützte Zweifel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hardy%20Rodenstock",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0043",
+      "id": "bauernfaenger-0048",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
       "stufe": "schwer",
-      "frage": "Welcher Schauspieler spielte im Film \"Catch Me If You Can\" (2002) den Vater von Frank Abagnale Jr.?",
+      "frage": "Was bedeutete \"rot\" im Namen der Gaunersprache Rotwelsch ursprünglich?",
       "antworten": [
-        "Christopher Walken",
-        "Tom Hanks",
-        "Martin Sheen",
-        "Robert De Niro"
+        "Bettler",
+        "Rotwein",
+        "Hinrichtung",
+        "Fremder"
       ],
-      "erklaerung": "Walken wurde für die Rolle des Frank Abagnale Sr. für den Oscar nominiert. Leonardo DiCaprio spielte den Sohn, Tom Hanks den FBI-Agenten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Catch%20Me%20If%20You%20Can",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0070",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Über welchen Milliardär veröffentlichte Clifford Irving 1971 eine erfundene \"autorisierte\" Biografie?",
-      "antworten": [
-        "Howard Hughes",
-        "John D. Rockefeller",
-        "Aristoteles Onassis",
-        "Henry Ford"
-      ],
-      "erklaerung": "Der Verlag McGraw-Hill ließ das Buch vor dem Druck stoppen. Irving wurde zu Haft verurteilt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Clifford%20Irving",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0010",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Was bedeutet die Redewendung „jemandem ein Kuckucksei ins Nest legen“?",
-      "antworten": [
-        "Ihm etwas Unerwünschtes unterschieben",
-        "Ihm ein Geschenk machen",
-        "Ihn zum Frühstück einladen",
-        "Ihn vor Gefahr warnen"
-      ],
-      "erklaerung": "Der Kuckuck legt seine Eier in fremde Nester und lässt sie dort ausbrüten. Im übertragenen Sinn ist ein Kuckucksei etwas Unangenehmes, das andere ahnungslos übernehmen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kuckucksei",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0075",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "In welcher Kirche malte Lothar Malskat in den 1950ern angeblich \"mittelalterliche\" Fresken neu?",
-      "antworten": [
-        "Marienkirche in Lübeck",
-        "Dom zu Speyer",
-        "Michaeliskirche in Hamburg",
-        "Nikolaikirche in Kiel"
-      ],
-      "erklaerung": "Die Fälschung wurde 1952 öffentlich, als Malskat sie selbst gestand. Er wurde 1954 verurteilt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lothar%20Malskat",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0028",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Welche Angabe gehört bei einer gewerblichen Website ins Impressum?",
-      "antworten": [
-        "Name und ladungsfähige Anschrift des Anbieters",
-        "Das Lieblingsessen des Inhabers",
-        "Die Zahl der Besucher",
-        "Der Name des Webdesigners"
-      ],
-      "erklaerung": "Das Impressum ist in Deutschland Pflicht und macht den Anbieter greifbar. Fehlt es, ist das ein Warnzeichen bei Online-Shops.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Impressum",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0013",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Als was geben sich die Betrüger im Märchen „Des Kaisers neue Kleider“ aus?",
-      "antworten": [
-        "Weber",
-        "Schneider",
-        "Goldschmiede",
-        "Hofnarren"
-      ],
-      "erklaerung": "Die Betrüger versprechen Stoff, den nur Kluge sehen können, und lassen den Kaiser nackt gehen. Hans Christian Andersen schrieb das Märchen 1837.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Des%20Kaisers%20neue%20Kleider",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0063",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Als wer gab sich der Hochstapler Harry Domela 1926/27 in Deutschland aus?",
-      "antworten": [
-        "Als Enkel Kaiser Wilhelms II.",
-        "Als Sohn des Zaren Nikolaus II.",
-        "Als Neffe Hindenburgs",
-        "Als bayerischer Kronprinz"
-      ],
-      "erklaerung": "Domela wurde in Adelskreisen herumgereicht. Er schrieb später das Buch \"Der falsche Prinz\".",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Harry%20Domela",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0055",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Welcher berühmte Regisseur drehte 1973 den Film \"F wie Fälschung\" über den Kunstfälscher Elmyr de Hory?",
-      "antworten": [
-        "Orson Welles",
-        "Alfred Hitchcock",
-        "Stanley Kubrick",
-        "Billy Wilder"
-      ],
-      "erklaerung": "Der Essayfilm spielt mit Wahrheit und Täuschung. Er behandelt auch den Fälscher-Biografen Clifford Irving.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=F%20wie%20F%C3%A4lschung",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0068",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Wer war Anna Anderson, die sich als Zarentochter Anastasia ausgab, nach DNA-Analysen laut Forschung wirklich?",
-      "antworten": [
-        "Franziska Schanzkowska",
-        "Tatjana Romanowa",
-        "Maria Nikolajewna",
-        "Olga Tschechowa"
-      ],
-      "erklaerung": "Die Analysen von 1994 zeigten keine Verwandtschaft mit der Zarenfamilie. Stattdessen passte ihre DNA zu Verwandten Schanzkowskas.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Anna%20Anderson",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0036",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Mit welcher Merkregel prüft man laut Bundesbank Euro-Banknoten auf Echtheit?",
-      "antworten": [
-        "Fühlen – Sehen – Kippen",
-        "Hören – Riechen – Schmecken",
-        "Falten – Reiben – Wiegen",
-        "Zählen – Messen – Wiegen"
-      ],
-      "erklaerung": "Man ertastet das Papier, betrachtet Wasserzeichen und Sicherheitsfaden und kippt die Note, um Hologramm und Glanzeffekte zu sehen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Euro-Banknoten%20Sicherheitsmerkmale",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0076",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "In welchem Jahr nahm sich der schwedische \"Zündholzkönig\" Ivar Kreuger nach dem Zusammenbruch seines Konzerns das Leben?",
-      "antworten": [
-        "1932",
-        "1914",
-        "1948",
-        "1929"
-      ],
-      "erklaerung": "Kreuger hatte Bilanzen manipuliert und Anleger getäuscht. Er starb in Paris.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ivar%20Kreuger",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0025",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "In welcher US-Stadt flog 1920 der Anlagebetrüger Charles Ponzi auf?",
-      "antworten": [
-        "Boston",
-        "New York",
-        "Chicago",
-        "San Francisco"
-      ],
-      "erklaerung": "Ponzi versprach hohe Gewinne und zahlte alte Anleger aus dem Geld neuer. Nach ihm ist das Ponzi-System, eine Form des Schneeballsystems, benannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Charles%20Ponzi",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0051",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Wie viele Tour-de-France-Siege (1999 bis 2005) wurden Lance Armstrong 2012 aberkannt?",
-      "antworten": [
-        "Sieben",
-        "Fünf",
-        "Sechs",
-        "Acht"
-      ],
-      "erklaerung": "Die US-Anti-Doping-Agentur sperrte Armstrong lebenslang; der Radsportverband UCI bestätigte die Aberkennung. Armstrong gestand 2013 Doping.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lance%20Armstrong",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0039",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "In welchem Paragrafen des deutschen Strafgesetzbuchs ist der Betrug geregelt?",
-      "antworten": [
-        "§ 263",
-        "§ 242",
-        "§ 123",
-        "§ 303"
-      ],
-      "erklaerung": "§ 263 StGB stellt Betrug unter Strafe. § 242 betrifft Diebstahl, § 303 Sachbeschädigung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Betrug%20%28Deutschland%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0059",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Wie nennt man das Ausspähen von Karten- und PIN-Daten mit manipulierten Geldautomaten?",
-      "antworten": [
-        "Skimming",
-        "Phishing",
-        "Spoofing",
-        "Pharming"
-      ],
-      "erklaerung": "Dabei wird der Magnetstreifen kopiert und die PIN per Kamera oder Tastaturaufsatz ausgespäht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Skimming",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0015",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Wie nennt man umgangssprachlich gefälschte Geldscheine?",
-      "antworten": [
-        "Blüten",
-        "Knospen",
-        "Ableger",
-        "Setzlinge"
-      ],
-      "erklaerung": "Falschgeld heißt in der Umgangssprache „Blüten“. Herstellung und Weitergabe sind eine Straftat.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Falschgeld",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0058",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr stellte das Zahlungsdienstleister-Unternehmen Wirecard Insolvenzantrag?",
-      "antworten": [
-        "2020",
-        "2018",
-        "2019",
-        "2021"
-      ],
-      "erklaerung": "Vorausgegangen war das Eingeständnis, dass 1,9 Milliarden Euro nicht auffindbar waren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wirecard",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0047",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "In welchem Land sollten laut Wirecard 1,9 Milliarden Euro auf Treuhandkonten liegen, die es nicht gab?",
-      "antworten": [
-        "Philippinen",
-        "Singapur",
-        "Indonesien",
-        "Malaysia"
-      ],
-      "erklaerung": "Im Juni 2020 räumte Wirecard ein, dass das Geld vermutlich nicht existierte. Kurz danach meldete der Konzern Insolvenz an.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wirecard",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0017",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Was bedeutet „ein Wolf im Schafspelz“?",
-      "antworten": [
-        "Jemand, der harmlos wirkt, aber gefährlich ist",
-        "Ein sehr scheuer Mensch",
-        "Ein Schäfer in Not",
-        "Ein besonders freundlicher Hund"
-      ],
-      "erklaerung": "Die Redewendung stammt aus der Bibel (Matthäus 7,15) und warnt vor falschen Propheten. Sie beschreibt Täuschung durch harmlosen Anschein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wolf%20im%20Schafspelz",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0067",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welcher freie Reporter des Spiegel deckte 2018 die Fälschungen von Claas Relotius auf?",
-      "antworten": [
-        "Juan Moreno",
-        "Matthias Geyer",
-        "Cordt Schnibben",
-        "Claus Hecking"
-      ],
-      "erklaerung": "Relotius hatte preisgekrönte Reportagen teils erfunden. Der Fall führte zu einer großen Aufarbeitung im Spiegel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Claas%20Relotius",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0029",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Wie muss der Bestell-Button in Online-Shops laut „Button-Lösung“ beschriftet sein?",
-      "antworten": [
-        "„Zahlungspflichtig bestellen“ oder ähnlich eindeutig",
-        "„Weiter“",
-        "„Absenden“",
-        "„OK“"
-      ],
-      "erklaerung": "Seit 2012 muss klar erkennbar sein, dass die Bestellung eine Zahlungspflicht auslöst. So sollen Abo-Fallen eingedämmt werden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Button-L%C3%B6sung",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0077",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Zu welcher Strafe wurde der Baulöwe Jürgen Schneider 1997 in Frankfurt verurteilt?",
-      "antworten": [
-        "6 Jahre und 9 Monate",
-        "2 Jahre auf Bewährung",
-        "10 Jahre",
-        "4 Jahre und 3 Monate"
-      ],
-      "erklaerung": "Schneiders Pleite 1994 hinterließ rund 5 Milliarden D-Mark Schulden. Die Banken hatten Gutachten kaum geprüft.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=J%C3%BCrgen%20Schneider%20%28Bauunternehmer%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0007",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Was ist ein „Fake-Shop“?",
-      "antworten": [
-        "Ein Online-Shop, der Ware verkauft, aber nie liefert",
-        "Ein Laden für Faschingskostüme",
-        "Ein Shop mit sehr schnellem Versand",
-        "Ein Geschäft für Second-Hand-Mode"
-      ],
-      "erklaerung": "Fake-Shops locken mit Schnäppchenpreisen, kassieren Vorkasse und liefern nicht oder nur Fälschungen. Impressum, Bewertungen und Zahlungsarten helfen bei der Prüfung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fake-Shop",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0031",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Wer wies 1440 nach, dass die „Konstantinische Schenkung“ eine Fälschung ist?",
-      "antworten": [
-        "Lorenzo Valla",
-        "Thomas Morus",
-        "Erasmus von Rotterdam",
-        "Niccolò Machiavelli"
-      ],
-      "erklaerung": "Der Humanist Valla zeigte anhand der Sprache, dass das Dokument nicht aus der Zeit Konstantins stammen kann. Es gilt als eine der berühmtesten Fälschungen des Mittelalters.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Konstantinische%20Schenkung",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0002",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Von welchem englischen Wort leitet sich „Phishing“ ab?",
-      "antworten": [
-        "Fishing (Angeln)",
-        "Finishing (Vollenden)",
-        "Pushing (Drängen)",
-        "Phasing (Staffeln)"
-      ],
-      "erklaerung": "Beim Phishing „angeln“ Betrüger mit gefälschten Nachrichten nach Zugangsdaten. Das ph soll an das ältere Wort Phreaking aus der Hackerszene erinnern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Phishing",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0038",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Woher stammt der Begriff „Spam“ für unerwünschte Massen-Mails?",
-      "antworten": [
-        "Von einem Sketch der Monty Pythons über Dosenfleisch",
-        "Von einer Software namens Spamix",
-        "Von einer Abkürzung für „Special Mail“",
-        "Von einem Hacker namens Sam"
-      ],
-      "erklaerung": "In einem Monty-Python-Sketch wird das Dosenfleisch Spam dauernd wiederholt. Daher nannte man ständig wiederkehrende Nachrichten Spam.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spam",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0023",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Welchen Maler fälschte Han van Meegeren so gut, dass sogar Hermann Göring darauf hereinfiel?",
-      "antworten": [
-        "Jan Vermeer",
-        "Rembrandt",
-        "Vincent van Gogh",
-        "Frans Hals"
-      ],
-      "erklaerung": "Van Meegeren verkaufte während der NS-Zeit „neue Vermeers“. Nach dem Krieg bewies er seine Fälschungen durch ein weiteres gemaltes Bild.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Han%20van%20Meegeren",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0005",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Bei welcher Art von Ausflug werden oft überteuerte Produkte an ältere Menschen verkauft?",
-      "antworten": [
-        "Kaffeefahrt",
-        "Klassenfahrt",
-        "Wallfahrt",
-        "Betriebsausflug"
-      ],
-      "erklaerung": "Kaffeefahrten locken mit Gratis-Essen oder Geschenken in Verkaufsveranstaltungen. Verbraucherschützer raten zur Vorsicht bei Druck zum Kauf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaffeefahrt",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0062",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welches falsche Vermeer-Gemälde Han van Meegerens lobte der Kunsthistoriker Abraham Bredius 1937 als Meisterwerk?",
-      "antworten": [
-        "Christus und die Jünger in Emmaus",
-        "Der Astronom",
-        "Die Kupplerin",
-        "Das Milchmädchen"
-      ],
-      "erklaerung": "Van Meegeren schuf das Bild im Stil Vermeers. Die Fälschung wurde 1945 offenbar, als er sie gestehen musste, um den Vorwurf des Landesverrats abzuwenden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Han%20van%20Meegeren",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0053",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Worauf spielt die Bezeichnung \"419-Betrug\" für Vorschussbetrug per E-Mail an?",
-      "antworten": [
-        "Auf einen Paragrafen im nigerianischen Strafgesetzbuch",
-        "Auf die Postleitzahl von Lagos",
-        "Auf ein Gründungsjahr 419",
-        "Auf einen Zeitungsartikel Nr. 419"
-      ],
-      "erklaerung": "Section 419 des nigerianischen Strafgesetzbuchs betrifft Betrug. Die Masche mit angeblichen Millionenerbschaften ist schon als Briefbetrug bekannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Vorschussbetrug",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0044",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Zu wie vielen Jahren Haft wurde der Kunstfälscher Wolfgang Beltracchi 2011 in Köln verurteilt?",
-      "antworten": [
-        "Sechs Jahre",
-        "Zwei Jahre",
-        "Zehn Jahre",
-        "Vier Jahre und drei Monate"
-      ],
-      "erklaerung": "Beltracchi und seine Frau fälschten Werke von Max Ernst, Heinrich Campendonk u. a. und verkauften sie über Galerien. Der Prozess endete 2011 mit Geständnis.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wolfgang%20Beltracchi",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0026",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Was tut ein „Schlepper“ in der Wendung „Nepper, Schlepper, Bauernfänger“?",
-      "antworten": [
-        "Er lockt Kunden in überteuerte Lokale oder Läden",
-        "Er trägt Gepäck",
-        "Er schleppt Schiffe",
-        "Er verkauft Landmaschinen"
-      ],
-      "erklaerung": "Schlepper bringen Passanten in Lokale oder Geschäfte mit überhöhten Preisen. Nepper berechnen Wucherpreise, Bauernfänger prellen Arglose.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nepper%2C%20Schlepper%2C%20Bauernf%C3%A4nger",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0046",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "schwer",
-      "frage": "Welche Wirtschaftsprüfungsgesellschaft ging nach dem Enron-Skandal 2001/2002 praktisch unter?",
-      "antworten": [
-        "Arthur Andersen",
-        "Ernst & Young",
-        "Price Waterhouse",
-        "Coopers & Lybrand"
-      ],
-      "erklaerung": "Enron hatte Verluste in Zweckgesellschaften versteckt. Arthur Andersen wurde wegen Aktenvernichtung verurteilt und verlor seine Kunden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Enron",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0079",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Welcher Amateurarchäologe gilt als Hauptverdächtiger der Piltdown-Fälschung?",
-      "antworten": [
-        "Charles Dawson",
-        "Arthur Smith Woodward",
-        "Pierre Teilhard de Chardin",
-        "Arthur Keith"
-      ],
-      "erklaerung": "Dawson „entdeckte“ 1912 die Knochen; die Fälschung flog erst 1953 auf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Piltdown-Mensch",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0004",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Bei welchem Straßenspiel muss man erraten, unter welchem Becher oder Hütchen eine Kugel liegt – meist ein Betrug?",
-      "antworten": [
-        "Hütchenspiel",
-        "Kniffel",
-        "Mau-Mau",
-        "Roulette"
-      ],
-      "erklaerung": "Beim Hütchenspiel lenken Komplizen und Fingerfertigkeit ab, sodass Mitspieler praktisch immer verlieren. Das Spiel gilt als Glücksspielbetrug.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=H%C3%BCtchenspiel",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0073",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "ingomania",
-      "frage": "Wie legte Fred Lorz beim Marathon der Olympischen Spiele 1904 einen Teil der Strecke zurück?",
-      "antworten": [
-        "Im Auto",
-        "Mit der Straßenbahn",
-        "Auf einem Fahrrad",
-        "Auf einem Pferdewagen"
-      ],
-      "erklaerung": "Lorz überquerte als Erster die Ziellinie, wurde aber entlarvt. Der Sieg ging an Thomas Hicks.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Sommerspiele%201904",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0024",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Welches Pariser Wahrzeichen „verkaufte“ der Betrüger Victor Lustig 1925 als angeblichen Schrott?",
-      "antworten": [
-        "Den Eiffelturm",
-        "Den Arc de Triomphe",
-        "Die Notre-Dame",
-        "Die Pyramide des Louvre"
-      ],
-      "erklaerung": "Lustig gab sich als Beamter aus und lud Schrotthändler zu einem Scheinverfahren ein. Er soll den Trick sogar ein zweites Mal versucht haben.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Victor%20Lustig",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0022",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "mittel",
-      "frage": "Wer fälschte die 1983 vom „Stern“ veröffentlichten „Hitler-Tagebücher“?",
-      "antworten": [
-        "Konrad Kujau",
-        "Gerd Heidemann",
-        "Henri Nannen",
-        "Hans Filbinger"
-      ],
-      "erklaerung": "Der Fälscher Konrad Kujau schrieb die Bände selbst, der Reporter Gerd Heidemann vermittelte sie dem Stern. Beide wurden verurteilt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hitler-Tageb%C3%BCcher",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "bauernfaenger-0016",
-      "version": 1,
-      "kategorie": "Nepper, Schlepper, Bauernfänger",
-      "stufe": "leicht",
-      "frage": "Welcher „Lügenbaron“ erzählte, er sei auf einer Kanonenkugel geritten?",
-      "antworten": [
-        "Münchhausen",
-        "Rübezahl",
-        "Till Eulenspiegel",
-        "Robin Hood"
-      ],
-      "erklaerung": "Die Geschichten gehen auf den Freiherrn Hieronymus von Münchhausen zurück und wurden von Rudolf Erich Raspe und Gottfried August Bürger bekannt gemacht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Baron%20M%C3%BCnchhausen",
+      "erklaerung": "Im Wort Rotwelsch steht \"rot\" für den Bettler, \"welsch\" für unverständlich. Die Geheimsprache der Gauner und Landfahrer lieferte viele Wörter wie \"Kohle\" oder \"Zinken\".",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rotwelsch",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1331,6 +940,329 @@
       "gueltigBis": null
     },
     {
+      "id": "bauernfaenger-0081",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Wie nennt man ein Betrugssystem, bei dem die Gewinne früherer Anleger aus den Einzahlungen neuer Anleger bezahlt werden?",
+      "antworten": [
+        "Schneeballsystem",
+        "Dominoprinzip",
+        "Pendelverkehr",
+        "Kettenreaktion"
+      ],
+      "erklaerung": "Solche Systeme brechen zusammen, sobald nicht mehr genug neue Anleger gefunden werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schneeballsystem",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0067",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welcher freie Reporter des Spiegel deckte 2018 die Fälschungen von Claas Relotius auf?",
+      "antworten": [
+        "Juan Moreno",
+        "Matthias Geyer",
+        "Cordt Schnibben",
+        "Claus Hecking"
+      ],
+      "erklaerung": "Relotius hatte preisgekrönte Reportagen teils erfunden. Der Fall führte zu einer großen Aufarbeitung im Spiegel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Claas%20Relotius",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0075",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "In welcher Kirche malte Lothar Malskat in den 1950ern angeblich \"mittelalterliche\" Fresken neu?",
+      "antworten": [
+        "Marienkirche in Lübeck",
+        "Dom zu Speyer",
+        "Michaeliskirche in Hamburg",
+        "Nikolaikirche in Kiel"
+      ],
+      "erklaerung": "Die Fälschung wurde 1952 öffentlich, als Malskat sie selbst gestand. Er wurde 1954 verurteilt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lothar%20Malskat",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0051",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Wie viele Tour-de-France-Siege (1999 bis 2005) wurden Lance Armstrong 2012 aberkannt?",
+      "antworten": [
+        "Sieben",
+        "Fünf",
+        "Sechs",
+        "Acht"
+      ],
+      "erklaerung": "Die US-Anti-Doping-Agentur sperrte Armstrong lebenslang; der Radsportverband UCI bestätigte die Aberkennung. Armstrong gestand 2013 Doping.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lance%20Armstrong",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0044",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Zu wie vielen Jahren Haft wurde der Kunstfälscher Wolfgang Beltracchi 2011 in Köln verurteilt?",
+      "antworten": [
+        "Sechs Jahre",
+        "Zwei Jahre",
+        "Zehn Jahre",
+        "Vier Jahre und drei Monate"
+      ],
+      "erklaerung": "Beltracchi und seine Frau fälschten Werke von Max Ernst, Heinrich Campendonk u. a. und verkauften sie über Galerien. Der Prozess endete 2011 mit Geständnis.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wolfgang%20Beltracchi",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0083",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr flog das Schneeballsystem von Bernard Madoff auf?",
+      "antworten": [
+        "2008",
+        "2001",
+        "2005",
+        "2011"
+      ],
+      "erklaerung": "Im Dezember 2008 gestand Madoff seinen Söhnen den Betrug, der danach öffentlich wurde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bernard%20Madoff",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0015",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Wie nennt man umgangssprachlich gefälschte Geldscheine?",
+      "antworten": [
+        "Blüten",
+        "Knospen",
+        "Ableger",
+        "Setzlinge"
+      ],
+      "erklaerung": "Falschgeld heißt in der Umgangssprache „Blüten“. Herstellung und Weitergabe sind eine Straftat.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Falschgeld",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0014",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Was sollte man tun, wenn ein „Gewinn“ nur gegen Vorauszahlung einer Gebühr ausgezahlt werden soll?",
+      "antworten": [
+        "Nichts zahlen – das ist ein Betrugsmerkmal",
+        "Schnell zahlen, damit der Gewinn nicht verfällt",
+        "Die Kontodaten mitteilen",
+        "Die Gebühr in bar schicken"
+      ],
+      "erklaerung": "Seriöse Gewinnspiele verlangen für die Auszahlung keine Vorabgebühren. Solche Forderungen sind ein typisches Merkmal der Gewinnspiel-Abzocke.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Vorschussbetrug",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0054",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Welcher Stoff wurde 1985 in österreichischem Wein entdeckt und löste den Weinskandal aus?",
+      "antworten": [
+        "Diethylenglykol",
+        "Methanol",
+        "Blei",
+        "Ethylacetat"
+      ],
+      "erklaerung": "Winzer hatten Wein damit gesüßt. Der Skandal ruinierte den Ruf des österreichischen Weins vorübergehend und führte zu einem sehr strengen Weingesetz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Weinskandal",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0060",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Welcher Händler brachte 1995 mit Spekulationsverlusten die britische Barings Bank zu Fall?",
+      "antworten": [
+        "Nick Leeson",
+        "Jérôme Kerviel",
+        "Kweku Adoboli",
+        "Bernard Madoff"
+      ],
+      "erklaerung": "Leeson verheimlichte Verluste in einem Fehlerkonto; die Bank war 233 Jahre alt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nick%20Leeson",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0009",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Was ist eine „Mogelpackung“?",
+      "antworten": [
+        "Eine Verpackung, die mehr Inhalt vortäuscht, als drin ist",
+        "Eine besonders umweltfreundliche Verpackung",
+        "Ein Geschenk mit Überraschungsinhalt",
+        "Eine beschädigte Verpackung"
+      ],
+      "erklaerung": "Mogelpackungen sind überdimensioniert oder enthalten viel Luft. Verbraucherzentralen vergeben dafür sogar jährlich einen Negativpreis.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mogelpackung",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0025",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "In welcher US-Stadt flog 1920 der Anlagebetrüger Charles Ponzi auf?",
+      "antworten": [
+        "Boston",
+        "New York",
+        "Chicago",
+        "San Francisco"
+      ],
+      "erklaerung": "Ponzi versprach hohe Gewinne und zahlte alte Anleger aus dem Geld neuer. Nach ihm ist das Ponzi-System, eine Form des Schneeballsystems, benannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Charles%20Ponzi",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0061",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welche Summe beschlagnahmte der falsche Hauptmann Wilhelm Voigt am 16. Oktober 1906 in der Kasse von Köpenick?",
+      "antworten": [
+        "4002 Mark und 37 Pfennig",
+        "3500 Mark",
+        "12.000 Mark",
+        "1200 Mark und 50 Pfennig"
+      ],
+      "erklaerung": "Voigt ließ mit einer Uniform und Soldaten das Rathaus besetzen. Der Bürgermeister wurde festgenommen, die Kasse mitgenommen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hauptmann%20von%20K%C3%B6penick",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0055",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "Welcher berühmte Regisseur drehte 1973 den Film \"F wie Fälschung\" über den Kunstfälscher Elmyr de Hory?",
+      "antworten": [
+        "Orson Welles",
+        "Alfred Hitchcock",
+        "Stanley Kubrick",
+        "Billy Wilder"
+      ],
+      "erklaerung": "Der Essayfilm spielt mit Wahrheit und Täuschung. Er behandelt auch den Fälscher-Biografen Clifford Irving.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=F%20wie%20F%C3%A4lschung",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0001",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Wen geben Betrüger beim „Enkeltrick“ am Telefon vor zu sein?",
+      "antworten": [
+        "Einen Verwandten in Geldnot",
+        "Einen Bankmitarbeiter",
+        "Einen Lottogewinner",
+        "Einen Postboten"
+      ],
+      "erklaerung": "Beim Enkeltrick melden sich Betrüger bei meist älteren Menschen als angeblicher Enkel oder Verwandter und bitten dringend um Geld. Wer misstrauisch bleibt und nachfragt, schützt sich.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Enkeltrick",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0026",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Was tut ein „Schlepper“ in der Wendung „Nepper, Schlepper, Bauernfänger“?",
+      "antworten": [
+        "Er lockt Kunden in überteuerte Lokale oder Läden",
+        "Er trägt Gepäck",
+        "Er schleppt Schiffe",
+        "Er verkauft Landmaschinen"
+      ],
+      "erklaerung": "Schlepper bringen Passanten in Lokale oder Geschäfte mit überhöhten Preisen. Nepper berechnen Wucherpreise, Bauernfänger prellen Arglose.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nepper%2C%20Schlepper%2C%20Bauernf%C3%A4nger",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0007",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Was ist ein „Fake-Shop“?",
+      "antworten": [
+        "Ein Online-Shop, der Ware verkauft, aber nie liefert",
+        "Ein Laden für Faschingskostüme",
+        "Ein Shop mit sehr schnellem Versand",
+        "Ein Geschäft für Second-Hand-Mode"
+      ],
+      "erklaerung": "Fake-Shops locken mit Schnäppchenpreisen, kassieren Vorkasse und liefern nicht oder nur Fälschungen. Impressum, Bewertungen und Zahlungsarten helfen bei der Prüfung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fake-Shop",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0082",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Welcher Schauspieler spielte Frank Abagnale Jr. im Film „Catch Me If You Can“ (2002)?",
+      "antworten": [
+        "Leonardo DiCaprio",
+        "Tom Hanks",
+        "Matt Damon",
+        "Brad Pitt"
+      ],
+      "erklaerung": "Leonardo DiCaprio spielte den jungen Hochstapler, Regie führte Steven Spielberg.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Catch%20Me%20If%20You%20Can",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0020",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Welche Nummer wählt man, wenn man bei einem verdächtigen Anruf die echte Polizei braucht?",
+      "antworten": [
+        "110",
+        "112",
+        "116 117",
+        "115"
+      ],
+      "erklaerung": "Die 110 ist der Polizeinotruf, die 112 der Notruf für Feuerwehr und Rettungsdienst. Echte Polizisten fordern nie Geld oder Wertsachen zur „Verwahrung“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Falsche%20Polizeibeamte",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
       "id": "bauernfaenger-0003",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
@@ -1348,19 +1280,155 @@
       "gueltigBis": null
     },
     {
-      "id": "bauernfaenger-0040",
+      "id": "bauernfaenger-0012",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Was ist ein „Hochstapler“?",
+      "antworten": [
+        "Jemand, der eine falsche Identität oder Stellung vortäuscht",
+        "Ein besonders fleißiger Lagerarbeiter",
+        "Ein Zirkusartist",
+        "Ein Bergsteiger"
+      ],
+      "erklaerung": "Hochstapler täuschen etwa Titel, Beruf oder Vermögen vor, um Vorteile zu erlangen. Der Begriff kommt aus dem Rotwelschen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hochstapler",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0005",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Bei welcher Art von Ausflug werden oft überteuerte Produkte an ältere Menschen verkauft?",
+      "antworten": [
+        "Kaffeefahrt",
+        "Klassenfahrt",
+        "Wallfahrt",
+        "Betriebsausflug"
+      ],
+      "erklaerung": "Kaffeefahrten locken mit Gratis-Essen oder Geschenken in Verkaufsveranstaltungen. Verbraucherschützer raten zur Vorsicht bei Druck zum Kauf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaffeefahrt",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0029",
       "version": 1,
       "kategorie": "Nepper, Schlepper, Bauernfänger",
       "stufe": "mittel",
-      "frage": "Wofür dienten „Gaunerzinken“ an Hauswänden?",
+      "frage": "Wie muss der Bestell-Button in Online-Shops laut „Button-Lösung“ beschriftet sein?",
       "antworten": [
-        "Als geheime Zeichen unter Landfahrenden und Dieben",
-        "Als Hausnummern",
-        "Als Zunftzeichen der Maurer",
-        "Als Hinweise für den Briefträger"
+        "„Zahlungspflichtig bestellen“ oder ähnlich eindeutig",
+        "„Weiter“",
+        "„Absenden“",
+        "„OK“"
       ],
-      "erklaerung": "Mit Kreide oder Ritzzeichen markierte man etwa, ob ein Haus lohnend oder gefährlich war. Die Zeichen sind seit dem Mittelalter belegt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gaunerzinken",
+      "erklaerung": "Seit 2012 muss klar erkennbar sein, dass die Bestellung eine Zahlungspflicht auslöst. So sollen Abo-Fallen eingedämmt werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Button-L%C3%B6sung",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0080",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "ingomania",
+      "frage": "Welcher junge Brite fälschte 1795 angebliche Shakespeare-Dokumente und ein „verschollenes“ Stück?",
+      "antworten": [
+        "William Henry Ireland",
+        "Thomas Chatterton",
+        "James Macpherson",
+        "Horace Walpole"
+      ],
+      "erklaerung": "Das Stück „Vortigern and Rowena“ wurde 1796 aufgeführt und fiel durch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=William%20Henry%20Ireland",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0037",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Wie nennt man Phishing, das per SMS erfolgt?",
+      "antworten": [
+        "Smishing",
+        "Spamming",
+        "Skimming",
+        "Mobbing"
+      ],
+      "erklaerung": "Smishing verbindet SMS und Phishing: Eine Kurznachricht lockt auf eine gefälschte Seite. Unbekannte Links in SMS sollte man nicht anklicken.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Phishing%20Smishing",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0036",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "mittel",
+      "frage": "Mit welcher Merkregel prüft man laut Bundesbank Euro-Banknoten auf Echtheit?",
+      "antworten": [
+        "Fühlen – Sehen – Kippen",
+        "Hören – Riechen – Schmecken",
+        "Falten – Reiben – Wiegen",
+        "Zählen – Messen – Wiegen"
+      ],
+      "erklaerung": "Man ertastet das Papier, betrachtet Wasserzeichen und Sicherheitsfaden und kippt die Note, um Hologramm und Glanzeffekte zu sehen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Euro-Banknoten%20Sicherheitsmerkmale",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0047",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "In welchem Land sollten laut Wirecard 1,9 Milliarden Euro auf Treuhandkonten liegen, die es nicht gab?",
+      "antworten": [
+        "Philippinen",
+        "Singapur",
+        "Indonesien",
+        "Malaysia"
+      ],
+      "erklaerung": "Im Juni 2020 räumte Wirecard ein, dass das Geld vermutlich nicht existierte. Kurz danach meldete der Konzern Insolvenz an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wirecard",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0010",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "leicht",
+      "frage": "Was bedeutet die Redewendung „jemandem ein Kuckucksei ins Nest legen“?",
+      "antworten": [
+        "Ihm etwas Unerwünschtes unterschieben",
+        "Ihm ein Geschenk machen",
+        "Ihn zum Frühstück einladen",
+        "Ihn vor Gefahr warnen"
+      ],
+      "erklaerung": "Der Kuckuck legt seine Eier in fremde Nester und lässt sie dort ausbrüten. Im übertragenen Sinn ist ein Kuckucksei etwas Unangenehmes, das andere ahnungslos übernehmen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kuckucksei",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "bauernfaenger-0058",
+      "version": 1,
+      "kategorie": "Nepper, Schlepper, Bauernfänger",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr stellte das Zahlungsdienstleister-Unternehmen Wirecard Insolvenzantrag?",
+      "antworten": [
+        "2020",
+        "2018",
+        "2019",
+        "2021"
+      ],
+      "erklaerung": "Vorausgegangen war das Eingeständnis, dass 1,9 Milliarden Euro nicht auffindbar waren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wirecard",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     }

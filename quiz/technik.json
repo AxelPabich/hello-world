@@ -1,94 +1,9 @@
 {
   "paket": "technik",
   "titel": "Technik",
-  "version": 9,
+  "version": 10,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
-    {
-      "id": "tech-0008",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
-      "antworten": [
-        "Auf dem Linux-Kernel",
-        "Auf dem Windows-NT-Kernel",
-        "Auf Darwin, dem Kern von macOS",
-        "Auf Symbian"
-      ],
-      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
-      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0042",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht „GB“ bei Speicherkarten und Festplatten?",
-      "antworten": [
-        "Gigabyte",
-        "Gigabit",
-        "Großbyte",
-        "Gesamtbilanz"
-      ],
-      "erklaerung": "Ein Gigabyte sind rund eine Milliarde Byte.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gigabyte",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0070",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Bei welchem Unternehmen baute Steven Sasson 1975 die erste Digitalkamera?",
-      "antworten": [
-        "Kodak",
-        "Polaroid",
-        "Canon",
-        "Sony"
-      ],
-      "erklaerung": "Sassons Prototyp wog etwa vier Kilo, speicherte Bilder auf Kassette und lieferte 0,01 Megapixel. Kodak sah darin damals keine Zukunft.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Digitalkamera",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0059",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wer begann 1991 mit der Entwicklung des Linux-Kernels?",
-      "antworten": [
-        "Linus Torvalds",
-        "Richard Stallman",
-        "Dennis Ritchie",
-        "Bill Joy"
-      ],
-      "erklaerung": "Der Finne Torvalds war damals Student in Helsinki.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Linus%20Torvalds",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0052",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wie hieß der erste künstliche Erdsatellit, der 1957 ins All startete?",
-      "antworten": [
-        "Sputnik 1",
-        "Explorer 1",
-        "Apollo 1",
-        "Telstar"
-      ],
-      "erklaerung": "Der Start durch die Sowjetunion löste den „Sputnik-Schock“ im Westen aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sputnik%201",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
     {
       "id": "tech-0030",
       "version": 1,
@@ -107,190 +22,37 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0088",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Welcher Webbrowser machte das Internet ab 1993 durch seine grafische Oberfläche populär?",
-      "antworten": [
-        "NCSA Mosaic",
-        "Netscape Navigator",
-        "Internet Explorer",
-        "Opera"
-      ],
-      "erklaerung": "Mosaic war der Vorläufer von Netscape, dessen Entwickler später die Firma gründeten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=NCSA%20Mosaic",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0025",
+      "id": "tech-0007",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "Welche Programmiersprache entwickelte James Gosling Mitte der 1990er-Jahre bei Sun Microsystems?",
+      "frage": "Wofür steht die Abkürzung „LASER“?",
       "antworten": [
-        "Java",
-        "Python",
-        "C++",
-        "JavaScript"
+        "Light Amplification by Stimulated Emission of Radiation",
+        "Light Activated Signal Emitting Resonator",
+        "Linear Amplified Spectral Energy Radiation",
+        "Luminous Array of Stimulated Electron Rays"
       ],
-      "erklaerung": "Trotz des ähnlichen Namens hat JavaScript mit Java wenig zu tun.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Java%20%28Programmiersprache%29",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0027",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "In welcher Einheit wird die elektrische Leistung angegeben?",
-      "antworten": [
-        "Watt",
-        "Volt",
-        "Ampere",
-        "Joule"
-      ],
-      "erklaerung": "Watt = Volt mal Ampere; Joule ist die Einheit der Energie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Watt%20%28Einheit%29",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0026",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht das „E“ in „E-Mail“?",
-      "antworten": [
-        "Electronic",
-        "Express",
-        "Extern",
-        "Easy"
-      ],
-      "erklaerung": "Electronic Mail – elektronische Post.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=E-Mail",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0072",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Wer prägte 1947 den Begriff „Bit“ als Kurzform für „binary digit“?",
-      "antworten": [
-        "John W. Tukey",
-        "Claude Shannon",
-        "Alan Turing",
-        "John von Neumann"
-      ],
-      "erklaerung": "Der Statistiker John W. Tukey erfand das Kunstwort. Claude Shannon machte es 1948 in der Informationstheorie bekannt und nannte Tukey als Urheber.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bit",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0067",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "An welchem Berliner Platz wurde 1924 die erste Verkehrsampel Deutschlands in Betrieb genommen?",
-      "antworten": [
-        "Potsdamer Platz",
-        "Alexanderplatz",
-        "Pariser Platz",
-        "Breitscheidplatz"
-      ],
-      "erklaerung": "Auf dem damals extrem verkehrsreichen Potsdamer Platz stand im Oktober 1924 ein Verkehrsturm mit Signallichtern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Verkehrsampel",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0062",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Welche Firma brachte 1981 den IBM 5150 auf den Markt, den Urahn des heutigen PCs?",
-      "antworten": [
-        "IBM",
-        "Apple",
-        "Commodore",
-        "Atari"
-      ],
-      "erklaerung": "Sein offener Aufbau machte ihn zum Vorbild für unzählige Nachbauten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=IBM%20Personal%20Computer",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0056",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde die erste Verbindung im ARPANET, dem Vorläufer des Internets, hergestellt?",
-      "antworten": [
-        "1969",
-        "1957",
-        "1975",
-        "1983"
-      ],
-      "erklaerung": "Im Oktober 1969 verband man zwei Computer in Kalifornien.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ARPANET",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0005",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht „WLAN“?",
-      "antworten": [
-        "Wireless Local Area Network",
-        "Wireless Long Antenna Network",
-        "Wenn Laptops Andauernd Nerven",
-        "World Link Access Node"
-      ],
-      "erklaerung": "Ein lokales Funknetz.",
-      "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
+      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
+      "quelle": "https://de.wikipedia.org/wiki/Laser",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0011",
+      "id": "tech-0014",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
+      "stufe": "leicht",
+      "frage": "Welches Tier ist das Maskottchen von Linux?",
       "antworten": [
-        "1992",
-        "1985",
-        "1998",
-        "2001"
+        "Ein Pinguin",
+        "Ein Fuchs",
+        "Eine Schildkröte mit Laptop",
+        "Ein Elefant"
       ],
-      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0084",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Wer entwickelte Anfang der 1970er-Jahre bei den Bell Labs die Programmiersprache C?",
-      "antworten": [
-        "Dennis Ritchie",
-        "Ken Thompson",
-        "Bjarne Stroustrup",
-        "Niklaus Wirth"
-      ],
-      "erklaerung": "Dennis Ritchie schuf C, um das Betriebssystem Unix damit neu zu schreiben. Ken Thompson war sein Kollege und Mitentwickler von Unix.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=C%20%28Programmiersprache%29",
-      "erstellt": "2026-10-24",
+      "erklaerung": "Der Pinguin heißt Tux.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     },
     {
@@ -311,189 +73,19 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0060",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Nach welchem Physiker ist die Einheit der elektrischen Stromstärke benannt?",
-      "antworten": [
-        "André-Marie Ampère",
-        "Georg Simon Ohm",
-        "James Watt",
-        "Alessandro Volta"
-      ],
-      "erklaerung": "Ampère war ein französischer Physiker und Mathematiker.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Andr%C3%A9-Marie%20Amp%C3%A8re",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0046",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Nach welchem Erfinder ist der Dieselmotor benannt?",
-      "antworten": [
-        "Rudolf Diesel",
-        "Nikolaus Otto",
-        "Carl Benz",
-        "Gottlieb Daimler"
-      ],
-      "erklaerung": "Rudolf Diesel erhielt 1893 ein Patent auf seinen Motor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rudolf%20Diesel",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0080",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Wie hieß der dritte Apple-Mitgründer von 1976, der seine Anteile nach nur wenigen Tagen für 800 Dollar verkaufte?",
-      "antworten": [
-        "Ronald Wayne",
-        "Mike Markkula",
-        "Steve Wozniak",
-        "Jef Raskin"
-      ],
-      "erklaerung": "Ronald Wayne zeichnete das erste Apple-Logo und stieg nach zwölf Tagen aus. Wozniak war dagegen dauerhaft Mitgründer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ronald%20Wayne",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0022",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wer gilt als erste Programmiererin der Geschichte?",
-      "antworten": [
-        "Ada Lovelace",
-        "Grace Hopper",
-        "Marie Curie",
-        "Hedy Lamarr"
-      ],
-      "erklaerung": "Sie schrieb um 1843 ein Programm für Charles Babbages Analytical Engine.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ada%20Lovelace",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0050",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Welche Brüder führten 1903 den ersten Motorflug durch?",
-      "antworten": [
-        "Orville und Wilbur Wright",
-        "Auguste und Louis Lumière",
-        "Jacob und Wilhelm Grimm",
-        "Otto und Gustav Lilienthal"
-      ],
-      "erklaerung": "Der erste Flug dauerte am 17. Dezember 1903 nur zwölf Sekunden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Br%C3%BCder%20Wright",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0032",
+      "id": "tech-0038",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Wofür steht „SIM“ bei der SIM-Karte im Handy?",
+      "frage": "Was erzeugt eine Photovoltaikanlage auf dem Dach?",
       "antworten": [
-        "Subscriber Identity Module",
-        "Simple Internet Mode",
-        "Secure Interface Memory",
-        "System Information Manager"
+        "Strom aus Sonnenlicht",
+        "Warmes Wasser aus Wind",
+        "Benzin aus Sonnenlicht",
+        "Schall aus Wärme"
       ],
-      "erklaerung": "Die Karte weist den Teilnehmer gegenüber dem Mobilfunknetz aus.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=SIM-Karte",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0086",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "In welcher Einheit wird die Kapazität eines Handy-Akkus meist angegeben?",
-      "antworten": [
-        "Milliamperestunden (mAh)",
-        "Millivolt (mV)",
-        "Megahertz (MHz)",
-        "Milliwatt (mW)"
-      ],
-      "erklaerung": "Sie gibt an, wie lange der Akku einen bestimmten Strom liefern kann.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Amperestunde",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0083",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Wer erhielt 1934 in Deutschland das Patent auf die Magnetschwebebahn, die Grundlage des Transrapid?",
-      "antworten": [
-        "Hermann Kemper",
-        "Hugo Junkers",
-        "Rudolf Hell",
-        "Ernst Heinkel"
-      ],
-      "erklaerung": "Hermann Kemper meldete 1934 die „schwebende Fahrzeugbahn mit elektromagnetischen Kräften“ an. Der Transrapid baut auf diesem Prinzip auf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Transrapid",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0040",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was unterscheidet einen Akku von einer normalen Batterie?",
-      "antworten": [
-        "Er lässt sich wieder aufladen",
-        "Er braucht keine Chemie",
-        "Er funktioniert nur mit Solarstrom",
-        "Er ist immer größer"
-      ],
-      "erklaerung": "Akkus sind wiederaufladbare Energiespeicher, normale Batterien nicht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Akkumulator",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0071",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Aus welchem Material bestand das Gehäuse der ersten Computermaus von Douglas Engelbart?",
-      "antworten": [
-        "Holz",
-        "Aluminium",
-        "Bakelit",
-        "Hartgummi"
-      ],
-      "erklaerung": "Engelbarts Prototyp aus den 1960er-Jahren am Stanford Research Institute hatte ein Holzgehäuse mit zwei Rädern. Er erhielt 1970 ein Patent darauf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Computermaus",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0049",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wofür steht „RAM“ beim Computer?",
-      "antworten": [
-        "Random Access Memory",
-        "Rapid Application Mode",
-        "Read And Modify",
-        "Remote Access Module"
-      ],
-      "erklaerung": "Der Arbeitsspeicher hält Daten nur, solange der Strom anliegt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Random-Access%20Memory",
+      "erklaerung": "Solarzellen wandeln Licht direkt in elektrische Energie um.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Photovoltaik",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -515,88 +107,37 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0043",
+      "id": "tech-0005",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Welche Firma stellt das iPhone her?",
+      "frage": "Wofür steht „WLAN“?",
       "antworten": [
-        "Apple",
-        "Samsung",
-        "Google",
-        "Nokia"
+        "Wireless Local Area Network",
+        "Wireless Long Antenna Network",
+        "Wenn Laptops Andauernd Nerven",
+        "World Link Access Node"
       ],
-      "erklaerung": "Das erste iPhone wurde 2007 vorgestellt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone",
-      "erstellt": "2026-10-24",
+      "erklaerung": "Ein lokales Funknetz.",
+      "quelle": "https://de.wikipedia.org/wiki/Wireless_Local_Area_Network",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0014",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Welches Tier ist das Maskottchen von Linux?",
-      "antworten": [
-        "Ein Pinguin",
-        "Ein Fuchs",
-        "Eine Schildkröte mit Laptop",
-        "Ein Elefant"
-      ],
-      "erklaerung": "Der Pinguin heißt Tux.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tux%20%28Maskottchen%29",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0081",
+      "id": "tech-0075",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "ingomania",
-      "frage": "Wie hieß die Suchmaschine von Larry Page und Sergey Brin zunächst, bevor sie „Google“ genannt wurde?",
+      "frage": "Mit wem gründete Nikolaus Otto 1864 die erste Motorenfabrik der Welt, aus der später Deutz wurde?",
       "antworten": [
-        "BackRub",
-        "PageRank",
-        "WebCrawler",
-        "Googol"
+        "Eugen Langen",
+        "Gottlieb Daimler",
+        "Carl Benz",
+        "Wilhelm Maybach"
       ],
-      "erklaerung": "Das Projekt an der Stanford University hieß ab 1996 „BackRub“, weil es Rückverweise (Backlinks) auswertete. Der Name Google geht auf „Googol“ zurück.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Google",
+      "erklaerung": "Der Kaufmann Eugen Langen stieg als Geldgeber ein, die Firma hieß N.A. Otto & Cie. Daimler und Maybach arbeiteten später bei Deutz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nikolaus%20Otto",
       "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0051",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Welches Metall steckt im Namen der Lithium-Ionen-Akkus in Handys?",
-      "antworten": [
-        "Lithium",
-        "Blei",
-        "Zink",
-        "Silber"
-      ],
-      "erklaerung": "Lithium ist das leichteste Metall und speichert viel Energie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lithium-Ionen-Akkumulator",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0033",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Welche Firma brachte 1979 den Walkman auf den Markt?",
-      "antworten": [
-        "Sony",
-        "Philips",
-        "Grundig",
-        "Panasonic"
-      ],
-      "erklaerung": "Der tragbare Kassettenspieler wurde zum Welterfolg.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Walkman",
-      "erstellt": "2026-10-19",
       "gueltigBis": null
     },
     {
@@ -613,329 +154,6 @@
       ],
       "erklaerung": "Windows erschien erstmals 1985.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Windows",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0087",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde Google gegründet?",
-      "antworten": [
-        "1998",
-        "1994",
-        "2001",
-        "2004"
-      ],
-      "erklaerung": "Larry Page und Sergey Brin gründeten die Firma im September 1998.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Google",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0076",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Welches Zahlensystem nutzte der Röhrencomputer ENIAC (1945) intern zum Rechnen?",
-      "antworten": [
-        "Dezimalsystem",
-        "Dualsystem",
-        "Oktalsystem",
-        "Hexadezimalsystem"
-      ],
-      "erklaerung": "Anders als Zuses Z3 rechnete ENIAC mit Ringzählern im Dezimalsystem. Das Dualsystem setzte sich erst bei späteren Rechnern durch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ENIAC",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0065",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Welches Serienauto war 1964 das erste mit einem Wankelmotor (Kreiskolbenmotor)?",
-      "antworten": [
-        "NSU Spider",
-        "NSU Ro 80",
-        "Mazda Cosmo",
-        "Citroën M35"
-      ],
-      "erklaerung": "Der NSU Wankel-Spider kam 1964 mit Einscheiben-Kreiskolbenmotor auf den Markt. Der berühmtere NSU Ro 80 folgte erst 1967.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=NSU%20Spider",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0063",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Aus welchem Metall bestehen die Glühfäden heutiger Glühlampen?",
-      "antworten": [
-        "Wolfram",
-        "Kupfer",
-        "Eisen",
-        "Zinn"
-      ],
-      "erklaerung": "Wolfram hat den höchsten Schmelzpunkt aller Metalle.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wolfram",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0016",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „GPS“?",
-      "antworten": [
-        "Global Positioning System",
-        "General Packet Service",
-        "Geo Point Scanner",
-        "Ganz präzise Schätzung"
-      ],
-      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0061",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Welche Frequenz hat der Wechselstrom aus der Steckdose in Europa?",
-      "antworten": [
-        "50 Hertz",
-        "60 Hertz",
-        "100 Hertz",
-        "25 Hertz"
-      ],
-      "erklaerung": "In den USA sind es dagegen 60 Hertz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Netzfrequenz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0074",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Wer ließ 1804 in Wales die erste Dampflokomotive auf Schienen fahren?",
-      "antworten": [
-        "Richard Trevithick",
-        "George Stephenson",
-        "Timothy Hackworth",
-        "William Murdoch"
-      ],
-      "erklaerung": "Trevithicks Lokomotive zog 1804 bei Merthyr Tydfil einen Zug mit Eisen und Passagieren. Stephenson baute erst später erfolgreiche Linien.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Richard%20Trevithick",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0007",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wofür steht die Abkürzung „LASER“?",
-      "antworten": [
-        "Light Amplification by Stimulated Emission of Radiation",
-        "Light Activated Signal Emitting Resonator",
-        "Linear Amplified Spectral Energy Radiation",
-        "Luminous Array of Stimulated Electron Rays"
-      ],
-      "erklaerung": "Lichtverstärkung durch stimulierte Emission von Strahlung.",
-      "quelle": "https://de.wikipedia.org/wiki/Laser",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0003",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
-      "antworten": [
-        "Volt",
-        "Ampere",
-        "Watt",
-        "Ohm"
-      ],
-      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
-      "quelle": "https://de.wikipedia.org/wiki/Volt",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0004",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
-      "antworten": [
-        "2007",
-        "2005",
-        "2009",
-        "2010"
-      ],
-      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0013",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „USB“?",
-      "antworten": [
-        "Universal Serial Bus",
-        "Ultraschneller Speicher-Baustein",
-        "Unterbrechungsfreie Strom-Batterie",
-        "Und schon bootet's"
-      ],
-      "erklaerung": "USB ist seit 1996 der Standard-Anschluss für Geräte am Computer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Universal%20Serial%20Bus",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0020",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
-      "antworten": [
-        "Die letzte Aktion wird rückgängig gemacht",
-        "Das Dokument wird ausgedruckt",
-        "Der Computer schläft ein",
-        "Alles wird fett geschrieben"
-      ],
-      "erklaerung": "Strg+Y stellt sie meist wieder her.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0036",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wie nennt man die kleinen Programme auf dem Smartphone?",
-      "antworten": [
-        "Apps",
-        "Treiber",
-        "Cookies",
-        "Patches"
-      ],
-      "erklaerung": "App ist die Kurzform von „Application“ (Anwendung).",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=App%20%28Software%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0035",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „PC“?",
-      "antworten": [
-        "Personal Computer",
-        "Portable Controller",
-        "Programm-Center",
-        "Public Connection"
-      ],
-      "erklaerung": "Ein Computer für den persönlichen Gebrauch zu Hause oder im Büro.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Personal%20Computer",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0044",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wie nennt man ein Programm, das Computerviren aufspüren und entfernen soll?",
-      "antworten": [
-        "Virenscanner",
-        "Defragmentierer",
-        "Browser",
-        "Treiber"
-      ],
-      "erklaerung": "Auch „Antivirenprogramm“ genannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Antivirenprogramm",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0064",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr kam „Windows 1.0“ auf den Markt?",
-      "antworten": [
-        "1985",
-        "1981",
-        "1990",
-        "1995"
-      ],
-      "erklaerung": "Es lief noch als grafische Oberfläche auf MS-DOS.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Windows%201.0",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0053",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wofür steht die Abkürzung „ABS“ beim Auto?",
-      "antworten": [
-        "Antiblockiersystem",
-        "Allradbremssensor",
-        "Automatische Bremsstufe",
-        "Abstandsbegrenzungssystem"
-      ],
-      "erklaerung": "Es verhindert das Blockieren der Räder beim starken Bremsen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Antiblockiersystem",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0015",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
-      "antworten": [
-        "Bill Gates",
-        "Steve Jobs",
-        "Steve Wozniak",
-        "Larry Page"
-      ],
-      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0055",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wer entdeckte 1895 die später nach ihm benannten Strahlen, die man für Knochenfotos nutzt?",
-      "antworten": [
-        "Wilhelm Conrad Röntgen",
-        "Max Planck",
-        "Heinrich Hertz",
-        "Robert Koch"
-      ],
-      "erklaerung": "Röntgen erhielt dafür 1901 den ersten Nobelpreis für Physik.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wilhelm%20Conrad%20R%C3%B6ntgen",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -957,122 +175,105 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0077",
+      "id": "tech-0002",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Zwischen welchen beiden Städten schickte Samuel Morse 1844 die erste öffentliche Telegrafenbotschaft „What hath God wrought“?",
+      "stufe": "mittel",
+      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
       "antworten": [
-        "Washington und Baltimore",
-        "New York und Philadelphia",
-        "Boston und New York",
-        "Washington und Philadelphia"
+        "Konrad Zuse",
+        "Alan Turing",
+        "Charles Babbage",
+        "John von Neumann"
       ],
-      "erklaerung": "Die rund 60 km lange Versuchsleitung führte vom Kapitol in Washington nach Baltimore. Der Satz stammt aus der Bibel (4. Mose).",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Samuel%20Morse",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0023",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „PIN“ bei der Bankkarte?",
-      "antworten": [
-        "Persönliche Identifikationsnummer",
-        "Private Internet-Nummer",
-        "Prüf- und Identitätsnachweis",
-        "Plastikkarten-Index-Nummer"
-      ],
-      "erklaerung": "Die vier- bis sechsstellige Geheimzahl bestätigt, dass die Karte dem Besitzer gehört.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pers%C3%B6nliche%20Identifikationsnummer",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0031",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wie viele Bit hat eine IPv4-Adresse?",
-      "antworten": [
-        "32",
-        "16",
-        "64",
-        "128"
-      ],
-      "erklaerung": "Daher gibt es nur rund 4,3 Milliarden IPv4-Adressen; IPv6 hat 128 Bit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=IPv4",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0082",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Welcher Volvo-Ingenieur entwickelte 1959 den heute üblichen Dreipunkt-Sicherheitsgurt?",
-      "antworten": [
-        "Nils Bohlin",
-        "Béla Barényi",
-        "Ferdinand Porsche",
-        "Hans Ledwinka"
-      ],
-      "erklaerung": "Nils Bohlin hatte zuvor Schleudersitze bei Saab konstruiert. Volvo gab das Patent frei, damit jeder Hersteller den Gurt nutzen konnte.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Dreipunktgurt",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0001",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Wofür steht die Abkürzung „HTTP“?",
-      "antworten": [
-        "Hypertext Transfer Protocol",
-        "High Transfer Text Protocol",
-        "Hyperlink Text Transmission Process",
-        "Heimliches Tippen, total privat"
-      ],
-      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
-      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
+      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
+      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0017",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was misst ein Barometer?",
-      "antworten": [
-        "Den Luftdruck",
-        "Die Luftfeuchtigkeit",
-        "Die Windgeschwindigkeit",
-        "Wie gut die Stimmung an der Bar ist"
-      ],
-      "erklaerung": "Die Luftfeuchtigkeit misst ein Hygrometer, den Wind ein Anemometer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Barometer",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0069",
+      "id": "tech-0072",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "ingomania",
-      "frage": "Aus welchen französischen Wörtern setzt sich der Markenname „Velcro“ (Klettverschluss) zusammen?",
+      "frage": "Wer prägte 1947 den Begriff „Bit“ als Kurzform für „binary digit“?",
       "antworten": [
-        "Velours und Crochet (Haken)",
-        "Velo und Croix",
-        "Vélin und Cordon",
-        "Velours und Clou"
+        "John W. Tukey",
+        "Claude Shannon",
+        "Alan Turing",
+        "John von Neumann"
       ],
-      "erklaerung": "Der Schweizer Ingenieur Georges de Mestral entwickelte den Klettverschluss nach Beobachtung von Kletten im Hundefell. Der Name verbindet „velours“ (Samt) und „crochet“ (Häkchen).",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Klettverschluss",
+      "erklaerung": "Der Statistiker John W. Tukey erfand das Kunstwort. Claude Shannon machte es 1948 in der Informationstheorie bekannt und nannte Tukey als Urheber.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bit",
       "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0092",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Wie nannte Konrad Zuse die von ihm in den 1940er-Jahren entworfene Programmiersprache, die oft als erste höhere Programmiersprache gilt?",
+      "antworten": [
+        "Plankalkül",
+        "Rechenplan",
+        "Befehlskalkül",
+        "Algorithmik"
+      ],
+      "erklaerung": "Zuse entwarf den Plankalkül zwischen 1942 und 1945; er wurde aber erst Jahrzehnte später praktisch umgesetzt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Plankalk%C3%BCl",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0036",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wie nennt man die kleinen Programme auf dem Smartphone?",
+      "antworten": [
+        "Apps",
+        "Treiber",
+        "Cookies",
+        "Patches"
+      ],
+      "erklaerung": "App ist die Kurzform von „Application“ (Anwendung).",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=App%20%28Software%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0074",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Wer ließ 1804 in Wales die erste Dampflokomotive auf Schienen fahren?",
+      "antworten": [
+        "Richard Trevithick",
+        "George Stephenson",
+        "Timothy Hackworth",
+        "William Murdoch"
+      ],
+      "erklaerung": "Trevithicks Lokomotive zog 1804 bei Merthyr Tydfil einen Zug mit Eisen und Passagieren. Stephenson baute erst später erfolgreiche Linien.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Richard%20Trevithick",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0025",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Welche Programmiersprache entwickelte James Gosling Mitte der 1990er-Jahre bei Sun Microsystems?",
+      "antworten": [
+        "Java",
+        "Python",
+        "C++",
+        "JavaScript"
+      ],
+      "erklaerung": "Trotz des ähnlichen Namens hat JavaScript mit Java wenig zu tun.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Java%20%28Programmiersprache%29",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -1093,36 +294,19 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0034",
+      "id": "tech-0020",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wie hieß der erste kommerziell erhältliche Mikroprozessor (1971)?",
+      "stufe": "leicht",
+      "frage": "Was passiert in den meisten Windows-Programmen, wenn man Strg+Z drückt?",
       "antworten": [
-        "Intel 4004",
-        "Intel 8086",
-        "Zilog Z80",
-        "MOS 6502"
+        "Die letzte Aktion wird rückgängig gemacht",
+        "Das Dokument wird ausgedruckt",
+        "Der Computer schläft ein",
+        "Alles wird fett geschrieben"
       ],
-      "erklaerung": "Der 4-Bit-Prozessor war ursprünglich für einen Tischrechner gedacht.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Intel%204004",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0021",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Aus welchem chemischen Element bestehen heutige Computerchips hauptsächlich?",
-      "antworten": [
-        "Silizium",
-        "Kupfer",
-        "Aluminium",
-        "Titan"
-      ],
-      "erklaerung": "Daher auch der Name „Silicon Valley“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Silicium",
+      "erklaerung": "Strg+Y stellt sie meist wieder her.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=R%C3%BCckg%C3%A4ngig",
       "erstellt": "2026-10-15",
       "gueltigBis": null
     },
@@ -1144,53 +328,87 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0038",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "leicht",
-      "frage": "Was erzeugt eine Photovoltaikanlage auf dem Dach?",
-      "antworten": [
-        "Strom aus Sonnenlicht",
-        "Warmes Wasser aus Wind",
-        "Benzin aus Sonnenlicht",
-        "Schall aus Wärme"
-      ],
-      "erklaerung": "Solarzellen wandeln Licht direkt in elektrische Energie um.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Photovoltaik",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0078",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Welches Videosystem brachten Philips und Grundig 1979 als Konkurrenz zu VHS und Betamax heraus?",
-      "antworten": [
-        "Video 2000",
-        "Video-CD",
-        "V-Cord",
-        "Laserdisc"
-      ],
-      "erklaerung": "Video 2000 hatte eine wendbare Kassette mit zwei Spuren pro Seite. Es unterlag in den 1980er-Jahren dem Format VHS.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Video%202000",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0057",
+      "id": "tech-0022",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "schwer",
-      "frage": "In welchem Jahr wurde das Videoportal YouTube gegründet?",
+      "frage": "Wer gilt als erste Programmiererin der Geschichte?",
       "antworten": [
-        "2005",
-        "2001",
-        "2008",
-        "2010"
+        "Ada Lovelace",
+        "Grace Hopper",
+        "Marie Curie",
+        "Hedy Lamarr"
       ],
-      "erklaerung": "Google kaufte das Portal ein Jahr später, 2006.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=YouTube",
+      "erklaerung": "Sie schrieb um 1843 ein Programm für Charles Babbages Analytical Engine.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ada%20Lovelace",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0012",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
+      "antworten": [
+        "Vier",
+        "Einen",
+        "Zwei",
+        "Zwölf"
+      ],
+      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
+      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0023",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „PIN“ bei der Bankkarte?",
+      "antworten": [
+        "Persönliche Identifikationsnummer",
+        "Private Internet-Nummer",
+        "Prüf- und Identitätsnachweis",
+        "Plastikkarten-Index-Nummer"
+      ],
+      "erklaerung": "Die vier- bis sechsstellige Geheimzahl bestätigt, dass die Karte dem Besitzer gehört.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pers%C3%B6nliche%20Identifikationsnummer",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0039",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Woraus bestehen die dünnen Fasern in einem Glasfaserkabel?",
+      "antworten": [
+        "Aus Glas",
+        "Aus Kupfer",
+        "Aus Aluminium",
+        "Aus Stahl"
+      ],
+      "erklaerung": "Daten werden darin als Lichtimpulse übertragen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lichtwellenleiter",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0066",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Aus welcher Sprache stammt das Wort „Roboter“, das 1920 durch ein Theaterstück bekannt wurde?",
+      "antworten": [
+        "Tschechisch",
+        "Polnisch",
+        "Russisch",
+        "Ungarisch"
+      ],
+      "erklaerung": "Karel Čapeks Stück „R.U.R.“ (1920) machte das Wort bekannt, das auf tschechisch „robota“ (Zwangsarbeit, Fron) zurückgeht. Geprägt wurde es von seinem Bruder Josef.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Roboter",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1212,6 +430,142 @@
       "gueltigBis": null
     },
     {
+      "id": "tech-0017",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Was misst ein Barometer?",
+      "antworten": [
+        "Den Luftdruck",
+        "Die Luftfeuchtigkeit",
+        "Die Windgeschwindigkeit",
+        "Wie gut die Stimmung an der Bar ist"
+      ],
+      "erklaerung": "Die Luftfeuchtigkeit misst ein Hygrometer, den Wind ein Anemometer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Barometer",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0010",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Was gibt die Einheit „Hertz“ an?",
+      "antworten": [
+        "Schwingungen bzw. Vorgänge pro Sekunde",
+        "Den elektrischen Widerstand",
+        "Die Lichtstärke einer Lampe",
+        "Die magnetische Flussdichte"
+      ],
+      "erklaerung": "1 Hertz = 1 Schwingung pro Sekunde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hertz+Einheit",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0019",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wofür steht „QR“ im Begriff QR-Code?",
+      "antworten": [
+        "Quick Response",
+        "Quality Reference",
+        "Query Record",
+        "Quadrat-Raster"
+      ],
+      "erklaerung": "Der QR-Code wurde 1994 von der japanischen Firma Denso Wave entwickelt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=QR-Code",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0032",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht „SIM“ bei der SIM-Karte im Handy?",
+      "antworten": [
+        "Subscriber Identity Module",
+        "Simple Internet Mode",
+        "Secure Interface Memory",
+        "System Information Manager"
+      ],
+      "erklaerung": "Die Karte weist den Teilnehmer gegenüber dem Mobilfunknetz aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=SIM-Karte",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0083",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Wer erhielt 1934 in Deutschland das Patent auf die Magnetschwebebahn, die Grundlage des Transrapid?",
+      "antworten": [
+        "Hermann Kemper",
+        "Hugo Junkers",
+        "Rudolf Hell",
+        "Ernst Heinkel"
+      ],
+      "erklaerung": "Hermann Kemper meldete 1934 die „schwebende Fahrzeugbahn mit elektromagnetischen Kräften“ an. Der Transrapid baut auf diesem Prinzip auf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Transrapid",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0053",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „ABS“ beim Auto?",
+      "antworten": [
+        "Antiblockiersystem",
+        "Allradbremssensor",
+        "Automatische Bremsstufe",
+        "Abstandsbegrenzungssystem"
+      ],
+      "erklaerung": "Es verhindert das Blockieren der Räder beim starken Bremsen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Antiblockiersystem",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0088",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Welcher Webbrowser machte das Internet ab 1993 durch seine grafische Oberfläche populär?",
+      "antworten": [
+        "NCSA Mosaic",
+        "Netscape Navigator",
+        "Internet Explorer",
+        "Opera"
+      ],
+      "erklaerung": "Mosaic war der Vorläufer von Netscape, dessen Entwickler später die Firma gründeten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=NCSA%20Mosaic",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0011",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr starteten in Deutschland die digitalen Mobilfunknetze D1 und D2?",
+      "antworten": [
+        "1992",
+        "1985",
+        "1998",
+        "2001"
+      ],
+      "erklaerung": "Beide GSM-Netze gingen im Sommer 1992 in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=D-Netz+Mobilfunk+1992",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
       "id": "tech-0024",
       "version": 1,
       "kategorie": "Technik",
@@ -1229,53 +583,376 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0028",
+      "id": "tech-0046",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr ging die erste Website der Welt online?",
+      "stufe": "mittel",
+      "frage": "Nach welchem Erfinder ist der Dieselmotor benannt?",
       "antworten": [
-        "1991",
-        "1985",
-        "1995",
-        "1999"
+        "Rudolf Diesel",
+        "Nikolaus Otto",
+        "Carl Benz",
+        "Gottlieb Daimler"
       ],
-      "erklaerung": "Tim Berners-Lee stellte sie im August 1991 am CERN ins Netz: info.cern.ch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=info.cern.ch",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0066",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Aus welcher Sprache stammt das Wort „Roboter“, das 1920 durch ein Theaterstück bekannt wurde?",
-      "antworten": [
-        "Tschechisch",
-        "Polnisch",
-        "Russisch",
-        "Ungarisch"
-      ],
-      "erklaerung": "Karel Čapeks Stück „R.U.R.“ (1920) machte das Wort bekannt, das auf tschechisch „robota“ (Zwangsarbeit, Fron) zurückgeht. Geprägt wurde es von seinem Bruder Josef.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Roboter",
+      "erklaerung": "Rudolf Diesel erhielt 1893 ein Patent auf seinen Motor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rudolf%20Diesel",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "tech-0039",
+      "id": "tech-0067",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "An welchem Berliner Platz wurde 1924 die erste Verkehrsampel Deutschlands in Betrieb genommen?",
+      "antworten": [
+        "Potsdamer Platz",
+        "Alexanderplatz",
+        "Pariser Platz",
+        "Breitscheidplatz"
+      ],
+      "erklaerung": "Auf dem damals extrem verkehrsreichen Potsdamer Platz stand im Oktober 1924 ein Verkehrsturm mit Signallichtern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Verkehrsampel",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0052",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wie hieß der erste künstliche Erdsatellit, der 1957 ins All startete?",
+      "antworten": [
+        "Sputnik 1",
+        "Explorer 1",
+        "Apollo 1",
+        "Telstar"
+      ],
+      "erklaerung": "Der Start durch die Sowjetunion löste den „Sputnik-Schock“ im Westen aus.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sputnik%201",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0069",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Aus welchen französischen Wörtern setzt sich der Markenname „Velcro“ (Klettverschluss) zusammen?",
+      "antworten": [
+        "Velours und Crochet (Haken)",
+        "Velo und Croix",
+        "Vélin und Cordon",
+        "Velours und Clou"
+      ],
+      "erklaerung": "Der Schweizer Ingenieur Georges de Mestral entwickelte den Klettverschluss nach Beobachtung von Kletten im Hundefell. Der Name verbindet „velours“ (Samt) und „crochet“ (Häkchen).",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Klettverschluss",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0091",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Welcher Italiener erhielt 1909 gemeinsam mit Ferdinand Braun den Nobelpreis für Physik für die Entwicklung der drahtlosen Telegrafie?",
+      "antworten": [
+        "Guglielmo Marconi",
+        "Antonio Meucci",
+        "Enrico Fermi",
+        "Galileo Ferraris"
+      ],
+      "erklaerung": "Guglielmo Marconi und Ferdinand Braun wurden 1909 für ihre Beiträge zur drahtlosen Telegrafie ausgezeichnet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Guglielmo%20Marconi",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0034",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie hieß der erste kommerziell erhältliche Mikroprozessor (1971)?",
+      "antworten": [
+        "Intel 4004",
+        "Intel 8086",
+        "Zilog Z80",
+        "MOS 6502"
+      ],
+      "erklaerung": "Der 4-Bit-Prozessor war ursprünglich für einen Tischrechner gedacht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Intel%204004",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0090",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer führte 1861 in Frankfurt am Main sein „Telephon“ vor, mit dem Töne elektrisch übertragen wurden?",
+      "antworten": [
+        "Philipp Reis",
+        "Werner von Siemens",
+        "Heinrich Hertz",
+        "Ferdinand Braun"
+      ],
+      "erklaerung": "Der Lehrer Philipp Reis stellte 1861 vor dem Physikalischen Verein in Frankfurt sein Telephon vor und prägte den Begriff.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Philipp%20Reis",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0018",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
+      "antworten": [
+        "1992",
+        "1985",
+        "1997",
+        "2001"
+      ],
+      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0015",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Mit wem gründete Paul Allen 1975 die Firma Microsoft?",
+      "antworten": [
+        "Bill Gates",
+        "Steve Jobs",
+        "Steve Wozniak",
+        "Larry Page"
+      ],
+      "erklaerung": "Jobs und Wozniak gründeten 1976 Apple, Larry Page 1998 Google.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0077",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Zwischen welchen beiden Städten schickte Samuel Morse 1844 die erste öffentliche Telegrafenbotschaft „What hath God wrought“?",
+      "antworten": [
+        "Washington und Baltimore",
+        "New York und Philadelphia",
+        "Boston und New York",
+        "Washington und Philadelphia"
+      ],
+      "erklaerung": "Die rund 60 km lange Versuchsleitung führte vom Kapitol in Washington nach Baltimore. Der Satz stammt aus der Bibel (4. Mose).",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Samuel%20Morse",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0060",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Nach welchem Physiker ist die Einheit der elektrischen Stromstärke benannt?",
+      "antworten": [
+        "André-Marie Ampère",
+        "Georg Simon Ohm",
+        "James Watt",
+        "Alessandro Volta"
+      ],
+      "erklaerung": "Ampère war ein französischer Physiker und Mathematiker.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Andr%C3%A9-Marie%20Amp%C3%A8re",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0082",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Welcher Volvo-Ingenieur entwickelte 1959 den heute üblichen Dreipunkt-Sicherheitsgurt?",
+      "antworten": [
+        "Nils Bohlin",
+        "Béla Barényi",
+        "Ferdinand Porsche",
+        "Hans Ledwinka"
+      ],
+      "erklaerung": "Nils Bohlin hatte zuvor Schleudersitze bei Saab konstruiert. Volvo gab das Patent frei, damit jeder Hersteller den Gurt nutzen konnte.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dreipunktgurt",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0073",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Welcher Stoff saugt im von Alfred Nobel erfundenen Dynamit das explosive Nitroglycerin auf?",
+      "antworten": [
+        "Kieselgur",
+        "Schießbaumwolle",
+        "Gips",
+        "Holzkohle"
+      ],
+      "erklaerung": "Nobel mischte Nitroglycerin mit Kieselgur und machte es so handhabbar. Das Dynamit ließ er 1867 patentieren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dynamit",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0016",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wofür steht die Abkürzung „GPS“?",
+      "antworten": [
+        "Global Positioning System",
+        "General Packet Service",
+        "Geo Point Scanner",
+        "Ganz präzise Schätzung"
+      ],
+      "erklaerung": "Das US-Satellitennavigationssystem ist seit 1995 voll in Betrieb.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Positioning%20System",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0078",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Welches Videosystem brachten Philips und Grundig 1979 als Konkurrenz zu VHS und Betamax heraus?",
+      "antworten": [
+        "Video 2000",
+        "Video-CD",
+        "V-Cord",
+        "Laserdisc"
+      ],
+      "erklaerung": "Video 2000 hatte eine wendbare Kassette mit zwei Spuren pro Seite. Es unterlag in den 1980er-Jahren dem Format VHS.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Video%202000",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0043",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "leicht",
-      "frage": "Woraus bestehen die dünnen Fasern in einem Glasfaserkabel?",
+      "frage": "Welche Firma stellt das iPhone her?",
       "antworten": [
-        "Aus Glas",
-        "Aus Kupfer",
-        "Aus Aluminium",
-        "Aus Stahl"
+        "Apple",
+        "Samsung",
+        "Google",
+        "Nokia"
       ],
-      "erklaerung": "Daten werden darin als Lichtimpulse übertragen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lichtwellenleiter",
+      "erklaerung": "Das erste iPhone wurde 2007 vorgestellt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0064",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr kam „Windows 1.0“ auf den Markt?",
+      "antworten": [
+        "1985",
+        "1981",
+        "1990",
+        "1995"
+      ],
+      "erklaerung": "Es lief noch als grafische Oberfläche auf MS-DOS.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Microsoft%20Windows%201.0",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0063",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Aus welchem Metall bestehen die Glühfäden heutiger Glühlampen?",
+      "antworten": [
+        "Wolfram",
+        "Kupfer",
+        "Eisen",
+        "Zinn"
+      ],
+      "erklaerung": "Wolfram hat den höchsten Schmelzpunkt aller Metalle.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wolfram",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0057",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde das Videoportal YouTube gegründet?",
+      "antworten": [
+        "2005",
+        "2001",
+        "2008",
+        "2010"
+      ],
+      "erklaerung": "Google kaufte das Portal ein Jahr später, 2006.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=YouTube",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0061",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Welche Frequenz hat der Wechselstrom aus der Steckdose in Europa?",
+      "antworten": [
+        "50 Hertz",
+        "60 Hertz",
+        "100 Hertz",
+        "25 Hertz"
+      ],
+      "erklaerung": "In den USA sind es dagegen 60 Hertz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Netzfrequenz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0070",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Bei welchem Unternehmen baute Steven Sasson 1975 die erste Digitalkamera?",
+      "antworten": [
+        "Kodak",
+        "Polaroid",
+        "Canon",
+        "Sony"
+      ],
+      "erklaerung": "Sassons Prototyp wog etwa vier Kilo, speicherte Bilder auf Kassette und lieferte 0,01 Megapixel. Kodak sah darin damals keine Zukunft.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Digitalkamera",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0045",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Nach wem ist die Funktechnik Bluetooth benannt?",
+      "antworten": [
+        "Nach dem Dänenkönig Harald Blauzahn",
+        "Nach einem blauen Zahnarztbohrer",
+        "Nach dem Wikinger Erik dem Roten",
+        "Nach dem Schwedenkönig Gustav Blau"
+      ],
+      "erklaerung": "Das Bluetooth-Logo besteht aus den nordischen Runen für H und B.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Bluetooth",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1297,125 +974,6 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0075",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Mit wem gründete Nikolaus Otto 1864 die erste Motorenfabrik der Welt, aus der später Deutz wurde?",
-      "antworten": [
-        "Eugen Langen",
-        "Gottlieb Daimler",
-        "Carl Benz",
-        "Wilhelm Maybach"
-      ],
-      "erklaerung": "Der Kaufmann Eugen Langen stieg als Geldgeber ein, die Firma hieß N.A. Otto & Cie. Daimler und Maybach arbeiteten später bei Deutz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nikolaus%20Otto",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0019",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wofür steht „QR“ im Begriff QR-Code?",
-      "antworten": [
-        "Quick Response",
-        "Quality Reference",
-        "Query Record",
-        "Quadrat-Raster"
-      ],
-      "erklaerung": "Der QR-Code wurde 1994 von der japanischen Firma Denso Wave entwickelt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=QR-Code",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0002",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer baute 1941 mit der Z3 den ersten funktionsfähigen programmgesteuerten Computer?",
-      "antworten": [
-        "Konrad Zuse",
-        "Alan Turing",
-        "Charles Babbage",
-        "John von Neumann"
-      ],
-      "erklaerung": "Die Z3 entstand 1941 in Berlin.",
-      "quelle": "https://de.wikipedia.org/wiki/Zuse_Z3",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0018",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde die erste SMS verschickt?",
-      "antworten": [
-        "1992",
-        "1985",
-        "1997",
-        "2001"
-      ],
-      "erklaerung": "Am 3. Dezember 1992 schickte Neil Papworth „Merry Christmas“ an ein Handy.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Short%20Message%20Service",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0045",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Nach wem ist die Funktechnik Bluetooth benannt?",
-      "antworten": [
-        "Nach dem Dänenkönig Harald Blauzahn",
-        "Nach einem blauen Zahnarztbohrer",
-        "Nach dem Wikinger Erik dem Roten",
-        "Nach dem Schwedenkönig Gustav Blau"
-      ],
-      "erklaerung": "Das Bluetooth-Logo besteht aus den nordischen Runen für H und B.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Bluetooth",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0010",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Was gibt die Einheit „Hertz“ an?",
-      "antworten": [
-        "Schwingungen bzw. Vorgänge pro Sekunde",
-        "Den elektrischen Widerstand",
-        "Die Lichtstärke einer Lampe",
-        "Die magnetische Flussdichte"
-      ],
-      "erklaerung": "1 Hertz = 1 Schwingung pro Sekunde.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hertz+Einheit",
-      "erstellt": "2026-10-13",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0079",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "ingomania",
-      "frage": "Welcher Japaner entwickelte den ersten serientauglichen Lithium-Ionen-Akku und erhielt dafür 2019 den Chemie-Nobelpreis?",
-      "antworten": [
-        "Akira Yoshino",
-        "Shuji Nakamura",
-        "Hideki Shirakawa",
-        "Susumu Kitagawa"
-      ],
-      "erklaerung": "Akira Yoshino teilte sich den Preis mit John Goodenough und Stanley Whittingham. Sony brachte die Zelle 1991 auf den Markt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Akira%20Yoshino",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
       "id": "tech-0048",
       "version": 1,
       "kategorie": "Technik",
@@ -1429,6 +987,210 @@
       ],
       "erklaerung": "Dateien liegen dort auf fremden Servern und sind von überall abrufbar.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Cloud%20Computing",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0001",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „HTTP“?",
+      "antworten": [
+        "Hypertext Transfer Protocol",
+        "High Transfer Text Protocol",
+        "Hyperlink Text Transmission Process",
+        "Heimliches Tippen, total privat"
+      ],
+      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
+      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0080",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Wie hieß der dritte Apple-Mitgründer von 1976, der seine Anteile nach nur wenigen Tagen für 800 Dollar verkaufte?",
+      "antworten": [
+        "Ronald Wayne",
+        "Mike Markkula",
+        "Steve Wozniak",
+        "Jef Raskin"
+      ],
+      "erklaerung": "Ronald Wayne zeichnete das erste Apple-Logo und stieg nach zwölf Tagen aus. Wozniak war dagegen dauerhaft Mitgründer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ronald%20Wayne",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0087",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde Google gegründet?",
+      "antworten": [
+        "1998",
+        "1994",
+        "2001",
+        "2004"
+      ],
+      "erklaerung": "Larry Page und Sergey Brin gründeten die Firma im September 1998.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Google",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0084",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Wer entwickelte Anfang der 1970er-Jahre bei den Bell Labs die Programmiersprache C?",
+      "antworten": [
+        "Dennis Ritchie",
+        "Ken Thompson",
+        "Bjarne Stroustrup",
+        "Niklaus Wirth"
+      ],
+      "erklaerung": "Dennis Ritchie schuf C, um das Betriebssystem Unix damit neu zu schreiben. Ken Thompson war sein Kollege und Mitentwickler von Unix.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=C%20%28Programmiersprache%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0071",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Aus welchem Material bestand das Gehäuse der ersten Computermaus von Douglas Engelbart?",
+      "antworten": [
+        "Holz",
+        "Aluminium",
+        "Bakelit",
+        "Hartgummi"
+      ],
+      "erklaerung": "Engelbarts Prototyp aus den 1960er-Jahren am Stanford Research Institute hatte ein Holzgehäuse mit zwei Rädern. Er erhielt 1970 ein Patent darauf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Computermaus",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0031",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wie viele Bit hat eine IPv4-Adresse?",
+      "antworten": [
+        "32",
+        "16",
+        "64",
+        "128"
+      ],
+      "erklaerung": "Daher gibt es nur rund 4,3 Milliarden IPv4-Adressen; IPv6 hat 128 Bit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IPv4",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0027",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "In welcher Einheit wird die elektrische Leistung angegeben?",
+      "antworten": [
+        "Watt",
+        "Volt",
+        "Ampere",
+        "Joule"
+      ],
+      "erklaerung": "Watt = Volt mal Ampere; Joule ist die Einheit der Energie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Watt%20%28Einheit%29",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0033",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Welche Firma brachte 1979 den Walkman auf den Markt?",
+      "antworten": [
+        "Sony",
+        "Philips",
+        "Grundig",
+        "Panasonic"
+      ],
+      "erklaerung": "Der tragbare Kassettenspieler wurde zum Welterfolg.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Walkman",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0065",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Welches Serienauto war 1964 das erste mit einem Wankelmotor (Kreiskolbenmotor)?",
+      "antworten": [
+        "NSU Spider",
+        "NSU Ro 80",
+        "Mazda Cosmo",
+        "Citroën M35"
+      ],
+      "erklaerung": "Der NSU Wankel-Spider kam 1964 mit Einscheiben-Kreiskolbenmotor auf den Markt. Der berühmtere NSU Ro 80 folgte erst 1967.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=NSU%20Spider",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0021",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Aus welchem chemischen Element bestehen heutige Computerchips hauptsächlich?",
+      "antworten": [
+        "Silizium",
+        "Kupfer",
+        "Aluminium",
+        "Titan"
+      ],
+      "erklaerung": "Daher auch der Name „Silicon Valley“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Silicium",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0047",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wer meldete 1886 den Benz Patent-Motorwagen zum Patent an?",
+      "antworten": [
+        "Carl Benz",
+        "Rudolf Diesel",
+        "Ferdinand Porsche",
+        "Henry Ford"
+      ],
+      "erklaerung": "Der dreirädrige Wagen gilt als erstes Automobil mit Verbrennungsmotor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Carl%20Benz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0062",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Welche Firma brachte 1981 den IBM 5150 auf den Markt, den Urahn des heutigen PCs?",
+      "antworten": [
+        "IBM",
+        "Apple",
+        "Commodore",
+        "Atari"
+      ],
+      "erklaerung": "Sein offener Aufbau machte ihn zum Vorbild für unzählige Nachbauten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IBM%20Personal%20Computer",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1450,53 +1212,359 @@
       "gueltigBis": null
     },
     {
-      "id": "tech-0047",
+      "id": "tech-0003",
       "version": 1,
       "kategorie": "Technik",
-      "stufe": "mittel",
-      "frage": "Wer meldete 1886 den Benz Patent-Motorwagen zum Patent an?",
+      "stufe": "leicht",
+      "frage": "In welcher Einheit wird die elektrische Spannung gemessen?",
       "antworten": [
-        "Carl Benz",
-        "Rudolf Diesel",
-        "Ferdinand Porsche",
-        "Henry Ford"
+        "Volt",
+        "Ampere",
+        "Watt",
+        "Ohm"
       ],
-      "erklaerung": "Der dreirädrige Wagen gilt als erstes Automobil mit Verbrennungsmotor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Carl%20Benz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "tech-0012",
-      "version": 1,
-      "kategorie": "Technik",
-      "stufe": "schwer",
-      "frage": "Wie viele Satelliten braucht ein GPS-Empfänger mindestens für eine Positionsbestimmung in drei Dimensionen?",
-      "antworten": [
-        "Vier",
-        "Einen",
-        "Zwei",
-        "Zwölf"
-      ],
-      "erklaerung": "Drei für den Ort, einer zusätzlich für die Uhrzeit.",
-      "quelle": "https://de.wikipedia.org/wiki/Global_Positioning_System",
+      "erklaerung": "Benannt nach Alessandro Volta. Ampere misst den Strom, Ohm den Widerstand.",
+      "quelle": "https://de.wikipedia.org/wiki/Volt",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     },
     {
-      "id": "tech-0073",
+      "id": "tech-0055",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wer entdeckte 1895 die später nach ihm benannten Strahlen, die man für Knochenfotos nutzt?",
+      "antworten": [
+        "Wilhelm Conrad Röntgen",
+        "Max Planck",
+        "Heinrich Hertz",
+        "Robert Koch"
+      ],
+      "erklaerung": "Röntgen erhielt dafür 1901 den ersten Nobelpreis für Physik.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wilhelm%20Conrad%20R%C3%B6ntgen",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0056",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde die erste Verbindung im ARPANET, dem Vorläufer des Internets, hergestellt?",
+      "antworten": [
+        "1969",
+        "1957",
+        "1975",
+        "1983"
+      ],
+      "erklaerung": "Im Oktober 1969 verband man zwei Computer in Kalifornien.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ARPANET",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0042",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht „GB“ bei Speicherkarten und Festplatten?",
+      "antworten": [
+        "Gigabyte",
+        "Gigabit",
+        "Großbyte",
+        "Gesamtbilanz"
+      ],
+      "erklaerung": "Ein Gigabyte sind rund eine Milliarde Byte.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gigabyte",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0013",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „USB“?",
+      "antworten": [
+        "Universal Serial Bus",
+        "Ultraschneller Speicher-Baustein",
+        "Unterbrechungsfreie Strom-Batterie",
+        "Und schon bootet's"
+      ],
+      "erklaerung": "USB ist seit 1996 der Standard-Anschluss für Geräte am Computer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Universal%20Serial%20Bus",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0026",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht das „E“ in „E-Mail“?",
+      "antworten": [
+        "Electronic",
+        "Express",
+        "Extern",
+        "Easy"
+      ],
+      "erklaerung": "Electronic Mail – elektronische Post.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=E-Mail",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0076",
       "version": 1,
       "kategorie": "Technik",
       "stufe": "ingomania",
-      "frage": "Welcher Stoff saugt im von Alfred Nobel erfundenen Dynamit das explosive Nitroglycerin auf?",
+      "frage": "Welches Zahlensystem nutzte der Röhrencomputer ENIAC (1945) intern zum Rechnen?",
       "antworten": [
-        "Kieselgur",
-        "Schießbaumwolle",
-        "Gips",
-        "Holzkohle"
+        "Dezimalsystem",
+        "Dualsystem",
+        "Oktalsystem",
+        "Hexadezimalsystem"
       ],
-      "erklaerung": "Nobel mischte Nitroglycerin mit Kieselgur und machte es so handhabbar. Das Dynamit ließ er 1867 patentieren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Dynamit",
+      "erklaerung": "Anders als Zuses Z3 rechnete ENIAC mit Ringzählern im Dezimalsystem. Das Dualsystem setzte sich erst bei späteren Rechnern durch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ENIAC",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0089",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „PDF“ bei Dokumenten?",
+      "antworten": [
+        "Portable Document Format",
+        "Printable Data File",
+        "Personal Document Folder",
+        "Public Display Format"
+      ],
+      "erklaerung": "PDF steht für Portable Document Format, ein von Adobe entwickeltes Dateiformat, das Dokumente plattformunabhängig darstellt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Portable%20Document%20Format",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0050",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Welche Brüder führten 1903 den ersten Motorflug durch?",
+      "antworten": [
+        "Orville und Wilbur Wright",
+        "Auguste und Louis Lumière",
+        "Jacob und Wilhelm Grimm",
+        "Otto und Gustav Lilienthal"
+      ],
+      "erklaerung": "Der erste Flug dauerte am 17. Dezember 1903 nur zwölf Sekunden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Br%C3%BCder%20Wright",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0004",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "In welchem Jahr wurde das erste iPhone vorgestellt?",
+      "antworten": [
+        "2007",
+        "2005",
+        "2009",
+        "2010"
+      ],
+      "erklaerung": "Steve Jobs stellte es im Januar 2007 vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=iPhone+erste+Generation",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0081",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Wie hieß die Suchmaschine von Larry Page und Sergey Brin zunächst, bevor sie „Google“ genannt wurde?",
+      "antworten": [
+        "BackRub",
+        "PageRank",
+        "WebCrawler",
+        "Googol"
+      ],
+      "erklaerung": "Das Projekt an der Stanford University hieß ab 1996 „BackRub“, weil es Rückverweise (Backlinks) auswertete. Der Name Google geht auf „Googol“ zurück.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Google",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0079",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "ingomania",
+      "frage": "Welcher Japaner entwickelte den ersten serientauglichen Lithium-Ionen-Akku und erhielt dafür 2019 den Chemie-Nobelpreis?",
+      "antworten": [
+        "Akira Yoshino",
+        "Shuji Nakamura",
+        "Hideki Shirakawa",
+        "Susumu Kitagawa"
+      ],
+      "erklaerung": "Akira Yoshino teilte sich den Preis mit John Goodenough und Stanley Whittingham. Sony brachte die Zelle 1991 auf den Markt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Akira%20Yoshino",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0008",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Auf welchem Betriebssystemkern baut Android auf?",
+      "antworten": [
+        "Auf dem Linux-Kernel",
+        "Auf dem Windows-NT-Kernel",
+        "Auf Darwin, dem Kern von macOS",
+        "Auf Symbian"
+      ],
+      "erklaerung": "Android nutzt einen angepassten Linux-Kernel.",
+      "quelle": "https://de.wikipedia.org/wiki/Android_(Betriebssystem)",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0028",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr ging die erste Website der Welt online?",
+      "antworten": [
+        "1991",
+        "1985",
+        "1995",
+        "1999"
+      ],
+      "erklaerung": "Tim Berners-Lee stellte sie im August 1991 am CERN ins Netz: info.cern.ch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=info.cern.ch",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0044",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wie nennt man ein Programm, das Computerviren aufspüren und entfernen soll?",
+      "antworten": [
+        "Virenscanner",
+        "Defragmentierer",
+        "Browser",
+        "Treiber"
+      ],
+      "erklaerung": "Auch „Antivirenprogramm“ genannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Antivirenprogramm",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0049",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Wofür steht „RAM“ beim Computer?",
+      "antworten": [
+        "Random Access Memory",
+        "Rapid Application Mode",
+        "Read And Modify",
+        "Remote Access Module"
+      ],
+      "erklaerung": "Der Arbeitsspeicher hält Daten nur, solange der Strom anliegt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Random-Access%20Memory",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0086",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "In welcher Einheit wird die Kapazität eines Handy-Akkus meist angegeben?",
+      "antworten": [
+        "Milliamperestunden (mAh)",
+        "Millivolt (mV)",
+        "Megahertz (MHz)",
+        "Milliwatt (mW)"
+      ],
+      "erklaerung": "Sie gibt an, wie lange der Akku einen bestimmten Strom liefern kann.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Amperestunde",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0059",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "schwer",
+      "frage": "Wer begann 1991 mit der Entwicklung des Linux-Kernels?",
+      "antworten": [
+        "Linus Torvalds",
+        "Richard Stallman",
+        "Dennis Ritchie",
+        "Bill Joy"
+      ],
+      "erklaerung": "Der Finne Torvalds war damals Student in Helsinki.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Linus%20Torvalds",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0035",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „PC“?",
+      "antworten": [
+        "Personal Computer",
+        "Portable Controller",
+        "Programm-Center",
+        "Public Connection"
+      ],
+      "erklaerung": "Ein Computer für den persönlichen Gebrauch zu Hause oder im Büro.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Personal%20Computer",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0051",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "mittel",
+      "frage": "Welches Metall steckt im Namen der Lithium-Ionen-Akkus in Handys?",
+      "antworten": [
+        "Lithium",
+        "Blei",
+        "Zink",
+        "Silber"
+      ],
+      "erklaerung": "Lithium ist das leichteste Metall und speichert viel Energie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lithium-Ionen-Akkumulator",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0040",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Was unterscheidet einen Akku von einer normalen Batterie?",
+      "antworten": [
+        "Er lässt sich wieder aufladen",
+        "Er braucht keine Chemie",
+        "Er funktioniert nur mit Solarstrom",
+        "Er ist immer größer"
+      ],
+      "erklaerung": "Akkus sind wiederaufladbare Energiespeicher, normale Batterien nicht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Akkumulator",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     }

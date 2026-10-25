@@ -37,80 +37,80 @@
     {
       "datei": "technik.json",
       "titel": "Technik",
-      "version": 9,
-      "fragen": 88
+      "version": 10,
+      "fragen": 92
     },
     {
       "datei": "geschichte.json",
       "titel": "Geschichte",
-      "version": 9,
-      "fragen": 88
+      "version": 10,
+      "fragen": 92
     },
     {
       "datei": "erdkunde.json",
       "titel": "Erdkunde",
-      "version": 9,
-      "fragen": 88
+      "version": 10,
+      "fragen": 92
     },
     {
       "datei": "film.json",
       "titel": "Film & Fernsehen",
-      "version": 9,
-      "fragen": 88
+      "version": 10,
+      "fragen": 92
     },
     {
       "datei": "sehenswuerdigkeiten.json",
       "titel": "Sehenswürdigkeiten",
-      "version": 9,
-      "fragen": 88
+      "version": 10,
+      "fragen": 92
     },
     {
       "datei": "kueche.json",
       "titel": "Küche & Genuss",
-      "version": 9,
-      "fragen": 88
+      "version": 10,
+      "fragen": 92
     },
     {
       "datei": "aktuell-2026.json",
       "titel": "Aktuelles 2026",
-      "version": 9,
-      "fragen": 86
+      "version": 10,
+      "fragen": 90
     },
     {
       "datei": "einzelhandel.json",
       "titel": "Einzelhandel",
-      "version": 8,
-      "fragen": 86
+      "version": 9,
+      "fragen": 90
     },
     {
       "datei": "bueroalltag.json",
       "titel": "Büroalltag",
-      "version": 8,
-      "fragen": 86
+      "version": 9,
+      "fragen": 90
     },
     {
       "datei": "besserwisser.json",
       "titel": "Besserwisser",
-      "version": 8,
-      "fragen": 86
+      "version": 10,
+      "fragen": 90
     },
     {
       "datei": "jahre.json",
       "titel": "Die 80er, 90er und 00er Jahre",
-      "version": 1,
-      "fragen": 80
+      "version": 2,
+      "fragen": 84
     },
     {
       "datei": "natur.json",
       "titel": "Bienchen & Blümchen",
-      "version": 1,
-      "fragen": 80
+      "version": 2,
+      "fragen": 84
     },
     {
       "datei": "bauernfaenger.json",
       "titel": "Nepper, Schlepper, Bauernfänger",
-      "version": 1,
-      "fragen": 80
+      "version": 2,
+      "fragen": 84
     }
   ]
 }
