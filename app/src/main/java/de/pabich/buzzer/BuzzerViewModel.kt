@@ -316,7 +316,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Lesetest abgeschlossen: speichern und dem Spielleiter mitteilen. */
     fun saveReadSpeed(msPerChar: Int) {
         readMsPerChar = msPerChar
-        app.getSharedPreferences("app", android.content.Context.MODE_PRIVATE).edit().putInt("readMsPerChar", msPerChar).apply()
+        getApplication<Application>().getSharedPreferences("app", android.content.Context.MODE_PRIVATE).edit().putInt("readMsPerChar", msPerChar).apply()
         Diagnostics.log("Lesetempo gemessen: $msPerChar ms je Zeichen")
         player?.reportReadSpeed(msPerChar)
     }
