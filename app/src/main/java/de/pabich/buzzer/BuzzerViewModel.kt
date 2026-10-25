@@ -291,6 +291,45 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         rules = null
     }
 
+    /** Spieler: Spielregeln mit OK bestätigen (Abfrage der Kennung [id]); danach wartet er auf die anderen. */
+    fun confirmRules(id: Int) {
+        if (readMsPerChar > 0) player?.reportReadSpeed(readMsPerChar)
+        player?.confirmRules(id)
+        rules = null
+        rulesWaiting = true
+    }
+
+    /** Spieler: hat bestätigt und wartet, bis alle bestätigt haben. */
+    var rulesWaiting by mutableStateOf(false)
+        private set
+
+    /** Spieler: das Profil des laufenden Spiels kopieren (der Spielleiter schickt es; dann „Speichern“). */
+    fun requestProfile() {
+        player?.requestProfile()
+        status = "Profil wird beim Spielleiter angefordert …"
+    }
+
+    /** Spieler: gemessenes Lesetempo (ms je Zeichen); 0 = nicht gemessen. */
+    var readMsPerChar by mutableStateOf(app.getSharedPreferences("app", android.content.Context.MODE_PRIVATE).getInt("readMsPerChar", 0))
+        private set
+
+    /** Lesetest abgeschlossen: speichern und dem Spielleiter mitteilen. */
+    fun saveReadSpeed(msPerChar: Int) {
+        readMsPerChar = msPerChar
+        app.getSharedPreferences("app", android.content.Context.MODE_PRIVATE).edit().putInt("readMsPerChar", msPerChar).apply()
+        Diagnostics.log("Lesetempo gemessen: $msPerChar ms je Zeichen")
+        player?.reportReadSpeed(msPerChar)
+    }
+
+    /** Spieler: vom Endergebnis zurück zur Wartesicht. */
+    fun dismissFinalResult() { player?.dismissFinalResult() }
+
+    /** Spielleiter: bestätigt die Spielregeln selbst. */
+    fun confirmMasterRules() = master?.confirmMasterRules()
+
+    /** Spielleiter: Bestätigung abbrechen oder trotzdem beginnen. */
+    fun endRulesConfirmation(proceed: Boolean) = master?.endRulesConfirmation(proceed)
+
     fun showRulesAgain() {
         rules = lastRules
     }
@@ -408,6 +447,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             }
         }
         engine.masterName = myName.trim()
+        engine.profileExtra = {
+            if (masterSnapshot?.kind == GameKind.QUIZ) mapOf(ConfigStore.KIND_KEY to ConfigStore.KIND_QUIZ) else emptyMap()
+        }
         engine.onChanged = { snap ->
             masterSnapshot = snap
             acceptReturning()
@@ -562,6 +604,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         testMode = false
         rules = null
         lastRules = null
+        rulesWaiting = false
         intro = null
         master = null
         player = null
@@ -662,12 +705,23 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     /** Quiz starten: erst die Rennszene auf allen Geräten, dann die erste Frage. */
     fun startQuiz() {
         val engine = master ?: return
-        if (quizStartPending != null) return
+        if (quizStartPending != null || engine.snapshot().rules != null) return
         if (pickQuestions(engine.settings).questions.isEmpty() || engine.snapshot().players.none { it.connected }) {
             startQuizNow()
             return
         }
-        sendRules(engine)
+        // Erst bestätigen alle die Spielregeln, dann Rennszene und erste Frage.
+        if (engine.settings.rulesConfirm && !engine.hasStarted) {
+            val (title, lines) = rulesFor(engine) ?: return startQuizIntro(engine)
+            engine.onRulesConfirmed = { if (master === engine) startQuizIntro(engine, sendRules = false) }
+            val exempt = engine.snapshot().players.filter { (peerBuilds[it.id] ?: 0) < RULES_CONFIRM_BUILD }.map { it.id }.toSet()
+            if (engine.requestRulesConfirmation(title, lines, exempt)) return
+        }
+        startQuizIntro(engine)
+    }
+
+    private fun startQuizIntro(engine: MasterEngine, sendRules: Boolean = true) {
+        if (sendRules) sendRules(engine)
         engine.playIntro(nextVariant(getApplication(), "lastRace", de.pabich.buzzer.ui.RACE_VARIANTS))
         quizStartPending = scheduler.schedule(de.pabich.buzzer.ui.INTRO_TOTAL_MS + 100L) {
             quizStartPending = null
@@ -1461,6 +1515,16 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 Diagnostics.log("Spielregeln erhalten: ${message.title}")
                 rules = message
                 lastRules = message
+                if (readMsPerChar > 0) player?.reportReadSpeed(readMsPerChar)
+                return
+            }
+            is Message.RulesDone -> {
+                if (master != null || endpointId != masterEndpoint) return
+                rulesWaiting = false
+                if (rules?.confirmId == message.id) {
+                    Diagnostics.log("Alle haben die Spielregeln bestätigt – es geht los")
+                    rules = null
+                }
                 return
             }
             is Message.Succession -> {
@@ -1764,6 +1828,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     // ------------------------------------------------------------------ Spielregeln
 
     /** Regeln der laufenden Runde in Klartext – für Spieler beim Beitritt und zu Spielbeginn. */
+    /** Spielleiter: aktuelle Spielregeln (Titel, Zeilen) für die Bestätigung. */
+    fun currentRules() = master?.let(::rulesFor)
+
     private fun rulesFor(engine: MasterEngine): Pair<String, List<Pair<String, String>>>? {
         val s = engine.settings
         val kind = engine.snapshot().kind ?: return null
@@ -2292,6 +2359,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
         /** Ab diesem Build spielen Spieler im Testmodus des Selbsttests mit. */
         const val SELFTEST_BUILD = 35
+
+        /** Ab diesem Build bestätigen Spieler die Spielregeln mit OK (ältere werden nicht abgewartet). */
+        const val RULES_CONFIRM_BUILD = 39
 
         /** Ab diesem Build beantworten Spieler „Diagnosen abrufen“. */
         const val DIAG_REQUEST_BUILD = 27

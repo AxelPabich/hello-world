@@ -13,6 +13,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -281,22 +282,72 @@ fun UpdateDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
     )
 }
 
-/** Spielregeln der Runde – beim Beitritt und zu Spielbeginn; verschwindet, sobald gespielt wird. */
+/**
+ * Spielregeln der Runde. Mit Kennung ([Message.Rules.confirmId] ≠ 0) beginnt das Spiel erst, wenn alle
+ * mit OK bestätigt haben: groß und gut lesbar, nicht wegtippbar. Sonst reine Information.
+ */
 @Composable
-fun RulesDialog(rules: de.pabich.buzzer.core.Message.Rules, onDismiss: () -> Unit) {
+fun RulesDialog(rules: de.pabich.buzzer.core.Message.Rules, onConfirm: (() -> Unit)?, onDismiss: () -> Unit) {
+    val confirming = rules.confirmId != 0
     AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(rules.title) },
+        onDismissRequest = { if (!confirming) onDismiss() },
+        properties = androidx.compose.ui.window.DialogProperties(dismissOnBackPress = !confirming, dismissOnClickOutside = !confirming),
+        title = { Text(rules.title, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold) },
         text = {
-            Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+            Column(Modifier.heightIn(max = 520.dp).verticalScroll(rememberScrollState())) {
                 for ((label, value) in rules.lines) {
-                    Text(label, style = MaterialTheme.typography.labelLarge)
-                    Text(value, style = MaterialTheme.typography.bodyMedium)
-                    Spacer(Modifier.padding(3.dp))
+                    Text(label.uppercase(), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                    Text(value, style = MaterialTheme.typography.titleMedium)
+                    Spacer(Modifier.padding(5.dp))
                 }
             }
         },
-        confirmButton = { TextButton(onClick = onDismiss) { Text("Alles klar!") } },
+        confirmButton = {
+            if (confirming) {
+                Button(onClick = { onConfirm?.invoke() }) { Text("OK – ich bin bereit", style = MaterialTheme.typography.titleMedium) }
+            } else {
+                TextButton(onClick = onDismiss) { Text("Alles klar!") }
+            }
+        },
+    )
+}
+
+/** Spielleiter: Stand der Regel-Bestätigung – wer hat, wer fehlt; er bestätigt selbst oder beginnt trotzdem. */
+@Composable
+fun MasterRulesDialog(
+    state: de.pabich.buzzer.core.MasterEngine.RulesState,
+    rules: List<Pair<String, String>>,
+    title: String,
+    onConfirm: () -> Unit,
+    onStartAnyway: () -> Unit,
+    onCancel: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = {},
+        title = { Text(title, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold) },
+        text = {
+            Column(Modifier.heightIn(max = 520.dp).verticalScroll(rememberScrollState())) {
+                for ((label, value) in rules) {
+                    Text(label.uppercase(), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                    Text(value, style = MaterialTheme.typography.titleMedium)
+                    Spacer(Modifier.padding(5.dp))
+                }
+                Spacer(Modifier.padding(4.dp))
+                Text("Die Runde beginnt, sobald alle bestätigt haben.", style = MaterialTheme.typography.labelLarge)
+                if (state.confirmedNames.isNotEmpty()) Text("✅ " + state.confirmedNames.joinToString(), style = MaterialTheme.typography.bodyMedium)
+                if (state.waitingNames.isNotEmpty()) Text("⏳ " + state.waitingNames.joinToString(), style = MaterialTheme.typography.bodyMedium)
+            }
+        },
+        confirmButton = {
+            if (!state.masterConfirmed) Button(onClick = onConfirm) { Text("OK – ich bin bereit") }
+            else TextButton(onClick = onStartAnyway) { Text("Trotzdem beginnen") }
+        },
+        dismissButton = {
+            Row {
+                if (!state.masterConfirmed) TextButton(onClick = onStartAnyway) { Text("Sofort beginnen") }
+                TextButton(onClick = onCancel) { Text("Abbrechen") }
+            }
+        },
     )
 }
 
@@ -347,3 +398,61 @@ fun SelfTestResultsDialog(results: List<de.pabich.buzzer.core.SelfTest.Result>, 
     )
 }
 
+
+private val READ_SAMPLES = listOf(
+    "Die Katze schläft auf dem Sofa.",
+    "Welcher Fluss ist der längste Europas und mündet nach mehr als dreitausend Kilometern ins Kaspische Meer?",
+    "Im Jahr 1989 fiel die Berliner Mauer.",
+    "Wer schrieb den Roman „Die Verwandlung“, in dem ein Handlungsreisender eines Morgens als ungeheures Ungeziefer erwacht?",
+    "Wie viele Beine hat eine Spinne?",
+)
+
+/**
+ * Lesetest: fünf Beispielzeilen unterschiedlicher Länge, jede mit „Fertig“ bestätigen. Daraus entsteht das
+ * Lesetempo (ms je Zeichen), das der Spielleiter für die Wartezeit zwischen Frage und Antworten nutzt.
+ */
+@Composable
+fun ReadTestDialog(current: Int, onSave: (Int) -> Unit, onDismiss: () -> Unit) {
+    var index by remember { mutableStateOf(-1) }
+    var startedAt by remember { mutableStateOf(0L) }
+    var totalMs by remember { mutableStateOf(0L) }
+    var totalChars by remember { mutableStateOf(0) }
+    val done = index >= READ_SAMPLES.size
+    val measured = if (totalChars > 0) (totalMs.toDouble() / totalChars).toInt().coerceIn(20, 400) else 0
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Lesetest") },
+        text = {
+            Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                when {
+                    index < 0 -> {
+                        Text("Du liest nacheinander ${READ_SAMPLES.size} Beispielzeilen in deinem normalen Tempo und tippst jeweils „Fertig“. Daraus berechnet die App dein Lesetempo; der Spielleiter wartet dann nach jeder Frage lange genug.")
+                        if (current > 0) Text("Bisher gemessen: $current ms je Zeichen", style = MaterialTheme.typography.bodySmall)
+                    }
+                    !done -> {
+                        Text("Zeile ${index + 1} von ${READ_SAMPLES.size}", style = MaterialTheme.typography.labelLarge)
+                        Spacer(Modifier.padding(4.dp))
+                        Text(READ_SAMPLES[index], style = MaterialTheme.typography.titleLarge)
+                    }
+                    else -> {
+                        Text("Dein Lesetempo: $measured ms je Zeichen", style = MaterialTheme.typography.titleMedium)
+                        Text("Etwa ${"%.1f".format(java.util.Locale.GERMANY, 1000.0 / measured)} Zeichen pro Sekunde. Mit „Übernehmen“ erfährt es der Spielleiter.", style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            when {
+                index < 0 -> TextButton(onClick = { index = 0; startedAt = android.os.SystemClock.uptimeMillis() }) { Text("Start") }
+                !done -> TextButton(onClick = {
+                    totalMs += android.os.SystemClock.uptimeMillis() - startedAt
+                    totalChars += READ_SAMPLES[index].length
+                    index++
+                    startedAt = android.os.SystemClock.uptimeMillis()
+                }) { Text("Fertig") }
+                else -> TextButton(onClick = { onSave(measured); onDismiss() }) { Text("Übernehmen") }
+            }
+        },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
+    )
+}

@@ -207,6 +207,9 @@ sealed interface Message {
     /** M → S: Das Quiz ist zu Ende (oder abgebrochen) – die Spieler sehen das Endergebnis. */
     data class QuizEnd(val aborted: Boolean) : Message
 
+    /** S → M: Der Spieler möchte das Profil des laufenden Spiels kopieren (Antwort: [Profile]). */
+    data object ProfileRequest : Message
+
     /** S → M: Lesetempo des Spielers in Millisekunden je Zeichen (aus dem Lesetest). */
     data class ReadSpeed(val msPerChar: Int) : Message
 
@@ -330,6 +333,7 @@ object MessageCodec {
             is Message.RulesOk -> "RULES_OK" to mapOf("id" to message.id)
             is Message.RulesDone -> "RULES_DONE" to mapOf("id" to message.id)
             is Message.QuizEnd -> "QUIZ_END" to mapOf("a" to message.aborted)
+            Message.ProfileRequest -> "PROFILE_REQ" to emptyMap()
             is Message.ReadSpeed -> "READ_SPEED" to mapOf("ms" to message.msPerChar)
         }
         val text = buildString {
@@ -438,6 +442,7 @@ object MessageCodec {
             "RULES_OK" -> Message.RulesOk(int("id"))
             "RULES_DONE" -> Message.RulesDone(int("id"))
             "QUIZ_END" -> Message.QuizEnd(bool("a"))
+            "PROFILE_REQ" -> Message.ProfileRequest
             "READ_SPEED" -> Message.ReadSpeed(int("ms"))
             else -> null
         }

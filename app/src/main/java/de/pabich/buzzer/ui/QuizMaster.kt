@@ -173,15 +173,59 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
         }
         TemplateHeader(vm, snapshot)
         SetupTitle("Kategorien")
-        FlowChips(
-            items = categories,
-            selected = { settings.quizCategories.isEmpty() || it in settings.quizCategories },
-            onToggle = { cat ->
-                val current = if (settings.quizCategories.isEmpty()) categories.toSet() else settings.quizCategories
-                val next = if (cat in current) current - cat else current + cat
-                change(settings.copy(quizCategories = if (next.size == categories.size) emptySet() else next.ifEmpty { setOf(cat) }))
-            },
-        )
+        var categoryPopup by remember { mutableStateOf(false) }
+        val chosen = if (settings.quizCategories.isEmpty()) categories.size else settings.quizCategories.count { it in categories }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .heightIn(min = 52.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .background(theme.panel)
+                .clickable { categoryPopup = true }
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Column(Modifier.weight(1f)) {
+                Text(
+                    if (chosen == categories.size) "Alle Kategorien ($chosen)" else "$chosen von ${categories.size} Kategorien",
+                    color = theme.text, fontSize = 16.sp, fontWeight = FontWeight.Bold,
+                )
+                if (chosen != categories.size) {
+                    Text(
+                        categories.filter { it in settings.quizCategories }.joinToString(),
+                        color = theme.muted, fontSize = 13.sp, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+            Text("Auswählen ▸", color = theme.accent2, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+        }
+        if (categoryPopup) {
+            AlertDialog(
+                onDismissRequest = { categoryPopup = false },
+                containerColor = theme.panel,
+                title = { Text("Kategorien", color = theme.text, fontFamily = theme.display) },
+                text = {
+                    Column(Modifier.verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Chip("Alle", chosen == categories.size, Modifier.weight(1f)) { change(settings.copy(quizCategories = emptySet())) }
+                            Chip("Keine", false, Modifier.weight(1f)) {
+                                change(settings.copy(quizCategories = categories.firstOrNull()?.let(::setOf) ?: emptySet()))
+                            }
+                        }
+                        for (cat in categories) {
+                            val on = settings.quizCategories.isEmpty() || cat in settings.quizCategories
+                            Chip(cat, on, Modifier.fillMaxWidth()) {
+                                val current = if (settings.quizCategories.isEmpty()) categories.toSet() else settings.quizCategories
+                                val next = if (cat in current) current - cat else current + cat
+                                change(settings.copy(quizCategories = if (next.size == categories.size) emptySet() else next.ifEmpty { setOf(cat) }))
+                            }
+                        }
+                        Text("Mindestens eine Kategorie bleibt gewählt.", color = theme.muted, fontSize = 12.sp)
+                    }
+                },
+                confirmButton = { TextButton(onClick = { categoryPopup = false }) { Text("Fertig", color = theme.accent, fontWeight = FontWeight.Bold) } },
+            )
+        }
         SetupTitle("Schwierigkeit")
         // Die Stufen kommen aus der Fragendatenbank (index.json) – neue erscheinen hier von selbst.
         val levels = remember(dataVersion) { QuizLevel.entries }
@@ -250,6 +294,18 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
                 fontSize = 13.sp,
             )
         }
+        ToggleRow("Antworten für jeden Spieler anders mischen", settings.quizShuffleAnswers) { change(settings.copy(quizShuffleAnswers = it)) }
+        Text(
+            if (settings.quizShuffleAnswers) "Jeder sieht die Antworten in eigener Reihenfolge."
+            else "Alle sehen die Antworten in derselben Reihenfolge – gleiche Chancen bei Zeitwertung.",
+            color = theme.muted, fontSize = 13.sp,
+        )
+        ToggleRow("Lesezeit der Frage anpassen", settings.quizReadAdapt) { change(settings.copy(quizReadAdapt = it)) }
+        Text(
+            "Die Pause zwischen Frage und Antworten richtet sich nach Fragenlänge und dem langsamsten Lesetempo der Spieler.",
+            color = theme.muted, fontSize = 13.sp,
+        )
+        ToggleRow("Spielregeln vor Spielbeginn bestätigen", settings.rulesConfirm) { change(settings.copy(rulesConfirm = it)) }
         ToggleRow("Ich spiele mit", settings.masterPlays) { change(settings.copy(masterPlays = it)) }
         Row(
             Modifier.fillMaxWidth().border(1.dp, theme.line, RoundedCornerShape(12.dp)).padding(horizontal = 12.dp, vertical = 6.dp),

@@ -29,7 +29,7 @@ class StartRulesTest {
     fun `new messages and settings survive the codec`() {
         val ms = listOf(
             Message.Rules("Quiz", listOf("Zeit" to "20 s"), confirmId = 3), Message.Rules("Quiz", emptyList()),
-            Message.RulesOk(3), Message.RulesDone(3), Message.QuizEnd(true), Message.ReadSpeed(95),
+            Message.RulesOk(3), Message.RulesDone(3), Message.ProfileRequest, Message.QuizEnd(true), Message.ReadSpeed(95),
         )
         for (m in ms) assertEquals(m, MessageCodec.decode(MessageCodec.encode(m)))
         val s = Settings(quizShuffleAnswers = false, quizReadAdapt = false, rulesConfirm = false)
@@ -151,5 +151,15 @@ class StartRulesTest {
         h.time.advanceBy(1_000)
         assertTrue(h.view("Clara").finalResult)
         assertFalse(h.view("Clara").finalAborted)
+    }
+
+    @Test
+    fun `a player can request the profile of the running game`() {
+        val g = game()
+        val peter = g.player("Peter")
+        peter.engine.requestProfile()
+        g.time.advanceBy(300)
+        val profile = g.received.getValue(peter.id).filterIsInstance<Message.Profile>().single()
+        assertEquals(SettingsCodec.toMap(g.master.settings), profile.values)
     }
 }

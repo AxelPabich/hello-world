@@ -191,29 +191,22 @@ private fun AnswerGrid(quiz: PlayerEngine.QuizView, onTap: (Int, Long) -> Unit, 
             Modifier.fillMaxWidth().then(if (fit.overflows) Modifier.verticalScroll(scroll) else Modifier),
             verticalArrangement = Arrangement.spacedBy(gap),
         ) {
-            for (row in 0 until 2) {
-                Row(
-                    Modifier.fillMaxWidth().height(fit.rowHeight),
-                    horizontalArrangement = Arrangement.spacedBy(gap),
-                ) {
-                    for (col in 0 until 2) {
-                        val pos = row * 2 + col
-                        val text = quiz.answers.getOrNull(pos) ?: continue
-                        val st = state(pos)
-                        AnswerField(
-                            letter = 'A' + pos,
-                            text = text,
-                            state = st,
-                            thumb = st == FieldState.CORRECT && result?.chosenPosition == pos,
-                            chosenInfo = if (st == FieldState.CHOSEN && result == null) quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" } else null,
-                            enabled = enabled,
-                            compact = compact,
-                            fontSize = fit.fontSize,
-                            onTap = { time -> onTap(pos, time) },
-                            modifier = Modifier.weight(1f).fillMaxHeight(),
-                        )
-                    }
-                }
+            // Vier Felder untereinander über die ganze Breite – so lassen sich lange Antworten gut lesen.
+            for (pos in 0 until 4) {
+                val text = quiz.answers.getOrNull(pos) ?: continue
+                val st = state(pos)
+                AnswerField(
+                    letter = 'A' + pos,
+                    text = text,
+                    state = st,
+                    thumb = st == FieldState.CORRECT && result?.chosenPosition == pos,
+                    chosenInfo = if (st == FieldState.CHOSEN && result == null) quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" } else null,
+                    enabled = enabled,
+                    compact = compact,
+                    fontSize = fit.fontSize,
+                    onTap = { time -> onTap(pos, time) },
+                    modifier = Modifier.fillMaxWidth().height(fit.rowHeight),
+                )
             }
         }
     }
@@ -236,14 +229,15 @@ private fun answerFit(answers: List<String>, width: Dp, height: Dp, compact: Boo
     val density = LocalDensity.current
     val pad = fieldPadding(compact)
     // Rahmen (bis 3 dp) und Buchstabenkreis mit Abstand; unten Platz für „DEINE WAHL“.
-    val textWidth = ((width - gap) / 2 - pad * 2 - 6.dp).coerceAtLeast(40.dp)
-    val chrome = pad * 2 + 6.dp + if (compact) 22.dp + 4.dp else 30.dp + 8.dp + 8.dp + 15.dp
+    val letter = if (compact) 22.dp else 30.dp
+    val textWidth = (width - pad * 2 - 6.dp - letter - 10.dp - if (compact) 0.dp else 40.dp).coerceAtLeast(40.dp)
+    val chrome = pad * 2 + 6.dp + if (compact) 0.dp else 15.dp
     val base = when {
-        compact -> 78.dp
-        height != Dp.Infinity -> ((height - gap) / 2).coerceAtLeast(90.dp)
-        else -> 140.dp
+        compact -> 46.dp
+        height != Dp.Infinity -> ((height - gap * 3) / 4).coerceAtLeast(56.dp)
+        else -> 72.dp
     }
-    val sizes = if (compact) listOf(13.sp, 12.sp) else listOf(16.sp, 15.sp, 14.sp, 13.sp)
+    val sizes = if (compact) listOf(15.sp, 14.sp, 13.sp) else listOf(20.sp, 18.sp, 16.sp, 15.sp, 14.sp)
     fun need(size: TextUnit): Dp = with(density) {
         val widthPx = textWidth.roundToPx()
         val tallest = answers.maxOfOrNull { text ->
@@ -259,7 +253,7 @@ private fun answerFit(answers: List<String>, width: Dp, height: Dp, compact: Boo
     return remember(answers, width, height, compact, density) {
         val font = sizes.firstOrNull { need(it) <= base } ?: sizes.last()
         val row = maxOf(base, need(font))
-        AnswerFit(font, row, height != Dp.Infinity && row * 2 + gap > height)
+        AnswerFit(font, row, height != Dp.Infinity && row * 4 + gap * 3 > height)
     }
 }
 
@@ -311,7 +305,7 @@ private fun AnswerField(
             }
             .padding(fieldPadding(compact)),
     ) {
-        Column(verticalArrangement = Arrangement.spacedBy(if (compact) 4.dp else 8.dp)) {
+        Row(Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Box(
                 Modifier
                     .size(if (compact) 22.dp else 30.dp)
@@ -339,6 +333,7 @@ private fun AnswerField(
                     fontSize = if (compact) 12.sp else 16.sp,
                 )
             }
+            Column(Modifier.weight(1f).padding(end = if (compact) 0.dp else 36.dp)) {
             Text(
                 text,
                 color = fg,
@@ -350,8 +345,9 @@ private fun AnswerField(
             if (chosenInfo != null && !compact) {
                 Text(chosenInfo, color = fg, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
             }
+            }
         }
-        if (thumb) Text("👍", fontSize = if (compact) 26.sp else 40.sp, modifier = Modifier.align(Alignment.TopEnd))
+        if (thumb) Text("👍", fontSize = if (compact) 22.sp else 30.sp, modifier = Modifier.align(Alignment.CenterEnd))
     }
 }
 
@@ -565,11 +561,19 @@ fun QuizPlayerContent(
     confettiSeq: Int,
     onTap: (Int, Long) -> Unit,
     onChallenge: (String) -> Unit,
+    onDismissFinal: () -> Unit = {},
     modifier: Modifier = Modifier,
 ) {
     val theme = LocalBuzzerTheme.current
     val quiz = view.quiz
-    Box(modifier.background(theme.ground)) {
+    // Während der Runde bleibt der Chat stumm: neue Nachrichten erscheinen erst nach der eigenen Antwort.
+    val holdChat = quiz != null && quiz.result == null && quiz.chosen < 0 && quiz.stage != QuizStage.CLOSED
+    var heldAt by remember { mutableStateOf(chat.size) }
+    LaunchedEffect(holdChat, quiz?.number) { if (holdChat) heldAt = chat.size }
+    val shownChat = if (holdChat) chat.take(heldAt.coerceAtMost(chat.size)) else chat
+    BoxWithConstraints(modifier.background(theme.ground)) {
+        // Je nach Platz: auf kleinen Bildschirmen bleibt der Chat dem Menü vorbehalten.
+        val roomForChat = maxHeight >= 640.dp
         Column(Modifier.fillMaxSize()) {
             if (quiz == null) {
                 Column(
@@ -617,6 +621,9 @@ fun QuizPlayerContent(
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 10.dp),
                     )
                 }
+                if (result == null && roomForChat && shownChat.isNotEmpty()) {
+                    ChatPanel(shownChat, theme.muted, Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp), maxLines = 2)
+                }
                 if (result != null) {
                     QuizExplanation(
                         explanation = result.explanation,
@@ -625,13 +632,43 @@ fun QuizPlayerContent(
                         onChallenge = onChallenge,
                         modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 10.dp),
                     )
-                    if (chat.isNotEmpty()) ChatPanel(chat, theme.text, Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), maxLines = 3)
+                    if (shownChat.isNotEmpty()) ChatPanel(shownChat, theme.text, Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), maxLines = 3)
                 }
                 Spacer(Modifier.height(10.dp))
             }
             ScoreStrip(name, view)
         }
         Confetti(confettiSeq)
+        if (view.finalResult) FinalResult(view, onDismissFinal)
+    }
+}
+
+/** Endergebnis nach Spielende oder Abbruch; ein Klick führt zurück zur Wartesicht „Quiz einrichten“. */
+@Composable
+private fun FinalResult(view: PlayerEngine.View, onBack: () -> Unit) {
+    val theme = LocalBuzzerTheme.current
+    Column(
+        Modifier.fillMaxSize().background(theme.ground).padding(horizontal = 20.dp, vertical = 24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(14.dp),
+    ) {
+        BigTitle(if (view.finalAborted) "Quiz abgebrochen" else "Quiz beendet", size = 38.sp)
+        Text(
+            if (view.finalAborted) "Der Spielleiter hat das Quiz abgebrochen. So stand es zuletzt:" else "Das Endergebnis:",
+            color = theme.muted, fontSize = 16.sp, textAlign = TextAlign.Center,
+        )
+        if (view.board.isNotEmpty()) {
+            Scoreboard(
+                entries = view.board,
+                maxScore = view.boardMaxScore,
+                color = theme.text,
+                modifier = Modifier.fillMaxWidth().weight(1f, fill = false).clip(RoundedCornerShape(16.dp)).background(theme.panel).padding(14.dp),
+            )
+        }
+        Text("Dein Ergebnis: ${view.score}", color = theme.text, fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        androidx.compose.material3.Button(onClick = onBack, modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp)) {
+            Text("Weiter zum nächsten Quiz", fontSize = 18.sp)
+        }
     }
 }
 

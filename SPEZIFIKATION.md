@@ -850,3 +850,24 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   ungelesene Nachrichten, neue Nachrichten erscheinen während der Runde als Zeile unter der Kopfzeile
   (Tipp öffnet den Chat), und das Chatfenster zeigt den ganzen Verlauf (die letzten 30 Nachrichten).
   Senden bleibt auf die Pausen beschränkt.
+
+## 58. Neue Kategorien, Regeln bestätigen, Lesezeit (Build 39)
+
+- **Kategorien:** „Die 80er, 90er und 00er Jahre“ (`jahre`), „Bienchen & Blümchen“ (`natur`, Fauna und Flora),
+  „Nepper, Schlepper, Bauernfänger“ (`bauernfaenger`); je 20 Fragen pro Stufe.
+- **Kategorienauswahl** ist ein Popup (Alle/Keine, mindestens eine bleibt gewählt).
+- **Spielregeln bestätigen** (`Settings.rulesConfirm`, Standard an): `RULES` mit `cid` ≠ 0 → Spieler
+  antworten `RULES_OK`; sind alle (und der Spielleiter) bestätigt, sendet der Spielleiter `RULES_DONE`, und
+  das Spiel beginnt (Rennszene, erste Frage). „Sofort beginnen“ überspringt das Warten. Apps vor Build 39
+  werden nicht abgewartet.
+- **Profil kopieren:** Spieler senden `PROFILE_REQ`, der Spielleiter antwortet mit `PROFILE`.
+- **Spielende:** `QUIZ_END(aborted)` zeigt Spielern das Endergebnis; ein Klick führt zur Wartesicht.
+- **Zurück beim Spielleiter:** Quiz einrichten → Quiz-Vorlage → Spielart → „Spiel verlassen?“.
+- **Chat:** In der Spieleransicht bei genug Höhe sichtbar; während der Frage kommen neue Nachrichten erst
+  nach der eigenen Antwort.
+- **Antwortfelder:** vier Felder untereinander über die ganze Breite.
+- **Lesezeit:** Wartezeit zwischen Frage und Antworten = `LEAD_BASE_MS` + Zeichenzahl × langsamstes
+  Lesetempo (Standard 80 ms/Zeichen, 20–400), höchstens 25 s (`Settings.quizReadAdapt`). Spieler messen ihr
+  Tempo im Lesetest und melden es per `READ_SPEED`.
+- **Mischen abschaltbar:** `Settings.quizShuffleAnswers` (Standard an); aus = gleiche Reihenfolge für alle.
+

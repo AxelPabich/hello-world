@@ -311,6 +311,12 @@ class PlayerEngine(
         send(Message.RulesOk(id))
     }
 
+    /** Das Profil des laufenden Spiels vom Spielleiter anfordern (Antwort kommt über [onProfile]). */
+    fun requestProfile() {
+        log("Profil des Spiels angefordert")
+        send(Message.ProfileRequest)
+    }
+
     /** Lesetempo aus dem Lesetest an den Spielleiter melden (ms je Zeichen). */
     fun reportReadSpeed(msPerChar: Int) {
         log("Lesetempo $msPerChar ms je Zeichen gemeldet")
@@ -320,7 +326,7 @@ class PlayerEngine(
     /** Vom Endergebnis zurück zur Wartesicht (Quiz einrichten). */
     fun dismissFinalResult() {
         if (!view.finalResult) return
-        update { it.copy(finalResult = false, hint = "Der Spielleiter richtet das nächste Quiz ein") }
+        update { it.copy(finalResult = false, quiz = null, hint = "Der Spielleiter richtet das nächste Quiz ein") }
     }
 
     private fun onQuizAsk(m: Message.QuizAsk) {

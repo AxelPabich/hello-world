@@ -552,6 +552,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
     var showMenu by remember { mutableStateOf(false) }
     var showDiagnostics by remember { mutableStateOf(false) }
     var showSaved by remember { mutableStateOf(false) }
+    var showReadTest by remember { mutableStateOf(false) }
     BackHandler { confirmLeave = true }
     val view = vm.playerView ?: return
 
@@ -571,6 +572,8 @@ fun PlayerScreen(vm: BuzzerViewModel) {
                     BarButton("⋮") { showMenu = true }
                     DropdownMenu(expanded = showMenu, onDismissRequest = { showMenu = false }) {
                         DropdownMenuItem(text = { Text("Diagnose senden") }, onClick = { showMenu = false; showDiagnostics = true })
+                        DropdownMenuItem(text = { Text("Profil dieses Spiels kopieren") }, onClick = { showMenu = false; vm.requestProfile() })
+                        DropdownMenuItem(text = { Text("Lesetempo messen") }, onClick = { showMenu = false; showReadTest = true })
                         if (vm.lastRules != null) {
                             DropdownMenuItem(text = { Text("Spielregeln dieser Runde") }, onClick = { showMenu = false; vm.showRulesAgain() })
                         }
@@ -592,6 +595,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
                     confettiSeq = vm.confettiSeq,
                     onTap = { pos, time -> vm.tapAnswer(pos, time) },
                     onChallenge = { vm.challenge(it) },
+                    onDismissFinal = { vm.dismissFinalResult() },
                     modifier = Modifier.weight(1f).fillMaxWidth(),
                 )
             } else {
@@ -621,7 +625,15 @@ fun PlayerScreen(vm: BuzzerViewModel) {
     }
     DiagnoseOfferDialog(vm)
     DiagnoseRequestDialog(vm)
-    vm.rules?.let { RulesDialog(it) { vm.dismissRules() } }
+    vm.rules?.let { RulesDialog(it, onConfirm = { vm.confirmRules(it.confirmId) }, onDismiss = { vm.dismissRules() }) }
+    if (vm.rulesWaiting && vm.rules == null) {
+        AlertDialog(
+            onDismissRequest = {},
+            title = { Text("Warte auf die anderen …") },
+            text = { Text("Du hast die Spielregeln bestätigt. Die Runde beginnt, sobald alle bereit sind.") },
+            confirmButton = {},
+        )
+    }
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showSaved) SavedReportsDialog(vm) { showSaved = false }
     if (showChat) {
@@ -632,6 +644,7 @@ fun PlayerScreen(vm: BuzzerViewModel) {
             onTyping = { vm.chatTyping() },
         )
     }
+    if (showReadTest) ReadTestDialog(vm.readMsPerChar, onSave = { vm.saveReadSpeed(it) }, onDismiss = { showReadTest = false })
     vm.receivedProfile?.let { profile ->
         ReceivedProfileDialog(
             profile = profile,
@@ -666,7 +679,16 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var confirmLeave by remember { mutableStateOf(false) }
     var showHandOver by remember { mutableStateOf(false) }
     var askSelfTest by remember { mutableStateOf(false) }
-    BackHandler { confirmLeave = true }
+    // Zurück schrittweise: Quiz einrichten → Quiz-Vorlage → Spielart → Spiel verlassen.
+    BackHandler {
+        val s = vm.masterSnapshot
+        val inSetup = s != null && s.kind == GameKind.QUIZ && s.phase == Phase.READY && !vm.choosingKind
+        when {
+            inSetup && !vm.choosingTemplate -> vm.choosingTemplate = true
+            inSetup && vm.choosingTemplate -> vm.openKindChoice()
+            else -> confirmLeave = true
+        }
+    }
     val settings = snapshot.settings
     val pause = snapshot.phase == Phase.READY || snapshot.phase == Phase.ROUND_OVER
 
@@ -1022,6 +1044,15 @@ fun MasterScreen(vm: BuzzerViewModel) {
             onDismiss = { showChat = false; vm.markChatRead() },
             history = vm.chat.toList(),
             canSend = vm.canChat,
+        )
+    }
+    snapshot.rules?.let { state ->
+        val (title, lines) = vm.currentRules() ?: ("Spielregeln" to emptyList())
+        MasterRulesDialog(
+            state = state, rules = lines, title = title,
+            onConfirm = { vm.confirmMasterRules() },
+            onStartAnyway = { vm.endRulesConfirmation(true) },
+            onCancel = { vm.endRulesConfirmation(false) },
         )
     }
     if (confirmLeave) {

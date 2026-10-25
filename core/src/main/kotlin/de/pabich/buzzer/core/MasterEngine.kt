@@ -588,6 +588,10 @@ class MasterEngine(
                 log("Lesetempo ${player.name}: ${player.readMsPerChar} ms je Zeichen")
                 notifyChanged()
             }
+            Message.ProfileRequest -> {
+                log("Profil auf Wunsch an ${player.name} gesendet")
+                send(player.id, Message.Profile(profileName.ifEmpty { "Profil von $masterName" }, SettingsCodec.toMap(settings) + profileExtra()))
+            }
             is Message.RulesOk -> onRulesOk(player, message.id)
             is Message.Hold -> onHold(player, message)
             is Message.Buzz -> onBuzz(player, message)
@@ -655,6 +659,9 @@ class MasterEngine(
     }
 
     /** Schickt das laufende Profil an alle Spieler. */
+    /** Zusatzfelder für ein Profil (z. B. Quiz-Kennzeichen), das ein Spieler anfordert. */
+    var profileExtra: () -> Map<String, String> = { emptyMap() }
+
     fun shareProfile(extra: Map<String, String> = emptyMap()) {
         val values = SettingsCodec.toMap(settings) + extra
         players.values.filter { it.connected && !it.local }

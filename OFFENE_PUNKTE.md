@@ -461,6 +461,30 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+95. **Zufallsverteilung der Antwortfelder abschaltbar** (Wunsch vom 25.10.2026; kommt mit dem nächsten
+    Build): Schalter „Antworten für jeden Spieler anders mischen“ (Quiz einrichten, Standard an). Aus:
+    alle sehen dieselbe Reihenfolge – Chancengleichheit bei Zeitwertung.
+94. **Wartezeit nach der Länge der Frage, Lesetest** (25.10.2026): Die Pause zwischen Frage und Antworten
+    richtet sich nach der Zeichenzahl und dem langsamsten gemeldeten Lesetempo (Schalter „Lesezeit der
+    Frage anpassen“). Jeder Spieler kann im Menü „Lesetempo messen“ (5 Beispielzeilen) sein Tempo ermitteln;
+    es geht automatisch an den Spielleiter.
+93. **Vier Antwortfelder untereinander** (25.10.2026): volle Breite, Buchstabe links, größere Schrift.
+92. **Chat bleibt sichtbar, während der Runde stumm** (25.10.2026): Bei genug Platz zeigt die Spieleransicht
+    den Chat auch während der Frage; neue Nachrichten erscheinen erst nach der eigenen Antwort.
+91. **Zurück-Kette im Spielleiter-Menü** (25.10.2026; Annahme): Quiz einrichten → Quiz-Vorlage → Spielart
+    wählen → „Spiel verlassen?“.
+90. **Spielende/Abbruch: Endergebnis für Spieler** (25.10.2026): Alle sehen das Endergebnis (bei Abbruch mit
+    Hinweis); „Weiter zum nächsten Quiz“ führt zur Wartesicht „Der Spielleiter richtet das nächste Quiz ein“.
+89. **Profil des laufenden Spiels kopieren** (25.10.2026): Spieler-Menü → „Profil dieses Spiels kopieren“
+    (Nachricht `PROFILE_REQ`); danach der übliche Dialog zum Speichern.
+88. **Spielregeln bestätigen** (25.10.2026): Vor Spielbeginn zeigen alle Geräte die Regeln groß mit
+    „OK – ich bin bereit“; erst wenn alle (und der Spielleiter) bestätigt haben, beginnt die Rennszene und
+    die erste Frage. Spielleiter kann „Sofort beginnen“. Schalter „Spielregeln vor Spielbeginn bestätigen“.
+    Ältere Apps (vor Build 39) werden nicht abgewartet.
+87. **Kategorienauswahl als Popup** (25.10.2026): Eine Zeile zeigt die Auswahl, Tipp öffnet das Fenster
+    (Alle/Keine, mindestens eine bleibt gewählt).
+86. **Neue Kategorien** (25.10.2026): „Die 80er, 90er und 00er Jahre“, „Bienchen & Blümchen“,
+    „Nepper, Schlepper, Bauernfänger“ – je 20 Fragen pro Stufe (insgesamt 13 Kategorien).
 85. **Pause in der Runde, Chat jederzeit lesbar** (Wunsch vom 24.10.2026; umgesetzt, kommt mit dem
     nächsten Build): Der Pause-Knopf geht jetzt auch mitten in der Runde – Quizfrage: Zeit steht und läuft
     mit der Restzeit weiter; Buzzer vor der Entscheidung: Runde wird abgebrochen und neu freigegeben;
