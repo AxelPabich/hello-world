@@ -93,6 +93,24 @@
       "titel": "Besserwisser",
       "version": 8,
       "fragen": 86
+    },
+    {
+      "datei": "jahre.json",
+      "titel": "Die 80er, 90er und 00er Jahre",
+      "version": 1,
+      "fragen": 80
+    },
+    {
+      "datei": "natur.json",
+      "titel": "Bienchen & Blümchen",
+      "version": 1,
+      "fragen": 80
+    },
+    {
+      "datei": "bauernfaenger.json",
+      "titel": "Nepper, Schlepper, Bauernfänger",
+      "version": 1,
+      "fragen": 80
     }
   ]
 }

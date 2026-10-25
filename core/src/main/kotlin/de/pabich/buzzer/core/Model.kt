@@ -97,6 +97,12 @@ data class Settings(
     val quizCountdownMs: Long = 5_000,
     /** Bereit-Abfrage automatisch so lange nach der Auflösung; 0 = aus. */
     val quizAutoReadyMs: Long = 0,
+    /** Quiz: Jeder Spieler bekommt die Antworten in eigener Reihenfolge; aus = für alle gleich (Chancengleichheit). */
+    val quizShuffleAnswers: Boolean = true,
+    /** Quiz: Wartezeit zwischen Frage und Antworten richtet sich nach Länge der Frage und Lesetempo der Spieler. */
+    val quizReadAdapt: Boolean = true,
+    /** Vor dem Spielbeginn müssen alle die Spielregeln mit OK bestätigen. */
+    val rulesConfirm: Boolean = true,
 ) {
     /** Reaktionszeit-Limit oder `null`, wenn ausgeschaltet. */
     val reactionLimitMs: Long? get() = if (reactionLimitEnabled) timeLimitMs else null

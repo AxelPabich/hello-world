@@ -42,6 +42,8 @@ class MasterEngine(
         val connected: Boolean,
         /** Gewähltes Emoticon des Spielers (leer = keins). */
         val avatar: String = "",
+        /** Lesetempo aus dem Lesetest (ms je Zeichen), `null` = nicht gemessen. */
+        val readMsPerChar: Int? = null,
     )
 
     data class Snapshot(
@@ -74,9 +76,16 @@ class MasterEngine(
         val ready: ReadyState?,
         /** Der Spielleiter prüft gerade die Auflösung (Spieler sehen ein Laufband). */
         val reviewing: Boolean,
+        /** Laufende Bestätigung der Spielregeln vor dem Spielbeginn, sonst `null`. */
+        val rules: RulesState? = null,
     )
 
     /** „Bereit?“-Abfrage: wer hat bestätigt, wer fehlt noch. */
+    /** Bestätigung der Spielregeln vor dem Spielbeginn. */
+    data class RulesState(val confirmedNames: List<String>, val waitingNames: List<String>, val masterConfirmed: Boolean) {
+        val allConfirmed: Boolean get() = waitingNames.isEmpty()
+    }
+
     data class ReadyState(val readyNames: List<String>, val waitingNames: List<String>, val masterReady: Boolean = true) {
         val allReady: Boolean get() = waitingNames.isEmpty()
     }
@@ -140,6 +149,9 @@ class MasterEngine(
         /** Wann zuletzt etwas von diesem Spieler kam (Antwort auf den Herzschlag); `null` = noch nie. */
         var lastHeardAt: Long? = null
         var silentReported = false
+
+        /** Lesetempo (ms je Zeichen) aus dem Lesetest des Spielers; `null` = nicht gemessen. */
+        var readMsPerChar: Int? = null
     }
 
     /** Eine Quizfrage im Spiel. */
@@ -156,6 +168,9 @@ class MasterEngine(
 
         /** Je Teilnehmer der Name (ohne Spielleiter-Zusatz) – daran wird ein Rückkehrer erkannt. */
         val names = HashMap<PlayerId, String>()
+
+        /** Wartezeit zwischen Einblenden der Frage und der Antworten (richtet sich nach Länge und Lesetempo). */
+        var leadMs: Long = QUESTION_LEAD_MS
 
         /** Je Spieler: angezeigte Position → Index in der Paket-Reihenfolge. */
         val perms = HashMap<PlayerId, List<Int>>()
@@ -568,6 +583,12 @@ class MasterEngine(
         player.silentReported = false
         when (message) {
             is Message.Pong -> player.sync.addSample(message.masterTime, message.playerTime, clock.now())
+            is Message.ReadSpeed -> {
+                player.readMsPerChar = message.msPerChar.coerceIn(MIN_READ_MS_PER_CHAR, MAX_READ_MS_PER_CHAR)
+                log("Lesetempo ${player.name}: ${player.readMsPerChar} ms je Zeichen")
+                notifyChanged()
+            }
+            is Message.RulesOk -> onRulesOk(player, message.id)
             is Message.Hold -> onHold(player, message)
             is Message.Buzz -> onBuzz(player, message)
             is Message.Prefs -> player.receiveEmojis = message.receiveEmojis
@@ -1081,8 +1102,7 @@ class MasterEngine(
     fun stopQuiz(): Boolean {
         if (kind != GameKind.QUIZ || (turn == null && phase == Phase.READY)) return false
         turn?.let { cancelQuizTasks(it) }
-        log("Quiz abgebrochen")
-        finishQuiz()
+        finishQuiz(aborted = true)
         return true
     }
 
@@ -1203,12 +1223,16 @@ class MasterEngine(
         val q = quizQuestions[quizIndex]
         val maxRtt = participants.maxOf { it.sync.recentMaxRttMs ?: UNKNOWN_RTT_MS }
         val questionAt = clock.now() + (maxRtt + 100).coerceIn(200, 1_000)
-        val answersAt = questionAt + QUESTION_LEAD_MS
+        val lead = readingLead(q, participants)
+        val answersAt = questionAt + lead
         val t = QuizTurn(quizIndex + 1, q, settings.quizAnswerMs, participants.map { it.id }.toSet(), answersAt)
+        t.leadMs = lead
         turn = t
+        // Standard: Jeder bekommt seine eigene Reihenfolge – Abgucken bringt nichts. Ausgeschaltet bekommen
+        // alle dieselbe (einmal gemischte) Reihenfolge, damit bei zeitkritischer Wertung alle gleich dran sind.
+        val shared = if (settings.quizShuffleAnswers) null else q.answers.indices.shuffled(random)
         for (p in participants) {
-            // Jeder bekommt seine eigene Reihenfolge – Abgucken bringt nichts.
-            t.perms[p.id] = q.answers.indices.shuffled(random)
+            t.perms[p.id] = shared ?: q.answers.indices.shuffled(random)
             t.names[p.id] = baseName(p.name)
             send(p.id, quizAsk(t, p))
         }
@@ -1231,7 +1255,7 @@ class MasterEngine(
             level = q.level,
             text = q.text,
             answers = perm.map { q.answers[it] },
-            questionAtLocal = p.sync.toPlayerTime(t.answersAt - QUESTION_LEAD_MS),
+            questionAtLocal = p.sync.toPlayerTime(t.answersAt - t.leadMs),
             answersAtLocal = p.sync.toPlayerTime(t.answersAt),
             durationMs = t.durationMs,
         )
@@ -1380,7 +1404,7 @@ class MasterEngine(
         notifyChanged()
     }
 
-    private fun finishQuiz() {
+    private fun finishQuiz(aborted: Boolean = false) {
         autoReadyTask?.cancel()
         autoReadyTask = null
         pausedTurn = null
@@ -1388,7 +1412,7 @@ class MasterEngine(
         setReviewing(false)
         quizFinished = true
         phase = Phase.READY
-        log("Quiz beendet")
+        log(if (aborted) "Quiz abgebrochen – Endergebnis" else "Quiz beendet")
         for (p in players.values) if (p.connected) send(p.id, Message.Reset(scoreText(p)))
         // Das Ergebnis läuft als Spielverlauf ab (höchstens 15 s), danach bleibt es stehen.
         val replay = canShowReplay()
@@ -1397,6 +1421,8 @@ class MasterEngine(
             masterSound(SoundEvent.ROUND_END)
         }
         broadcastScoreboard()
+        // Die Spieler sehen das Endergebnis und kommen mit einem Tipp zurück zur Wartesicht.
+        for (p in players.values) if (p.connected && !p.local) send(p.id, Message.QuizEnd(aborted))
         if (replay) showReplay()
         notifyChanged()
     }
@@ -1463,6 +1489,101 @@ class MasterEngine(
     }
 
     // ------------------------------------------------------------------ Bereit? und Prüfung
+
+    // ------------------------------------------------------------------ Lesezeit und Spielregeln
+
+    /**
+     * Wartezeit zwischen dem Einblenden der Frage und der Antworten: die Länge der Frage mal das Lesetempo des
+     * langsamsten Spielers (ohne Lesetest [DEFAULT_READ_MS_PER_CHAR]), mindestens [QUESTION_LEAD_MS].
+     */
+    private fun readingLead(q: QuizQuestion, participants: List<Player>): Long {
+        if (!settings.quizReadAdapt) return QUESTION_LEAD_MS
+        val speed = participants.maxOfOrNull { it.readMsPerChar ?: DEFAULT_READ_MS_PER_CHAR } ?: DEFAULT_READ_MS_PER_CHAR
+        return (LEAD_BASE_MS + q.text.length * speed.toLong()).coerceIn(QUESTION_LEAD_MS, LEAD_MAX_MS)
+    }
+
+    /** Das Spiel hat schon begonnen (Buzzer: mindestens eine Runde freigegeben). */
+    val hasStarted: Boolean get() = gameStarted
+
+    private var rulesId = 0
+    private var rulesOpen = false
+    private var rulesMasterOk = false
+    private val rulesAcked = mutableSetOf<PlayerId>()
+    private val rulesExempt = mutableSetOf<PlayerId>()
+
+    /** Alle haben die Spielregeln bestätigt (Kennung der Abfrage); die App beginnt dann das Spiel. */
+    var onRulesConfirmed: ((id: Int) -> Unit)? = null
+
+    /**
+     * Zeigt allen Spielern die Spielregeln mit OK-Knopf. [exempt]: Spieler, auf die nicht gewartet wird
+     * (ältere Apps ohne Bestätigung). Sobald alle (und der Spielleiter) bestätigt haben, kommt [onRulesConfirmed].
+     * Gibt `false` zurück, wenn niemand zu fragen ist – dann kann das Spiel gleich beginnen.
+     */
+    fun requestRulesConfirmation(title: String, lines: List<Pair<String, String>>, exempt: Set<PlayerId> = emptySet()): Boolean {
+        val active = players.values.filter { it.connected && !it.local && it.id !in exempt }
+        if (active.isEmpty() || rulesOpen) return false
+        rulesId++
+        rulesOpen = true
+        rulesMasterOk = false
+        rulesAcked.clear()
+        rulesExempt.clear()
+        rulesExempt += exempt
+        log("Spielregeln gezeigt – warte auf die Bestätigung von ${active.joinToString { it.name }}")
+        val m = Message.Rules(title, lines, rulesId)
+        for (p in players.values) if (p.connected && !p.local) send(p.id, m)
+        notifyChanged()
+        return true
+    }
+
+    /** Der Spielleiter hat die Regeln selbst bestätigt. */
+    fun confirmMasterRules() {
+        if (!rulesOpen || rulesMasterOk) return
+        rulesMasterOk = true
+        checkRulesDone()
+        notifyChanged()
+    }
+
+    /** Bestätigung abbrechen (oder trotzdem beginnen, wenn [proceed]). */
+    fun endRulesConfirmation(proceed: Boolean) {
+        if (!rulesOpen) return
+        finishRules(proceed)
+        notifyChanged()
+    }
+
+    private fun onRulesOk(player: Player, id: Int) {
+        if (!rulesOpen || id != rulesId || !rulesAcked.add(player.id)) return
+        log("Spielregeln bestätigt: ${player.name}")
+        checkRulesDone()
+        notifyChanged()
+    }
+
+    private fun checkRulesDone() {
+        val state = rulesState() ?: return
+        if (state.allConfirmed) finishRules(true)
+    }
+
+    private fun finishRules(proceed: Boolean) {
+        val id = rulesId
+        rulesOpen = false
+        for (p in players.values) if (p.connected && !p.local) send(p.id, Message.RulesDone(id))
+        if (proceed) {
+            log("Alle haben die Spielregeln bestätigt")
+            onRulesConfirmed?.invoke(id)
+        } else {
+            log("Bestätigung der Spielregeln beendet")
+        }
+    }
+
+    private fun rulesState(): RulesState? {
+        if (!rulesOpen) return null
+        val active = players.values.filter { it.connected && !it.local && it.id !in rulesExempt }
+        val me = masterReadyLabel
+        return RulesState(
+            confirmedNames = (if (rulesMasterOk) listOf(me) else emptyList()) + active.filter { it.id in rulesAcked }.map { it.name },
+            waitingNames = (if (rulesMasterOk) emptyList() else listOf(me)) + active.filter { it.id !in rulesAcked }.map { it.name },
+            masterConfirmed = rulesMasterOk,
+        )
+    }
 
     /** „Get Ready“: Spieler bekommen die Abfrage „Bereit?“. Nur in den Pausen. */
     fun askReady(): Boolean {
@@ -1640,7 +1761,7 @@ class MasterEngine(
         timeLimitLocked = gameStarted && settings.scoring == ScoringMode.REMAINING_TIME,
         players = players.values.map { p ->
             val (display, place) = displayOf(p)
-            PlayerRow(p.id, p.name, display, place, p.roundReactionMs, scoreText(p), p.score, p.sync.recentMaxRttMs, p.connected, p.avatar)
+            PlayerRow(p.id, p.name, display, place, p.roundReactionMs, scoreText(p), p.score, p.sync.recentMaxRttMs, p.connected, p.avatar, p.readMsPerChar)
         },
         answerDeadline = answerDeadline,
         profileName = profileName,
@@ -1655,6 +1776,7 @@ class MasterEngine(
         someoneTyping = players.values.any { it.connected && it.typingUntil > clock.now() },
         ready = readyState(),
         reviewing = reviewing,
+        rules = rulesState(),
     )
 
     private fun notifyChanged() {
@@ -1803,6 +1925,15 @@ class MasterEngine(
     companion object {
         /** Quiz: so lange steht die Frage allein, bevor Antworten und Timer erscheinen. */
         const val QUESTION_LEAD_MS = 3_000L
+
+        /** Lesetempo, solange ein Spieler keinen Lesetest gemacht hat (ms je Zeichen). */
+        const val DEFAULT_READ_MS_PER_CHAR = 80
+        const val MIN_READ_MS_PER_CHAR = 20
+        const val MAX_READ_MS_PER_CHAR = 400
+
+        /** Grundzeit vor dem Lesen und Obergrenze der Wartezeit zwischen Frage und Antworten. */
+        private const val LEAD_BASE_MS = 1_500L
+        private const val LEAD_MAX_MS = 25_000L
 
         /** So lange Stille, dann gilt ein Spieler als weg (Herzschlag alle 2 s). */
         const val SILENT_PLAYER_MS = 15_000L

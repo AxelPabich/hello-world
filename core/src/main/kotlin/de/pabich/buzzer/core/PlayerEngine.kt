@@ -84,6 +84,10 @@ class PlayerEngine(
         val readyConfirmed: Boolean = false,
         /** Der Spielleiter prüft die Auflösung – Laufband anzeigen. */
         val reviewing: Boolean = false,
+        /** Das Quiz ist zu Ende: Endergebnis zeigen, bis der Spieler zurück tippt. */
+        val finalResult: Boolean = false,
+        /** Das Endergebnis gehört zu einem abgebrochenen Quiz. */
+        val finalAborted: Boolean = false,
     )
 
     var onViewChanged: ((View) -> Unit)? = null
@@ -181,10 +185,14 @@ class PlayerEngine(
                 update { it.copy(paused = message.on) }
             }
             is Message.Replay -> onReplay?.invoke(message)
+            is Message.QuizEnd -> {
+                log(if (message.aborted) "Quiz abgebrochen – Endergebnis" else "Quiz beendet – Endergebnis")
+                update { it.copy(finalResult = true, finalAborted = message.aborted) }
+            }
             is Message.Mode -> {
                 cancelQuizTasks()
                 if (message.kind != null && message.kind != view.kind) log("Spielart: ${message.kind.label}")
-                update { it.copy(kind = message.kind, quiz = null) }
+                update { it.copy(kind = message.kind, quiz = null, finalResult = false) }
                 show(Display.BLACK, if (message.kind == GameKind.QUIZ) "Quiz – gleich kommt die erste Frage" else "Warte auf den Spielleiter", 0, view.score)
             }
             is Message.QuizAsk -> onQuizAsk(message)
@@ -297,9 +305,28 @@ class PlayerEngine(
     /** Tipp-Hinweis für den Master. */
     fun sendTyping(on: Boolean) = send(Message.Typing(on))
 
+    /** Der Spieler hat die Spielregeln (Abfrage [id]) mit OK bestätigt. */
+    fun confirmRules(id: Int) {
+        log("Spielregeln bestätigt")
+        send(Message.RulesOk(id))
+    }
+
+    /** Lesetempo aus dem Lesetest an den Spielleiter melden (ms je Zeichen). */
+    fun reportReadSpeed(msPerChar: Int) {
+        log("Lesetempo $msPerChar ms je Zeichen gemeldet")
+        send(Message.ReadSpeed(msPerChar))
+    }
+
+    /** Vom Endergebnis zurück zur Wartesicht (Quiz einrichten). */
+    fun dismissFinalResult() {
+        if (!view.finalResult) return
+        update { it.copy(finalResult = false, hint = "Der Spielleiter richtet das nächste Quiz ein") }
+    }
+
     private fun onQuizAsk(m: Message.QuizAsk) {
         endContest()
         cancelQuizTasks()
+        if (view.finalResult) update { it.copy(finalResult = false) }
         val now = clock.now()
         val stage = when {
             now >= m.answersAtLocal -> QuizStage.ANSWERS

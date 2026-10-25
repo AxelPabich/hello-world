@@ -196,7 +196,19 @@ sealed interface Message {
     data class Avatar(val emoji: String) : Message
 
     /** M → S: Spielregeln der Runde zum einmaligen Anzeigen – beim Beitritt und zu Spielbeginn. */
-    data class Rules(val title: String, val lines: List<Pair<String, String>>) : Message
+    data class Rules(val title: String, val lines: List<Pair<String, String>>, val confirmId: Int = 0) : Message
+
+    /** S → M: Der Spieler hat die Spielregeln gelesen und mit OK bestätigt. */
+    data class RulesOk(val id: Int) : Message
+
+    /** M → S: Die Bestätigung der Spielregeln ist vorbei (alle bestätigt oder abgebrochen). */
+    data class RulesDone(val id: Int) : Message
+
+    /** M → S: Das Quiz ist zu Ende (oder abgebrochen) – die Spieler sehen das Endergebnis. */
+    data class QuizEnd(val aborted: Boolean) : Message
+
+    /** S → M: Lesetempo des Spielers in Millisekunden je Zeichen (aus dem Lesetest). */
+    data class ReadSpeed(val msPerChar: Int) : Message
 
     /** M → S: Der Spielleiter geht, die Spieler dürfen übernehmen (statt [Bye]). */
     data object MasterGone : Message
@@ -313,7 +325,12 @@ object MessageCodec {
             is Message.Rules -> "RULES" to mapOf(
                 "t" to message.title,
                 "l" to encodeList(message.lines.map { "${enc(it.first)}:${enc(it.second)}" }),
+                "cid" to message.confirmId,
             )
+            is Message.RulesOk -> "RULES_OK" to mapOf("id" to message.id)
+            is Message.RulesDone -> "RULES_DONE" to mapOf("id" to message.id)
+            is Message.QuizEnd -> "QUIZ_END" to mapOf("a" to message.aborted)
+            is Message.ReadSpeed -> "READ_SPEED" to mapOf("ms" to message.msPerChar)
         }
         val text = buildString {
             append(type)
@@ -416,7 +433,12 @@ object MessageCodec {
                     val i = it.indexOf(':')
                     dec(it.substring(0, i)) to dec(it.substring(i + 1))
                 },
+                f["cid"]?.toInt() ?: 0,
             )
+            "RULES_OK" -> Message.RulesOk(int("id"))
+            "RULES_DONE" -> Message.RulesDone(int("id"))
+            "QUIZ_END" -> Message.QuizEnd(bool("a"))
+            "READ_SPEED" -> Message.ReadSpeed(int("ms"))
             else -> null
         }
     } catch (e: RuntimeException) {

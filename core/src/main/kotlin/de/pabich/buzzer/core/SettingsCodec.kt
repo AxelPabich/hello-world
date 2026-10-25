@@ -34,6 +34,9 @@ object SettingsCodec {
         "quizScoring" to "Quiz: Wertung",
         "quizCountdownMs" to "Quiz: Countdown nach erster richtiger Antwort",
         "quizAutoReadyMs" to "Quiz: Bereit-Abfrage automatisch",
+        "quizShuffleAnswers" to "Quiz: Antworten für jeden Spieler anders mischen",
+        "quizReadAdapt" to "Quiz: Lesezeit der Frage anpassen",
+        "rulesConfirm" to "Spielregeln vor Spielbeginn bestätigen",
     )
 
     /** Klänge, die es vor dem Schlüssel [SOUNDS_KNOWN] gab; später hinzugekommene sind neu. */
@@ -75,6 +78,9 @@ object SettingsCodec {
         "quizScoring" to s.quizScoring.name,
         "quizCountdownMs" to s.quizCountdownMs.toString(),
         "quizAutoReadyMs" to s.quizAutoReadyMs.toString(),
+        "quizShuffleAnswers" to s.quizShuffleAnswers.toString(),
+        "quizReadAdapt" to s.quizReadAdapt.toString(),
+        "rulesConfirm" to s.rulesConfirm.toString(),
     )
 
     data class Decoded(val settings: Settings, val missingKeys: List<String>)
@@ -120,6 +126,9 @@ object SettingsCodec {
             quizScoring = read("quizScoring", d.quizScoring) { QuizScoring.valueOf(it) },
             quizCountdownMs = read("quizCountdownMs", d.quizCountdownMs) { it.toLong() },
             quizAutoReadyMs = read("quizAutoReadyMs", d.quizAutoReadyMs) { it.toLong() },
+            quizShuffleAnswers = read("quizShuffleAnswers", d.quizShuffleAnswers) { it.toBooleanStrict() },
+            quizReadAdapt = read("quizReadAdapt", d.quizReadAdapt) { it.toBooleanStrict() },
+            rulesConfirm = read("rulesConfirm", d.rulesConfirm) { it.toBooleanStrict() },
         )
         return Decoded(s.normalized(), missing)
     }
