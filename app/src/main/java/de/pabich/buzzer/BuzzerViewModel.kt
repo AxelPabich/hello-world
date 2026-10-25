@@ -711,7 +711,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             return
         }
         // Erst bestätigen alle die Spielregeln, dann Rennszene und erste Frage.
-        if (engine.settings.rulesConfirm && !engine.hasStarted) {
+        if (engine.settings.rulesConfirm) {
             val (title, lines) = rulesFor(engine) ?: return startQuizIntro(engine)
             engine.onRulesConfirmed = { if (master === engine) startQuizIntro(engine, sendRules = false) }
             val exempt = engine.snapshot().players.filter { (peerBuilds[it.id] ?: 0) < RULES_CONFIRM_BUILD }.map { it.id }.toSet()

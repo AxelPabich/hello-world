@@ -461,6 +461,10 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+98. **Regel-Bestätigung beim zweiten Quiz übersprungen** (Diagnose Build 40 vom 25.10.2026, 12:59): Nach dem
+    ersten Quiz der Sitzung galt das Spiel als „begonnen“, deshalb zeigte das zweite Quiz die Regeln nur
+    zur Information und startete ohne OK. Behoben: Jedes Quiz fragt die Bestätigung neu ab (kommt mit dem
+    nächsten Build).
 97. **Beitritt nach App-Neustart (Fehler 8003)** (Diagnose vom 25.10.2026, Tablett S7; in Build 39): Meldet
     Nearby `STATUS_ALREADY_CONNECTED_TO_ENDPOINT`, trennt die App die hängende alte Verbindung und
     wiederholt den Beitritt bis zu 3-mal selbst (Pause 1,2 s).
