@@ -1,9 +1,536 @@
 {
   "paket": "einzelhandel",
   "titel": "Einzelhandel",
-  "version": 9,
+  "version": 10,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
+    {
+      "id": "handel-0088",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was versteht man im Handel unter einer „Retoure“?",
+      "antworten": [
+        "Die Rücksendung gekaufter Ware an den Händler",
+        "Eine Sonderaktion mit Preisnachlass",
+        "Die Anlieferung neuer Ware ins Lager",
+        "Den Kassenabschluss am Tagesende"
+      ],
+      "erklaerung": "Eine Retoure ist Ware, die der Kunde an den Händler zurückschickt, etwa im Versandhandel.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Retoure",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0035",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Welches Möbelhaus ist für schwedische Möbel und Köttbullar im Restaurant bekannt?",
+      "antworten": [
+        "IKEA",
+        "XXXLutz",
+        "Roller",
+        "Poco"
+      ],
+      "erklaerung": "IKEA wurde 1943 von Ingvar Kamprad in Schweden gegründet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IKEA",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0084",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wofür steht das Kürzel „EAN“ auf Produkten?",
+      "antworten": [
+        "Europäische Artikelnummer",
+        "Elektronische Abrechnungsnorm",
+        "Erweiterte Angebotsnummer",
+        "Einzelhandels-Aufschlag-Nummer"
+      ],
+      "erklaerung": "Sie steht unter dem Strichcode und hat meist 13 Ziffern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Trade%20Item%20Number",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0007",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie nennt man einen Preis wie 9,99 Euro, der knapp unter einer runden Zahl liegt?",
+      "antworten": [
+        "Schwellenpreis",
+        "Mondpreis",
+        "Listenpreis",
+        "Festpreis"
+      ],
+      "erklaerung": "Er soll deutlich günstiger wirken als 10 Euro. Ein Mondpreis ist dagegen ein absichtlich überhöhter Ausgangspreis.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Preisschwelle",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0020",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was ist ein „Lockvogelangebot“?",
+      "antworten": [
+        "Ein auffällig günstiges Angebot, das Kunden in den Laden locken soll",
+        "Ein Rabatt nur für Stammkunden",
+        "Ein Gutschein im Briefkasten",
+        "Ein Sonderangebot für Vogelfutter"
+      ],
+      "erklaerung": "Ist die Ware gar nicht ausreichend vorrätig, ist das unlautere Werbung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lockvogelangebot",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0011",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie lange haben Verbraucher bei online gekauften Waren grundsätzlich ein Widerrufsrecht?",
+      "antworten": [
+        "14 Tage",
+        "7 Tage",
+        "30 Tage",
+        "Gar keins"
+      ],
+      "erklaerung": "Die Frist beginnt meist mit dem Erhalt der Ware.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0005",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man im Handelsjargon die Süßigkeiten direkt an der Kasse?",
+      "antworten": [
+        "Quengelware",
+        "Kassenfutter",
+        "Wartezonen-Snack",
+        "Impulsgebäck"
+      ],
+      "erklaerung": "Sie hängt bewusst auf Augenhöhe von Kindern, die in der Schlange quengeln.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Quengelware",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0090",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "In welcher Stadt eröffnete Anna Albrecht 1913 den Laden, aus dem später Aldi hervorging?",
+      "antworten": [
+        "Essen",
+        "Dortmund",
+        "Bochum",
+        "Duisburg"
+      ],
+      "erklaerung": "Die Mutter von Karl und Theo Albrecht eröffnete das Lebensmittelgeschäft 1913 in Essen-Schonnebeck.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0037",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wo bekommt man in Deutschland rezeptpflichtige Medikamente?",
+      "antworten": [
+        "In der Apotheke",
+        "In der Drogerie",
+        "Im Supermarkt",
+        "Im Reformhaus"
+      ],
+      "erklaerung": "Rezeptpflichtige Arzneimittel dürfen nur Apotheken abgeben.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Apotheke",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0046",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Bei welcher Ware steht typischerweise „zu verbrauchen bis“ statt eines Mindesthaltbarkeitsdatums?",
+      "antworten": [
+        "Frisches Hackfleisch",
+        "Nudeln",
+        "Honig",
+        "Reis"
+      ],
+      "erklaerung": "Das Verbrauchsdatum steht bei leicht verderblichen Lebensmitteln und sollte nicht überschritten werden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Verbrauchsdatum",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0089",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wie nennt man im Buchhandel unverkaufte Bücher, die an den Verlag zurückgeschickt werden?",
+      "antworten": [
+        "Remittenden",
+        "Makulatur",
+        "Rezensionsexemplare",
+        "Antiquariatsware"
+      ],
+      "erklaerung": "Remittenden sind Bücher, die der Buchhändler unverkauft an den Verlag oder Großhändler zurückgibt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Buchhandel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0048",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „Cash and Carry“ im Großhandel?",
+      "antworten": [
+        "Selbst abholen und bar bezahlen",
+        "Online bestellen, später zahlen",
+        "Lieferung frei Haus",
+        "Ware nur auf Kommission"
+      ],
+      "erklaerung": "Großmärkte wie Metro funktionieren nach diesem Prinzip, meist für gewerbliche Kunden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Cash%20%26%20Carry",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0055",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurde das erste bundesweite Ladenschlussgesetz in der Bundesrepublik verabschiedet?",
+      "antworten": [
+        "1956",
+        "1949",
+        "1968",
+        "1975"
+      ],
+      "erklaerung": "Es regelte lange Zeit sehr strikt, wann Geschäfte öffnen durften.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ladenschlussgesetz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0013",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie hoch ist der ermäßigte Umsatzsteuersatz, der in Deutschland für die meisten Lebensmittel gilt?",
+      "antworten": [
+        "7 Prozent",
+        "5 Prozent",
+        "10 Prozent",
+        "19 Prozent"
+      ],
+      "erklaerung": "Der reguläre Satz beträgt 19 Prozent.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Umsatzsteuer%20%28Deutschland%29",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0019",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wer erfand 1937 in den USA den Einkaufswagen?",
+      "antworten": [
+        "Sylvan Goldman",
+        "Henry Ford",
+        "Clarence Saunders",
+        "Sam Walton"
+      ],
+      "erklaerung": "Der Supermarktbesitzer aus Oklahoma City setzte zwei Körbe auf ein Klappgestell mit Rädern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Einkaufswagen",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0042",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Welcher Discounter wirbt mit dem Slogan „… lohnt sich“?",
+      "antworten": [
+        "Lidl",
+        "Aldi",
+        "Penny",
+        "Netto"
+      ],
+      "erklaerung": "Der Slogan ist „Lidl lohnt sich“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lidl",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0014",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wer regelt seit der Föderalismusreform 2006 die Ladenöffnungszeiten in Deutschland?",
+      "antworten": [
+        "Die Bundesländer",
+        "Der Bund",
+        "Die Städte und Gemeinden",
+        "Die Industrie- und Handelskammern"
+      ],
+      "erklaerung": "Seitdem gelten je nach Land unterschiedliche Regeln – der Sonntag bleibt weitgehend geschützt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ladenschlussgesetz",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0015",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie heißt das Berliner Kaufhaus, das 1907 eröffnet wurde und als größtes Warenhaus Kontinentaleuropas gilt?",
+      "antworten": [
+        "KaDeWe",
+        "Galeries Lafayette",
+        "Wertheim",
+        "Harrods"
+      ],
+      "erklaerung": "KaDeWe steht für Kaufhaus des Westens.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaufhaus%20des%20Westens",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0002",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wofür steht der Name „Aldi“?",
+      "antworten": [
+        "Albrecht Diskont",
+        "Alles Lebensmittel, Discount",
+        "Allgemeine Lebensmittel-Distribution",
+        "Albrechts Liefer-Dienst"
+      ],
+      "erklaerung": "Aus Albrecht-Diskont wurde 1962 die Kurzform Aldi.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0056",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr kam der Euro als Bargeld in den Handel?",
+      "antworten": [
+        "2002",
+        "1999",
+        "2001",
+        "2004"
+      ],
+      "erklaerung": "Zum Jahreswechsel 2001/2002 ersetzten Euro-Scheine und -Münzen die D-Mark in den Kassen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Euro-Bargeld",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0030",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Was ist ein „Outlet“?",
+      "antworten": [
+        "Ein Geschäft, in dem Hersteller Ware günstiger verkaufen",
+        "Ein Laden nur für Elektroartikel",
+        "Ein Lager ohne Verkauf",
+        "Ein Kiosk am Bahnhof"
+      ],
+      "erklaerung": "Oft geht es um Ware aus der Vorsaison oder mit kleinen Fehlern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fabrikverkauf",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0072",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Wie lange nach der Übergabe gilt seit 2022 die Beweislastumkehr beim Verbrauchsgüterkauf?",
+      "antworten": [
+        "Ein Jahr",
+        "Sechs Monate",
+        "Zwei Jahre",
+        "Drei Monate"
+      ],
+      "erklaerung": "Zeigt sich innerhalb dieser Frist ein Mangel, wird vermutet, dass er schon beim Kauf vorlag. Vorher galten nur sechs Monate.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Beweislastumkehr",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0034",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Mit welchem Slogan wirbt der Supermarkt Edeka?",
+      "antworten": [
+        "Wir lieben Lebensmittel",
+        "Besser leben",
+        "Einfach gut einkaufen",
+        "Frisch und günstig"
+      ],
+      "erklaerung": "Der Slogan „Wir lieben Lebensmittel“ gehört seit vielen Jahren zu Edeka.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Edeka",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0003",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Welche beiden Handelsketten gehören zur Schwarz-Gruppe?",
+      "antworten": [
+        "Lidl und Kaufland",
+        "Aldi und Hofer",
+        "Rewe und Penny",
+        "Edeka und Netto"
+      ],
+      "erklaerung": "Die Schwarz-Gruppe aus Neckarsulm ist einer der größten Lebensmittelhändler der Welt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schwarz-Gruppe",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0067",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Aus welchen beiden Wortteilen setzt sich der Name „Tchibo“ zusammen?",
+      "antworten": [
+        "Tchilinghiryan und Bohne",
+        "Tchaikowsky und Bohne",
+        "Tee und Chicorée-Bohne",
+        "Tchechien und Bohne"
+      ],
+      "erklaerung": "Der Hamburger Röster wurde 1949 von Max Herz und Carl Tchilinghiryan gegründet. Der zweite Namensteil steht für die Kaffeebohne.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tchibo",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0062",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Welches Handelsunternehmen betreibt die Supermärkte REWE und Penny?",
+      "antworten": [
+        "Die REWE Group",
+        "Die Schwarz-Gruppe",
+        "Der Edeka-Verbund",
+        "Die Metro AG"
+      ],
+      "erklaerung": "Zur Schwarz-Gruppe gehören Lidl und Kaufland.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rewe%20Group",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0050",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie müssen Händler Preise gegenüber Verbrauchern grundsätzlich angeben?",
+      "antworten": [
+        "Als Endpreis inklusive Mehrwertsteuer",
+        "Nur als Nettopreis",
+        "In ungefähren Preisspannen",
+        "Nur auf Nachfrage"
+      ],
+      "erklaerung": "Die Preisangabenverordnung verlangt den Gesamtpreis, den der Kunde tatsächlich zahlt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Preisangabenverordnung",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0076",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Unter welchem Namen wurde Amazon 1994 ursprünglich gegründet?",
+      "antworten": [
+        "Cadabra",
+        "Relentless",
+        "Bezos Books",
+        "Abracadabra"
+      ],
+      "erklaerung": "Jeff Bezos benannte das Unternehmen bald um, weil „Cadabra“ am Telefon leicht wie „Cadaver“ klang.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Amazon",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0032",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wie nennt man es, wenn ein Händler Ware erst bezahlt, nachdem er sie verkauft hat?",
+      "antworten": [
+        "Kommissionsgeschäft",
+        "Factoring",
+        "Leasing",
+        "Skonto"
+      ],
+      "erklaerung": "Unverkaufte Ware geht an den Lieferanten zurück.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Kommissionsgesch%C3%A4ft",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0086",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Was bezeichnet im Handel die „Sortimentsbreite“?",
+      "antworten": [
+        "Die Zahl der verschiedenen Warengruppen",
+        "Die Zahl der Varianten je Warengruppe",
+        "Die Länge der Regale",
+        "Die Zahl der Filialen"
+      ],
+      "erklaerung": "Die Zahl der Artikel je Warengruppe heißt dagegen Sortimentstiefe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sortiment%20%28Wirtschaft%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0016",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man die regelmäßige Zählung aller Waren im Lager und im Laden?",
+      "antworten": [
+        "Inventur",
+        "Revision",
+        "Kommissionierung",
+        "Disposition"
+      ],
+      "erklaerung": "Kaufleute müssen ihren Bestand mindestens einmal im Jahr erfassen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Inventur",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
     {
       "id": "handel-0070",
       "version": 1,
@@ -22,19 +549,359 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0061",
+      "id": "handel-0008",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wofür stehen die 13 Ziffern des üblichen Strichcodes auf Lebensmitteln?",
+      "antworten": [
+        "Die EAN, eine weltweit eindeutige Artikelnummer",
+        "Das Mindesthaltbarkeitsdatum",
+        "Den Preis in Cent",
+        "Das Herkunftsland und das Gewicht"
+      ],
+      "erklaerung": "EAN hieß ursprünglich European Article Number, heute GTIN. Die ersten Ziffern stehen für die Organisation, die die Nummer vergeben hat.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=European%20Article%20Number",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0006",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Regalhöhe auf Augen- und Griffhöhe, in der sich Ware am besten verkauft?",
+      "antworten": [
+        "Sicht- und Griffzone",
+        "Bückzone",
+        "Reckzone",
+        "Komfortzone"
+      ],
+      "erklaerung": "Teure Markenware steht meist dort, Günstiges unten in der Bückzone.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Regalplatzierung",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0081",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "In welchem Ort in Arkansas eröffnete Sam Walton 1962 den ersten Walmart?",
+      "antworten": [
+        "Rogers",
+        "Little Rock",
+        "Bentonville",
+        "Fayetteville"
+      ],
+      "erklaerung": "Zuvor betrieb Walton Gemischtwarenläden, der Firmensitz liegt im nahen Bentonville. Aus dem Discounter wurde der weltweit umsatzstärkste Händler.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Walmart",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0071",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Auf welchen Prozentsatz wurde der reguläre Mehrwertsteuersatz in Deutschland im zweiten Halbjahr 2020 befristet gesenkt?",
+      "antworten": [
+        "16 Prozent",
+        "15 Prozent",
+        "17 Prozent",
+        "14 Prozent"
+      ],
+      "erklaerung": "Vom 1. Juli bis 31. Dezember 2020 galten 16 statt 19 Prozent, der ermäßigte Satz sank von 7 auf 5 Prozent.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Senkung%20der%20Mehrwertsteuer%20in%20Deutschland%202020",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0045",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was versteht man unter einem „Tante-Emma-Laden“?",
+      "antworten": [
+        "Ein kleiner, meist inhabergeführter Lebensmittelladen",
+        "Ein großer Discounter",
+        "Einen Online-Supermarkt",
+        "Ein Geschäft nur für Damenmode"
+      ],
+      "erklaerung": "Solche Läden versorgten früher viele Orte und Stadtviertel mit dem täglichen Bedarf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tante-Emma-Laden",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0021",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man die Regel, nach der Geschäfte in Deutschland seit 2020 bei jedem Kauf einen Beleg ausgeben müssen?",
+      "antworten": [
+        "Bonpflicht",
+        "Kassenzwang",
+        "Quittungsgebot",
+        "Belegfreiheit"
+      ],
+      "erklaerung": "Sie soll Steuerbetrug an elektronischen Kassen erschweren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Belegausgabepflicht",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0092",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie nennt man im Handel Waren, die sich über lange Zeit kaum verkaufen lassen?",
+      "antworten": [
+        "Ladenhüter",
+        "Quengelware",
+        "Lockvögel",
+        "Renner"
+      ],
+      "erklaerung": "Ladenhüter sind Artikel, die lange im Regal oder Lager bleiben, weil kaum Nachfrage besteht.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ladenh%C3%BCter",
+      "erstellt": "2026-10-30",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0010",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "schwer",
-      "frage": "Wofür stehen die Buchstaben im Namen „IKEA“?",
+      "frage": "In welchem Jahr wurde in Deutschland das Pfand auf Einweg-Getränkeverpackungen eingeführt?",
       "antworten": [
-        "Ingvar Kamprad, Elmtaryd, Agunnaryd",
-        "Import Kaufhaus Europa Almhult",
-        "Ingvar Karlsson Einrichtungs-AB",
-        "Idee, Komfort, Einrichtung, Auswahl"
+        "2003",
+        "1991",
+        "1998",
+        "2010"
       ],
-      "erklaerung": "Kamprad wuchs auf dem Hof Elmtaryd bei dem Dorf Agunnaryd in Småland auf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=IKEA",
+      "erklaerung": "Es gilt seit dem 1. Januar 2003, zunächst für Bier, Mineralwasser und Limonaden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Einwegpfand",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0001",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Welcher Discounter wurde von den Brüdern Karl und Theo Albrecht gegründet?",
+      "antworten": [
+        "Aldi",
+        "Lidl",
+        "Penny",
+        "Netto"
+      ],
+      "erklaerung": "Die Brüder übernahmen 1946 den Laden ihrer Mutter in Essen; 1961 teilten sie das Unternehmen in Aldi Nord und Aldi Süd.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0043",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was gibt der „Grundpreis“ auf dem Preisschild im Supermarkt an?",
+      "antworten": [
+        "Den Preis je Kilogramm oder Liter",
+        "Den Einkaufspreis des Händlers",
+        "Den Preis ohne Mehrwertsteuer",
+        "Den Preis bei Abnahme von zehn Stück"
+      ],
+      "erklaerung": "Er macht Produkte mit unterschiedlichen Packungsgrößen vergleichbar.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Grundpreis",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0033",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man das Gerät an der Supermarktkasse, das den Strichcode der Ware einliest?",
+      "antworten": [
+        "Scanner",
+        "Plotter",
+        "Pager",
+        "Fräser"
+      ],
+      "erklaerung": "Es liest den Strichcode und gibt den Preis an die Kasse weiter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Barcodeleser",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0093",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Was versteht man im Handel unter einer „ABC-Analyse“?",
+      "antworten": [
+        "Die Einteilung von Artikeln nach ihrem Wert- bzw. Umsatzanteil",
+        "Die alphabetische Sortierung der Waren im Regal",
+        "Die Einteilung der Kunden nach dem Anfangsbuchstaben ihres Namens",
+        "Die Schulung der Kassenkräfte in drei Stufen"
+      ],
+      "erklaerung": "Bei der ABC-Analyse werden Artikel nach ihrer Bedeutung (z. B. Umsatzanteil) in die Gruppen A, B und C eingeteilt, damit man sich auf die wichtigsten konzentriert.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ABC-Analyse",
+      "erstellt": "2026-10-30",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0025",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „Click & Collect“?",
+      "antworten": [
+        "Online bestellen und im Laden abholen",
+        "Im Laden bezahlen, nach Hause liefern lassen",
+        "Mit dem Handy an der Kasse bezahlen",
+        "Rabattmarken sammeln"
+      ],
+      "erklaerung": "Viele Händler bieten es seit der Corona-Zeit an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Click%20%26%20Collect",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0004",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wofür steht im Handel die Abkürzung „UVP“?",
+      "antworten": [
+        "Unverbindliche Preisempfehlung",
+        "Unterer Verkaufspreis",
+        "Umsatz vor Provision",
+        "Unser Vorteilspreis"
+      ],
+      "erklaerung": "Der Hersteller empfiehlt einen Preis – der Händler darf frei davon abweichen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Unverbindliche%20Preisempfehlung",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0044",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was ist „Skonto“?",
+      "antworten": [
+        "Ein Preisnachlass bei schneller Bezahlung",
+        "Ein Aufschlag bei später Zahlung",
+        "Eine Verpackungsgebühr",
+        "Ein Preisnachlass für Stammkunden"
+      ],
+      "erklaerung": "Lieferanten gewähren Skonto, wenn die Rechnung innerhalb einer kurzen Frist beglichen wird.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Skonto",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0052",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was bedeutet „Franchise“ im Handel?",
+      "antworten": [
+        "Namen und Konzept eines Anbieters gegen Gebühr nutzen",
+        "Ein Händler verkauft nur Gebrauchtes",
+        "Ein Laden gehört den Mitarbeitern",
+        "Ein Händler verkauft nur im Internet"
+      ],
+      "erklaerung": "Bekannte Beispiele sind viele Fast-Food-Restaurants und Backshops.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Franchising",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0058",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr wurden in Deutschland Rabattgesetz und Zugabeverordnung abgeschafft?",
+      "antworten": [
+        "2001",
+        "1990",
+        "1996",
+        "2008"
+      ],
+      "erklaerung": "Seitdem dürfen Händler im Rahmen des Wettbewerbsrechts freier Preisnachlässe und Zugaben anbieten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Rabattgesetz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0059",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wofür stand ursprünglich der Name „Edeka“?",
+      "antworten": [
+        "Einkaufsgenossenschaft der Kolonialwarenhändler",
+        "Einzelhandel der Kaufleute Altona",
+        "Erster Deutscher Kaufhaus-Verbund",
+        "Erzeugergemeinschaft deutscher Kaufleute"
+      ],
+      "erklaerung": "1907 gründeten Kolonialwarenhändler in Berlin die Genossenschaft, aus der Edeka wurde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Edeka",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0038",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Was ist ein Flohmarkt?",
+      "antworten": [
+        "Ein Markt, auf dem Gebrauchtes verkauft wird",
+        "Ein Markt nur für Tierbedarf",
+        "Ein Markt nur für Neuware vom Hersteller",
+        "Ein Markt für Großhändler"
+      ],
+      "erklaerung": "Auf Flohmärkten bieten oft Privatleute Gebrauchtes und Trödel an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Flohmarkt",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0085",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Was bedeutet „B2C“ im Handel?",
+      "antworten": [
+        "Business to Consumer – vom Unternehmen zum Endkunden",
+        "Back to Cash",
+        "Brand to Customer",
+        "Business to Company"
+      ],
+      "erklaerung": "Gegenstück ist „B2B“: Verkauf zwischen Unternehmen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Business-to-Consumer",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0083",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man ein Geschäft, in dem man Bücher kauft?",
+      "antworten": [
+        "Buchhandlung",
+        "Drogerie",
+        "Bäckerei",
+        "Apotheke"
+      ],
+      "erklaerung": "Auch Antiquariate verkaufen gebrauchte Bücher.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Buchhandlung",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -73,516 +940,6 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0006",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie heißt die Regalhöhe auf Augen- und Griffhöhe, in der sich Ware am besten verkauft?",
-      "antworten": [
-        "Sicht- und Griffzone",
-        "Bückzone",
-        "Reckzone",
-        "Komfortzone"
-      ],
-      "erklaerung": "Teure Markenware steht meist dort, Günstiges unten in der Bückzone.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Regalplatzierung",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0054",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "In welcher Stadt eröffnete Rudolph Karstadt 1881 sein erstes Geschäft?",
-      "antworten": [
-        "Wismar",
-        "Hamburg",
-        "Essen",
-        "Lübeck"
-      ],
-      "erklaerung": "Aus dem kleinen Tuch- und Manufakturwarengeschäft wurde später der Warenhauskonzern Karstadt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Karstadt",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0064",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Bis wie viel Uhr durften deutsche Geschäfte seit der Einführung des „Dienstleistungsabends“ 1989 donnerstags öffnen?",
-      "antworten": [
-        "20.30 Uhr",
-        "19.00 Uhr",
-        "21.00 Uhr",
-        "22.00 Uhr"
-      ],
-      "erklaerung": "Der lange Donnerstag war die erste größere Lockerung des Ladenschlussgesetzes. Sonst war meist um 18.30 Uhr Schluss.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Dienstleistungsabend",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0062",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Welches Handelsunternehmen betreibt die Supermärkte REWE und Penny?",
-      "antworten": [
-        "Die REWE Group",
-        "Die Schwarz-Gruppe",
-        "Der Edeka-Verbund",
-        "Die Metro AG"
-      ],
-      "erklaerung": "Zur Schwarz-Gruppe gehören Lidl und Kaufland.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rewe%20Group",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0005",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man im Handelsjargon die Süßigkeiten direkt an der Kasse?",
-      "antworten": [
-        "Quengelware",
-        "Kassenfutter",
-        "Wartezonen-Snack",
-        "Impulsgebäck"
-      ],
-      "erklaerung": "Sie hängt bewusst auf Augenhöhe von Kindern, die in der Schlange quengeln.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Quengelware",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0048",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was bedeutet „Cash and Carry“ im Großhandel?",
-      "antworten": [
-        "Selbst abholen und bar bezahlen",
-        "Online bestellen, später zahlen",
-        "Lieferung frei Haus",
-        "Ware nur auf Kommission"
-      ],
-      "erklaerung": "Großmärkte wie Metro funktionieren nach diesem Prinzip, meist für gewerbliche Kunden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Cash%20%26%20Carry",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0010",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde in Deutschland das Pfand auf Einweg-Getränkeverpackungen eingeführt?",
-      "antworten": [
-        "2003",
-        "1991",
-        "1998",
-        "2010"
-      ],
-      "erklaerung": "Es gilt seit dem 1. Januar 2003, zunächst für Bier, Mineralwasser und Limonaden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Einwegpfand",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0018",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wofür steht im Handel die Abkürzung „POS“?",
-      "antworten": [
-        "Point of Sale – der Ort des Verkaufs",
-        "Price of Stock",
-        "Position ohne Sortiment",
-        "Personal ohne Schicht"
-      ],
-      "erklaerung": "Gemeint ist meist die Kasse und alles, was dort für den Kauf wirbt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Point%20of%20Sale",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0078",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Welche Namensbestandteile stecken im Namen der britischen Supermarktkette Tesco?",
-      "antworten": [
-        "Teelieferant Stockwell und Gründer Cohen",
-        "Tea Store Company",
-        "Trade, Essen, Shop, Company",
-        "Tesla und Cohen"
-      ],
-      "erklaerung": "Jack Cohen kaufte Tee vom Lieferanten T. E. Stockwell und kombinierte dessen Initialen mit den ersten beiden Buchstaben seines Nachnamens.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tesco",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0020",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was ist ein „Lockvogelangebot“?",
-      "antworten": [
-        "Ein auffällig günstiges Angebot, das Kunden in den Laden locken soll",
-        "Ein Rabatt nur für Stammkunden",
-        "Ein Gutschein im Briefkasten",
-        "Ein Sonderangebot für Vogelfutter"
-      ],
-      "erklaerung": "Ist die Ware gar nicht ausreichend vorrätig, ist das unlautere Werbung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lockvogelangebot",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0014",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wer regelt seit der Föderalismusreform 2006 die Ladenöffnungszeiten in Deutschland?",
-      "antworten": [
-        "Die Bundesländer",
-        "Der Bund",
-        "Die Städte und Gemeinden",
-        "Die Industrie- und Handelskammern"
-      ],
-      "erklaerung": "Seitdem gelten je nach Land unterschiedliche Regeln – der Sonntag bleibt weitgehend geschützt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ladenschlussgesetz",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0012",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie lange gilt für Verbraucher die gesetzliche Gewährleistung beim Kauf neuer Ware?",
-      "antworten": [
-        "Zwei Jahre",
-        "Sechs Monate",
-        "Ein Jahr",
-        "Fünf Jahre"
-      ],
-      "erklaerung": "Gewährleistung ist gesetzlich vorgeschrieben – eine Garantie gibt der Hersteller freiwillig.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gew%C3%A4hrleistung",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0050",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie müssen Händler Preise gegenüber Verbrauchern grundsätzlich angeben?",
-      "antworten": [
-        "Als Endpreis inklusive Mehrwertsteuer",
-        "Nur als Nettopreis",
-        "In ungefähren Preisspannen",
-        "Nur auf Nachfrage"
-      ],
-      "erklaerung": "Die Preisangabenverordnung verlangt den Gesamtpreis, den der Kunde tatsächlich zahlt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Preisangabenverordnung",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0069",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "In welcher Stadt gründete Gustav Schickedanz 1927 das Versandhaus Quelle?",
-      "antworten": [
-        "Fürth",
-        "Nürnberg",
-        "Erlangen",
-        "Bamberg"
-      ],
-      "erklaerung": "Quelle wurde zu einem der größten Versandhändler Europas. 2009 ging das Unternehmen in die Insolvenz.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Quelle%20%28Unternehmen%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0081",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "In welchem Ort in Arkansas eröffnete Sam Walton 1962 den ersten Walmart?",
-      "antworten": [
-        "Rogers",
-        "Little Rock",
-        "Bentonville",
-        "Fayetteville"
-      ],
-      "erklaerung": "Zuvor betrieb Walton Gemischtwarenläden, der Firmensitz liegt im nahen Bentonville. Aus dem Discounter wurde der weltweit umsatzstärkste Händler.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Walmart",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0045",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was versteht man unter einem „Tante-Emma-Laden“?",
-      "antworten": [
-        "Ein kleiner, meist inhabergeführter Lebensmittelladen",
-        "Ein großer Discounter",
-        "Einen Online-Supermarkt",
-        "Ein Geschäft nur für Damenmode"
-      ],
-      "erklaerung": "Solche Läden versorgten früher viele Orte und Stadtviertel mit dem täglichen Bedarf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tante-Emma-Laden",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0087",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wo kauft man typischerweise frische Brötchen?",
-      "antworten": [
-        "In der Bäckerei",
-        "In der Apotheke",
-        "In der Buchhandlung",
-        "Im Elektromarkt"
-      ],
-      "erklaerung": "Brötchen backt und verkauft die Bäckerei, oft auch Bäckerei-Filialen in Supermärkten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%A4ckerei",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0088",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was versteht man im Handel unter einer „Retoure“?",
-      "antworten": [
-        "Die Rücksendung gekaufter Ware an den Händler",
-        "Eine Sonderaktion mit Preisnachlass",
-        "Die Anlieferung neuer Ware ins Lager",
-        "Den Kassenabschluss am Tagesende"
-      ],
-      "erklaerung": "Eine Retoure ist Ware, die der Kunde an den Händler zurückschickt, etwa im Versandhandel.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Retoure",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0073",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "In welcher schwedischen Stadt gründete Erling Persson 1947 das Modegeschäft „Hennes“, aus dem H&M wurde?",
-      "antworten": [
-        "Västerås",
-        "Stockholm",
-        "Göteborg",
-        "Malmö"
-      ],
-      "erklaerung": "Der Namenszusatz „& Mauritz“ kam 1968 mit der Übernahme des Jagd- und Anglerausstatters Mauritz Widforss.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Hennes%20%26%20Mauritz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0071",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Auf welchen Prozentsatz wurde der reguläre Mehrwertsteuersatz in Deutschland im zweiten Halbjahr 2020 befristet gesenkt?",
-      "antworten": [
-        "16 Prozent",
-        "15 Prozent",
-        "17 Prozent",
-        "14 Prozent"
-      ],
-      "erklaerung": "Vom 1. Juli bis 31. Dezember 2020 galten 16 statt 19 Prozent, der ermäßigte Satz sank von 7 auf 5 Prozent.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Senkung%20der%20Mehrwertsteuer%20in%20Deutschland%202020",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0037",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wo bekommt man in Deutschland rezeptpflichtige Medikamente?",
-      "antworten": [
-        "In der Apotheke",
-        "In der Drogerie",
-        "Im Supermarkt",
-        "Im Reformhaus"
-      ],
-      "erklaerung": "Rezeptpflichtige Arzneimittel dürfen nur Apotheken abgeben.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Apotheke",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0026",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr erschien der erste Katalog des Versandhändlers Otto?",
-      "antworten": [
-        "1950",
-        "1925",
-        "1965",
-        "1980"
-      ],
-      "erklaerung": "Er hatte 14 Seiten und bot vor allem Schuhe an.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Otto%20Group",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0052",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was bedeutet „Franchise“ im Handel?",
-      "antworten": [
-        "Namen und Konzept eines Anbieters gegen Gebühr nutzen",
-        "Ein Händler verkauft nur Gebrauchtes",
-        "Ein Laden gehört den Mitarbeitern",
-        "Ein Händler verkauft nur im Internet"
-      ],
-      "erklaerung": "Bekannte Beispiele sind viele Fast-Food-Restaurants und Backshops.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Franchising",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0053",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Welches Unternehmen ist die Muttergesellschaft von MediaMarkt und Saturn?",
-      "antworten": [
-        "Ceconomy",
-        "Otto Group",
-        "Tengelmann",
-        "Douglas"
-      ],
-      "erklaerung": "Ceconomy hat seinen Sitz in Düsseldorf und entstand 2017 aus der Aufspaltung der Metro.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ceconomy",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0004",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wofür steht im Handel die Abkürzung „UVP“?",
-      "antworten": [
-        "Unverbindliche Preisempfehlung",
-        "Unterer Verkaufspreis",
-        "Umsatz vor Provision",
-        "Unser Vorteilspreis"
-      ],
-      "erklaerung": "Der Hersteller empfiehlt einen Preis – der Händler darf frei davon abweichen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Unverbindliche%20Preisempfehlung",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0076",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Unter welchem Namen wurde Amazon 1994 ursprünglich gegründet?",
-      "antworten": [
-        "Cadabra",
-        "Relentless",
-        "Bezos Books",
-        "Abracadabra"
-      ],
-      "erklaerung": "Jeff Bezos benannte das Unternehmen bald um, weil „Cadabra“ am Telefon leicht wie „Cadaver“ klang.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Amazon",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0084",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wofür steht das Kürzel „EAN“ auf Produkten?",
-      "antworten": [
-        "Europäische Artikelnummer",
-        "Elektronische Abrechnungsnorm",
-        "Erweiterte Angebotsnummer",
-        "Einzelhandels-Aufschlag-Nummer"
-      ],
-      "erklaerung": "Sie steht unter dem Strichcode und hat meist 13 Ziffern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Global%20Trade%20Item%20Number",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0068",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "In welcher Stadt gründete Leonhard Tietz 1879 sein erstes Geschäft, aus dem später Kaufhof wurde?",
-      "antworten": [
-        "Stralsund",
-        "Köln",
-        "Hamburg",
-        "Rostock"
-      ],
-      "erklaerung": "Aus dem Stralsunder Woll- und Kurzwarengeschäft wurde ein Warenhauskonzern, der später in Kaufhof umbenannt wurde.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Leonhard%20Tietz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0089",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wie nennt man im Buchhandel unverkaufte Bücher, die an den Verlag zurückgeschickt werden?",
-      "antworten": [
-        "Remittenden",
-        "Makulatur",
-        "Rezensionsexemplare",
-        "Antiquariatsware"
-      ],
-      "erklaerung": "Remittenden sind Bücher, die der Buchhändler unverkauft an den Verlag oder Großhändler zurückgibt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Buchhandel",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0015",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie heißt das Berliner Kaufhaus, das 1907 eröffnet wurde und als größtes Warenhaus Kontinentaleuropas gilt?",
-      "antworten": [
-        "KaDeWe",
-        "Galeries Lafayette",
-        "Wertheim",
-        "Harrods"
-      ],
-      "erklaerung": "KaDeWe steht für Kaufhaus des Westens.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kaufhaus%20des%20Westens",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
       "id": "handel-0066",
       "version": 1,
       "kategorie": "Einzelhandel",
@@ -596,448 +953,6 @@
       ],
       "erklaerung": "Gründer war der Kaufmann Otto Beisheim; der Ableger Metro Cash & Carry wurde zum Vorbild für Selbstbedienungs-Großmärkte.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Metro%20AG",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0043",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was gibt der „Grundpreis“ auf dem Preisschild im Supermarkt an?",
-      "antworten": [
-        "Den Preis je Kilogramm oder Liter",
-        "Den Einkaufspreis des Händlers",
-        "Den Preis ohne Mehrwertsteuer",
-        "Den Preis bei Abnahme von zehn Stück"
-      ],
-      "erklaerung": "Er macht Produkte mit unterschiedlichen Packungsgrößen vergleichbar.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Grundpreis",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0049",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was ist „Payback“?",
-      "antworten": [
-        "Ein Bonusprogramm, bei dem man Punkte sammelt",
-        "Ein Rückgaberecht für Waren",
-        "Eine Kreditkarte eines Händlers",
-        "Ein Pfandsystem für Flaschen"
-      ],
-      "erklaerung": "Bei Partnerunternehmen sammelt man Punkte, die man gegen Prämien oder Rabatte einlösen kann.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Payback%20%28Bonusprogramm%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0042",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Welcher Discounter wirbt mit dem Slogan „… lohnt sich“?",
-      "antworten": [
-        "Lidl",
-        "Aldi",
-        "Penny",
-        "Netto"
-      ],
-      "erklaerung": "Der Slogan ist „Lidl lohnt sich“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lidl",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0059",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wofür stand ursprünglich der Name „Edeka“?",
-      "antworten": [
-        "Einkaufsgenossenschaft der Kolonialwarenhändler",
-        "Einzelhandel der Kaufleute Altona",
-        "Erster Deutscher Kaufhaus-Verbund",
-        "Erzeugergemeinschaft deutscher Kaufleute"
-      ],
-      "erklaerung": "1907 gründeten Kolonialwarenhändler in Berlin die Genossenschaft, aus der Edeka wurde.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Edeka",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0002",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wofür steht der Name „Aldi“?",
-      "antworten": [
-        "Albrecht Diskont",
-        "Alles Lebensmittel, Discount",
-        "Allgemeine Lebensmittel-Distribution",
-        "Albrechts Liefer-Dienst"
-      ],
-      "erklaerung": "Aus Albrecht-Diskont wurde 1962 die Kurzform Aldi.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0075",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "In welcher niederländischen Stadt gründeten die Brüder Clemens und August Brenninkmeijer 1841 das Unternehmen C&A?",
-      "antworten": [
-        "Sneek",
-        "Amsterdam",
-        "Utrecht",
-        "Groningen"
-      ],
-      "erklaerung": "Der Firmenname setzt sich aus den Anfangsbuchstaben der beiden Vornamen zusammen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=C%26A",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0072",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Wie lange nach der Übergabe gilt seit 2022 die Beweislastumkehr beim Verbrauchsgüterkauf?",
-      "antworten": [
-        "Ein Jahr",
-        "Sechs Monate",
-        "Zwei Jahre",
-        "Drei Monate"
-      ],
-      "erklaerung": "Zeigt sich innerhalb dieser Frist ein Mangel, wird vermutet, dass er schon beim Kauf vorlag. Vorher galten nur sechs Monate.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Beweislastumkehr",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0007",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie nennt man einen Preis wie 9,99 Euro, der knapp unter einer runden Zahl liegt?",
-      "antworten": [
-        "Schwellenpreis",
-        "Mondpreis",
-        "Listenpreis",
-        "Festpreis"
-      ],
-      "erklaerung": "Er soll deutlich günstiger wirken als 10 Euro. Ein Mondpreis ist dagegen ein absichtlich überhöhter Ausgangspreis.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Preisschwelle",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0036",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Was verkauft ein Metzger?",
-      "antworten": [
-        "Fleisch und Wurst",
-        "Brot und Brötchen",
-        "Obst und Gemüse",
-        "Blumen und Pflanzen"
-      ],
-      "erklaerung": "Der Metzger, in manchen Regionen Fleischer, ist ein Lebensmittelhandwerker.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fleischer",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0056",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr kam der Euro als Bargeld in den Handel?",
-      "antworten": [
-        "2002",
-        "1999",
-        "2001",
-        "2004"
-      ],
-      "erklaerung": "Zum Jahreswechsel 2001/2002 ersetzten Euro-Scheine und -Münzen die D-Mark in den Kassen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Euro-Bargeld",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0034",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Mit welchem Slogan wirbt der Supermarkt Edeka?",
-      "antworten": [
-        "Wir lieben Lebensmittel",
-        "Besser leben",
-        "Einfach gut einkaufen",
-        "Frisch und günstig"
-      ],
-      "erklaerung": "Der Slogan „Wir lieben Lebensmittel“ gehört seit vielen Jahren zu Edeka.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Edeka",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0090",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "In welcher Stadt eröffnete Anna Albrecht 1913 den Laden, aus dem später Aldi hervorging?",
-      "antworten": [
-        "Essen",
-        "Dortmund",
-        "Bochum",
-        "Duisburg"
-      ],
-      "erklaerung": "Die Mutter von Karl und Theo Albrecht eröffnete das Lebensmittelgeschäft 1913 in Essen-Schonnebeck.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0065",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Nach welcher Frist erlischt das Widerrufsrecht bei Fernabsatzverträgen spätestens, wenn der Händler nie über das Widerrufsrecht belehrt hat?",
-      "antworten": [
-        "Nach 12 Monaten und 14 Tagen",
-        "Nach 6 Monaten",
-        "Nach 3 Jahren",
-        "Nie"
-      ],
-      "erklaerung": "Normalerweise sind es 14 Tage; ohne korrekte Belehrung verlängert sich die Frist um bis zu zwölf Monate.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0031",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie heißt der Rabatttag am Freitag nach dem US-Feiertag Thanksgiving?",
-      "antworten": [
-        "Black Friday",
-        "Cyber Monday",
-        "Super Saturday",
-        "Singles' Day"
-      ],
-      "erklaerung": "Der Cyber Monday folgt drei Tage später, der Singles' Day ist am 11. November.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Black%20Friday",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0030",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Was ist ein „Outlet“?",
-      "antworten": [
-        "Ein Geschäft, in dem Hersteller Ware günstiger verkaufen",
-        "Ein Laden nur für Elektroartikel",
-        "Ein Lager ohne Verkauf",
-        "Ein Kiosk am Bahnhof"
-      ],
-      "erklaerung": "Oft geht es um Ware aus der Vorsaison oder mit kleinen Fehlern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fabrikverkauf",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0039",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man in Berlin den kleinen Laden mit langen Öffnungszeiten, der auch spätabends noch Getränke verkauft?",
-      "antworten": [
-        "Späti",
-        "Tante-Emma-Laden",
-        "Hofladen",
-        "Reformhaus"
-      ],
-      "erklaerung": "„Späti“ ist die Kurzform für Spätkauf.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sp%C3%A4tkauf",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0074",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Welchen Namen wollte Amancio Ortega seiner Modekette Zara ursprünglich geben?",
-      "antworten": [
-        "Zorba",
-        "Zebra",
-        "Zorro",
-        "Zenit"
-      ],
-      "erklaerung": "Der Name war in der Nähe schon an eine Bar vergeben, daher wurden die Buchstaben zu Zara umgestellt. Der erste Laden eröffnete 1975 in A Coruña.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zara%20%28Unternehmen%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0055",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurde das erste bundesweite Ladenschlussgesetz in der Bundesrepublik verabschiedet?",
-      "antworten": [
-        "1956",
-        "1949",
-        "1968",
-        "1975"
-      ],
-      "erklaerung": "Es regelte lange Zeit sehr strikt, wann Geschäfte öffnen durften.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ladenschlussgesetz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0063",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "In welcher US-Stadt eröffnete Clarence Saunders 1916 mit „Piggly Wiggly“ den ersten Selbstbedienungsladen?",
-      "antworten": [
-        "Memphis",
-        "Atlanta",
-        "Chicago",
-        "Nashville"
-      ],
-      "erklaerung": "Kunden nahmen ihre Waren erstmals selbst aus den Regalen, statt sie sich über die Theke reichen zu lassen. Die Kette entstand in Memphis, Tennessee.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Piggly%20Wiggly",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0085",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Was bedeutet „B2C“ im Handel?",
-      "antworten": [
-        "Business to Consumer – vom Unternehmen zum Endkunden",
-        "Back to Cash",
-        "Brand to Customer",
-        "Business to Company"
-      ],
-      "erklaerung": "Gegenstück ist „B2B“: Verkauf zwischen Unternehmen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Business-to-Consumer",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0047",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Ab welchem Alter darf man in Deutschland im Supermarkt Bier kaufen?",
-      "antworten": [
-        "Ab 16 Jahren",
-        "Ab 14 Jahren",
-        "Ab 18 Jahren",
-        "Ab 21 Jahren"
-      ],
-      "erklaerung": "Bier, Wein und Sekt gibt es ab 16, Spirituosen erst ab 18.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Jugendschutzgesetz%20%28Deutschland%29",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0067",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "ingomania",
-      "frage": "Aus welchen beiden Wortteilen setzt sich der Name „Tchibo“ zusammen?",
-      "antworten": [
-        "Tchilinghiryan und Bohne",
-        "Tchaikowsky und Bohne",
-        "Tee und Chicorée-Bohne",
-        "Tchechien und Bohne"
-      ],
-      "erklaerung": "Der Hamburger Röster wurde 1949 von Max Herz und Carl Tchilinghiryan gegründet. Der zweite Namensteil steht für die Kaffeebohne.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tchibo",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0051",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was ist typisch für einen Discounter?",
-      "antworten": [
-        "Kleines Sortiment und niedrige Preise",
-        "Große Auswahl und Beratung",
-        "Nur Luxusprodukte",
-        "Lieferung nur nach Hause"
-      ],
-      "erklaerung": "Discounter sparen durch wenige Artikel, schlichte Läden und viele Eigenmarken.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Discounter",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0044",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was ist „Skonto“?",
-      "antworten": [
-        "Ein Preisnachlass bei schneller Bezahlung",
-        "Ein Aufschlag bei später Zahlung",
-        "Eine Verpackungsgebühr",
-        "Ein Preisnachlass für Stammkunden"
-      ],
-      "erklaerung": "Lieferanten gewähren Skonto, wenn die Rechnung innerhalb einer kurzen Frist beglichen wird.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Skonto",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0001",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Welcher Discounter wurde von den Brüdern Karl und Theo Albrecht gegründet?",
-      "antworten": [
-        "Aldi",
-        "Lidl",
-        "Penny",
-        "Netto"
-      ],
-      "erklaerung": "Die Brüder übernahmen 1946 den Laden ihrer Mutter in Essen; 1961 teilten sie das Unternehmen in Aldi Nord und Aldi Süd.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0041",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Welcher Online-Händler hat im Logo einen Pfeil, der von A nach Z führt?",
-      "antworten": [
-        "Amazon",
-        "Zalando",
-        "eBay",
-        "Otto"
-      ],
-      "erklaerung": "Der Pfeil soll zeigen, dass es bei Amazon alles von A bis Z gibt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Amazon",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1059,308 +974,53 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0040",
+      "id": "handel-0091",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "leicht",
-      "frage": "Was gibt man am Pfandautomaten im Supermarkt ab?",
+      "frage": "Was verkauft ein Optiker?",
       "antworten": [
-        "Leere Pfandflaschen und Dosen",
-        "Defekte Elektrogeräte",
-        "Gebrauchte Kleidung",
-        "Alte Batterien"
+        "Brillen und Kontaktlinsen",
+        "Schuhe und Taschen",
+        "Uhren und Schmuck",
+        "Medikamente und Salben"
       ],
-      "erklaerung": "Als Gegenwert erhält man einen Pfandbon, den man an der Kasse einlöst.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Pfandsystem",
-      "erstellt": "2026-10-24",
+      "erklaerung": "Optiker beraten zu Sehhilfen und verkaufen Brillen und Kontaktlinsen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Augenoptiker",
+      "erstellt": "2026-10-30",
       "gueltigBis": null
     },
     {
-      "id": "handel-0019",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wer erfand 1937 in den USA den Einkaufswagen?",
-      "antworten": [
-        "Sylvan Goldman",
-        "Henry Ford",
-        "Clarence Saunders",
-        "Sam Walton"
-      ],
-      "erklaerung": "Der Supermarktbesitzer aus Oklahoma City setzte zwei Körbe auf ein Klappgestell mit Rädern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Einkaufswagen",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0033",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man das Gerät an der Supermarktkasse, das den Strichcode der Ware einliest?",
-      "antworten": [
-        "Scanner",
-        "Plotter",
-        "Pager",
-        "Fräser"
-      ],
-      "erklaerung": "Es liest den Strichcode und gibt den Preis an die Kasse weiter.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Barcodeleser",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0028",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "In welcher Stadt wurde die Drogeriekette dm 1973 gegründet?",
-      "antworten": [
-        "Karlsruhe",
-        "München",
-        "Hamburg",
-        "Köln"
-      ],
-      "erklaerung": "Gründer war Götz Werner.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=dm-drogerie%20markt",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0024",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wofür steht „MHD“ auf Lebensmittelverpackungen?",
-      "antworten": [
-        "Mindesthaltbarkeitsdatum",
-        "Maximale Haltbarkeitsdauer",
-        "Markenhersteller-Datum",
-        "Monatliche Hygienedaten"
-      ],
-      "erklaerung": "Nach dem MHD ist ein Lebensmittel oft noch gut – anders als beim Verbrauchsdatum.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Mindesthaltbarkeitsdatum",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0083",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man ein Geschäft, in dem man Bücher kauft?",
-      "antworten": [
-        "Buchhandlung",
-        "Drogerie",
-        "Bäckerei",
-        "Apotheke"
-      ],
-      "erklaerung": "Auch Antiquariate verkaufen gebrauchte Bücher.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Buchhandlung",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0046",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Bei welcher Ware steht typischerweise „zu verbrauchen bis“ statt eines Mindesthaltbarkeitsdatums?",
-      "antworten": [
-        "Frisches Hackfleisch",
-        "Nudeln",
-        "Honig",
-        "Reis"
-      ],
-      "erklaerung": "Das Verbrauchsdatum steht bei leicht verderblichen Lebensmitteln und sollte nicht überschritten werden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Verbrauchsdatum",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0023",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wie heißt die Kennzahl „Umsatz pro Quadratmeter Verkaufsfläche“?",
-      "antworten": [
-        "Flächenproduktivität",
-        "Lagerumschlag",
-        "Rohertrag",
-        "Kundenfrequenz"
-      ],
-      "erklaerung": "Mit ihr vergleichen Händler, wie gut ihre Filialen den Platz nutzen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fl%C3%A4chenproduktivit%C3%A4t",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0058",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr wurden in Deutschland Rabattgesetz und Zugabeverordnung abgeschafft?",
-      "antworten": [
-        "2001",
-        "1990",
-        "1996",
-        "2008"
-      ],
-      "erklaerung": "Seitdem dürfen Händler im Rahmen des Wettbewerbsrechts freier Preisnachlässe und Zugaben anbieten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Rabattgesetz",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0016",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man die regelmäßige Zählung aller Waren im Lager und im Laden?",
-      "antworten": [
-        "Inventur",
-        "Revision",
-        "Kommissionierung",
-        "Disposition"
-      ],
-      "erklaerung": "Kaufleute müssen ihren Bestand mindestens einmal im Jahr erfassen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Inventur",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0009",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie hoch ist das Pfand auf eine Einweg-Plastikflasche mit Pfandlogo in Deutschland?",
-      "antworten": [
-        "25 Cent",
-        "8 Cent",
-        "15 Cent",
-        "50 Cent"
-      ],
-      "erklaerung": "Mehrwegflaschen kosten meist 8 oder 15 Cent Pfand.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Einwegpfand",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0021",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Wie nennt man die Regel, nach der Geschäfte in Deutschland seit 2020 bei jedem Kauf einen Beleg ausgeben müssen?",
-      "antworten": [
-        "Bonpflicht",
-        "Kassenzwang",
-        "Quittungsgebot",
-        "Belegfreiheit"
-      ],
-      "erklaerung": "Sie soll Steuerbetrug an elektronischen Kassen erschweren.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Belegausgabepflicht",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0022",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie nennt man Produkte, die ein Händler unter eigenem Namen verkauft – etwa „ja!“ bei Rewe?",
-      "antworten": [
-        "Handelsmarke oder Eigenmarke",
-        "Herstellermarke",
-        "No-Name-Original",
-        "Lizenzmarke"
-      ],
-      "erklaerung": "Sie werden oft von bekannten Herstellern produziert, aber unter dem Namen des Händlers verkauft.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Handelsmarke",
-      "erstellt": "2026-10-16",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0032",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wie nennt man es, wenn ein Händler Ware erst bezahlt, nachdem er sie verkauft hat?",
-      "antworten": [
-        "Kommissionsgeschäft",
-        "Factoring",
-        "Leasing",
-        "Skonto"
-      ],
-      "erklaerung": "Unverkaufte Ware geht an den Lieferanten zurück.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Kommissionsgesch%C3%A4ft",
-      "erstellt": "2026-10-19",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0086",
+      "id": "handel-0063",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "ingomania",
-      "frage": "Was bezeichnet im Handel die „Sortimentsbreite“?",
+      "frage": "In welcher US-Stadt eröffnete Clarence Saunders 1916 mit „Piggly Wiggly“ den ersten Selbstbedienungsladen?",
       "antworten": [
-        "Die Zahl der verschiedenen Warengruppen",
-        "Die Zahl der Varianten je Warengruppe",
-        "Die Länge der Regale",
-        "Die Zahl der Filialen"
+        "Memphis",
+        "Atlanta",
+        "Chicago",
+        "Nashville"
       ],
-      "erklaerung": "Die Zahl der Artikel je Warengruppe heißt dagegen Sortimentstiefe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Sortiment%20%28Wirtschaft%29",
+      "erklaerung": "Kunden nahmen ihre Waren erstmals selbst aus den Regalen, statt sie sich über die Theke reichen zu lassen. Die Kette entstand in Memphis, Tennessee.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Piggly%20Wiggly",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "handel-0077",
+      "id": "handel-0064",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "ingomania",
-      "frage": "Unter welchem Namen ging die Online-Handelsplattform eBay 1995 an den Start?",
+      "frage": "Bis wie viel Uhr durften deutsche Geschäfte seit der Einführung des „Dienstleistungsabends“ 1989 donnerstags öffnen?",
       "antworten": [
-        "AuctionWeb",
-        "BidMaster",
-        "NetAuction",
-        "eTrade"
+        "20.30 Uhr",
+        "19.00 Uhr",
+        "21.00 Uhr",
+        "22.00 Uhr"
       ],
-      "erklaerung": "Gründer Pierre Omidyar startete die Seite als privates Projekt. Später wurde sie nach der Firma Echo Bay zu eBay.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=EBay",
-      "erstellt": "2026-10-24",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0003",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Welche beiden Handelsketten gehören zur Schwarz-Gruppe?",
-      "antworten": [
-        "Lidl und Kaufland",
-        "Aldi und Hofer",
-        "Rewe und Penny",
-        "Edeka und Netto"
-      ],
-      "erklaerung": "Die Schwarz-Gruppe aus Neckarsulm ist einer der größten Lebensmittelhändler der Welt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schwarz-Gruppe",
-      "erstellt": "2026-10-15",
-      "gueltigBis": null
-    },
-    {
-      "id": "handel-0038",
-      "version": 1,
-      "kategorie": "Einzelhandel",
-      "stufe": "leicht",
-      "frage": "Was ist ein Flohmarkt?",
-      "antworten": [
-        "Ein Markt, auf dem Gebrauchtes verkauft wird",
-        "Ein Markt nur für Tierbedarf",
-        "Ein Markt nur für Neuware vom Hersteller",
-        "Ein Markt für Großhändler"
-      ],
-      "erklaerung": "Auf Flohmärkten bieten oft Privatleute Gebrauchtes und Trödel an.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Flohmarkt",
+      "erklaerung": "Der lange Donnerstag war die erste größere Lockerung des Ladenschlussgesetzes. Sonst war meist um 18.30 Uhr Schluss.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dienstleistungsabend",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     },
@@ -1382,54 +1042,105 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0011",
+      "id": "handel-0029",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wie nennt man im Handel den durchschnittlichen Einkaufsbetrag pro Kunde?",
+      "antworten": [
+        "Durchschnittsbon",
+        "Rohertrag",
+        "Marge",
+        "Frequenz"
+      ],
+      "erklaerung": "Er ergibt sich aus Umsatz geteilt durch die Zahl der Einkäufe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Durchschnittsbon",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0012",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie lange gilt für Verbraucher die gesetzliche Gewährleistung beim Kauf neuer Ware?",
+      "antworten": [
+        "Zwei Jahre",
+        "Sechs Monate",
+        "Ein Jahr",
+        "Fünf Jahre"
+      ],
+      "erklaerung": "Gewährleistung ist gesetzlich vorgeschrieben – eine Garantie gibt der Hersteller freiwillig.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gew%C3%A4hrleistung",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0087",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "leicht",
-      "frage": "Wie lange haben Verbraucher bei online gekauften Waren grundsätzlich ein Widerrufsrecht?",
+      "frage": "Wo kauft man typischerweise frische Brötchen?",
       "antworten": [
-        "14 Tage",
-        "7 Tage",
-        "30 Tage",
-        "Gar keins"
+        "In der Bäckerei",
+        "In der Apotheke",
+        "In der Buchhandlung",
+        "Im Elektromarkt"
       ],
-      "erklaerung": "Die Frist beginnt meist mit dem Erhalt der Ware.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Brötchen backt und verkauft die Bäckerei, oft auch Bäckerei-Filialen in Supermärkten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=B%C3%A4ckerei",
+      "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "handel-0008",
+      "id": "handel-0040",
       "version": 1,
       "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wofür stehen die 13 Ziffern des üblichen Strichcodes auf Lebensmitteln?",
+      "stufe": "leicht",
+      "frage": "Was gibt man am Pfandautomaten im Supermarkt ab?",
       "antworten": [
-        "Die EAN, eine weltweit eindeutige Artikelnummer",
-        "Das Mindesthaltbarkeitsdatum",
-        "Den Preis in Cent",
-        "Das Herkunftsland und das Gewicht"
+        "Leere Pfandflaschen und Dosen",
+        "Defekte Elektrogeräte",
+        "Gebrauchte Kleidung",
+        "Alte Batterien"
       ],
-      "erklaerung": "EAN hieß ursprünglich European Article Number, heute GTIN. Die ersten Ziffern stehen für die Organisation, die die Nummer vergeben hat.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=European%20Article%20Number",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Als Gegenwert erhält man einen Pfandbon, den man an der Kasse einlöst.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pfandsystem",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "handel-0025",
+      "id": "handel-0023",
       "version": 1,
       "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Was bedeutet „Click & Collect“?",
+      "stufe": "schwer",
+      "frage": "Wie heißt die Kennzahl „Umsatz pro Quadratmeter Verkaufsfläche“?",
       "antworten": [
-        "Online bestellen und im Laden abholen",
-        "Im Laden bezahlen, nach Hause liefern lassen",
-        "Mit dem Handy an der Kasse bezahlen",
-        "Rabattmarken sammeln"
+        "Flächenproduktivität",
+        "Lagerumschlag",
+        "Rohertrag",
+        "Kundenfrequenz"
       ],
-      "erklaerung": "Viele Händler bieten es seit der Corona-Zeit an.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Click%20%26%20Collect",
+      "erklaerung": "Mit ihr vergleichen Händler, wie gut ihre Filialen den Platz nutzen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fl%C3%A4chenproduktivit%C3%A4t",
       "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0039",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie nennt man in Berlin den kleinen Laden mit langen Öffnungszeiten, der auch spätabends noch Getränke verkauft?",
+      "antworten": [
+        "Späti",
+        "Tante-Emma-Laden",
+        "Hofladen",
+        "Reformhaus"
+      ],
+      "erklaerung": "„Späti“ ist die Kurzform für Spätkauf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Sp%C3%A4tkauf",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
@@ -1450,54 +1161,207 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0013",
+      "id": "handel-0068",
       "version": 1,
       "kategorie": "Einzelhandel",
-      "stufe": "mittel",
-      "frage": "Wie hoch ist der ermäßigte Umsatzsteuersatz, der in Deutschland für die meisten Lebensmittel gilt?",
+      "stufe": "ingomania",
+      "frage": "In welcher Stadt gründete Leonhard Tietz 1879 sein erstes Geschäft, aus dem später Kaufhof wurde?",
       "antworten": [
-        "7 Prozent",
-        "5 Prozent",
-        "10 Prozent",
-        "19 Prozent"
+        "Stralsund",
+        "Köln",
+        "Hamburg",
+        "Rostock"
       ],
-      "erklaerung": "Der reguläre Satz beträgt 19 Prozent.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Umsatzsteuer%20%28Deutschland%29",
-      "erstellt": "2026-10-15",
+      "erklaerung": "Aus dem Stralsunder Woll- und Kurzwarengeschäft wurde ein Warenhauskonzern, der später in Kaufhof umbenannt wurde.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Leonhard%20Tietz",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     },
     {
-      "id": "handel-0029",
+      "id": "handel-0022",
       "version": 1,
       "kategorie": "Einzelhandel",
-      "stufe": "schwer",
-      "frage": "Wie nennt man im Handel den durchschnittlichen Einkaufsbetrag pro Kunde?",
+      "stufe": "mittel",
+      "frage": "Wie nennt man Produkte, die ein Händler unter eigenem Namen verkauft – etwa „ja!“ bei Rewe?",
       "antworten": [
-        "Durchschnittsbon",
-        "Rohertrag",
-        "Marge",
-        "Frequenz"
+        "Handelsmarke oder Eigenmarke",
+        "Herstellermarke",
+        "No-Name-Original",
+        "Lizenzmarke"
       ],
-      "erklaerung": "Er ergibt sich aus Umsatz geteilt durch die Zahl der Einkäufe.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Durchschnittsbon",
+      "erklaerung": "Sie werden oft von bekannten Herstellern produziert, aber unter dem Namen des Händlers verkauft.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Handelsmarke",
       "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
-      "id": "handel-0035",
+      "id": "handel-0065",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Nach welcher Frist erlischt das Widerrufsrecht bei Fernabsatzverträgen spätestens, wenn der Händler nie über das Widerrufsrecht belehrt hat?",
+      "antworten": [
+        "Nach 12 Monaten und 14 Tagen",
+        "Nach 6 Monaten",
+        "Nach 3 Jahren",
+        "Nie"
+      ],
+      "erklaerung": "Normalerweise sind es 14 Tage; ohne korrekte Belehrung verlängert sich die Frist um bis zu zwölf Monate.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Widerrufsrecht",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0078",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Welche Namensbestandteile stecken im Namen der britischen Supermarktkette Tesco?",
+      "antworten": [
+        "Teelieferant Stockwell und Gründer Cohen",
+        "Tea Store Company",
+        "Trade, Essen, Shop, Company",
+        "Tesla und Cohen"
+      ],
+      "erklaerung": "Jack Cohen kaufte Tee vom Lieferanten T. E. Stockwell und kombinierte dessen Initialen mit den ersten beiden Buchstaben seines Nachnamens.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tesco",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0077",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Unter welchem Namen ging die Online-Handelsplattform eBay 1995 an den Start?",
+      "antworten": [
+        "AuctionWeb",
+        "BidMaster",
+        "NetAuction",
+        "eTrade"
+      ],
+      "erklaerung": "Gründer Pierre Omidyar startete die Seite als privates Projekt. Später wurde sie nach der Firma Echo Bay zu eBay.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=EBay",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0094",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Wie hieß der 1930 von Michael J. Cullen in New York eröffnete Laden, der als erster Supermarkt der Welt gilt?",
+      "antworten": [
+        "King Kullen",
+        "Empire Food Palace",
+        "Liberty Self-Serve",
+        "Hudson Grocery Mart"
+      ],
+      "erklaerung": "Michael J. Cullen eröffnete im August 1930 im Stadtteil Queens den „King Kullen Grocery Store“, der als erster Supermarkt gilt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=King+Kullen",
+      "erstellt": "2026-10-30",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0061",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Wofür stehen die Buchstaben im Namen „IKEA“?",
+      "antworten": [
+        "Ingvar Kamprad, Elmtaryd, Agunnaryd",
+        "Import Kaufhaus Europa Almhult",
+        "Ingvar Karlsson Einrichtungs-AB",
+        "Idee, Komfort, Einrichtung, Auswahl"
+      ],
+      "erklaerung": "Kamprad wuchs auf dem Hof Elmtaryd bei dem Dorf Agunnaryd in Småland auf.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IKEA",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0036",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "leicht",
-      "frage": "Welches Möbelhaus ist für schwedische Möbel und Köttbullar im Restaurant bekannt?",
+      "frage": "Was verkauft ein Metzger?",
       "antworten": [
-        "IKEA",
-        "XXXLutz",
-        "Roller",
-        "Poco"
+        "Fleisch und Wurst",
+        "Brot und Brötchen",
+        "Obst und Gemüse",
+        "Blumen und Pflanzen"
       ],
-      "erklaerung": "IKEA wurde 1943 von Ingvar Kamprad in Schweden gegründet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=IKEA",
+      "erklaerung": "Der Metzger, in manchen Regionen Fleischer, ist ein Lebensmittelhandwerker.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fleischer",
       "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0024",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wofür steht „MHD“ auf Lebensmittelverpackungen?",
+      "antworten": [
+        "Mindesthaltbarkeitsdatum",
+        "Maximale Haltbarkeitsdauer",
+        "Markenhersteller-Datum",
+        "Monatliche Hygienedaten"
+      ],
+      "erklaerung": "Nach dem MHD ist ein Lebensmittel oft noch gut – anders als beim Verbrauchsdatum.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Mindesthaltbarkeitsdatum",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0009",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Wie hoch ist das Pfand auf eine Einweg-Plastikflasche mit Pfandlogo in Deutschland?",
+      "antworten": [
+        "25 Cent",
+        "8 Cent",
+        "15 Cent",
+        "50 Cent"
+      ],
+      "erklaerung": "Mehrwegflaschen kosten meist 8 oder 15 Cent Pfand.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Einwegpfand",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0028",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "In welcher Stadt wurde die Drogeriekette dm 1973 gegründet?",
+      "antworten": [
+        "Karlsruhe",
+        "München",
+        "Hamburg",
+        "Köln"
+      ],
+      "erklaerung": "Gründer war Götz Werner.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=dm-drogerie%20markt",
+      "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0027",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Was kündigt das Wort „Sale“ im Schaufenster an?",
+      "antworten": [
+        "Reduzierte Preise",
+        "Neue Ware",
+        "Geschlossener Laden",
+        "Nur für Stammkunden"
+      ],
+      "erklaerung": "Das englische Wort heißt eigentlich einfach „Verkauf“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlussverkauf",
+      "erstellt": "2026-10-16",
       "gueltigBis": null
     },
     {
@@ -1518,20 +1382,224 @@
       "gueltigBis": null
     },
     {
-      "id": "handel-0027",
+      "id": "handel-0053",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "Welches Unternehmen ist die Muttergesellschaft von MediaMarkt und Saturn?",
+      "antworten": [
+        "Ceconomy",
+        "Otto Group",
+        "Tengelmann",
+        "Douglas"
+      ],
+      "erklaerung": "Ceconomy hat seinen Sitz in Düsseldorf und entstand 2017 aus der Aufspaltung der Metro.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ceconomy",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0018",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wofür steht im Handel die Abkürzung „POS“?",
+      "antworten": [
+        "Point of Sale – der Ort des Verkaufs",
+        "Price of Stock",
+        "Position ohne Sortiment",
+        "Personal ohne Schicht"
+      ],
+      "erklaerung": "Gemeint ist meist die Kasse und alles, was dort für den Kauf wirbt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Point%20of%20Sale",
+      "erstellt": "2026-10-15",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0041",
       "version": 1,
       "kategorie": "Einzelhandel",
       "stufe": "leicht",
-      "frage": "Was kündigt das Wort „Sale“ im Schaufenster an?",
+      "frage": "Welcher Online-Händler hat im Logo einen Pfeil, der von A nach Z führt?",
       "antworten": [
-        "Reduzierte Preise",
-        "Neue Ware",
-        "Geschlossener Laden",
-        "Nur für Stammkunden"
+        "Amazon",
+        "Zalando",
+        "eBay",
+        "Otto"
       ],
-      "erklaerung": "Das englische Wort heißt eigentlich einfach „Verkauf“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Schlussverkauf",
+      "erklaerung": "Der Pfeil soll zeigen, dass es bei Amazon alles von A bis Z gibt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Amazon",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0049",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was ist „Payback“?",
+      "antworten": [
+        "Ein Bonusprogramm, bei dem man Punkte sammelt",
+        "Ein Rückgaberecht für Waren",
+        "Eine Kreditkarte eines Händlers",
+        "Ein Pfandsystem für Flaschen"
+      ],
+      "erklaerung": "Bei Partnerunternehmen sammelt man Punkte, die man gegen Prämien oder Rabatte einlösen kann.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Payback%20%28Bonusprogramm%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0073",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "In welcher schwedischen Stadt gründete Erling Persson 1947 das Modegeschäft „Hennes“, aus dem H&M wurde?",
+      "antworten": [
+        "Västerås",
+        "Stockholm",
+        "Göteborg",
+        "Malmö"
+      ],
+      "erklaerung": "Der Namenszusatz „& Mauritz“ kam 1968 mit der Übernahme des Jagd- und Anglerausstatters Mauritz Widforss.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Hennes%20%26%20Mauritz",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0051",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Was ist typisch für einen Discounter?",
+      "antworten": [
+        "Kleines Sortiment und niedrige Preise",
+        "Große Auswahl und Beratung",
+        "Nur Luxusprodukte",
+        "Lieferung nur nach Hause"
+      ],
+      "erklaerung": "Discounter sparen durch wenige Artikel, schlichte Läden und viele Eigenmarken.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Discounter",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0075",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "In welcher niederländischen Stadt gründeten die Brüder Clemens und August Brenninkmeijer 1841 das Unternehmen C&A?",
+      "antworten": [
+        "Sneek",
+        "Amsterdam",
+        "Utrecht",
+        "Groningen"
+      ],
+      "erklaerung": "Der Firmenname setzt sich aus den Anfangsbuchstaben der beiden Vornamen zusammen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=C%26A",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0026",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr erschien der erste Katalog des Versandhändlers Otto?",
+      "antworten": [
+        "1950",
+        "1925",
+        "1965",
+        "1980"
+      ],
+      "erklaerung": "Er hatte 14 Seiten und bot vor allem Schuhe an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Otto%20Group",
       "erstellt": "2026-10-16",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0074",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "Welchen Namen wollte Amancio Ortega seiner Modekette Zara ursprünglich geben?",
+      "antworten": [
+        "Zorba",
+        "Zebra",
+        "Zorro",
+        "Zenit"
+      ],
+      "erklaerung": "Der Name war in der Nähe schon an eine Bar vergeben, daher wurden die Buchstaben zu Zara umgestellt. Der erste Laden eröffnete 1975 in A Coruña.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zara%20%28Unternehmen%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0047",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Ab welchem Alter darf man in Deutschland im Supermarkt Bier kaufen?",
+      "antworten": [
+        "Ab 16 Jahren",
+        "Ab 14 Jahren",
+        "Ab 18 Jahren",
+        "Ab 21 Jahren"
+      ],
+      "erklaerung": "Bier, Wein und Sekt gibt es ab 16, Spirituosen erst ab 18.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Jugendschutzgesetz%20%28Deutschland%29",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0031",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "mittel",
+      "frage": "Wie heißt der Rabatttag am Freitag nach dem US-Feiertag Thanksgiving?",
+      "antworten": [
+        "Black Friday",
+        "Cyber Monday",
+        "Super Saturday",
+        "Singles' Day"
+      ],
+      "erklaerung": "Der Cyber Monday folgt drei Tage später, der Singles' Day ist am 11. November.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Black%20Friday",
+      "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0054",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "schwer",
+      "frage": "In welcher Stadt eröffnete Rudolph Karstadt 1881 sein erstes Geschäft?",
+      "antworten": [
+        "Wismar",
+        "Hamburg",
+        "Essen",
+        "Lübeck"
+      ],
+      "erklaerung": "Aus dem kleinen Tuch- und Manufakturwarengeschäft wurde später der Warenhauskonzern Karstadt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Karstadt",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0069",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "ingomania",
+      "frage": "In welcher Stadt gründete Gustav Schickedanz 1927 das Versandhaus Quelle?",
+      "antworten": [
+        "Fürth",
+        "Nürnberg",
+        "Erlangen",
+        "Bamberg"
+      ],
+      "erklaerung": "Quelle wurde zu einem der größten Versandhändler Europas. 2009 ging das Unternehmen in die Insolvenz.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Quelle%20%28Unternehmen%29",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     }
   ]
