@@ -13,7 +13,7 @@ import kotlin.concurrent.thread
 /** Gibt die installierte App an andere Handys weiter (Bluetooth, Quick Share, Messenger, QR-Code). */
 object ShareApp {
     /** Fester Download-Link, immer der neueste Build. */
-    const val DOWNLOAD_URL = "https://github.com/AxelPabich/hello-world/releases/download/buzzer-latest/buzzer.apk"
+    const val DOWNLOAD_URL = "https://github.com/" + ProjectRepo.NAME + "/releases/download/buzzer-latest/buzzer.apk"
 
     private const val APK_TYPE = "application/vnd.android.package-archive"
     private const val BLUETOOTH_PACKAGE = "com.android.bluetooth"

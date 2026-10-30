@@ -176,6 +176,6 @@ class QuizStore(private val context: Context) {
 
     companion object {
         /** Fragenpakete im Repository (Branch master). */
-        const val REPO_URL = "https://raw.githubusercontent.com/AxelPabich/hello-world/master/quiz"
+        const val REPO_URL = "https://raw.githubusercontent.com/" + ProjectRepo.NAME + "/" + ProjectRepo.QUIZ_BRANCH + "/quiz"
     }
 }

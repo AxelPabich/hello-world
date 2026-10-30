@@ -25,9 +25,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      # Wird zu versionCode und, zusammen mit der Datei VERSION, zu versionName (z. B. 2.0.<Nummer>) der App.
-      BUILD_NUMBER: ${{ github.run_number }}
     steps:
       # Bei einem Rollback wird der Quelltext des angegebenen Standes gebaut – aber mit der neuen,
       # höheren Build-Nummer, denn Android installiert keine niedrigere Nummer über eine höhere.
@@ -37,6 +34,11 @@ jobs:
 
       - name: Version und Quelltext-Stand festhalten
         run: |
+          # Build-Nummer = Run-Nummer + Repository-Variable BUILD_OFFSET (nach einem Umzug in ein neues
+          # Repository, damit die Nummern weiter steigen – siehe WIEDERHERSTELLEN.md). Sie wird zu versionCode
+          # und, zusammen mit der Datei VERSION, zu versionName (z. B. 2.0.<Nummer>) der App.
+          OFFSET="${{ vars.BUILD_OFFSET }}"
+          echo "BUILD_NUMBER=$(( ${{ github.run_number }} + ${OFFSET:-0} ))" >> "$GITHUB_ENV"
           echo "SRC_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
           echo "APP_VERSION=$(cat VERSION 2>/dev/null | tr -d '[:space:]' || true)" >> "$GITHUB_ENV"
 
@@ -60,8 +62,8 @@ jobs:
       - name: APK als Artefakt speichern
         uses: actions/upload-artifact@v4
         with:
-          name: buzzer-build-${{ github.run_number }}
-          path: buzzer-build-${{ github.run_number }}.apk
+          name: buzzer-build-${{ env.BUILD_NUMBER }}
+          path: buzzer-build-${{ env.BUILD_NUMBER }}.apk
 
       # Fester Download-Link ohne ZIP, direkt auf dem Tablet installierbar.
       - name: Vorabversion „buzzer-latest“ aktualisieren

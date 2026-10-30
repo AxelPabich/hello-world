@@ -461,6 +461,10 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+101. **Backup und Umzug** (Wunsch vom 30.10.2026): Backup auf Zuruf als Git-Bundle (alle Branches und Tags),
+    Quelltext-ZIP, eigenes Bundle des Diagnose-Repositorys und APK. Übergabe für andere KIs in `AGENTS.md`,
+    Anleitung in `WIEDERHERSTELLEN.md`. Repository-Adresse der App gebündelt in `ProjectRepo.kt`; Workflow
+    zählt Build-Nummern mit der Variable `BUILD_OFFSET` weiter (kommt mit dem nächsten Build).
 100. **Fragendatenbank angleichen, dann Schluss** (Wunsch vom 30.10.2026): Pro Build nur noch je eine neue
     Frage in den Zellen (Kategorie × Stufe), die unter der größten liegen (Ziel 29). Größte Lücke: 10 Fragen
     (Einzelhandel und Büroalltag „schwer“) – also noch etwa 10 Builds. Danach Axel Bescheid geben und keine

@@ -881,3 +881,11 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   `challengeQuestion()` (Auflösung, Challenge des Spielleiters, Prüfung wie bei einer Spieler-Challenge).
 - Die Pause endet mit jeder dieser Aktionen (Spieler erhalten `PAUSE(0)`).
 
+## 60. Backup, Umzug und Übergabe
+
+- Die Adresse des Projekt-Repositorys steht nur in `ProjectRepo.NAME` (Update-Prüfung, „Fragen aktualisieren“,
+  Download-Link); der Branch für die Fragenpakete in `ProjectRepo.QUIZ_BRANCH`.
+- Build-Nummer = Run-Nummer + Actions-Variable `BUILD_OFFSET` (Standard 0), damit die Nummern nach einem Umzug
+  weiter steigen (versionCode).
+- Übergabe an andere KI-Assistenten: `AGENTS.md`; Wiederherstellung aus Bundle/ZIP: `WIEDERHERSTELLEN.md`.
+

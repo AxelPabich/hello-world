@@ -1,5 +1,7 @@
 # Arbeitsregeln für Claude (Buzzer-App)
 
+Allgemeine Übergabe für jede KI: `AGENTS.md`; Backup und Umzug: `WIEDERHERSTELLEN.md`.
+
 Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
 
 ## Builds und Commits
@@ -16,6 +18,10 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
   „===== ENDE SPEZIFIKATION.md =====“ immer eine aktuelle Kopie von `SPEZIFIKATION.md`.
 - Öffentliches Repository: keine Tokens oder Geheimnisse.
 - Antworten an Axel auf Deutsch.
+- „Backup“ auf Zuruf: `git bundle create … --all` (nach `git fetch origin '+refs/heads/*:refs/remotes/origin/*' --tags`,
+  alle Remote-Branches als lokale Branches), dazu ein ZIP des Arbeits-Branches (`git archive`), ein eigenes
+  Bundle von `buzzer-diagnose` und die aktuelle APK; Dateinamen mit Datum und Build-Nummer, mit
+  `git bundle verify` prüfen und Axel als Dateien schicken (nicht ins öffentliche Repo legen).
 
 ## Fragendatenbank: Stufen angleichen, dann Schluss (Wunsch vom 30.10.2026)
 

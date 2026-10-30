@@ -24,7 +24,7 @@ import kotlin.concurrent.thread
  */
 object AppUpdate {
     /** Release-Seite des Repositorys: listet alle Builds als `buzzer-build-N.apk`. */
-    private const val RELEASE_API = "https://api.github.com/repos/AxelPabich/hello-world/releases/tags/buzzer-latest"
+    private const val RELEASE_API = "https://api.github.com/repos/" + ProjectRepo.NAME + "/releases/tags/buzzer-latest"
     private const val APK_TYPE = "application/vnd.android.package-archive"
     private val main = Handler(Looper.getMainLooper())
 
