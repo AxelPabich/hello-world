@@ -461,6 +461,10 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+100. **Fragendatenbank angleichen, dann Schluss** (Wunsch vom 30.10.2026): Pro Build nur noch je eine neue
+    Frage in den Zellen (Kategorie × Stufe), die unter der größten liegen (Ziel 29). Größte Lücke: 10 Fragen
+    (Einzelhandel und Büroalltag „schwer“) – also noch etwa 10 Builds. Danach Axel Bescheid geben und keine
+    Fragen mehr automatisch erzeugen. Regel in `CLAUDE.md`.
 99. **Pause mitten in der Quizfrage** (Wunsch vom 30.10.2026; kommt mit dem nächsten Build): Die Zeit steht
     (Countdown stoppt), Frage und Antworten sind auch beim Spielleiter verdeckt. Er wählt: Frage
     weiterlaufen lassen, Frage neu stellen (dieselbe Frage von vorn, neue Reihenfolge, Antworten verfallen),

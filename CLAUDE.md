@@ -17,11 +17,21 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
 - Öffentliches Repository: keine Tokens oder Geheimnisse.
 - Antworten an Axel auf Deutsch.
 
-## Fragendatenbank wächst mit jedem Build (Wunsch vom 16.10.2026)
+## Fragendatenbank: Stufen angleichen, dann Schluss (Wunsch vom 30.10.2026)
 
-Vor **jedem Build** kommt in **jeder bestehenden Kategorie** je **eine neue Frage pro
-Schwierigkeitsstufe** dazu. Die Stufen stehen in `quiz/index.json` („stufen“, zurzeit leicht, mittel,
-schwer, ingomania – also vier Fragen je Paket in `quiz/`):
+Vor **jedem Build** kommt **nur noch dort** eine neue Frage dazu, wo eine Stufe einer Kategorie weniger
+Fragen hat als die größte Zelle: je Kategorie und Stufe **höchstens eine** neue Frage pro Build
+(bewährtes Muster). Ziel: alle Kategorien haben in allen Stufen aus `quiz/index.json` („stufen“) gleich
+viele Fragen. Stand nach Build 41: Ziel 29 je Kategorie und Stufe (kleinste Zelle 19).
+
+Prüfen vor jedem Build (zeigt die fehlenden Zellen):
+
+```
+python3 -c "import json;i=json.load(open('quiz/index.json'));S=[s['schluessel'] for s in i['stufen']];C={p['titel']:{s:sum(q['stufe']==s for q in json.load(open('quiz/'+p['datei']))['fragen']) for s in S} for p in i['pakete']};m=max(v for c in C.values() for v in c.values());print('Ziel',m);[print(k,{s:m-c[s] for s in S if c[s]<m}) for k,c in C.items() if min(c.values())<m]"
+```
+
+Sind alle Zellen gleich, **Axel Bescheid geben** und **keine neuen Fragen mehr automatisch erzeugen**
+(nur noch auf ausdrücklichen Wunsch). Fragen, deren `gueltigBis` abläuft, zählen dabei weiter mit.
 
 - Format wie in `quiz/README.md`: erste Antwort richtig, Erklärung, Quelle, `erstellt` = Datum.
 - IDs fortlaufend je Paket weiterzählen; keine Dubletten zu vorhandenen Fragen.
