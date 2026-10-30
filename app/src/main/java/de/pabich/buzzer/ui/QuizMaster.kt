@@ -398,6 +398,28 @@ fun QuizMasterRunning(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz
     // Wie bei den Spielern: Kopfzeile, große Frage mit den vier Antwortfeldern. Darunter nur, was der Spielleiter zusätzlich braucht.
     Column(modifier.padding(horizontal = 16.dp)) {
         QuizHeader(quiz.number, quiz.total, quiz.question.category, quiz.question.level.label, Modifier.fillMaxWidth().padding(top = 4.dp))
+        if (snapshot.questionPaused) {
+            // Pause mitten in der Frage: die Zeit steht, Frage und Antworten bleiben auch hier verdeckt.
+            Column(
+                Modifier.fillMaxWidth().weight(1f).padding(top = 8.dp).verticalScroll(rememberScrollState()),
+                verticalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                Column(
+                    Modifier.fillMaxWidth().clip(RoundedCornerShape(16.dp)).background(theme.panel).padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    Text("⏸ FRAGE PAUSIERT", color = theme.accent, fontFamily = theme.display, fontSize = 26.sp)
+                    Text("Die Zeit steht. Frage und Antworten sind verdeckt.", color = theme.muted, fontSize = 14.sp)
+                }
+                AnswerTracker(quiz)
+                GhostButton("▶ Frage weiterlaufen lassen", { vm.setPaused(false) }, Modifier.fillMaxWidth())
+                GhostButton("↻ Frage neu stellen", { vm.restartQuestion() }, Modifier.fillMaxWidth())
+                GhostButton("⏭ Frage überspringen", { vm.skipQuestion() }, Modifier.fillMaxWidth())
+                GhostButton("✖ Runde abbrechen (ohne Wertung)", { vm.abortQuestion() }, Modifier.fillMaxWidth())
+                GhostButton("⚑ Challenge ausrufen", { vm.challengeQuestion() }, Modifier.fillMaxWidth())
+            }
+            return@Column
+        }
         if (local != null) {
             QuizCard(
                 quiz = local,

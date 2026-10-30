@@ -135,4 +135,67 @@ class PauseInRoundTest {
         assertEquals(Display.GRAY, g.view("A").display, "danach läuft sie ab")
         assertEquals(Display.GREEN, g.view("B").display)
     }
+
+    private fun pausedQuestion(): SimGame {
+        val g = quizGame()
+        g.time.advanceBy(8_000)
+        assertTrue(g.master.setPaused(true))
+        assertTrue(g.master.snapshot().questionPaused)
+        return g
+    }
+
+    @Test
+    fun `paused question can be asked again from the start`() {
+        val g = pausedQuestion()
+        g.tapRight("Peter") // Antwort vor der Pause zählt nicht mehr, wenn neu gestellt wird
+        assertTrue(g.master.restartQuestion())
+        g.time.advanceBy(300)
+        val snap = g.master.snapshot()
+        assertFalse(snap.paused)
+        assertFalse(snap.questionPaused)
+        assertEquals(1, snap.quiz!!.number, "dieselbe Frage, gleiche Nummer")
+        assertEquals("q1", snap.quiz!!.question.id)
+        assertFalse(g.view("Peter").paused)
+        assertTrue(g.received.getValue("Peter").filterIsInstance<Message.QuizAsk>().size >= 2)
+    }
+
+    @Test
+    fun `paused question can be aborted without scoring`() {
+        val g = pausedQuestion()
+        assertTrue(g.master.abortQuestion())
+        val snap = g.master.snapshot()
+        assertEquals(Phase.QUIZ_REVEAL, snap.phase)
+        assertFalse(snap.paused)
+        assertTrue(snap.quiz!!.annulled)
+        assertTrue(snap.players.all { it.scoreValue == 0L })
+        assertEquals(QuizOutcome.ANNULLED, g.received.getValue("Peter").filterIsInstance<Message.QuizResult>().last().outcome)
+    }
+
+    @Test
+    fun `paused question can be skipped`() {
+        val g = pausedQuestion()
+        assertTrue(g.master.skipQuestion())
+        g.time.advanceBy(300)
+        val snap = g.master.snapshot()
+        assertFalse(snap.paused)
+        assertEquals(2, snap.quiz!!.number)
+    }
+
+    @Test
+    fun `master can call a challenge on the paused question`() {
+        val g = pausedQuestion()
+        assertTrue(g.master.challengeQuestion())
+        val snap = g.master.snapshot()
+        assertEquals(Phase.QUIZ_REVEAL, snap.phase)
+        assertFalse(snap.paused)
+        assertEquals(1, snap.quiz!!.challenges.size)
+        assertTrue(snap.reviewing)
+    }
+
+    @Test
+    fun `resuming a paused question still works`() {
+        val g = pausedQuestion()
+        assertTrue(g.master.setPaused(false))
+        assertFalse(g.master.snapshot().questionPaused)
+    }
 }

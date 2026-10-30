@@ -871,3 +871,13 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Tempo im Lesetest und melden es per `READ_SPEED`.
 - **Mischen abschaltbar:** `Settings.quizShuffleAnswers` (Standard an); aus = gleiche Reihenfolge für alle.
 
+## 59. Pause in der Quizfrage: Aktionen des Spielleiters (Build 41)
+
+- Pausiert der Spielleiter mitten in einer Quizfrage, steht die Zeit (auch der Countdown); `Snapshot.questionPaused`
+  ist wahr. Frage und Antworten bleiben auch beim Spielleiter verdeckt; er sieht nur, wer schon geantwortet hat.
+- Aktionen: `setPaused(false)` (weiterlaufen), `restartQuestion()` (dieselbe Frage von vorn: neue `QUIZ_ASK`,
+  gleiche Nummer, bisherige Antworten verfallen), `skipQuestion()` (übersprungen, nächste Frage),
+  `abortQuestion()` (Runde abbrechen: annulliert, ohne Punkte, Statistik und Spielverlauf; danach Bereit-Abfrage),
+  `challengeQuestion()` (Auflösung, Challenge des Spielleiters, Prüfung wie bei einer Spieler-Challenge).
+- Die Pause endet mit jeder dieser Aktionen (Spieler erhalten `PAUSE(0)`).
+

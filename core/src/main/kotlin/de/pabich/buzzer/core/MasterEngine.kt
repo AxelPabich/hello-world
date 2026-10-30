@@ -59,6 +59,8 @@ class MasterEngine(
         val canShowReplay: Boolean,
         /** Spiel pausiert (Overlay bei den Spielern). */
         val paused: Boolean,
+        /** Die Pause hält gerade eine laufende Quizfrage an (Frage und Antworten bleiben verdeckt). */
+        val questionPaused: Boolean = false,
         /** Letzte gewertete Runde lässt sich korrigieren. */
         val canCorrectLastRound: Boolean,
         /** Runde und Sieger der letzten gewerteten Runde (`null` = kein Sieger/storniert). */
@@ -1096,12 +1098,76 @@ class MasterEngine(
     fun skipQuestion(): Boolean {
         val t = turn ?: return false
         if (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS) return false
-        if (paused) return false
+        if (paused && pausedTurn !== t) return false
+        endQuestionPause()
         cancelQuizTasks(t)
         t.revealed = true
         log("Frage ${t.number} übersprungen")
         onQuizSkipped?.invoke(t.question, t.participants.mapNotNull { players[it]?.name })
         if (quizIndex + 1 < quizQuestions.size) askNext() else finishQuiz()
+        return true
+    }
+
+    /** Beendet die Pause, die eine laufende Frage anhält, ohne sie fortzusetzen; liefert die angehaltene Frage. */
+    private fun endQuestionPause(): QuizTurn? {
+        val t = pausedTurn ?: return null
+        pausedTurn = null
+        paused = false
+        log("Pause beendet – Spielleiter entscheidet über Frage ${t.number}")
+        players.values.filter { it.connected }.forEach { send(it.id, Message.Pause(false)) }
+        return t
+    }
+
+    /** Pause in der Frage: dieselbe Frage von vorn stellen (alle Antworten verfallen, neue Reihenfolge). */
+    fun restartQuestion(): Boolean {
+        val t = pausedTurn ?: return false
+        if (turn !== t) return false
+        endQuestionPause()
+        cancelQuizTasks(t)
+        t.revealed = true
+        log("Frage ${t.number} wird neu gestellt")
+        quizIndex--
+        round--
+        return askNext()
+    }
+
+    /**
+     * Pause in der Frage: Runde abbrechen. Die Frage wird ohne Wertung aufgelöst (annulliert, keine Punkte,
+     * keine Statistik); danach geht es wie gewohnt mit „Bereit?“ und der nächsten Frage weiter.
+     */
+    fun abortQuestion(): Boolean {
+        val t = pausedTurn ?: return false
+        if (turn !== t) return false
+        endQuestionPause()
+        cancelQuizTasks(t)
+        t.revealed = true
+        t.annulled = true
+        t.awards = emptyMap()
+        t.counted = null
+        phase = Phase.QUIZ_REVEAL
+        recordedRound = round
+        log("Runde ${t.number} abgebrochen – ohne Wertung")
+        for (id in t.participants) {
+            val p = players[id]?.takeIf { it.connected } ?: continue
+            send(id, resultFor(t, p, corrected = false))
+        }
+        scheduleAutoReady(t)
+        broadcastScoreboard()
+        notifyChanged()
+        return true
+    }
+
+    /** Pause in der Frage: Spielleiter ruft selbst eine Challenge aus – Auflösung, dann Prüfung mit Entscheidung. */
+    fun challengeQuestion(reason: String = "Spielleiter"): Boolean {
+        val t = pausedTurn ?: return false
+        if (turn !== t) return false
+        endQuestionPause()
+        reveal(t)
+        t.challenges += QuizChallengeInfo("", masterName, reason)
+        log("Challenge vom Spielleiter ($reason)")
+        setReviewing(true)
+        onQuizChallenge?.invoke(t.question, masterName, reason)
+        notifyChanged()
         return true
     }
 
@@ -1774,6 +1840,7 @@ class MasterEngine(
         profileName = profileName,
         canShowReplay = canShowReplay(),
         paused = paused,
+        questionPaused = pausedTurn != null,
         canCorrectLastRound = canCorrectLastRound(),
         lastRound = lastResult?.round,
         lastRoundWinner = lastResult?.winner,

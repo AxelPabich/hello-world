@@ -796,6 +796,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
     fun revealNow() = master?.revealNow()
     fun skipQuestion() = master?.skipQuestion()
+    fun restartQuestion() = master?.restartQuestion()
+    fun abortQuestion() = master?.abortQuestion()
+    fun challengeQuestion() = master?.challengeQuestion()
     fun stopQuiz() = master?.stopQuiz()
     fun decideChallenge(decision: ChallengeDecision, newCorrect: Int? = null) = master?.decideChallenge(decision, newCorrect)
 

@@ -461,6 +461,11 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+99. **Pause mitten in der Quizfrage** (Wunsch vom 30.10.2026; kommt mit dem nächsten Build): Die Zeit steht
+    (Countdown stoppt), Frage und Antworten sind auch beim Spielleiter verdeckt. Er wählt: Frage
+    weiterlaufen lassen, Frage neu stellen (dieselbe Frage von vorn, neue Reihenfolge, Antworten verfallen),
+    Frage überspringen, Runde abbrechen (annulliert, ohne Punkte und Statistik; danach „Bereit?“) oder
+    Challenge ausrufen (Auflösung, dann Prüfung mit der üblichen Entscheidung). Tests in `PauseInRoundTest`.
 98. **Regel-Bestätigung beim zweiten Quiz übersprungen** (Diagnose Build 40 vom 25.10.2026, 12:59): Nach dem
     ersten Quiz der Sitzung galt das Spiel als „begonnen“, deshalb zeigte das zweite Quiz die Regeln nur
     zur Information und startete ohne OK. Behoben: Jedes Quiz fragt die Bestätigung neu ab (kommt mit dem
