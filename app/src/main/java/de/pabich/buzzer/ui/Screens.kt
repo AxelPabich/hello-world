@@ -330,6 +330,8 @@ fun AboutScreen(vm: BuzzerViewModel) {
             PrimaryButton("Diagnose senden", { showDiagnostics = true }, Modifier.fillMaxWidth(), height = 52.dp)
             Spacer(Modifier.height(10.dp))
             GhostButton("Gespeicherte Diagnosen (${vm.pendingReports.size})", { showSaved = true }, Modifier.fillMaxWidth())
+            Spacer(Modifier.height(10.dp))
+            GhostButton("Was ist neu? (letzte Änderungen)", { vm.showChangelog() }, Modifier.fillMaxWidth())
             SectionTitle("Diagnose-Ablage (Spielleiter)")
             Text(
                 "Repository: ${vm.diagnoseUpload.repo} · Token: " + if (vm.tokenSaved) "gespeichert (verschlüsselt)" else "nicht eingerichtet",

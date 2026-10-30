@@ -40,6 +40,7 @@ von älteren Apps ignoriert. Neue Funktionen müssen mit älteren Builds der Mit
 - Gebaut wird nur auf Anweisung („Erstelle Build …“): Workflow `android.yml` per `workflow_dispatch` auf dem
   Arbeits-Branch; die Build-Nummer ist die Run-Nummer. Major Release: Input `major = true`, vorher `VERSION`
   erhöhen und `docs/release/<Version>.md` schreiben. Rollback: Input `rollback_to = build-N`.
+- Vor jedem Build: Änderungen oben in `aenderungen/aenderungen.json` als Eintrag `"build": 0` (siehe `CLAUDE.md`).
 - Sonst Commits mit `[skip ci]`; neue Wünsche und Testergebnisse in `OFFENE_PUNKTE.md` festhalten.
 - Pull Requests und Merges nach `master` nur auf Anweisung.
 - `PROMPT_SPEZIFIKATION.md` enthält zwischen den Markern immer eine aktuelle Kopie von `SPEZIFIKATION.md`.

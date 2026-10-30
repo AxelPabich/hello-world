@@ -1,0 +1,44 @@
+{
+  "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
+  "eintraege": [
+    {
+      "build": 0,
+      "datum": "2026-10-31",
+      "punkte": [
+        "Neu: „Was ist neu?“ – nach jedem Update erscheinen beim ersten Start die Änderungen; jederzeit über „Über & Diagnose“.",
+        "Backup und Umzug vorbereitet: die Repository-Adresse steht an einer Stelle, Build-Nummern zählen nach einem Umzug weiter.",
+        "Fragendatenbank: Lücken in den Stufen werden aufgefüllt (je Kategorie und Stufe eine Frage)."
+      ]
+    },
+    {
+      "build": 41,
+      "datum": "2026-10-30",
+      "punkte": [
+        "Pause mitten in der Quizfrage: Zeit steht, Frage und Antworten sind auch beim Spielleiter verdeckt.",
+        "Spielleiter kann in der Pause: weiterlaufen lassen, Frage neu stellen, überspringen, Runde abbrechen, Challenge ausrufen.",
+        "Spielregeln werden bei jedem neuen Quiz bestätigt, nicht nur beim ersten.",
+        "52 neue Fragen."
+      ]
+    },
+    {
+      "build": 40,
+      "datum": "2026-10-25",
+      "punkte": [
+        "Drei neue Kategorien: Die 80er, 90er und 00er Jahre · Bienchen & Blümchen · Nepper, Schlepper, Bauernfänger.",
+        "Kategorienauswahl als Fenster; vier Antwortfelder untereinander über die ganze Breite.",
+        "Spielregeln vor Spielbeginn mit „OK – ich bin bereit“ bestätigen; Endergebnis für alle Spieler.",
+        "Lesetempo messen; die Wartezeit bis zu den Antworten richtet sich nach der Länge der Frage.",
+        "Antworten für alle gleich mischen (abschaltbar), Profil des Spiels kopieren, Zurück-Taste schrittweise.",
+        "Wiederbeitritt nach App-Neustart klappt (Fehler 8003)."
+      ]
+    },
+    {
+      "build": 38,
+      "datum": "2026-10-24",
+      "punkte": [
+        "Major Release 2.0: neue Stufe „Ingomania“, Stufen und Kategorien kommen aus der Fragendatenbank.",
+        "Spielleiter sieht während der Frage dieselbe Karte wie die Spieler."
+      ]
+    }
+  ]
+}

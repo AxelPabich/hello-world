@@ -367,6 +367,19 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /** Anleitung zum Token beim ersten Hochladen. */
     var showTokenGuide by mutableStateOf(false)
+
+    /** „Was ist neu?“: Änderungen der letzten Builds; `null` = ausgeblendet. */
+    var whatsNew by mutableStateOf<List<Changelog.Entry>?>(null)
+        private set
+
+    fun showChangelog() {
+        whatsNew = Changelog.load(getApplication()).take(6).ifEmpty { null }
+        if (whatsNew == null) status = "Keine Änderungsliste in diesem Build."
+    }
+
+    fun dismissWhatsNew() {
+        whatsNew = null
+    }
     private val reportCollector = DiagnoseTransfer.Collector()
 
     /** Noch nicht hochgeladene Berichte überstehen das Verlassen und Neustarts. */
@@ -398,6 +411,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             if (lastBuild != 0) {
                 val what = if (lastBuild < AppUpdate.ownBuild) "aktualisiert" else "ZURÜCKGESETZT (ältere Version installiert)"
                 Diagnostics.log("App $what: Build $lastBuild → Build ${AppUpdate.ownBuild}")
+                // Erster Start nach einem Update: zeigen, was neu ist.
+                if (lastBuild < AppUpdate.ownBuild) whatsNew = Changelog.since(app, lastBuild, AppUpdate.ownBuild).ifEmpty { null }
             }
             appPrefs.edit().putInt("lastBuild", AppUpdate.ownBuild).apply()
         }

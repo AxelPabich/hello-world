@@ -12,6 +12,10 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
   Hauptversion in der Datei `VERSION` erhöhen und die Release-Notizen in `docs/release/<Version>.md`
   schreiben. Rollback: „Rollback auf Build N“ → `workflow_dispatch` mit `rollback_to = build-N` (baut
   den alten Quelltext als NEUEN Build; Stände 35–37: `90456ce`, `ee3a1a9`, `743258e`).
+- Vor jedem Build oben in `aenderungen/aenderungen.json` einen Eintrag `"build": 0` mit den Änderungen
+  für die Spieler (kurz, verständlich, Deutsch) anlegen; der Workflow setzt die Nummer ein, macht daraus
+  die Release-Notiz, und die App zeigt sie nach dem Update unter „Was ist neu?“. Nach dem Build die
+  Nummer auch im Repository eintragen (Test `ChangelogFileTest` erlaubt nur oben eine 0).
 - Sonst Commits mit `[skip ci]`; neue Wünsche und Testergebnisse in `OFFENE_PUNKTE.md` festhalten.
 - Pull Requests und Merges nach `master` nur auf Anweisung.
 - `PROMPT_SPEZIFIKATION.md` enthält zwischen „===== BEGINN SPEZIFIKATION.md =====“ und

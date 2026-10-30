@@ -56,6 +56,8 @@ android {
     sourceSets {
         getByName("main") {
             assets.srcDir(rootProject.file("quiz"))
+            // Änderungen je Build für „Was ist neu?“.
+            assets.srcDir(rootProject.file("aenderungen"))
         }
     }
 }

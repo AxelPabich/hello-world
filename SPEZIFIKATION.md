@@ -889,3 +889,12 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   weiter steigen (versionCode).
 - Übergabe an andere KI-Assistenten: `AGENTS.md`; Wiederherstellung aus Bundle/ZIP: `WIEDERHERSTELLEN.md`.
 
+## 61. Was ist neu? (Build 42)
+
+- Änderungen je Build stehen in `aenderungen/aenderungen.json` (`eintraege`: `build`, `datum`, `punkte`; neueste
+  oben). Der oberste Eintrag darf `"build": 0` haben – der Workflow setzt beim Bauen die Build-Nummer ein und
+  übernimmt die Punkte in die Release-Notiz.
+- Die App zeigt beim ersten Start nach einem Update (nach dem Splash-Screen) alle Einträge mit
+  vorheriger Build < `build` ≤ eigener Build. Unter „Über & Diagnose“ zeigt „Was ist neu?“ die letzten sechs Einträge.
+  Nach einem Rollback (niedrigere Nummer) erscheint nichts.
+

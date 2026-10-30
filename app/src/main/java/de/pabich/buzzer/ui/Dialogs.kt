@@ -456,3 +456,23 @@ fun ReadTestDialog(current: Int, onSave: (Int) -> Unit, onDismiss: () -> Unit) {
         dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
     )
 }
+
+/** „Was ist neu?“ – nach einem Update automatisch, sonst über „Über & Diagnose“. */
+@Composable
+fun WhatsNewDialog(entries: List<de.pabich.buzzer.Changelog.Entry>, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Was ist neu?") },
+        text = {
+            Column(Modifier.heightIn(max = 480.dp).verticalScroll(rememberScrollState())) {
+                for (e in entries) {
+                    Text("Build ${e.build}" + if (e.date.isNotEmpty()) " · ${e.date}" else "", style = MaterialTheme.typography.titleSmall)
+                    for (p in e.points) Text("• $p", style = MaterialTheme.typography.bodyMedium, modifier = Modifier.padding(top = 3.dp))
+                    Spacer(Modifier.height(10.dp))
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text("OK") } },
+    )
+}
+

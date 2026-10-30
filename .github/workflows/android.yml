@@ -53,6 +53,27 @@ jobs:
         working-directory: core
         run: ../gradlew test
 
+      # Änderungen dieses Builds: Nummer eintragen (Eintrag "build": 0 oben in aenderungen/aenderungen.json),
+      # daraus die Release-Notiz; die App zeigt die Liste nach dem Update unter „Was ist neu?“.
+      - name: Änderungen dieses Builds eintragen
+        run: |
+          python3 - <<'PY'
+          import json, os
+          p = 'aenderungen/aenderungen.json'
+          n = int(os.environ['BUILD_NUMBER'])
+          lines = []
+          if os.path.exists(p):
+              d = json.load(open(p, encoding='utf-8'))
+              e = d.get('eintraege', [])
+              if e and e[0].get('build', 0) == 0:
+                  e[0]['build'] = n
+                  json.dump(d, open(p, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
+              if e and e[0].get('build') == n:
+                  lines = ['- ' + x for x in e[0].get('punkte', [])]
+          open('aenderungen-build.md', 'w', encoding='utf-8').write('\n'.join(lines))
+          print('\n'.join(lines) or 'Keine Änderungsliste für diesen Build.')
+          PY
+
       - name: App bauen (Debug-APK)
         run: ./gradlew :app:assembleDebug
 
@@ -82,7 +103,7 @@ jobs:
             --prerelease \
             --target "$SRC_SHA" \
             --title "Buzzer – Build ${BUILD_NUMBER}" \
-            --notes "Build ${BUILD_NUMBER} (Version ${VERSION_NAME}), automatisch gebaut aus ${SOURCE}. Debug-APK zum Testen."
+            --notes "Build ${BUILD_NUMBER} (Version ${VERSION_NAME}), automatisch gebaut aus ${SOURCE}. Debug-APK zum Testen.$( [ -s aenderungen-build.md ] && printf '\n\n**Was ist neu:**\n%s' "$(cat aenderungen-build.md)" )"
 
       # Jeder Build bekommt eine eigene Seite „build-<Nr>“ mit seiner APK; der Stand im Repository
       # (Tag build-<Nr>) bleibt dauerhaft – daraus lässt sich jederzeit ein Rollback bauen.
@@ -96,6 +117,7 @@ jobs:
           VERSION_NAME="${APP_VERSION:-1.0}.${BUILD_NUMBER}"
           NOTE="Build ${BUILD_NUMBER} (Version ${VERSION_NAME}) aus ${GITHUB_REF_NAME} (${SRC_SHA::7})."
           [ -n "$ROLLBACK_TO" ] && NOTE="Rollback: Quelltext von ${ROLLBACK_TO} (${SRC_SHA::7}) als neuer Build ${BUILD_NUMBER} (Version ${VERSION_NAME})."
+          [ -s aenderungen-build.md ] && NOTE="${NOTE}"$'\n\n'"**Was ist neu:**"$'\n'"$(cat aenderungen-build.md)"
           gh release create "build-${BUILD_NUMBER}" "buzzer-build-${BUILD_NUMBER}.apk" \
             --prerelease \
             --target "$SRC_SHA" \

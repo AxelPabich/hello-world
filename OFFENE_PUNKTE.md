@@ -461,6 +461,11 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+102. **„Was ist neu?“ und Release-Datei je Build** (Wunsch vom 31.10.2026): Änderungen je Build in
+    `aenderungen/aenderungen.json` (als Asset eingebaut). Der Workflow trägt die Build-Nummer ein und
+    schreibt die Liste in die Release-Notiz (`buzzer-latest`, `build-<Nr>`). Beim ersten Start nach einem
+    Update zeigt die App die Änderungen seit dem vorherigen Build; jederzeit über „Über & Diagnose“ →
+    „Was ist neu?“. Test `ChangelogFileTest`.
 101. **Backup und Umzug** (Wunsch vom 30.10.2026): Backup auf Zuruf als Git-Bundle (alle Branches und Tags),
     Quelltext-ZIP, eigenes Bundle des Diagnose-Repositorys und APK. Übergabe für andere KIs in `AGENTS.md`,
     Anleitung in `WIEDERHERSTELLEN.md`. Repository-Adresse der App gebündelt in `ProjectRepo.kt`; Workflow
