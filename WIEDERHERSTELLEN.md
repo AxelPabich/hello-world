@@ -12,17 +12,18 @@ Ein Backup besteht aus diesen Dateien (Datum im Namen):
 ## In ein neues GitHub-Repository einspielen
 
 1. Auf GitHub ein **leeres** Repository anlegen (ohne README, ohne Lizenz).
-2. Auf dem Rechner (Git muss installiert sein):
+2. Auf dem Rechner (Git muss installiert sein) – genau so, mit `--mirror`, damit alle Branches und Tags
+   als echte Branches/Tags ankommen:
 
    ```
-   git clone buzzer-<Datum>.bundle buzzer
-   cd buzzer
-   git remote set-url origin https://github.com/<Besitzer>/<Repository>.git
-   git push --mirror origin
+   git clone --mirror buzzer-<Datum>.bundle buzzer.git
+   cd buzzer.git
+   git push --mirror https://github.com/<Besitzer>/<Repository>.git
    ```
 
-   `--mirror` überträgt alle Branches und Tags. Danach `git checkout claude/android-multicast-groups-9b1lkt`
-   (Arbeits-Branch) bzw. `master`.
+   Zum Weiterarbeiten danach normal klonen: `git clone https://github.com/<Besitzer>/<Repository>.git` und
+   `git checkout claude/android-multicast-groups-9b1lkt` (Arbeits-Branch; `master` = letzter Merge).
+   Ohne GitHub geht auch `git clone buzzer-<Datum>.bundle buzzer` direkt aus der Datei.
 3. Auf GitHub unter **Settings → Actions → General**: Actions erlauben und bei „Workflow permissions“
    **Read and write permissions** wählen (der Workflow legt Release-Seiten an).
 4. **Build-Nummern fortsetzen:** Unter **Settings → Secrets and variables → Actions → Variables** eine
