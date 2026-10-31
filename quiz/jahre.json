@@ -1,567 +1,23 @@
 {
   "paket": "jahre",
   "titel": "Die 80er, 90er und 00er Jahre",
-  "version": 4,
+  "version": 5,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler. Musik, Film, Fernsehen, Technik, Sport und Zeitgeschichte von 1980 bis 2009 (Allgemeinwissen, Stand 25.10.2026).",
   "fragen": [
     {
-      "id": "jahre-0044",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Welches Land trat 2001 als zwölftes Mitglied der Eurozone bei?",
-      "antworten": [
-        "Griechenland",
-        "Portugal",
-        "Irland",
-        "Finnland"
-      ],
-      "erklaerung": "Die ersten elf Länder führten den Euro 1999 als Buchgeld ein, Griechenland folgte am 1. Januar 2001. Das Bargeld gab es überall ab 2002.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eurozone",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0018",
+      "id": "jahre-0015",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "leicht",
-      "frage": "Welches Spiel war auf vielen Nokia-Handys der frühen 2000er vorinstalliert?",
+      "frage": "Von welchem Tier wird Peter Parker im Film „Spider-Man“ (2002) gebissen, bevor er Superkräfte bekommt?",
       "antworten": [
-        "Snake",
-        "Tetris",
-        "Pac-Man",
-        "Pong"
+        "Eine Spinne",
+        "Eine Fledermaus",
+        "Eine Ameise",
+        "Eine Wespe"
       ],
-      "erklaerung": "Bei Snake steuert man eine wachsende Schlange über das kleine Display.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Snake%20%28Computerspiel%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0070",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Aus welchem Land stammte die Firma Mirabilis, die 1996 den Instant Messenger ICQ entwickelte?",
-      "antworten": [
-        "Israel",
-        "USA",
-        "Schweden",
-        "Finnland"
-      ],
-      "erklaerung": "ICQ („I seek you“) wurde von vier jungen Israelis entwickelt, 1998 kaufte AOL die Firma.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=ICQ",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0027",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Wie wurde der Heimcomputer Commodore 64 wegen seines Gehäuses umgangssprachlich genannt?",
-      "antworten": [
-        "Brotkasten",
-        "Schuhkarton",
-        "Waschbrett",
-        "Kofferradio"
-      ],
-      "erklaerung": "Der C64 kam 1982 auf den Markt und wurde der meistverkaufte Heimcomputer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Commodore%2064",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0001",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Wie heißt das 1982 erschienene Album von Michael Jackson, das als meistverkauftes Album aller Zeiten gilt?",
-      "antworten": [
-        "Thriller",
-        "Bad",
-        "Dangerous",
-        "Off the Wall"
-      ],
-      "erklaerung": "„Thriller“ wurde über 70 Millionen Mal verkauft; Hits waren „Billie Jean“ und „Beat It“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Thriller%20%28Album%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0039",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Wer moderiert seit 2006 die Castingshow „Germany’s Next Topmodel“?",
-      "antworten": [
-        "Heidi Klum",
-        "Verona Pooth",
-        "Barbara Schöneberger",
-        "Nena"
-      ],
-      "erklaerung": "Heidi Klum ist zugleich Jurorin und Produzentin der Sendung.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Germany%E2%80%99s%20Next%20Topmodel",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0086",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Wie heißt die Spielkonsole, die Sony im Dezember 1994 in Japan erstmals auf den Markt brachte?",
-      "antworten": [
-        "PlayStation",
-        "Dreamcast",
-        "Sega Saturn",
-        "Nintendo 64"
-      ],
-      "erklaerung": "Sony stieg 1994 mit der PlayStation ins Konsolengeschäft ein; Dreamcast (Sega) und Nintendo 64 folgten erst 1998 bzw. 1996, Saturn erschien nur wenige Wochen früher.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=PlayStation%20%28Konsole%29",
-      "erstellt": "2026-10-30",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0033",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Aus welcher Stadt stammt die Hip-Hop-Gruppe Die Fantastischen Vier („Die da!?!“, 1992)?",
-      "antworten": [
-        "Stuttgart",
-        "Hamburg",
-        "Berlin",
-        "München"
-      ],
-      "erklaerung": "Die Gruppe prägte den deutschsprachigen Hip-Hop der 90er.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Fantastischen%20Vier",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0042",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr trat der Vertrag von Maastricht zur Gründung der Europäischen Union in Kraft?",
-      "antworten": [
-        "1993",
-        "1992",
-        "1991",
-        "1995"
-      ],
-      "erklaerung": "Unterzeichnet wurde der Vertrag am 7. Februar 1992, in Kraft trat er nach den Ratifizierungen am 1. November 1993.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Vertrag%20von%20Maastricht",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0087",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Gegen wen gewann Michael Stich 1991 das Herrenfinale von Wimbledon?",
-      "antworten": [
-        "Boris Becker",
-        "Stefan Edberg",
-        "Andre Agassi",
-        "Ivan Lendl"
-      ],
-      "erklaerung": "Stich besiegte im deutsch-deutschen Finale 1991 Titelverteidiger Boris Becker in drei Sätzen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wimbledon%20Championships%201991",
-      "erstellt": "2026-10-30",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0084",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Welche Sängerin gewann 1998 für Israel mit dem Lied „Diva“ den Eurovision Song Contest?",
-      "antworten": [
-        "Dana International",
-        "Ofra Haza",
-        "Noa",
-        "Netta"
-      ],
-      "erklaerung": "Dana International siegte 1998 in Birmingham mit „Diva“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Dana%20International",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0082",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welches Lebenssimulationsspiel, in dem man virtuelle Menschen durch ihren Alltag steuert, erschien im Jahr 2000 und wurde eines der meistverkauften PC-Spiele?",
-      "antworten": [
-        "Die Sims",
-        "Die Siedler",
-        "Anno 1602",
-        "Age of Empires"
-      ],
-      "erklaerung": "Die Sims erschien im Februar 2000 und wurde ein weltweiter Verkaufserfolg.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Sims",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0076",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Wer erzielte im WM-Finale 1982 gegen Italien das einzige deutsche Tor?",
-      "antworten": [
-        "Paul Breitner",
-        "Karl-Heinz Rummenigge",
-        "Klaus Fischer",
-        "Horst Hrubesch"
-      ],
-      "erklaerung": "Italien gewann in Madrid 3:1; Breitner verkürzte in der 83. Minute und traf damit in zwei WM-Endspielen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Weltmeisterschaft%201982",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0029",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welches pelzige, sprechende Spielzeug war 1998 der Weihnachtshit?",
-      "antworten": [
-        "Furby",
-        "Tamagotchi",
-        "Teddy Ruxpin",
-        "Pokémon-Plüsch"
-      ],
-      "erklaerung": "Furby spricht zuerst „Furbisch“ und lernt mit der Zeit Englisch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Furby",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0041",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Wann wurde der Zwei-plus-Vier-Vertrag zur deutschen Einheit in Moskau unterzeichnet?",
-      "antworten": [
-        "12. September 1990",
-        "3. Oktober 1990",
-        "18. Mai 1990",
-        "31. August 1990"
-      ],
-      "erklaerung": "Der Zwei-plus-Vier-Vertrag gab dem vereinten Deutschland die volle Souveränität. Am 31. August 1990 wurde dagegen der Einigungsvertrag unterzeichnet.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zwei-plus-Vier-Vertrag",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0035",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welche Firma brachte 2001 den ersten iPod auf den Markt?",
-      "antworten": [
-        "Apple",
-        "Sony",
-        "Microsoft",
-        "Samsung"
-      ],
-      "erklaerung": "Der iPod versprach „1000 Songs in der Hosentasche“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=IPod",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0065",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Welches der 2004 beigetretenen EU-Länder führte 2007 als erstes den Euro ein?",
-      "antworten": [
-        "Slowenien",
-        "Slowakei",
-        "Estland",
-        "Zypern"
-      ],
-      "erklaerung": "Slowenien folgte am 1. Januar 2007; Zypern und Malta 2008, die Slowakei 2009 und Estland 2011.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Slowenien%20Euro-Einf%C3%BChrung",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0057",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Welche Elektronikkette warb ab 2002 mit dem Slogan „Geiz ist geil“?",
-      "antworten": [
-        "Saturn",
-        "Media Markt",
-        "Conrad",
-        "Expert"
-      ],
-      "erklaerung": "Die Agentur Springer & Jacoby entwickelte die Kampagne für Saturn; der Slogan wurde zum geflügelten Wort.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Geiz%20ist%20geil",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0081",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Welche britische Boygroup, der anfangs Robbie Williams angehörte, sang 1995 „Back for Good“?",
-      "antworten": [
-        "Take That",
-        "Boyzone",
-        "Backstreet Boys",
-        "East 17"
-      ],
-      "erklaerung": "„Back for Good“ erschien 1995 und war einer der größten Hits von Take That.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Take%20That",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0034",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Auf welchem Sender startete 1992 die tägliche Soap „Gute Zeiten, schlechte Zeiten“?",
-      "antworten": [
-        "RTL",
-        "Sat.1",
-        "ZDF",
-        "ProSieben"
-      ],
-      "erklaerung": "Die Serie spielt in Berlin und läuft bis heute.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Gute%20Zeiten%2C%20schlechte%20Zeiten",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0061",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Gegen wen gewann der 17-jährige Boris Becker 1985 das Wimbledon-Finale?",
-      "antworten": [
-        "Kevin Curren",
-        "Ivan Lendl",
-        "Stefan Edberg",
-        "Anders Järryd"
-      ],
-      "erklaerung": "Becker wurde mit 17 Jahren der jüngste Wimbledonsieger; der Südafrikaner Curren unterlag 3:6, 7:6, 6:2, 6:4.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Boris%20Becker",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0002",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Wie heißt die tragbare Spielkonsole, die Nintendo 1989 auf den Markt brachte?",
-      "antworten": [
-        "Game Boy",
-        "Game Gear",
-        "Walkman",
-        "Tamagotchi"
-      ],
-      "erklaerung": "Der graue Game Boy mit Tetris wurde ein weltweiter Verkaufsschlager.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Game%20Boy",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0020",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Welcher Schauspieler spielte die Hauptrolle in der Serie „Der Prinz von Bel-Air“ (ab 1990)?",
-      "antworten": [
-        "Will Smith",
-        "Eddie Murphy",
-        "Martin Lawrence",
-        "Jamie Foxx"
-      ],
-      "erklaerung": "Die Serie machte den Rapper zum Fernsehstar; er spielt sich quasi selbst – einen Jungen aus Philadelphia.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20Prinz%20von%20Bel-Air",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0089",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Wie heißt der junge Zauberer, dessen erstes Abenteuer 1997 von J. K. Rowling in Großbritannien erschien?",
-      "antworten": [
-        "Harry Potter",
-        "Frodo Beutlin",
-        "Bastian Bux",
-        "Artemis Fowl"
-      ],
-      "erklaerung": "„Harry Potter and the Philosopher’s Stone“ erschien 1997, auf Deutsch 1998 als „Harry Potter und der Stein der Weisen“.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Harry%20Potter%20und%20der%20Stein%20der%20Weisen",
-      "erstellt": "2026-10-31",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0072",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Wie viel Speicherplatz hatte der erste iPod, der im Oktober 2001 vorgestellt wurde?",
-      "antworten": [
-        "5 Gigabyte",
-        "10 Gigabyte",
-        "1 Gigabyte",
-        "20 Gigabyte"
-      ],
-      "erklaerung": "Der erste iPod versprach „1000 Songs in deiner Tasche“ und hatte eine 1,8-Zoll-Festplatte mit 5 GB.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=IPod",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0048",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr kam das legendäre Handy Nokia 3310 auf den Markt?",
-      "antworten": [
-        "2000",
-        "1998",
-        "2002",
-        "1999"
-      ],
-      "erklaerung": "Das robuste Nokia 3310 mit dem Spiel „Snake II“ wurde mehr als 125 Millionen Mal verkauft.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nokia%203310",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0075",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Wer erzielte im EM-Finale 1992 beim 2:0 von Dänemark gegen Deutschland das zweite Tor?",
-      "antworten": [
-        "Kim Vilfort",
-        "John Jensen",
-        "Brian Laudrup",
-        "Henrik Larsen"
-      ],
-      "erklaerung": "Jensen traf zum 1:0, Vilfort in der 78. Minute zum 2:0. Dänemark war erst nach dem Ausschluss Jugoslawiens nachgerückt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Europameisterschaft%201992",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0080",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Welchen Platz erreichte Nenas „99 Luftballons“ (deutsche Version) in den US-Billboard-Charts?",
-      "antworten": [
-        "Platz 2",
-        "Platz 1",
-        "Platz 5",
-        "Platz 11"
-      ],
-      "erklaerung": "Das Lied stand 1984 hinter „Jump“ von Van Halen auf Platz 2.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=99%20Luftballons",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0055",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Welches Ereignis führte zum Boykott der Olympischen Sommerspiele 1980 in Moskau durch die USA?",
-      "antworten": [
-        "Der Einmarsch der Sowjets in Afghanistan",
-        "Die Niederschlagung der Solidarność in Polen",
-        "Die iranische Geiselkrise",
-        "Der Abschuss von Flug KAL 007"
-      ],
-      "erklaerung": "Nach dem sowjetischen Einmarsch in Afghanistan Ende 1979 riefen die USA zum Boykott auf; auch die Bundesrepublik blieb den Spielen fern.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Sommerspiele%201980",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0005",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Wofür steht die 80er-Jahre-Frisur „Vokuhila“?",
-      "antworten": [
-        "Vorne kurz, hinten lang",
-        "Vorne kurz, hinten lockig",
-        "Vorne kahl, hinten lang",
-        "Voll kurz, hinten lila"
-      ],
-      "erklaerung": "Der Vokuhila war in den 1980ern ein Frisurentrend, den auch viele Fußballer trugen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Vokuhila",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0019",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Wer gründete 2004 das soziale Netzwerk Facebook?",
-      "antworten": [
-        "Mark Zuckerberg",
-        "Bill Gates",
-        "Steve Jobs",
-        "Larry Page"
-      ],
-      "erklaerung": "Zuckerberg startete Facebook an der Harvard-Universität.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Facebook",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0051",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Wer verwandelte im WM-Finale 1990 gegen Argentinien den entscheidenden Elfmeter zum 1:0?",
-      "antworten": [
-        "Andreas Brehme",
-        "Lothar Matthäus",
-        "Rudi Völler",
-        "Jürgen Klinsmann"
-      ],
-      "erklaerung": "Brehme traf in der 85. Minute in Rom; Matthäus hatte den Strafstoß bewusst nicht selbst geschossen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Weltmeisterschaft%201990",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0003",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Welches Auto dient im Film „Zurück in die Zukunft“ (1985) als Zeitmaschine?",
-      "antworten": [
-        "DeLorean",
-        "Ford Mustang",
-        "Chevrolet Corvette",
-        "Porsche 911"
-      ],
-      "erklaerung": "Doc Brown baut die Zeitmaschine in einen DeLorean DMC-12 ein.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zur%C3%BCck%20in%20die%20Zukunft",
+      "erklaerung": "Peter Parker wird von einer genetisch veränderten Spinne gebissen und wird zu Spider-Man.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spider-Man%20%282002%29",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -583,359 +39,121 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0024",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welcher Schauspieler spielte den Tanzlehrer Johnny Castle in „Dirty Dancing“ (1987)?",
-      "antworten": [
-        "Patrick Swayze",
-        "Tom Cruise",
-        "Kevin Costner",
-        "John Travolta"
-      ],
-      "erklaerung": "Der Film mit dem Hit „(I’ve Had) The Time of My Life“ wurde zum Kultklassiker.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Dirty%20Dancing",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0030",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welchen Hacker spielt Keanu Reeves im Science-Fiction-Film „Matrix“ (1999)?",
-      "antworten": [
-        "Neo",
-        "Morpheus",
-        "Trinity",
-        "Agent Smith"
-      ],
-      "erklaerung": "Neo erfährt, dass die Menschheit in einer Computersimulation lebt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Matrix%20%28Film%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0023",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welches Benefizkonzert fand 1985 in London und Philadelphia zugunsten der Hungernden in Äthiopien statt?",
-      "antworten": [
-        "Live Aid",
-        "Farm Aid",
-        "Band Aid",
-        "Woodstock 85"
-      ],
-      "erklaerung": "Das Live-Aid-Konzert wurde weltweit im Fernsehen übertragen; Initiator war Bob Geldof.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Live%20Aid",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0013",
+      "id": "jahre-0012",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "leicht",
-      "frage": "Wie heißt der junge Löwe im Disney-Film von 1994?",
+      "frage": "Wer moderiert seit dem Start 1999 die deutsche Quizshow „Wer wird Millionär?“?",
       "antworten": [
-        "Simba",
-        "Mufasa",
-        "Scar",
-        "Kimba"
-      ],
-      "erklaerung": "„Der König der Löwen“ wurde einer der erfolgreichsten Zeichentrickfilme.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20K%C3%B6nig%20der%20L%C3%B6wen%20%281994%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0026",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welcher Song war das erste Musikvideo, das der Sender MTV bei seinem Start 1981 zeigte?",
-      "antworten": [
-        "Video Killed the Radio Star",
-        "Thriller",
-        "Take On Me",
-        "Billie Jean"
-      ],
-      "erklaerung": "„Video Killed the Radio Star“ stammt von der Band The Buggles.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=MTV",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0009",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Aus welchem Land stammt das Elektronik-Küken Tamagotchi, das Mitte der 90er zum Modespielzeug wurde?",
-      "antworten": [
-        "Japan",
-        "USA",
-        "Südkorea",
-        "Deutschland"
-      ],
-      "erklaerung": "Das virtuelle Haustier kam 1996 von Bandai aus Japan auf den Markt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tamagotchi",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0052",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Wer erzielte bei der EM 1996 im Finale gegen Tschechien das Golden Goal zum 2:1?",
-      "antworten": [
-        "Oliver Bierhoff",
-        "Jürgen Klinsmann",
-        "Stefan Kuntz",
-        "Christian Ziege"
-      ],
-      "erklaerung": "Bierhoff traf zweimal nach seiner Einwechslung, das entscheidende Tor fiel in der Verlängerung im Londoner Wembley-Stadion.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Europameisterschaft%201996",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0069",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Welcher Schauspieler warb 1996 für die „T-Aktie“ beim Börsengang der Deutschen Telekom?",
-      "antworten": [
-        "Manfred Krug",
+        "Günther Jauch",
         "Thomas Gottschalk",
-        "Harald Juhnke",
-        "Günther Jauch"
+        "Jörg Pilawa",
+        "Hape Kerkeling"
       ],
-      "erklaerung": "Krug wurde als Werbegesicht der Volksaktie bekannt; der Börsengang fand am 18. November 1996 statt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=T-Aktie",
+      "erklaerung": "Günther Jauch führt seit 1999 durch die RTL-Sendung mit den vier Antwortmöglichkeiten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wer%20wird%20Million%C3%A4r%3F",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "jahre-0053",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "In welchem Jahr gewann Steffi Graf alle vier Grand-Slam-Turniere und zusätzlich Olympia-Gold („Golden Slam“)?",
-      "antworten": [
-        "1988",
-        "1987",
-        "1989",
-        "1990"
-      ],
-      "erklaerung": "Als bisher einzige Spielerin schaffte Graf 1988 den Golden Slam; das olympische Finale in Seoul gewann sie gegen Gabriela Sabatini.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Steffi%20Graf",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0063",
+      "id": "jahre-0074",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "ingomania",
-      "frage": "Welcher Berliner Grenzübergang wurde in der Nacht zum 10. November 1989 als erster geöffnet?",
+      "frage": "Wer erhielt nachträglich die Goldmedaille im 100-Meter-Lauf der Olympischen Spiele 1988 in Seoul?",
       "antworten": [
-        "Bornholmer Straße",
-        "Checkpoint Charlie",
-        "Invalidenstraße",
-        "Friedrichstraße"
+        "Carl Lewis",
+        "Linford Christie",
+        "Calvin Smith",
+        "Dennis Mitchell"
       ],
-      "erklaerung": "Nach wachsendem Druck ließ Oberstleutnant Harald Jäger gegen 23:30 Uhr an der Bornholmer Straße den Schlagbaum öffnen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Grenz%C3%BCbergang%20Bornholmer%20Stra%C3%9Fe",
+      "erklaerung": "Ben Johnson lief zunächst Weltrekord, wurde aber des Dopings überführt; Lewis gewann in 9,92 Sekunden.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Sommerspiele%201988",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "jahre-0090",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welcher Schauspieler sang an Silvester 1989 an der Berliner Mauer seinen Hit „Looking for Freedom“?",
-      "antworten": [
-        "David Hasselhoff",
-        "Bruce Willis",
-        "Patrick Swayze",
-        "Tom Selleck"
-      ],
-      "erklaerung": "Der „Knight Rider“-Star trat in der Silvesternacht 1989 am Brandenburger Tor auf, berühmt mit einer Lichterjacke.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=David%20Hasselhoff%20Looking%20for%20Freedom",
-      "erstellt": "2026-10-31",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0040",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welche Firma entwickelte das Online-Rollenspiel „World of Warcraft“ (2004)?",
-      "antworten": [
-        "Blizzard",
-        "Electronic Arts",
-        "Ubisoft",
-        "Nintendo"
-      ],
-      "erklaerung": "Das Spiel hatte zeitweise über zehn Millionen zahlende Spieler.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=World%20of%20Warcraft",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0007",
+      "id": "jahre-0019",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "leicht",
-      "frage": "Welchen Beruf hat Super Mario in seinen ersten Spielen?",
+      "frage": "Wer gründete 2004 das soziale Netzwerk Facebook?",
       "antworten": [
-        "Klempner (Installateur)",
-        "Bäcker",
-        "Feuerwehrmann",
-        "Koch"
+        "Mark Zuckerberg",
+        "Bill Gates",
+        "Steve Jobs",
+        "Larry Page"
       ],
-      "erklaerung": "Mario ist Klempner und rettet Prinzessin Peach vor Bowser.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Super%20Mario",
+      "erklaerung": "Zuckerberg startete Facebook an der Harvard-Universität.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Facebook",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "jahre-0008",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Aus wie vielen Mitgliedern bestand die Girlgroup Spice Girls?",
-      "antworten": [
-        "Fünf",
-        "Vier",
-        "Sechs",
-        "Drei"
-      ],
-      "erklaerung": "Mit „Wannabe“ wurden Scary, Sporty, Baby, Ginger und Posh 1996 weltberühmt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spice%20Girls",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0017",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Welche Nintendo-Konsole kam 2006 mit einer Bewegungssteuerung heraus?",
-      "antworten": [
-        "Wii",
-        "GameCube",
-        "Switch",
-        "Game Boy Advance"
-      ],
-      "erklaerung": "Mit „Wii Sports“ wurde die Konsole zum Familienspaß im Wohnzimmer.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wii",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0058",
+      "id": "jahre-0048",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "schwer",
-      "frage": "In welcher Stadt wurde der Scorpions-Hit „Wind of Change“ (1990) inhaltlich verortet?",
+      "frage": "In welchem Jahr kam das legendäre Handy Nokia 3310 auf den Markt?",
       "antworten": [
-        "Moskau",
+        "2000",
+        "1998",
+        "2002",
+        "1999"
+      ],
+      "erklaerung": "Das robuste Nokia 3310 mit dem Spiel „Snake II“ wurde mehr als 125 Millionen Mal verkauft.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nokia%203310",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0080",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Welchen Platz erreichte Nenas „99 Luftballons“ (deutsche Version) in den US-Billboard-Charts?",
+      "antworten": [
+        "Platz 2",
+        "Platz 1",
+        "Platz 5",
+        "Platz 11"
+      ],
+      "erklaerung": "Das Lied stand 1984 hinter „Jump“ von Van Halen auf Platz 2.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=99%20Luftballons",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0042",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr trat der Vertrag von Maastricht zur Gründung der Europäischen Union in Kraft?",
+      "antworten": [
+        "1993",
+        "1992",
+        "1991",
+        "1995"
+      ],
+      "erklaerung": "Unterzeichnet wurde der Vertrag am 7. Februar 1992, in Kraft trat er nach den Ratifizierungen am 1. November 1993.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Vertrag%20von%20Maastricht",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0033",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Aus welcher Stadt stammt die Hip-Hop-Gruppe Die Fantastischen Vier („Die da!?!“, 1992)?",
+      "antworten": [
+        "Stuttgart",
+        "Hamburg",
         "Berlin",
-        "Leningrad",
-        "Prag"
+        "München"
       ],
-      "erklaerung": "Sänger Klaus Meine schrieb das Lied nach einem Rockfestival in Moskau; im Text kommen der Gorki-Park und die Moskwa vor.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wind%20of%20Change%20%28Lied%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0032",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welche britische Britpop-Band der 90er wurde von den Brüdern Liam und Noel Gallagher angeführt?",
-      "antworten": [
-        "Oasis",
-        "Blur",
-        "Pulp",
-        "Radiohead"
-      ],
-      "erklaerung": "Der Streit der Brüder und der Konkurrenzkampf mit Blur prägten den Britpop.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Oasis%20%28Band%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0010",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Welche Band veröffentlichte 1991 „Smells Like Teen Spirit“?",
-      "antworten": [
-        "Nirvana",
-        "Pearl Jam",
-        "Metallica",
-        "Green Day"
-      ],
-      "erklaerung": "Der Song des Albums „Nevermind“ machte den Grunge weltbekannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Smells%20Like%20Teen%20Spirit",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0054",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Gegen wen gewann Michael Schumacher 1994 mit nur einem Punkt Vorsprung seinen ersten Formel-1-Titel?",
-      "antworten": [
-        "Damon Hill",
-        "Mika Häkkinen",
-        "Gerhard Berger",
-        "David Coulthard"
-      ],
-      "erklaerung": "Im letzten Rennen in Adelaide kollidierten Schumacher (Benetton) und Hill (Williams); Schumacher schied aus, wurde aber Weltmeister.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Formel-1-Weltmeisterschaft%201994",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0078",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Welche Zeit lief Usain Bolt bei seinem Weltrekord im 100-Meter-Finale der Olympischen Spiele 2008?",
-      "antworten": [
-        "9,69 Sekunden",
-        "9,58 Sekunden",
-        "9,72 Sekunden",
-        "9,74 Sekunden"
-      ],
-      "erklaerung": "Bolt lief in Peking 9,69 s, obwohl er vor dem Ziel schon jubelte; 9,58 s folgten ein Jahr später bei der WM in Berlin.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Usain%20Bolt",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0064",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Wer verhandelte 1990 für die DDR als Staatssekretär den Einigungsvertrag?",
-      "antworten": [
-        "Günther Krause",
-        "Lothar de Maizière",
-        "Markus Meckel",
-        "Rainer Eppelmann"
-      ],
-      "erklaerung": "Krause und der westdeutsche Innenminister Wolfgang Schäuble unterzeichneten den Vertrag am 31. August 1990 in Berlin.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Einigungsvertrag",
+      "erklaerung": "Die Gruppe prägte den deutschsprachigen Hip-Hop der 90er.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Fantastischen%20Vier",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -957,53 +175,104 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0021",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "In welchem Land wurde der Zauberwürfel (Rubik’s Cube) erfunden, der um 1980 zum Weltphänomen wurde?",
-      "antworten": [
-        "Ungarn",
-        "Japan",
-        "USA",
-        "Österreich"
-      ],
-      "erklaerung": "Der Architekt Ernő Rubik erfand den Würfel 1974 in Budapest.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Zauberw%C3%BCrfel",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0016",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Welche Reality-Show, in der Kandidaten im Container leben, startete im Jahr 2000 im deutschen Fernsehen?",
-      "antworten": [
-        "Big Brother",
-        "Dschungelcamp",
-        "Popstars",
-        "Die Bauernfamilie"
-      ],
-      "erklaerung": "Die erste Staffel „Big Brother“ lief 2000 auf RTL II.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Big%20Brother%20%28Fernsehsendung%29",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0079",
+      "id": "jahre-0084",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "ingomania",
-      "frage": "Seit welchem Jahr wirbt McDonald’s mit dem Slogan „i’m lovin’ it“ („Ich liebe es“)?",
+      "frage": "Welche Sängerin gewann 1998 für Israel mit dem Lied „Diva“ den Eurovision Song Contest?",
       "antworten": [
-        "2003",
-        "1999",
-        "2001",
-        "2005"
+        "Dana International",
+        "Ofra Haza",
+        "Noa",
+        "Netta"
       ],
-      "erklaerung": "Die Kampagne startete im September 2003 in München und löste „Every time a good time“ ab.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=I%E2%80%99m%20lovin%E2%80%99%20it",
+      "erklaerung": "Dana International siegte 1998 in Birmingham mit „Diva“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dana%20International",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0095",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Welcher Hersteller brachte 1983/84 mit dem DynaTAC 8000X das erste kommerziell verkaufte Handy auf den Markt?",
+      "antworten": [
+        "Motorola",
+        "Nokia",
+        "Ericsson",
+        "Siemens"
+      ],
+      "erklaerung": "Das knapp 800 Gramm schwere Gerät kostete rund 4000 US-Dollar; Motorola-Ingenieur Martin Cooper hatte schon 1973 mit einem Prototyp das erste Handy-Gespräch geführt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Motorola+DynaTAC",
+      "erstellt": "2026-10-31",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0028",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welches spanische Duo hatte 1996 mit „Macarena“ einen weltweiten Hit?",
+      "antworten": [
+        "Los del Río",
+        "Gipsy Kings",
+        "Las Ketchup",
+        "Los Lobos"
+      ],
+      "erklaerung": "Der Song mit dem Tanz wurde in vielen Ländern die Nummer eins.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Macarena%20%28Lied%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0052",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Wer erzielte bei der EM 1996 im Finale gegen Tschechien das Golden Goal zum 2:1?",
+      "antworten": [
+        "Oliver Bierhoff",
+        "Jürgen Klinsmann",
+        "Stefan Kuntz",
+        "Christian Ziege"
+      ],
+      "erklaerung": "Bierhoff traf zweimal nach seiner Einwechslung, das entscheidende Tor fiel in der Verlängerung im Londoner Wembley-Stadion.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Europameisterschaft%201996",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0051",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Wer verwandelte im WM-Finale 1990 gegen Argentinien den entscheidenden Elfmeter zum 1:0?",
+      "antworten": [
+        "Andreas Brehme",
+        "Lothar Matthäus",
+        "Rudi Völler",
+        "Jürgen Klinsmann"
+      ],
+      "erklaerung": "Brehme traf in der 85. Minute in Rom; Matthäus hatte den Strafstoß bewusst nicht selbst geschossen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Weltmeisterschaft%201990",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0001",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Wie heißt das 1982 erschienene Album von Michael Jackson, das als meistverkauftes Album aller Zeiten gilt?",
+      "antworten": [
+        "Thriller",
+        "Bad",
+        "Dangerous",
+        "Off the Wall"
+      ],
+      "erklaerung": "„Thriller“ wurde über 70 Millionen Mal verkauft; Hits waren „Billie Jean“ und „Beat It“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Thriller%20%28Album%29",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1042,19 +311,19 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0049",
+      "id": "jahre-0078",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Welches Spiel lag dem Nintendo Game Boy in Europa und den USA ursprünglich bei?",
+      "stufe": "ingomania",
+      "frage": "Welche Zeit lief Usain Bolt bei seinem Weltrekord im 100-Meter-Finale der Olympischen Spiele 2008?",
       "antworten": [
-        "Tetris",
-        "Super Mario Land",
-        "Pac-Man",
-        "Kirby’s Dream Land"
+        "9,69 Sekunden",
+        "9,58 Sekunden",
+        "9,72 Sekunden",
+        "9,74 Sekunden"
       ],
-      "erklaerung": "Der Handheld erschien 1989 in Japan und 1990 in Europa; das Puzzlespiel Tetris trug maßgeblich zu seinem Erfolg bei.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Game%20Boy",
+      "erklaerung": "Bolt lief in Peking 9,69 s, obwohl er vor dem Ziel schon jubelte; 9,58 s folgten ein Jahr später bei der WM in Berlin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Usain%20Bolt",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1076,172 +345,53 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0046",
+      "id": "jahre-0094",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Wer wurde nach der ersten freien Volkskammerwahl im März 1990 der letzte Ministerpräsident der DDR?",
+      "stufe": "mittel",
+      "frage": "Welches britische Duo mit George Michael landete 1984 den Hit „Wake Me Up Before You Go-Go“?",
       "antworten": [
-        "Lothar de Maizière",
-        "Hans Modrow",
-        "Egon Krenz",
-        "Wolfgang Schnur"
+        "Wham!",
+        "Tears for Fears",
+        "Pet Shop Boys",
+        "Eurythmics"
       ],
-      "erklaerung": "Der CDU-Politiker de Maizière führte eine Große Koalition und verhandelte die deutsche Einheit mit. Modrow war sein Vorgänger.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Lothar%20de%20Maizi%C3%A8re",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0091",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Welcher Reaktorblock explodierte am 26. April 1986 im Kernkraftwerk Tschernobyl?",
-      "antworten": [
-        "Block 4",
-        "Block 1",
-        "Block 2",
-        "Block 3"
-      ],
-      "erklaerung": "Bei einem Test geriet Reaktor 4 außer Kontrolle und explodierte; es war der schwerste Unfall in der Geschichte der Kernenergie.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Nuklearkatastrophe%20von%20Tschernobyl",
+      "erklaerung": "Wham! bestand aus George Michael und Andrew Ridgeley; im selben Jahr erschien auch ihr Weihnachtsklassiker „Last Christmas“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wake+Me+Up+Before+You+Go-Go",
       "erstellt": "2026-10-31",
       "gueltigBis": null
     },
     {
-      "id": "jahre-0092",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Nach welcher Sängerin wurde das 1996 geborene Klonschaf Dolly benannt?",
-      "antworten": [
-        "Dolly Parton",
-        "Dolly Buster",
-        "Doris Day",
-        "Debbie Harry"
-      ],
-      "erklaerung": "Dolly wurde aus einer Euterzelle geklont – die Forscher des schottischen Roslin-Instituts spielten mit dem Namen auf die Country-Sängerin Dolly Parton an.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Dolly%20%28Schaf%29",
-      "erstellt": "2026-10-31",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0031",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Welche Sängerin sang 1992 im Film „Bodyguard“ den Hit „I Will Always Love You“?",
-      "antworten": [
-        "Whitney Houston",
-        "Mariah Carey",
-        "Celine Dion",
-        "Tina Turner"
-      ],
-      "erklaerung": "Der Song stammt ursprünglich von Dolly Parton und wurde durch Whitney Houston weltbekannt.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=I%20Will%20Always%20Love%20You",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0006",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Was will der Außerirdische im Film „E.T.“ (1982) unbedingt tun?",
-      "antworten": [
-        "Nach Hause telefonieren",
-        "Nach Hause fliegen",
-        "Mit Elliott Fußball spielen",
-        "Die Erde erobern"
-      ],
-      "erklaerung": "Der berühmte Satz „E.T. nach Hause telefonieren“ wurde zum Kultzitat.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=E.T.%20%E2%80%93%20Der%20Au%C3%9Ferirdische",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0025",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "mittel",
-      "frage": "Mit welchem Sänger bildete Dieter Bohlen in den 80ern das Pop-Duo Modern Talking?",
-      "antworten": [
-        "Thomas Anders",
-        "Michael Wendler",
-        "Rick Astley",
-        "Marc Terenzi"
-      ],
-      "erklaerung": "Mit „You’re My Heart, You’re My Soul“ gelang dem Duo 1984 der Durchbruch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Modern%20Talking",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0074",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Wer erhielt nachträglich die Goldmedaille im 100-Meter-Lauf der Olympischen Spiele 1988 in Seoul?",
-      "antworten": [
-        "Carl Lewis",
-        "Linford Christie",
-        "Calvin Smith",
-        "Dennis Mitchell"
-      ],
-      "erklaerung": "Ben Johnson lief zunächst Weltrekord, wurde aber des Dopings überführt; Lewis gewann in 9,92 Sekunden.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Sommerspiele%201988",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0060",
+      "id": "jahre-0087",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "schwer",
-      "frage": "In welchem Jahr ging die Online-Enzyklopädie Wikipedia online?",
+      "frage": "Gegen wen gewann Michael Stich 1991 das Herrenfinale von Wimbledon?",
       "antworten": [
-        "2001",
-        "1999",
-        "2003",
-        "2005"
+        "Boris Becker",
+        "Stefan Edberg",
+        "Andre Agassi",
+        "Ivan Lendl"
       ],
-      "erklaerung": "Gegründet wurde sie am 15. Januar 2001 von Jimmy Wales und Larry Sanger.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikipedia",
-      "erstellt": "2026-10-25",
+      "erklaerung": "Stich besiegte im deutsch-deutschen Finale 1991 Titelverteidiger Boris Becker in drei Sätzen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wimbledon%20Championships%201991",
+      "erstellt": "2026-10-30",
       "gueltigBis": null
     },
     {
-      "id": "jahre-0012",
+      "id": "jahre-0061",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Wer moderiert seit dem Start 1999 die deutsche Quizshow „Wer wird Millionär?“?",
+      "stufe": "ingomania",
+      "frage": "Gegen wen gewann der 17-jährige Boris Becker 1985 das Wimbledon-Finale?",
       "antworten": [
-        "Günther Jauch",
-        "Thomas Gottschalk",
-        "Jörg Pilawa",
-        "Hape Kerkeling"
+        "Kevin Curren",
+        "Ivan Lendl",
+        "Stefan Edberg",
+        "Anders Järryd"
       ],
-      "erklaerung": "Günther Jauch führt seit 1999 durch die RTL-Sendung mit den vier Antwortmöglichkeiten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Wer%20wird%20Million%C3%A4r%3F",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0004",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "leicht",
-      "frage": "Wie viele Luftballons besang Nena 1983 in ihrem Hit?",
-      "antworten": [
-        "99",
-        "77",
-        "100",
-        "66"
-      ],
-      "erklaerung": "„99 Luftballons“ stand auch in einer englischen Version in den US-Charts weit oben.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=99%20Luftballons",
+      "erklaerung": "Becker wurde mit 17 Jahren der jüngste Wimbledonsieger; der Südafrikaner Curren unterlag 3:6, 7:6, 6:2, 6:4.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Boris%20Becker",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1263,19 +413,240 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0015",
+      "id": "jahre-0075",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Wer erzielte im EM-Finale 1992 beim 2:0 von Dänemark gegen Deutschland das zweite Tor?",
+      "antworten": [
+        "Kim Vilfort",
+        "John Jensen",
+        "Brian Laudrup",
+        "Henrik Larsen"
+      ],
+      "erklaerung": "Jensen traf zum 1:0, Vilfort in der 78. Minute zum 2:0. Dänemark war erst nach dem Ausschluss Jugoslawiens nachgerückt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Europameisterschaft%201992",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0055",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Welches Ereignis führte zum Boykott der Olympischen Sommerspiele 1980 in Moskau durch die USA?",
+      "antworten": [
+        "Der Einmarsch der Sowjets in Afghanistan",
+        "Die Niederschlagung der Solidarność in Polen",
+        "Die iranische Geiselkrise",
+        "Der Abschuss von Flug KAL 007"
+      ],
+      "erklaerung": "Nach dem sowjetischen Einmarsch in Afghanistan Ende 1979 riefen die USA zum Boykott auf; auch die Bundesrepublik blieb den Spielen fern.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Olympische%20Sommerspiele%201980",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0090",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welcher Schauspieler sang an Silvester 1989 an der Berliner Mauer seinen Hit „Looking for Freedom“?",
+      "antworten": [
+        "David Hasselhoff",
+        "Bruce Willis",
+        "Patrick Swayze",
+        "Tom Selleck"
+      ],
+      "erklaerung": "Der „Knight Rider“-Star trat in der Silvesternacht 1989 am Brandenburger Tor auf, berühmt mit einer Lichterjacke.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=David%20Hasselhoff%20Looking%20for%20Freedom",
+      "erstellt": "2026-10-31",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0050",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Wer gründete 1999 die Musiktauschbörse Napster?",
+      "antworten": [
+        "Shawn Fanning",
+        "Justin Frankel",
+        "Marc Andreessen",
+        "Jerry Yang"
+      ],
+      "erklaerung": "Der damals 18-jährige Fanning entwickelte Napster gemeinsam mit Sean Parker; 2001 musste der Dienst nach Klagen der Musikindustrie schließen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Napster",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0009",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "leicht",
-      "frage": "Von welchem Tier wird Peter Parker im Film „Spider-Man“ (2002) gebissen, bevor er Superkräfte bekommt?",
+      "frage": "Aus welchem Land stammt das Elektronik-Küken Tamagotchi, das Mitte der 90er zum Modespielzeug wurde?",
       "antworten": [
-        "Eine Spinne",
-        "Eine Fledermaus",
-        "Eine Ameise",
-        "Eine Wespe"
+        "Japan",
+        "USA",
+        "Südkorea",
+        "Deutschland"
       ],
-      "erklaerung": "Peter Parker wird von einer genetisch veränderten Spinne gebissen und wird zu Spider-Man.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Spider-Man%20%282002%29",
+      "erklaerung": "Das virtuelle Haustier kam 1996 von Bandai aus Japan auf den Markt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tamagotchi",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0044",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Welches Land trat 2001 als zwölftes Mitglied der Eurozone bei?",
+      "antworten": [
+        "Griechenland",
+        "Portugal",
+        "Irland",
+        "Finnland"
+      ],
+      "erklaerung": "Die ersten elf Länder führten den Euro 1999 als Buchgeld ein, Griechenland folgte am 1. Januar 2001. Das Bargeld gab es überall ab 2002.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eurozone",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0073",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "In welcher Kurve verunglückte Ayrton Senna 1994 tödlich beim Großen Preis von San Marino?",
+      "antworten": [
+        "Tamburello",
+        "Tosa",
+        "Acque Minerali",
+        "Rivazza"
+      ],
+      "erklaerung": "Senna starb am 1. Mai 1994 in Imola, nachdem sein Williams in der Tamburello-Kurve geradeaus in die Mauer gefahren war.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Ayrton%20Senna",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0064",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Wer verhandelte 1990 für die DDR als Staatssekretär den Einigungsvertrag?",
+      "antworten": [
+        "Günther Krause",
+        "Lothar de Maizière",
+        "Markus Meckel",
+        "Rainer Eppelmann"
+      ],
+      "erklaerung": "Krause und der westdeutsche Innenminister Wolfgang Schäuble unterzeichneten den Vertrag am 31. August 1990 in Berlin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Einigungsvertrag",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0003",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welches Auto dient im Film „Zurück in die Zukunft“ (1985) als Zeitmaschine?",
+      "antworten": [
+        "DeLorean",
+        "Ford Mustang",
+        "Chevrolet Corvette",
+        "Porsche 911"
+      ],
+      "erklaerung": "Doc Brown baut die Zeitmaschine in einen DeLorean DMC-12 ein.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zur%C3%BCck%20in%20die%20Zukunft",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0029",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welches pelzige, sprechende Spielzeug war 1998 der Weihnachtshit?",
+      "antworten": [
+        "Furby",
+        "Tamagotchi",
+        "Teddy Ruxpin",
+        "Pokémon-Plüsch"
+      ],
+      "erklaerung": "Furby spricht zuerst „Furbisch“ und lernt mit der Zeit Englisch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Furby",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0004",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Wie viele Luftballons besang Nena 1983 in ihrem Hit?",
+      "antworten": [
+        "99",
+        "77",
+        "100",
+        "66"
+      ],
+      "erklaerung": "„99 Luftballons“ stand auch in einer englischen Version in den US-Charts weit oben.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=99%20Luftballons",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0070",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Aus welchem Land stammte die Firma Mirabilis, die 1996 den Instant Messenger ICQ entwickelte?",
+      "antworten": [
+        "Israel",
+        "USA",
+        "Schweden",
+        "Finnland"
+      ],
+      "erklaerung": "ICQ („I seek you“) wurde von vier jungen Israelis entwickelt, 1998 kaufte AOL die Firma.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=ICQ",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0063",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Welcher Berliner Grenzübergang wurde in der Nacht zum 10. November 1989 als erster geöffnet?",
+      "antworten": [
+        "Bornholmer Straße",
+        "Checkpoint Charlie",
+        "Invalidenstraße",
+        "Friedrichstraße"
+      ],
+      "erklaerung": "Nach wachsendem Druck ließ Oberstleutnant Harald Jäger gegen 23:30 Uhr an der Bornholmer Straße den Schlagbaum öffnen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Grenz%C3%BCbergang%20Bornholmer%20Stra%C3%9Fe",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0024",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welcher Schauspieler spielte den Tanzlehrer Johnny Castle in „Dirty Dancing“ (1987)?",
+      "antworten": [
+        "Patrick Swayze",
+        "Tom Cruise",
+        "Kevin Costner",
+        "John Travolta"
+      ],
+      "erklaerung": "Der Film mit dem Hit „(I’ve Had) The Time of My Life“ wurde zum Kultklassiker.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dirty%20Dancing",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1297,87 +668,104 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0022",
+      "id": "jahre-0034",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "mittel",
-      "frage": "In welchem Land wurde das Spiel Tetris entwickelt?",
+      "frage": "Auf welchem Sender startete 1992 die tägliche Soap „Gute Zeiten, schlechte Zeiten“?",
       "antworten": [
-        "Sowjetunion",
-        "Japan",
-        "USA",
-        "Großbritannien"
+        "RTL",
+        "Sat.1",
+        "ZDF",
+        "ProSieben"
       ],
-      "erklaerung": "Alexei Paschitnow programmierte Tetris 1984 in Moskau.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Tetris",
+      "erklaerung": "Die Serie spielt in Berlin und läuft bis heute.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gute%20Zeiten%2C%20schlechte%20Zeiten",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "jahre-0047",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Welcher Rolling-Stones-Song war 1995 der Werbesong zur Markteinführung von Windows 95?",
-      "antworten": [
-        "Start Me Up",
-        "Satisfaction",
-        "Angie",
-        "Paint It Black"
-      ],
-      "erklaerung": "Microsoft zahlte für die Rechte an „Start Me Up“ angeblich Millionen; der Titel passte zum neuen Startmenü.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Windows%2095",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0085",
+      "id": "jahre-0010",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "leicht",
-      "frage": "Welcher Katastrophenfilm von James Cameron mit Leonardo DiCaprio und Kate Winslet gewann 1998 elf Oscars?",
+      "frage": "Welche Band veröffentlichte 1991 „Smells Like Teen Spirit“?",
       "antworten": [
-        "Titanic",
-        "Armageddon",
-        "Deep Impact",
-        "Twister"
+        "Nirvana",
+        "Pearl Jam",
+        "Metallica",
+        "Green Day"
       ],
-      "erklaerung": "Der Film über den Untergang des Luxusdampfers von 1912 kam 1997 in die Kinos und wurde zum erfolgreichsten Film seiner Zeit.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanic%20%281997%29",
-      "erstellt": "2026-10-30",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0071",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Wie lautete der Codename von Windows XP während der Entwicklung?",
-      "antworten": [
-        "Whistler",
-        "Longhorn",
-        "Chicago",
-        "Memphis"
-      ],
-      "erklaerung": "Chicago war Windows 95, Memphis Windows 98 und Longhorn der Codename von Windows Vista.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Windows%20XP",
+      "erklaerung": "Der Song des Albums „Nevermind“ machte den Grunge weltbekannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Smells%20Like%20Teen%20Spirit",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
     {
-      "id": "jahre-0036",
+      "id": "jahre-0062",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Gegen wen gewann Steffi Graf 1999 das Finale der French Open?",
+      "antworten": [
+        "Martina Hingis",
+        "Monica Seles",
+        "Jana Novotná",
+        "Lindsay Davenport"
+      ],
+      "erklaerung": "Graf siegte 4:6, 7:5, 6:2 und holte ihren letzten von 22 Grand-Slam-Titeln.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=French%20Open%201999",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0032",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "mittel",
-      "frage": "Wer gewann 2003 die erste Staffel von „Deutschland sucht den Superstar“?",
+      "frage": "Welche britische Britpop-Band der 90er wurde von den Brüdern Liam und Noel Gallagher angeführt?",
       "antworten": [
-        "Alexander Klaws",
-        "Daniel Küblböck",
-        "Elli Erl",
-        "Mark Medlock"
+        "Oasis",
+        "Blur",
+        "Pulp",
+        "Radiohead"
       ],
-      "erklaerung": "Klaws setzte sich im Finale gegen Juliette Schoppmann durch.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutschland%20sucht%20den%20Superstar",
+      "erklaerung": "Der Streit der Brüder und der Konkurrenzkampf mit Blur prägten den Britpop.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Oasis%20%28Band%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0035",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welche Firma brachte 2001 den ersten iPod auf den Markt?",
+      "antworten": [
+        "Apple",
+        "Sony",
+        "Microsoft",
+        "Samsung"
+      ],
+      "erklaerung": "Der iPod versprach „1000 Songs in der Hosentasche“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IPod",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0016",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welche Reality-Show, in der Kandidaten im Container leben, startete im Jahr 2000 im deutschen Fernsehen?",
+      "antworten": [
+        "Big Brother",
+        "Dschungelcamp",
+        "Popstars",
+        "Die Bauernfamilie"
+      ],
+      "erklaerung": "Die erste Staffel „Big Brother“ lief 2000 auf RTL II.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Big%20Brother%20%28Fernsehsendung%29",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     },
@@ -1399,20 +787,734 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0028",
+      "id": "jahre-0013",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Wie heißt der junge Löwe im Disney-Film von 1994?",
+      "antworten": [
+        "Simba",
+        "Mufasa",
+        "Scar",
+        "Kimba"
+      ],
+      "erklaerung": "„Der König der Löwen“ wurde einer der erfolgreichsten Zeichentrickfilme.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20K%C3%B6nig%20der%20L%C3%B6wen%20%281994%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0060",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr ging die Online-Enzyklopädie Wikipedia online?",
+      "antworten": [
+        "2001",
+        "1999",
+        "2003",
+        "2005"
+      ],
+      "erklaerung": "Gegründet wurde sie am 15. Januar 2001 von Jimmy Wales und Larry Sanger.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wikipedia",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0026",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "mittel",
-      "frage": "Welches spanische Duo hatte 1996 mit „Macarena“ einen weltweiten Hit?",
+      "frage": "Welcher Song war das erste Musikvideo, das der Sender MTV bei seinem Start 1981 zeigte?",
       "antworten": [
-        "Los del Río",
-        "Gipsy Kings",
-        "Las Ketchup",
-        "Los Lobos"
+        "Video Killed the Radio Star",
+        "Thriller",
+        "Take On Me",
+        "Billie Jean"
       ],
-      "erklaerung": "Der Song mit dem Tanz wurde in vielen Ländern die Nummer eins.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Macarena%20%28Lied%29",
+      "erklaerung": "„Video Killed the Radio Star“ stammt von der Band The Buggles.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=MTV",
       "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0057",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Welche Elektronikkette warb ab 2002 mit dem Slogan „Geiz ist geil“?",
+      "antworten": [
+        "Saturn",
+        "Media Markt",
+        "Conrad",
+        "Expert"
+      ],
+      "erklaerung": "Die Agentur Springer & Jacoby entwickelte die Kampagne für Saturn; der Slogan wurde zum geflügelten Wort.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Geiz%20ist%20geil",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0008",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Aus wie vielen Mitgliedern bestand die Girlgroup Spice Girls?",
+      "antworten": [
+        "Fünf",
+        "Vier",
+        "Sechs",
+        "Drei"
+      ],
+      "erklaerung": "Mit „Wannabe“ wurden Scary, Sporty, Baby, Ginger und Posh 1996 weltberühmt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Spice%20Girls",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0058",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "In welcher Stadt wurde der Scorpions-Hit „Wind of Change“ (1990) inhaltlich verortet?",
+      "antworten": [
+        "Moskau",
+        "Berlin",
+        "Leningrad",
+        "Prag"
+      ],
+      "erklaerung": "Sänger Klaus Meine schrieb das Lied nach einem Rockfestival in Moskau; im Text kommen der Gorki-Park und die Moskwa vor.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wind%20of%20Change%20%28Lied%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0023",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welches Benefizkonzert fand 1985 in London und Philadelphia zugunsten der Hungernden in Äthiopien statt?",
+      "antworten": [
+        "Live Aid",
+        "Farm Aid",
+        "Band Aid",
+        "Woodstock 85"
+      ],
+      "erklaerung": "Das Live-Aid-Konzert wurde weltweit im Fernsehen übertragen; Initiator war Bob Geldof.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Live%20Aid",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0030",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welchen Hacker spielt Keanu Reeves im Science-Fiction-Film „Matrix“ (1999)?",
+      "antworten": [
+        "Neo",
+        "Morpheus",
+        "Trinity",
+        "Agent Smith"
+      ],
+      "erklaerung": "Neo erfährt, dass die Menschheit in einer Computersimulation lebt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Matrix%20%28Film%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0025",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Mit welchem Sänger bildete Dieter Bohlen in den 80ern das Pop-Duo Modern Talking?",
+      "antworten": [
+        "Thomas Anders",
+        "Michael Wendler",
+        "Rick Astley",
+        "Marc Terenzi"
+      ],
+      "erklaerung": "Mit „You’re My Heart, You’re My Soul“ gelang dem Duo 1984 der Durchbruch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Modern%20Talking",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0085",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welcher Katastrophenfilm von James Cameron mit Leonardo DiCaprio und Kate Winslet gewann 1998 elf Oscars?",
+      "antworten": [
+        "Titanic",
+        "Armageddon",
+        "Deep Impact",
+        "Twister"
+      ],
+      "erklaerung": "Der Film über den Untergang des Luxusdampfers von 1912 kam 1997 in die Kinos und wurde zum erfolgreichsten Film seiner Zeit.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Titanic%20%281997%29",
+      "erstellt": "2026-10-30",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0036",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Wer gewann 2003 die erste Staffel von „Deutschland sucht den Superstar“?",
+      "antworten": [
+        "Alexander Klaws",
+        "Daniel Küblböck",
+        "Elli Erl",
+        "Mark Medlock"
+      ],
+      "erklaerung": "Klaws setzte sich im Finale gegen Juliette Schoppmann durch.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Deutschland%20sucht%20den%20Superstar",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0039",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Wer moderiert seit 2006 die Castingshow „Germany’s Next Topmodel“?",
+      "antworten": [
+        "Heidi Klum",
+        "Verona Pooth",
+        "Barbara Schöneberger",
+        "Nena"
+      ],
+      "erklaerung": "Heidi Klum ist zugleich Jurorin und Produzentin der Sendung.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Germany%E2%80%99s%20Next%20Topmodel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0021",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "In welchem Land wurde der Zauberwürfel (Rubik’s Cube) erfunden, der um 1980 zum Weltphänomen wurde?",
+      "antworten": [
+        "Ungarn",
+        "Japan",
+        "USA",
+        "Österreich"
+      ],
+      "erklaerung": "Der Architekt Ernő Rubik erfand den Würfel 1974 in Budapest.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zauberw%C3%BCrfel",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0072",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Wie viel Speicherplatz hatte der erste iPod, der im Oktober 2001 vorgestellt wurde?",
+      "antworten": [
+        "5 Gigabyte",
+        "10 Gigabyte",
+        "1 Gigabyte",
+        "20 Gigabyte"
+      ],
+      "erklaerung": "Der erste iPod versprach „1000 Songs in deiner Tasche“ und hatte eine 1,8-Zoll-Festplatte mit 5 GB.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=IPod",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0017",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welche Nintendo-Konsole kam 2006 mit einer Bewegungssteuerung heraus?",
+      "antworten": [
+        "Wii",
+        "GameCube",
+        "Switch",
+        "Game Boy Advance"
+      ],
+      "erklaerung": "Mit „Wii Sports“ wurde die Konsole zum Familienspaß im Wohnzimmer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wii",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0018",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welches Spiel war auf vielen Nokia-Handys der frühen 2000er vorinstalliert?",
+      "antworten": [
+        "Snake",
+        "Tetris",
+        "Pac-Man",
+        "Pong"
+      ],
+      "erklaerung": "Bei Snake steuert man eine wachsende Schlange über das kleine Display.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Snake%20%28Computerspiel%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0027",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Wie wurde der Heimcomputer Commodore 64 wegen seines Gehäuses umgangssprachlich genannt?",
+      "antworten": [
+        "Brotkasten",
+        "Schuhkarton",
+        "Waschbrett",
+        "Kofferradio"
+      ],
+      "erklaerung": "Der C64 kam 1982 auf den Markt und wurde der meistverkaufte Heimcomputer.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Commodore%2064",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0092",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Nach welcher Sängerin wurde das 1996 geborene Klonschaf Dolly benannt?",
+      "antworten": [
+        "Dolly Parton",
+        "Dolly Buster",
+        "Doris Day",
+        "Debbie Harry"
+      ],
+      "erklaerung": "Dolly wurde aus einer Euterzelle geklont – die Forscher des schottischen Roslin-Instituts spielten mit dem Namen auf die Country-Sängerin Dolly Parton an.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Dolly%20%28Schaf%29",
+      "erstellt": "2026-10-31",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0046",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Wer wurde nach der ersten freien Volkskammerwahl im März 1990 der letzte Ministerpräsident der DDR?",
+      "antworten": [
+        "Lothar de Maizière",
+        "Hans Modrow",
+        "Egon Krenz",
+        "Wolfgang Schnur"
+      ],
+      "erklaerung": "Der CDU-Politiker de Maizière führte eine Große Koalition und verhandelte die deutsche Einheit mit. Modrow war sein Vorgänger.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Lothar%20de%20Maizi%C3%A8re",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0049",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Welches Spiel lag dem Nintendo Game Boy in Europa und den USA ursprünglich bei?",
+      "antworten": [
+        "Tetris",
+        "Super Mario Land",
+        "Pac-Man",
+        "Kirby’s Dream Land"
+      ],
+      "erklaerung": "Der Handheld erschien 1989 in Japan und 1990 in Europa; das Puzzlespiel Tetris trug maßgeblich zu seinem Erfolg bei.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Game%20Boy",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0045",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Wer verkündete am 9. November 1989 auf einer Pressekonferenz die neue Reiseregelung mit den Worten „sofort, unverzüglich“?",
+      "antworten": [
+        "Günter Schabowski",
+        "Egon Krenz",
+        "Hans Modrow",
+        "Markus Wolf"
+      ],
+      "erklaerung": "Der SED-Politbüromitglied Schabowski verlas den Beschluss unvorbereitet; noch am Abend öffneten sich die Grenzübergänge in Berlin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=G%C3%BCnter%20Schabowski",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0082",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welches Lebenssimulationsspiel, in dem man virtuelle Menschen durch ihren Alltag steuert, erschien im Jahr 2000 und wurde eines der meistverkauften PC-Spiele?",
+      "antworten": [
+        "Die Sims",
+        "Die Siedler",
+        "Anno 1602",
+        "Age of Empires"
+      ],
+      "erklaerung": "Die Sims erschien im Februar 2000 und wurde ein weltweiter Verkaufserfolg.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Die%20Sims",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0022",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "In welchem Land wurde das Spiel Tetris entwickelt?",
+      "antworten": [
+        "Sowjetunion",
+        "Japan",
+        "USA",
+        "Großbritannien"
+      ],
+      "erklaerung": "Alexei Paschitnow programmierte Tetris 1984 in Moskau.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tetris",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0002",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Wie heißt die tragbare Spielkonsole, die Nintendo 1989 auf den Markt brachte?",
+      "antworten": [
+        "Game Boy",
+        "Game Gear",
+        "Walkman",
+        "Tamagotchi"
+      ],
+      "erklaerung": "Der graue Game Boy mit Tetris wurde ein weltweiter Verkaufsschlager.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Game%20Boy",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0069",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Welcher Schauspieler warb 1996 für die „T-Aktie“ beim Börsengang der Deutschen Telekom?",
+      "antworten": [
+        "Manfred Krug",
+        "Thomas Gottschalk",
+        "Harald Juhnke",
+        "Günther Jauch"
+      ],
+      "erklaerung": "Krug wurde als Werbegesicht der Volksaktie bekannt; der Börsengang fand am 18. November 1996 statt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=T-Aktie",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0079",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Seit welchem Jahr wirbt McDonald’s mit dem Slogan „i’m lovin’ it“ („Ich liebe es“)?",
+      "antworten": [
+        "2003",
+        "1999",
+        "2001",
+        "2005"
+      ],
+      "erklaerung": "Die Kampagne startete im September 2003 in München und löste „Every time a good time“ ab.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=I%E2%80%99m%20lovin%E2%80%99%20it",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0076",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Wer erzielte im WM-Finale 1982 gegen Italien das einzige deutsche Tor?",
+      "antworten": [
+        "Paul Breitner",
+        "Karl-Heinz Rummenigge",
+        "Klaus Fischer",
+        "Horst Hrubesch"
+      ],
+      "erklaerung": "Italien gewann in Madrid 3:1; Breitner verkürzte in der 83. Minute und traf damit in zwei WM-Endspielen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Fu%C3%9Fball-Weltmeisterschaft%201982",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0047",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Welcher Rolling-Stones-Song war 1995 der Werbesong zur Markteinführung von Windows 95?",
+      "antworten": [
+        "Start Me Up",
+        "Satisfaction",
+        "Angie",
+        "Paint It Black"
+      ],
+      "erklaerung": "Microsoft zahlte für die Rechte an „Start Me Up“ angeblich Millionen; der Titel passte zum neuen Startmenü.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Windows%2095",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0005",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Wofür steht die 80er-Jahre-Frisur „Vokuhila“?",
+      "antworten": [
+        "Vorne kurz, hinten lang",
+        "Vorne kurz, hinten lockig",
+        "Vorne kahl, hinten lang",
+        "Voll kurz, hinten lila"
+      ],
+      "erklaerung": "Der Vokuhila war in den 1980ern ein Frisurentrend, den auch viele Fußballer trugen.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Vokuhila",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0088",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Welches Land gewann 1995 den Eurovision Song Contest mit dem fast textlosen Lied „Nocturne“ der Gruppe Secret Garden?",
+      "antworten": [
+        "Norwegen",
+        "Irland",
+        "Schweden",
+        "Großbritannien"
+      ],
+      "erklaerung": "Norwegen siegte 1995 in Dublin mit Secret Garden; das Lied besteht überwiegend aus einer Geigenmelodie und nur wenigen gesungenen Worten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Eurovision%20Song%20Contest%201995",
+      "erstellt": "2026-10-30",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0071",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Wie lautete der Codename von Windows XP während der Entwicklung?",
+      "antworten": [
+        "Whistler",
+        "Longhorn",
+        "Chicago",
+        "Memphis"
+      ],
+      "erklaerung": "Chicago war Windows 95, Memphis Windows 98 und Longhorn der Codename von Windows Vista.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Windows%20XP",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0006",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Was will der Außerirdische im Film „E.T.“ (1982) unbedingt tun?",
+      "antworten": [
+        "Nach Hause telefonieren",
+        "Nach Hause fliegen",
+        "Mit Elliott Fußball spielen",
+        "Die Erde erobern"
+      ],
+      "erklaerung": "Der berühmte Satz „E.T. nach Hause telefonieren“ wurde zum Kultzitat.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=E.T.%20%E2%80%93%20Der%20Au%C3%9Ferirdische",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0081",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welche britische Boygroup, der anfangs Robbie Williams angehörte, sang 1995 „Back for Good“?",
+      "antworten": [
+        "Take That",
+        "Boyzone",
+        "Backstreet Boys",
+        "East 17"
+      ],
+      "erklaerung": "„Back for Good“ erschien 1995 und war einer der größten Hits von Take That.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Take%20That",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0007",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welchen Beruf hat Super Mario in seinen ersten Spielen?",
+      "antworten": [
+        "Klempner (Installateur)",
+        "Bäcker",
+        "Feuerwehrmann",
+        "Koch"
+      ],
+      "erklaerung": "Mario ist Klempner und rettet Prinzessin Peach vor Bowser.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Super%20Mario",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0093",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Wie heißt die gelbe, runde Spielfigur, die ab 1980 in Spielhallen Punkte frisst und vor Geistern flieht?",
+      "antworten": [
+        "Pac-Man",
+        "Donkey Kong",
+        "Q*bert",
+        "Frogger"
+      ],
+      "erklaerung": "Das Spiel der japanischen Firma Namco erschien 1980 und wurde zu einem der erfolgreichsten Arcade-Spiele aller Zeiten.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Pac-Man",
+      "erstellt": "2026-10-31",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0086",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Wie heißt die Spielkonsole, die Sony im Dezember 1994 in Japan erstmals auf den Markt brachte?",
+      "antworten": [
+        "PlayStation",
+        "Dreamcast",
+        "Sega Saturn",
+        "Nintendo 64"
+      ],
+      "erklaerung": "Sony stieg 1994 mit der PlayStation ins Konsolengeschäft ein; Dreamcast (Sega) und Nintendo 64 folgten erst 1998 bzw. 1996, Saturn erschien nur wenige Wochen früher.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=PlayStation%20%28Konsole%29",
+      "erstellt": "2026-10-30",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0053",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "In welchem Jahr gewann Steffi Graf alle vier Grand-Slam-Turniere und zusätzlich Olympia-Gold („Golden Slam“)?",
+      "antworten": [
+        "1988",
+        "1987",
+        "1989",
+        "1990"
+      ],
+      "erklaerung": "Als bisher einzige Spielerin schaffte Graf 1988 den Golden Slam; das olympische Finale in Seoul gewann sie gegen Gabriela Sabatini.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Steffi%20Graf",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0068",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Wer führte Regie beim berühmten Apple-Werbespot „1984“ zur Vorstellung des Macintosh?",
+      "antworten": [
+        "Ridley Scott",
+        "James Cameron",
+        "Tony Scott",
+        "Steven Spielberg"
+      ],
+      "erklaerung": "Der Spot lief im Januar 1984 während des Super Bowls und zeigte eine Kämpferin, die den „Big Brother“-Bildschirm zerstört.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=1984%20%28Werbespot%29",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0020",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Welcher Schauspieler spielte die Hauptrolle in der Serie „Der Prinz von Bel-Air“ (ab 1990)?",
+      "antworten": [
+        "Will Smith",
+        "Eddie Murphy",
+        "Martin Lawrence",
+        "Jamie Foxx"
+      ],
+      "erklaerung": "Die Serie machte den Rapper zum Fernsehstar; er spielt sich quasi selbst – einen Jungen aus Philadelphia.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Der%20Prinz%20von%20Bel-Air",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0031",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welche Sängerin sang 1992 im Film „Bodyguard“ den Hit „I Will Always Love You“?",
+      "antworten": [
+        "Whitney Houston",
+        "Mariah Carey",
+        "Celine Dion",
+        "Tina Turner"
+      ],
+      "erklaerung": "Der Song stammt ursprünglich von Dolly Parton und wurde durch Whitney Houston weltbekannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=I%20Will%20Always%20Love%20You",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0040",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "mittel",
+      "frage": "Welche Firma entwickelte das Online-Rollenspiel „World of Warcraft“ (2004)?",
+      "antworten": [
+        "Blizzard",
+        "Electronic Arts",
+        "Ubisoft",
+        "Nintendo"
+      ],
+      "erklaerung": "Das Spiel hatte zeitweise über zehn Millionen zahlende Spieler.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=World%20of%20Warcraft",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0054",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Gegen wen gewann Michael Schumacher 1994 mit nur einem Punkt Vorsprung seinen ersten Formel-1-Titel?",
+      "antworten": [
+        "Damon Hill",
+        "Mika Häkkinen",
+        "Gerhard Berger",
+        "David Coulthard"
+      ],
+      "erklaerung": "Im letzten Rennen in Adelaide kollidierten Schumacher (Benetton) und Hill (Williams); Schumacher schied aus, wurde aber Weltmeister.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Formel-1-Weltmeisterschaft%201994",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0096",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Welchen A-cappella-Song nutzte Karlheinz Brandenburg immer wieder als Testaufnahme, um das MP3-Verfahren zu verfeinern?",
+      "antworten": [
+        "„Tom’s Diner“ von Suzanne Vega",
+        "„Only You“ von The Flying Pickets",
+        "„Don’t Worry, Be Happy“ von Bobby McFerrin",
+        "„Fast Car“ von Tracy Chapman"
+      ],
+      "erklaerung": "An der schlichten Gesangsstimme waren Fehler der Kompression besonders gut zu hören; Suzanne Vega wird deshalb oft „Mutter des MP3“ genannt.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Tom%27s+Diner",
+      "erstellt": "2026-10-31",
       "gueltigBis": null
     },
     {
@@ -1450,20 +1552,54 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0068",
+      "id": "jahre-0041",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Wer führte Regie beim berühmten Apple-Werbespot „1984“ zur Vorstellung des Macintosh?",
+      "stufe": "schwer",
+      "frage": "Wann wurde der Zwei-plus-Vier-Vertrag zur deutschen Einheit in Moskau unterzeichnet?",
       "antworten": [
-        "Ridley Scott",
-        "James Cameron",
-        "Tony Scott",
-        "Steven Spielberg"
+        "12. September 1990",
+        "3. Oktober 1990",
+        "18. Mai 1990",
+        "31. August 1990"
       ],
-      "erklaerung": "Der Spot lief im Januar 1984 während des Super Bowls und zeigte eine Kämpferin, die den „Big Brother“-Bildschirm zerstört.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=1984%20%28Werbespot%29",
+      "erklaerung": "Der Zwei-plus-Vier-Vertrag gab dem vereinten Deutschland die volle Souveränität. Am 31. August 1990 wurde dagegen der Einigungsvertrag unterzeichnet.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Zwei-plus-Vier-Vertrag",
       "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0089",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "leicht",
+      "frage": "Wie heißt der junge Zauberer, dessen erstes Abenteuer 1997 von J. K. Rowling in Großbritannien erschien?",
+      "antworten": [
+        "Harry Potter",
+        "Frodo Beutlin",
+        "Bastian Bux",
+        "Artemis Fowl"
+      ],
+      "erklaerung": "„Harry Potter and the Philosopher’s Stone“ erschien 1997, auf Deutsch 1998 als „Harry Potter und der Stein der Weisen“.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Harry%20Potter%20und%20der%20Stein%20der%20Weisen",
+      "erstellt": "2026-10-31",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0091",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "schwer",
+      "frage": "Welcher Reaktorblock explodierte am 26. April 1986 im Kernkraftwerk Tschernobyl?",
+      "antworten": [
+        "Block 4",
+        "Block 1",
+        "Block 2",
+        "Block 3"
+      ],
+      "erklaerung": "Bei einem Test geriet Reaktor 4 außer Kontrolle und explodierte; es war der schwerste Unfall in der Geschichte der Kernenergie.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Nuklearkatastrophe%20von%20Tschernobyl",
+      "erstellt": "2026-10-31",
       "gueltigBis": null
     },
     {
@@ -1484,87 +1620,19 @@
       "gueltigBis": null
     },
     {
-      "id": "jahre-0088",
+      "id": "jahre-0065",
       "version": 1,
       "kategorie": "Die 80er, 90er und 00er Jahre",
       "stufe": "ingomania",
-      "frage": "Welches Land gewann 1995 den Eurovision Song Contest mit dem fast textlosen Lied „Nocturne“ der Gruppe Secret Garden?",
+      "frage": "Welches der 2004 beigetretenen EU-Länder führte 2007 als erstes den Euro ein?",
       "antworten": [
-        "Norwegen",
-        "Irland",
-        "Schweden",
-        "Großbritannien"
+        "Slowenien",
+        "Slowakei",
+        "Estland",
+        "Zypern"
       ],
-      "erklaerung": "Norwegen siegte 1995 in Dublin mit Secret Garden; das Lied besteht überwiegend aus einer Geigenmelodie und nur wenigen gesungenen Worten.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Eurovision%20Song%20Contest%201995",
-      "erstellt": "2026-10-30",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0073",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "In welcher Kurve verunglückte Ayrton Senna 1994 tödlich beim Großen Preis von San Marino?",
-      "antworten": [
-        "Tamburello",
-        "Tosa",
-        "Acque Minerali",
-        "Rivazza"
-      ],
-      "erklaerung": "Senna starb am 1. Mai 1994 in Imola, nachdem sein Williams in der Tamburello-Kurve geradeaus in die Mauer gefahren war.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Ayrton%20Senna",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0050",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Wer gründete 1999 die Musiktauschbörse Napster?",
-      "antworten": [
-        "Shawn Fanning",
-        "Justin Frankel",
-        "Marc Andreessen",
-        "Jerry Yang"
-      ],
-      "erklaerung": "Der damals 18-jährige Fanning entwickelte Napster gemeinsam mit Sean Parker; 2001 musste der Dienst nach Klagen der Musikindustrie schließen.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=Napster",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0062",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "ingomania",
-      "frage": "Gegen wen gewann Steffi Graf 1999 das Finale der French Open?",
-      "antworten": [
-        "Martina Hingis",
-        "Monica Seles",
-        "Jana Novotná",
-        "Lindsay Davenport"
-      ],
-      "erklaerung": "Graf siegte 4:6, 7:5, 6:2 und holte ihren letzten von 22 Grand-Slam-Titeln.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=French%20Open%201999",
-      "erstellt": "2026-10-25",
-      "gueltigBis": null
-    },
-    {
-      "id": "jahre-0045",
-      "version": 1,
-      "kategorie": "Die 80er, 90er und 00er Jahre",
-      "stufe": "schwer",
-      "frage": "Wer verkündete am 9. November 1989 auf einer Pressekonferenz die neue Reiseregelung mit den Worten „sofort, unverzüglich“?",
-      "antworten": [
-        "Günter Schabowski",
-        "Egon Krenz",
-        "Hans Modrow",
-        "Markus Wolf"
-      ],
-      "erklaerung": "Der SED-Politbüromitglied Schabowski verlas den Beschluss unvorbereitet; noch am Abend öffneten sich die Grenzübergänge in Berlin.",
-      "quelle": "https://de.wikipedia.org/w/index.php?search=G%C3%BCnter%20Schabowski",
+      "erklaerung": "Slowenien folgte am 1. Januar 2007; Zypern und Malta 2008, die Slowakei 2009 und Estland 2011.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Slowenien%20Euro-Einf%C3%BChrung",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     }
