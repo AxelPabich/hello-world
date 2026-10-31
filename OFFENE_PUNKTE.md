@@ -461,6 +461,10 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+109. **Familienabend 31.10.2026, 14:22–14:33 (Build 43; Axel spielt mit, Tablett S7)** – ohne Fehler:
+    Spielregeln bestätigt, 20 Fragen aus allen Kategorien (auch die neuen), Bereit-Abfrage, Pause, Spielverlauf.
+    Frage 19 (`gesch-0016`, Kaiserkrönung 800 – inhaltlich richtig) hat der Spielleiter selbst geprüft und durch
+    eine Ersatzfrage ersetzt; Ablauf und Wertung danach korrekt.
 108. **Test vom 31.10.2026, 08:47–09:17 (Build 42/43; Axel, Peter = Tab S6, Simone, Tablett S7)** – alles ok:
     Selbsttest 23/23 (zweimal), alle vier Geräte am Ende auf Build 43. Tab S6 ist um 08:43 auf Build 42
     gekommen (außerhalb der App installiert) und um 09:14 per Nearby vom Spielleiter auf Build 43 – über den
