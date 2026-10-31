@@ -461,6 +461,14 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+108. **Test vom 31.10.2026, 08:47–09:17 (Build 42/43; Axel, Peter = Tab S6, Simone, Tablett S7)** – alles ok:
+    Selbsttest 23/23 (zweimal), alle vier Geräte am Ende auf Build 43. Tab S6 ist um 08:43 auf Build 42
+    gekommen (außerhalb der App installiert) und um 09:14 per Nearby vom Spielleiter auf Build 43 – über den
+    Installer-Dialog in 27 s. Simone 36 → 43 und Tablett S7 über die Release-Seite. Spielregeln-Bestätigung
+    wartet richtig nur auf Build ≥ 39 (Simone mit Build 36 ausgenommen). Pause in der Frage, „Frage neu
+    stellen – Antworten neu gemischt“, „Frage überspringen“ funktionieren. Übernahme der Spielleitung
+    (Axel → Peter → Axel) mit Punkten und Rückkehr ohne Prüfcode klappt. Systeminformationen sind in allen
+    Berichten von Build 43 enthalten.
 107. **Diagnose: Systeminformationen vorausgewählt** (Wunsch vom 31.10.2026): beim eigenen Senden und bei
     der Anfrage des Spielleiters; lassen sich abwählen.
 106. **Schutz vor fremden Änderungen / Malware** (Besprechung vom 31.10.2026; wöchentliche Erinnerung an Axel,
@@ -475,7 +483,7 @@ Kategorien recherchieren.
     - [ ] Prüfsummen der Gradle-Abhängigkeiten festschreiben (`dependency-verification`).
 105. **„Frage neu stellen“ mischt die Antworten neu** (Wunsch vom 31.10.2026): Die neue Reihenfolge weicht je Spieler
     (bzw. gemeinsam, wenn das Mischen aus ist) garantiert von der bisherigen ab. Test in `PauseInRoundTest`.
-104. **Galaxy Tab S6 (Peter, Build 35) installiert Build 42 nicht** (Diagnose vom 31.10.2026, 01:10–01:17):
+104. **Galaxy Tab S6 (Peter, Build 35) installiert Build 42 nicht** (erledigt: seit 31.10. auf Build 43, siehe 108) (Diagnose vom 31.10.2026, 01:10–01:17):
     Zweimal „Installer-Dialog geöffnet“, die App startete danach wieder als Build 35, ein Grund wird über den
     Dialog nicht gemeldet; auch der Download-Link im Browser half nicht. Am 17.10. klappte das Update auf
     demselben Gerät über den Paket-Installer (Sitzung). Ab dem nächsten Build: schlägt der Dialog für einen
