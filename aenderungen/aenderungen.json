@@ -2,6 +2,14 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
+      "build": 0,
+      "datum": "2026-10-31",
+      "punkte": [
+        "Kurznachrichten: Enter schickt die Nachricht direkt ab.",
+        "Update: Klappt die Installation über den Installer-Dialog nicht, nimmt die App beim nächsten Versuch den Paket-Installer und zeigt den Grund an, falls auch das scheitert."
+      ]
+    },
+    {
       "build": 42,
       "datum": "2026-10-31",
       "punkte": [

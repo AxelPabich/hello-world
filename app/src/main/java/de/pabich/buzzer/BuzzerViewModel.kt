@@ -403,6 +403,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     init {
         AppUpdate.onInstallResult = { ok, text -> if (!ok) status = text }
+        AppUpdate.checkPendingDialogInstall(app)
         findStoredUpdate()
         // Installationen im Protokoll: Wechsel der Build-Nummer seit dem letzten Start.
         val appPrefs = app.getSharedPreferences("app", android.content.Context.MODE_PRIVATE)

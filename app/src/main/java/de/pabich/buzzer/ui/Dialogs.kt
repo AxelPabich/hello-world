@@ -29,6 +29,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import de.pabich.buzzer.ChatLine
@@ -86,6 +89,11 @@ fun ChatDialog(
     var to by remember { mutableStateOf(ALL_ADDRESS) }
     var text by remember { mutableStateOf("") }
     val all = listOf(ALL_ADDRESS to "Alle") + recipients
+    fun send() {
+        if (!canSend || text.isBlank()) return
+        onSend(to, all.firstOrNull { it.first == to }?.second ?: "Alle", text.trim())
+        onDismiss()
+    }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("Kurznachricht") },
@@ -122,21 +130,39 @@ fun ChatDialog(
                 OutlinedTextField(
                     value = text,
                     onValueChange = {
-                        text = it.take(MAX_CHAT_LENGTH)
-                        if (text.isNotEmpty()) onTyping()
+                        // Manche Tastaturen fügen bei Enter einen Zeilenumbruch ein statt der Senden-Aktion.
+                        if ('\n' in it) {
+                            text = it.replace("\n", " ").take(MAX_CHAT_LENGTH)
+                            send()
+                        } else {
+                            text = it.take(MAX_CHAT_LENGTH)
+                            if (text.isNotEmpty()) onTyping()
+                        }
                     },
                     label = { Text("Nachricht (${text.length}/$MAX_CHAT_LENGTH)") },
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    // Enter (Bildschirm- oder Hardware-Tastatur) schickt die Nachricht direkt ab.
+                    maxLines = 4,
+                    keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(imeAction = androidx.compose.ui.text.input.ImeAction.Send),
+                    keyboardActions = androidx.compose.foundation.text.KeyboardActions(onSend = { send() }),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp)
+                        .onPreviewKeyEvent { e ->
+                            val enter = e.key == androidx.compose.ui.input.key.Key.Enter || e.key == androidx.compose.ui.input.key.Key.NumPadEnter
+                            if (enter && e.type == androidx.compose.ui.input.key.KeyEventType.KeyDown) {
+                                send()
+                                true
+                            } else {
+                                enter
+                            }
+                        },
                 )
             }
         },
         confirmButton = {
             TextButton(
                 enabled = canSend && text.isNotBlank(),
-                onClick = {
-                    onSend(to, all.first { it.first == to }.second, text)
-                    onDismiss()
-                },
+                onClick = { send() },
             ) { Text("Senden") }
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text(if (history.isNotEmpty() || !canSend) "Schließen" else "Abbrechen") } },

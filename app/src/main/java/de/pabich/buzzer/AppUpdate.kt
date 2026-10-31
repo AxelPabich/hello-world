@@ -26,6 +26,9 @@ object AppUpdate {
     /** Release-Seite des Repositorys: listet alle Builds als `buzzer-build-N.apk`. */
     private const val RELEASE_API = "https://api.github.com/repos/" + ProjectRepo.NAME + "/releases/tags/buzzer-latest"
     private const val APK_TYPE = "application/vnd.android.package-archive"
+
+    /** Build, der zuletzt über den Installer-Dialog installiert werden sollte. */
+    private const val PREF_DIALOG_BUILD = "installDialogBuild"
     private val main = Handler(Looper.getMainLooper())
 
     val ownBuild: Int get() = BuildConfig.VERSION_CODE
@@ -110,21 +113,44 @@ object AppUpdate {
      */
     fun install(context: Context, apk: File, onStarted: (Boolean) -> Unit = {}) {
         val app = context.applicationContext
-        // Erst der klassische Installer-Dialog: Der Paket-Installer (Sitzung) wurde auf mehreren Geräten
-        // abgelehnt („Self update is blocked“, „Package Verification Result“), der Dialog klappte immer.
-        Diagnostics.log("Update: Installation von ${apk.name} (${apk.length() / 1024} KB) über den Installer-Dialog")
-        if (installViaIntent(app, apk)) {
-            onStarted(true)
-            return
+        val prefs = app.getSharedPreferences("app", Context.MODE_PRIVATE)
+        val build = Regex("build-(\\d+)").find(apk.name)?.groupValues?.get(1)?.toIntOrNull() ?: 0
+        // Hat der Installer-Dialog genau diesen Build schon einmal nicht installiert (z. B. Galaxy Tab S6),
+        // geht es diesmal über den Paket-Installer – der meldet auch, warum es nicht klappt.
+        val dialogFailed = build > ownBuild && prefs.getInt(PREF_DIALOG_BUILD, 0) == build
+        if (!dialogFailed) {
+            // Erst der klassische Installer-Dialog: Der Paket-Installer (Sitzung) wurde auf mehreren Geräten
+            // abgelehnt („Self update is blocked“, „Package Verification Result“), der Dialog klappte meist.
+            Diagnostics.log("Update: Installation von ${apk.name} (${apk.length() / 1024} KB) über den Installer-Dialog")
+            if (installViaIntent(app, apk)) {
+                if (build > 0) prefs.edit().putInt(PREF_DIALOG_BUILD, build).apply()
+                onStarted(true)
+                return
+            }
+            Diagnostics.log("Update: Installer-Dialog nicht verfügbar – Paket-Installer")
+        } else {
+            Diagnostics.log("Update: Der Installer-Dialog hat Build $build schon einmal nicht installiert – jetzt über den Paket-Installer")
+            prefs.edit().remove(PREF_DIALOG_BUILD).apply()
         }
-        Diagnostics.log("Update: Installer-Dialog nicht verfügbar – Paket-Installer")
         thread(name = "buzzer-install", isDaemon = true) {
-            pendingApk = apk
+            // Lehnt der Paket-Installer ab, bleibt (bei frischem Versuch) einmal der Weg über den Dialog.
+            pendingApk = if (dialogFailed) apk else null
             val ok = runCatching { installSession(app, apk) }
                 .onFailure { Diagnostics.log("Update: Paket-Installer nicht nutzbar (${it.javaClass.simpleName}: ${it.message})") }
                 .isSuccess
-            pendingApk = null // Der Dialog hat schon nicht geklappt – kein zweiter Versuch damit.
+            if (!ok) pendingApk = null
             main.post { onStarted(ok) }
+        }
+    }
+
+    /** Beim Start: Ist ein Update über den Installer-Dialog nicht angekommen? Dann protokollieren. */
+    fun checkPendingDialogInstall(context: Context) {
+        val prefs = context.getSharedPreferences("app", Context.MODE_PRIVATE)
+        val build = prefs.getInt(PREF_DIALOG_BUILD, 0)
+        when {
+            build == 0 -> Unit
+            build > ownBuild -> Diagnostics.log("Update: Build $build wurde über den Installer-Dialog nicht installiert – beim nächsten Versuch über den Paket-Installer")
+            else -> prefs.edit().remove(PREF_DIALOG_BUILD).apply()
         }
     }
 
