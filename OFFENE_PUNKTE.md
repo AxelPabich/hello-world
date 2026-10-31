@@ -461,6 +461,16 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+106. **Schutz vor fremden Änderungen / Malware** (Besprechung vom 31.10.2026; wöchentliche Erinnerung an Axel,
+    solange offen). Stand: Konto/Branches liegen bei Axel (GitHub-Rechte); der Signaturschlüssel
+    (`app/buzzer-debug.keystore`, Passwort `buzzer`) liegt öffentlich im Repository – Fälschungen mit gleicher
+    Signatur sind möglich. Maßnahmen, bitte abhaken:
+    - [ ] GitHub-Konto: Zwei-Faktor-Anmeldung (Passkey/Authenticator), keine Tokens in öffentlichen Dateien.
+    - [ ] Branch-Schutz für `master` und den Arbeits-Branch (keine Force-Pushes, kein Löschen).
+    - [ ] Eigener geheimer Signaturschlüssel als GitHub-Secret (Mitspieler müssen einmal neu installieren),
+      danach App nimmt nur noch Updates mit diesem Schlüssel an – Vorbereitung durch Claude auf Zuruf.
+    - [ ] SHA-256 der APK in „Über“ anzeigen und auf der Release-Seite veröffentlichen.
+    - [ ] Prüfsummen der Gradle-Abhängigkeiten festschreiben (`dependency-verification`).
 105. **„Frage neu stellen“ mischt die Antworten neu** (Wunsch vom 31.10.2026): Die neue Reihenfolge weicht je Spieler
     (bzw. gemeinsam, wenn das Mischen aus ist) garantiert von der bisherigen ab. Test in `PauseInRoundTest`.
 104. **Galaxy Tab S6 (Peter, Build 35) installiert Build 42 nicht** (Diagnose vom 31.10.2026, 01:10–01:17):

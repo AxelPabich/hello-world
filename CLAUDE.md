@@ -27,6 +27,12 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
   Bundle von `buzzer-diagnose` und die aktuelle APK; Dateinamen mit Datum und Build-Nummer, mit
   `git bundle verify` prüfen und Axel als Dateien schicken (nicht ins öffentliche Repo legen).
 
+## Sicherheits-Erinnerung (Wunsch vom 31.10.2026)
+
+Solange in `OFFENE_PUNKTE.md` Punkt 106 („Schutz vor fremden Änderungen / Malware“) offene Kästchen hat,
+erinnert Claude Axel **einmal pro Woche** daran (geplante Aufgabe; Stand der Kästchen nennen, nichts
+umsetzen ohne Anweisung). Sind alle abgehakt, die Erinnerung beenden.
+
 ## Fragendatenbank: Stufen angleichen, dann Schluss (Wunsch vom 30.10.2026)
 
 Vor **jedem Build** kommt **nur noch dort** eine neue Frage dazu, wo eine Stufe einer Kategorie weniger
