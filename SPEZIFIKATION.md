@@ -471,7 +471,7 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 
 - Der Diagnose-Dialog bietet zusätzlich: als Spieler **„An den Spielleiter senden“** (über die
   Nearby-Verbindung, in Teilen übertragen), als Spielleiter **„In GitHub ablegen“** (eigener Bericht).
-- Systeminformationen kommen nur hinein, wenn der Nutzer sie ankreuzt; der Dialog erklärt kurz,
+- Systeminformationen sind vorausgewählt (seit Build 43) und lassen sich abwählen; der Dialog erklärt kurz,
   wozu sie dienen und wie die Daten geschützt sind (keine Standortdaten, Kontakte oder Nummern).
 - Der Spielleiter legt empfangene Berichte im **privaten** Repository `AxelPabich/buzzer-diagnose`
   ab: `diagnose/JJJJ-MM-TT/Build-N/Name-HH-MM-SS.txt`. Mit eingerichtetem Zugang geschieht das
@@ -690,7 +690,7 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 ## 49. Diagnosen abrufen und prüfen
 
 - Spielleiter: ⋮ „Diagnosen der Spieler abrufen“ schickt allen Spielern `DIAG_REQUEST`.
-- Spieler: Rückfrage „Diagnose an den Spielleiter?“ mit „Systeminformationen mitsenden“ (Vorgabe aus),
+- Spieler: Rückfrage „Diagnose an den Spielleiter?“ mit „Systeminformationen mitsenden“ (Vorgabe an seit Build 43),
   „Bericht ansehen“ und „Nicht erneut fragen“. Mit dem Haken wird die Antwort (senden mit/ohne
   Systemdaten bzw. nicht senden) gespeichert.
 - Gesendete Berichte landen wie bisher beim Spielleiter (mit Token direkt in GitHub).

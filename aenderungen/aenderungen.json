@@ -7,7 +7,9 @@
       "punkte": [
         "Kurznachrichten: Enter schickt die Nachricht direkt ab.",
         "Update: Klappt die Installation über den Installer-Dialog nicht, nimmt die App beim nächsten Versuch den Paket-Installer und zeigt den Grund an, falls auch das scheitert.",
-        "Frage neu stellen (Pause): Die Antworten werden neu gemischt und stehen garantiert in anderer Reihenfolge."
+        "Frage neu stellen (Pause): Die Antworten werden neu gemischt und stehen garantiert in anderer Reihenfolge.",
+        "Diagnose senden: Systeminformationen (Gerät, Android-Version, Berechtigungen) sind jetzt vorausgewählt.",
+        "46 neue Fragen – die Schwierigkeitsstufen werden weiter angeglichen."
       ]
     },
     {

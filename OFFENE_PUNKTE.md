@@ -461,6 +461,8 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+107. **Diagnose: Systeminformationen vorausgewählt** (Wunsch vom 31.10.2026): beim eigenen Senden und bei
+    der Anfrage des Spielleiters; lassen sich abwählen.
 106. **Schutz vor fremden Änderungen / Malware** (Besprechung vom 31.10.2026; wöchentliche Erinnerung an Axel,
     solange offen). Stand: Konto/Branches liegen bei Axel (GitHub-Rechte); der Signaturschlüssel
     (`app/buzzer-debug.keystore`, Passwort `buzzer`) liegt öffentlich im Repository – Fälschungen mit gleicher

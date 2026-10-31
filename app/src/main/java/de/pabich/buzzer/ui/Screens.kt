@@ -322,7 +322,7 @@ fun AboutScreen(vm: BuzzerViewModel) {
             StatusText(vm)
             SectionTitle("Diagnose")
             Text(
-                "Bei Problemen einen Bericht teilen, an den Spielleiter senden oder auf dem Gerät speichern. Systeminformationen kommen nur hinein, wenn du sie ankreuzt.",
+                "Bei Problemen einen Bericht teilen, an den Spielleiter senden oder auf dem Gerät speichern. Systeminformationen (Gerät, Android-Version, Berechtigungen) sind vorausgewählt und lassen sich abwählen.",
                 color = theme.text,
                 fontSize = 15.sp,
             )

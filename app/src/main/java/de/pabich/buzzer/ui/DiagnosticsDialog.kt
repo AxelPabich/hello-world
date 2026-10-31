@@ -51,7 +51,7 @@ import java.util.Locale
 @Composable
 fun DiagnosticsDialog(vm: BuzzerViewModel, onDismiss: () -> Unit) {
     val context = LocalContext.current
-    var includeSystem by remember { mutableStateOf(false) }
+    var includeSystem by remember { mutableStateOf(true) }
     var preview by remember { mutableStateOf(false) }
     fun report() = Diagnostics.buildReport(context, vm.status, includeSystem)
     AlertDialog(
@@ -305,7 +305,7 @@ fun ReportPreview(open: Boolean, onToggle: (Boolean) -> Unit, report: () -> Stri
 fun DiagnoseRequestDialog(vm: BuzzerViewModel) {
     if (!vm.diagnoseRequest) return
     val context = LocalContext.current
-    var includeSystem by remember { mutableStateOf(false) }
+    var includeSystem by remember { mutableStateOf(true) }
     var keep by remember { mutableStateOf(false) }
     var preview by remember { mutableStateOf(false) }
     AlertDialog(
