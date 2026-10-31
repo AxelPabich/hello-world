@@ -461,6 +461,16 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+110. **Spieleabend 31.10.2026, bis 22:07 (Build 43; Axel, Sir Failalot = Galaxy A53, Yassi = Tab S6, Natsch = Tab S7,
+    Ingo mit altem Build)** – drei Quizrunden à 20 Fragen ohne Fehler: Spielregeln-Bestätigung (Ingo als alter
+    Build ausgenommen), automatische Bereit-Abfrage, Pause in der Frage (19 s und 79 s), „Frage neu stellen –
+    Antworten neu gemischt“, Prüfung durch den Spielleiter („Wertung bleibt“). **Auffällig:** Direkt nach
+    „Diagnosen abrufen“ (22:05:58) galten alle vier Spieler als verstummt (15 s ohne Antwort, 22:05:59 bzw.
+    22:06:14 alle im selben Takt) und wurden getrennt; um 22:07:08 kamen Yassi und Natsch ohne Prüfcode zurück.
+    Vermutung: Während die Berichte (je ~26 KB) übertragen und vom Spielleiter ins Internet hochgeladen wurden,
+    kamen die Herzschlag-Antworten nicht durch; die Berichtsteile zählen bisher nicht als „Lebenszeichen“.
+    Vorschlag: Berichtsteile als Lebenszeichen werten und rund 45 s nach „Diagnosen abrufen“ niemanden wegen
+    Stille trennen (bei Spieler und Spielleiter). Ingo sollte auf Build 43 aktualisieren.
 109. **Familienabend 31.10.2026, 14:22–14:33 (Build 43; Axel spielt mit, Tablett S7)** – ohne Fehler:
     Spielregeln bestätigt, 20 Fragen aus allen Kategorien (auch die neuen), Bereit-Abfrage, Pause, Spielverlauf.
     Frage 19 (`gesch-0016`, Kaiserkrönung 800 – inhaltlich richtig) hat der Spielleiter selbst geprüft und durch
