@@ -160,6 +160,18 @@ class PauseInRoundTest {
     }
 
     @Test
+    fun `restarted question gets a new answer order`() {
+        repeat(30) {
+            val g = pausedQuestion()
+            val before = g.received.getValue("Peter").filterIsInstance<Message.QuizAsk>().last().answers
+            assertTrue(g.master.restartQuestion())
+            g.time.advanceBy(300)
+            val after = g.received.getValue("Peter").filterIsInstance<Message.QuizAsk>().last().answers
+            assertTrue(before != after, "Reihenfolge muss sich ändern: $before")
+        }
+    }
+
+    @Test
     fun `paused question can be aborted without scoring`() {
         val g = pausedQuestion()
         assertTrue(g.master.abortQuestion())

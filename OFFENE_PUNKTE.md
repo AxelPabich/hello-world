@@ -461,6 +461,8 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+105. **„Frage neu stellen“ mischt die Antworten neu** (Wunsch vom 31.10.2026): Die neue Reihenfolge weicht je Spieler
+    (bzw. gemeinsam, wenn das Mischen aus ist) garantiert von der bisherigen ab. Test in `PauseInRoundTest`.
 104. **Galaxy Tab S6 (Peter, Build 35) installiert Build 42 nicht** (Diagnose vom 31.10.2026, 01:10–01:17):
     Zweimal „Installer-Dialog geöffnet“, die App startete danach wieder als Build 35, ein Grund wird über den
     Dialog nicht gemeldet; auch der Download-Link im Browser half nicht. Am 17.10. klappte das Update auf

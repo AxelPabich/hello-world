@@ -1125,7 +1125,8 @@ class MasterEngine(
         endQuestionPause()
         cancelQuizTasks(t)
         t.revealed = true
-        log("Frage ${t.number} wird neu gestellt")
+        log("Frage ${t.number} wird neu gestellt – Antworten neu gemischt")
+        restartedPerms = t.perms.toMap()
         quizIndex--
         round--
         return askNext()
@@ -1279,6 +1280,17 @@ class MasterEngine(
         askReady()
     }
 
+    /** Reihenfolge je Spieler der neu gestellten Frage – die neue Mischung muss davon abweichen. */
+    private var restartedPerms: Map<PlayerId, List<Int>>? = null
+
+    /** Mischt die Antwortreihenfolge neu, bis sie von [old] abweicht (bei einer neu gestellten Frage). */
+    private fun shuffledAnswers(size: Int, old: List<Int>?): List<Int> {
+        var order = (0 until size).shuffled(random)
+        var tries = 0
+        while (old != null && order == old && size > 1 && tries++ < 20) order = (0 until size).shuffled(random)
+        return order
+    }
+
     private fun askNext(): Boolean {
         autoReadyTask?.cancel()
         autoReadyTask = null
@@ -1303,9 +1315,11 @@ class MasterEngine(
         turn = t
         // Standard: Jeder bekommt seine eigene Reihenfolge – Abgucken bringt nichts. Ausgeschaltet bekommen
         // alle dieselbe (einmal gemischte) Reihenfolge, damit bei zeitkritischer Wertung alle gleich dran sind.
-        val shared = if (settings.quizShuffleAnswers) null else q.answers.indices.shuffled(random)
+        val old = restartedPerms
+        restartedPerms = null
+        val shared = if (settings.quizShuffleAnswers) null else shuffledAnswers(q.answers.size, old?.values?.firstOrNull())
         for (p in participants) {
-            t.perms[p.id] = shared ?: q.answers.indices.shuffled(random)
+            t.perms[p.id] = shared ?: shuffledAnswers(q.answers.size, old?.get(p.id))
             t.names[p.id] = baseName(p.name)
             send(p.id, quizAsk(t, p))
         }
