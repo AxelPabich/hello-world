@@ -33,21 +33,38 @@ Solange in `OFFENE_PUNKTE.md` Punkt 106 („Schutz vor fremden Änderungen / Mal
 erinnert Claude Axel **einmal pro Woche** daran (geplante Aufgabe; Stand der Kästchen nennen, nichts
 umsetzen ohne Anweisung). Sind alle abgehakt, die Erinnerung beenden.
 
-## Fragendatenbank: Stufen angleichen, dann Schluss (Wunsch vom 30.10.2026)
+## Fragendatenbank (Wunsch vom 01.11.2026, ersetzt die Stufen-Angleichung vom 30.10.)
 
-Vor **jedem Build** kommt **nur noch dort** eine neue Frage dazu, wo eine Stufe einer Kategorie weniger
-Fragen hat als die größte Zelle: je Kategorie und Stufe **höchstens eine** neue Frage pro Build
-(bewährtes Muster). Ziel: alle Kategorien haben in allen Stufen aus `quiz/index.json` („stufen“) gleich
-viele Fragen. Stand nach Build 41: Ziel 29 je Kategorie und Stufe (kleinste Zelle 19).
+Drei Phasen, nacheinander. Vor **jedem Build** den Stand prüfen und die nächste Phase nur beginnen, wenn die
+vorige erreicht ist; beim Wechsel Axel Bescheid geben.
 
-Prüfen vor jedem Build (zeigt die fehlenden Zellen):
+1. **Auffüllen auf 120 Fragen je Kategorie.** Neue Fragen nur in **mittel und schwer** (dort braucht die
+   Zielverteilung von Phase 2 mehr), je Kategorie höchstens 4 neue Fragen pro Build.
+2. **Umverteilen der Stufen** auf **15 % leicht, 45 % mittel, 30 % schwer, 10 % Ingomania** (bei 120 Fragen:
+   18 / 54 / 36 / 12). Methode **Ersetzen**: überzählige leichte und Ingomania-Fragen löschen, dafür neue mittlere
+   bzw. schwere schreiben. **Höchstens 20 veränderte Fragen pro Build insgesamt** (gelöscht + neu, alle Kategorien
+   zusammen). Zum Löschen bevorzugt die am häufigsten gespielten (`gespielt.json`, siehe unten), sonst die ältesten.
+3. **Danach** keine Änderungen mehr an den festen Kategorien – nur noch „Aktuelles“ pflegen und die Spielzählung
+   führen. Über den Austausch alter Fragen redet Axel später.
+
+Prüfen vor jedem Build (Anzahl je Kategorie, Abweichung von der Zielverteilung):
 
 ```
-python3 -c "import json;i=json.load(open('quiz/index.json'));S=[s['schluessel'] for s in i['stufen']];C={p['titel']:{s:sum(q['stufe']==s for q in json.load(open('quiz/'+p['datei']))['fragen']) for s in S} for p in i['pakete']};m=max(v for c in C.values() for v in c.values());print('Ziel',m);[print(k,{s:m-c[s] for s in S if c[s]<m}) for k,c in C.items() if min(c.values())<m]"
+python3 -c "import json;i=json.load(open('quiz/index.json'));Z={'leicht':.15,'mittel':.45,'schwer':.30,'ingomania':.10};[print(p['titel'][:28].ljust(28),len(f),{s:f'{sum(q[\"stufe\"]==s for q in f)}/{round(Z[s]*120)}' for s in Z}) for p in i['pakete'] for f in [json.load(open('quiz/'+p['datei']))['fragen']]]"
 ```
 
-Sind alle Zellen gleich, **Axel Bescheid geben** und **keine neuen Fragen mehr automatisch erzeugen**
-(nur noch auf ausdrücklichen Wunsch). Fragen, deren `gueltigBis` abläuft, zählen dabei weiter mit.
+**„Aktuelles“** (läuft neben den Phasen und gilt dauerhaft):
+- **Jede Woche 10 % der ältesten Fragen** (nach `erstellt`) durch frische ersetzen (geplante Aufgabe, montags).
+  Neue Fragen zählen für Phase 1 und 2 mit (Stufen nach Zielverteilung wählen).
+- **Sportanteil langsam auf höchstens 30 % senken:** beim Austausch zuerst alte Sportfragen entfernen und durch
+  andere Themen ersetzen – Politik, Tagesschau-Meldungen, Gesellschaft/Gossip, Kunst, Kultur, Musik, Wissenschaft.
+- Amerikanische Sportarten **nur Baseball, American Football und Basketball**; **kein Eishockey** (die vorhandenen
+  Eishockey-Fragen werden bei den nächsten Rotationen zuerst ersetzt).
+- Nur per Websuche geprüfte Ereignisse, `gueltigBis` setzen.
+
+**Spielzählung:** Bei jedem „Diag“ und bei der wöchentlichen Rotation im privaten Repository `buzzer-diagnose`
+`python3 -I statistik/zaehlen.py` laufen lassen (schreibt `statistik/gespielt.json`: wie oft jede Frage gespielt
+wurde) und mit committen. Namen der Mitspieler gehören nicht ins öffentliche Repository.
 
 - Format wie in `quiz/README.md`: erste Antwort richtig, Erklärung, Quelle, `erstellt` = Datum.
 - IDs fortlaufend je Paket weiterzählen; keine Dubletten zu vorhandenen Fragen.

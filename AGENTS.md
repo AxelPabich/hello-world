@@ -44,8 +44,8 @@ von älteren Apps ignoriert. Neue Funktionen müssen mit älteren Builds der Mit
 - Sonst Commits mit `[skip ci]`; neue Wünsche und Testergebnisse in `OFFENE_PUNKTE.md` festhalten.
 - Pull Requests und Merges nach `master` nur auf Anweisung.
 - `PROMPT_SPEZIFIKATION.md` enthält zwischen den Markern immer eine aktuelle Kopie von `SPEZIFIKATION.md`.
-- Fragendatenbank: siehe den Abschnitt in `CLAUDE.md` (zurzeit: Stufen je Kategorie angleichen, danach
-  keine automatischen neuen Fragen mehr).
+- Fragendatenbank: siehe den Abschnitt in `CLAUDE.md` (zurzeit: auf 120 Fragen je Kategorie auffüllen, dann Stufen
+  auf 15/45/30/10 % umverteilen; „Aktuelles“ wöchentlich zu 10 % erneuern, Sportanteil höchstens 30 %).
 - Diagnosen und Spielstatistik liegen im privaten Repository `buzzer-diagnose` (eigenes Backup).
 
 ## Backup und Umzug

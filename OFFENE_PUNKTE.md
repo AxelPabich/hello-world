@@ -461,6 +461,13 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+119. **Fragendatenbank: neuer Plan** (Wunsch vom 01.11.2026, Regeln in `CLAUDE.md`): (1) auf 120 Fragen je Kategorie
+    auffüllen (nur mittel/schwer), (2) Stufen durch Ersetzen auf 15 % leicht, 45 % mittel, 30 % schwer, 10 % Ingomania
+    bringen – höchstens 20 veränderte Fragen pro Build, (3) danach nur noch „Aktuelles“ pflegen. „Aktuelles“: jede Woche
+    10 % der ältesten Fragen ersetzen, Sportanteil langsam von 65 % auf höchstens 30 % senken (mehr Politik,
+    Tagesschau, Gesellschaft, Kunst, Kultur), US-Sport nur Baseball/Football/Basketball, kein Eishockey mehr.
+    Spielzählung im privaten Repository: `statistik/gespielt.json` (bisher 348 Fragen gespielt, zusammen 375-mal).
+    Später mit Axel besprechen: Austausch alter Fragen.
 118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, in Build 46): Übernahmen gingen
     oft schief – ein neuer Spielleiter sah den alten noch und gab ab, während die anderen schon zu ihm wollten.
     Neu (gilt, sobald alle Mitspieler Build 46 haben, sonst das alte Verfahren):
