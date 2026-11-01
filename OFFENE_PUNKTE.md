@@ -461,6 +461,18 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+117. **Zweiter Intensivtest (Build 45, 01.11.2026, 18:44–18:50)**: Samsung A53, Natsch, Samsung S6 (alle Build 45),
+    78 von 82 bestanden, 347 s. Die drei Korrekturen aus Punkt 114 wirken (Spielregeln, Halten, Antwortzeit grün).
+    - [ ] *Übergabe der Spielleitung* ✗: Der A53 wurde Spielleiter, sah den bisherigen Spielleiter Axel noch und
+      „gab ab“ („Axel ist wieder da und noch niemand ist bei mir“), während Axel gleichzeitig dem A53 beitreten
+      wollte – beide warteten aufeinander, nach 60 s war das Spiel beendet. Korrigiert: Nach einer **gewollten**
+      Übergabe gibt der neue Spielleiter nicht an den Vorgänger zurück (die Regel gilt nur bei einem Abbruch).
+    - [ ] Testlogik: Wer mitten in der Frage zurückkommt, bekommt die Frage noch einmal – das meldete der Test fälschlich
+      als „neu stellen ohne neue Reihenfolge“. Korrigiert.
+    - Samsung S6: Um 18:48 wurde mitten im Test **Build 44 über Build 45 installiert** („App ZURÜCKGESETZT“) – die App
+      startete neu, daher fehlte das S6 bei „Verstummen“ und der Übergabe. Vermutlich hat Play Protect eine der früher
+      hängenden Installationen von Build 44 nachträglich ausgeführt. Auf dem S6 Build 45 neu installieren und alte
+      `buzzer-build-44.apk` aus „Downloads“ löschen.
 116. **WLAN für Update einschalten** (Wunsch vom 01.11.2026, kommt mit dem nächsten Build): Ist das WLAN aus, fragt
     „Nach neuer Version suchen“ bzw. „Herunterladen und installieren“ erst „WLAN einschalten?“ – mit „WLAN
     einschalten“, „Mobile Daten“ (nur wenn darüber Internet da ist) und „Abbrechen“. Bis Android 9 schaltet die App

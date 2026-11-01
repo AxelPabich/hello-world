@@ -1608,6 +1608,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             }
         } else if (endpointId == masterEndpoint) {
             testMuteUntil = 0
+            // Nach dem Wiedereinstieg kommt dieselbe Frage noch einmal – das ist kein „neu stellen“.
+            testLastAsk = null
             val silence = player?.lastMessageAt?.let { UptimeClock.now() - it }
             Diagnostics.log("Verbindung zum Spielleiter abgebrochen; letzte Nachricht vor ${silence ?: "?"} ms")
             val s = succession
@@ -2647,7 +2649,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val engine = master ?: return
         // Der Vorgänger ist wieder da: Ist noch niemand bei uns, geben wir ab und alle landen bei ihm.
         // Haben sich schon Spieler bei uns verbunden, bleibt das Spiel bei uns.
-        val predecessorBack = name == taken.master && peerBuilds.isEmpty() && UptimeClock.now() < takenOverUntil
+        // Nicht bei einer gewollten Übergabe an uns: Der Vorgänger sucht dann selbst uns – gäben wir ab, warteten
+        // beide aufeinander und niemand leitete (Intensivtest 01.11.2026, 18:47).
+        val handedToMe = taken.to.isNotEmpty() && taken.to == myName.trim()
+        val predecessorBack = !handedToMe && name == taken.master && peerBuilds.isEmpty() && UptimeClock.now() < takenOverUntil
         if (!predecessorBack && (name == taken.master || UptimeClock.now() > takenOverUntil || rankIn(taken, name) >= rankIn(taken, myName.trim()))) return
         Diagnostics.log(
             if (predecessorBack) "Übernahme: $name ist wieder da und noch niemand ist bei mir – gebe ab" else "Übernahme: $name hat ebenfalls übernommen und hat Vorrang – gebe ab",

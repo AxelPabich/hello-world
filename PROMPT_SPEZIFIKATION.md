@@ -929,6 +929,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   quittieren das Endergebnis und zeigen ein angefordertes Profil nicht an.
 - Ablauf: 14 Schritte (siehe `OFFENE_PUNKTE.md` Punkt 112). Ergebnis je Prüfung und Spieler (✓ / ✗ / – übersprungen)
   als Übersicht im Bericht „Selbsttest-…“ im Diagnose-Repository, dazu die gemessene Dauer.
+- Übergabe (Build 46): Hat der Vorgänger die Leitung gewollt an diesen Spieler übergeben (`SUCCESSION` mit `to`), gibt
+  der neue Spielleiter nicht an den Vorgänger zurück, wenn er ihn noch findet; die Regel „Vorgänger wieder da und noch
+  niemand bei mir → abgeben“ gilt nur nach einem Abbruch.
 - Ab Build 45: Spieler unter dem Intensivtest-Build werden beim Regel-Schritt nicht abgewartet („–“); spielt der
   Spielleiter mit, legt der Test im Halten-Modus auch seinen Finger auf; die Antwortzeit gilt als geprüft, sobald die
   Frist abläuft und der Nächste an der Reihe ist (neue Frist) oder die Runde endet.
