@@ -149,6 +149,16 @@ sealed interface Message {
     /** M → S: automatischer Testmodus an/aus – der Spieler tippt, antwortet und bestätigt von selbst. */
     data class TestMode(val on: Boolean) : Message
 
+    /**
+     * M → S: Befehl im Intensivtest (nur im Testmodus ausgeführt): [action] z. B. `offline`, `mute`, `chat`,
+     * `emote`, `readspeed`, `profile`, `early`, `challenge`, `handback`; [arg] Dauer bzw. Zahl, [text] Zusatz.
+     * Ältere Apps kennen die Nachricht nicht und ignorieren sie.
+     */
+    data class TestCommand(val action: String, val arg: Long = 0, val text: String = "") : Message
+
+    /** S → M: Rückmeldung eines Spielers im Intensivtest ([action] wie im Befehl oder z. B. `final`, `reshuffle`). */
+    data class TestAck(val action: String, val ok: Boolean, val detail: String = "") : Message
+
     /** M → S: Der Spielleiter bittet um einen Diagnosebericht (der Spieler entscheidet). */
     data object DiagnoseRequest : Message
 
@@ -309,6 +319,8 @@ object MessageCodec {
             Message.DiagnoseCollect -> "DIAG_COLLECT" to emptyMap()
             Message.DiagnoseRequest -> "DIAG_REQUEST" to emptyMap()
             is Message.TestMode -> "TEST_MODE" to mapOf("on" to message.on)
+            is Message.TestCommand -> "TEST_CMD" to mapOf("a" to message.action, "n" to message.arg, "t" to message.text)
+            is Message.TestAck -> "TEST_ACK" to mapOf("a" to message.action, "ok" to message.ok, "d" to message.detail)
             is Message.Intro -> "INTRO" to mapOf("v" to message.variant)
             is Message.DiagnoseReceived -> "DIAG_OK" to mapOf("id" to message.reportId)
             is Message.ReadyCheck -> "READY_CHECK" to mapOf("id" to message.id, "on" to message.on)
@@ -411,6 +423,8 @@ object MessageCodec {
             "DIAG_COLLECT" -> Message.DiagnoseCollect
             "DIAG_REQUEST" -> Message.DiagnoseRequest
             "TEST_MODE" -> Message.TestMode(bool("on"))
+            "TEST_CMD" -> Message.TestCommand(f.getValue("a"), f["n"]?.toLong() ?: 0, f["t"] ?: "")
+            "TEST_ACK" -> Message.TestAck(f.getValue("a"), bool("ok"), f["d"] ?: "")
             "INTRO" -> Message.Intro(int("v"))
             "DIAG_OK" -> Message.DiagnoseReceived(f.getValue("id"))
             "READY_CHECK" -> Message.ReadyCheck(int("id"), bool("on"))

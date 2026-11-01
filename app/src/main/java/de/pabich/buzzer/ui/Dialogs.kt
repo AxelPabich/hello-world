@@ -379,8 +379,46 @@ fun MasterRulesDialog(
 
 /** Selbsttest starten: Prüfungen auf diesem Gerät, auf Wunsch live mit den verbundenen Spielern. */
 @Composable
-fun SelfTestDialog(playersConnected: Boolean, onStart: (live: Boolean) -> Unit, onDismiss: () -> Unit) {
+fun SelfTestDialog(
+    playersConnected: Boolean,
+    playerCount: Int,
+    intensiveMinutes: Int,
+    onStart: (live: Boolean, intensive: Boolean) -> Unit,
+    onDismiss: () -> Unit,
+) {
     var live by remember { mutableStateOf(playersConnected) }
+    var intensive by remember { mutableStateOf(false) }
+    // Sicherheitsabfrage vor dem Intensivtest: Er dauert mehrere Minuten und trennt absichtlich Verbindungen.
+    var confirmIntensive by remember { mutableStateOf(false) }
+    if (confirmIntensive) {
+        AlertDialog(
+            onDismissRequest = { confirmIntensive = false },
+            title = { Text("Intensivtest starten?") },
+            text = {
+                Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                    Text(
+                        "Der Intensivtest dauert mit $playerCount ${if (playerCount == 1) "Spieler" else "Spielern"} etwa $intensiveMinutes Minuten.",
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                    Spacer(Modifier.padding(4.dp))
+                    Text(
+                        "Währenddessen spielen die Apps der Spieler von selbst. Jeder Spieler geht absichtlich kurz offline und " +
+                            "verstummt einmal, die Spielleitung wird an einen Spieler übergeben und kommt wieder zurück. " +
+                            "Bitte die Geräte in der Nähe lassen und nichts antippen.",
+                    )
+                    Spacer(Modifier.padding(4.dp))
+                    Text(
+                        "Die Punkte werden zurückgesetzt, die Quiz-Statistik bleibt unberührt (Testspiel). „Test abbrechen“ stoppt nach dem laufenden " +
+                            "Schritt. Spieler mit einer älteren App testen mit, was sie kennen.",
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
+            },
+            confirmButton = { TextButton(onClick = { confirmIntensive = false; onStart(true, true) }) { Text("Jetzt starten") } },
+            dismissButton = { TextButton(onClick = { confirmIntensive = false }) { Text("Zurück") } },
+        )
+        return
+    }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("Selbsttest") },
@@ -388,17 +426,30 @@ fun SelfTestDialog(playersConnected: Boolean, onStart: (live: Boolean) -> Unit, 
             Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
                 Text("Prüft automatisch: Spiellogik mit simulierten Spielern (Buzzer, Quiz, Challenge, Bereit, Übernahme, Wiederbeitritt), Funk-Nachrichten, Klänge, Fragenpakete und die Release-Seite.")
                 Spacer(Modifier.padding(4.dp))
-                CheckRow("Live-Test mit den verbundenen Spielern", live, enabled = playersConnected) { live = it }
+                CheckRow("Live-Test mit den verbundenen Spielern", live, enabled = playersConnected) { live = it; if (!it) intensive = false }
                 Text(
                     "Die Spieler-Apps spielen dabei von selbst: Bereit-Abfrage, eine Buzzer-Runde, eine Quiz-Frage, danach schicken sie ihre Diagnose. " +
                         "Die Punkte werden zurückgesetzt; die Quiz-Statistik bleibt unberührt (Testspiel). Dauert etwa eine Minute.",
                     style = MaterialTheme.typography.bodySmall,
                 )
                 Spacer(Modifier.padding(4.dp))
-                Text("Am Ende landet ein Bericht „Selbsttest-…“ mit allen Ergebnissen im Diagnose-Repository.", style = MaterialTheme.typography.bodySmall)
+                CheckRow("Intensivtest (ca. $intensiveMinutes Min.)", intensive, enabled = playersConnected) { intensive = it; if (it) live = true }
+                Text(
+                    "Jede Funktion mit jedem Spieler: Buzzer (Tippen, Halten, Frühstart, Antwortzeit), Spielregeln, Quiz (Pause, neu " +
+                        "stellen, überspringen, abbrechen, Challenge, Ersatzfrage, Endergebnis, Countdown), Kurznachrichten, Emoticons, " +
+                        "Lesetempo, Profil kopieren, offline gehen und zurückkommen, verstummen, offline mitten in der Frage, Übergabe " +
+                        "der Spielleitung hin und zurück.",
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                Spacer(Modifier.padding(4.dp))
+                Text("Am Ende landet ein Bericht „Selbsttest-…“ mit allen Ergebnissen (beim Intensivtest als Übersicht Funktion × Spieler) im Diagnose-Repository.", style = MaterialTheme.typography.bodySmall)
             }
         },
-        confirmButton = { TextButton(onClick = { onStart(live && playersConnected) }) { Text("Starten") } },
+        confirmButton = {
+            TextButton(onClick = {
+                if (intensive && playersConnected) confirmIntensive = true else onStart(live && playersConnected, false)
+            }) { Text("Starten") }
+        },
         dismissButton = { TextButton(onClick = onDismiss) { Text("Abbrechen") } },
     )
 }

@@ -904,3 +904,19 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   vorheriger Build < `build` ≤ eigener Build. Unter „Über & Diagnose“ zeigt „Was ist neu?“ die letzten sechs Einträge.
   Nach einem Rollback (niedrigere Nummer) erscheint nichts.
 
+## 62. Intensivtest (Build 44)
+
+- Im Selbsttest wählbar („Intensivtest“, nur mit verbundenen Spielern). Vor dem Start eine Sicherheitsabfrage mit der
+  geschätzten Dauer (`INTENSIVE_BASE_S` + `INTENSIVE_PER_PLAYER_S` × Spieler) und dem Hinweis auf absichtliche
+  Trennungen und die Übergabe der Spielleitung. Während des Tests zeigt der Spielleiter „Intensivtest k/14: …“ und
+  „Test abbrechen“ (wirkt nach dem laufenden Schritt).
+- Neue Nachrichten (ältere Apps ignorieren sie): `TEST_CMD` (M → S, nur im Testmodus ausgeführt; `offline` = Verbindung
+  trennen und nach der angegebenen Zeit über die Übernahme-Suche zurückkehren, `mute` = nichts senden (Funkloch),
+  `chat`, `emote`, `readspeed`, `profile`, `early` = Frühstart bei der nächsten Freigabe, `challenge`, `handback` =
+  nach einer Übergabe die Leitung zurückgeben) und `TEST_ACK` (S → M: Rückmeldung, z. B. `chat`, `profile`,
+  `reshuffle` = neue Reihenfolge nach „neu stellen“, `final` = Endergebnis gesehen, `challenge`).
+- Im Testmodus bestätigen Spieler die Spielregeln selbst, planen ihre Antwort nach einer Pause neu (`QUIZ_SHIFT`),
+  quittieren das Endergebnis und zeigen ein angefordertes Profil nicht an.
+- Ablauf: 14 Schritte (siehe `OFFENE_PUNKTE.md` Punkt 112). Ergebnis je Prüfung und Spieler (✓ / ✗ / – übersprungen)
+  als Übersicht im Bericht „Selbsttest-…“ im Diagnose-Repository, dazu die gemessene Dauer.
+

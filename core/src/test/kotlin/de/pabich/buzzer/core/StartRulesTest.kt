@@ -29,7 +29,8 @@ class StartRulesTest {
     fun `new messages and settings survive the codec`() {
         val ms = listOf(
             Message.Rules("Quiz", listOf("Zeit" to "20 s"), confirmId = 3), Message.Rules("Quiz", emptyList()),
-            Message.RulesOk(3), Message.RulesDone(3), Message.ProfileRequest, Message.QuizEnd(true), Message.ReadSpeed(95),
+            Message.RulesOk(3), Message.RulesDone(3), Message.ProfileRequest,
+            Message.TestCommand("offline", 4_000), Message.TestCommand("chat", text = "[Test] Hallo | & = ü"), Message.TestAck("final", true, "ok"), Message.QuizEnd(true), Message.ReadSpeed(95),
         )
         for (m in ms) assertEquals(m, MessageCodec.decode(MessageCodec.encode(m)))
         val s = Settings(quizShuffleAnswers = false, quizReadAdapt = false, rulesConfirm = false)

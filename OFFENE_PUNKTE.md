@@ -461,6 +461,16 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+112. **Intensivtest** (Wunsch vom 01.11.2026; kommt mit Build 44): Im Selbsttest wählbar, vorher eine
+    Sicherheitsabfrage mit geschätzter Dauer (250 s + 50 s je Spieler). Prüft jede Funktion mit jedem Spieler:
+    Verbindung, Spielregeln bestätigen, Buzzer (Tippen, Falsch → Richtig, Halten/Loslassen, Frühstart, Antwortzeit),
+    Quiz (Antworten, Pause in der Frage, neu stellen mit Neu-Mischung, überspringen, Runde abbrechen, Challenge eines
+    Spielers mit Ersatzfrage, Challenge des Spielleiters, Endergebnis, Countdown-Wertung), Kurznachrichten in beide
+    Richtungen, Emoticons, Lesetempo, Profil kopieren, jeder Spieler hart offline und zurück (Punkte bleiben),
+    jeder Spieler verstummt (15-s-Erkennung) und kommt zurück, offline mitten in der Frage und danach antworten,
+    Übergabe der Spielleitung an einen Spieler und zurück, Diagnosen. Bericht mit Übersicht Funktion × Spieler.
+    Spieler mit älterer App (vor Build 44) testen mit, was sie kennen; der Rest steht als „übersprungen“ im
+    Bericht. „Test abbrechen“ stoppt nach dem laufenden Schritt. Nachrichten `TEST_CMD`/`TEST_ACK`.
 111. **Antworten mussten gescrollt werden (Sir Failalot, Galaxy A53, Spieleabend 31.10.2026)** – höchste Priorität,
     behoben (kommt mit dem nächsten Build). Ursache: Jedes Antwortfeld war mindestens 56 dp hoch und die Schrift
     nur bis 14 sp verkleinerbar; reichte die Höhe nicht (lange Antworten, Handy-Bildschirm, ggf. größere

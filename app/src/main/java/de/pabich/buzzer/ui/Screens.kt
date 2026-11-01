@@ -894,7 +894,10 @@ fun MasterScreen(vm: BuzzerViewModel) {
                 }
                 snapshot.ready?.let { ReadyPanel(it, onCancel = { vm.cancelReady() }) }
                 vm.selfTestStep?.let { step ->
-                    Text("🧪 Selbsttest: $step", color = theme.accent, fontSize = 14.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 4.dp))
+                    Row(Modifier.fillMaxWidth().padding(bottom = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Text("🧪 Selbsttest: $step", color = theme.accent, fontSize = 14.sp, fontWeight = FontWeight.Bold, modifier = Modifier.weight(1f))
+                        TextButton(onClick = { vm.cancelSelfTest() }) { Text("Test abbrechen", color = theme.accent2) }
+                    }
                 }
                 vm.takeoverMissing.takeIf { it.isNotEmpty() }?.let { missing ->
                     // Nach einer Übernahme: erst weitermachen, wenn alle zurück sind.
@@ -1068,7 +1071,9 @@ fun MasterScreen(vm: BuzzerViewModel) {
     if (askSelfTest) {
         SelfTestDialog(
             playersConnected = vm.handOverCandidates.isNotEmpty(),
-            onStart = { live -> askSelfTest = false; vm.runSelfTest(live) },
+            playerCount = vm.handOverCandidates.size,
+            intensiveMinutes = vm.intensiveTestMinutes(),
+            onStart = { live, intensive -> askSelfTest = false; vm.runSelfTest(live, intensive) },
             onDismiss = { askSelfTest = false },
         )
     }

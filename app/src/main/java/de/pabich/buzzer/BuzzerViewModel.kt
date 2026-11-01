@@ -61,6 +61,9 @@ data class ReceivedUpdate(val file: File, val build: Int, val from: String)
 /** Ein auffliegendes Emoticon. */
 data class FlyingEmote(val id: Long, val from: String, val emoji: String)
 
+/** Rückmeldung eines Spielers im Intensivtest. */
+data class TestAckEntry(val name: String, val action: String, val ok: Boolean, val detail: String)
+
 data class ChatLine(val from: String, val text: String, val toAll: Boolean, val outgoing: Boolean, val id: Long = 0)
 
 /**
@@ -266,6 +269,36 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /** Spieler: automatischer Testmodus (Selbsttest des Spielleiters) – tippt, antwortet, bestätigt. */
     private var testMode = false
+
+    // Intensivtest (Spieler): absichtlich offline / verstummt, Frühstart, Leitung zurückgeben.
+    private var testOfflineUntil = 0L
+    private var testMuteUntil = 0L
+    private var testEarly = false
+    private var testHandBackTo: String? = null
+    private var testLastAsk: Message.QuizAsk? = null
+    private var testAnswerTask: Cancellable? = null
+
+    /** Intensivtest (Spielleiter): Rückmeldungen der Spieler. */
+    private val testAcks = mutableListOf<TestAckEntry>()
+
+    /** Intensivtest (Spielleiter): Wer hat ein Emoticon geschickt? */
+    private val testEmotes = mutableListOf<String>()
+
+    /** Intensivtest: Übersicht Funktion × Spieler für den Bericht. */
+    private var intensiveMatrix: String? = null
+
+    /** Intensivtest: Abbruch durch den Spielleiter. */
+    private var selfTestCancel = false
+
+    fun cancelSelfTest() {
+        if (selfTestRunning) selfTestCancel = true
+    }
+
+    /** Geschätzte Dauer des Intensivtests in Minuten (für die Sicherheitsabfrage). */
+    fun intensiveTestMinutes(): Int {
+        val n = masterSnapshot?.players?.count { it.connected && it.id != LOCAL_PLAYER_ID } ?: 0
+        return ((INTENSIVE_BASE_S + INTENSIVE_PER_PLAYER_S * n.coerceAtLeast(1)) + 59) / 60
+    }
 
     /** Spielleiter: Selbsttest läuft; [selfTestStep] = aktueller Schritt. */
     var selfTestRunning by mutableStateOf(false)
@@ -502,7 +535,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
             }
         }
-        engine.onEmote = { from, emoji -> showEmote(from, emoji) }
+        engine.onEmote = { from, emoji ->
+            if (selfTestRunning) testEmotes += from
+            showEmote(from, emoji)
+        }
         engine.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
         engine.onSound = { sound(it) }
         engine.onReplay = { startReplay(it) }
@@ -1406,15 +1442,25 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             takeoverTask = null
             takeover = null
         }
-        val engineForPlayer = PlayerEngine(UptimeClock, scheduler, log = Diagnostics::log) { link.send(endpointId, it) }
+        // Im Intensivtest kann der Spieler kurz „verstummen“ (Funkloch): dann geht nichts an den Spielleiter.
+        val engineForPlayer = PlayerEngine(UptimeClock, scheduler, log = Diagnostics::log) { if (UptimeClock.now() >= testMuteUntil) link.send(endpointId, it) }
         engineForPlayer.onViewChanged = { onPlayerView(it, remote = true) }
         engineForPlayer.onSound = { playSoundEvent(it) }
         engineForPlayer.onReplay = { startReplay(it) }
         engineForPlayer.onIntro = { showIntro(it) }
         engineForPlayer.onArmed = { if (SoundEvent.HUM in engineForPlayer.view.rules.sounds) sound(SoundEvent.HUM) }
         engineForPlayer.onEmote = { from, emoji -> showEmote(from, emoji) }
-        engineForPlayer.onChat = { from, text, toAll -> addChat(ChatLine(from, text, toAll, outgoing = false)) }
-        engineForPlayer.onProfile = { profileName, values -> receivedProfile = ReceivedProfile(profileName, values) }
+        engineForPlayer.onChat = { from, text, toAll ->
+            addChat(ChatLine(from, text, toAll, outgoing = false))
+            if (testMode && text.startsWith(TEST_CHAT_PREFIX)) link.send(endpointId, Message.TestAck("chat", true, text))
+        }
+        engineForPlayer.onProfile = { profileName, values ->
+            if (testMode) {
+                link.send(endpointId, Message.TestAck("profile", values.isNotEmpty(), profileName))
+            } else {
+                receivedProfile = ReceivedProfile(profileName, values)
+            }
+        }
         engineForPlayer.onBye = {
             leave()
             status = "Der Spielleiter hat die Gruppe geschlossen."
@@ -1479,6 +1525,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 scheduler.schedule(3_000) { if (master === engine) link.restartAdvertising(PeerInfo.format(myName.trim(), AppUpdate.ownBuild)) }
             }
         } else if (endpointId == masterEndpoint) {
+            testMuteUntil = 0
             val silence = player?.lastMessageAt?.let { UptimeClock.now() - it }
             Diagnostics.log("Verbindung zum Spielleiter abgebrochen; letzte Nachricht vor ${silence ?: "?"} ms")
             val s = succession
@@ -1535,6 +1582,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 rules = message
                 lastRules = message
                 if (readMsPerChar > 0) player?.reportReadSpeed(readMsPerChar)
+                if (testMode && message.confirmId != 0) scheduler.schedule(700) { if (rules?.confirmId == message.confirmId) confirmRules(message.confirmId) }
                 return
             }
             is Message.RulesDone -> {
@@ -1566,6 +1614,17 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                     link.disconnect(endpointId)
                     startTakeover(s, "${s.master} hat das Spiel verlassen.")
                 }
+                return
+            }
+            is Message.TestCommand -> {
+                if (master != null || endpointId != masterEndpoint || !testMode) return
+                runTestCommand(message, endpointId)
+                return
+            }
+            is Message.TestAck -> {
+                val name = master?.snapshot()?.players?.firstOrNull { it.id == endpointId }?.name ?: return
+                Diagnostics.log("Intensivtest: $name meldet ${message.action} ${if (message.ok) "ok" else "FEHLER"} ${message.detail}".trim())
+                testAcks += TestAckEntry(name, message.action, message.ok, message.detail)
                 return
             }
             is Message.TestMode -> {
@@ -1641,9 +1700,20 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val p = player ?: return
         val r = kotlin.random.Random
         fun later(ms: Long, block: () -> Unit) = scheduler.schedule(ms.coerceAtLeast(0)) { if (player === p && testMode) block() }
+        fun answerLater(answersAtLocal: Long, count: Int) {
+            testAnswerTask?.cancel()
+            testAnswerTask = later(answersAtLocal + 800 + r.nextLong(1_700) - UptimeClock.now()) { p.tapAnswer(r.nextInt(count), UptimeClock.now()) }
+        }
         when (message) {
             is Message.Arm -> later(200) { p.onTouchDown(UptimeClock.now()) }
-            is Message.GoAt -> later(message.goAtLocal + 150 + r.nextLong(500) - UptimeClock.now()) {
+            // Intensivtest „Frühstart“: kurz vor dem Startsignal tippen.
+            is Message.GoAt -> if (testEarly) {
+                testEarly = false
+                later(message.goAtLocal - 400 - UptimeClock.now()) {
+                    val t = UptimeClock.now()
+                    if (message.mode == de.pabich.buzzer.core.StartMode.HOLD_RELEASE) p.onTouchUp(t) else { p.onTouchDown(t); p.onTouchUp(t + 40) }
+                }
+            } else later(message.goAtLocal + 150 + r.nextLong(500) - UptimeClock.now()) {
                 val t = UptimeClock.now()
                 if (message.mode == de.pabich.buzzer.core.StartMode.HOLD_RELEASE) {
                     p.onTouchUp(t)
@@ -1652,16 +1722,54 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                     p.onTouchUp(t + 40)
                 }
             }
-            is Message.QuizAsk -> later(message.answersAtLocal + 800 + r.nextLong(1_700) - UptimeClock.now()) {
-                p.tapAnswer(r.nextInt(message.answers.size), UptimeClock.now())
+            is Message.QuizAsk -> {
+                // „Frage neu stellen“: dieselbe Nummer mit anderer Reihenfolge?
+                val last = testLastAsk
+                if (last != null && last.number == message.number) {
+                    masterEndpoint?.let { link.send(it, Message.TestAck("reshuffle", last.answers != message.answers, message.answers.first())) }
+                }
+                testLastAsk = message
+                answerLater(message.answersAtLocal, message.answers.size)
+            }
+            // Pause in der Frage: Die Antworten erscheinen später – neu planen.
+            is Message.QuizShift -> testLastAsk?.takeIf { it.number == message.number }?.let { ask ->
+                testLastAsk = ask.copy(answersAtLocal = ask.answersAtLocal + message.shiftMs)
+                answerLater(ask.answersAtLocal + message.shiftMs, ask.answers.size)
             }
             is Message.ReadyCheck -> if (message.on) later(400) { p.confirmReady() }
+            is Message.QuizEnd -> later(1_500) {
+                masterEndpoint?.let { link.send(it, Message.TestAck("final", true, if (message.aborted) "abgebrochen" else "beendet")) }
+                p.dismissFinalResult()
+            }
             else -> Unit
         }
     }
 
+    /** Spieler im Intensivtest: Befehl des Spielleiters ausführen. */
+    private fun runTestCommand(c: Message.TestCommand, endpointId: String) {
+        Diagnostics.log("Intensivtest: Befehl ${c.action}" + if (c.arg != 0L) " (${c.arg})" else "")
+        val p = player
+        when (c.action) {
+            "offline" -> {
+                // Wie ein echter Abbruch: trennen, Übernahme-Suche, nach der Offline-Zeit zurück zum Spielleiter.
+                testOfflineUntil = UptimeClock.now() + c.arg.coerceIn(1_000, 30_000)
+                link.disconnect(endpointId)
+                onDisconnected(endpointId)
+            }
+            "mute" -> testMuteUntil = UptimeClock.now() + c.arg.coerceIn(1_000, 60_000)
+            "chat" -> p?.sendChat(de.pabich.buzzer.core.MASTER_ADDRESS, c.text)
+            "emote" -> p?.sendEmote(c.text)
+            "readspeed" -> p?.reportReadSpeed(c.arg.toInt())
+            "profile" -> p?.requestProfile()
+            "early" -> testEarly = true
+            "challenge" -> link.send(endpointId, Message.TestAck("challenge", p?.challenge("Intensivtest") == true))
+            "handback" -> testHandBackTo = c.text.ifEmpty { null }
+            else -> link.send(endpointId, Message.TestAck(c.action, false, "unbekannter Befehl"))
+        }
+    }
+
     /** Selbsttest starten (Spielleiter mit GitHub-Zugang, zwischen den Runden). */
-    fun runSelfTest(live: Boolean) {
+    fun runSelfTest(live: Boolean, intensive: Boolean = false) {
         val engine = master ?: return
         if (selfTestRunning) return
         if (!diagnoseUpload.hasToken) {
@@ -1673,8 +1781,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             return
         }
         selfTestRunning = true
+        selfTestCancel = false
         selfTestResults = null
-        Diagnostics.log("Selbsttest gestartet" + if (live) " (mit Live-Test)" else "")
+        intensiveMatrix = null
+        Diagnostics.log("Selbsttest gestartet" + if (intensive) " (Intensivtest)" else if (live) " (mit Live-Test)" else "")
         launchTest {
             val results = mutableListOf<SelfTest.Result>()
             try {
@@ -1685,7 +1795,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 selfTestStep = "Release-Seite …"
                 val latest = suspendCoroutine<Int?> { c -> AppUpdate.latestBuild { c.resume(it) } }
                 results += SelfTest.Result("Release-Seite erreichbar", latest != null, latest?.let { "neuester Build $it, hier Build ${AppUpdate.ownBuild}" } ?: "nicht erreichbar")
-                if (live) results += liveTest(engine)
+                if (intensive) results += intensiveTest() else if (live) results += liveTest(engine)
             } catch (e: Throwable) {
                 results += SelfTest.Result("Selbsttest abgebrochen", false, e.message ?: e.javaClass.simpleName)
             }
@@ -1801,6 +1911,447 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         return results
     }
 
+    // ------------------------------------------------------------------ Intensivtest (Spielleiter)
+
+    private class SelfTestCancelled : Exception("vom Spielleiter abgebrochen")
+
+    /**
+     * Intensivtest: Jede Funktion mit jedem Spieler – Buzzer (Tippen, Halten, Frühstart, Antwortzeit),
+     * Spielregeln, Quiz (Pause, neu stellen, überspringen, abbrechen, Challenge, Ersatzfrage, Endergebnis,
+     * Countdown), Kurznachrichten, Emoticons, Lesetempo, Profil, offline gehen und zurückkommen, verstummen,
+     * offline mitten in der Frage, Übergabe der Spielleitung hin und zurück, Diagnosen.
+     * Spieler ab Build [INTENSIVE_TEST_BUILD] kennen alle Schritte; bei älteren werden ihre Schritte übersprungen.
+     */
+    private suspend fun intensiveTest(): List<SelfTest.Result> {
+        val first = master ?: return listOf(SelfTest.Result("Intensivtest", false, "kein Spiel"))
+        val names = first.snapshot().players.filter { it.connected && it.id != LOCAL_PLAYER_ID }.map { it.name }
+        if (names.isEmpty()) return listOf(SelfTest.Result("Intensivtest", false, "keine Spieler verbunden"))
+        val results = mutableListOf<SelfTest.Result>()
+        val matrix = linkedMapOf<String, MutableMap<String, String>>()
+        val startedAt = UptimeClock.now()
+        val stepTitles = listOf(
+            "Verbindung", "Spielregeln", "Buzzer: Tippen", "Buzzer: Halten", "Buzzer: Frühstart", "Buzzer: Antwortzeit",
+            "Quiz: Antworten, Pause, neu stellen, überspringen, abbrechen, Challenge", "Quiz: Countdown-Wertung",
+            "Kurznachrichten, Emoticons, Lesetempo, Profil", "Offline gehen und zurück", "Verstummen und zurück",
+            "Offline mitten in der Frage", "Übergabe der Spielleitung", "Diagnosen",
+        )
+        var stepNo = 0
+        fun step(title: String) {
+            if (selfTestCancel) throw SelfTestCancelled()
+            stepNo++
+            selfTestStep = "Intensivtest $stepNo/${stepTitles.size}: $title"
+            Diagnostics.log("Intensivtest: Schritt $stepNo – $title")
+        }
+        fun mark(check: String, name: String?, ok: Boolean?, detail: String = "") {
+            val row = matrix.getOrPut(check) { linkedMapOf() }
+            if (name == null) {
+                row["alle"] = when (ok) { true -> "✓"; false -> "✗"; null -> "–" }
+                if (ok != null) results += SelfTest.Result(check, ok, detail)
+            } else {
+                row[name] = when (ok) { true -> "✓"; false -> "✗"; null -> "–" }
+                results += SelfTest.Result("$check – $name", ok != false, if (ok == null) "übersprungen" + detail.let { if (it.isEmpty()) "" else " ($it)" } else detail)
+            }
+        }
+        fun engine(): MasterEngine = master ?: throw IllegalStateException("kein Spielleiter mehr")
+        fun row(name: String) = master?.snapshot()?.players?.firstOrNull { it.connected && it.name == name }
+        fun build(name: String) = row(name)?.let { peerBuilds[it.id] } ?: 0
+        fun capable(name: String) = build(name) >= INTENSIVE_TEST_BUILD
+        fun cmd(name: String, action: String, arg: Long = 0, text: String = "") {
+            row(name)?.let { link.send(it.id, Message.TestCommand(action, arg, text)) }
+        }
+        fun acked(name: String, action: String, since: Int, ok: Boolean = true) =
+            testAcks.drop(since).any { it.name == name && it.action == action && it.ok == ok }
+        val oldBuild = "Build < $INTENSIVE_TEST_BUILD"
+        val e0 = first
+        val saved = e0.settings
+        val savedProfile = e0.profileName
+        val savedKind = e0.snapshot().kind
+        val savedTest = testGame
+        val testSettings = saved.copy(
+            startMode = de.pabich.buzzer.core.StartMode.TAP, reactionLimitEnabled = true, timeLimitMs = 10_000,
+            answerLimitEnabled = false, autoAdvanceOnTimeout = true, quizAnswerMs = 12_000, quizReadAdapt = false,
+            quizAutoReadyMs = 0, quizScoring = QuizScoring.FASTEST, messagesEnabled = true, emojisEnabled = true,
+            rulesConfirm = true, quizShuffleAnswers = true,
+        )
+        testAcks.clear()
+        testEmotes.clear()
+        fun enterTestMode() {
+            testGame = true
+            master?.testGame = true
+            master?.snapshot()?.players?.filter { it.connected && it.id != LOCAL_PLAYER_ID }?.forEach { link.send(it.id, Message.TestMode(true)) }
+        }
+        enterTestMode()
+
+        // Buzzer-Runde: freigeben, abwarten, auflösen; liefert die Zeilen nach der Entscheidung.
+        suspend fun buzzerRound(settings: Settings, before: () -> Unit = {}): List<MasterEngine.PlayerRow> {
+            val e = engine()
+            if (e.snapshot().kind != GameKind.BUZZER) e.chooseKind(GameKind.BUZZER)
+            e.updateSettings(settings, savedProfile)
+            before()
+            sleep(400)
+            e.release()
+            waitUntil(40_000) { e.snapshot().phase.let { it == MasterEngine.Phase.ANSWERING || it == MasterEngine.Phase.ROUND_OVER } }
+            sleep(800)
+            return e.snapshot().players
+        }
+        suspend fun finishRound() {
+            val e = engine()
+            if (e.snapshot().phase == MasterEngine.Phase.ANSWERING) e.markCorrect()
+            waitUntil(15_000) { e.snapshot().phase == MasterEngine.Phase.ROUND_OVER }
+            e.nextRound()
+            sleep(700)
+        }
+        fun answeredAll(): Boolean {
+            val q = master?.snapshot()?.quiz ?: return false
+            return q.revealed || q.rows.filter { it.name in names }.all { it.answered }
+        }
+        fun answered(name: String) = master?.snapshot()?.quiz?.rows?.any { it.name == name && it.answered } == true
+        suspend fun reveal() {
+            val e = engine()
+            if (e.snapshot().quiz?.revealed != true) e.revealNow()
+            waitUntil(5_000) { e.snapshot().quiz?.revealed == true }
+        }
+        suspend fun awaitQuestion(number: Int) = waitUntil(10_000) {
+            val snap = master?.snapshot()
+            val q = snap?.quiz
+            q != null && q.number == number && !q.revealed && snap.phase == MasterEngine.Phase.QUIZ_QUESTION
+        }
+
+        try {
+            // 1 Verbindung
+            step(stepTitles[0])
+            sleep(3_000)
+            for (n in names) {
+                val rtt = row(n)?.rttMs
+                mark("Verbindung", n, rtt != null && rtt < 1_500, rtt?.let { "$it ms, Build ${build(n)}" } ?: "keine Messung")
+            }
+
+            // 2 Spielregeln bestätigen
+            step(stepTitles[1])
+            run {
+                val e = engine()
+                if (e.snapshot().kind != GameKind.QUIZ) e.chooseKind(GameKind.QUIZ)
+                e.updateSettings(testSettings, savedProfile)
+                val exempt = names.filter { build(it) < RULES_CONFIRM_BUILD }.mapNotNull { row(it)?.id }.toSet()
+                var done = false
+                e.onRulesConfirmed = { done = true }
+                val (title, lines) = rulesFor(e) ?: ("Intensivtest" to listOf("Test" to "Bitte bestätigen"))
+                val asked = e.requestRulesConfirmation(title, lines, exempt)
+                e.confirmMasterRules()
+                val t0 = UptimeClock.now()
+                waitUntil(15_000) { done || !asked }
+                val waiting = e.snapshot().rules?.waitingNames.orEmpty()
+                for (n in names) {
+                    when {
+                        build(n) < RULES_CONFIRM_BUILD -> mark("Spielregeln bestätigen", n, null, "Build < $RULES_CONFIRM_BUILD")
+                        else -> mark("Spielregeln bestätigen", n, n !in waiting && (done || !asked), if (done) "${UptimeClock.now() - t0} ms" else "fehlt")
+                    }
+                }
+                e.onRulesConfirmed = null
+                e.endRulesConfirmation(false)
+                sleep(500)
+            }
+
+            // 3 Buzzer: Tippen, Falsch → nächster, Richtig
+            step(stepTitles[2])
+            run {
+                val rows = buzzerRound(testSettings)
+                for (n in names) mark("Buzzer tippen", n, rows.firstOrNull { it.name == n }?.reactionMs != null, rows.firstOrNull { it.name == n }?.reactionMs?.let { "$it ms" } ?: "kein Buzz")
+                val e = engine()
+                var ok = true
+                if (e.snapshot().phase == MasterEngine.Phase.ANSWERING && names.size >= 2) {
+                    e.markWrong()
+                    ok = waitUntil(5_000) { e.snapshot().phase.let { it == MasterEngine.Phase.ANSWERING || it == MasterEngine.Phase.ROUND_OVER } }
+                }
+                finishRound()
+                mark("Buzzer: Falsch, dann Richtig", null, ok)
+            }
+
+            // 4 Buzzer: Halten und Loslassen
+            step(stepTitles[3])
+            run {
+                val rows = buzzerRound(testSettings.copy(startMode = de.pabich.buzzer.core.StartMode.HOLD_RELEASE))
+                for (n in names) mark("Buzzer halten/loslassen", n, rows.firstOrNull { it.name == n }?.reactionMs != null, rows.firstOrNull { it.name == n }?.reactionMs?.let { "$it ms" } ?: "kein Buzz")
+                finishRound()
+            }
+
+            // 5 Buzzer: Frühstart (ein Spieler drückt absichtlich zu früh)
+            step(stepTitles[4])
+            run {
+                val early = names.firstOrNull { capable(it) }
+                if (early == null) {
+                    names.forEach { mark("Frühstart erkannt", it, null, oldBuild) }
+                } else {
+                    val rows = buzzerRound(testSettings) { cmd(early, "early") }
+                    val out = rows.firstOrNull { it.name == early }?.display == de.pabich.buzzer.core.Display.GRAY
+                    mark("Frühstart erkannt", early, out, if (out) "ausgeschieden" else "nicht erkannt")
+                    names.filter { it != early }.forEach { n -> mark("Frühstart erkannt", n, rows.firstOrNull { it.name == n }?.reactionMs != null, "spielt normal weiter") }
+                    finishRound()
+                }
+            }
+
+            // 6 Buzzer: Antwortzeit läuft ab
+            step(stepTitles[5])
+            run {
+                buzzerRound(testSettings.copy(answerLimitEnabled = true, answerLimitMs = 3_000))
+                val e = engine()
+                val timedOut = e.snapshot().phase != MasterEngine.Phase.ANSWERING ||
+                    waitUntil(8_000) { e.snapshot().phase != MasterEngine.Phase.ANSWERING }
+                waitUntil(5_000 + 4_000L * names.size) { e.snapshot().phase == MasterEngine.Phase.ROUND_OVER }
+                mark("Buzzer: Antwortzeit läuft ab", null, timedOut)
+                finishRound()
+            }
+
+            // 7 Quiz
+            step(stepTitles[6])
+            run {
+                val e = engine()
+                e.chooseKind(GameKind.QUIZ)
+                e.updateSettings(testSettings, savedProfile)
+                sleep(500)
+                val questions = quizStore.questions.shuffled().take(7).map(quizStore::toQuiz)
+                if (questions.size < 7 || !e.startQuiz(questions)) {
+                    mark("Quiz starten", null, false, "zu wenige Fragen oder Start abgelehnt")
+                    return@run
+                }
+                // Q1: alle antworten
+                waitUntil(20_000) { answeredAll() }
+                names.forEach { mark("Quiz: Antwort", it, answered(it)) }
+                reveal(); e.nextQuestion()
+                // Q2: Pause während der Frage, danach weiter
+                awaitQuestion(2)
+                e.setPaused(true)
+                sleep(4_000)
+                e.setPaused(false)
+                waitUntil(25_000) { answeredAll() }
+                names.forEach { n -> if (capable(n)) mark("Quiz: Pause in der Frage", n, answered(n)) else mark("Quiz: Pause in der Frage", n, null, oldBuild) }
+                reveal(); e.nextQuestion()
+                // Q3: neu stellen – Antworten neu gemischt
+                awaitQuestion(3)
+                e.setPaused(true)
+                sleep(800)
+                val acks = testAcks.size
+                e.restartQuestion()
+                waitUntil(20_000) { answeredAll() }
+                sleep(500)
+                names.forEach { n ->
+                    if (capable(n)) mark("Quiz: neu stellen, neu gemischt", n, answered(n) && acked(n, "reshuffle", acks), if (acked(n, "reshuffle", acks, ok = false)) "gleiche Reihenfolge" else "")
+                    else mark("Quiz: neu stellen, neu gemischt", n, null, oldBuild)
+                }
+                reveal(); e.nextQuestion()
+                // Q4: überspringen
+                awaitQuestion(4)
+                e.setPaused(true)
+                sleep(500)
+                e.skipQuestion()
+                mark("Quiz: Frage überspringen", null, awaitQuestion(5))
+                // Q5: Runde abbrechen (ohne Wertung)
+                e.setPaused(true)
+                sleep(500)
+                val scores = e.snapshot().players.associate { it.name to it.scoreValue }
+                e.abortQuestion()
+                val aborted = waitUntil(3_000) { e.snapshot().quiz?.annulled == true && e.snapshot().phase == MasterEngine.Phase.QUIZ_REVEAL }
+                mark("Quiz: Runde abbrechen ohne Wertung", null, aborted && e.snapshot().players.all { scores[it.name] == null || scores[it.name] == it.scoreValue })
+                e.nextQuestion()
+                // Q6: Challenge eines Spielers, Ersatzfrage
+                awaitQuestion(6)
+                waitUntil(20_000) { answeredAll() }
+                reveal()
+                val challenger = names.firstOrNull { capable(it) }
+                if (challenger != null) {
+                    cmd(challenger, "challenge")
+                    val got = waitUntil(8_000) { e.snapshot().quiz?.challenges?.any { it.name == challenger } == true }
+                    mark("Quiz: Challenge", challenger, got)
+                    names.filter { it != challenger }.forEach { mark("Quiz: Challenge", it, null, "nur ein Spieler fordert heraus") }
+                    if (got) {
+                        replaceQuestion()
+                        val again = waitUntil(8_000) { e.snapshot().quiz?.let { it.number == 6 && !it.revealed } == true }
+                        waitUntil(20_000) { answeredAll() }
+                        mark("Quiz: Ersatzfrage", null, again && names.all { answered(it) })
+                        reveal()
+                    }
+                } else {
+                    names.forEach { mark("Quiz: Challenge", it, null, oldBuild) }
+                }
+                if (e.snapshot().quiz?.challenges?.isNotEmpty() == true) { e.decideChallenge(de.pabich.buzzer.core.ChallengeDecision.KEEP); e.endReview() }
+                e.nextQuestion()
+                // Q7: Challenge durch den Spielleiter in der Pause, dann Endergebnis
+                awaitQuestion(7)
+                e.setPaused(true)
+                sleep(500)
+                val called = e.challengeQuestion()
+                val review = called && waitUntil(3_000) { e.snapshot().quiz?.revealed == true && e.snapshot().reviewing }
+                e.decideChallenge(de.pabich.buzzer.core.ChallengeDecision.KEEP)
+                e.endReview()
+                mark("Quiz: Challenge des Spielleiters", null, review)
+                val acks2 = testAcks.size
+                e.nextQuestion()
+                waitUntil(8_000) { names.filter { capable(it) }.all { acked(it, "final", acks2) } }
+                names.forEach { n -> if (capable(n)) mark("Quiz: Endergebnis", n, acked(n, "final", acks2)) else mark("Quiz: Endergebnis", n, null, oldBuild) }
+                sleep(1_000)
+                replayDone()
+            }
+
+            // 8 Quiz: Countdown-Wertung
+            step(stepTitles[7])
+            run {
+                val e = engine()
+                if (e.snapshot().phase != MasterEngine.Phase.READY) e.stopQuiz()
+                e.updateSettings(testSettings.copy(quizScoring = QuizScoring.COUNTDOWN), savedProfile)
+                sleep(500)
+                val started = e.startQuiz(quizStore.questions.shuffled().take(1).map(quizStore::toQuiz))
+                waitUntil(20_000) { answeredAll() }
+                reveal()
+                mark("Quiz: Countdown-Wertung", null, started && e.snapshot().quiz?.revealed == true)
+                e.nextQuestion()
+                sleep(1_500)
+                replayDone()
+            }
+
+            // 9 Kurznachrichten, Emoticons, Lesetempo, Profil
+            step(stepTitles[8])
+            run {
+                val e = engine()
+                if (e.snapshot().phase != MasterEngine.Phase.READY) e.stopQuiz()
+                val acks = testAcks.size
+                val emoji = e.settings.emojis.firstOrNull() ?: "👍"
+                for (n in names.filter { capable(it) }) {
+                    cmd(n, "chat", text = "$TEST_CHAT_PREFIX Nachricht von $n")
+                    row(n)?.let { sendChat(it.id, n, "$TEST_CHAT_PREFIX Hallo $n") }
+                    cmd(n, "emote", text = emoji)
+                    cmd(n, "readspeed", 123)
+                    cmd(n, "profile")
+                    sleep(300)
+                }
+                sleep(4_000)
+                for (n in names) {
+                    if (!capable(n)) {
+                        listOf("Kurznachricht an den Spielleiter", "Kurznachricht an den Spieler", "Emoticon", "Lesetempo melden", "Profil kopieren").forEach { mark(it, n, null, oldBuild) }
+                        continue
+                    }
+                    mark("Kurznachricht an den Spielleiter", n, chat.any { it.from == n && it.text.startsWith(TEST_CHAT_PREFIX) })
+                    mark("Kurznachricht an den Spieler", n, acked(n, "chat", acks))
+                    mark("Emoticon", n, n in testEmotes || !receiveEmojis, if (!receiveEmojis) "Empfang hier aus" else "")
+                    mark("Lesetempo melden", n, row(n)?.readMsPerChar == 123)
+                    mark("Profil kopieren", n, acked(n, "profile", acks))
+                }
+            }
+
+            // 10 Offline gehen und zurückkommen (hart getrennt)
+            step(stepTitles[9])
+            for (n in names) {
+                if (!capable(n)) { mark("Offline und zurück", n, null, oldBuild); continue }
+                val before = row(n)?.scoreValue
+                val t0 = UptimeClock.now()
+                cmd(n, "offline", 4_000)
+                val gone = waitUntil(8_000) { row(n) == null }
+                val back = gone && waitUntil(45_000) { row(n) != null }
+                sleep(1_000)
+                val same = row(n)?.scoreValue == before
+                mark("Offline und zurück", n, back && same, if (back) "zurück nach ${(UptimeClock.now() - t0) / 1000} s" + if (same) ", Punkte übernommen" else ", Punkte anders" else if (gone) "nicht zurückgekommen" else "nicht getrennt")
+                enterTestMode()
+            }
+
+            // 11 Verstummen (Funkloch ohne Trennung) und zurückkommen
+            step(stepTitles[10])
+            for (n in names) {
+                if (!capable(n)) { mark("Verstummen erkannt und zurück", n, null, oldBuild); continue }
+                val t0 = UptimeClock.now()
+                cmd(n, "mute", 20_000)
+                val dropped = waitUntil(30_000) { row(n) == null }
+                val back = dropped && waitUntil(45_000) { row(n) != null }
+                mark("Verstummen erkannt und zurück", n, back, if (back) "zurück nach ${(UptimeClock.now() - t0) / 1000} s" else if (dropped) "nicht zurückgekommen" else "Stille nicht erkannt")
+                sleep(1_000)
+                enterTestMode()
+            }
+
+            // 12 Offline mitten in der Frage – nach der Rückkehr noch antworten
+            step(stepTitles[11])
+            run {
+                val target = names.firstOrNull { capable(it) }
+                if (target == null) { names.forEach { mark("Offline in der Frage, dann antworten", it, null, oldBuild) }; return@run }
+                val e = engine()
+                e.chooseKind(GameKind.QUIZ)
+                e.updateSettings(testSettings.copy(quizAnswerMs = 35_000), savedProfile)
+                sleep(500)
+                if (!e.startQuiz(quizStore.questions.shuffled().take(1).map(quizStore::toQuiz))) {
+                    mark("Offline in der Frage, dann antworten", target, false, "Quiz startet nicht")
+                    return@run
+                }
+                awaitQuestion(1)
+                cmd(target, "offline", 3_000)
+                val ok = waitUntil(45_000) { answered(target) }
+                waitUntil(10_000) { answeredAll() }
+                mark("Offline in der Frage, dann antworten", target, ok, if (ok) "Antwort nach der Rückkehr angekommen" else "keine Antwort")
+                names.filter { it != target }.forEach { mark("Offline in der Frage, dann antworten", it, null, "ein Spieler genügt") }
+                reveal()
+                e.nextQuestion()
+                sleep(1_500)
+                replayDone()
+                enterTestMode()
+            }
+
+            // 13 Übergabe der Spielleitung an einen Spieler und zurück
+            step(stepTitles[12])
+            run {
+                val target = names.firstOrNull { capable(it) && row(it) != null }
+                if (target == null) { mark("Übergabe der Spielleitung", null, null); return@run }
+                val e = engine()
+                if (e.snapshot().phase != MasterEngine.Phase.READY) e.stopQuiz()
+                sleep(500)
+                cmd(target, "handback", text = myName.trim())
+                sleep(500)
+                handOver(target)
+                val away = waitUntil(5_000) { master == null }
+                val backAsMaster = away && waitUntil(150_000) { master != null }
+                val allBack = backAsMaster && waitUntil(60_000) { names.all { row(it) != null } }
+                mark("Übergabe der Spielleitung", null, backAsMaster, if (backAsMaster) "an $target und zurück" else if (away) "Leitung kam nicht zurück" else "Übergabe nicht gestartet")
+                names.forEach { n -> mark("Nach der Übergabe wieder dabei", n, row(n) != null) }
+                if (allBack || backAsMaster) {
+                    master?.updateSettings(testSettings, savedProfile)
+                    enterTestMode()
+                }
+            }
+
+            // 14 Diagnosen einsammeln
+            step(stepTitles[13])
+            run {
+                val before = diagReportsReceived
+                requestDiagnoses()
+                val connected = names.count { row(it) != null }
+                val ok = waitUntil(30_000) { diagReportsReceived - before >= connected }
+                mark("Diagnosen der Spieler", null, ok, "${diagReportsReceived - before} von $connected")
+            }
+        } catch (e: SelfTestCancelled) {
+            results += SelfTest.Result("Intensivtest abgebrochen", false, "vom Spielleiter bei Schritt $stepNo")
+        } catch (e: Exception) {
+            results += SelfTest.Result("Intensivtest abgebrochen", false, "Schritt $stepNo: ${e.message ?: e.javaClass.simpleName}")
+        } finally {
+            master?.let { e ->
+                e.onRulesConfirmed = null
+                e.endRulesConfirmation(false)
+                if (e.snapshot().phase != MasterEngine.Phase.READY) e.stopQuiz()
+                e.snapshot().players.filter { it.connected && it.id != LOCAL_PLAYER_ID }.forEach { link.send(it.id, Message.TestMode(false)) }
+                if (savedKind != null && e.snapshot().kind != savedKind && e.snapshot().phase == MasterEngine.Phase.READY) e.chooseKind(savedKind)
+                e.updateSettings(saved, savedProfile)
+                e.testGame = savedTest
+            }
+            testGame = savedTest
+            replayDone()
+            val secs = (UptimeClock.now() - startedAt) / 1000
+            Diagnostics.log("Intensivtest: Dauer $secs s")
+            results += SelfTest.Result("Dauer des Intensivtests", true, "$secs s mit ${names.size} Spielern")
+            intensiveMatrix = buildString {
+                val width = (matrix.keys.maxOfOrNull { it.length } ?: 10) + 2
+                appendLine("Funktion".padEnd(width) + names.joinToString("  ") + "  alle")
+                for ((check, cells) in matrix) {
+                    appendLine(check.padEnd(width) + names.joinToString("  ") { n -> (cells[n] ?: " ").padEnd(n.length) } + "  " + (cells["alle"] ?: ""))
+                }
+            }.trimEnd()
+        }
+        return results
+    }
+
     private fun selfTestReport(results: List<SelfTest.Result>): String = buildString {
         appendLine("Buzzer – Selbsttest")
         appendLine("Ergebnis: ${SelfTest.summary(results)}")
@@ -1809,6 +2360,11 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             appendLine("Spieler: " + rows.joinToString { "${it.name} (Build ${peerBuilds[it.id] ?: "alt"})" })
         }
         appendLine()
+        intensiveMatrix?.let {
+            appendLine("== Intensivtest: Funktion × Spieler (✓ ok, ✗ Fehler, – übersprungen) ==")
+            appendLine(it)
+            appendLine()
+        }
         appendLine("== Prüfungen ==")
         appendLine(SelfTest.format(results))
         appendLine()
@@ -1960,6 +2516,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private fun checkSuccessor(group: Group) {
         val name = group.peer.name
         if (!group.peer.compatible || name == myName.trim()) return
+        // Intensivtest: Der Spieler bleibt absichtlich ein paar Sekunden offline, dann meldet er sich zurück.
+        val offline = testOfflineUntil - UptimeClock.now()
+        if (offline > 0 && master == null) {
+            scheduler.schedule(offline + 200) { groups.firstOrNull { it.endpointId == group.endpointId }?.let { checkSuccessor(it) } }
+            return
+        }
         val t = takeover
         if (t != null && master == null) {
             val s = t.succession
@@ -2061,6 +2623,25 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         link.stopAll()
         openGroup(s)
         status = "Du leitest jetzt das Spiel – die anderen verbinden sich gleich wieder."
+        testHandBackTo?.let { back -> testHandBackTo = null; handBackWhenReady(back, UptimeClock.now() + 90_000) }
+    }
+
+    /** Intensivtest: Leitung zurückgeben, sobald [name] wieder verbunden ist (spätestens bis [until]). */
+    private fun handBackWhenReady(name: String, until: Long) {
+        scheduler.schedule(1_000) {
+            val engine = master ?: return@schedule
+            val back = engine.snapshot().players.any { it.connected && it.name == name && it.id in peerBuilds }
+            when {
+                back && engine.snapshot().phase == MasterEngine.Phase.READY -> scheduler.schedule(3_000) {
+                    if (master === engine) {
+                        Diagnostics.log("Intensivtest: Spielleitung zurück an $name")
+                        handOver(name)
+                    }
+                }
+                UptimeClock.now() < until -> handBackWhenReady(name, until)
+                else -> Diagnostics.log("Intensivtest: $name ist nicht zurückgekommen – Leitung bleibt hier")
+            }
+        }
     }
 
     /** Spielleiter: Leitung an [name] übergeben und selbst als Spieler weitermachen. */
@@ -2381,6 +2962,16 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
         /** Ab diesem Build bestätigen Spieler die Spielregeln mit OK (ältere werden nicht abgewartet). */
         const val RULES_CONFIRM_BUILD = 39
+
+        /** Ab diesem Build kennen Spieler die Befehle des Intensivtests. */
+        const val INTENSIVE_TEST_BUILD = 44
+
+        /** Grobe Dauer des Intensivtests: fester Teil plus je Spieler (Sekunden). */
+        const val INTENSIVE_BASE_S = 250
+        const val INTENSIVE_PER_PLAYER_S = 50
+
+        /** Kurznachrichten des Intensivtests beginnen so – der Spieler quittiert sie. */
+        const val TEST_CHAT_PREFIX = "[Test]"
 
         /** Ab diesem Build beantworten Spieler „Diagnosen abrufen“. */
         const val DIAG_REQUEST_BUILD = 27
