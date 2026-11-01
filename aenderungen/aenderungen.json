@@ -2,7 +2,7 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
-      "build": 0,
+      "build": 46,
       "datum": "2026-11-01",
       "punkte": [
         "Spielleitung übernehmen: Fällt der Spielleiter weg, übernimmt automatisch der Nächste in einer festen Reihenfolge – aber nur, wenn sich kein anderer meldet. Kommt der alte Spielleiter zurück, tritt er bei und kann die Leitung zurückbekommen. (Wirkt, wenn alle diesen Build haben.)",

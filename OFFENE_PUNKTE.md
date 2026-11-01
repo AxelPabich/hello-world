@@ -461,7 +461,7 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
-118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, kommt mit Build 46): Übernahmen gingen
+118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, in Build 46): Übernahmen gingen
     oft schief – ein neuer Spielleiter sah den alten noch und gab ab, während die anderen schon zu ihm wollten.
     Neu (gilt, sobald alle Mitspieler Build 46 haben, sonst das alte Verfahren):
     - Der Spielleiter verteilt in jeder Pause eine **Nachfolger-Liste** (beste Funkverbindung zuerst) und seine
@@ -490,7 +490,7 @@ Kategorien recherchieren.
       startete neu, daher fehlte das S6 bei „Verstummen“ und der Übergabe. Vermutlich hat Play Protect eine der früher
       hängenden Installationen von Build 44 nachträglich ausgeführt. Auf dem S6 Build 45 neu installieren und alte
       `buzzer-build-44.apk` aus „Downloads“ löschen.
-116. **WLAN für Update einschalten** (Wunsch vom 01.11.2026, kommt mit dem nächsten Build): Ist das WLAN aus, fragt
+116. **WLAN für Update einschalten** (Wunsch vom 01.11.2026, in Build 46): Ist das WLAN aus, fragt
     „Nach neuer Version suchen“ bzw. „Herunterladen und installieren“ erst „WLAN einschalten?“ – mit „WLAN
     einschalten“, „Mobile Daten“ (nur wenn darüber Internet da ist) und „Abbrechen“. Bis Android 9 schaltet die App
     das WLAN selbst ein, ab Android 10 erlaubt Android das nicht mehr: Dann erscheint der WLAN-Schalter von Android
