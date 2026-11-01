@@ -123,6 +123,7 @@ private fun App(vm: BuzzerViewModel) {
     if (vm.splash == null) vm.whatsNew?.let { de.pabich.buzzer.ui.WhatsNewDialog(it) { vm.dismissWhatsNew() } }
     LocationDialog(vm)
     de.pabich.buzzer.ui.WifiPromptDialog(vm)
+    de.pabich.buzzer.ui.ReturnLeadDialog(vm)
 }
 
 /**

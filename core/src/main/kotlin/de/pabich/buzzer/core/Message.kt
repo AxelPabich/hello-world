@@ -200,6 +200,12 @@ sealed interface Message {
         val test: Boolean,
         /** Fragen ab der zuletzt gestellten – der Nachfolger hat sie vielleicht nicht in seinen Paketen. */
         val questions: List<QuizQuestion> = emptyList(),
+        /** Leitungsnummer des Absenders (Punkt 118); der Nachfolger leitet mit [epoch] + 1. */
+        val epoch: Int = 0,
+        /** Nachfolger-Reihenfolge (beste Funkverbindung zuerst) für die gestaffelte Übernahme. */
+        val order: List<String> = emptyList(),
+        /** Alle Mitspieler kennen das Sync-Verfahren (Build ≥ 46) – sonst gilt das alte Verfahren. */
+        val sync: Boolean = false,
     ) : Message
 
     /** S → M: Emoticon, das der Spieler als Avatar gewählt hat (leer = keins). */
@@ -334,6 +340,7 @@ object MessageCodec {
                 "sc" to encodeList(message.scores.map { "${enc(it.first)}:${it.second}" }),
                 "q" to encodeList(message.quiz), "qn" to message.quizNext, "t" to message.test,
                 "qq" to encodeQuestions(message.questions),
+                "ep" to message.epoch, "or" to encodeList(message.order), "sy" to message.sync,
             )
             Message.MasterGone -> "MASTER_GONE" to emptyMap()
             is Message.Avatar -> "AVATAR" to mapOf("e" to message.emoji)
@@ -442,6 +449,9 @@ object MessageCodec {
                 },
                 quiz = decodeList(f.getValue("q")), quizNext = int("qn"), test = bool("t"),
                 questions = f["qq"]?.let { decodeQuestions(it) }.orEmpty(),
+                epoch = f["ep"]?.toIntOrNull() ?: 0,
+                order = f["or"]?.let { decodeList(it) }.orEmpty(),
+                sync = f["sy"] == "true",
             )
             "MASTER_GONE" -> Message.MasterGone
             "AVATAR" -> Message.Avatar(f.getValue("e"))

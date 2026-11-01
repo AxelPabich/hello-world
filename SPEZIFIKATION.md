@@ -943,3 +943,25 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   nicht wieder aus.
 - Unter dem Download-Link nennt die Update-Seite den Ausweg, wenn die Installation hängt: Play Protect („Apps mit Play
   Protect scannen“) kurz ausschalten und danach wieder einschalten (Tab S6, 01.11.2026: Prüfung hing ohne Meldung).
+
+## 64. Übernahme mit Sync-Verfahren (Build 46)
+
+- Gilt, wenn alle verbundenen Spieler Build ≥ `SYNC_BUILD` (46) haben (`Succession.sync`); sonst das bisherige Verfahren
+  (Abschnitt Übernahme, Punkt 59).
+- `SUCCESSION` hat drei neue Felder (ältere Apps ignorieren sie): `ep` = Leitungsnummer (Epoche) des Spielleiters,
+  `or` = Nachfolger-Reihenfolge (typische Funk-Laufzeit in 150-ms-Stufen, bei Gleichstand Beitrittsreihenfolge),
+  `sy` = Sync-Verfahren aktiv. Ein Nachfolger leitet mit Epoche + 1; das eröffnete Spiel hat Epoche 0.
+- Ankündigung: Nachfolger-Gruppen im Sync-Verfahren hängen `/g=<Spiel-ID>.<Epoche>` an (`Name [46/2/g=ab23cd.1]`).
+  Builds bis 45 halten solche Gruppen für inkompatibel – deshalb nur im Sync-Verfahren und nur bei Epoche ≥ 1.
+- Abbruch: Jeder Spieler wartet `TakeoverRules.waitMs(Rang)` = 5 s + 5 s × Rang und übernimmt dann selbst, falls er
+  bis dahin keine passende Gruppe gefunden hat (`joinWhileWaiting`: gleiches Spiel mit höherer Epoche oder der
+  bisherige Spielleiter). Findet er eine, tritt er bei. „Sofort übernehmen“ bleibt möglich.
+- Neuer Spielleiter: gibt nur ab an gleiches Spiel mit höherer Epoche oder gleicher Epoche und vorderem Rang
+  (`yieldTo`); an den Vorgänger nur, wenn nach `SYNC_LONELY_MS` (20 s) noch kein Spieler bei ihm ist.
+- Alter Spielleiter: Verliert er alle Spieler, sucht er 60 s lang mit. Findet er sein Spiel mit höherer Epoche
+  (`joinAsFormerMaster`), schickt er seine verbundenen Spieler per `SUCCESSION` mit `to` dorthin (`redirectTo`, auch
+  mitten in einer Runde) und tritt selbst bei.
+- Kommt der alte Spielleiter zum Nachfolger zurück (nicht im Testmodus, nicht nach gewollter Übergabe), fragt der
+  Nachfolger „<Name> ist zurück“ mit „Zurückgeben“ (geordnete Übergabe zwischen den Runden) und „Selbst weiterleiten“.
+- Diagnose: „Gruppe gefunden“ nennt Spiel und Leitungsnummer; die Übernahme protokolliert Platz und Wartezeit.
+

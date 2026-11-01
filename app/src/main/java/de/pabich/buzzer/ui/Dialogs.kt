@@ -578,3 +578,21 @@ fun WifiPromptDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
         },
     )
 }
+
+/** Neuer Spielleiter: Der bisherige ist zurück – Leitung zurückgeben? (Punkt 118) */
+@Composable
+fun ReturnLeadDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
+    val name = vm.returnOffer ?: return
+    AlertDialog(
+        onDismissRequest = { vm.answerReturnOffer(false) },
+        title = { Text("$name ist zurück") },
+        text = {
+            Text(
+                "Du hast die Spielleitung übernommen, als $name weg war. Soll $name wieder leiten? " +
+                    "Übergeben geht zwischen den Runden; alle Punkte bleiben. Du spielst dann normal weiter.",
+            )
+        },
+        confirmButton = { TextButton(onClick = { vm.answerReturnOffer(true) }) { Text("Zurückgeben") } },
+        dismissButton = { TextButton(onClick = { vm.answerReturnOffer(false) }) { Text("Selbst weiterleiten") } },
+    )
+}

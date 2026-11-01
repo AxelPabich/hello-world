@@ -304,6 +304,17 @@ class MasterEngine(
     private var quizFinished = false
 
     /** Kennung des Spiels – bleibt bei einer Übernahme der Spielleitung gleich. */
+    /** Leitungsnummer (Punkt 118): 0 im eröffneten Spiel, jeder Nachfolger leitet mit der nächsten Nummer. */
+    var epoch = 0
+        private set
+
+    /** Kennen alle verbundenen Spieler das Sync-Verfahren? Setzt die App (aus den Builds der Spieler). */
+    var syncCapable: () -> Boolean = { false }
+
+    /** Zuletzt bekannter Sync-Stand des Spiels – bleibt erhalten, wenn gerade alle Spieler weg sind. */
+    var syncGame = false
+        private set
+
     var gameId: String = (1..8).map { "abcdefghjkmnpqrstuvwxyz23456789"[random.nextInt(31)] }.joinToString("")
 
     /** Testspiel (nur zur Weitergabe an einen Nachfolger). */
@@ -315,7 +326,9 @@ class MasterEngine(
     /** Übernommene Punkte je Spieler – Startbild des Spielverlaufs nach einer Übernahme. */
     private val startScores = mutableMapOf<PlayerId, Long>()
     private var lastSuccession: Message.Succession? = null
-    private var handedOver = false
+    /** Leitung abgegeben (Übergabe, Weiterleitung, Verlassen) – diese Engine ist still. */
+    var handedOver = false
+        private set
 
     /** Wertung, nach der Punkte gezählt und angezeigt werden. */
     private val scoring: ScoringMode
@@ -1905,7 +1918,11 @@ class MasterEngine(
         }
         val scores = players.values.map { baseName(it.name) to it.score } +
             carriedScores.filterKeys { name -> players.values.none { baseName(it.name) == name } }.toList()
+        if (players.values.any { it.connected && !it.local }) syncGame = syncCapable()
         return Message.Succession(
+            epoch = epoch,
+            order = successorOrder(),
+            sync = syncGame,
             game = gameId,
             master = masterName,
             to = to,
@@ -1921,6 +1938,16 @@ class MasterEngine(
             questions = if (quizNext >= 0) quizQuestions.drop((quizNext - 1).coerceAtLeast(0)) else emptyList(),
         )
     }
+
+    /**
+     * Reihenfolge der Nachfolger: beste Funkverbindung zuerst (typische Laufzeit, in 150-ms-Stufen, damit
+     * kleine Schwankungen die Liste nicht ständig umwerfen); bei Gleichstand, wer länger dabei ist.
+     */
+    private fun successorOrder(): List<String> =
+        players.values.filter { it.connected && !it.local }
+            .withIndex()
+            .sortedWith(compareBy({ (it.value.sync.typicalRttMs ?: 10_000L) / 150 }, { it.index }))
+            .map { baseName(it.value.name) }
 
     /** In jeder Pause bekommen alle Spieler den aktuellen Stand – für den Fall, dass der Spielleiter wegfällt. */
     private fun shareSuccession() {
@@ -1943,6 +1970,20 @@ class MasterEngine(
         return true
     }
 
+    /**
+     * Sync-Verfahren (Punkt 118): [toName] leitet dieses Spiel inzwischen mit höherer Leitungsnummer – alle
+     * verbundenen Spieler werden dorthin geschickt (wie bei einer Übergabe, aber auch mitten in einer Runde),
+     * damit das Spiel nicht in zwei Gruppen zerfällt. Danach ist diese Engine still.
+     */
+    fun redirectTo(toName: String): Message.Succession {
+        val s = succession(toName)
+        log("Spieler werden zu $toName geschickt – leitet inzwischen dieses Spiel")
+        for (p in players.values) if (p.connected && !p.local) send(p.id, s)
+        handedOver = true
+        stop()
+        return s
+    }
+
     /** Der Spielleiter geht; die Spieler dürfen übernehmen (statt [close]). */
     fun leaveOpen() {
         handedOver = true
@@ -1956,6 +1997,8 @@ class MasterEngine(
      */
     fun takeOver(s: Message.Succession, questions: List<QuizQuestion>, next: Int) {
         gameId = s.game
+        epoch = s.epoch + 1
+        syncGame = s.sync
         kind = s.kind
         round = s.round
         gameStarted = s.round > 0

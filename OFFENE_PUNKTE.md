@@ -461,6 +461,23 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, kommt mit Build 46): Übernahmen gingen
+    oft schief – ein neuer Spielleiter sah den alten noch und gab ab, während die anderen schon zu ihm wollten.
+    Neu (gilt, sobald alle Mitspieler Build 46 haben, sonst das alte Verfahren):
+    - Der Spielleiter verteilt in jeder Pause eine **Nachfolger-Liste** (beste Funkverbindung zuerst) und seine
+      **Leitungsnummer** (Epoche). Jede Nachfolger-Gruppe kündigt per Bluetooth/Nearby **Spiel-ID und Leitungsnummer**
+      an – sichtbar, ohne sich zu verbinden.
+    - Fällt der Spielleiter weg, übernimmt **Nachfolger 1 nach 5 s**, jeder weitere 5 s später – aber nur, wenn bis
+      dahin **niemand sonst** aus dem Spiel zu finden ist. Wer wartet, sucht dauernd und tritt sofort bei.
+    - **Höhere Leitungsnummer hat immer Vorrang**; bei gleicher Nummer (zwei zugleich) der vordere Platz. Der neue
+      Spielleiter gibt **nie** an den alten ab, solange Spieler kommen können; ist nach 20 s noch niemand bei ihm,
+      tritt er dem alten bei (die anderen spielen dann offenbar wieder dort).
+    - Der **alte Spielleiter** findet den Nachfolger und tritt ihm bei; sind Spieler zu ihm zurückgekehrt, schickt er
+      sie mit – das Spiel zerfällt nicht in zwei Gruppen.
+    - Ist der alte Spielleiter zurück, fragt der neue: **„Axel ist zurück – Zurückgeben / Selbst weiterleiten“**.
+    - Bildschirm „Spielleitung“: zeigt den eigenen Platz und den Countdown bis zur Übernahme; „Sofort übernehmen“ bleibt.
+    - [ ] Testen: Spielleiter-Handy kurz in den Flugmodus – Nachfolger 1 übernimmt nach ~5 s, alle landen dort.
+    - [ ] Testen: Spielleiter kommt zurück – tritt bei, Abfrage „zurückgeben“ beim Nachfolger.
 117. **Zweiter Intensivtest (Build 45, 01.11.2026, 18:44–18:50)**: Samsung A53, Natsch, Samsung S6 (alle Build 45),
     78 von 82 bestanden, 347 s. Die drei Korrekturen aus Punkt 114 wirken (Spielregeln, Halten, Antwortzeit grün).
     - [ ] *Übergabe der Spielleitung* ✗: Der A53 wurde Spielleiter, sah den bisherigen Spielleiter Axel noch und

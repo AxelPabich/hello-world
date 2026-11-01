@@ -76,6 +76,28 @@ fun TakeoverScreen(vm: BuzzerViewModel) {
                         fontSize = 16.sp,
                     )
                 }
+            } else if (t.autoAt != null) {
+                // Sync-Verfahren (Punkt 118): feste Reihenfolge, automatische Übernahme nach Wartezeit.
+                val autoLeft = ((t.autoAt - now + 999) / 1000).coerceAtLeast(0)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp, color = theme.accent)
+                    Spacer(Modifier.width(12.dp))
+                    Text(
+                        if (t.rank == 0) "Du bist als Erste(r) dran: Meldet sich niemand, übernimmst du in $autoLeft s."
+                        else "Du bist Nachfolger Nr. ${t.rank + 1}: Meldet sich bis dahin niemand, übernimmst du in $autoLeft s.",
+                        color = theme.text,
+                        fontSize = 15.sp,
+                    )
+                }
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "Die Punkte und der Spielstand bleiben. Sobald jemand übernommen hat oder ${s.master} zurück ist, " +
+                        "verbindet sich die App von selbst.",
+                    color = theme.muted,
+                    fontSize = 14.sp,
+                )
+                Spacer(Modifier.height(12.dp))
+                PrimaryButton("Sofort übernehmen", { vm.takeOver() }, Modifier.fillMaxWidth())
             } else {
                 Text(
                     "Einer von euch kann das Spiel weiterführen – die Punkte und der Spielstand bleiben. " +
