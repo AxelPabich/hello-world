@@ -491,6 +491,9 @@ Kategorien recherchieren.
     (Prüfung hängt), Cache/Daten des „Paketinstallationsprogramms“, freier Speicher, Neustart; notfalls `adb install`.
     Nachtrag 2: Auch ältere Builds (die früher liefen) installieren nicht mehr – damit ist ausgeschlossen, dass ein
     neuer Build die Ursache ist. Nächste Schritte: Play-Store-Installation testen, abgesicherter Modus, `adb install`.
+    **Gelöst (01.11.2026):** Nach dem Ausschalten von Play Protect („Apps mit Play Protect scannen“) installierte das
+    Tab S6 sofort. Die Prüfung durch Play Protect blieb auf dem Tablet hängen, ohne Meldung. Die Update-Seite der App
+    nennt diesen Ausweg ab dem nächsten Build. Play Protect danach wieder einschalten.
 113. **Tab S6 hängt erneut bei der Installation (Build 44, 01.11.2026)** und **Nachtrag zu Punkt 110**:
     Sir Failalots nachgereichter Bericht (22:06:37) zeigt die Gegenseite der Trennung vom 31.10.: Ab dem Senden
     seines Diagnoseberichts (22:05:54) kam beim Spieler 12,9 s lang nichts mehr vom Spielleiter an

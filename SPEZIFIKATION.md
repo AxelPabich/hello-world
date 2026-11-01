@@ -938,4 +938,5 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Internet über WLAN besteht (`NET_CAPABILITY_VALIDATED`, `TRANSPORT_WIFI`), und setzt Suche bzw. Download fort.
 - Neue Berechtigung `ACCESS_NETWORK_STATE` (normale Berechtigung, ohne Rückfrage). Die App schaltet das WLAN danach
   nicht wieder aus.
-
+- Unter dem Download-Link nennt die Update-Seite den Ausweg, wenn die Installation hängt: Play Protect („Apps mit Play
+  Protect scannen“) kurz ausschalten und danach wieder einschalten (Tab S6, 01.11.2026: Prüfung hing ohne Meldung).

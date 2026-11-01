@@ -524,7 +524,8 @@ private fun UpdateSection(vm: BuzzerViewModel) {
         runCatching { uri.openUri(de.pabich.buzzer.ShareApp.DOWNLOAD_URL) }
     }) { Text("Direkter Download im Browser (buzzer.apk)", color = theme.accent2) }
     Text(
-        "Klappt die Installation aus der App nicht: Link öffnen, die Datei herunterladen und über „Eigene Dateien“ → Downloads antippen.",
+        "Klappt die Installation aus der App nicht: Link öffnen, die Datei herunterladen und über „Eigene Dateien“ → Downloads antippen. " +
+            "Bleibt die Installation hängen: im Play Store unter Profilbild → Play Protect → Zahnrad „Apps mit Play Protect scannen“ kurz ausschalten und danach wieder einschalten.",
         color = theme.muted,
         fontSize = 13.sp,
     )
