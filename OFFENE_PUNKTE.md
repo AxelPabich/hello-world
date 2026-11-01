@@ -461,6 +461,12 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+115. **Diagnosen gestaffelt abrufen** (Wunsch vom 01.11.2026, kommt mit Build 45; Lösung zu Punkt 113): Der
+    Spielleiter fragt die Spieler im Abstand von 8 s nacheinander an, die Spieler schicken ihre Berichtsteile mit
+    300 ms Abstand. Ab der Anfrage trennt 45 s lang (beim Spielleiter zusätzlich 8 s je Spieler, jeder Berichtsteil
+    verlängert auf mindestens 20 s) niemand wegen Stille. Ältere Spieler-Apps senden noch alles auf einmal,
+    profitieren aber von der Staffelung und der Schonfrist beim Spielleiter.
+    - [ ] Testen: „Diagnosen abrufen“ mit 3 Spielern – niemand wird getrennt.
 114. **Erster Intensivtest (Build 44, 01.11.2026, 16:00–16:06)**: 3 Spieler (Natsch und Sir Failalot Build 44,
     Yassi Build 43), 75 von 82 Prüfungen bestanden, Dauer 402 s (Schätzung 400 s passt). Alle drei roten Schritte
     waren Fehler im Testablauf, nicht in der App – korrigiert für den nächsten Build:

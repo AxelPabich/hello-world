@@ -700,6 +700,11 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Systemdaten bzw. nicht senden) gespeichert.
 - Gesendete Berichte landen wie bisher beim Spielleiter (mit Token direkt in GitHub).
 - Spieler mit Build < 27 kennen die Anfrage nicht; der Spielleiter sieht ihre Namen im Hinweis.
+- Ab Build 45 gestaffelt: Der Spielleiter fragt die Spieler nacheinander im Abstand von `DIAG_STAGGER_MS` (8 s) an,
+  der Spieler schickt die Berichtsteile im Abstand von `DIAG_PART_GAP_MS` (300 ms). Ab der Anfrage gilt auf beiden
+  Seiten eine Schonfrist (`DIAG_QUIET_MS` = 45 s, beim Spielleiter zusätzlich 8 s je Spieler; jeder empfangene
+  Berichtsteil verlängert sie auf mindestens 20 s): In dieser Zeit trennt weder der Spielleiter einen stillen Spieler
+  noch der Spieler einen stillen Spielleiter (Grund: Trennungen am 31.10.2026, als drei Spieler gleichzeitig sendeten).
 - „Diagnose senden“ zeigt ebenfalls „Bericht ansehen“: genau der Text, der verschickt würde.
 - „Nicht erneut fragen“ gilt dauerhaft, auch über neue Builds hinweg; in den Einstellungen steht die
   gespeicherte Antwort mit „Wieder fragen“.
@@ -924,4 +929,7 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   quittieren das Endergebnis und zeigen ein angefordertes Profil nicht an.
 - Ablauf: 14 Schritte (siehe `OFFENE_PUNKTE.md` Punkt 112). Ergebnis je Prüfung und Spieler (✓ / ✗ / – übersprungen)
   als Übersicht im Bericht „Selbsttest-…“ im Diagnose-Repository, dazu die gemessene Dauer.
+- Ab Build 45: Spieler unter dem Intensivtest-Build werden beim Regel-Schritt nicht abgewartet („–“); spielt der
+  Spielleiter mit, legt der Test im Halten-Modus auch seinen Finger auf; die Antwortzeit gilt als geprüft, sobald die
+  Frist abläuft und der Nächste an der Reihe ist (neue Frist) oder die Runde endet.
 ===== ENDE SPEZIFIKATION.md =====

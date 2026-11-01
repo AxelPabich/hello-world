@@ -514,6 +514,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             // Während einer Dateiübertragung (Update, Diagnose) kommen Antworten oft verspätet – dann nicht trennen.
             if (link.hasFileTransfer(id)) {
                 false
+            } else if (UptimeClock.now() < diagQuietUntil) {
+                // Diagnosen werden gerade übertragen – der Funk ist dann oft kurz verstopft (Punkt 115).
+                Diagnostics.log("Spieler still, aber Diagnose-Schonfrist läuft – nicht getrennt")
+                false
             } else {
                 link.disconnect(id)
                 onDisconnected(id)
@@ -1550,6 +1554,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             }
             is Message.DiagnoseChunk -> {
                 if (master == null) return
+                // Jeder Berichtsteil ist ein Lebenszeichen: Schonfrist verlängern.
+                diagQuietUntil = maxOf(diagQuietUntil, UptimeClock.now() + DIAG_CHUNK_QUIET_MS)
                 reportCollector.add(message)?.let { report ->
                     diagReportsReceived++
                     Diagnostics.log("Diagnosebericht von ${report.from} erhalten (Build ${report.build}, ${report.text.length} Zeichen)")
@@ -1637,6 +1643,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             }
             Message.DiagnoseRequest -> {
                 if (master != null || endpointId != masterEndpoint) return
+                diagQuietUntil = UptimeClock.now() + DIAG_QUIET_MS
                 Diagnostics.log("Spielleiter bittet um Diagnose")
                 // Im Testmodus (Selbsttest des Spielleiters) immer mit Systemdaten senden.
                 if (testMode) {
@@ -2481,7 +2488,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             if (player !== engine || masterEndpoint != endpointId) return
             val build = masterPeer?.build ?: 0
             val silence = UptimeClock.now() - (engine.lastMessageAt ?: since)
-            if (build >= HEARTBEAT_BUILD && silence > MASTER_SILENCE_MS) {
+            if (build >= HEARTBEAT_BUILD && silence > MASTER_SILENCE_MS && UptimeClock.now() >= diagQuietUntil) {
                 Diagnostics.log("Spielleiter seit $silence ms still – Verbindung gilt als abgebrochen")
                 link.disconnect(endpointId)
                 onDisconnected(endpointId)
@@ -2694,10 +2701,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     // ------------------------------------------------------------------ Diagnoseberichte
 
     /** Spielleiter: alle Spieler um ihren Diagnosebericht bitten (jeder entscheidet selbst). */
+    /** Bis hierhin trennt niemand wegen Stille – Diagnosen werden übertragen (Punkt 115). */
+    private var diagQuietUntil = 0L
+
     fun requestDiagnoses() {
         val ids = peerBuilds.keys.toList()
         if (ids.isEmpty()) return
-        ids.forEach { link.send(it, Message.DiagnoseRequest) }
+        // Nacheinander anfragen: Senden alle gleichzeitig, verstopft der Funk in beide Richtungen und
+        // Spieler werden wegen Stille getrennt (31.10.2026). Dazu eine Schonfrist ohne Stille-Trennung.
+        diagQuietUntil = UptimeClock.now() + DIAG_STAGGER_MS * ids.size + DIAG_QUIET_MS
+        ids.forEachIndexed { i, id ->
+            scheduler.schedule(DIAG_STAGGER_MS * i) { if (master != null && id in peerBuilds) link.send(id, Message.DiagnoseRequest) }
+        }
         // Ältere Builds kennen die Anfrage nicht und antworten nie.
         val old = ids.filter { (peerBuilds[it] ?: 0) < DIAG_REQUEST_BUILD }
             .mapNotNull { id -> masterSnapshot?.players?.firstOrNull { it.id == id }?.name?.let { "$it (Build ${peerBuilds[id] ?: "alt"})" } }
@@ -2758,7 +2773,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     fun sendDiagnoseToMaster(report: String) {
         val endpoint = masterEndpoint ?: return
         val id = System.currentTimeMillis().toString(36)
-        DiagnoseTransfer.split(id, myName.trim().ifEmpty { "Spieler" }, AppUpdate.ownBuild, report).forEach { link.send(endpoint, it) }
+        val parts = DiagnoseTransfer.split(id, myName.trim().ifEmpty { "Spieler" }, AppUpdate.ownBuild, report)
+        diagQuietUntil = maxOf(diagQuietUntil, UptimeClock.now() + DIAG_QUIET_MS)
+        // Teile mit kleinem Abstand schicken, damit Herzschlag und Spiel dazwischen durchkommen.
+        parts.forEachIndexed { i, part ->
+            scheduler.schedule(DIAG_PART_GAP_MS * i) { if (masterEndpoint == endpoint) link.send(endpoint, part) }
+        }
         Diagnostics.log("Diagnosebericht an den Spielleiter gesendet")
         status = "Diagnosebericht wird an den Spielleiter gesendet …"
     }
@@ -2998,6 +3018,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
         /** So lange darf der Spielleiter still sein, bevor die Verbindung als abgebrochen gilt. */
         const val MASTER_SILENCE_MS = 12_000L
+
+        /** Diagnosen abrufen: Abstand zwischen den Anfragen, Schonfrist ohne Stille-Trennung, Abstand der Teile. */
+        const val DIAG_STAGGER_MS = 8_000L
+        const val DIAG_QUIET_MS = 45_000L
+        const val DIAG_CHUNK_QUIET_MS = 20_000L
+        const val DIAG_PART_GAP_MS = 300L
 
         private const val KEY_BUILD = "build"
         private const val KEY_SEND = "send"

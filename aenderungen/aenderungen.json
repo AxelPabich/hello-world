@@ -2,6 +2,15 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
+      "build": 0,
+      "datum": "2026-11-01",
+      "punkte": [
+        "Diagnosen abrufen: Die Spieler werden nacheinander gefragt und senden ihre Berichte in kleinen Häppchen – niemand fliegt mehr wegen eines verstopften Funks aus dem Spiel.",
+        "Intensivtest: Spieler mit älterer App, Halten-Modus mit mitspielendem Spielleiter und die Antwortzeit werden jetzt richtig geprüft.",
+        "43 neue Fragen – die Schwierigkeitsstufen werden weiter angeglichen."
+      ]
+    },
+    {
       "build": 44,
       "datum": "2026-11-01",
       "punkte": [
