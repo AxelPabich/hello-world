@@ -54,7 +54,9 @@ python3 -c "import json;i=json.load(open('quiz/index.json'));Z={'leicht':.15,'mi
 ```
 
 **„Aktuelles“** (läuft neben den Phasen und gilt dauerhaft):
-- **Jede Woche 10 % der ältesten Fragen** (nach `erstellt`) durch frische ersetzen (geplante Aufgabe, montags).
+- **Jede Woche 10 % der ältesten Fragen** (nach `erstellt`) durch frische ersetzen (geplante Aufgabe: Samstag 21:30 Uhr in einer
+  frischen Sitzung mit Sonnet, um Restguthaben vor dem Zurücksetzen um 23 Uhr zu nutzen; reicht es nicht, macht die
+  Fortsetzung am Sonntag um 0:07 Uhr den Rest. Fortschritt steht in `OFFENE_PUNKTE.md` Punkt 119).
   Neue Fragen zählen für Phase 1 und 2 mit (Stufen nach Zielverteilung wählen).
 - **Sportanteil langsam auf höchstens 30 % senken:** beim Austausch zuerst alte Sportfragen entfernen und durch
   andere Themen ersetzen – Politik, Tagesschau-Meldungen, Gesellschaft/Gossip, Kunst, Kultur, Musik, Wissenschaft.
