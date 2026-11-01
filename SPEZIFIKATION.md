@@ -865,7 +865,13 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - **Zurück beim Spielleiter:** Quiz einrichten → Quiz-Vorlage → Spielart → „Spiel verlassen?“.
 - **Chat:** In der Spieleransicht bei genug Höhe sichtbar; während der Frage kommen neue Nachrichten erst
   nach der eigenen Antwort.
-- **Antwortfelder:** vier Felder untereinander über die ganze Breite.
+- **Antwortfelder:** vier Felder untereinander über die ganze Breite. Sie sind **immer vollständig sichtbar**
+  (höchste Priorität): Die vier Felder teilen sich die verfügbare Höhe; passt eine Antwort nicht, wird die Schrift
+  kleiner (20 → 12 sp, danach feste 12 → 8 dp unabhängig von der System-Schriftgröße) und das Feld schlanker
+  (weniger Rand, kleinerer Buchstabe, ohne „DEINE WAHL“-Zeile). Gemessen wird mit der Theme-Schrift. Die Frage
+  belegt höchstens ein knappes Drittel der Karte (vor den Antworten gut die Hälfte) und wird bei Bedarf kleiner.
+  Erklärung und Chat nach der Auflösung bekommen höchstens 28 % der Höhe und scrollen selbst; während der Frage
+  zeigt nur ein großer Bildschirm (ab 900 dp Höhe) den Chat. Fragen ≤ 170, Antworten ≤ 85 Zeichen (Test).
 - **Lesezeit:** Wartezeit zwischen Frage und Antworten = `LEAD_BASE_MS` + Zeichenzahl × langsamstes
   Lesetempo (Standard 80 ms/Zeichen, 20–400), höchstens 25 s (`Settings.quizReadAdapt`). Spieler messen ihr
   Tempo im Lesetest und melden es per `READ_SPEED`.

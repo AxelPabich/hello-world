@@ -33,6 +33,9 @@ class QuestionPackFilesTest {
                 assertTrue(pack.questions.any { it.level == level }, "${pack.title}: keine Frage der Stufe ${level.label}")
             }
         }
+        // Damit die vier Antwortfelder auch auf einem Handy vollständig sichtbar bleiben (Punkt 111): Längen begrenzt.
+        val tooLong = packs.flatMap { p -> p.questions }.filter { q -> q.text.length > MAX_QUESTION_CHARS || q.answers.any { it.length > MAX_ANSWER_CHARS } }
+        assertTrue(tooLong.isEmpty(), "Zu lang (Frage > $MAX_QUESTION_CHARS oder Antwort > $MAX_ANSWER_CHARS Zeichen): ${tooLong.joinToString { it.id }}")
         val ids = packs.flatMap { p -> p.questions.map { it.id } }
         assertEquals(ids.size, ids.toSet().size, "IDs eindeutig über alle Pakete")
         assertTrue(ids.size >= 60)
@@ -69,5 +72,10 @@ class QuestionPackFilesTest {
         } finally {
             QuizLevels.reset()
         }
+    }
+
+    private companion object {
+        const val MAX_QUESTION_CHARS = 170
+        const val MAX_ANSWER_CHARS = 85
     }
 }

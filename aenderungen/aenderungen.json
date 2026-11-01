@@ -2,6 +2,14 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
+      "build": 0,
+      "datum": "2026-11-01",
+      "punkte": [
+        "Quiz: Die vier Antworten sind jetzt immer vollständig sichtbar – auch auf kleinen Handys und bei großer Schrift; nichts muss mehr gescrollt werden.",
+        "Lange Fragen werden bei wenig Platz kleiner gesetzt; Erklärung und Chat nach der Auflösung nehmen den Antworten keinen Platz mehr weg."
+      ]
+    },
+    {
       "build": 43,
       "datum": "2026-10-31",
       "punkte": [

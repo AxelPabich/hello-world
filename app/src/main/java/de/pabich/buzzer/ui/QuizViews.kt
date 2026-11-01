@@ -32,6 +32,7 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -99,73 +100,108 @@ fun QuizCard(
     val now = frameTime(quiz.number)
     val beforeAnswers = quiz.stage == QuizStage.WAITING || quiz.stage == QuizStage.QUESTION
     val glow = beforeAnswers
-    Column(
+    val cardPad = if (compact) 10.dp else 14.dp
+    BoxWithConstraints(
         modifier
             .clip(RoundedCornerShape(20.dp))
             .background(theme.panel)
             .border(2.dp, if (glow) theme.accent else theme.line, RoundedCornerShape(20.dp))
-            .padding(if (compact) 10.dp else 14.dp),
-        verticalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 12.dp),
+            .padding(cardPad),
     ) {
-        // Zeitbalken (nicht nach der Auflösung)
-        if (quiz.stage != QuizStage.REVEALED) {
-            val end = quiz.answersAt + quiz.deadlineMs
-            val remaining = if (now < quiz.answersAt) quiz.durationMs else (end - now).coerceIn(0, quiz.durationMs)
-            val running = !beforeAnswers && quiz.stage != QuizStage.CLOSED
-            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                if (title != null) Text(title, color = theme.accent2, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
-                Box(
-                    Modifier
-                        .weight(1f)
-                        .height(if (compact) 8.dp else 10.dp)
-                        .clip(RoundedCornerShape(5.dp))
-                        .background(theme.line),
-                ) {
+        // Die Frage darf den Antwortfeldern nicht den Platz nehmen: bei wenig Höhe wird sie kleiner gesetzt.
+        val questionFont = questionFontSize(quiz.text, maxWidth, maxHeight, beforeAnswers, compact)
+        Column(
+            if (compact || maxHeight == Dp.Infinity) Modifier.fillMaxWidth() else Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 12.dp),
+        ) {
+            // Zeitbalken (nicht nach der Auflösung)
+            if (quiz.stage != QuizStage.REVEALED) {
+                val end = quiz.answersAt + quiz.deadlineMs
+                val remaining = if (now < quiz.answersAt) quiz.durationMs else (end - now).coerceIn(0, quiz.durationMs)
+                val running = !beforeAnswers && quiz.stage != QuizStage.CLOSED
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    if (title != null) Text(title, color = theme.accent2, fontSize = 12.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
                     Box(
                         Modifier
-                            .fillMaxHeight()
-                            .fillMaxWidth((remaining.toFloat() / quiz.durationMs).coerceIn(0f, 1f))
-                            .background(if (running) theme.accent2 else theme.line),
+                            .weight(1f)
+                            .height(if (compact) 8.dp else 10.dp)
+                            .clip(RoundedCornerShape(5.dp))
+                            .background(theme.line),
+                    ) {
+                        Box(
+                            Modifier
+                                .fillMaxHeight()
+                                .fillMaxWidth((remaining.toFloat() / quiz.durationMs).coerceIn(0f, 1f))
+                                .background(if (running) theme.accent2 else theme.line),
+                        )
+                    }
+                    Text(
+                        seconds(remaining),
+                        color = if (running) theme.accent2 else theme.muted,
+                        fontFamily = theme.display,
+                        fontSize = if (compact) 15.sp else 18.sp,
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.width(58.dp),
                     )
                 }
-                Text(
-                    seconds(remaining),
-                    color = if (running) theme.accent2 else theme.muted,
-                    fontFamily = theme.display,
-                    fontSize = if (compact) 15.sp else 18.sp,
-                    textAlign = TextAlign.End,
-                    modifier = Modifier.width(58.dp),
-                )
             }
-        }
-        Text(
-            // Vor dem gemeinsamen Zeitpunkt bleibt die Frage verdeckt – sie erscheint überall gleichzeitig.
-            if (quiz.stage == QuizStage.WAITING) "" else quiz.text,
-            color = theme.text,
-            fontSize = if (compact) 18.sp else if (beforeAnswers) 26.sp else 23.sp,
-            fontWeight = FontWeight.Bold,
-            lineHeight = if (compact) 22.sp else 29.sp,
-        )
-        Box(if (compact) Modifier.fillMaxWidth() else Modifier.fillMaxWidth().weight(1f)) {
-            AnswerGrid(quiz, onTap, compact, (if (compact) Modifier.fillMaxWidth() else Modifier.fillMaxSize()).alpha(if (beforeAnswers) 0f else 1f))
-            if (beforeAnswers) {
-                val left = ceil((quiz.answersAt - now).coerceAtLeast(0) / 1000.0).toInt().coerceAtLeast(1)
-                Column(
-                    Modifier.fillMaxWidth().heightIn(min = if (compact) 120.dp else 200.dp).align(Alignment.Center),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                ) {
-                    Box(
-                        Modifier.size(if (compact) 72.dp else 116.dp).border(8.dp, theme.accent, CircleShape),
-                        contentAlignment = Alignment.Center,
+            Text(
+                // Vor dem gemeinsamen Zeitpunkt bleibt die Frage verdeckt – sie erscheint überall gleichzeitig.
+                if (quiz.stage == QuizStage.WAITING) "" else quiz.text,
+                color = theme.text,
+                fontSize = questionFont,
+                fontWeight = FontWeight.Bold,
+                lineHeight = (questionFont.value * 1.25f).sp,
+            )
+            Box(if (compact) Modifier.fillMaxWidth() else Modifier.fillMaxWidth().weight(1f)) {
+                AnswerGrid(quiz, onTap, compact, (if (compact) Modifier.fillMaxWidth() else Modifier.fillMaxSize()).alpha(if (beforeAnswers) 0f else 1f))
+                if (beforeAnswers) {
+                    val left = ceil((quiz.answersAt - now).coerceAtLeast(0) / 1000.0).toInt().coerceAtLeast(1)
+                    Column(
+                        Modifier.fillMaxWidth().heightIn(min = if (compact) 120.dp else 200.dp).align(Alignment.Center),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center,
                     ) {
-                        Text("$left", color = theme.accent, fontFamily = theme.display, fontSize = if (compact) 36.sp else 60.sp)
+                        Box(
+                            Modifier.size(if (compact) 72.dp else 116.dp).border(8.dp, theme.accent, CircleShape),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text("$left", color = theme.accent, fontFamily = theme.display, fontSize = if (compact) 36.sp else 60.sp)
+                        }
+                        Spacer(Modifier.height(8.dp))
+                        Text("Antworten kommen gleich", color = theme.muted, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                     }
-                    Spacer(Modifier.height(8.dp))
-                    Text("Antworten kommen gleich", color = theme.muted, fontSize = 15.sp, fontWeight = FontWeight.SemiBold)
                 }
             }
         }
+    }
+}
+
+/**
+ * Schriftgröße der Frage: wie gewohnt, aber höchstens etwa ein Drittel der Kartenhöhe (vor dem Einblenden der
+ * Antworten gut die Hälfte) – der Rest gehört den vier Antwortfeldern.
+ */
+@Composable
+private fun questionFontSize(text: String, width: Dp, height: Dp, beforeAnswers: Boolean, compact: Boolean): TextUnit {
+    val measurer = rememberTextMeasurer()
+    val density = LocalDensity.current
+    val baseStyle = LocalTextStyle.current
+    return remember(text, width, height, beforeAnswers, compact, density, baseStyle) {
+        val normal = if (compact) 18.sp else if (beforeAnswers) 26.sp else 23.sp
+        if (compact || height == Dp.Infinity || width == Dp.Infinity || text.isEmpty()) return@remember normal
+        val limit = height * (if (beforeAnswers) 0.55f else 0.3f)
+        val smaller = listOf(21, 19, 18, 17, 16, 15, 14).map { it.sp }.filter { it.value < normal.value }
+        val fixed = with(density) { listOf(14, 13, 12).map { it.dp.toSp() } }
+        val sizes = listOf(normal) + smaller + fixed
+        sizes.firstOrNull { size ->
+            with(density) {
+                measurer.measure(
+                    text,
+                    style = baseStyle.merge(TextStyle(fontSize = size, lineHeight = (size.value * 1.25f).sp, fontWeight = FontWeight.Bold)),
+                    constraints = Constraints(maxWidth = width.roundToPx()),
+                ).size.height.toDp() <= limit
+            }
+        } ?: sizes.last()
     }
 }
 
@@ -183,8 +219,9 @@ private fun AnswerGrid(quiz: PlayerEngine.QuizView, onTap: (Int, Long) -> Unit, 
     val enabled = quiz.stage == QuizStage.ANSWERS && quiz.chosen < 0
     val gap = if (compact) 8.dp else 10.dp
     BoxWithConstraints(modifier) {
-        // Jede Antwort muss vollständig im Feld stehen (Punkt 79): erst etwas kleinere Schrift, dann
-        // höhere Felder – immer alle vier gleich hoch.
+        // Alle vier Antworten müssen immer vollständig sichtbar sein (höchste Priorität, Punkt 111): Die Felder
+        // teilen sich die verfügbare Höhe; passt eine Antwort nicht, wird die Schrift kleiner und das Feld
+        // schlanker – gescrollt wird nur im äußersten Notfall.
         val fit = answerFit(quiz.answers, maxWidth, maxHeight, compact, gap)
         val scroll = rememberScrollState()
         Column(
@@ -200,9 +237,10 @@ private fun AnswerGrid(quiz: PlayerEngine.QuizView, onTap: (Int, Long) -> Unit, 
                     text = text,
                     state = st,
                     thumb = st == FieldState.CORRECT && result?.chosenPosition == pos,
-                    chosenInfo = if (st == FieldState.CHOSEN && result == null) quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" } else null,
+                    chosenInfo = if (st == FieldState.CHOSEN && result == null && !fit.tight) quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" } else null,
                     enabled = enabled,
                     compact = compact,
+                    tight = fit.tight,
                     fontSize = fit.fontSize,
                     onTap = { time -> onTap(pos, time) },
                     modifier = Modifier.fillMaxWidth().height(fit.rowHeight),
@@ -212,48 +250,77 @@ private fun AnswerGrid(quiz: PlayerEngine.QuizView, onTap: (Int, Long) -> Unit, 
     }
 }
 
-private class AnswerFit(val fontSize: TextUnit, val rowHeight: Dp, val overflows: Boolean)
+private class AnswerFit(val fontSize: TextUnit, val rowHeight: Dp, val overflows: Boolean, val tight: Boolean)
 
-/** Innenabstand eines Antwortfelds. */
-private fun fieldPadding(compact: Boolean) = if (compact) 8.dp else 12.dp
+/** Innenabstand eines Antwortfelds (schlank: wenn es eng wird). */
+private fun fieldPadding(compact: Boolean, tight: Boolean = false) = when {
+    tight -> 7.dp
+    compact -> 8.dp
+    else -> 12.dp
+}
+
+/** Buchstabenkreis A–D. */
+private fun letterSize(compact: Boolean, tight: Boolean) = if (compact || tight) 22.dp else 30.dp
+
+/** Rechts frei für den Daumen nach der Auflösung. */
+private fun thumbReserve(compact: Boolean, tight: Boolean) = when {
+    compact -> 0.dp
+    tight -> 26.dp
+    else -> 36.dp
+}
 
 private fun answerLineHeight(fontSize: TextUnit) = (fontSize.value * 1.25f).sp
 
 /**
- * Misst alle Antworten in der Feldbreite: die größte Schrift, bei der jede Antwort in die normale
- * Feldhöhe passt; sonst die kleinste Schrift und so hohe Felder, dass die längste Antwort passt.
+ * Wählt Schrift und Feldhöhe so, dass alle vier Antworten vollständig in die verfügbare Höhe passen:
+ * erst die normale Darstellung mit Schriftgrößen von 20 bis 12 sp (folgt der System-Schriftgröße), dann
+ * schlanke Felder, zuletzt feste Größen bis 8 dp, die auch eine große System-Schrift nicht mehr vergrößert.
+ * Nur wenn selbst das nicht reicht, werden die Felder höher und der Bereich scrollt.
  */
 @Composable
 private fun answerFit(answers: List<String>, width: Dp, height: Dp, compact: Boolean, gap: Dp): AnswerFit {
     val measurer = rememberTextMeasurer()
     val density = LocalDensity.current
-    val pad = fieldPadding(compact)
-    // Rahmen (bis 3 dp) und Buchstabenkreis mit Abstand; unten Platz für „DEINE WAHL“.
-    val letter = if (compact) 22.dp else 30.dp
-    val textWidth = (width - pad * 2 - 6.dp - letter - 10.dp - if (compact) 0.dp else 40.dp).coerceAtLeast(40.dp)
-    val chrome = pad * 2 + 6.dp + if (compact) 0.dp else 15.dp
-    val base = when {
-        compact -> 46.dp
-        height != Dp.Infinity -> ((height - gap * 3) / 4).coerceAtLeast(56.dp)
-        else -> 72.dp
-    }
-    val sizes = if (compact) listOf(15.sp, 14.sp, 13.sp) else listOf(20.sp, 18.sp, 16.sp, 15.sp, 14.sp)
-    fun need(size: TextUnit): Dp = with(density) {
-        val widthPx = textWidth.roundToPx()
-        val tallest = answers.maxOfOrNull { text ->
-            measurer.measure(
-                text,
-                style = TextStyle(fontSize = size, lineHeight = answerLineHeight(size), fontWeight = FontWeight.Bold),
-                constraints = Constraints(maxWidth = widthPx),
-            ).size.height
-        } ?: 0
-        tallest.toDp() + chrome
-    }
+    // Gemessen wird mit genau dem Stil, mit dem die Felder zeichnen (Schrift und Zeichenabstand des Themes).
+    val baseStyle = LocalTextStyle.current
     // Die Karte wird jedes Bild neu gezeichnet – gemessen wird nur, wenn sich Antworten oder Platz ändern.
-    return remember(answers, width, height, compact, density) {
-        val font = sizes.firstOrNull { need(it) <= base } ?: sizes.last()
-        val row = maxOf(base, need(font))
-        AnswerFit(font, row, height != Dp.Infinity && row * 4 + gap * 3 > height)
+    return remember(answers, width, height, compact, density, baseStyle) {
+        fun textWidth(tight: Boolean): Dp {
+            val pad = fieldPadding(compact, tight)
+            // Rahmen (bis 3 dp je Seite), Buchstabenkreis mit 10 dp Abstand, rechts der Daumen.
+            return (width - pad * 2 - 6.dp - letterSize(compact, tight) - 10.dp - thumbReserve(compact, tight)).coerceAtLeast(40.dp)
+        }
+        // Zeile „DEINE WAHL · 12,3 s“ unter der gewählten Antwort (nur in der normalen Darstellung).
+        val infoHeight = with(density) {
+            measurer.measure("DEINE WAHL · 88,8 s", style = baseStyle.merge(TextStyle(fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp))).size.height.toDp()
+        }
+        fun need(size: TextUnit, tight: Boolean): Dp = with(density) {
+            val widthPx = textWidth(tight).roundToPx()
+            val tallest = answers.maxOfOrNull { text ->
+                measurer.measure(
+                    text,
+                    style = baseStyle.merge(TextStyle(fontSize = size, lineHeight = answerLineHeight(size), fontWeight = FontWeight.Bold)),
+                    constraints = Constraints(maxWidth = widthPx),
+                ).size.height
+            } ?: 0
+            val extra = if (compact || tight) 0.dp else infoHeight
+            tallest.toDp() + fieldPadding(compact, tight) * 2 + 6.dp + extra
+        }
+        val scaled = (if (compact) listOf(15, 14, 13, 12) else listOf(20, 18, 16, 15, 14, 13, 12)).map { it.sp }
+        // Feste Größen (dp) – unabhängig von der Schriftgröße in den Android-Einstellungen.
+        val fixed = with(density) { listOf(12, 11, 10, 9, 8).map { it.dp.toSp() } }
+        if (height == Dp.Infinity) {
+            val base = if (compact) 46.dp else 72.dp
+            val font = scaled.firstOrNull { need(it, false) <= base } ?: scaled.last()
+            return@remember AnswerFit(font, maxOf(base, need(font, false)), overflows = false, tight = false)
+        }
+        val row = ((height - gap * 3) / 4).coerceAtLeast(1.dp)
+        scaled.firstOrNull { need(it, false) <= row }?.let { return@remember AnswerFit(it, row, overflows = false, tight = false) }
+        (scaled + fixed).firstOrNull { need(it, true) <= row }?.let { return@remember AnswerFit(it, row, overflows = false, tight = true) }
+        // Äußerster Notfall (winziges Fenster): kleinste Schrift, Felder so hoch wie nötig, Bereich scrollt.
+        val font = fixed.last()
+        val needed = need(font, true)
+        AnswerFit(font, needed, overflows = needed * 4 + gap * 3 > height, tight = true)
     }
 }
 
@@ -266,12 +333,13 @@ private fun AnswerField(
     chosenInfo: String?,
     enabled: Boolean,
     compact: Boolean,
+    tight: Boolean,
     fontSize: TextUnit,
     onTap: (Long) -> Unit,
     modifier: Modifier,
 ) {
     val theme = LocalBuzzerTheme.current
-    val shape = RoundedCornerShape(if (compact) 12.dp else 16.dp)
+    val shape = RoundedCornerShape(if (compact || tight) 12.dp else 16.dp)
     val (bg, edge, fg) = when (state) {
         FieldState.OPEN -> Triple(theme.ground, theme.accent2, theme.text)
         FieldState.CHOSEN -> Triple(theme.accent, Color(0xFFFFE08A), Color(0xFF1A1300))
@@ -303,12 +371,12 @@ private fun AnswerField(
                     drawLine(c, Offset(size.width - inset, inset), Offset(inset, size.height - inset), stroke, StrokeCap.Round)
                 }
             }
-            .padding(fieldPadding(compact)),
+            .padding(fieldPadding(compact, tight)),
     ) {
         Row(Modifier.fillMaxSize(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             Box(
                 Modifier
-                    .size(if (compact) 22.dp else 30.dp)
+                    .size(letterSize(compact, tight))
                     .background(
                         when (state) {
                             FieldState.OPEN -> theme.accent
@@ -330,10 +398,10 @@ private fun AnswerField(
                         FieldState.WRONG -> QuizRed
                     },
                     fontFamily = theme.display,
-                    fontSize = if (compact) 12.sp else 16.sp,
+                    fontSize = with(LocalDensity.current) { (if (compact || tight) 12.dp else 16.dp).toSp() },
                 )
             }
-            Column(Modifier.weight(1f).padding(end = if (compact) 0.dp else 36.dp)) {
+            Column(Modifier.weight(1f).padding(end = thumbReserve(compact, tight))) {
             Text(
                 text,
                 color = fg,
@@ -347,7 +415,9 @@ private fun AnswerField(
             }
             }
         }
-        if (thumb) Text("👍", fontSize = if (compact) 22.sp else 30.sp, modifier = Modifier.align(Alignment.CenterEnd))
+        if (thumb) {
+            Text("👍", fontSize = with(LocalDensity.current) { (if (compact || tight) 20.dp else 28.dp).toSp() }, modifier = Modifier.align(Alignment.CenterEnd))
+        }
     }
 }
 
@@ -572,8 +642,12 @@ fun QuizPlayerContent(
     LaunchedEffect(holdChat, quiz?.number) { if (holdChat) heldAt = chat.size }
     val shownChat = if (holdChat) chat.take(heldAt.coerceAtMost(chat.size)) else chat
     BoxWithConstraints(modifier.background(theme.ground)) {
-        // Je nach Platz: auf kleinen Bildschirmen bleibt der Chat dem Menü vorbehalten.
-        val roomForChat = maxHeight >= 640.dp
+        // Die Antworten haben Vorrang: Während der Frage zeigt nur ein großer Bildschirm (Tablet) den Chat,
+        // auf Handys bleibt er dem Menü vorbehalten.
+        val roomForChat = maxHeight >= 900.dp
+        // Erklärung und Chat nach der Auflösung bekommen höchstens ein knappes Drittel der Höhe und scrollen
+        // selbst – die vier Antwortfelder bleiben vollständig sichtbar.
+        val belowCardMax = maxHeight * 0.28f
         Column(Modifier.fillMaxSize()) {
             if (quiz == null) {
                 Column(
@@ -625,14 +699,16 @@ fun QuizPlayerContent(
                     ChatPanel(shownChat, theme.muted, Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp), maxLines = 2)
                 }
                 if (result != null) {
-                    QuizExplanation(
-                        explanation = result.explanation,
-                        source = result.source,
-                        challenged = quiz.challenged,
-                        onChallenge = onChallenge,
-                        modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 10.dp),
-                    )
-                    if (shownChat.isNotEmpty()) ChatPanel(shownChat, theme.text, Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), maxLines = 3)
+                    Column(Modifier.fillMaxWidth().heightIn(max = belowCardMax).verticalScroll(rememberScrollState())) {
+                        QuizExplanation(
+                            explanation = result.explanation,
+                            source = result.source,
+                            challenged = quiz.challenged,
+                            onChallenge = onChallenge,
+                            modifier = Modifier.fillMaxWidth().padding(start = 16.dp, end = 16.dp, top = 10.dp),
+                        )
+                        if (shownChat.isNotEmpty()) ChatPanel(shownChat, theme.text, Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 6.dp), maxLines = 3)
+                    }
                 }
                 Spacer(Modifier.height(10.dp))
             }

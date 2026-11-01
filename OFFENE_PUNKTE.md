@@ -461,6 +461,15 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+111. **Antworten mussten gescrollt werden (Sir Failalot, Galaxy A53, Spieleabend 31.10.2026)** – höchste Priorität,
+    behoben (kommt mit dem nächsten Build). Ursache: Jedes Antwortfeld war mindestens 56 dp hoch und die Schrift
+    nur bis 14 sp verkleinerbar; reichte die Höhe nicht (lange Antworten, Handy-Bildschirm, ggf. größere
+    System-Schrift), wurden die Felder höher und der Bereich scrollbar. Auf dem Handy nahmen zusätzlich der Chat
+    (während der Frage), „Antwort gesperrt“ und nach der Auflösung Erklärung und Chat Platz weg. Außerdem wurde
+    mit der Standardschrift statt der Theme-Schrift (Barlow, 0,5 sp Zeichenabstand) gemessen. Jetzt: Felder teilen
+    sich immer genau die verfügbare Höhe, Schrift bis 8 dp, schlanke Felder, Frage passt sich an, Chat während der
+    Frage nur auf Tablets, Erklärung/Chat nach der Auflösung begrenzt und separat scrollbar; Messung mit
+    Theme-Stil. Längen in den Fragenpaketen per Test begrenzt (Frage ≤ 170, Antwort ≤ 85 Zeichen).
 110. **Spieleabend 31.10.2026, bis 22:07 (Build 43; Axel, Sir Failalot = Galaxy A53, Yassi = Tab S6, Natsch = Tab S7,
     Ingo mit altem Build)** – drei Quizrunden à 20 Fragen ohne Fehler: Spielregeln-Bestätigung (Ingo als alter
     Build ausgenommen), automatische Bereit-Abfrage, Pause in der Frage (19 s und 79 s), „Frage neu stellen –
