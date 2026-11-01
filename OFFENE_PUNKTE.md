@@ -3,6 +3,38 @@
 Gesammelte Wünsche für kommende Builds. Umgesetzt und gebaut wird erst auf
 ausdrückliche Bitte.
 
+## Übergabe (01.11.2026, Wechsel in eine neue Sitzung)
+
+Für jede neue Sitzung: zuerst `CLAUDE.md` (Regeln), `AGENTS.md` (Aufbau) und diesen Abschnitt lesen; Details zu jeder
+Funktion in `SPEZIFIKATION.md`, die neuesten Punkte stehen unten im Abschnitt „Offen“ (höchste Nummer zuerst: 119).
+
+**Stand:** Build **46** (2.0.46) ist gebaut und freigegeben (Run 46). Arbeits-Branch
+`claude/android-multicast-groups-9b1lkt`, alles gepusht. Kern-Tests: `cd core && gradle test -q` (164 Tests grün).
+Diagnose-Repository (privat) `AxelPabich/buzzer-diagnose` liegt unter `/home/user/buzzer-diagnose` (vorher `git pull`);
+„Diag“ heißt: neue Berichte dort lesen, auswerten, Axel berichten, Spielzählung aktualisieren.
+
+**Geräte der Runde:** Spielleiter Axel (Samsung SM-X930), Spieler „Samsung A53“ / Sir Failalot, Natsch (Tab S7),
+„Samsung S6“ / Yassi (Tab S6, SM-T865, Android 12 – installiert Updates nur mit kurz ausgeschaltetem Play Protect;
+bekam am 01.11. um 18:48 ungewollt Build 44 über 45 installiert, auf aktuellen Build bringen).
+
+**Offene Fäden:**
+- Build 46 testen (Punkt 118): Spielleiter-Handy in den Flugmodus → Nachfolger 1 übernimmt nach ~5 s; Rückkehr →
+  „Zurückgeben“-Abfrage; gewollte Übergabe bleibt beim neuen Spielleiter. Danach Intensivtest wiederholen (Punkt 117).
+  Das Sync-Verfahren greift nur, wenn alle Mitspieler Build 46 haben.
+- Weitere offene Tests: Punkt 115 (Diagnosen gestaffelt), Punkt 116 (WLAN-Abfrage beim Update).
+- Fragendatenbank: Phase 1 läuft (auf 120 je Kategorie, nur mittel/schwer, max. 4 je Kategorie und Build) – vor dem
+  nächsten Build die Prüfung aus `CLAUDE.md` ausführen.
+- **Geplante Aufgaben** (Konto Axel): „Aktuelles-Rotation (Samstag)“ (Samstag 21:30, `trig_01MHrwzvytgq4jERH5g4g1iH`)
+  und „… Fortsetzung (Sonntag 0 Uhr)“ (`trig_01MkDD7mzZF4crweEhecR7n4`), beide frische Sitzung mit Sonnet 5.5 und
+  Push-Nachricht. **Probelauf am 01.11.: Klonen ging, Pushen scheiterte (403, Repository nicht freigegeben);
+  `buzzer-diagnose` nicht erreichbar; `add_repo`/`get_session` gibt es in solchen Sitzungen nicht.** Axel muss in
+  claude.ai bei beiden Aufgaben die Repositories `hello-world` und `buzzer-diagnose` als Quellen hinzufügen; danach
+  einen weiteren Probelauf starten (`fire_trigger`). Verbrauch des Probelaufs: 0,84 $ Gegenwert, ~6,5 min, 12 Websuchen
+  (von der aufrufenden Sitzung per `get_session` abfragbar). Die 11 Fragen des Probelaufs sind verloren.
+- Sicherheits-Erinnerung (Punkt 106, samstags 10:11) läuft in der aktuellen Arbeitssitzung (siehe `list_triggers`).
+- Commit-Footer: „Co-Authored-By: Claude …“ und „Claude-Session: <Link der aktuellen Sitzung>“.
+- Vorgänger-Sitzung (sehr langer Verlauf, nur noch zum Nachlesen): https://claude.ai/code/session_0147fva53m9u492CDWBpFMFv
+
 Stand: Build 4 (Version 1.0.4) – alle sichtbaren Funktionen laufen auf den
 Testgeräten (Samsung SM-X930 / Android 16, Samsung SM-T865 / Android 12).
 
