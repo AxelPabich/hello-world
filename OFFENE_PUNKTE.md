@@ -461,6 +461,18 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+114. **Erster Intensivtest (Build 44, 01.11.2026, 16:00–16:06)**: 3 Spieler (Natsch und Sir Failalot Build 44,
+    Yassi Build 43), 75 von 82 Prüfungen bestanden, Dauer 402 s (Schätzung 400 s passt). Alle drei roten Schritte
+    waren Fehler im Testablauf, nicht in der App – korrigiert für den nächsten Build:
+    - [ ] *Spielregeln bestätigen*: Yassi (Build 43) bestätigt im Testmodus nicht automatisch, der Test wartete 15 s
+      und wertete dann alle als Fehler. Spieler unter Build 44 werden jetzt nicht mehr abgewartet („–“).
+    - [ ] *Halten/Loslassen*: Der Spielleiter spielt selbst mit; im Halten-Modus startet die Runde erst, wenn alle
+      den Finger auflegen – auch der Spielleiter. Der Test legt jetzt auch dessen Finger auf und lässt los.
+    - [ ] *Antwortzeit*: Die Zeit lief korrekt ab (je 3 s, „zählt als falsch“), danach war der Nächste dran; die
+      Prüfung hielt das für „läuft noch“. Jetzt zählt eine neue Antwortfrist als Erfolg.
+    Tab S6: Paket-Installer-Sitzungen (15:45, 15:46, 15:57) bleiben bei „Installer wartet auf Bestätigung“ stehen,
+    ohne Erfolg oder Fehlermeldung – die Systemabfrage erscheint offenbar nicht oder wird ohne Ergebnis geschlossen.
+    Nächster Versuch: APK über den Download-Link im Browser laden und von Hand installieren; Play Protect prüfen.
 113. **Tab S6 hängt erneut bei der Installation (Build 44, 01.11.2026)** und **Nachtrag zu Punkt 110**:
     Sir Failalots nachgereichter Bericht (22:06:37) zeigt die Gegenseite der Trennung vom 31.10.: Ab dem Senden
     seines Diagnoseberichts (22:05:54) kam beim Spieler 12,9 s lang nichts mehr vom Spielleiter an

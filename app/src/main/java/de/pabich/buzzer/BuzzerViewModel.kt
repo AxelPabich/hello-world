@@ -1990,6 +1990,18 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             before()
             sleep(400)
             e.release()
+            // Spielt der Spielleiter selbst mit, muss auch er im Halten-Modus den Finger auflegen,
+            // sonst startet die Runde nie (Intensivtest 01.11.: Schritt 4 ohne Buzz).
+            val local = player
+            if (settings.startMode == de.pabich.buzzer.core.StartMode.HOLD_RELEASE && local != null &&
+                e.snapshot().players.any { it.id == LOCAL_PLAYER_ID }
+            ) {
+                sleep(300)
+                local.onTouchDown(UptimeClock.now())
+                waitUntil(20_000) { e.snapshot().phase.let { it != MasterEngine.Phase.WAIT_HOLD && it != MasterEngine.Phase.COUNTDOWN } }
+                sleep(250)
+                local.onTouchUp(UptimeClock.now())
+            }
             waitUntil(40_000) { e.snapshot().phase.let { it == MasterEngine.Phase.ANSWERING || it == MasterEngine.Phase.ROUND_OVER } }
             sleep(800)
             return e.snapshot().players
@@ -2032,7 +2044,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 val e = engine()
                 if (e.snapshot().kind != GameKind.QUIZ) e.chooseKind(GameKind.QUIZ)
                 e.updateSettings(testSettings, savedProfile)
-                val exempt = names.filter { build(it) < RULES_CONFIRM_BUILD }.mapNotNull { row(it)?.id }.toSet()
+                // Erst ab dem Intensivtest-Build bestätigen die Testspieler automatisch – ältere nicht warten lassen.
+                val noAuto = names.filter { build(it) < INTENSIVE_TEST_BUILD }
+                val exempt = noAuto.mapNotNull { row(it)?.id }.toSet()
                 var done = false
                 e.onRulesConfirmed = { done = true }
                 val (title, lines) = rulesFor(e) ?: ("Intensivtest" to listOf("Test" to "Bitte bestätigen"))
@@ -2044,6 +2058,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 for (n in names) {
                     when {
                         build(n) < RULES_CONFIRM_BUILD -> mark("Spielregeln bestätigen", n, null, "Build < $RULES_CONFIRM_BUILD")
+                        n in noAuto -> mark("Spielregeln bestätigen", n, null, "$oldBuild (bestätigt nicht automatisch)")
                         else -> mark("Spielregeln bestätigen", n, n !in waiting && (done || !asked), if (done) "${UptimeClock.now() - t0} ms" else "fehlt")
                     }
                 }
@@ -2095,10 +2110,15 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             run {
                 buzzerRound(testSettings.copy(answerLimitEnabled = true, answerLimitMs = 3_000))
                 val e = engine()
-                val timedOut = e.snapshot().phase != MasterEngine.Phase.ANSWERING ||
-                    waitUntil(8_000) { e.snapshot().phase != MasterEngine.Phase.ANSWERING }
+                // Nach Ablauf ist der Nächste dran (wieder ANSWERING) – erkennbar an einer neuen Frist.
+                val first = e.snapshot()
+                val buzzed = first.phase == MasterEngine.Phase.ANSWERING
+                val d0 = first.answerDeadline
+                val timedOut = buzzed && waitUntil(8_000) {
+                    e.snapshot().let { it.phase != MasterEngine.Phase.ANSWERING || it.answerDeadline != d0 }
+                }
                 waitUntil(5_000 + 4_000L * names.size) { e.snapshot().phase == MasterEngine.Phase.ROUND_OVER }
-                mark("Buzzer: Antwortzeit läuft ab", null, timedOut)
+                mark("Buzzer: Antwortzeit läuft ab", null, timedOut, if (buzzed) "" else "niemand gebuzzert")
                 finishRound()
             }
 
