@@ -932,4 +932,16 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
 - Ab Build 45: Spieler unter dem Intensivtest-Build werden beim Regel-Schritt nicht abgewartet („–“); spielt der
   Spielleiter mit, legt der Test im Halten-Modus auch seinen Finger auf; die Antwortzeit gilt als geprüft, sobald die
   Frist abläuft und der Nächste an der Reihe ist (neue Frist) oder die Runde endet.
+
+## 63. WLAN für Update-Suche und Download (Build 46)
+
+- „Nach neuer Version suchen“ und „Herunterladen und installieren“ prüfen zuerst, ob das WLAN an ist. Ist es aus, fragt
+  der Dialog „WLAN einschalten?“: „WLAN einschalten“, „Mobile Daten“ (nur angeboten, wenn bereits geprüftes Internet
+  über mobile Daten besteht) und „Abbrechen“.
+- Einschalten: bis Android 9 direkt (`WifiManager.setWifiEnabled`), ab Android 10 über die WLAN-Einblendung von Android
+  (`Settings.Panel.ACTION_WIFI`, notfalls die WLAN-Einstellungen). Danach prüft die App jede Sekunde bis zu 60 s, ob
+  Internet über WLAN besteht (`NET_CAPABILITY_VALIDATED`, `TRANSPORT_WIFI`), und setzt Suche bzw. Download fort.
+- Neue Berechtigung `ACCESS_NETWORK_STATE` (normale Berechtigung, ohne Rückfrage). Die App schaltet das WLAN danach
+  nicht wieder aus.
+
 ===== ENDE SPEZIFIKATION.md =====

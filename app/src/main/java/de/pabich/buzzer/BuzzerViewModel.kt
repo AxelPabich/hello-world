@@ -1173,15 +1173,93 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
     }
 
-    /** Neueste Version auf der Release-Seite abfragen. */
-    fun checkRepoUpdate() {
+    // ------------------------------------------------------------------ WLAN für Update (Punkt 116)
+
+    enum class NetAction { CHECK, DOWNLOAD }
+
+    /** WLAN ist aus: Abfrage, ob es für Suche bzw. Download eingeschaltet werden soll. */
+    var wifiPrompt by mutableStateOf<NetAction?>(null)
+        private set
+
+    /** Internet über mobile Daten wäre schon da (dann bietet der Dialog „Ohne WLAN weiter“ an). */
+    var wifiPromptMobile by mutableStateOf(false)
+        private set
+
+    private var wifiWait: Cancellable? = null
+
+    private fun withWifi(action: NetAction) {
+        val app = getApplication<Application>()
+        if (WifiHelper.isEnabled(app)) {
+            runNet(action)
+        } else {
+            wifiPromptMobile = WifiHelper.hasInternet(app)
+            wifiPrompt = action
+            Diagnostics.log("Update: WLAN ist aus – Abfrage angezeigt" + if (wifiPromptMobile) " (mobile Daten vorhanden)" else "")
+        }
+    }
+
+    private fun runNet(action: NetAction) = when (action) {
+        NetAction.CHECK -> doCheckRepoUpdate()
+        NetAction.DOWNLOAD -> doDownloadFromRepo()
+    }
+
+    /** Antwort auf die WLAN-Abfrage: einschalten (`true`) oder ohne WLAN weitermachen (`false`). */
+    fun answerWifiPrompt(enable: Boolean) {
+        val action = wifiPrompt ?: return
+        wifiPrompt = null
+        if (!enable) {
+            Diagnostics.log("Update: ohne WLAN weiter (mobile Daten)")
+            runNet(action)
+            return
+        }
+        val app = getApplication<Application>()
+        if (!WifiHelper.enable(app)) {
+            Diagnostics.log("Update: WLAN ließ sich nicht einschalten")
+            status = "WLAN ließ sich nicht einschalten – bitte in den Schnelleinstellungen einschalten."
+            return
+        }
+        Diagnostics.log("Update: WLAN wird eingeschaltet, warte auf Internet")
+        status = "WLAN wird eingeschaltet – sobald Internet da ist, geht es los …"
+        val until = UptimeClock.now() + 60_000
+        fun poll() {
+            wifiWait = null
+            when {
+                WifiHelper.isEnabled(app) && WifiHelper.hasInternet(app, wifiOnly = true) -> {
+                    Diagnostics.log("Update: WLAN verbunden")
+                    status = null
+                    runNet(action)
+                }
+                UptimeClock.now() > until -> {
+                    Diagnostics.log("Update: nach 60 s kein Internet über WLAN")
+                    status = "Kein Internet über WLAN – bitte mit einem WLAN verbinden und noch einmal tippen."
+                }
+                else -> wifiWait = scheduler.schedule(1_000) { poll() }
+            }
+        }
+        wifiWait?.cancel()
+        wifiWait = scheduler.schedule(1_000) { poll() }
+    }
+
+    fun cancelWifiPrompt() {
+        wifiPrompt = null
+    }
+
+    /** Neueste Version auf der Release-Seite abfragen (vorher ggf. WLAN einschalten lassen). */
+    fun checkRepoUpdate() = withWifi(NetAction.CHECK)
+
+    fun downloadFromRepo() {
+        if (downloadProgress != null) return
+        withWifi(NetAction.DOWNLOAD)
+    }
+
+    private fun doCheckRepoUpdate() {
         AppUpdate.latestBuild { build ->
             repoBuild = build
             if (build == null) status = "Die Release-Seite ist nicht erreichbar (Internet?)."
         }
     }
 
-    fun downloadFromRepo() {
+    private fun doDownloadFromRepo() {
         if (downloadProgress != null) return
         downloadProgress = 0f
         AppUpdate.download(getApplication(), onProgress = { downloadProgress = it }) { file ->

@@ -461,6 +461,12 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+116. **WLAN für Update einschalten** (Wunsch vom 01.11.2026, kommt mit dem nächsten Build): Ist das WLAN aus, fragt
+    „Nach neuer Version suchen“ bzw. „Herunterladen und installieren“ erst „WLAN einschalten?“ – mit „WLAN
+    einschalten“, „Mobile Daten“ (nur wenn darüber Internet da ist) und „Abbrechen“. Bis Android 9 schaltet die App
+    das WLAN selbst ein, ab Android 10 erlaubt Android das nicht mehr: Dann erscheint der WLAN-Schalter von Android
+    als Einblendung. Sobald Internet über WLAN da ist (höchstens 60 s warten), läuft Suche bzw. Download von selbst weiter.
+    - [ ] Testen: WLAN aus, „Nach neuer Version suchen“ → Abfrage, einschalten, Suche läuft weiter.
 115. **Diagnosen gestaffelt abrufen** (Wunsch vom 01.11.2026, in Build 45; Lösung zu Punkt 113): Der
     Spielleiter fragt die Spieler im Abstand von 8 s nacheinander an, die Spieler schicken ihre Berichtsteile mit
     300 ms Abstand. Ab der Anfrage trennt 45 s lang (beim Spielleiter zusätzlich 8 s je Spieler, jeder Berichtsteil

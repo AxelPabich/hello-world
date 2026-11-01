@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- Update-Suche: prüfen, ob Internet über WLAN oder mobile Daten da ist (Punkt 116). -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!-- Nearby verlangt für die Suche je nach Gerät auch auf neuen Android-Versionen den Standort. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />

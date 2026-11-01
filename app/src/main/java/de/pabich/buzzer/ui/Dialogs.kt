@@ -553,3 +553,28 @@ fun WhatsNewDialog(entries: List<de.pabich.buzzer.Changelog.Entry>, onDismiss: (
     )
 }
 
+
+/** WLAN ist aus: für Update-Suche und Download einschalten? (Punkt 116) */
+@Composable
+fun WifiPromptDialog(vm: de.pabich.buzzer.BuzzerViewModel) {
+    val action = vm.wifiPrompt ?: return
+    val what = if (action == de.pabich.buzzer.BuzzerViewModel.NetAction.DOWNLOAD) "den Download" else "die Suche nach einer neuen Version"
+    AlertDialog(
+        onDismissRequest = { vm.cancelWifiPrompt() },
+        title = { Text("WLAN einschalten?") },
+        text = {
+            Text(
+                "Das WLAN ist ausgeschaltet. Soll es für $what eingeschaltet werden?" +
+                    if (vm.wifiPromptMobile) " Ohne WLAN geht es auch über mobile Daten (die App ist rund 11 MB groß)." else
+                        " Ohne WLAN gibt es gerade keine Internetverbindung.",
+            )
+        },
+        confirmButton = { TextButton(onClick = { vm.answerWifiPrompt(true) }) { Text("WLAN einschalten") } },
+        dismissButton = {
+            Row {
+                if (vm.wifiPromptMobile) TextButton(onClick = { vm.answerWifiPrompt(false) }) { Text("Mobile Daten") }
+                TextButton(onClick = { vm.cancelWifiPrompt() }) { Text("Abbrechen") }
+            }
+        },
+    )
+}
