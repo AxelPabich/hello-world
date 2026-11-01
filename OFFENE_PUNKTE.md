@@ -479,6 +479,10 @@ Kategorien recherchieren.
     Tab S6: Paket-Installer-Sitzungen (15:45, 15:46, 15:57) bleiben bei „Installer wartet auf Bestätigung“ stehen,
     ohne Erfolg oder Fehlermeldung – die Systemabfrage erscheint offenbar nicht oder wird ohne Ergebnis geschlossen.
     Nächster Versuch: APK über den Download-Link im Browser laden und von Hand installieren; Play Protect prüfen.
+    Nachtrag 01.11.: Auch nach Deinstallation von Build 43 hängt die manuelle Installation von Build 44 – also kein
+    Problem der App-Installation oder der Signatur, sondern des Tablets (Android 12, Sicherheitspatch 08/2023). Am Build
+    hat sich seit 41 nichts geändert, was die Installation betrifft (minSdk 24, targetSdk 35). Zu prüfen: Play Protect
+    (Prüfung hängt), Cache/Daten des „Paketinstallationsprogramms“, freier Speicher, Neustart; notfalls `adb install`.
 113. **Tab S6 hängt erneut bei der Installation (Build 44, 01.11.2026)** und **Nachtrag zu Punkt 110**:
     Sir Failalots nachgereichter Bericht (22:06:37) zeigt die Gegenseite der Trennung vom 31.10.: Ab dem Senden
     seines Diagnoseberichts (22:05:54) kam beim Spieler 12,9 s lang nichts mehr vom Spielleiter an
