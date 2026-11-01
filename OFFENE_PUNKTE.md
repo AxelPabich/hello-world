@@ -461,6 +461,15 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+113. **Tab S6 hängt erneut bei der Installation (Build 44, 01.11.2026)** und **Nachtrag zu Punkt 110**:
+    Sir Failalots nachgereichter Bericht (22:06:37) zeigt die Gegenseite der Trennung vom 31.10.: Ab dem Senden
+    seines Diagnoseberichts (22:05:54) kam beim Spieler 12,9 s lang nichts mehr vom Spielleiter an
+    („Spielleiter seit 12948 ms still“), der Spielleiter hörte gleichzeitig nichts von den Spielern. Die Funkstrecke
+    war also in beide Richtungen verstopft, während drei Spieler gleichzeitig je ~26 KB (9 Teile à 3000 Zeichen)
+    schickten. Vorschlag: Berichte nacheinander anfordern (gestaffelt), Berichtsteile als Lebenszeichen werten und
+    rund 45 s nach „Diagnosen abrufen“ auf beiden Seiten niemanden wegen Stille trennen. Zum Tab S6 liegt kein neuer
+    Bericht vor (das Tablet hängt vor dem Neustart); laut Plan nimmt der zweite Installationsversuch ab Build 43 den
+    Paket-Installer und protokolliert den Grund.
 112. **Intensivtest** (Wunsch vom 01.11.2026; kommt mit Build 44): Im Selbsttest wählbar, vorher eine
     Sicherheitsabfrage mit geschätzter Dauer (250 s + 50 s je Spieler). Prüft jede Funktion mit jedem Spieler:
     Verbindung, Spielregeln bestätigen, Buzzer (Tippen, Falsch → Richtig, Halten/Loslassen, Frühstart, Antwortzeit),
