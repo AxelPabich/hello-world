@@ -493,6 +493,16 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+120. **Dritter Intensivtest (Build 48, 06.11.2026, 21:39–21:44)**: Natsch, Samsung A53 (Build 48), Samsung S6 (noch
+    Build 45), 80 von 82 bestanden, 316 s. Alles grün bis auf *Nach der Übergabe wieder dabei* für A53 und S6.
+    - [ ] Ursache im Testablauf: Natsch gibt die Leitung zurück, sobald Axel bei ihm ist (`handBackWhenReady`, nach 3 s) –
+      A53 und S6 waren da noch gar nicht bei Natsch angekommen. Danach fanden beide auch in 60 s nicht zu Axel zurück
+      (der Spielleiter fragte die Diagnosen nur noch bei Natsch an). Vorschlag: Rückgabe erst, wenn alle Spieler beim
+      Nachfolger sind (höchstens 60 s), und prüfen, warum A53/S6 nach einer schnellen Doppel-Übergabe hängen bleiben.
+      Für die Auswertung fehlt das Protokoll des A53 nach 21:43 – bei einem Fehler dort „Diagnose senden“ tippen.
+    - Samsung S6: Build 48 hängt wieder bei „Installer wartet auf Bestätigung“ (21:29). Solange das S6 auf Build 45
+      ist, greift das Sync-Verfahren aus Punkt 118 nicht.
+    - Punkt 118 (Flugmodus-Test) ist in diesen Diagnosen nicht zu sehen – noch offen.
 119. **Fragendatenbank: neuer Plan** (Wunsch vom 01.11.2026, Regeln in `CLAUDE.md`): (1) auf 120 Fragen je Kategorie
     auffüllen (nur mittel/schwer), (2) Stufen durch Ersetzen auf 15 % leicht, 45 % mittel, 30 % schwer, 10 % Ingomania
     bringen – höchstens 20 veränderte Fragen pro Build, (3) danach nur noch „Aktuelles“ pflegen. „Aktuelles“: jede Woche
