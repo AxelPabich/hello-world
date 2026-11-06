@@ -493,6 +493,16 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+121. **Vierter Intensivtest (Build 48, 06.11.2026, 21:56–22:01, alle auf Build 48)**: Natsch, Samsung A53, Samsung S6,
+    80 von 82 bestanden, 349 s.
+    - Übergabe: Der A53 folgt jetzt sauber Axel → Natsch → Axel (Leitungsnummer 3 → 4) – das Sync-Verfahren wirkt.
+    - [ ] *Nach der Übergabe wieder dabei – Samsung S6* ✗: Das S6 meldete sich um 22:00:15 bei Natsch, 0,2 s später gab
+      Natsch die Leitung schon an Axel zurück („Verbindung mit NFAO fehlgeschlagen: 13 ERROR“); danach fand das S6 nicht
+      zu Axel. Gleiche Ursache wie in Punkt 120 (Rückgabe zu früh). Ob das S6 danach festhing, zeigt erst sein Protokoll.
+    - [ ] *Offline in der Frage, dann antworten – Natsch* ✗ (**Fehler in der App**): Natsch kam mit derselben
+      Verbindungskennung (DC5L) zurück wie vorher. `MasterEngine.resumeQuizTurn` sucht nur einen alten Eintrag mit
+      *anderer* Kennung – bei gleicher Kennung bekommt der Rückkehrer die laufende Frage nicht erneut und kann nicht
+      antworten. (Im Test um 21:43 kam Natsch mit neuer Kennung zurück, da klappte es.)
 120. **Dritter Intensivtest (Build 48, 06.11.2026, 21:39–21:44)**: Natsch, Samsung A53 (Build 48), Samsung S6 (noch
     Build 45), 80 von 82 bestanden, 316 s. Alles grün bis auf *Nach der Übergabe wieder dabei* für A53 und S6.
     - [ ] Ursache im Testablauf: Natsch gibt die Leitung zurück, sobald Axel bei ihm ist (`handBackWhenReady`, nach 3 s) –
