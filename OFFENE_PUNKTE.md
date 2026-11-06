@@ -500,6 +500,8 @@ Kategorien recherchieren.
     Tagesschau, Gesellschaft, Kunst, Kultur), US-Sport nur Baseball/Football/Basketball, kein Eishockey mehr.
     Spielzählung im privaten Repository: `statistik/gespielt.json` (bisher 348 Fragen gespielt, zusammen 375-mal).
     Später mit Axel besprechen: Austausch alter Fragen.
+    Rotation 2026-11-06: 12 von 12 ersetzt (6 Eishockey, 6 alte Sportfragen raus; Emmys, VMAs, Buchmesse, Venedig,
+    Jugendwort, Bambi, Booker rein), Sportanteil ca. 64 % → ca. 55 % (Schätzung), Stufen 24/33/28/29 (leicht/mittel/schwer/ingomania).
 118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, in Build 46): Übernahmen gingen
     oft schief – ein neuer Spielleiter sah den alten noch und gab ab, während die anderen schon zu ihm wollten.
     Neu (gilt, sobald alle Mitspieler Build 46 haben, sonst das alte Verfahren):
