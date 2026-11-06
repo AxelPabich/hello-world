@@ -2,6 +2,19 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
+      "build": 0,
+      "datum": "2026-11-06",
+      "punkte": [
+        "Spielleiter: Fehler und Verbindungsprobleme (Spieler getrennt, wieder da, antwortet nicht, Verbindung fehlgeschlagen, Upload-Fehler) erscheinen als [System]-Meldung im eigenen Chat.",
+        "Pause: Während einer Spielpause bleibt der Chat offen – Nachrichten lesen und schreiben.",
+        "Quiz: Eine Antwort zählt nur noch als echter Tipp. Wer den Finger über die Felder zieht, wählt nichts aus.",
+        "Quiz: Die Antworten erscheinen nach der Frage etwas früher (Lesezeit rund 15 % kürzer).",
+        "Quiz: Wer mitten in der Frage kurz die Verbindung verliert, kann nach der Rückkehr wieder antworten – jetzt in allen Fällen.",
+        "Intensivtest: Die Übergabe der Spielleitung wartet, bis alle Spieler beim neuen Spielleiter sind.",
+        "43 neue Fragen – Technik, Film, Sehenswürdigkeiten und Küche haben jetzt je 120 Fragen."
+      ]
+    },
+    {
       "build": 48,
       "datum": "2026-11-06",
       "punkte": [
