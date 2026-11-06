@@ -2,6 +2,13 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
+      "build": 0,
+      "datum": "2026-11-06",
+      "punkte": [
+        "Aktuelles 2026: 12 frische Fragen zu Kultur und Unterhaltung (Emmys, MTV Video Music Awards, Filmfest Venedig, Frankfurter Buchmesse, Jugendwort des Jahres, Bambi, International Booker Prize) – dafür sind alte Sport- und Eishockeyfragen herausgefallen."
+      ]
+    },
+    {
       "build": 47,
       "datum": "2026-11-01",
       "punkte": [
