@@ -260,7 +260,7 @@ der Freigabe; die Verzögerung würfelt die App erst beim Start.
 
 ## 15. Kurznachrichten und Emoticons
 
-- **Kurznachrichten** (max. 100 Zeichen) werden nur in den Rundenpausen gesendet, an einzelne
+- **Kurznachrichten** (max. 100 Zeichen) werden nur in den Rundenpausen und während einer Spielpause (Abschnitt 65) gesendet, an einzelne
   Teilnehmer, den Spielleiter oder alle. Sie laufen über das Master-Gerät. Der Spielleiter kann
   den Chat **jederzeit lesen** (Abschnitt 57).
 - **Emoticons** jederzeit, auch während Buzzern und Antworten. Die 7 Emoticons sind je
@@ -878,7 +878,7 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Erklärung und Chat nach der Auflösung bekommen höchstens 28 % der Höhe und scrollen selbst; während der Frage
   zeigt nur ein großer Bildschirm (ab 900 dp Höhe) den Chat. Fragen ≤ 170, Antworten ≤ 85 Zeichen (Test).
 - **Lesezeit:** Wartezeit zwischen Frage und Antworten = `LEAD_BASE_MS` + Zeichenzahl × langsamstes
-  Lesetempo (Standard 80 ms/Zeichen, 20–400), höchstens 25 s (`Settings.quizReadAdapt`). Spieler messen ihr
+  Lesetempo (Standard 80 ms/Zeichen, 20–400) × `READ_TEMPO_FACTOR` 0,85 (Build 49: rund 15 % schneller), höchstens 25 s (`Settings.quizReadAdapt`). Spieler messen ihr
   Tempo im Lesetest und melden es per `READ_SPEED`.
 - **Mischen abschaltbar:** `Settings.quizShuffleAnswers` (Standard an); aus = gleiche Reihenfolge für alle.
 
@@ -965,3 +965,18 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Nachfolger „<Name> ist zurück“ mit „Zurückgeben“ (geordnete Übergabe zwischen den Runden) und „Selbst weiterleiten“.
 - Diagnose: „Gruppe gefunden“ nennt Spiel und Leitungsnummer; die Übernahme protokolliert Platz und Wartezeit.
 
+## 65. System-Meldungen, Chat in der Pause, sicheres Antworten (Build 49)
+
+- **[System]-Meldungen:** Der Spielleiter sieht im eigenen Chat (Ungelesen-Leiste und Chatfenster, kursiv, ohne
+  Chat-Klang) Meldungen „[System] …“: Spieler getrennt bzw. wieder verbunden, „antwortet seit … s nicht“,
+  fehlgeschlagene Verbindungen, Statusmeldungen mit Fehlern (z. B. Upload fehlgeschlagen, Beitritt abgelehnt),
+  rote Prüfungen im Selbsttest. Gleiche Meldungen innerhalb von 5 s erscheinen nur einmal. Spieler sehen sie nicht.
+- **Chat in der Spielpause:** Während einer Pause (⏸) dürfen alle Kurznachrichten senden; die Spieler sehen auf dem
+  Pausenbild die letzten Nachrichten und „✉ Nachricht schreiben“.
+- **Quiz-Antwort nur per Tipp:** Ein Antwortfeld zählt erst beim Loslassen und nur, wenn der Finger nicht gezogen
+  wurde (mehr als die System-Toleranz), im Feld blieb und kein zweiter Finger dazukam. Gemessen wird weiter der
+  Zeitpunkt der Berührung; es zählt nur die erste Antwort.
+- **Rückkehr mit gleicher Verbindungskennung:** Kommt ein Spieler mitten in der Frage mit derselben Kennung zurück,
+  bekommt er die Frage erneut (Punkt 121).
+- **Intensivtest, Übergabe:** Der Nachfolger gibt die Leitung erst zurück, wenn auch alle anderen Spieler bei ihm
+  angekommen sind (höchstens 60 s warten).

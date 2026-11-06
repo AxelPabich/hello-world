@@ -56,6 +56,26 @@ class RejoinTest {
     }
 
     @Test
+    fun `player who returns with the same connection id can still answer`() {
+        val g = quizGame()
+        g.time.advanceBy(4_000) // Antworten sind offen
+        g.master.removePlayer("Peter")
+        g.time.advanceBy(2_000)
+        // Nearby vergibt dieselbe Kennung erneut (Punkt 121).
+        g.addPlayer("Peter", clockOffsetMs = 700, latencyMs = 40)
+        g.time.advanceBy(1_500)
+        val asks = g.received.getValue("Peter").filterIsInstance<Message.QuizAsk>()
+        assertEquals(2, asks.size, "Frage nach der Rückkehr erneut geschickt")
+        assertEquals(1, asks.last().number)
+        g.tapRight("Peter", 500)
+        g.time.advanceBy(15_000)
+        assertTrue(g.masterLog.any { "Peter steigt wieder in Frage 1 ein" in it })
+        assertEquals(QuizOutcome.RIGHT, g.received.getValue("Peter").filterIsInstance<Message.QuizResult>().single().outcome)
+        assertEquals(1L, g.row("Peter").scoreValue)
+        assertEquals(1, g.master.snapshot().players.count { it.name == "Peter" }, "kein doppelter Eintrag")
+    }
+
+    @Test
     fun `answer given before the drop still counts`() {
         val g = quizGame()
         g.tapRight("Peter", 800)

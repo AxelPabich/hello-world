@@ -64,7 +64,19 @@ data class FlyingEmote(val id: Long, val from: String, val emoji: String)
 /** Rückmeldung eines Spielers im Intensivtest. */
 data class TestAckEntry(val name: String, val action: String, val ok: Boolean, val detail: String)
 
-data class ChatLine(val from: String, val text: String, val toAll: Boolean, val outgoing: Boolean, val id: Long = 0)
+data class ChatLine(
+    val from: String,
+    val text: String,
+    val toAll: Boolean,
+    val outgoing: Boolean,
+    val id: Long = 0,
+    /** [System]-Meldung für den Spielleiter: Fehler, Verbindungsabbrüche, nicht erreichbare Spieler. */
+    val system: Boolean = false,
+) {
+    /** Anzeigetext einer Zeile im Chat. */
+    val label: String
+        get() = if (system) "$from $text" else "$from${if (toAll && !outgoing) " (an alle)" else ""}: $text"
+}
 
 /**
  * Spieler nach dem Wegfall des Spielleiters (Punkt 59): [expected] = bestimmter Nachfolger,
@@ -106,7 +118,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     var status: String?
         get() = statusState
         set(value) {
-            if (value != null) Diagnostics.log("Meldung: $value")
+            if (value != null) {
+                Diagnostics.log("Meldung: $value")
+                if (looksLikeProblem(value)) systemNote(value)
+            }
             statusState = value
         }
     var connectingTo by mutableStateOf<String?>(null)
@@ -497,7 +512,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         finishPendingStop()
         store.setPlayerName(myName.trim())
         choosingKind = taken?.kind == null
-        val engine = MasterEngine(UptimeClock, scheduler, log = Diagnostics::log) { to, message ->
+        val engine = MasterEngine(UptimeClock, scheduler, log = { Diagnostics.log(it); noteFromMasterLog(it) }) { to, message ->
             if (to == LOCAL_PLAYER_ID) {
                 // Gleicher Weg wie über Funk, nur ohne Laufzeit.
                 scheduler.schedule(0) { player?.onMessage(message) }
@@ -1407,11 +1422,54 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     private fun addChat(line: ChatLine) {
         chat += line.copy(id = ++chatCounter)
-        if (!line.outgoing && SoundEvent.CHAT in activeSounds) sound(SoundEvent.CHAT)
+        if (!line.outgoing && !line.system && SoundEvent.CHAT in activeSounds) sound(SoundEvent.CHAT)
         while (chat.size > 30) chat.removeAt(0)
     }
 
     private var chatCounter = 0L
+
+    /**
+     * [System]-Meldung im Chat des Spielleiters (Wunsch vom 06.11.2026): Fehler, getrennte und nicht erreichbare
+     * Spieler, fehlgeschlagene Verbindungen und Uploads, rote Prüfungen im Selbsttest. Nur der Spielleiter sieht sie;
+     * gleiche Meldungen kurz hintereinander erscheinen nur einmal.
+     */
+    private fun systemNote(text: String) {
+        if (master == null) return
+        val now = UptimeClock.now()
+        if (text == lastSystemNote && now - lastSystemNoteAt < 5_000) return
+        lastSystemNote = text
+        lastSystemNoteAt = now
+        addChat(ChatLine("[System]", text, toAll = false, outgoing = false, system = true))
+    }
+
+    private var lastSystemNote = ""
+    private var lastSystemNoteAt = 0L
+
+    /** Spieler, die als getrennt gemeldet wurden – kommen sie zurück, meldet das System es ebenfalls. */
+    private val missingPlayers = mutableSetOf<String>()
+
+    private fun looksLikeProblem(text: String): Boolean {
+        val t = text.lowercase()
+        return PROBLEM_WORDS.any { it in t }
+    }
+
+    /** Übersetzt Protokollzeilen der Spiellogik in [System]-Meldungen (läuft auf dem Faden der Spiellogik). */
+    private fun noteFromMasterLog(line: String) {
+        val note = when {
+            line.startsWith("Spieler getrennt: ") -> {
+                val name = line.removePrefix("Spieler getrennt: ").substringBeforeLast(" (")
+                missingPlayers += name
+                "$name ist nicht mehr verbunden"
+            }
+            " antwortet seit " in line && line.endsWith("getrennt") -> line
+            line.startsWith("Spieler beigetreten: ") -> {
+                val name = line.removePrefix("Spieler beigetreten: ").substringBeforeLast(" (")
+                if (missingPlayers.remove(name)) "$name ist wieder verbunden" else null
+            }
+            else -> null
+        } ?: return
+        scheduler.schedule(0) { systemNote(note) }
+    }
 
     /** Bis zu welcher Nachricht der Spielleiter den Chat schon gesehen hat. */
     private var chatSeenId by mutableStateOf(0L)
@@ -1423,10 +1481,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         chatSeenId = chatCounter
     }
 
-    /** Kurznachrichten sind nur in den Rundenpausen möglich. */
+    /** Kurznachrichten sind in den Rundenpausen und während einer Spielpause möglich. */
     val canChat: Boolean
         get() = master?.canChat()
-            ?: playerView?.let { it.rules.messagesEnabled && it.showBoard } ?: false
+            ?: playerView?.let { it.rules.messagesEnabled && (it.showBoard || it.paused) } ?: false
 
     // ------------------------------------------------------------------ Export / Import
 
@@ -1583,6 +1641,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     override fun onConnectionFailed(endpointId: String, reason: String) {
         Diagnostics.log("Verbindung mit $endpointId fehlgeschlagen: $reason")
+        val who = joinRequests.firstOrNull { it.endpointId == endpointId }?.peer?.name ?: endpointId
+        systemNote("Verbindung mit $who fehlgeschlagen ($reason)")
         joinRequests.removeAll { it.endpointId == endpointId }
         if (master == null && connectingTo == endpointId) {
             connectingTo = null
@@ -2068,6 +2128,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 row[name] = when (ok) { true -> "✓"; false -> "✗"; null -> "–" }
                 results += SelfTest.Result("$check – $name", ok != false, if (ok == null) "übersprungen" + detail.let { if (it.isEmpty()) "" else " ($it)" } else detail)
             }
+            if (ok == false) scheduler.schedule(0) { systemNote("Selbsttest ✗ $check" + (name?.let { " – $it" } ?: "") + detail.let { if (it.isEmpty()) "" else " ($it)" }) }
         }
         fun engine(): MasterEngine = master ?: throw IllegalStateException("kein Spielleiter mehr")
         fun row(name: String) = master?.snapshot()?.players?.firstOrNull { it.connected && it.name == name }
@@ -2847,12 +2908,20 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         testHandBackTo?.let { back -> testHandBackTo = null; handBackWhenReady(back, UptimeClock.now() + 90_000) }
     }
 
-    /** Intensivtest: Leitung zurückgeben, sobald [name] wieder verbunden ist (spätestens bis [until]). */
-    private fun handBackWhenReady(name: String, until: Long) {
+    /**
+     * Intensivtest: Leitung zurückgeben, sobald [name] wieder verbunden ist und auch alle anderen Spieler hier
+     * angekommen sind (Punkt 120/121: vorher kamen Nachzügler mitten in die Rückgabe). Fehlt nach 60 s noch jemand,
+     * geht die Leitung trotzdem zurück. Spätestens bis [until].
+     */
+    private fun handBackWhenReady(name: String, until: Long, backSince: Long = 0L) {
         scheduler.schedule(1_000) {
             val engine = master ?: return@schedule
             val back = engine.snapshot().players.any { it.connected && it.name == name && it.id in peerBuilds }
+            val now = UptimeClock.now()
+            val since = if (back) backSince.takeIf { it > 0 } ?: now else 0L
+            val othersHere = takeoverMissing.none { it != name }
             when {
+                back && !othersHere && now - since < 60_000 && now < until -> handBackWhenReady(name, until, since)
                 back && engine.snapshot().phase == MasterEngine.Phase.READY -> scheduler.schedule(3_000) {
                     if (master === engine) {
                         Diagnostics.log("Intensivtest: Spielleitung zurück an $name")
@@ -2860,7 +2929,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                     }
                 }
                 UptimeClock.now() < until -> handBackWhenReady(name, until)
-                else -> Diagnostics.log("Intensivtest: $name ist nicht zurückgekommen – Leitung bleibt hier")
+                else -> {
+                    Diagnostics.log("Intensivtest: $name ist nicht zurückgekommen – Leitung bleibt hier")
+                    systemNote("Intensivtest: $name ist nicht zurückgekommen – Leitung bleibt hier")
+                }
             }
         }
     }
@@ -3169,6 +3241,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     }
 
     companion object {
+        /** Stichworte, an denen eine Statusmeldung als Problem erkannt und als [System]-Meldung gezeigt wird. */
+        private val PROBLEM_WORDS = listOf(
+            "fehlgeschlagen", "fehler", "nicht erreichbar", "abgelehnt", "abgebrochen", "getrennt",
+            "konnte nicht", "nicht zurück", "niemand",
+        )
+
         /** Nearby-Endpunkt-IDs sind vierstellig, eine Verwechslung ist ausgeschlossen. */
         const val LOCAL_PLAYER_ID = "local-master"
 

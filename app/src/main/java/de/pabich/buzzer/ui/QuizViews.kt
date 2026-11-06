@@ -355,10 +355,25 @@ private fun AnswerField(
             .border(if (state == FieldState.CORRECT || state == FieldState.WRONG) 3.dp else 2.dp, edge, shape)
             .pointerInput(enabled) {
                 if (!enabled) return@pointerInput
-                // Gemessen wird der Zeitpunkt der Berührung, nicht der Verarbeitung.
+                // Eine Antwort zählt erst beim Loslassen und nur als echter Tipp: Wer den Finger zieht, das Feld
+                // verlässt oder einen zweiten Finger dazunimmt, wählt nichts – die App wartet, bis losgelassen wird.
+                // Gemessen wird trotzdem der Zeitpunkt der Berührung, nicht der Verarbeitung.
                 awaitEachGesture {
                     val down = awaitFirstDown(requireUnconsumed = false)
-                    currentOnTap(down.uptimeMillis)
+                    var valid = true
+                    while (true) {
+                        val event = awaitPointerEvent()
+                        if (event.changes.count { it.pressed } > 1) valid = false
+                        val change = event.changes.firstOrNull { it.id == down.id } ?: break
+                        val p = change.position
+                        if ((p - down.position).getDistance() > viewConfiguration.touchSlop ||
+                            p.x < 0f || p.y < 0f || p.x > size.width || p.y > size.height
+                        ) valid = false
+                        if (!change.pressed) {
+                            if (valid) currentOnTap(down.uptimeMillis)
+                            break
+                        }
+                    }
                 }
             }
             .drawWithContent {

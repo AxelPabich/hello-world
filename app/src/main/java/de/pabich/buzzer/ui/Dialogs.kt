@@ -103,9 +103,10 @@ fun ChatDialog(
                     Column(Modifier.heightIn(max = 160.dp).verticalScroll(rememberScrollState(), reverseScrolling = true)) {
                         for (line in history) {
                             Text(
-                                "${line.from}${if (line.toAll && !line.outgoing) " (an alle)" else ""}: ${line.text}",
+                                line.label,
                                 fontSize = 14.sp,
-                                color = if (line.outgoing) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f) else MaterialTheme.colorScheme.onSurface,
+                                color = if (line.outgoing || line.system) MaterialTheme.colorScheme.onSurface.copy(alpha = 0.65f) else MaterialTheme.colorScheme.onSurface,
+                                fontStyle = if (line.system) androidx.compose.ui.text.font.FontStyle.Italic else null,
                                 modifier = Modifier.padding(vertical = 2.dp),
                             )
                         }

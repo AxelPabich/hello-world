@@ -58,6 +58,7 @@ import androidx.compose.ui.platform.LocalContext
 import de.pabich.buzzer.AppUpdate
 import de.pabich.buzzer.BuildConfig
 import de.pabich.buzzer.BuzzerViewModel
+import de.pabich.buzzer.ChatLine
 import de.pabich.buzzer.core.GameKind
 import de.pabich.buzzer.core.PROTOCOL_VERSION
 import de.pabich.buzzer.Group
@@ -616,7 +617,10 @@ fun PlayerScreen(vm: BuzzerViewModel) {
         if (view.quiz?.timerRunning != true) EmoteOverlay(vm.emotes, onDone = vm::emoteDone, modifier = Modifier.fillMaxSize())
         // Der Spielleiter prüft die Auflösung: Laufband am unteren Rand.
         if (view.reviewing) ReviewTicker(Modifier.align(Alignment.BottomCenter))
-        if (view.paused) PauseOverlay()
+        if (view.paused) {
+            // Während der Pause bleibt der Chat offen: Nachrichten lesen und schreiben.
+            PauseOverlay(chat = vm.chat, canChat = view.rules.messagesEnabled && vm.canChat, onChat = { showChat = true })
+        }
         vm.replay?.let { ReplayOverlay(it, onDone = vm::replayDone, onMusicEnd = vm::replayMusicEnd) }
     }
 
@@ -1232,9 +1236,9 @@ private fun phaseText(snapshot: MasterEngine.Snapshot): String = when (snapshot.
     Phase.QUIZ_REVEAL -> "Auflösung"
 }
 
-/** Verdeckt das Spielfeld während einer Pause des Spielleiters. */
+/** Verdeckt das Spielfeld während einer Pause des Spielleiters; der Chat bleibt sichtbar und benutzbar. */
 @Composable
-fun PauseOverlay() {
+fun PauseOverlay(chat: List<ChatLine> = emptyList(), canChat: Boolean = false, onChat: () -> Unit = {}) {
     val theme = LocalBuzzerTheme.current
     Box(
         Modifier
@@ -1249,6 +1253,20 @@ fun PauseOverlay() {
             }
             BigTitle("Kurze Pause", size = 52.sp)
             Text("GLEICH GEHT ES WEITER", color = theme.accent2, fontFamily = theme.display, fontSize = 26.sp, textAlign = TextAlign.Center)
+            if (chat.isNotEmpty()) {
+                ChatPanel(
+                    chat,
+                    theme.text,
+                    Modifier
+                        .padding(horizontal = 24.dp)
+                        .clip(RoundedCornerShape(14.dp))
+                        .background(theme.panel)
+                        .padding(12.dp),
+                )
+            }
+            if (canChat) {
+                TextButton(onClick = onChat) { Text("✉ Nachricht schreiben", color = theme.accent, fontSize = 20.sp) }
+            }
         }
     }
 }

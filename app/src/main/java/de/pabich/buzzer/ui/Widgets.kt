@@ -210,8 +210,9 @@ fun ChatPanel(lines: List<ChatLine>, color: Color, modifier: Modifier = Modifier
     Column(modifier) {
         for (line in lines.takeLast(maxLines)) {
             Text(
-                text = "${line.from}${if (line.toAll && !line.outgoing) " (an alle)" else ""}: ${line.text}",
-                color = if (line.outgoing) color.copy(alpha = 0.7f) else color,
+                text = line.label,
+                color = if (line.outgoing || line.system) color.copy(alpha = 0.7f) else color,
+                fontStyle = if (line.system) androidx.compose.ui.text.font.FontStyle.Italic else null,
                 fontSize = 15.sp,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,

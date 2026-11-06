@@ -642,7 +642,8 @@ class MasterEngine(
     }
 
     /** Kurznachrichten gehen nur in den Rundenpausen. */
-    fun canChat(): Boolean = settings.messagesEnabled && isPause()
+    /** Kurznachrichten: in den Rundenpausen und während einer Spielpause (Wunsch vom 06.11.2026). */
+    fun canChat(): Boolean = settings.messagesEnabled && (isPause() || paused)
 
     /** Rundenpause: zwischen Buzzer-Runden bzw. bei der Auflösung einer Quizfrage. */
     private fun isPause() = phase == Phase.READY || phase == Phase.ROUND_OVER || phase == Phase.QUIZ_REVEAL
@@ -1370,6 +1371,13 @@ class MasterEngine(
         val t = turn ?: return
         if (t.revealed || t.resumed || (phase != Phase.QUIZ_QUESTION && phase != Phase.QUIZ_ANSWERS)) return
         val name = baseName(player.name)
+        // Gleiche Verbindungskennung wie vorher (Nearby vergibt sie manchmal erneut, Punkt 121): Platz, Reihenfolge
+        // und eine schon gegebene Antwort gehören ihm noch – nur die Frage muss er wieder bekommen.
+        if (player.id in t.participants && t.names[player.id] == name) {
+            log("${player.name} steigt wieder in Frage ${t.number} ein (gleiche Verbindung)" + if (player.id in t.answers) " (hatte schon geantwortet)" else "")
+            sendResumedQuestion(t, player.id, 0)
+            return
+        }
         val oldId = t.participants.firstOrNull { it != player.id && t.names[it] == name && players[it]?.connected != true } ?: return
         t.participants.remove(oldId)
         t.participants += player.id
@@ -1594,12 +1602,12 @@ class MasterEngine(
 
     /**
      * Wartezeit zwischen dem Einblenden der Frage und der Antworten: die Länge der Frage mal das Lesetempo des
-     * langsamsten Spielers (ohne Lesetest [DEFAULT_READ_MS_PER_CHAR]), mindestens [QUESTION_LEAD_MS].
+     * langsamsten Spielers (ohne Lesetest [DEFAULT_READ_MS_PER_CHAR]) mal [READ_TEMPO_FACTOR], mindestens [QUESTION_LEAD_MS].
      */
     private fun readingLead(q: QuizQuestion, participants: List<Player>): Long {
         if (!settings.quizReadAdapt) return QUESTION_LEAD_MS
         val speed = participants.maxOfOrNull { it.readMsPerChar ?: DEFAULT_READ_MS_PER_CHAR } ?: DEFAULT_READ_MS_PER_CHAR
-        return (LEAD_BASE_MS + q.text.length * speed.toLong()).coerceIn(QUESTION_LEAD_MS, LEAD_MAX_MS)
+        return (LEAD_BASE_MS + (q.text.length * speed * READ_TEMPO_FACTOR).toLong()).coerceIn(QUESTION_LEAD_MS, LEAD_MAX_MS)
     }
 
     /** Das Spiel hat schon begonnen (Buzzer: mindestens eine Runde freigegeben). */
@@ -2061,6 +2069,9 @@ class MasterEngine(
         const val DEFAULT_READ_MS_PER_CHAR = 80
         const val MIN_READ_MS_PER_CHAR = 20
         const val MAX_READ_MS_PER_CHAR = 400
+
+        /** Gelesen wird rund 15 % schneller als gemessen bzw. angenommen (Wunsch vom 06.11.2026). */
+        const val READ_TEMPO_FACTOR = 0.85
 
         /** Grundzeit vor dem Lesen und Obergrenze der Wartezeit zwischen Frage und Antworten. */
         private const val LEAD_BASE_MS = 1_500L

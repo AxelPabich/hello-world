@@ -493,6 +493,17 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+122. **Wünsche vom 06.11.2026** (umgesetzt, kommt mit dem nächsten Build; Spezifikation Abschnitt 65):
+    - [System]-Meldungen im Chat des Spielleiters: getrennte/wieder verbundene und nicht antwortende Spieler,
+      fehlgeschlagene Verbindungen, Fehler-Statusmeldungen (Uploads, Beitritt …), rote Prüfungen im Selbsttest.
+    - Lesezeit rund 15 % kürzer (`READ_TEMPO_FACTOR` 0,85 auf das gemessene bzw. angenommene Lesetempo).
+    - Chat bleibt in der Spielpause aktiv; Spieler sehen auf dem Pausenbild die letzten Nachrichten und können schreiben.
+    - Quiz: Eine Antwort zählt nur als echter Tipp beim Loslassen – Ziehen, Verlassen des Felds oder ein zweiter
+      Finger wählen nichts.
+    - Korrekturen aus Punkt 120/121: Rückkehr mit gleicher Verbindungskennung bekommt die Frage erneut (Test
+      `RejoinTest`); im Intensivtest gibt der Nachfolger die Leitung erst zurück, wenn alle bei ihm sind (max. 60 s).
+    - [ ] Testen: Pause mitten in der Frage – Spieler schreibt eine Nachricht; Antwortfeld antippen und dabei ziehen
+      → keine Antwort; WLAN eines Spielers aus → [System]-Meldung beim Spielleiter; Intensivtest ohne ✗ bei der Übergabe.
 121. **Vierter Intensivtest (Build 48, 06.11.2026, 21:56–22:01, alle auf Build 48)**: Natsch, Samsung A53, Samsung S6,
     80 von 82 bestanden, 349 s.
     - Übergabe: Der A53 folgt jetzt sauber Axel → Natsch → Axel (Leitungsnummer 3 → 4) – das Sync-Verfahren wirkt.
