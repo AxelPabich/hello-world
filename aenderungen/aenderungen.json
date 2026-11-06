@@ -2,7 +2,7 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
-      "build": 0,
+      "build": 49,
       "datum": "2026-11-06",
       "punkte": [
         "Spielleiter: Fehler und Verbindungsprobleme (Spieler getrennt, wieder da, antwortet nicht, Verbindung fehlgeschlagen, Upload-Fehler) erscheinen als [System]-Meldung im eigenen Chat.",
