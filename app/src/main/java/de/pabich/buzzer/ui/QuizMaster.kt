@@ -1,5 +1,9 @@
 package de.pabich.buzzer.ui
 
+import androidx.compose.foundation.ScrollState
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -391,8 +395,23 @@ private fun Stepper(label: String, value: String, modifier: Modifier, onMinus: (
 
 // ---------------------------------------------------------------------- Frage läuft
 
+/**
+ * Spielleiter spielt mit und hat noch nicht geantwortet: Die Fragekarte bekommt die volle Bildschirmhöhe [height] und
+ * wird in den sichtbaren Bereich gescrollt; alles andere liegt darüber bzw. darunter (per Scrollen erreichbar).
+ */
+class AnswerFocus(val height: Dp, val scroll: ScrollState) {
+    /** Oberkante des scrollenden Bereichs auf dem Bildschirm (für die Position der Karte). */
+    var viewportTop = 0f
+}
+
 @Composable
-fun QuizMasterRunning(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz: MasterEngine.QuizSnapshot, modifier: Modifier = Modifier) {
+fun QuizMasterRunning(
+    vm: BuzzerViewModel,
+    snapshot: MasterEngine.Snapshot,
+    quiz: MasterEngine.QuizSnapshot,
+    modifier: Modifier = Modifier,
+    focus: AnswerFocus? = null,
+) {
     val theme = LocalBuzzerTheme.current
     val local = vm.playerView?.quiz?.takeIf { snapshot.settings.masterPlays && it.number == quiz.number }
     // Wie bei den Spielern: Kopfzeile, große Frage mit den vier Antwortfeldern. Darunter nur, was der Spielleiter zusätzlich braucht.
@@ -420,7 +439,22 @@ fun QuizMasterRunning(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, quiz
             }
             return@Column
         }
-        if (local != null) {
+        if (local != null && focus != null) {
+            // Volle Höhe für Frage und Antworten; einmal je Frage an die Karte scrollen.
+            var cardTop by remember(quiz.number) { mutableStateOf(-1f) }
+            QuizCard(
+                quiz = local,
+                onTap = { pos, time -> vm.tapAnswer(pos, time) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(focus.height)
+                    .padding(vertical = 6.dp)
+                    .onGloballyPositioned { cardTop = it.positionInRoot().y - focus.viewportTop + focus.scroll.value },
+            )
+            LaunchedEffect(quiz.number, cardTop >= 0f) {
+                if (cardTop >= 0f) focus.scroll.scrollTo(cardTop.toInt())
+            }
+        } else if (local != null) {
             QuizCard(
                 quiz = local,
                 onTap = { pos, time -> vm.tapAnswer(pos, time) },
@@ -750,12 +784,13 @@ private fun levelLine(vm: BuzzerViewModel, id: String, author: QuizLevel): Strin
 
 /** Inhalt des Master-Bildschirms im Quiz-Modus (unter der oberen Leiste). */
 @Composable
-fun ColumnScope.QuizMasterBody(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot) {
+fun ColumnScope.QuizMasterBody(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, focus: AnswerFocus? = null) {
     val quiz = snapshot.quiz
     when {
         snapshot.phase == Phase.QUIZ_REVEAL && quiz != null -> QuizMasterReveal(vm, snapshot, quiz, Modifier.weight(1f).fillMaxWidth())
         (snapshot.phase == Phase.QUIZ_QUESTION || snapshot.phase == Phase.QUIZ_ANSWERS) && quiz != null ->
-            QuizMasterRunning(vm, snapshot, quiz, Modifier.weight(1f).fillMaxWidth())
+            // Im Antwort-Fokus scrollt der ganze Bildschirm – dort gibt es keine Restfläche zu verteilen.
+            QuizMasterRunning(vm, snapshot, quiz, if (focus != null) Modifier.fillMaxWidth() else Modifier.weight(1f).fillMaxWidth(), focus)
         else -> {
             QuizSetup(vm, snapshot, Modifier.weight(1f).fillMaxWidth())
             Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {

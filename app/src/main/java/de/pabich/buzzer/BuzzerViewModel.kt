@@ -290,6 +290,19 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     /** Spieler: Rückfrage „gespeicherte Diagnosen an den Spielleiter senden?“ anzeigen. */
     var diagnoseOffer by mutableStateOf(false)
+
+    /** Spieler: Der Spielleiter fragt, ob er einen Selbsttest starten darf (ohne GitHub-Zugang). */
+    data class SelfTestConsent(val id: Int, val intensive: Boolean, val master: String)
+    var selfTestConsent by mutableStateOf<SelfTestConsent?>(null)
+        private set
+
+    /** Spielleiter: Mitspieler mit GitHub-Zugang (Endpunkte), die gespeicherte Diagnosen hochladen können. */
+    private val diagCouriers = mutableSetOf<String>()
+
+    /** Spielleiter ohne Zugang: laufende Zustimmungsrunde für einen Selbsttest. */
+    private var consentId = 0
+    private var consentAnswers: MutableMap<String, Boolean?>? = null
+    private var consentStart: (() -> Unit)? = null
         private set
 
     /** Spieler: automatischer Testmodus (Selbsttest des Spielleiters) – tippt, antwortet, bestätigt. */
@@ -1596,6 +1609,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         connectingTo = null
         joinCode = null
         link.stopDiscovery()
+        // Mit GitHub-Zugang: anbieten, Diagnosen eines Spielleiters ohne Zugang hochzuladen.
+        if (diagnoseUpload.hasToken) link.send(endpointId, Message.DiagnoseCourier)
         val forUpdate = updatePeer
         if (forUpdate != null) {
             updatePeerName = forUpdate.name
@@ -1726,7 +1741,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 return
             }
             is Message.DiagnoseChunk -> {
-                if (master == null) return
+                // Spieler nur als Bote: mit GitHub-Zugang nimmt er Berichte seines Spielleiters zum Hochladen an.
+                if (master == null && !(diagnoseUpload.hasToken && endpointId == masterEndpoint)) return
                 // Jeder Berichtsteil ist ein Lebenszeichen: Schonfrist verlängern.
                 diagQuietUntil = maxOf(diagQuietUntil, UptimeClock.now() + DIAG_CHUNK_QUIET_MS)
                 reportCollector.add(message)?.let { report ->
@@ -1798,6 +1814,23 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             is Message.TestCommand -> {
                 if (master != null || endpointId != masterEndpoint || !testMode) return
                 runTestCommand(message, endpointId)
+                return
+            }
+            Message.DiagnoseCourier -> {
+                if (master == null) return
+                diagCouriers += endpointId
+                Diagnostics.log("${senderName(endpointId)} hat einen GitHub-Zugang und kann Diagnosen hochladen")
+                return
+            }
+            is Message.SelfTestReply -> {
+                if (master == null || message.id != consentId) return
+                onConsentReply(endpointId, message.ok)
+                return
+            }
+            is Message.SelfTestAsk -> {
+                if (master != null || endpointId != masterEndpoint) return
+                selfTestConsent = if (message.on) SelfTestConsent(message.id, message.intensive, masterPeer?.name ?: "Der Spielleiter") else null
+                Diagnostics.log(if (message.on) "Spielleiter fragt, ob er einen Selbsttest starten darf" else "Spielleiter hat die Selbsttest-Frage zurückgezogen")
                 return
             }
             is Message.TestAck -> {
@@ -1966,18 +1999,87 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         }
     }
 
-    /** Selbsttest starten (Spielleiter mit GitHub-Zugang, zwischen den Runden). */
+    /**
+     * Selbsttest starten (Spielleiter, zwischen den Runden). Ohne GitHub-Zugang und mit Spielern fragt der Spielleiter
+     * vorher alle Mitspieler um Erlaubnis; der Bericht geht am Ende an einen Mitspieler mit Zugang (Wunsch vom 07.11.2026).
+     */
     fun runSelfTest(live: Boolean, intensive: Boolean = false) {
         val engine = master ?: return
-        if (selfTestRunning) return
-        if (!diagnoseUpload.hasToken) {
-            status = "Der Selbsttest braucht den GitHub-Zugang (Token) – die Ergebnisse landen im Diagnose-Repository."
-            return
-        }
+        if (selfTestRunning || consentAnswers != null) return
         if (engine.snapshot().phase != MasterEngine.Phase.READY && engine.snapshot().phase != MasterEngine.Phase.QUIZ_REVEAL) {
             status = "Den Selbsttest bitte zwischen den Runden starten."
             return
         }
+        val remote = engine.snapshot().players.filter { it.connected && it.id != LOCAL_PLAYER_ID }
+        if (!diagnoseUpload.hasToken && (live || intensive) && remote.isNotEmpty()) {
+            askConsent(remote, intensive) { startSelfTest(live, intensive) }
+        } else {
+            startSelfTest(live, intensive)
+        }
+    }
+
+    /** Ohne GitHub-Zugang: alle Mitspieler fragen; erst wenn alle zustimmen, startet [start]. */
+    private fun askConsent(remote: List<MasterEngine.PlayerRow>, intensive: Boolean, start: () -> Unit) {
+        val old = remote.filter { (peerBuilds[it.id] ?: 0) < CONSENT_BUILD }
+        if (old.isNotEmpty()) {
+            status = "Ohne GitHub-Zugang müssen alle Mitspieler zustimmen – ${old.joinToString { it.name }} " +
+                "${if (old.size == 1) "hat" else "haben"} eine ältere App und kann nicht gefragt werden. Bitte erst aktualisieren."
+            return
+        }
+        val id = ++consentId
+        consentAnswers = remote.associate { it.id to null as Boolean? }.toMutableMap()
+        consentStart = start
+        remote.forEach { link.send(it.id, Message.SelfTestAsk(id, intensive)) }
+        Diagnostics.log("Selbsttest ohne GitHub-Zugang: Zustimmung bei ${remote.size} Spielern angefragt")
+        status = "Selbsttest: Warte auf die Zustimmung aller Mitspieler …"
+        scheduler.schedule(CONSENT_TIMEOUT_MS) {
+            val answers = consentAnswers
+            if (consentId == id && answers != null) {
+                val missing = answers.filterValues { it == null }.keys.map { senderName(it) }
+                endConsent(id)
+                status = "Selbsttest nicht gestartet – keine Antwort von ${missing.joinToString()}."
+            }
+        }
+    }
+
+    private fun onConsentReply(endpointId: String, ok: Boolean) {
+        val answers = consentAnswers ?: return
+        if (endpointId !in answers) return
+        answers[endpointId] = ok
+        Diagnostics.log("Selbsttest-Zustimmung von ${senderName(endpointId)}: ${if (ok) "ja" else "nein"}")
+        if (!ok) {
+            val id = consentId
+            endConsent(id)
+            status = "Selbsttest nicht gestartet – ${senderName(endpointId)} möchte das gerade nicht."
+            return
+        }
+        if (answers.values.all { it == true }) {
+            val start = consentStart
+            consentAnswers = null
+            consentStart = null
+            status = "Alle Mitspieler sind einverstanden – der Selbsttest startet."
+            start?.invoke()
+        }
+    }
+
+    /** Zustimmungsrunde beenden; offene Fragen bei den Spielern schließen. */
+    private fun endConsent(id: Int) {
+        consentAnswers?.keys?.forEach { link.send(it, Message.SelfTestAsk(id, false, on = false)) }
+        consentAnswers = null
+        consentStart = null
+    }
+
+    /** Spieler: Antwort auf die Selbsttest-Frage des Spielleiters. */
+    fun answerSelfTest(ok: Boolean) {
+        val ask = selfTestConsent ?: return
+        selfTestConsent = null
+        masterEndpoint?.let { link.send(it, Message.SelfTestReply(ask.id, ok)) }
+        Diagnostics.log("Selbsttest des Spielleiters: ${if (ok) "zugestimmt" else "abgelehnt"}")
+    }
+
+    private fun startSelfTest(live: Boolean, intensive: Boolean) {
+        val engine = master ?: return
+        if (selfTestRunning) return
         selfTestRunning = true
         selfTestCancel = false
         selfTestResults = null
@@ -2001,7 +2103,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             val text = selfTestReport(results)
             Diagnostics.log("Selbsttest: ${SelfTest.summary(results)}")
             addPending(DiagnoseTransfer.Report(System.currentTimeMillis().toString(36), "Selbsttest-" + myName.trim().ifEmpty { "Spielleiter" }, AppUpdate.ownBuild, text))
-            uploadReports()
+            if (diagnoseUpload.hasToken) uploadReports() else sendReportsToCourier()
             selfTestResults = results
             selfTestStep = null
             selfTestRunning = false
@@ -3148,6 +3250,25 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
     fun shareReport(context: Context, report: DiagnoseTransfer.Report) = Diagnostics.share(context, report.text)
 
+    /**
+     * Spielleiter ohne GitHub-Zugang: alle gespeicherten Berichte (Selbsttest und Diagnosen) an einen Mitspieler mit
+     * Zugang; gelöscht wird erst, wenn er sie im Repository abgelegt hat. Ohne solchen Mitspieler bleiben sie gespeichert.
+     */
+    private fun sendReportsToCourier() {
+        val connected = masterSnapshot?.players.orEmpty().filter { it.connected }.map { it.id }.toSet()
+        diagCouriers.retainAll(connected)
+        val courier = diagCouriers.firstOrNull()
+        if (courier == null || pendingReports.isEmpty()) {
+            status = "Selbsttest-Bericht auf dem Gerät gespeichert (⋮ „Gespeicherte Diagnosen“) – ein Mitspieler mit GitHub-Zugang kann ihn übernehmen."
+            return
+        }
+        // Gestaffelt wie bei den Diagnosen (Punkt 115), damit der Funk nicht verstopft.
+        val chunks = pendingReports.toList().flatMap { r -> DiagnoseTransfer.split(r.id, r.from, r.build, r.text, saved = true) }
+        chunks.forEachIndexed { i, chunk -> scheduler.schedule(i * DIAG_PART_GAP_MS) { link.send(courier, chunk) } }
+        Diagnostics.log("${pendingReports.size} Bericht(e) an ${senderName(courier)} zum Hochladen gesendet")
+        status = "${pendingReports.size} Bericht(e) gehen an ${senderName(courier)} – er legt sie in GitHub ab."
+    }
+
     /** Spieler: alle gespeicherten Berichte an den Spielleiter; gelöscht wird erst nach seiner Bestätigung. */
     fun sendSavedToMaster() {
         diagnoseOffer = false
@@ -3340,6 +3461,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
 
         /** Ab diesem Build spielen Spieler im Testmodus des Selbsttests mit. */
         const val SELFTEST_BUILD = 35
+
+        /** Ab diesem Build fragt der Spielleiter ohne GitHub-Zugang die Mitspieler vor dem Selbsttest um Erlaubnis. */
+        const val CONSENT_BUILD = 52
+        const val CONSENT_TIMEOUT_MS = 60_000L
 
         /** Ab diesem Build bestätigen Spieler die Spielregeln mit OK (ältere werden nicht abgewartet). */
         const val RULES_CONFIRM_BUILD = 39

@@ -2,6 +2,15 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
+      "build": 0,
+      "datum": "2026-11-07",
+      "punkte": [
+        "Selbsttest geht jetzt auch ohne GitHub-Zugang: Vorher werden alle Mitspieler gefragt; die Berichte gehen am Ende an einen Mitspieler mit Zugang, der sie hochlädt.",
+        "Spielleiter, der mitspielt: Frage und Antworten bekommen bis zur eigenen Antwort den ganzen Bildschirm – Meldungen und Knöpfe erreicht man per Scrollen.",
+        "Lesetest: Es gibt jetzt 20 Beispielzeilen, jedes Mal kommen 5 andere."
+      ]
+    },
+    {
       "build": 51,
       "datum": "2026-11-07",
       "punkte": [

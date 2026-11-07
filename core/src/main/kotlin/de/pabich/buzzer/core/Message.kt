@@ -162,6 +162,18 @@ sealed interface Message {
     /** M → S: Der Spielleiter bittet um einen Diagnosebericht (der Spieler entscheidet). */
     data object DiagnoseRequest : Message
 
+    /**
+     * M → S: Der Spielleiter (ohne GitHub-Zugang) möchte einen Selbsttest starten und fragt um Erlaubnis
+     * ([on] = false: Frage zurückgezogen). Ältere Apps kennen die Nachricht nicht und ignorieren sie.
+     */
+    data class SelfTestAsk(val id: Int, val intensive: Boolean, val on: Boolean = true) : Message
+
+    /** S → M: Antwort auf [SelfTestAsk]. */
+    data class SelfTestReply(val id: Int, val ok: Boolean) : Message
+
+    /** S → M: Dieser Spieler hat einen GitHub-Zugang und lädt gespeicherte Diagnosen des Spielleiters hoch. */
+    data object DiagnoseCourier : Message
+
     /** M → S: Spielstart-Animation [variant] zeigen (Rennszene, auf allen Geräten dieselbe). */
     data class Intro(val variant: Int) : Message
 
@@ -324,6 +336,9 @@ object MessageCodec {
             )
             Message.DiagnoseCollect -> "DIAG_COLLECT" to emptyMap()
             Message.DiagnoseRequest -> "DIAG_REQUEST" to emptyMap()
+            is Message.SelfTestAsk -> "SELFTEST_ASK" to mapOf("id" to message.id, "i" to message.intensive, "on" to message.on)
+            is Message.SelfTestReply -> "SELFTEST_REPLY" to mapOf("id" to message.id, "ok" to message.ok)
+            Message.DiagnoseCourier -> "DIAG_COURIER" to emptyMap()
             is Message.TestMode -> "TEST_MODE" to mapOf("on" to message.on)
             is Message.TestCommand -> "TEST_CMD" to mapOf("a" to message.action, "n" to message.arg, "t" to message.text)
             is Message.TestAck -> "TEST_ACK" to mapOf("a" to message.action, "ok" to message.ok, "d" to message.detail)
@@ -429,6 +444,9 @@ object MessageCodec {
             )
             "DIAG_COLLECT" -> Message.DiagnoseCollect
             "DIAG_REQUEST" -> Message.DiagnoseRequest
+            "SELFTEST_ASK" -> Message.SelfTestAsk(int("id"), bool("i"), bool("on"))
+            "SELFTEST_REPLY" -> Message.SelfTestReply(int("id"), bool("ok"))
+            "DIAG_COURIER" -> Message.DiagnoseCourier
             "TEST_MODE" -> Message.TestMode(bool("on"))
             "TEST_CMD" -> Message.TestCommand(f.getValue("a"), f["n"]?.toLong() ?: 0, f["t"] ?: "")
             "TEST_ACK" -> Message.TestAck(f.getValue("a"), bool("ok"), f["d"] ?: "")

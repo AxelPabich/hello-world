@@ -985,3 +985,18 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   Jede App (ab Build 50, ausgeliefert mit Build 51) meldet, ob die Frage in ihren Bereich passt und alle vier Antworten ohne Scrollen sichtbar sind
   (`QuizFitMonitor`, mit Schriftgröße); Ergebnis je Spieler „Quiz: längste Frage passt“ / „längste Antworten passen“ / „längste Einzelantwort passt“.
   Tippt ein Mensch mit, zählt seine Antwort und der Test läuft weiter.
+
+## 66. Selbsttest ohne GitHub-Zugang, Antwort-Fokus des Spielleiters, Lesetest (Build 52)
+
+- **Selbsttest ohne Token:** Jeder Spielleiter kann den Selbsttest starten. Ohne GitHub-Zugang und mit Spielern fragt er
+  vorher alle Mitspieler („<Name> möchte einen Selbsttest starten … Einverstanden?“, `SELFTEST_ASK`/`SELFTEST_REPLY`);
+  erst wenn alle zustimmen, startet der Test. Ein „Nein“, keine Antwort binnen 60 s oder ein Spieler unter Build 52
+  (kann nicht gefragt werden) verhindern den Start mit Hinweis.
+- **Bote mit Token:** Spieler mit GitHub-Zugang melden sich beim Beitritt (`DIAG_COURIER`). Am Ende eines Selbsttests
+  ohne Token gehen alle gespeicherten Berichte (Selbsttest-Bericht und Diagnosen) gestaffelt an einen solchen
+  Mitspieler; er legt sie in GitHub ab und bestätigt, erst dann löscht der Spielleiter sie. Ohne Boten bleiben sie unter
+  „Gespeicherte Diagnosen“.
+- **Antwort-Fokus:** Spielt der Spielleiter im Quiz mit und hat noch nicht geantwortet, bekommt die Fragekarte die volle
+  Bildschirmhöhe und wird ins Bild gescrollt; Kopfzeile, Meldungen und Bedienknöpfe liegen darüber bzw. darunter und
+  bleiben per Scrollen erreichbar. Nach seiner Antwort gilt wieder die normale Ansicht.
+- **Lesetest:** 20 Beispielzeilen (10 kurz, 10 lang); je Durchgang werden zufällig 2 kurze und 3 lange gezogen.

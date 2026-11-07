@@ -493,6 +493,14 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+125. **Wünsche vom 07.11.2026** (umgesetzt, kommt mit dem nächsten Build; Spezifikation Abschnitt 66):
+    - Selbsttest auch ohne GitHub-Zugang: vorher Zustimmung aller Mitspieler; am Ende gehen alle Berichte an einen
+      Mitspieler mit Token, der sie hochlädt (sonst „Gespeicherte Diagnosen“).
+    - Spielleiter spielt mit: Frage und Antworten bekommen bis zur eigenen Antwort den ganzen Bildschirm (Anlass: A53 als
+      Spielleiter – Meldungen und Kopfzeile verdeckten die Antworten); der Rest bleibt per Scrollen erreichbar.
+    - Lesetest: 20 Beispielzeilen, je Durchgang 5 zufällig (2 kurze, 3 lange).
+    - [ ] Testen: A53 ohne Token als Spielleiter → Selbsttest → Zustimmungsfrage bei allen → Bericht landet über das
+      Gerät mit Token in GitHub. A53 als mitspielender Spielleiter: Antworten vollständig lesbar.
 124. **Fünfter Intensivtest (Build 51, 07.11.2026, 16:17–16:22)**: Natsch, Samsung A53, Samsung S6 – alle auf Build 51,
     **94 von 94 bestanden**, 323 s. Übergabe hin und zurück klappt jetzt mit allen (Natsch wartete, bis alle da waren).
     Lange Fragen passen auf allen Geräten; am knappsten der A53 bei den längsten Antworten (`handel-0093`, Schrift auf

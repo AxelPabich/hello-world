@@ -57,6 +57,7 @@ object SelfTest {
             Message.QuizAnswer(2, 1, 1500), Message.QuizChallenge(2, "Quelle: ä, ö; ü"),
             Message.Avatar("🦊"), Message.Rules("Regeln", listOf("Kategorien" to "Technik, Küche & Genuss")),
             Message.DiagnoseRequest, Message.MasterGone, Message.TestMode(true),
+            Message.SelfTestAsk(7, true), Message.SelfTestReply(7, false), Message.DiagnoseCourier,
             Message.Succession("g1", "Axel", "", GameKind.QUIZ, 3, "Profil", SettingsCodec.toMap(Settings()),
                 listOf("Peter" to 2L), listOf(q.id), 0, false, listOf(q)),
         )

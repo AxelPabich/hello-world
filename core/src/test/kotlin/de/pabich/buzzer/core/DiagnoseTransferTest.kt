@@ -48,6 +48,10 @@ class DiagnoseTransferTest {
         val m = Message.DiagnoseReceived("abc-1")
         assertEquals(m, MessageCodec.decode(MessageCodec.encode(m)))
         assertEquals(Message.DiagnoseCollect, MessageCodec.decode(MessageCodec.encode(Message.DiagnoseCollect)))
+        // Selbsttest ohne GitHub-Zugang: Zustimmung der Mitspieler, Bote mit Zugang (Wunsch vom 07.11.2026).
+        for (m in listOf(Message.SelfTestAsk(3, true), Message.SelfTestAsk(3, false, on = false), Message.SelfTestReply(3, true), Message.DiagnoseCourier)) {
+            assertEquals(m, MessageCodec.decode(MessageCodec.encode(m)))
+        }
     }
 
     @Test

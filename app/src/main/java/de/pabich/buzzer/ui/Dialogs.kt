@@ -381,6 +381,7 @@ fun MasterRulesDialog(
 /** Selbsttest starten: Prüfungen auf diesem Gerät, auf Wunsch live mit den verbundenen Spielern. */
 @Composable
 fun SelfTestDialog(
+    hasToken: Boolean,
     playersConnected: Boolean,
     playerCount: Int,
     intensiveMinutes: Int,
@@ -445,6 +446,14 @@ fun SelfTestDialog(
                 )
                 Spacer(Modifier.padding(4.dp))
                 Text("Am Ende landet ein Bericht „Selbsttest-…“ mit allen Ergebnissen (beim Intensivtest als Übersicht Funktion × Spieler) im Diagnose-Repository.", style = MaterialTheme.typography.bodySmall)
+                if (!hasToken) {
+                    Spacer(Modifier.padding(4.dp))
+                    Text(
+                        "Dieses Gerät hat keinen GitHub-Zugang: Vor einem Test mit Spielern müssen alle Mitspieler zustimmen. " +
+                            "Die Berichte gehen am Ende an einen Mitspieler mit Zugang, sonst bleiben sie unter „Gespeicherte Diagnosen“.",
+                        style = MaterialTheme.typography.bodySmall,
+                    )
+                }
             }
         },
         confirmButton = {
@@ -478,25 +487,50 @@ fun SelfTestResultsDialog(results: List<de.pabich.buzzer.core.SelfTest.Result>, 
 }
 
 
-private val READ_SAMPLES = listOf(
+/**
+ * Beispielzeilen für den Lesetest (Wunsch vom 07.11.2026): 20 Zeilen, kurze und lange gemischt; je Durchgang werden
+ * zufällig 5 gezogen – 2 kurze und 3 lange, damit das Ergebnis vergleichbar bleibt.
+ */
+private val READ_SHORT = listOf(
     "Die Katze schläft auf dem Sofa.",
-    "Welcher Fluss ist der längste Europas und mündet nach mehr als dreitausend Kilometern ins Kaspische Meer?",
     "Im Jahr 1989 fiel die Berliner Mauer.",
-    "Wer schrieb den Roman „Die Verwandlung“, in dem ein Handlungsreisender eines Morgens als ungeheures Ungeziefer erwacht?",
     "Wie viele Beine hat eine Spinne?",
+    "Der Zug nach Hamburg hat Verspätung.",
+    "Welche Farbe hat ein Feuerwehrauto?",
+    "Morgen wird es sonnig und warm.",
+    "Wer erfand die Glühbirne?",
+    "Das Brot ist frisch aus dem Ofen.",
+    "In welchem Land liegt Rom?",
+    "Am Wochenende gehen wir wandern.",
+)
+private val READ_LONG = listOf(
+    "Welcher Fluss ist der längste Europas und mündet nach mehr als dreitausend Kilometern ins Kaspische Meer?",
+    "Wer schrieb den Roman „Die Verwandlung“, in dem ein Handlungsreisender eines Morgens als ungeheures Ungeziefer erwacht?",
+    "Welches Gebäude in Paris wurde zur Weltausstellung 1889 errichtet und sollte ursprünglich nach zwanzig Jahren wieder abgerissen werden?",
+    "Wie heißt das Verfahren, bei dem Pflanzen mithilfe von Sonnenlicht aus Wasser und Kohlendioxid Zucker und Sauerstoff herstellen?",
+    "Welcher Komponist schrieb die Neunte Sinfonie mit der „Ode an die Freude“, obwohl er zu dieser Zeit schon fast völlig taub war?",
+    "In welcher Stadt steht die berühmte Kathedrale Sagrada Família, an der seit 1882 gebaut wird und die noch immer nicht fertig ist?",
+    "Welches Tier kann als einziges Säugetier wirklich fliegen und orientiert sich in der Dunkelheit mit Ultraschall und Echos?",
+    "Wie nennt man die Grenze zwischen zwei Erdplatten, an der sich die Platten voneinander wegbewegen und neuer Meeresboden entsteht?",
+    "Welche Sängerin gewann 2010 in Oslo mit dem Lied „Satellite“ den Eurovision Song Contest für Deutschland?",
+    "Wie viele Spieler einer Fußballmannschaft dürfen gleichzeitig auf dem Platz stehen, wenn niemand vom Platz gestellt wurde?",
 )
 
+/** Zufällige Auswahl für einen Lesetest: 2 kurze und 3 lange Zeilen in gemischter Reihenfolge. */
+private fun readSamples(): List<String> = (READ_SHORT.shuffled().take(2) + READ_LONG.shuffled().take(3)).shuffled()
+
 /**
- * Lesetest: fünf Beispielzeilen unterschiedlicher Länge, jede mit „Fertig“ bestätigen. Daraus entsteht das
+ * Lesetest: fünf zufällig gewählte Beispielzeilen unterschiedlicher Länge, jede mit „Fertig“ bestätigen. Daraus entsteht das
  * Lesetempo (ms je Zeichen), das der Spielleiter für die Wartezeit zwischen Frage und Antworten nutzt.
  */
 @Composable
 fun ReadTestDialog(current: Int, onSave: (Int) -> Unit, onDismiss: () -> Unit) {
+    val samples = remember { readSamples() }
     var index by remember { mutableStateOf(-1) }
     var startedAt by remember { mutableStateOf(0L) }
     var totalMs by remember { mutableStateOf(0L) }
     var totalChars by remember { mutableStateOf(0) }
-    val done = index >= READ_SAMPLES.size
+    val done = index >= samples.size
     val measured = if (totalChars > 0) (totalMs.toDouble() / totalChars).toInt().coerceIn(20, 400) else 0
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -505,13 +539,13 @@ fun ReadTestDialog(current: Int, onSave: (Int) -> Unit, onDismiss: () -> Unit) {
             Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
                 when {
                     index < 0 -> {
-                        Text("Du liest nacheinander ${READ_SAMPLES.size} Beispielzeilen in deinem normalen Tempo und tippst jeweils „Fertig“. Daraus berechnet die App dein Lesetempo; der Spielleiter wartet dann nach jeder Frage lange genug.")
+                        Text("Du liest nacheinander ${samples.size} Beispielzeilen in deinem normalen Tempo und tippst jeweils „Fertig“. Daraus berechnet die App dein Lesetempo; der Spielleiter wartet dann nach jeder Frage lange genug.")
                         if (current > 0) Text("Bisher gemessen: $current ms je Zeichen", style = MaterialTheme.typography.bodySmall)
                     }
                     !done -> {
-                        Text("Zeile ${index + 1} von ${READ_SAMPLES.size}", style = MaterialTheme.typography.labelLarge)
+                        Text("Zeile ${index + 1} von ${samples.size}", style = MaterialTheme.typography.labelLarge)
                         Spacer(Modifier.padding(4.dp))
-                        Text(READ_SAMPLES[index], style = MaterialTheme.typography.titleLarge)
+                        Text(samples[index], style = MaterialTheme.typography.titleLarge)
                     }
                     else -> {
                         Text("Dein Lesetempo: $measured ms je Zeichen", style = MaterialTheme.typography.titleMedium)
@@ -525,7 +559,7 @@ fun ReadTestDialog(current: Int, onSave: (Int) -> Unit, onDismiss: () -> Unit) {
                 index < 0 -> TextButton(onClick = { index = 0; startedAt = android.os.SystemClock.uptimeMillis() }) { Text("Start") }
                 !done -> TextButton(onClick = {
                     totalMs += android.os.SystemClock.uptimeMillis() - startedAt
-                    totalChars += READ_SAMPLES[index].length
+                    totalChars += samples[index].length
                     index++
                     startedAt = android.os.SystemClock.uptimeMillis()
                 }) { Text("Fertig") }

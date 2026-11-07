@@ -55,6 +55,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
 import de.pabich.buzzer.AppUpdate
 import de.pabich.buzzer.BuildConfig
 import de.pabich.buzzer.BuzzerViewModel
@@ -643,6 +646,22 @@ fun PlayerScreen(vm: BuzzerViewModel) {
     }
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showSaved) SavedReportsDialog(vm) { showSaved = false }
+    vm.selfTestConsent?.let { ask ->
+        // Spielleiter ohne GitHub-Zugang möchte einen Selbsttest starten: jeder Mitspieler muss zustimmen.
+        AlertDialog(
+            onDismissRequest = {},
+            title = { Text(if (ask.intensive) "Intensivtest starten?" else "Selbsttest starten?") },
+            text = {
+                Text(
+                    "${ask.master} möchte einen ${if (ask.intensive) "Intensivtest (einige Minuten)" else "Selbsttest"} starten. " +
+                        "Deine App spielt dann von selbst mit (Testspiel, die Punkte werden zurückgesetzt) und schickt am Ende ihre Diagnose. " +
+                        "Du kannst trotzdem selbst mittippen. Einverstanden?",
+                )
+            },
+            confirmButton = { TextButton(onClick = { vm.answerSelfTest(true) }) { Text("Ja, einverstanden") } },
+            dismissButton = { TextButton(onClick = { vm.answerSelfTest(false) }) { Text("Nein") } },
+        )
+    }
     if (showChat) {
         ChatDialog(
             recipients = view.roster,
@@ -698,9 +717,24 @@ fun MasterScreen(vm: BuzzerViewModel) {
     }
     val settings = snapshot.settings
     val pause = snapshot.phase == Phase.READY || snapshot.phase == Phase.ROUND_OVER
+    // Spielt der Spielleiter mit und hat noch nicht geantwortet, gehören ihm Frage und Antworten der ganze Bildschirm:
+    // Kopfzeile, Meldungen und Knöpfe rutschen aus dem Bild und bleiben per Scrollen erreichbar (Wunsch vom 07.11.2026).
+    val ownQuiz = vm.playerView?.quiz
+    val focusAnswers = snapshot.kind == GameKind.QUIZ && settings.masterPlays && !snapshot.questionPaused &&
+        (snapshot.phase == Phase.QUIZ_QUESTION || snapshot.phase == Phase.QUIZ_ANSWERS) &&
+        ownQuiz != null && ownQuiz.number == snapshot.quiz?.number && ownQuiz.chosen < 0 && ownQuiz.result == null
 
-    Box(Modifier.fillMaxSize().background(theme.ground)) {
-        Column(Modifier.fillMaxSize()) {
+    BoxWithConstraints(Modifier.fillMaxSize().background(theme.ground)) {
+        val focusScroll = rememberScrollState()
+        val viewport = maxHeight
+        val focus = remember(focusAnswers, viewport) { if (focusAnswers) AnswerFocus(viewport, focusScroll) else null }
+        Column(
+            if (focus != null) {
+                Modifier.fillMaxSize().onGloballyPositioned { focus.viewportTop = it.positionInRoot().y }.verticalScroll(focusScroll)
+            } else {
+                Modifier.fillMaxSize()
+            },
+        ) {
             TopBar(
                 emojis = if (settings.emojisEnabled && vm.receiveEmojis) settings.emojis else emptyList(),
                 onEmoji = { vm.sendEmote(it) },
@@ -822,7 +856,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
                             }
                             DropdownMenuItem(
                                 text = { Text("Selbsttest (alles automatisch prüfen)") },
-                                enabled = vm.tokenSaved && !vm.selfTestRunning && (pause || snapshot.phase == Phase.QUIZ_REVEAL),
+                                enabled = !vm.selfTestRunning && (pause || snapshot.phase == Phase.QUIZ_REVEAL),
                                 onClick = { showMenu = false; askSelfTest = true },
                             )
                             DropdownMenuItem(
@@ -959,7 +993,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
                     Box(Modifier.padding(horizontal = 16.dp)) { StatusText(vm) }
                 }
                 snapshot.kind == GameKind.QUIZ -> {
-                    QuizMasterBody(vm, snapshot)
+                    QuizMasterBody(vm, snapshot, focus)
                     Box(Modifier.padding(horizontal = 16.dp)) { StatusText(vm) }
                 }
                 else -> BuzzerMasterBody(vm, snapshot)
@@ -1075,6 +1109,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     }
     if (askSelfTest) {
         SelfTestDialog(
+            hasToken = vm.tokenSaved,
             playersConnected = vm.handOverCandidates.isNotEmpty(),
             playerCount = vm.handOverCandidates.size,
             intensiveMinutes = vm.intensiveTestMinutes(),
