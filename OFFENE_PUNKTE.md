@@ -493,7 +493,7 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
-125. **Wünsche vom 07.11.2026** (umgesetzt, kommt mit dem nächsten Build; Spezifikation Abschnitt 66):
+125. **Wünsche vom 07.11.2026** (in Build 52; Spezifikation Abschnitt 66):
     - Selbsttest auch ohne GitHub-Zugang: vorher Zustimmung aller Mitspieler; am Ende gehen alle Berichte an einen
       Mitspieler mit Token, der sie hochlädt (sonst „Gespeicherte Diagnosen“).
     - Spielleiter spielt mit: Frage und Antworten bekommen bis zur eigenen Antwort den ganzen Bildschirm (Anlass: A53 als
@@ -551,6 +551,8 @@ Kategorien recherchieren.
     Tagesschau, Gesellschaft, Kunst, Kultur), US-Sport nur Baseball/Football/Basketball, kein Eishockey mehr.
     Spielzählung im privaten Repository: `statistik/gespielt.json` (bisher 348 Fragen gespielt, zusammen 375-mal).
     Später mit Axel besprechen: Austausch alter Fragen.
+    **Phase 1 erreicht** (Build 52, 07.11.2026): alle 13 Kategorien je 120 Fragen. Ab dem nächsten Build Phase 2
+    (Umverteilen der Stufen, höchstens 20 veränderte Fragen je Build).
     Rotation 2026-11-06: 12 von 12 ersetzt (6 Eishockey, 6 alte Sportfragen raus; Emmys, VMAs, Buchmesse, Venedig,
     Jugendwort, Bambi, Booker rein), Sportanteil ca. 64 % → ca. 55 % (Schätzung), Stufen 24/33/28/29 (leicht/mittel/schwer/ingomania).
 118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, in Build 46): Übernahmen gingen
