@@ -499,8 +499,12 @@ Kategorien recherchieren.
     - Spielleiter spielt mit: Frage und Antworten bekommen bis zur eigenen Antwort den ganzen Bildschirm (Anlass: A53 als
       Spielleiter – Meldungen und Kopfzeile verdeckten die Antworten); der Rest bleibt per Scrollen erreichbar.
     - Lesetest: 20 Beispielzeilen, je Durchgang 5 zufällig (2 kurze, 3 lange).
-    - [ ] Testen: A53 ohne Token als Spielleiter → Selbsttest → Zustimmungsfrage bei allen → Bericht landet über das
-      Gerät mit Token in GitHub. A53 als mitspielender Spielleiter: Antworten vollständig lesbar.
+    - [x] Testen: A53 ohne Token als Spielleiter → Selbsttest → Zustimmungsfrage bei allen → Bericht landet über das
+      Gerät mit Token in GitHub. (07.11., 18:58–19:04: alle drei stimmten in 5 s zu, Intensivtest 94/94 in 332 s,
+      4 Berichte an Axel gesendet und von dort hochgeladen.)
+    - [ ] Testen: A53 als mitspielender Spielleiter – Antworten vollständig lesbar (in den Diagnosen nicht prüfbar).
+    - Kleinigkeit: Während des Tests meldet der Spielleiter ohne Token bei jeder Diagnose „über ⋮ Gespeicherte
+      Diagnosen in GitHub ablegen“, obwohl sie am Ende ohnehin an den Mitspieler mit Token gehen – Text anpassen.
 124. **Fünfter Intensivtest (Build 51, 07.11.2026, 16:17–16:22)**: Natsch, Samsung A53, Samsung S6 – alle auf Build 51,
     **94 von 94 bestanden**, 323 s. Übergabe hin und zurück klappt jetzt mit allen (Natsch wartete, bis alle da waren).
     Lange Fragen passen auf allen Geräten; am knappsten der A53 bei den längsten Antworten (`handel-0093`, Schrift auf
