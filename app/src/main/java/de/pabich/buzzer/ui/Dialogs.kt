@@ -437,7 +437,7 @@ fun SelfTestDialog(
                 CheckRow("Intensivtest (ca. $intensiveMinutes Min.)", intensive, enabled = playersConnected) { intensive = it; if (it) live = true }
                 Text(
                     "Jede Funktion mit jedem Spieler: Buzzer (Tippen, Halten, Frühstart, Antwortzeit), Spielregeln, Quiz (Pause, neu " +
-                        "stellen, überspringen, abbrechen, Challenge, Ersatzfrage, Endergebnis, Countdown, längste Frage und längste Antworten " +
+                        "stellen, überspringen, abbrechen, Challenge, Ersatzfrage, Endergebnis, Countdown, längste Frage, längste Antworten und längste Einzelantwort " +
                         "– passen sie auf jeden Bildschirm?), Kurznachrichten, Emoticons, " +
                         "Lesetempo, Profil kopieren, offline gehen und zurückkommen, verstummen, offline mitten in der Frage, Übergabe " +
                         "der Spielleitung hin und zurück.",

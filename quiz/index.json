@@ -43,14 +43,14 @@
     {
       "datei": "geschichte.json",
       "titel": "Geschichte",
-      "version": 18,
-      "fragen": 119
+      "version": 19,
+      "fragen": 120
     },
     {
       "datei": "erdkunde.json",
       "titel": "Erdkunde",
-      "version": 18,
-      "fragen": 119
+      "version": 19,
+      "fragen": 120
     },
     {
       "datei": "film.json",
@@ -73,44 +73,44 @@
     {
       "datei": "aktuell-2026.json",
       "titel": "Aktuelles 2026",
-      "version": 18,
-      "fragen": 114
+      "version": 19,
+      "fragen": 118
     },
     {
       "datei": "einzelhandel.json",
       "titel": "Einzelhandel",
-      "version": 17,
-      "fragen": 117
+      "version": 18,
+      "fragen": 120
     },
     {
       "datei": "bueroalltag.json",
       "titel": "Büroalltag",
-      "version": 17,
-      "fragen": 118
+      "version": 18,
+      "fragen": 120
     },
     {
       "datei": "besserwisser.json",
       "titel": "Besserwisser",
-      "version": 18,
-      "fragen": 118
+      "version": 19,
+      "fragen": 120
     },
     {
       "datei": "jahre.json",
       "titel": "Die 80er, 90er und 00er Jahre",
-      "version": 10,
-      "fragen": 116
+      "version": 11,
+      "fragen": 120
     },
     {
       "datei": "natur.json",
       "titel": "Bienchen & Blümchen",
-      "version": 10,
-      "fragen": 116
+      "version": 11,
+      "fragen": 120
     },
     {
       "datei": "bauernfaenger.json",
       "titel": "Nepper, Schlepper, Bauernfänger",
-      "version": 10,
-      "fragen": 116
+      "version": 11,
+      "fragen": 120
     }
   ]
 }

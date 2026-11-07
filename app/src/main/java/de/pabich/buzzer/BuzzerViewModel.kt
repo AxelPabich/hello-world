@@ -2421,17 +2421,19 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 val all = quizStore.questions
                 val longQ = all.maxByOrNull { it.text.length }
                 val longA = all.filter { it.id != longQ?.id }.maxByOrNull { q -> q.answers.sumOf { it.length } }
-                val picks = listOfNotNull(longQ, longA)
-                if (picks.size < 2) { mark("Quiz: lange Fragen und Antworten", null, false, "keine Fragen"); return@run }
+                val longOne = all.filter { it.id != longQ?.id && it.id != longA?.id }.maxByOrNull { q -> q.answers.maxOf { it.length } }
+                val picks = listOfNotNull(longQ, longA, longOne)
+                if (picks.size < 3) { mark("Quiz: lange Fragen und Antworten", null, false, "keine Fragen"); return@run }
                 results += SelfTest.Result("Längste Frage", true, "${longQ!!.id}, ${longQ.text.length} Zeichen")
-                results += SelfTest.Result("Längste Antworten", true, "${longA!!.id}, zusammen ${longA.answers.sumOf { it.length }} Zeichen, längste ${longA.answers.maxOf { it.length }}")
+                results += SelfTest.Result("Längste Antworten", true, "${longA!!.id}, zusammen ${longA.answers.sumOf { it.length }} Zeichen")
+                results += SelfTest.Result("Längste Einzelantwort", true, "${longOne!!.id}, ${longOne.answers.maxOf { it.length }} Zeichen")
                 val fitters = names.filter { build(it) >= FIT_TEST_BUILD }
                 fitters.forEach { cmd(it, "slow", LONG_VIEW_MS) }
                 e.updateSettings(testSettings.copy(quizAnswerMs = LONG_VIEW_MS.toInt() + 12_000), savedProfile)
                 sleep(500)
                 val acks = testAcks.size
                 if (!e.startQuiz(picks.map(quizStore::toQuiz))) { mark("Quiz: lange Fragen und Antworten", null, false, "Start abgelehnt"); return@run }
-                for (num in 1..2) {
+                for (num in picks.indices.map { it + 1 }) {
                     awaitQuestion(num)
                     waitUntil(LONG_VIEW_MS + 20_000) { answeredAll() }
                     sleep(1_000)
@@ -2439,8 +2441,12 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                     sleep(LONG_REVEAL_MS)
                     e.nextQuestion()
                 }
-                waitUntil(5_000) { fitters.all { n -> testAcks.drop(acks).count { it.name == n && it.action == "fit" } >= 2 } }
-                val checks = listOf("Quiz: längste Frage passt" to "Frage 1:", "Quiz: längste Antworten passen" to "Frage 2:")
+                waitUntil(5_000) { fitters.all { n -> testAcks.drop(acks).count { it.name == n && it.action == "fit" } >= picks.size } }
+                val checks = listOf(
+                    "Quiz: längste Frage passt" to "Frage 1:",
+                    "Quiz: längste Antworten passen" to "Frage 2:",
+                    "Quiz: längste Einzelantwort passt" to "Frage 3:",
+                )
                 for ((check, prefix) in checks) {
                     names.forEach { n ->
                         if (n !in fitters) { mark(check, n, null, "Build < $FIT_TEST_BUILD"); return@forEach }
