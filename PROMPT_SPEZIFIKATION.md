@@ -985,4 +985,9 @@ Trommelwirbel; der Master kann ein neues Quiz einrichten.
   bekommt er die Frage erneut (Punkt 121).
 - **Intensivtest, Übergabe:** Der Nachfolger gibt die Leitung erst zurück, wenn auch alle anderen Spieler bei ihm
   angekommen sind (höchstens 60 s warten).
+- **Intensivtest, lange Fragen (Build 50):** Neuer Schritt nach dem Quiz: die Frage mit dem längsten Text und die mit den
+  längsten Antworten (zusammen) aus allen Paketen. Die Spieler-Apps warten 10 s mit der Antwort, die Auflösung steht 5 s.
+  Jede App (ab Build 50) meldet, ob die Frage in ihren Bereich passt und alle vier Antworten ohne Scrollen sichtbar sind
+  (`QuizFitMonitor`, mit Schriftgröße); Ergebnis je Spieler „Quiz: längste Frage passt“ / „längste Antworten passen“.
+  Tippt ein Mensch mit, zählt seine Antwort und der Test läuft weiter.
 ===== ENDE SPEZIFIKATION.md =====

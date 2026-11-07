@@ -303,6 +303,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
     private var testLastAsk: Message.QuizAsk? = null
     private var testAnswerTask: Cancellable? = null
 
+    /** Intensivtest „lange Fragen“: so lange (ms nach dem Einblenden der Antworten) wartet die App mit der Antwort; 0 = normal. */
+    private var testSlowMs = 0L
+
     /** Intensivtest (Spielleiter): Rückmeldungen der Spieler. */
     private val testAcks = mutableListOf<TestAckEntry>()
 
@@ -1806,6 +1809,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             is Message.TestMode -> {
                 if (master != null || endpointId != masterEndpoint) return
                 testMode = message.on
+                if (!message.on) testSlowMs = 0
                 Diagnostics.log(if (message.on) "Testmodus an – die App spielt selbst" else "Testmodus aus")
                 if (message.on) rules = null
                 status = if (message.on) "Selbsttest des Spielleiters läuft – die App tippt und antwortet von selbst." else null
@@ -1879,7 +1883,9 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         fun later(ms: Long, block: () -> Unit) = scheduler.schedule(ms.coerceAtLeast(0)) { if (player === p && testMode) block() }
         fun answerLater(answersAtLocal: Long, count: Int) {
             testAnswerTask?.cancel()
-            testAnswerTask = later(answersAtLocal + 800 + r.nextLong(1_700) - UptimeClock.now()) { p.tapAnswer(r.nextInt(count), UptimeClock.now()) }
+            // Hat ein Mensch schon getippt, verwirft die Spiellogik die zweite Antwort – der Test läuft einfach weiter.
+            val delay = if (testSlowMs > 0) testSlowMs + r.nextLong(1_000) else 800 + r.nextLong(1_700)
+            testAnswerTask = later(answersAtLocal + delay - UptimeClock.now()) { p.tapAnswer(r.nextInt(count), UptimeClock.now()) }
         }
         when (message) {
             is Message.Arm -> later(200) { p.onTouchDown(UptimeClock.now()) }
@@ -1907,6 +1913,17 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
                 testLastAsk = message
                 answerLater(message.answersAtLocal, message.answers.size)
+                // Lange Fragen: melden, ob Frage und Antworten auf diesen Bildschirm passen.
+                if (testSlowMs > 0) later(message.answersAtLocal + 1_500 - UptimeClock.now()) {
+                    val q = de.pabich.buzzer.ui.QuizFitMonitor.question(message.text)
+                    val a = de.pabich.buzzer.ui.QuizFitMonitor.answers(message.answers)
+                    val detail = "Frage ${message.number}: " + when {
+                        q == null || a == null -> "nicht angezeigt (App im Hintergrund?)"
+                        else -> "Frage ${if (q.fits) "passt" else "zu lang"} (${q.fontSp.toInt()} sp), " +
+                            "Antworten ${if (a.fits) "passen" else "nur mit Scrollen"} (${a.fontSp.toInt()} sp)"
+                    }
+                    masterEndpoint?.let { link.send(it, Message.TestAck("fit", q?.fits == true && a?.fits == true, detail)) }
+                }
             }
             // Pause in der Frage: Die Antworten erscheinen später – neu planen.
             is Message.QuizShift -> testLastAsk?.takeIf { it.number == message.number }?.let { ask ->
@@ -1941,6 +1958,10 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             "early" -> testEarly = true
             "challenge" -> link.send(endpointId, Message.TestAck("challenge", p?.challenge("Intensivtest") == true))
             "handback" -> testHandBackTo = c.text.ifEmpty { null }
+            "slow" -> {
+                testSlowMs = c.arg.coerceIn(0, 30_000)
+                link.send(endpointId, Message.TestAck("slow", true))
+            }
             else -> link.send(endpointId, Message.TestAck(c.action, false, "unbekannter Befehl"))
         }
     }
@@ -2108,7 +2129,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         val startedAt = UptimeClock.now()
         val stepTitles = listOf(
             "Verbindung", "Spielregeln", "Buzzer: Tippen", "Buzzer: Halten", "Buzzer: Frühstart", "Buzzer: Antwortzeit",
-            "Quiz: Antworten, Pause, neu stellen, überspringen, abbrechen, Challenge", "Quiz: Countdown-Wertung",
+            "Quiz: Antworten, Pause, neu stellen, überspringen, abbrechen, Challenge", "Quiz: lange Fragen und Antworten",
+            "Quiz: Countdown-Wertung",
             "Kurznachrichten, Emoticons, Lesetempo, Profil", "Offline gehen und zurück", "Verstummen und zurück",
             "Offline mitten in der Frage", "Übergabe der Spielleitung", "Diagnosen",
         )
@@ -2390,8 +2412,49 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 replayDone()
             }
 
-            // 8 Quiz: Countdown-Wertung
+            // 8 Quiz: die Frage mit dem längsten Text und die mit den längsten Antworten – passen sie auf jeden
+            // Bildschirm? Sie bleiben länger stehen; tippt ein Mensch mit, läuft der Test einfach weiter.
             step(stepTitles[7])
+            run {
+                val e = engine()
+                if (e.snapshot().phase != MasterEngine.Phase.READY) e.stopQuiz()
+                val all = quizStore.questions
+                val longQ = all.maxByOrNull { it.text.length }
+                val longA = all.filter { it.id != longQ?.id }.maxByOrNull { q -> q.answers.sumOf { it.length } }
+                val picks = listOfNotNull(longQ, longA)
+                if (picks.size < 2) { mark("Quiz: lange Fragen und Antworten", null, false, "keine Fragen"); return@run }
+                results += SelfTest.Result("Längste Frage", true, "${longQ!!.id}, ${longQ.text.length} Zeichen")
+                results += SelfTest.Result("Längste Antworten", true, "${longA!!.id}, zusammen ${longA.answers.sumOf { it.length }} Zeichen, längste ${longA.answers.maxOf { it.length }}")
+                val fitters = names.filter { build(it) >= FIT_TEST_BUILD }
+                fitters.forEach { cmd(it, "slow", LONG_VIEW_MS) }
+                e.updateSettings(testSettings.copy(quizAnswerMs = LONG_VIEW_MS.toInt() + 12_000), savedProfile)
+                sleep(500)
+                val acks = testAcks.size
+                if (!e.startQuiz(picks.map(quizStore::toQuiz))) { mark("Quiz: lange Fragen und Antworten", null, false, "Start abgelehnt"); return@run }
+                for (num in 1..2) {
+                    awaitQuestion(num)
+                    waitUntil(LONG_VIEW_MS + 20_000) { answeredAll() }
+                    sleep(1_000)
+                    reveal()
+                    sleep(LONG_REVEAL_MS)
+                    e.nextQuestion()
+                }
+                waitUntil(5_000) { fitters.all { n -> testAcks.drop(acks).count { it.name == n && it.action == "fit" } >= 2 } }
+                val checks = listOf("Quiz: längste Frage passt" to "Frage 1:", "Quiz: längste Antworten passen" to "Frage 2:")
+                for ((check, prefix) in checks) {
+                    names.forEach { n ->
+                        if (n !in fitters) { mark(check, n, null, "Build < $FIT_TEST_BUILD"); return@forEach }
+                        val ack = testAcks.drop(acks).lastOrNull { it.name == n && it.action == "fit" && it.detail.startsWith(prefix) }
+                        mark(check, n, ack?.ok == true, ack?.detail?.removePrefix(prefix)?.trim() ?: "keine Rückmeldung")
+                    }
+                }
+                fitters.forEach { cmd(it, "slow", 0) }
+                sleep(1_500)
+                replayDone()
+            }
+
+            // 9 Quiz: Countdown-Wertung
+            step(stepTitles[8])
             run {
                 val e = engine()
                 if (e.snapshot().phase != MasterEngine.Phase.READY) e.stopQuiz()
@@ -2406,8 +2469,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 replayDone()
             }
 
-            // 9 Kurznachrichten, Emoticons, Lesetempo, Profil
-            step(stepTitles[8])
+            // 10 Kurznachrichten, Emoticons, Lesetempo, Profil
+            step(stepTitles[9])
             run {
                 val e = engine()
                 if (e.snapshot().phase != MasterEngine.Phase.READY) e.stopQuiz()
@@ -2435,8 +2498,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
             }
 
-            // 10 Offline gehen und zurückkommen (hart getrennt)
-            step(stepTitles[9])
+            // 11 Offline gehen und zurückkommen (hart getrennt)
+            step(stepTitles[10])
             for (n in names) {
                 if (!capable(n)) { mark("Offline und zurück", n, null, oldBuild); continue }
                 val before = row(n)?.scoreValue
@@ -2450,8 +2513,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 enterTestMode()
             }
 
-            // 11 Verstummen (Funkloch ohne Trennung) und zurückkommen
-            step(stepTitles[10])
+            // 12 Verstummen (Funkloch ohne Trennung) und zurückkommen
+            step(stepTitles[11])
             for (n in names) {
                 if (!capable(n)) { mark("Verstummen erkannt und zurück", n, null, oldBuild); continue }
                 val t0 = UptimeClock.now()
@@ -2463,8 +2526,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 enterTestMode()
             }
 
-            // 12 Offline mitten in der Frage – nach der Rückkehr noch antworten
-            step(stepTitles[11])
+            // 13 Offline mitten in der Frage – nach der Rückkehr noch antworten
+            step(stepTitles[12])
             run {
                 val target = names.firstOrNull { capable(it) }
                 if (target == null) { names.forEach { mark("Offline in der Frage, dann antworten", it, null, oldBuild) }; return@run }
@@ -2489,8 +2552,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 enterTestMode()
             }
 
-            // 13 Übergabe der Spielleitung an einen Spieler und zurück
-            step(stepTitles[12])
+            // 14 Übergabe der Spielleitung an einen Spieler und zurück
+            step(stepTitles[13])
             run {
                 val target = names.firstOrNull { capable(it) && row(it) != null }
                 if (target == null) { mark("Übergabe der Spielleitung", null, null); return@run }
@@ -2511,8 +2574,8 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 }
             }
 
-            // 14 Diagnosen einsammeln
-            step(stepTitles[13])
+            // 15 Diagnosen einsammeln
+            step(stepTitles[14])
             run {
                 val before = diagReportsReceived
                 requestDiagnoses()
@@ -3279,7 +3342,13 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
         const val INTENSIVE_TEST_BUILD = 44
 
         /** Grobe Dauer des Intensivtests: fester Teil plus je Spieler (Sekunden). */
-        const val INTENSIVE_BASE_S = 250
+        const val INTENSIVE_BASE_S = 300
+
+        /** Intensivtest „lange Fragen“: ab diesem Build melden Spieler, ob Frage und Antworten passen. */
+        const val FIT_TEST_BUILD = 50
+        /** So lange stehen die langen Fragen mit ihren Antworten, bevor die App antwortet, und danach die Auflösung. */
+        const val LONG_VIEW_MS = 10_000L
+        const val LONG_REVEAL_MS = 5_000L
         const val INTENSIVE_PER_PLAYER_S = 50
 
         /** Kurznachrichten des Intensivtests beginnen so – der Spieler quittiert sie. */

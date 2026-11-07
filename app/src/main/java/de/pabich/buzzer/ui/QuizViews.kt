@@ -38,6 +38,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
@@ -109,7 +110,12 @@ fun QuizCard(
             .padding(cardPad),
     ) {
         // Die Frage darf den Antwortfeldern nicht den Platz nehmen: bei wenig Höhe wird sie kleiner gesetzt.
-        val questionFont = questionFontSize(quiz.text, maxWidth, maxHeight, beforeAnswers, compact)
+        val questionSize = questionFontSize(quiz.text, maxWidth, maxHeight, beforeAnswers, compact)
+        val questionFont = questionSize.first
+        // Intensivtest: passt die Frage (bei sichtbaren Antworten) in ihren Bereich?
+        if (!compact && !beforeAnswers && quiz.text.isNotEmpty()) {
+            SideEffect { QuizFitMonitor.reportQuestion(quiz.text, QuizFitMonitor.Fit(questionSize.second, questionFont.value)) }
+        }
         Column(
             if (compact || maxHeight == Dp.Infinity) Modifier.fillMaxWidth() else Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(if (compact) 8.dp else 12.dp),
@@ -182,13 +188,13 @@ fun QuizCard(
  * Antworten gut die Hälfte) – der Rest gehört den vier Antwortfeldern.
  */
 @Composable
-private fun questionFontSize(text: String, width: Dp, height: Dp, beforeAnswers: Boolean, compact: Boolean): TextUnit {
+private fun questionFontSize(text: String, width: Dp, height: Dp, beforeAnswers: Boolean, compact: Boolean): Pair<TextUnit, Boolean> {
     val measurer = rememberTextMeasurer()
     val density = LocalDensity.current
     val baseStyle = LocalTextStyle.current
     return remember(text, width, height, beforeAnswers, compact, density, baseStyle) {
         val normal = if (compact) 18.sp else if (beforeAnswers) 26.sp else 23.sp
-        if (compact || height == Dp.Infinity || width == Dp.Infinity || text.isEmpty()) return@remember normal
+        if (compact || height == Dp.Infinity || width == Dp.Infinity || text.isEmpty()) return@remember normal to true
         val limit = height * (if (beforeAnswers) 0.55f else 0.3f)
         val smaller = listOf(21, 19, 18, 17, 16, 15, 14).map { it.sp }.filter { it.value < normal.value }
         val fixed = with(density) { listOf(14, 13, 12).map { it.dp.toSp() } }
@@ -201,7 +207,7 @@ private fun questionFontSize(text: String, width: Dp, height: Dp, beforeAnswers:
                     constraints = Constraints(maxWidth = width.roundToPx()),
                 ).size.height.toDp() <= limit
             }
-        } ?: sizes.last()
+        }?.let { it to true } ?: (sizes.last() to false)
     }
 }
 
@@ -223,6 +229,10 @@ private fun AnswerGrid(quiz: PlayerEngine.QuizView, onTap: (Int, Long) -> Unit, 
         // teilen sich die verfügbare Höhe; passt eine Antwort nicht, wird die Schrift kleiner und das Feld
         // schlanker – gescrollt wird nur im äußersten Notfall.
         val fit = answerFit(quiz.answers, maxWidth, maxHeight, compact, gap)
+        // Intensivtest: sind alle vier Antworten ohne Scrollen sichtbar?
+        if (!compact && quiz.answers.isNotEmpty() && quiz.stage != QuizStage.WAITING && quiz.stage != QuizStage.QUESTION) {
+            SideEffect { QuizFitMonitor.reportAnswers(quiz.answers, QuizFitMonitor.Fit(!fit.overflows, fit.fontSize.value)) }
+        }
         val scroll = rememberScrollState()
         Column(
             Modifier.fillMaxWidth().then(if (fit.overflows) Modifier.verticalScroll(scroll) else Modifier),
