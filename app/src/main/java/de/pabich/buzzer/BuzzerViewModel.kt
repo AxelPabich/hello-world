@@ -2429,7 +2429,7 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
                 results += SelfTest.Result("Längste Einzelantwort", true, "${longOne!!.id}, ${longOne.answers.maxOf { it.length }} Zeichen")
                 val fitters = names.filter { build(it) >= FIT_TEST_BUILD }
                 fitters.forEach { cmd(it, "slow", LONG_VIEW_MS) }
-                e.updateSettings(testSettings.copy(quizAnswerMs = LONG_VIEW_MS.toInt() + 12_000), savedProfile)
+                e.updateSettings(testSettings.copy(quizAnswerMs = LONG_VIEW_MS + 12_000), savedProfile)
                 sleep(500)
                 val acks = testAcks.size
                 if (!e.startQuiz(picks.map(quizStore::toQuiz))) { mark("Quiz: lange Fragen und Antworten", null, false, "Start abgelehnt"); return@run }
