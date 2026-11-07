@@ -493,11 +493,18 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
+124. **Fünfter Intensivtest (Build 51, 07.11.2026, 16:17–16:22)**: Natsch, Samsung A53, Samsung S6 – alle auf Build 51,
+    **94 von 94 bestanden**, 323 s. Übergabe hin und zurück klappt jetzt mit allen (Natsch wartete, bis alle da waren).
+    Lange Fragen passen auf allen Geräten; am knappsten der A53 bei den längsten Antworten (`handel-0093`, Schrift auf
+    12 sp verkleinert). Längste Frage jetzt `natur-0084` (158 Zeichen), längste Einzelantwort `bauernfaenger-0120` (82).
+    - WLAN-Abfrage beim Update (Punkt 116) auf dem S6 bestätigt: „WLAN ist aus – Abfrage“, eingeschaltet, Build 51 installiert.
+    - Nachtrag 06.11., 22:00 (Build 48): Das S6 hing nach der zu frühen Rückgabe 60 s und beendete dann das Spiel –
+      genau der in Build 49 behobene Fall. Um 22:19 übernahm das S6 als Nachfolger Platz 2 korrekt (Sync-Verfahren).
 123. **Intensivtest: längste Frage und längste Antworten** (Wunsch vom 07.11.2026, in Build 51; Build 50 scheiterte
     am Kompilieren): neuer Schritt 8 „Quiz: lange Fragen und Antworten“ (längste Frage, längste Antworten zusammen, längste Einzelantwort). Die Fragen stehen länger (Antwort der App nach 10 s,
     Auflösung 5 s); jede Spieler-App ab Build 50 meldet, ob Frage und alle vier Antworten ohne Scrollen auf ihren
     Bildschirm passen. Mitspielen per Hand stört den Test nicht. Spezifikation Abschnitt 65.
-    - [ ] Testen: Intensivtest – auf jedem Gerät ✓ bei „längste Frage passt“ und „längste Antworten passen“.
+    - [x] Testen: Intensivtest – auf jedem Gerät ✓ bei „längste Frage passt“ und „längste Antworten passen“ (07.11.).
 122. **Wünsche vom 06.11.2026** (umgesetzt, kommt mit dem nächsten Build; Spezifikation Abschnitt 65):
     - [System]-Meldungen im Chat des Spielleiters: getrennte/wieder verbundene und nicht antwortende Spieler,
       fehlgeschlagene Verbindungen, Fehler-Statusmeldungen (Uploads, Beitritt …), rote Prüfungen im Selbsttest.
@@ -572,7 +579,7 @@ Kategorien recherchieren.
     einschalten“, „Mobile Daten“ (nur wenn darüber Internet da ist) und „Abbrechen“. Bis Android 9 schaltet die App
     das WLAN selbst ein, ab Android 10 erlaubt Android das nicht mehr: Dann erscheint der WLAN-Schalter von Android
     als Einblendung. Sobald Internet über WLAN da ist (höchstens 60 s warten), läuft Suche bzw. Download von selbst weiter.
-    - [ ] Testen: WLAN aus, „Nach neuer Version suchen“ → Abfrage, einschalten, Suche läuft weiter.
+    - [x] Testen: WLAN aus, „Nach neuer Version suchen“ → Abfrage, einschalten, Suche läuft weiter (07.11., S6).
 115. **Diagnosen gestaffelt abrufen** (Wunsch vom 01.11.2026, in Build 45; Lösung zu Punkt 113): Der
     Spielleiter fragt die Spieler im Abstand von 8 s nacheinander an, die Spieler schicken ihre Berichtsteile mit
     300 ms Abstand. Ab der Anfrage trennt 45 s lang (beim Spielleiter zusätzlich 8 s je Spieler, jeder Berichtsteil
