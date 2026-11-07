@@ -493,8 +493,8 @@ Kategorien recherchieren.
     Stufen stehen jetzt in `quiz/index.json` und werden dort verwaltet; die App liest sie aus dem
     eingebauten oder per „Fragen aktualisieren“ geladenen Index. Neue Stufen/Pakete erscheinen ohne
     Codeänderung. Spezifikation Abschnitt 54; Tests `IngomaniaTest`, `QuestionPackFilesTest`.
-123. **Intensivtest: längste Frage und längste Antworten** (Wunsch vom 07.11.2026, umgesetzt, kommt mit dem nächsten
-    Build): neuer Schritt 8 „Quiz: lange Fragen und Antworten“ (längste Frage, längste Antworten zusammen, längste Einzelantwort). Die Fragen stehen länger (Antwort der App nach 10 s,
+123. **Intensivtest: längste Frage und längste Antworten** (Wunsch vom 07.11.2026, in Build 51; Build 50 scheiterte
+    am Kompilieren): neuer Schritt 8 „Quiz: lange Fragen und Antworten“ (längste Frage, längste Antworten zusammen, längste Einzelantwort). Die Fragen stehen länger (Antwort der App nach 10 s,
     Auflösung 5 s); jede Spieler-App ab Build 50 meldet, ob Frage und alle vier Antworten ohne Scrollen auf ihren
     Bildschirm passen. Mitspielen per Hand stört den Test nicht. Spezifikation Abschnitt 65.
     - [ ] Testen: Intensivtest – auf jedem Gerät ✓ bei „längste Frage passt“ und „längste Antworten passen“.
