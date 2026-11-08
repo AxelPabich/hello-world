@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); cmd=$(printf '%s' \"$input\" | jq -r '.tool_input.command // empty'); if printf '%s' \"$cmd\" | grep -q 'gradle test' && ! printf '%s' \"$cmd\" | grep -q -- '--offline'; then printf '%s\\n' 'Hinweis: Bei Fehler 429 von Maven Central 20-30 s warten und wiederholen (CLAUDE.md: Build-Infrastruktur) - nicht an Abhängigkeits-Versionen ändern.' >&2; fi; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}
