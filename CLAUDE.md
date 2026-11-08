@@ -27,6 +27,17 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
   Bundle von `buzzer-diagnose` und die aktuelle APK; Dateinamen mit Datum und Build-Nummer, mit
   `git bundle verify` prüfen und Axel als Dateien schicken (nicht ins öffentliche Repo legen).
 
+## Build-Infrastruktur (Rückmeldung aus /insights, 08.11.2026)
+
+- Maven Central antwortet bei `cd core && gradle test` gelegentlich mit Fehler 429 (zu viele Anfragen) beim
+  Laden der Abhängigkeiten. Dann kurz warten (20–30 s) und wiederholen, nicht in einer engen Schleife sofort
+  erneut anstoßen. Hält der Fehler über mehrere Versuche an, das melden statt mit Abhängigkeits-Versionen
+  herumzuprobieren.
+- Vor einem Build per `workflow_dispatch` prüfen, ob für `android.yml` auf dem Arbeits-Branch schon ein Lauf
+  wartet oder läuft (`mcp__github__actions_list`), um keinen doppelten Build anzustoßen. Nach dem Start den
+  Lauf bis zum Ende abfragen und das Ergebnis (bestanden/fehlgeschlagen, bei Fehler der Schritt) kurz
+  zusammenfassen, bevor es weitergeht.
+
 ## Sicherheits-Erinnerung (Wunsch vom 31.10.2026)
 
 Solange in `OFFENE_PUNKTE.md` Punkt 106 („Schutz vor fremden Änderungen / Malware“) offene Kästchen hat,
