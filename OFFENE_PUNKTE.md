@@ -559,8 +559,9 @@ Kategorien recherchieren.
     (Umverteilen der Stufen, höchstens 20 veränderte Fragen je Build).
     Rotation 2026-11-06: 12 von 12 ersetzt (6 Eishockey, 6 alte Sportfragen raus; Emmys, VMAs, Buchmesse, Venedig,
     Jugendwort, Bambi, Booker rein), Sportanteil ca. 64 % → ca. 55 % (Schätzung), Stufen 24/33/28/29 (leicht/mittel/schwer/ingomania).
-    Rotation 2026-11-14: 10 von 12 ersetzt (10 alte Sportfragen raus; Booker-Preis, COP31, ESC 2027, Auslands-Oscar,
-    Papstreise, Fernsehpreis, Wortgetüm rein), Sportanteil ca. 55 % → ca. 47 % (Schätzung), Stufen 22/36/33/29 (leicht/mittel/schwer/ingomania).
+    Rotation 2026-11-14: 12 von 12 ersetzt (12 alte Sportfragen raus; Booker-Preis, COP31, ESC 2027, Auslands-Oscar,
+    Papstreise, Fernsehpreis, Wortgetüm, Nachruf Keach, Kleist-Preis rein), Sportanteil ca. 55 % → ca. 45 % (Schätzung),
+    Stufen 22/36/33/29 (leicht/mittel/schwer/ingomania).
 118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, in Build 46): Übernahmen gingen
     oft schief – ein neuer Spielleiter sah den alten noch und gab ab, während die anderen schon zu ihm wollten.
     Neu (gilt, sobald alle Mitspieler Build 46 haben, sonst das alte Verfahren):
