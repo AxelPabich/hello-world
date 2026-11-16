@@ -6,10 +6,10 @@ ausdrückliche Bitte.
 ## Übergabe (01.11.2026, Wechsel in eine neue Sitzung)
 
 Für jede neue Sitzung: zuerst `CLAUDE.md` (Regeln), `AGENTS.md` (Aufbau) und diesen Abschnitt lesen; Details zu jeder
-Funktion in `SPEZIFIKATION.md`, die neuesten Punkte stehen unten im Abschnitt „Offen“ (höchste Nummer zuerst: 119).
+Funktion in `SPEZIFIKATION.md`, die neuesten Punkte stehen unten im Abschnitt „Offen“ (höchste Nummer zuerst: 125).
 
-**Stand:** Build **46** (2.0.46) ist gebaut und freigegeben (Run 46). Arbeits-Branch
-`claude/android-multicast-groups-9b1lkt`, alles gepusht. Kern-Tests: `cd core && gradle test -q` (164 Tests grün).
+**Stand:** Build **52** (2.0.52) ist gebaut und freigegeben (Run 52). Arbeits-Branch
+`claude/android-multicast-groups-9b1lkt`, alles gepusht. Kern-Tests: `cd core && gradle cleanTest test` (nach Quiz-Änderungen nur so; ein einfaches `gradle test` meldet „UP-TO-DATE“).
 Diagnose-Repository (privat) `AxelPabich/buzzer-diagnose` liegt unter `/home/user/buzzer-diagnose` (vorher `git pull`);
 „Diag“ heißt: neue Berichte dort lesen, auswerten, Axel berichten, Spielzählung aktualisieren.
 
