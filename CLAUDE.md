@@ -38,6 +38,9 @@ Diese Regeln hat Axel festgelegt; sie gelten für jede Sitzung.
   Lauf bis zum Ende abfragen und das Ergebnis (bestanden/fehlgeschlagen, bei Fehler der Schritt) kurz
   zusammenfassen, bevor es weitergeht.
 
+- Nach Änderungen an `quiz/*.json` immer `cd core && gradle cleanTest test` ausführen und prüfen, dass `:test` wirklich
+  ausgeführt wurde (nicht „UP-TO-DATE“). Nur dann gilt der Test als grün.
+
 ## Sicherheits-Erinnerung (Wunsch vom 31.10.2026)
 
 Solange in `OFFENE_PUNKTE.md` Punkt 106 („Schutz vor fremden Änderungen / Malware“) offene Kästchen hat,
@@ -83,5 +86,6 @@ wurde) und mit committen. Namen der Mitspieler gehören nicht ins öffentliche R
 - IDs fortlaufend je Paket weiterzählen; keine Dubletten zu vorhandenen Fragen.
 - Paket-`version` und `index.json` (Version, Fragenanzahl) erhöhen, Pakete neu mischen.
 - „Aktuelles 2026“: nur per Websuche geprüfte Ereignisse, `gueltigBis` setzen.
-- Danach `cd core && gradle test` (prüft alle Pakete), im Build-Commit erwähnen.
+- Danach `cd core && gradle cleanTest test` (prüft alle Pakete; ein einfaches `gradle test` überspringt den Test mit
+  „UP-TO-DATE“, weil die Quizdateien nicht zu den Gradle-Eingaben zählen), im Build-Commit erwähnen.
 - Die neuen Fragen sind sofort eingebaut; über „Fragen aktualisieren“ erst nach dem Merge in `master`.

@@ -28,6 +28,8 @@ von älteren Apps ignoriert. Neue Funktionen müssen mit älteren Builds der Mit
 ## Arbeiten und prüfen
 
 - Tests der Spiellogik: `cd core && gradle test` (prüft auch alle Fragenpakete). Muss vor jedem Commit grün sein.
+  Nach Änderungen an `quiz/*.json`: `cd core && gradle cleanTest test` – ein einfaches `gradle test` meldet sonst
+  „UP-TO-DATE“ und prüft die Fragen nicht.
   Antwortet Maven Central mit Fehler 429, kurz warten (20–30 s) und wiederholen statt in einer Schleife sofort
   erneut anzustoßen.
 - Die App selbst wird über GitHub Actions gebaut (lokal: Android Studio, JDK 17). Kompilierfehler in `app/`
