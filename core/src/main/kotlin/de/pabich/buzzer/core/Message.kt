@@ -117,6 +117,11 @@ sealed interface Message {
         val source: String,
         /** Nach einer Challenge-Entscheidung neu geschickt (ohne Klang). */
         val corrected: Boolean,
+        /**
+         * Nur mit „Antworten zeigen“: je Antwortposition (eigene Reihenfolge) die Namen der Mitspieler,
+         * die sie gewählt haben, mit „|“ getrennt; leer = aus oder niemand. Index = Position.
+         */
+        val chooserNames: List<String> = emptyList(),
     ) : Message
 
     /** S → M: Frage anfechten, mit optionaler Begründung. */
@@ -327,6 +332,7 @@ object MessageCodec {
                 "n" to message.number, "cp" to message.correctPosition, "ch" to message.chosenPosition,
                 "o" to message.outcome.name, "g" to message.gained, "s" to message.score,
                 "x" to message.explanation, "src" to message.source, "cor" to message.corrected,
+                "an" to encodeList(message.chooserNames),
             )
             is Message.QuizChallenge -> "QUIZ_CHALLENGE" to mapOf("n" to message.number, "r" to message.reason)
             is Message.Typing -> "TYPING" to mapOf("on" to message.on)
@@ -436,6 +442,7 @@ object MessageCodec {
             "QUIZ_RESULT" -> Message.QuizResult(
                 int("n"), int("cp"), int("ch"), QuizOutcome.valueOf(f.getValue("o")), f.getValue("g"), f.getValue("s"),
                 f.getValue("x"), f.getValue("src"), bool("cor"),
+                f["an"]?.let { decodeList(it) } ?: emptyList(),
             )
             "QUIZ_CHALLENGE" -> Message.QuizChallenge(int("n"), f.getValue("r"))
             "TYPING" -> Message.Typing(bool("on"))
@@ -532,12 +539,13 @@ object MessageCodec {
     private const val MAX_QUESTIONS_CHARS = 12_000
 
     private fun encodeEntries(entries: List<ScoreEntry>) = entries.joinToString(",") {
-        listOf(it.rank, it.score, if (it.isSelf) 1 else 0, enc(it.label), enc(it.scoreText)).joinToString(":")
+        listOf(it.rank, it.score, if (it.isSelf) 1 else 0, enc(it.label), enc(it.scoreText), enc(it.tiebreakText ?: "")).joinToString(":")
     }
 
     private fun decodeEntries(text: String): List<ScoreEntry> =
         if (text.isEmpty()) emptyList() else text.split(',').map {
-            val (rank, score, self, label, scoreText) = it.split(':')
-            ScoreEntry(rank.toInt(), dec(label), score.toLong(), dec(scoreText), self == "1")
+            val parts = it.split(':')
+            val (rank, score, self, label, scoreText) = parts
+            ScoreEntry(rank.toInt(), dec(label), score.toLong(), dec(scoreText), self == "1", parts.getOrNull(5)?.let(::dec)?.takeIf { t -> t.isNotEmpty() })
         }
 }

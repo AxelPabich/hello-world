@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import de.pabich.buzzer.core.ScoreEntry
 
 /** Balken für einen Punktestand, relativ zum höchsten Punktestand. */
@@ -71,13 +72,27 @@ fun Scoreboard(entries: List<ScoreEntry>, maxScore: Long, color: Color, modifier
                     modifier = Modifier.width(110.dp),
                 )
                 ScoreBar(entry.score, maxScore, color, Modifier.weight(1f), highlight = entry.isSelf)
-                Text(
-                    entry.scoreText,
-                    color = color,
-                    fontWeight = weight,
-                    textAlign = TextAlign.End,
-                    modifier = Modifier.width(72.dp),
-                )
+                Column(horizontalAlignment = Alignment.End, modifier = Modifier.width(72.dp)) {
+                    Text(
+                        entry.scoreText,
+                        color = color,
+                        fontWeight = weight,
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    // Bei Punktgleichstand: der Tiebreaker (Zeitsumme bzw. Anzahl Richtiger), sonst nicht.
+                    entry.tiebreakText?.let {
+                        Text(
+                            it,
+                            color = color.copy(alpha = 0.7f),
+                            fontSize = 10.sp,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            textAlign = TextAlign.End,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+                }
             }
         }
     }

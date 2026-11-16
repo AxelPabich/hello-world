@@ -43,13 +43,78 @@ class ScoreboardTest {
     @Test
     fun `scoreboard survives the codec`() {
         val message = Message.Scoreboard(
-            listOf(ScoreEntry(1, "Zoë: a,b|c", 8_765, "8,77 s", false), ScoreEntry(2, "Du", 0, "0,00 s", true)),
+            listOf(
+                ScoreEntry(1, "Zoë: a,b|c", 8_765, "8,77 s", false, "3,45 s"),
+                ScoreEntry(2, "Du", 0, "0,00 s", true),
+            ),
             maxScore = 8_765,
             show = true,
         )
         assertEquals(message, MessageCodec.decode(MessageCodec.encode(message)))
         val empty = Message.Scoreboard(emptyList(), 0, false)
         assertEquals(empty, MessageCodec.decode(MessageCodec.encode(empty)))
+    }
+
+    @Test
+    fun `tied scores without time scoring are broken by the smaller reaction time sum`() {
+        val tied = listOf(
+            ScoreInput("a", "Anna", 3, totalReactionMs = 5_000),
+            ScoreInput("b", "Ben", 3, totalReactionMs = 2_000),
+            ScoreInput("c", "Carl", 1),
+        )
+        val board = buildScoreboard(tied, viewer = null, Settings())
+        assertEquals(listOf("1:Ben", "2:Anna", "3:Carl"), board.short())
+        assertEquals("2,00 s", board[0].tiebreakText)
+        assertEquals("5,00 s", board[1].tiebreakText)
+        // Kein Gleichstand: kein Tiebreaker-Text.
+        assertEquals(null, board[2].tiebreakText)
+    }
+
+    @Test
+    fun `tied scores with time scoring are broken by the higher correct count`() {
+        val tied = listOf(
+            ScoreInput("a", "Anna", 3_000, correctCount = 2),
+            ScoreInput("b", "Ben", 3_000, correctCount = 4),
+        )
+        val board = buildScoreboard(tied, viewer = null, Settings(scoring = ScoringMode.REMAINING_TIME))
+        assertEquals(listOf("1:Ben", "2:Anna"), board.short())
+        assertEquals("4× richtig", board[0].tiebreakText)
+        assertEquals("2× richtig", board[1].tiebreakText)
+    }
+
+    @Test
+    fun `a tie after several buzzer rounds is broken by the accumulated reaction time`() {
+        val g = SimGame()
+        g.addPlayer("A", clockOffsetMs = 0, latencyMs = 20)
+        g.addPlayer("B", clockOffsetMs = 0, latencyMs = 20)
+        g.syncClocks()
+
+        // Runde 1: A buzzert zuerst (200 ms), wird aber falsch gewertet; B (300 ms) bekommt den Punkt.
+        g.master.release()
+        g.scheduleTap("A", 200)
+        g.scheduleTap("B", 300)
+        g.time.advanceBy(30_000)
+        g.master.markWrong()
+        g.time.advanceBy(1_000)
+        g.master.markCorrect()
+        g.time.advanceBy(1_000)
+        g.master.nextRound()
+
+        // Runde 2: A buzzert sehr schnell (50 ms) und bekommt den Punkt; B buzzert gar nicht (zählt die
+        // volle Wartezeit).
+        g.master.release()
+        g.scheduleTap("A", 50)
+        g.time.advanceBy(30_000)
+        g.master.markCorrect()
+        g.time.advanceBy(1_000)
+
+        // Beide stehen bei 1 Punkt: A hat die kleinere Zeitsumme (200+50 ms gegen 300+10.000 ms) und führt.
+        assertEquals("1", g.view("A").score)
+        assertEquals("1", g.view("B").score)
+        val board = g.view("B").board
+        assertEquals(listOf("1:A", "2:Du"), board.map { "${it.rank}:${it.label}" })
+        assertEquals("0,25 s", board[0].tiebreakText)
+        assertEquals("10,30 s", board[1].tiebreakText)
     }
 
     @Test

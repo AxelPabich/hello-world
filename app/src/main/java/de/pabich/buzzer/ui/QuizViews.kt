@@ -247,7 +247,13 @@ private fun AnswerGrid(quiz: PlayerEngine.QuizView, onTap: (Int, Long) -> Unit, 
                     text = text,
                     state = st,
                     thumb = st == FieldState.CORRECT && result?.chosenPosition == pos,
-                    chosenInfo = if (st == FieldState.CHOSEN && result == null && !fit.tight) quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" } else null,
+                    chosenInfo = when {
+                        fit.tight -> null
+                        // Nach der Auflösung mit „Antworten zeigen“: wer diese Antwort gewählt hat.
+                        result != null -> result.chooserNames.getOrNull(pos)?.takeIf { it.isNotEmpty() }?.replace("|", ", ")
+                        st == FieldState.CHOSEN -> quiz.chosenElapsedMs?.let { "DEINE WAHL · ${seconds(it)}" }
+                        else -> null
+                    },
                     enabled = enabled,
                     compact = compact,
                     tight = fit.tight,
@@ -436,7 +442,10 @@ private fun AnswerField(
                 textDecoration = if (state == FieldState.WRONG) TextDecoration.LineThrough else null,
             )
             if (chosenInfo != null && !compact) {
-                Text(chosenInfo, color = fg, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp)
+                Text(
+                    chosenInfo, color = fg, fontSize = 11.sp, fontWeight = FontWeight.Bold, letterSpacing = 1.sp,
+                    maxLines = 1, overflow = TextOverflow.Ellipsis,
+                )
             }
             }
         }

@@ -2,6 +2,15 @@
   "hinweis": "Neueste Einträge oben. \"build\": 0 = nächster Build – der Workflow trägt die Nummer beim Bauen ein.",
   "eintraege": [
     {
+      "build": 0,
+      "datum": "2026-11-16",
+      "punkte": [
+        "Bei Punktgleichstand am Ende entscheidet jetzt ein Tiebreaker: ohne Zeitwertung die kleinere Gesamtzeit (schneller gewinnt), mit Zeitwertung die Anzahl richtiger Antworten (mehr gewinnt) – der Wert steht nur bei echtem Gleichstand in der Rangliste.",
+        "Spielleiter, der mitspielt, kann jetzt auch einen Lesetest machen (vorher nur die Mitspieler).",
+        "Neue Quiz-Einstellung „Antworten der Mitspieler bei der Auflösung zeigen“: Jedes Antwortfeld zeigt dann, wer es gewählt hat."
+      ]
+    },
+    {
       "build": 52,
       "datum": "2026-11-07",
       "punkte": [

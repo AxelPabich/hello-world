@@ -705,6 +705,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     var confirmLeave by remember { mutableStateOf(false) }
     var showHandOver by remember { mutableStateOf(false) }
     var askSelfTest by remember { mutableStateOf(false) }
+    var showReadTest by remember { mutableStateOf(false) }
     // Zurück schrittweise: Quiz einrichten → Quiz-Vorlage → Spielart → Spiel verlassen.
     BackHandler {
         val s = vm.masterSnapshot
@@ -848,6 +849,12 @@ fun MasterScreen(vm: BuzzerViewModel) {
                                 text = { Text("Diagnose senden") },
                                 onClick = { showMenu = false; showDiagnostics = true },
                             )
+                            if (settings.masterPlays) {
+                                DropdownMenuItem(
+                                    text = { Text("Lesetempo messen") },
+                                    onClick = { showMenu = false; showReadTest = true },
+                                )
+                            }
                             vm.receivedUpdate?.let { update ->
                                 DropdownMenuItem(
                                     text = { Text("Build ${update.build} installieren (liegt bereit)") },
@@ -1081,6 +1088,7 @@ fun MasterScreen(vm: BuzzerViewModel) {
     if (showDiagnostics) DiagnosticsDialog(vm) { showDiagnostics = false }
     if (showSaved) SavedReportsDialog(vm) { showSaved = false }
     if (showSettings) SettingsDialog(vm, snapshot) { showSettings = false }
+    if (showReadTest) ReadTestDialog(vm.readMsPerChar, onSave = { vm.saveReadSpeed(it) }, onDismiss = { showReadTest = false })
     if (showChat) {
         ChatDialog(
             recipients = snapshot.players.filter { it.connected && it.id != BuzzerViewModel.LOCAL_PLAYER_ID }.map { it.id to it.name },

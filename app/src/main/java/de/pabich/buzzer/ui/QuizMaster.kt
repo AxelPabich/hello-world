@@ -309,6 +309,11 @@ fun QuizSetup(vm: BuzzerViewModel, snapshot: MasterEngine.Snapshot, modifier: Mo
             "Die Pause zwischen Frage und Antworten richtet sich nach Fragenlänge und dem langsamsten Lesetempo der Spieler.",
             color = theme.muted, fontSize = 13.sp,
         )
+        ToggleRow("Antworten der Mitspieler bei der Auflösung zeigen", settings.quizShowAnswers) { change(settings.copy(quizShowAnswers = it)) }
+        Text(
+            "Bei der Auflösung steht in jedem Antwortfeld, wer es gewählt hat.",
+            color = theme.muted, fontSize = 13.sp,
+        )
         ToggleRow("Spielregeln vor Spielbeginn bestätigen", settings.rulesConfirm) { change(settings.copy(rulesConfirm = it)) }
         ToggleRow("Ich spiele mit", settings.masterPlays) { change(settings.copy(masterPlays = it)) }
         Row(

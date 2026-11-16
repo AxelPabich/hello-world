@@ -148,6 +148,12 @@ class MasterEngine(
         var roundReactionMs: Long? = null
         var contestReactionMs: Long? = null
 
+        /** Summe der Lösungszeiten über alle Runden/Fragen (Tiebreaker bei Punktgleichstand ohne Zeitwertung). */
+        var totalReactionMs = 0L
+
+        /** Anzahl richtiger Antworten (Tiebreaker bei Punktgleichstand mit Zeitwertung). */
+        var correctCount = 0L
+
         /** Wann zuletzt etwas von diesem Spieler kam (Antwort auf den Herzschlag); `null` = noch nie. */
         var lastHeardAt: Long? = null
         var silentReported = false
@@ -265,6 +271,9 @@ class MasterEngine(
     /** Platzierung als Gruppen; Gruppen mit mehr als einem Spieler sind Gleichstände. */
     private val order = mutableListOf<MutableList<PlayerId>>()
     private var answerIndex = -1
+
+    /** Teilnehmer der laufenden Hauptrunde (für die Tiebreaker-Summe am Rundenende, unabhängig von Sudden Death). */
+    private var roundParticipants: Set<PlayerId> = emptySet()
     private var pingSeq = 0
     private var pingTick = 0
     private var pingTask: Cancellable? = null
@@ -323,6 +332,10 @@ class MasterEngine(
     /** Punkte aus einer Übernahme: kommen zurück, sobald der Spieler wieder beitritt. */
     private val carriedScores = mutableMapOf<String, Long>()
 
+    /** Tiebreaker-Werte (Reaktionszeitsumme, richtige Antworten) aus einer Übernahme, analog [carriedScores]. */
+    private val carriedReactionMs = mutableMapOf<String, Long>()
+    private val carriedCorrectCount = mutableMapOf<String, Long>()
+
     /** Übernommene Punkte je Spieler – Startbild des Spielverlaufs nach einer Übernahme. */
     private val startScores = mutableMapOf<PlayerId, Long>()
     private var lastSuccession: Message.Succession? = null
@@ -347,12 +360,16 @@ class MasterEngine(
         players.values.firstOrNull { !it.connected && baseName(it.name) == baseName(name) }?.let { old ->
             players.remove(old.id)
             if (old.score != 0L) carriedScores[baseName(name)] = old.score
+            if (old.totalReactionMs != 0L) carriedReactionMs[baseName(name)] = old.totalReactionMs
+            if (old.correctCount != 0L) carriedCorrectCount[baseName(name)] = old.correctCount
         }
         carriedScores.remove(baseName(name))?.let {
             player.score = it
             startScores[id] = it
             log("Punkte aus dem Spiel davor übernommen: $name $it")
         }
+        carriedReactionMs.remove(baseName(name))?.let { player.totalReactionMs = it }
+        carriedCorrectCount.remove(baseName(name))?.let { player.correctCount = it }
         players[id] = player
         log("Spieler beigetreten: $name ($id)")
         if (!local) masterSound(SoundEvent.JOIN)
@@ -374,6 +391,8 @@ class MasterEngine(
             players.remove(id)
             // Punkte merken: Wer mit gleichem Namen wieder beitritt, bekommt sie zurück.
             if (player.score != 0L && !player.local) carriedScores[baseName(player.name)] = player.score
+            if (player.totalReactionMs != 0L && !player.local) carriedReactionMs[baseName(player.name)] = player.totalReactionMs
+            if (player.correctCount != 0L && !player.local) carriedCorrectCount[baseName(player.name)] = player.correctCount
             broadcastRoster()
             broadcastScoreboard()
             // Im Quiz wartet niemand mehr auf seine Antwort.
@@ -426,11 +445,13 @@ class MasterEngine(
         if (phase != Phase.READY) return
         gameStarted = false
         carriedScores.clear()
+        carriedReactionMs.clear()
+        carriedCorrectCount.clear()
         startScores.clear()
         history.clear()
         recordedRound = -1
         lastResult = null
-        players.values.forEach { it.score = 0 }
+        players.values.forEach { it.score = 0; it.totalReactionMs = 0; it.correctCount = 0 }
         players.values.forEach { send(it.id, Message.Reset(scoreText(it))) }
         broadcastScoreboard()
         notifyChanged()
@@ -491,6 +512,7 @@ class MasterEngine(
         gameStarted = true
         order.clear()
         answerIndex = -1
+        roundParticipants = participants.map { it.id }.toSet()
         for (p in participants) {
             p.roundReactionMs = null
             p.contestReactionMs = null
@@ -512,6 +534,7 @@ class MasterEngine(
         val amount = award(player.roundReactionMs)
         player.score += amount
         pendingWinner = player.id to amount
+        finalizeRoundStats(player.id)
         phase = Phase.ROUND_OVER
         sendSound(listOf(player.id), SoundEvent.RIGHT)
         broadcastStates(roundEndExcept = player.id)
@@ -730,6 +753,20 @@ class MasterEngine(
         ScoringMode.REMAINING_TIME -> (settings.timeLimitMs - (reactionMs ?: settings.timeLimitMs)).coerceAtLeast(0)
     }
 
+    /**
+     * Tiebreaker bei Punktgleichstand am Ende, für jeden Teilnehmer der Hauptrunde: Reaktionszeit (wer
+     * gebuzzert hat, egal ob richtig; sonst die maximale Wartezeit) wird immer aufaddiert, und [winner]
+     * bekommt eine richtige Antwort gutgeschrieben.
+     */
+    private fun finalizeRoundStats(winner: PlayerId?) {
+        val maxWaitMs = settings.reactionLimitMs ?: settings.timeLimitMs
+        for (id in roundParticipants) {
+            val p = players[id] ?: continue
+            p.totalReactionMs += p.roundReactionMs ?: maxWaitMs
+            if (id == winner) p.correctCount++
+        }
+    }
+
     fun canCorrectLastRound(): Boolean = (phase == Phase.READY || phase == Phase.ROUND_OVER) && lastResult != null
 
     /**
@@ -742,9 +779,9 @@ class MasterEngine(
         if (!canCorrectLastRound()) return false
         if (newWinner != null && players[newWinner] == null) return false
         if (result.winner == newWinner) return true
-        result.winner?.let { players[it] }?.let { it.score = (it.score - result.amount).coerceAtLeast(0) }
+        result.winner?.let { players[it] }?.let { it.score = (it.score - result.amount).coerceAtLeast(0); it.correctCount-- }
         val amount = if (newWinner != null) award(result.reactions[newWinner]) else 0
-        newWinner?.let { players[it] }?.let { it.score += amount }
+        newWinner?.let { players[it] }?.let { it.score += amount; it.correctCount++ }
         lastResult = result.copy(winner = newWinner, amount = amount)
         if (history.isNotEmpty()) history[history.lastIndex] = players.values.associate { it.id to it.score }
         log(
@@ -1027,6 +1064,7 @@ class MasterEngine(
     private fun advance(from: Int) {
         val index = (from until order.size).firstOrNull { gi -> order[gi].any { players[it]?.status != Status.OUT } }
         if (index == null) {
+            finalizeRoundStats(null)
             phase = Phase.ROUND_OVER
             return
         }
@@ -1479,7 +1517,15 @@ class MasterEngine(
             explanation = t.question.explanation,
             source = t.question.source,
             corrected = corrected,
+            chooserNames = if (settings.quizShowAnswers) chooserNamesFor(t, perm, excluding = p.id) else emptyList(),
         )
+    }
+
+    /** Je Antwortposition in [perm] (Empfänger-Reihenfolge) die Namen der übrigen Mitspieler, die sie gewählt haben. */
+    private fun chooserNamesFor(t: QuizTurn, perm: List<Int>, excluding: PlayerId): List<String> = perm.map { packageIndex ->
+        t.participants.filter { it != excluding }.mapNotNull { pid ->
+            players[pid]?.takeIf { t.answers[pid]?.first == packageIndex }?.name
+        }.joinToString("|")
     }
 
     private fun reveal(t: QuizTurn) {
@@ -1489,6 +1535,13 @@ class MasterEngine(
         cancelQuizTasks(t)
         t.awards = computeAwards(t)
         t.awards.forEach { (id, amount) -> players[id]?.let { it.score += amount } }
+        // Tiebreaker bei Punktgleichstand am Ende: Antwortzeit immer aufaddieren (ohne Antwort die volle
+        // Antwortzeit), richtige Antworten zählen – unabhängig von der Quiz-Wertung.
+        for (id in t.participants) {
+            val p = players[id] ?: continue
+            p.totalReactionMs += t.answers[id]?.second ?: t.durationMs
+            if (outcomeOf(t, id) == QuizOutcome.RIGHT) p.correctCount++
+        }
         phase = Phase.QUIZ_REVEAL
         if (history.isEmpty()) history += players.keys.associateWith { startScores[it] ?: 0L }
         history += players.values.associate { it.id to it.score }
@@ -1853,7 +1906,8 @@ class MasterEngine(
     /** Rangliste an alle; angezeigt wird sie nur zwischen den Runden. */
     private fun broadcastScoreboard() {
         val show = isPause()
-        val inputs = players.values.filter { it.connected }.map { ScoreInput(it.id, it.name, it.score, it.avatar) }
+        val inputs = players.values.filter { it.connected }
+            .map { ScoreInput(it.id, it.name, it.score, it.avatar, it.totalReactionMs, it.correctCount) }
         val maxScore = inputs.maxOfOrNull { it.score } ?: 0
         val boardSettings = settings.copy(scoring = scoring)
         for (p in players.values) {

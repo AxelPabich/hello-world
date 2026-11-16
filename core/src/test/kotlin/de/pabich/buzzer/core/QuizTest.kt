@@ -118,6 +118,34 @@ class QuizTest {
     }
 
     @Test
+    fun `a quiz tie is broken by the accumulated answer time`() {
+        val g = game()
+        g.master.startQuiz(listOf(question(1), question(2)))
+        // Frage 1: Axel schnell richtig (Punkt bei „Schnellster punktet“), Peter langsam richtig,
+        // Clara antwortet (falsch), damit sofort aufgelöst wird, statt auf die volle Antwortzeit zu warten.
+        g.answer("Axel", "Richtig 1", 500)
+        g.answer("Peter", "Richtig 1", 2_000)
+        g.answer("Clara", "Falsch A1", 300)
+        g.time.advanceBy(8_000)
+        assertTrue(g.master.nextQuestion())
+        g.time.advanceBy(100)
+        // Frage 2: Peter schnell richtig, Axel langsam richtig – jetzt bekommt Peter den Punkt.
+        g.answer("Peter", "Richtig 2", 300)
+        g.answer("Axel", "Richtig 2", 5_000)
+        g.answer("Clara", "Falsch A2", 300)
+        g.time.advanceBy(10_000)
+
+        // Beide stehen bei 1 Punkt: Peter hat die kleinere Zeitsumme (2.000+300 ms gegen 500+5.000 ms).
+        assertEquals(1L, g.scores()["Axel"])
+        assertEquals(1L, g.scores()["Peter"])
+        val board = g.view("Clara").board
+        assertEquals(1, board.first { it.label == "Peter" }.rank)
+        assertEquals(2, board.first { it.label == "Axel" }.rank)
+        assertEquals("2,30 s", board.first { it.label == "Peter" }.tiebreakText)
+        assertEquals("5,50 s", board.first { it.label == "Axel" }.tiebreakText)
+    }
+
+    @Test
     fun `no answer counts as none after the deadline`() {
         val g = game()
         g.master.startQuiz(listOf(question(1)))

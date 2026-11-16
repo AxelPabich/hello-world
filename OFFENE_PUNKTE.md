@@ -434,6 +434,15 @@ Kategorien recherchieren.
 
 ## Offen
 
+126. **Wünsche vom 16.11.2026** (umgesetzt, kommt mit dem nächsten Build):
+    - Tiebreaker bei Punktgleichstand am Ende: Ohne Zeitwertung entscheidet die kleinere Summe der
+      Reaktions-/Antwortzeiten (immer aufaddiert, egal ob richtig; bei Nicht-Antwort die volle
+      Wartezeit); mit Zeitwertung die höhere Anzahl richtiger Antworten. Der Tiebreaker-Wert
+      erscheint in der Rangliste nur bei tatsächlichem Gleichstand.
+    - Spielleiter spielt mit: kann jetzt wie die Mitspieler über ⋮ „Lesetempo messen“ einen Lesetest
+      machen (vorher nur im Spieler-Menü, nicht im Spielleiter-Menü).
+    - Neuer Quiz-Modus „Antworten der Mitspieler bei der Auflösung zeigen“ (Einstellungen → Quiz):
+      in jedem Antwortfeld steht nach der Auflösung, wer ihn gewählt hat.
 57. **Start-Animationen laufen komplett und blenden aus** (in Build 26):
     Splash-Screen und Rennszene laufen jetzt über die Bildwiederholung statt über die
     Animations-Skalierung des Systems (bei „Animationen aus“/verkürzt war sie sofort vorbei) und

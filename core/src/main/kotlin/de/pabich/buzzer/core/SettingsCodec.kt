@@ -36,6 +36,7 @@ object SettingsCodec {
         "quizAutoReadyMs" to "Quiz: Bereit-Abfrage automatisch",
         "quizShuffleAnswers" to "Quiz: Antworten für jeden Spieler anders mischen",
         "quizReadAdapt" to "Quiz: Lesezeit der Frage anpassen",
+        "quizShowAnswers" to "Quiz: Antworten der Mitspieler bei der Auflösung zeigen",
         "rulesConfirm" to "Spielregeln vor Spielbeginn bestätigen",
     )
 
@@ -80,6 +81,7 @@ object SettingsCodec {
         "quizAutoReadyMs" to s.quizAutoReadyMs.toString(),
         "quizShuffleAnswers" to s.quizShuffleAnswers.toString(),
         "quizReadAdapt" to s.quizReadAdapt.toString(),
+        "quizShowAnswers" to s.quizShowAnswers.toString(),
         "rulesConfirm" to s.rulesConfirm.toString(),
     )
 
@@ -128,6 +130,7 @@ object SettingsCodec {
             quizAutoReadyMs = read("quizAutoReadyMs", d.quizAutoReadyMs) { it.toLong() },
             quizShuffleAnswers = read("quizShuffleAnswers", d.quizShuffleAnswers) { it.toBooleanStrict() },
             quizReadAdapt = read("quizReadAdapt", d.quizReadAdapt) { it.toBooleanStrict() },
+            quizShowAnswers = read("quizShowAnswers", d.quizShowAnswers) { it.toBooleanStrict() },
             rulesConfirm = read("rulesConfirm", d.rulesConfirm) { it.toBooleanStrict() },
         )
         return Decoded(s.normalized(), missing)

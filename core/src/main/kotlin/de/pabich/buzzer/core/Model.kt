@@ -101,6 +101,8 @@ data class Settings(
     val quizShuffleAnswers: Boolean = true,
     /** Quiz: Wartezeit zwischen Frage und Antworten richtet sich nach Länge der Frage und Lesetempo der Spieler. */
     val quizReadAdapt: Boolean = true,
+    /** Quiz: Bei der Auflösung sehen alle, wer welche Antwort gewählt hat (Namen in den Antwortfeldern). */
+    val quizShowAnswers: Boolean = false,
     /** Vor dem Spielbeginn müssen alle die Spielregeln mit OK bestätigen. */
     val rulesConfirm: Boolean = true,
 ) {
