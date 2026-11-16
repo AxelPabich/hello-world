@@ -37,37 +37,37 @@
     {
       "datei": "technik.json",
       "titel": "Technik",
-      "version": 18,
+      "version": 19,
       "fragen": 120
     },
     {
       "datei": "geschichte.json",
       "titel": "Geschichte",
-      "version": 19,
+      "version": 20,
       "fragen": 120
     },
     {
       "datei": "erdkunde.json",
       "titel": "Erdkunde",
-      "version": 19,
+      "version": 20,
       "fragen": 120
     },
     {
       "datei": "film.json",
       "titel": "Film & Fernsehen",
-      "version": 18,
+      "version": 19,
       "fragen": 120
     },
     {
       "datei": "sehenswuerdigkeiten.json",
       "titel": "Sehenswürdigkeiten",
-      "version": 18,
+      "version": 19,
       "fragen": 120
     },
     {
       "datei": "kueche.json",
       "titel": "Küche & Genuss",
-      "version": 18,
+      "version": 19,
       "fragen": 120
     },
     {
@@ -79,25 +79,25 @@
     {
       "datei": "einzelhandel.json",
       "titel": "Einzelhandel",
-      "version": 18,
+      "version": 19,
       "fragen": 120
     },
     {
       "datei": "bueroalltag.json",
       "titel": "Büroalltag",
-      "version": 18,
+      "version": 19,
       "fragen": 120
     },
     {
       "datei": "besserwisser.json",
       "titel": "Besserwisser",
-      "version": 19,
+      "version": 20,
       "fragen": 120
     },
     {
       "datei": "jahre.json",
       "titel": "Die 80er, 90er und 00er Jahre",
-      "version": 11,
+      "version": 12,
       "fragen": 120
     },
     {
