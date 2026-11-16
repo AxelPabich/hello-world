@@ -1,7 +1,7 @@
 {
   "paket": "erdkunde",
   "titel": "Erdkunde",
-  "version": 20,
+  "version": 21,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2041,6 +2041,23 @@
       ],
       "erklaerung": "Bayern ist etwa 70.500 km² groß.",
       "quelle": "https://de.wikipedia.org/wiki/Bayern",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "erd-0003",
+      "version": 1,
+      "kategorie": "Erdkunde",
+      "stufe": "leicht",
+      "frage": "Welcher ist der größte Ozean der Erde?",
+      "antworten": [
+        "Der Pazifische Ozean",
+        "Der Atlantische Ozean",
+        "Der Indische Ozean",
+        "Der Arktische Ozean"
+      ],
+      "erklaerung": "Der Pazifik ist größer als alle Landflächen zusammen.",
+      "quelle": "https://de.wikipedia.org/wiki/Pazifischer_Ozean",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     }

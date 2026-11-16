@@ -1,7 +1,7 @@
 {
   "paket": "film",
   "titel": "Film & Fernsehen",
-  "version": 19,
+  "version": 20,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2041,6 +2041,23 @@
       ],
       "erklaerung": "Er verliert ständig seinen Schwanz.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Winnie%20Puuh",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "film-0084",
+      "version": 1,
+      "kategorie": "Film & Fernsehen",
+      "stufe": "ingomania",
+      "frage": "Wer moderierte die Ratesendung „Was bin ich?“ mit dem „heiteren Beruferaten“?",
+      "antworten": [
+        "Robert Lembke",
+        "Hans Rosenthal",
+        "Peter Frankenfeld",
+        "Heinz Schenk"
+      ],
+      "erklaerung": "Robert Lembke leitete die Sendung von 1955 bis 1989 und fragte: „Welches Schweinderl hätten S' denn gern?“",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Was%20bin%20ich%3F",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     }

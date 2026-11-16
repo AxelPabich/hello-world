@@ -54,17 +54,19 @@ vorige erreicht ist; beim Wechsel Axel Bescheid geben.
 
 1. **Auffüllen auf 120 Fragen je Kategorie.** Neue Fragen nur in **mittel und schwer** (dort braucht die
    Zielverteilung von Phase 2 mehr), je Kategorie höchstens 4 neue Fragen pro Build.
-2. **Umverteilen der Stufen** auf **15 % leicht, 45 % mittel, 30 % schwer, 10 % Ingomania** (bei 120 Fragen:
-   18 / 54 / 36 / 12). Methode **Ersetzen**: überzählige leichte und Ingomania-Fragen löschen, dafür neue mittlere
-   bzw. schwere schreiben. **Höchstens 20 veränderte Fragen pro Build insgesamt** (gelöscht + neu, alle Kategorien
-   zusammen). Zum Löschen bevorzugt die am häufigsten gespielten (`gespielt.json`, siehe unten), sonst die ältesten.
+2. **Umverteilen der Stufen** auf **15 % leicht, 45 % mittel, 30 % schwer, 10 % Ingomania**. Methode
+   **Auffüllen** (Anweisung vom 16.11.2026, ersetzt das Ersetzen): **keine bestehende Frage löschen**, sondern nur
+   neue mittlere und schwere Fragen schreiben, bis das Verhältnis erreicht ist (bei ~28 Ingomania-Fragen je
+   Kategorie heißt das rund 280 Fragen je Kategorie, also ~125 mittel und ~85 schwer). **Höchstens 20 neue Fragen
+   pro Build insgesamt** (alle Kategorien zusammen), zuerst die Kategorien mit der größten Abweichung.
 3. **Danach** keine Änderungen mehr an den festen Kategorien – nur noch „Aktuelles“ pflegen und die Spielzählung
    führen. Über den Austausch alter Fragen redet Axel später.
 
-Prüfen vor jedem Build (Anzahl je Kategorie, Abweichung von der Zielverteilung):
+Prüfen vor jedem Build (Anzahl je Kategorie; „Ziel“ = Gesamtzahl, bei der ohne Löschen alle Stufen passen, dahinter
+je Stufe Ist/Soll):
 
 ```
-python3 -c "import json;i=json.load(open('quiz/index.json'));Z={'leicht':.15,'mittel':.45,'schwer':.30,'ingomania':.10};[print(p['titel'][:28].ljust(28),len(f),{s:f'{sum(q[\"stufe\"]==s for q in f)}/{round(Z[s]*120)}' for s in Z}) for p in i['pakete'] for f in [json.load(open('quiz/'+p['datei']))['fragen']]]"
+python3 -c "import json;i=json.load(open('quiz/index.json'));Z={'leicht':.15,'mittel':.45,'schwer':.30,'ingomania':.10};[print(p['titel'][:28].ljust(28),len(f),'Ziel',N,{s:f'{c[s]}/{round(Z[s]*N)}' for s in Z}) for p in i['pakete'] for f in [json.load(open('quiz/'+p['datei']))['fragen']] for c in [{s:sum(q['stufe']==s for q in f) for s in Z}] for N in [max(round(c[s]/Z[s]) for s in Z)]]"
 ```
 
 **„Aktuelles“** (läuft neben den Phasen und gilt dauerhaft):

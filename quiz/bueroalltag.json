@@ -1,7 +1,7 @@
 {
   "paket": "bueroalltag",
   "titel": "Büroalltag",
-  "version": 19,
+  "version": 20,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2041,6 +2041,23 @@
       ],
       "erklaerung": "Danach springt die Krankenkasse mit dem Krankengeld ein.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Entgeltfortzahlung",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "buero-0075",
+      "version": 1,
+      "kategorie": "Büroalltag",
+      "stufe": "ingomania",
+      "frage": "In welchem Unternehmen wurde 1967 die Gleitzeit in Deutschland erstmals im großen Stil eingeführt?",
+      "antworten": [
+        "Messerschmitt-Bölkow-Blohm",
+        "Siemens",
+        "Volkswagen",
+        "Robert Bosch"
+      ],
+      "erklaerung": "Die Personalberaterin Christel Kämmerer entwickelte das Modell für MBB in Ottobrunn bei München, um Verkehrsspitzen zu entzerren.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Gleitzeit",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     }

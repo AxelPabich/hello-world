@@ -1,7 +1,7 @@
 {
   "paket": "geschichte",
   "titel": "Geschichte",
-  "version": 20,
+  "version": 21,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2042,6 +2042,23 @@
       "erklaerung": "Er dankte 1918 ab. Franz Joseph I. war Kaiser von Österreich.",
       "quelle": "https://de.wikipedia.org/wiki/Wilhelm_II._(Deutsches_Reich)",
       "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "gesch-0067",
+      "version": 1,
+      "kategorie": "Geschichte",
+      "stufe": "ingomania",
+      "frage": "Mit welchem Abkommen wurde 1122 der Investiturstreit zwischen Papst und Kaiser beendet?",
+      "antworten": [
+        "Wormser Konkordat",
+        "Konstanzer Vertrag",
+        "Frieden von Venedig",
+        "Vertrag von Verdun"
+      ],
+      "erklaerung": "Das Wormser Konkordat zwischen Heinrich V. und Papst Calixt II. trennte die geistliche von der weltlichen Amtseinsetzung der Bischöfe.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Wormser%20Konkordat",
+      "erstellt": "2026-10-24",
       "gueltigBis": null
     }
   ]

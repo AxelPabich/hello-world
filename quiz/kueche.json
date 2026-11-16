@@ -1,7 +1,7 @@
 {
   "paket": "kueche",
   "titel": "Küche & Genuss",
-  "version": 19,
+  "version": 20,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2041,6 +2041,23 @@
       ],
       "erklaerung": "Früher hieß die Rebsorte selbst „Prosecco“, erst seit 2009 Glera.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Prosecco",
+      "erstellt": "2026-10-24",
+      "gueltigBis": null
+    },
+    {
+      "id": "kueche-0080",
+      "version": 1,
+      "kategorie": "Küche & Genuss",
+      "stufe": "ingomania",
+      "frage": "Wer erfand 1875 in Vevey die Milchschokolade?",
+      "antworten": [
+        "Daniel Peter",
+        "Rodolphe Lindt",
+        "Philippe Suchard",
+        "Jean Tobler"
+      ],
+      "erklaerung": "Peter verwendete Kondensmilch seines Nachbarn Henri Nestlé; daraus entstand später die Firma Nestlé-Peter.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Daniel%20Peter",
       "erstellt": "2026-10-24",
       "gueltigBis": null
     }

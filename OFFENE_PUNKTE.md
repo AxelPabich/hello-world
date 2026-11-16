@@ -443,11 +443,13 @@ Kategorien recherchieren.
       machen (vorher nur im Spieler-Menü, nicht im Spielleiter-Menü).
     - Neuer Quiz-Modus „Antworten der Mitspieler bei der Auflösung zeigen“ (Einstellungen → Quiz):
       in jedem Antwortfeld steht nach der Auflösung, wer ihn gewählt hat.
-    - **Fragendatenbank Phase 2 begonnen** (16.11.2026, Phase 1 war mit 120 je Kategorie erreicht): erster
-      Schritt mit 10 Austauschen (5 leichte + 5 Ingomania, je die meistgespielte, durch neue mittlere/schwere;
-      Kategorien Technik, Geschichte, Erdkunde, Film, Sehenswürdigkeiten, Küche, Einzelhandel, Büroalltag,
-      Besserwisser, 80er–00er). Ziel 18/54/36/12 je Kategorie – Stand nach diesem Schritt z. B. Technik
-      28/35/29/28; es folgen pro Build höchstens 20 weitere Änderungen.
+    - **Fragendatenbank Phase 2 begonnen** (16.11.2026, Phase 1 war mit 120 je Kategorie erreicht). Erster Schritt
+      in Build 53: 10 neue mittlere/schwere Fragen (Technik, Geschichte, Erdkunde, Film, Sehenswürdigkeiten, Küche,
+      Einzelhandel, Büroalltag, Besserwisser, 80er–00er); dabei wurden 10 leichte/Ingomania-Fragen gelöscht –
+      **Axel am selben Abend: nicht mehr löschen, nur auffüllen.** Die 10 gelöschten Fragen sind wiederhergestellt
+      (kommen mit dem nächsten Build), Regel in `CLAUDE.md`/`AGENTS.md` angepasst. Ohne Löschen braucht jede
+      Kategorie rund 280 Fragen (Ziel je Kategorie ~42 leicht / 126 mittel / 84 schwer / 28 Ingomania); es fehlen
+      also je Kategorie ~90 mittlere und ~55 schwere, höchstens 20 neue pro Build.
 57. **Start-Animationen laufen komplett und blenden aus** (in Build 26):
     Splash-Screen und Rennszene laufen jetzt über die Bildwiederholung statt über die
     Animations-Skalierung des Systems (bei „Animationen aus“/verkürzt war sie sofort vorbei) und

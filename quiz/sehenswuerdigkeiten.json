@@ -1,7 +1,7 @@
 {
   "paket": "sehenswuerdigkeiten",
   "titel": "Sehenswürdigkeiten",
-  "version": 19,
+  "version": 20,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2042,6 +2042,23 @@
       "erklaerung": "Die elf Kirchen entstanden vermutlich im 12. und 13. Jahrhundert.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Felsenkirchen%20von%20Lalibela",
       "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "sehen-0001",
+      "version": 1,
+      "kategorie": "Sehenswürdigkeiten",
+      "stufe": "leicht",
+      "frage": "Wofür wurde der Eiffelturm ursprünglich gebaut?",
+      "antworten": [
+        "Als Eingangsportal der Weltausstellung 1889 in Paris",
+        "Als Grillspieß für Napoleons Geburtstags-Barbecue",
+        "Als Leuchtturm für die Schifffahrt auf der Seine",
+        "Als Kletterturm für französische Bergsteiger im Wintertraining"
+      ],
+      "erklaerung": "Er sollte eigentlich nach 20 Jahren wieder abgebaut werden.",
+      "quelle": "https://de.wikipedia.org/wiki/Eiffelturm",
+      "erstellt": "2026-10-13",
       "gueltigBis": null
     }
   ]

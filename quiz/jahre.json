@@ -1,7 +1,7 @@
 {
   "paket": "jahre",
   "titel": "Die 80er, 90er und 00er Jahre",
-  "version": 12,
+  "version": 13,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler. Musik, Film, Fernsehen, Technik, Sport und Zeitgeschichte von 1980 bis 2009 (Allgemeinwissen, Stand 25.10.2026).",
   "fragen": [
     {
@@ -2041,6 +2041,23 @@
       ],
       "erklaerung": "Bush las in Sarasota (Florida) mit Schulkindern, als ihm die Anschläge gemeldet wurden. Erst später am Tag flog er unter anderem zur Offutt Air Force Base in Nebraska.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Terroranschl%C3%A4ge%20am%2011.%20September%202001",
+      "erstellt": "2026-10-25",
+      "gueltigBis": null
+    },
+    {
+      "id": "jahre-0078",
+      "version": 1,
+      "kategorie": "Die 80er, 90er und 00er Jahre",
+      "stufe": "ingomania",
+      "frage": "Welche Zeit lief Usain Bolt bei seinem Weltrekord im 100-Meter-Finale der Olympischen Spiele 2008?",
+      "antworten": [
+        "9,69 Sekunden",
+        "9,58 Sekunden",
+        "9,72 Sekunden",
+        "9,74 Sekunden"
+      ],
+      "erklaerung": "Bolt lief in Peking 9,69 s, obwohl er vor dem Ziel schon jubelte; 9,58 s folgten ein Jahr später bei der WM in Berlin.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Usain%20Bolt",
       "erstellt": "2026-10-25",
       "gueltigBis": null
     }

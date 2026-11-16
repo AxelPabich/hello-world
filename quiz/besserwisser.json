@@ -1,7 +1,7 @@
 {
   "paket": "besserwisser",
   "titel": "Besserwisser",
-  "version": 20,
+  "version": 21,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2042,6 +2042,23 @@
       "erklaerung": "Die Erdnuss ist mit Erbsen und Bohnen verwandt.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Erdnuss",
       "erstellt": "2026-10-19",
+      "gueltigBis": null
+    },
+    {
+      "id": "besser-0016",
+      "version": 1,
+      "kategorie": "Besserwisser",
+      "stufe": "leicht",
+      "frage": "Wie viele Monate im Jahr haben 28 Tage?",
+      "antworten": [
+        "Alle zwölf",
+        "Nur einer",
+        "Zwei",
+        "Keiner – der Februar hat 28,25"
+      ],
+      "erklaerung": "Achtundzwanzig Tage hat jeder Monat – manche eben noch ein paar mehr.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Monat",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     }
   ]

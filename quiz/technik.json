@@ -1,7 +1,7 @@
 {
   "paket": "technik",
   "titel": "Technik",
-  "version": 19,
+  "version": 20,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2041,6 +2041,23 @@
       ],
       "erklaerung": "Ein Byte besteht heute praktisch immer aus 8 Bit.",
       "quelle": "https://de.wikipedia.org/wiki/Byte",
+      "erstellt": "2026-10-13",
+      "gueltigBis": null
+    },
+    {
+      "id": "tech-0001",
+      "version": 1,
+      "kategorie": "Technik",
+      "stufe": "leicht",
+      "frage": "Wofür steht die Abkürzung „HTTP“?",
+      "antworten": [
+        "Hypertext Transfer Protocol",
+        "High Transfer Text Protocol",
+        "Hyperlink Text Transmission Process",
+        "Heimliches Tippen, total privat"
+      ],
+      "erklaerung": "Das Protokoll, mit dem Browser Webseiten abrufen.",
+      "quelle": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol",
       "erstellt": "2026-10-13",
       "gueltigBis": null
     }

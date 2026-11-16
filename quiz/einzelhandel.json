@@ -1,7 +1,7 @@
 {
   "paket": "einzelhandel",
   "titel": "Einzelhandel",
-  "version": 19,
+  "version": 20,
   "hinweis": "Die erste Antwort ist immer die richtige; die App mischt sie für jeden Spieler.",
   "fragen": [
     {
@@ -2042,6 +2042,23 @@
       "erklaerung": "Für Punkte oder Rabatte erfährt der Händler, wer was wann kauft.",
       "quelle": "https://de.wikipedia.org/w/index.php?search=Kundenkarte",
       "erstellt": "2026-11-07",
+      "gueltigBis": null
+    },
+    {
+      "id": "handel-0001",
+      "version": 1,
+      "kategorie": "Einzelhandel",
+      "stufe": "leicht",
+      "frage": "Welcher Discounter wurde von den Brüdern Karl und Theo Albrecht gegründet?",
+      "antworten": [
+        "Aldi",
+        "Lidl",
+        "Penny",
+        "Netto"
+      ],
+      "erklaerung": "Die Brüder übernahmen 1946 den Laden ihrer Mutter in Essen; 1961 teilten sie das Unternehmen in Aldi Nord und Aldi Süd.",
+      "quelle": "https://de.wikipedia.org/w/index.php?search=Aldi",
+      "erstellt": "2026-10-15",
       "gueltigBis": null
     }
   ]
