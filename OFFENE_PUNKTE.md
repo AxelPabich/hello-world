@@ -434,7 +434,20 @@ Kategorien recherchieren.
 
 ## Offen
 
-126. **Wünsche vom 16.11.2026** (umgesetzt, kommt mit dem nächsten Build):
+127. **Diag vom 17.11.2026** (Diagnosen 15.11. Build 52 und 16.11. Build 53; behoben, kommt mit dem nächsten Build):
+    - Intensivtest 71 von 72: „Offline und zurück – Samsung S6 – nicht getrennt“. Der S6 (Tab S6, Android 12) war
+      sofort offline, der Spielleiter bekam die Trennung von Nearby aber erst 12 s später – im selben Moment wie den
+      Neubeitritt (40 ms Abstand). Der Test wartete nur 8 s und fragte alle 250 ms ab, ob der Spieler fehlt. Jetzt
+      wartet er bis 20 s und erkennt auch eine ersetzte Verbindung (neue Verbindungs-ID). Kein Fehler der App selbst.
+    - Mone (Android 17, Build 52): Der erste Berechtigungsdialog kam leer zurück (abgebrochen), die App hielt das für
+      „alles erlaubt“ und startete die Suche → roher Fehler „8029: MISSING_PERMISSION_NEARBY_WIFI_DEVICES“. Jetzt
+      wird nach dem Dialog der tatsächliche Berechtigungsstand geprüft; fehlt etwas, kommt der verständliche Hinweis.
+    - Update auf dem Tab S11 (Spielleiter): Installer-Dialog schlug einmal fehl, der Paket-Installer meldete „Self
+      update is blocked by unknown source package“, der dritte Versuch über den Dialog klappte – der Ausweg funktioniert.
+    - Spielzählung: `gespielt.json` unverändert – die letzte hochgeladene Quiz-Statistik ist vom 25.10. Für eine
+      aktuelle Zählung im Spielleiter-Menü ⋮ „Quiz-Statistik hochladen“ antippen.
+    - [ ] Test: Intensivtest mit dem S6 – „Offline und zurück“ grün.
+126. **Wünsche vom 16.11.2026** (in Build 53):
     - Tiebreaker bei Punktgleichstand am Ende: Ohne Zeitwertung entscheidet die kleinere Summe der
       Reaktions-/Antwortzeiten (immer aufaddiert, egal ob richtig; bei Nicht-Antwort die volle
       Wartezeit); mit Zeitwertung die höhere Anzahl richtiger Antworten. Der Tiebreaker-Wert

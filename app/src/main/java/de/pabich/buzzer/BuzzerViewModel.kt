@@ -2611,9 +2611,11 @@ class BuzzerViewModel(app: Application) : AndroidViewModel(app), NearbyLink.List
             for (n in names) {
                 if (!capable(n)) { mark("Offline und zurück", n, null, oldBuild); continue }
                 val before = row(n)?.scoreValue
+                val oldId = row(n)?.id
                 val t0 = UptimeClock.now()
                 cmd(n, "offline", 4_000)
-                val gone = waitUntil(8_000) { row(n) == null }
+                // Manche Geräte melden die Trennung erst mit dem Neubeitritt – dann ist der Spieler nie sichtbar weg, nur die Verbindungs-ID neu.
+                val gone = waitUntil(20_000) { row(n)?.id != oldId }
                 val back = gone && waitUntil(45_000) { row(n) != null }
                 sleep(1_000)
                 val same = row(n)?.scoreValue == before

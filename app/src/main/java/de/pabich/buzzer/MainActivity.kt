@@ -71,9 +71,12 @@ private fun App(vm: BuzzerViewModel) {
     val context = LocalContext.current
     var pendingAction by remember { mutableStateOf<(() -> Unit)?>(null) }
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result ->
-        // Ungefährer Standort genügt; den genauen darf der Nutzer ablehnen.
-        val granted = result.filterKeys { it !in OPTIONAL_PERMISSIONS }.values.all { it }
-        Diagnostics.log("Berechtigungen: " + result.entries.joinToString { "${it.key.substringAfterLast('.')}=${it.value}" })
+        // Ungefährer Standort genügt; den genauen darf der Nutzer ablehnen. Ein abgebrochener Dialog liefert ein
+        // leeres Ergebnis – daher den tatsächlichen Stand prüfen, nicht nur die Antwort.
+        val granted = requiredPermissions().all {
+            it in OPTIONAL_PERMISSIONS || context.checkSelfPermission(it) == PackageManager.PERMISSION_GRANTED
+        }
+        Diagnostics.log("Berechtigungen: " + (result.entries.joinToString { "${it.key.substringAfterLast('.')}=${it.value}" }.ifEmpty { "Dialog abgebrochen" }))
         if (granted) {
             pendingAction?.invoke()
         } else {
