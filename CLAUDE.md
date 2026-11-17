@@ -59,6 +59,10 @@ vorige erreicht ist; beim Wechsel Axel Bescheid geben.
    neue mittlere und schwere Fragen schreiben, bis das Verhältnis erreicht ist (bei ~28 Ingomania-Fragen je
    Kategorie heißt das rund 280 Fragen je Kategorie, also ~125 mittel und ~85 schwer). **Höchstens 20 neue Fragen
    pro Build insgesamt** (alle Kategorien zusammen), zuerst die Kategorien mit der größten Abweichung.
+   **Zusätzlich füllt die wöchentliche „Aktuelles“-Rotation auf** (Anweisung vom 17.11.2026): nach der Rotation
+   **40 neue mittlere/schwere Fragen** für die festen Kategorien (größter Fehlbestand zuerst, höchstens 5 je Kategorie
+   und Lauf, jede Antwort per Websuche geprüft, `gueltigBis` = null). Diese 40 zählen nicht gegen die 20 je Build;
+   Fortschritt als Zeile „Auffüllen <Datum>: X von 40“ in `OFFENE_PUNKTE.md` Punkt 119.
 3. **Danach** keine Änderungen mehr an den festen Kategorien – nur noch „Aktuelles“ pflegen und die Spielzählung
    führen. Über den Austausch alter Fragen redet Axel später.
 

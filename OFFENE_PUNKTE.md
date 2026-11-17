@@ -591,6 +591,9 @@ Kategorien recherchieren.
     Rotation 2026-11-14: 12 von 12 ersetzt (12 alte Sportfragen raus; Booker-Preis, COP31, ESC 2027, Auslands-Oscar,
     Papstreise, Fernsehpreis, Wortgetüm, Nachruf Keach, Kleist-Preis rein), Sportanteil ca. 55 % → ca. 45 % (Schätzung),
     Stufen 22/36/33/29 (leicht/mittel/schwer/ingomania).
+    **Ab 17.11.2026 (Anweisung Axel):** Die Samstags-Rotation schreibt zusätzlich 40 neue mittlere/schwere Fragen für die
+    festen Kategorien (Phase 2 auffüllen, nichts löschen); die Sonntags-Fortsetzung ergänzt, was fehlt. Fortschritt je
+    Woche als Zeile „Auffüllen <Datum>: X von 40 (Kategorien …)“ hier unten.
 118. **Übernahme der Spielleitung mit Sync-Verfahren** (Wunsch vom 01.11.2026, in Build 46): Übernahmen gingen
     oft schief – ein neuer Spielleiter sah den alten noch und gab ab, während die anderen schon zu ihm wollten.
     Neu (gilt, sobald alle Mitspieler Build 46 haben, sonst das alte Verfahren):
