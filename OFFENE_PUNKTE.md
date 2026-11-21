@@ -591,9 +591,9 @@ Kategorien recherchieren.
     Rotation 2026-11-14: 12 von 12 ersetzt (12 alte Sportfragen raus; Booker-Preis, COP31, ESC 2027, Auslands-Oscar,
     Papstreise, Fernsehpreis, Wortgetüm, Nachruf Keach, Kleist-Preis rein), Sportanteil ca. 55 % → ca. 45 % (Schätzung),
     Stufen 22/36/33/29 (leicht/mittel/schwer/ingomania).
-    Rotation 2026-11-21: 7 von 12 ersetzt (7 alte Sportfragen raus; Bachmann-Preis, Pulitzer, Österreichischer Filmpreis,
-    Grundsicherung rein), Sportanteil ca. 45 % → ca. 39 % (Schätzung), Stufen 16/40/35/29 (leicht/mittel/schwer/ingomania);
-    für die übrigen 5 fanden sich keine zweifach bestätigten Ereignisse – Fortsetzung am Sonntag.
+    Rotation 2026-11-21: 12 von 12 ersetzt (7 alte Sportfragen am Samstag, 5 alte Ingomania-Sportfragen am Sonntag raus;
+    Bachmann-Preis, Pulitzer, Österreichischer Filmpreis, Grundsicherung, Voyager 1, Euclid-Komet, Ig-Nobelpreis, Chang’e-7 rein),
+    Sportanteil ca. 45 % → ca. 35 % (Schätzung), Stufen 16/44/36/24 (leicht/mittel/schwer/ingomania).
     **Ab 17.11.2026 (Anweisung Axel):** Die Samstags-Rotation schreibt zusätzlich 40 neue mittlere/schwere Fragen für die
     festen Kategorien (Phase 2 auffüllen, nichts löschen); die Sonntags-Fortsetzung ergänzt, was fehlt. Fortschritt je
     Woche als Zeile „Auffüllen <Datum>: X von 40 (Kategorien …)“ hier unten.
