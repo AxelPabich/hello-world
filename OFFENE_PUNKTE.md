@@ -594,6 +594,8 @@ Kategorien recherchieren.
     Rotation 2026-11-21: 12 von 12 ersetzt (7 alte Sportfragen am Samstag, 5 alte Ingomania-Sportfragen am Sonntag raus;
     Bachmann-Preis, Pulitzer, Österreichischer Filmpreis, Grundsicherung, Voyager 1, Euclid-Komet, Ig-Nobelpreis, Chang’e-7 rein),
     Sportanteil ca. 45 % → ca. 35 % (Schätzung), Stufen 16/44/36/24 (leicht/mittel/schwer/ingomania).
+    Auffüllen 2026-11-22: 40 von 40 (je 3–4 in allen 12 festen Kategorien: 24 mittel, 16 schwer; Quellen per Websuche geprüft,
+    `gueltigBis` null, Stand Phase 2 siehe Prüfbefehl in `CLAUDE.md`; Samstag und Sonntag zusammen noch nicht gelaufen).
     **Ab 17.11.2026 (Anweisung Axel):** Die Samstags-Rotation schreibt zusätzlich 40 neue mittlere/schwere Fragen für die
     festen Kategorien (Phase 2 auffüllen, nichts löschen); die Sonntags-Fortsetzung ergänzt, was fehlt. Fortschritt je
     Woche als Zeile „Auffüllen <Datum>: X von 40 (Kategorien …)“ hier unten.
